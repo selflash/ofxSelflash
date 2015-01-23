@@ -62,7 +62,7 @@ flash.geom
 flash.net
 + net/Loader.h
 
-//flash.texts
+flash.texts
 + texts/Font.h
 + texts/TextField.h
 + texts/TextFieldAutoSize.h
