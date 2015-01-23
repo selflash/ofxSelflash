@@ -17,7 +17,7 @@ Requirements
 Features:
 --------
 
-//flash.core
+flash.core
 + core/Object.h
 
 //flash.display
@@ -33,7 +33,7 @@ Features:
 + display/DisplayObject.h
 + display/BlendMode.h
 
-//flash.events
+flash.events
 + events/EventDispatcher.h
 + events/Event.h
 + events/SoundEvent.h
@@ -52,14 +52,14 @@ Features:
 + events/JoystickEvent.h
 + events/ComboBoxEvent.h
 
-//flash.geom
+flash.geom
 + geom/ColorTransform.h
 + geom/Matrix.h
 + geom/Particle2D.h
 + geom/Rectangle.h
 + geom/Transform.h
 
-//flash.net
+flash.net
 + net/Loader.h
 
 //flash.texts
@@ -67,7 +67,7 @@ Features:
 + texts/TextField.h
 + texts/TextFieldAutoSize.h
 
-//flash.ui
+flash.ui
 + ui/Mouse.h
 + ui/Keyboard.h
 + ui/Button.h
