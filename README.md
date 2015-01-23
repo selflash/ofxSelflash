@@ -105,7 +105,7 @@ void ofApp::setup() {
 
 	//DisplayObject
 	flDisplayObject displayObject = new flDisplayObject();
-	displayObject->name("TestSprite");
+	displayObject->name("TestDisplayObject");
     stage->addChild(displayObject);
 
 	//Sprite
