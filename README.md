@@ -8,8 +8,11 @@ MIT License.
 Description:
 --------
 
-ofxSelflash is an Open Frameworks addon to be able to write a code like AS3 on an Open Frameworks.
+ofxSelflash is an Open Frameworks addon to be able to write a code like AS3 on an Open Frameworks.  
 I'm going to commit it on this repository soon.
+
+Requirements
+--------
 
 Features:
 --------
@@ -79,6 +82,35 @@ Features:
 + ui/Joystick.h
 + ui/ScrollKit.h
 + ui/ComboBox.h"
+
+Getting Started
+--------
+
+- Simple example: 
+
+```cpp
+void ofApp::setup() {
+    ofxSelflash::setup(false);
+	//ofxSelflash::clear();
+
+	//Stage
+	flStage stage = flStage::instance();
+
+	//DisplayObject
+	flDisplayObject displayObject = new flDisplayObject();
+	displayObject->name("TestSprite");
+    stage->addChild(displayObject);
+
+	//Sprite
+	flSprite sprite = new flSprite();
+	sprite->name("TestSprite");
+    sprite->mouseEnabled(false);
+    stage->addChild(sprite);
+
+    stage->removeChild(displayObject);
+    stage->removeChild(sprite);
+}
+```
 
 Updates:
 --------
