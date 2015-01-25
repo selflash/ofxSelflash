@@ -24,7 +24,7 @@ Requirements
 Features:
 --------
 
-fl2d.core
+[fl2d.core](https://github.com/selflash/ofxSelflash/wiki/core)
 + core/Object.h
 
 [fl2d.display](https://github.com/selflash/ofxSelflash/wiki/display)
@@ -40,7 +40,7 @@ fl2d.core
 + display/DisplayObject.h
 + display/BlendMode.h
 
-fl2d.events
+[fl2d.events](https://github.com/selflash/ofxSelflash/wiki/events)
 + events/EventDispatcher.h
 + events/Event.h
 + events/SoundEvent.h
@@ -59,22 +59,22 @@ fl2d.events
 + events/JoystickEvent.h
 + events/ComboBoxEvent.h
 
-fl2d.geom
+[fl2d.geom](https://github.com/selflash/ofxSelflash/wiki/geom)
 + geom/ColorTransform.h
 + geom/Matrix.h
 + geom/Particle2D.h
 + geom/Rectangle.h
 + geom/Transform.h
 
-fl2d.net
+[fl2d.net](https://github.com/selflash/ofxSelflash/wiki/net)
 + net/Loader.h
 
-flash.texts
+[flash.texts](https://github.com/selflash/ofxSelflash/wiki/texts)
 + texts/Font.h
 + texts/TextField.h
 + texts/TextFieldAutoSize.h
 
-fl2d.ui
+[fl2d.ui](https://github.com/selflash/ofxSelflash/wiki/ui)
 + ui/Mouse.h
 + ui/Keyboard.h
 + ui/Button.h
@@ -89,6 +89,13 @@ fl2d.ui
 + ui/Joystick.h
 + ui/ScrollKit.h
 + ui/ComboBox.h"
+
+fl3d.primitive  
+fl3d.render  
+fl3d.camera  
+fl3d.light  
+
+
 
 Getting Started
 --------
