@@ -24,10 +24,10 @@ Requirements
 Features:
 --------
 
-flash.core
+fl2d.core
 + core/Object.h
 
-flash.display
+[fl2d.display](https://github.com/selflash/ofxSelflash/wiki/display)
 + display/Stage.h
 + display/MovieClip.h
 + display/Sprite.h
@@ -40,7 +40,7 @@ flash.display
 + display/DisplayObject.h
 + display/BlendMode.h
 
-flash.events
+fl2d.events
 + events/EventDispatcher.h
 + events/Event.h
 + events/SoundEvent.h
@@ -59,14 +59,14 @@ flash.events
 + events/JoystickEvent.h
 + events/ComboBoxEvent.h
 
-flash.geom
+fl2d.geom
 + geom/ColorTransform.h
 + geom/Matrix.h
 + geom/Particle2D.h
 + geom/Rectangle.h
 + geom/Transform.h
 
-flash.net
+fl2d.net
 + net/Loader.h
 
 flash.texts
@@ -74,7 +74,7 @@ flash.texts
 + texts/TextField.h
 + texts/TextFieldAutoSize.h
 
-flash.ui
+fl2d.ui
 + ui/Mouse.h
 + ui/Keyboard.h
 + ui/Button.h
@@ -101,7 +101,7 @@ void ofApp::setup() {
 	//ofxSelflash::clear();
 
 	//Stage
-	flStage stage = flStage::instance();
+	flStage stage = ofxSelflash::stage();
 
 	//DisplayObject
 	flDisplayObject displayObject = new flDisplayObject();
