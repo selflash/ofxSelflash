@@ -17,6 +17,8 @@ ofxSelflash is an Open Frameworks addon to be able to write a code like AS3 on a
 I'm going to commit it on this repository soon.
 
 
+This addon is still in development!!!!!
+
 
 Requirements
 --------
