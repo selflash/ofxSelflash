@@ -24,7 +24,7 @@ The following example is unable to build.
 + example-3D-Deferred-1
 + example-BasicController
 + example-BlendMode
-+ MovieClip
++ example-MovieClip
 + example-Tweener-4
 
 
