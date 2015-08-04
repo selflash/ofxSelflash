@@ -18,6 +18,14 @@ I'm going to commit it on this repository soon.
 
 
 This addon is still in development!!!!!
+The following example is unable to build.
++ example-3D-1
++ example-3D-2
++ example-3D-Deferred-1
++ example-BasicController
++ example-BlendMode
++ MovieClip
++ example-Tweener-4
 
 
 Requirements
