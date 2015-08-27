@@ -804,7 +804,7 @@ namespace fl2d {
             DisplayObject* child;
             child = children[i];
             
-            if(!child->visible()) continue;
+//            if(!child->visible()) continue;
             
             if(_hasChildren(child)){
                 DisplayObjectContainer* container;
