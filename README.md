@@ -156,25 +156,32 @@ Getting Started
 
 ```cpp
 void ofApp::setup() {
-    ofxSelflash::setup(false);
-	//ofxSelflash::clear();
-
-	//Stage
-	flStage stage = ofxSelflash::stage();
-
-	//DisplayObject
-	flDisplayObject displayObject = new flDisplayObject();
-	displayObject->name("TestDisplayObject");
-    stage->addChild(displayObject);
-
-	//Sprite
-	flSprite sprite = new flSprite();
-	sprite->name("TestSprite");
-    sprite->mouseEnabled(false);
+    //Ready ofxSelflash
+    ofxSelflash::setup();
+    
+    //Get stage reference
+    flStage* stage = ofxSelflash::stage();
+    
+    //Create new sprite
+    flSprite* sprite = new flSprite();
+    //Set position
+    sprite->x(100);
+    sprite->y(200);
+    
+    //Draw graphics
+    flGraphics* g;
+    g = sprite->graphics();
+    g->clear();
+    g->lineStyle(1, 0xff0000);
+    g->beginFill(0xffffff);
+    g->drawRect(0, 0, 100, 100);
+    g->endFill();
+    
+    //Add to display-object-tree
     stage->addChild(sprite);
-
-    stage->removeChild(displayObject);
-    stage->removeChild(sprite);
+    
+    //When you wanna remove sprite
+    //stage->removeChild(sprite);
 }
 ```
 
