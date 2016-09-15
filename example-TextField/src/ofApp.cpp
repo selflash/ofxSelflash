@@ -56,7 +56,7 @@ void ofApp::setup(){
     textField201->y(366);
     textField201->text("openFrameworks");
     textField201->autoSize(flTextFieldAutoSize::LEFT);
-    textField201->type(TEXT_FIELD_TYPE_INPUT);
+    textField201->type(flTextField::TEXT_FIELD_TYPE_INPUT);
     textField201->textColor(0x0);
     textField201->mouseEnabled(true);
     textField201->buttonMode(true);
@@ -69,7 +69,7 @@ void ofApp::setup(){
     textField202->width(200);
 //    textField202->height(50);
     textField202->autoSize(flTextFieldAutoSize::CENTER);
-    textField202->type(TEXT_FIELD_TYPE_INPUT);
+    textField202->type(flTextField::TEXT_FIELD_TYPE_INPUT);
     textField202->textColor(0x990000);
     textField202->mouseEnabled(true);
     textField202->buttonMode(true);
@@ -82,7 +82,7 @@ void ofApp::setup(){
     textField203->width(200);
 //    textField203->height(50);
     textField203->autoSize(flTextFieldAutoSize::RIGHT);
-    textField203->type(TEXT_FIELD_TYPE_INPUT);
+    textField203->type(flTextField::TEXT_FIELD_TYPE_INPUT);
     textField203->textColor(0x009900);
     textField203->mouseEnabled(true);
     textField203->buttonMode(true);
@@ -232,6 +232,14 @@ void ofApp::draw(){
     flFont::drawString(info, 0, 0);
     ofPopMatrix();
     //---------------------------------
+    
+    //--------------------------------------
+    ofPushStyle();
+    ofNoFill();
+    ofSetColor(255, 255, 255, 200);
+    ofCircle(ofGetMouseX(), ofGetMouseY(), 5);
+    ofPopStyle();
+    //--------------------------------------
 }
 
 //--------------------------------------------------------------

@@ -24,8 +24,12 @@ namespace fl2d {
         _topValue = top;
         _bottomValue = bottom;
         
+        _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
+        _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
+        _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
+        _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
+
         _lineColor = FlashConfig::UI_LINE_COLOR;
-        
         _normalColor = FlashConfig::UI_NORMAL_COLOR;
         _overColor = FlashConfig::UI_OVER_COLOR;
         _activeColor = FlashConfig::UI_ACTIVE_COLOR;
@@ -39,13 +43,13 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);
-        g->drawRect(0, 0, _width, _height);
+        g->drawRect(18, 18, _width, _height);
         
         g->lineStyle(1, _lineColor);
-        g->moveTo(0, _height * 0.5);
-        g->lineTo(_width, _height * 0.5);
-        g->moveTo(_width * 0.5, 0);
-        g->lineTo(_width * 0.5, _height);
+        g->moveTo(18, 18 + _height * 0.5);
+        g->lineTo(18 + _width, 18 + _height * 0.5);
+        g->moveTo(18 + _width * 0.5, 18);
+        g->lineTo(18 + _width * 0.5, 18 + _height);
         g->endFill();
         
         addEventListener(MouseEvent::ROLL_OVER, this, &Pad2D::_mouseEventHandler);
@@ -58,19 +62,61 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
+        //左
+        _dialer01 = new NumberDialer(_width);
+        _dialer01->x(0);
+        _dialer01->y(18);
+        _dialer01->type(NumberDialer::VERTICALLY);
+        _dialer01->max(_rightValue, false);
+        _dialer01->value(_leftValue);
+        _dialer01->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
+        addChild(_dialer01);
+        //上
+        _dialer02 = new NumberDialer(_width);
+        _dialer02->x(18);
+        _dialer02->y(0);
+        _dialer02->stepValue(-1);
+        _dialer02->max(_bottomValue, false);
+        _dialer02->value(_topValue);
+        _dialer02->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
+        addChild(_dialer02);
+        //右
+        _dialer03 = new NumberDialer(_width);
+        _dialer03->x(18 + _width);
+        _dialer03->y(18);
+        _dialer03->type(NumberDialer::VERTICALLY);
+        _dialer03->min(_leftValue, false);
+        _dialer03->value(_rightValue);
+        _dialer03->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
+        addChild(_dialer03);
+        //下
+        _dialer04 = new NumberDialer(_width);
+        _dialer04->x(18);
+        _dialer04->y(18 + _height);
+        _dialer04->stepValue(-1);
+        _dialer04->min(_topValue, false);
+        _dialer04->value(_bottomValue);
+        _dialer04->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
+        addChild(_dialer04);
+        
+        _rangeWidth = _dialer03->value() - _dialer01->value();
+        _rangeHeight = _dialer04->value() - _dialer02->value();
+        //------------------------------------------
+        
+        //------------------------------------------
         ball = new Sprite();
         ball->useHandCursor(true);
         g = ball->graphics();
         g->smoothing(true);
         g->clear();
-        g->beginFill(0xFF0000, 0);
+        g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
-        ball->x(_width * 0.5);
-        ball->y(_height * 0.5);
+        ball->x(18 + _width * 0.5);
+        ball->y(18 + _height * 0.5);
         ball->addEventListener(MouseEvent::ROLL_OVER, this, &Pad2D::_mouseEventHandler);
         ball->addEventListener(MouseEvent::ROLL_OUT, this, &Pad2D::_mouseEventHandler);
         ball->addEventListener(MouseEvent::MOUSE_DOWN, this, &Pad2D::_mouseEventHandler);
@@ -81,47 +127,40 @@ namespace fl2d {
         
         //------------------------------------------
         //ラベル
-        _labelText = new TextField();
-        _labelText->x(0);
-        _labelText->y(-15);
-        _labelText->width(_width);
-        _labelText->autoSize(TextFieldAutoSize::CENTER);
-        _labelText->textColor(0xffffff);
-        _labelText->text("PAD 2D");
-        addChild(_labelText);
+        _label = NULL;
         
         _xRatioText = new TextField();
         //_xRatioText->x(_trackWidth * 0.5);
-        _xRatioText->x(0);
-        _xRatioText->y(0);
+        _xRatioText->x(18);
+        _xRatioText->y(18 * 1);
         _xRatioText->width(_width);
         _xRatioText->autoSize(TextFieldAutoSize::LEFT);
-        _xRatioText->textColor(0xffffff);
+        _xRatioText->textColor(_labelNormalColor);
         addChild(_xRatioText);
         
         _yRatioText = new TextField();
-        _yRatioText->x(0);
-        _yRatioText->y(15);
+        _yRatioText->x(18);
+        _yRatioText->y(18 * 2);
         _yRatioText->width(_width);
         _yRatioText->autoSize(TextFieldAutoSize::LEFT);
-        _yRatioText->textColor(0xffffff);
+        _yRatioText->textColor(_labelNormalColor);
         addChild(_yRatioText);
         
         _xValueText = new TextField();
         //_xValueText->x(_trackWidth * 0.5);
-        _xValueText->x(0);
-        _xValueText->y(30);
+        _xValueText->x(18);
+        _xValueText->y(18 * 3);
         _xValueText->width(_width);
         _xValueText->autoSize(TextFieldAutoSize::LEFT);
-        _xValueText->textColor(0xffffff);
+        _xValueText->textColor(_labelNormalColor);
         addChild(_xValueText);
         
         _yValueText = new TextField();
-        _yValueText->x(0);
-        _yValueText->y(45);
+        _yValueText->x(18);
+        _yValueText->y(18 * 4);
         _yValueText->width(_width);
         _yValueText->autoSize(TextFieldAutoSize::LEFT);
-        _yValueText->textColor(0xffffff);
+        _yValueText->textColor(_labelNormalColor);
         addChild(_yValueText);
         
         _xRatio = ball->x() / _width;
@@ -133,52 +172,6 @@ namespace fl2d {
         _yValue = ball->y() / _height;
         _xValueText->text("x:" + ofToString(_xValue));
         _yValueText->text("y:" + ofToString(_yValue));
-        //------------------------------------------
-        
-        //------------------------------------------
-        //左
-        _dialer01 = new NumberDialer(_width);
-        _dialer01->label("");
-        _dialer01->x(-20);
-        _dialer01->y(0);
-        _dialer01->type(FL_VERTICALLY);
-        _dialer01->max(_rightValue, false);
-        _dialer01->value(_leftValue);
-        _dialer01->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
-        addChild(_dialer01);
-        //上
-        _dialer02 = new NumberDialer(_width);
-        _dialer02->label("");
-        _dialer02->x(0);
-        _dialer02->y(-35);
-        _dialer02->stepValue(-1);
-        _dialer02->max(_bottomValue, false);
-        _dialer02->value(_topValue);
-        _dialer02->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
-        addChild(_dialer02);
-        //右
-        _dialer03 = new NumberDialer(_width);
-        _dialer03->label("");
-        _dialer03->x(_width);
-        _dialer03->y(0);
-        _dialer03->type(FL_VERTICALLY);
-        _dialer03->min(_leftValue, false);
-        _dialer03->value(_rightValue);
-        _dialer03->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
-        addChild(_dialer03);
-        //下
-        _dialer04 = new NumberDialer(_width);
-        _dialer04->label("");
-        _dialer04->x(0);
-        _dialer04->y(_height - 15);
-        _dialer04->stepValue(-1);
-        _dialer04->min(_topValue, false);
-        _dialer04->value(_bottomValue);
-        _dialer04->addEventListener(NumberDialerEvent::CHANGE, this, &Pad2D::_uiEventHandler);
-        addChild(_dialer04);
-        
-        _rangeWidth = _dialer03->value() - _dialer01->value();
-        _rangeHeight = _dialer04->value() - _dialer02->value();
         //------------------------------------------
         
         _updateValue();
@@ -199,6 +192,8 @@ namespace fl2d {
         ball->removeEventListener(MouseEvent::MOUSE_DOWN, &Pad2D::_mouseEventHandler);
         delete ball;
         ball = NULL;
+        
+        _label = NULL;
     }
 
     //==============================================================
@@ -222,10 +217,10 @@ namespace fl2d {
         float tx = mouseX() + _draggablePoint->x;
         float ty = mouseY() + _draggablePoint->y;
         
-        if(tx < 0) tx = 0;
-        if(_width < tx) tx = _width;
-        if(ty < 0) ty = 0;
-        if(_height < ty) ty = _height;
+        if(tx < 18) tx = 18;
+        if(18 + _width < tx) tx = 18 + _width;
+        if(ty < 18) ty = 18;
+        if(18 + _height < ty) ty = 18 + _height;
         
         ball->x(tx);
         ball->y(ty);
@@ -267,17 +262,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    string Pad2D::label() { return _labelText->text(); }
-    void Pad2D::label(string value, int color) {
-        _labelText->text(value);
-        _labelText->textColor(color);
-        //_valueText->textColor(color);
-    }
-    //--------------------------------------------------------------
-    //
-    void Pad2D::textColor(int color) {
-        _labelText->textColor(color);
-    }
+    TextField* Pad2D::label() { return _label; }
+    void Pad2D::label(TextField* value) { _label = NULL; }
     
     //--------------------------------------------------------------
     //
@@ -384,8 +370,8 @@ namespace fl2d {
     //値の更新
     void Pad2D::_updateValue() {
         
-        _xRatio = ball->x() / _width;
-        _yRatio = ball->y() / _height;
+        _xRatio = (ball->x() - 18) / _width;
+        _yRatio = (ball->y() - 18) / _height;
         _xRatioText->text("x:" + ofToString(_xRatio));
         _yRatioText->text("y:" + ofToString(_yRatio));
         
@@ -405,24 +391,27 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, _overColor);
         g->beginFill(_normalColor, 1);
-        g->drawRect(0, 0, _width, _height);
+        g->drawRect(18, 18, _width, _height);
         //横線・縦線
         g->lineStyle(1, _overColor);
-        g->moveTo(0, ball->y());
-        g->lineTo(_width, ball->y());
-        g->moveTo(ball->x(), 0);
-        g->lineTo(ball->x(), _height);
+        g->moveTo(18, ball->y());
+        g->lineTo(18 + _width, ball->y());
+        g->moveTo(ball->x(), 18);
+        g->lineTo(ball->x(), 18 + _height);
         //------------------------------------------
-        //------------------------------------------
-        g = ball->graphics();
-        g->clear();
-        g->beginFill(0xFF0000, 0);
-        g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _overColor);
-        g->beginFill(_normalColor, 1);
-        g->drawCircle(0, 0, _ballRadius);
-        g->endFill();
-        //------------------------------------------    
+
+        _ballOver();
+        
+//        //------------------------------------------
+//        g = ball->graphics();
+//        g->clear();
+//        g->beginFill(0xff0000, 0);
+//        g->drawCircle(0, 0, _ballRadius * 2.5);
+//        g->lineStyle(1, _overColor);
+//        g->beginFill(_normalColor, 1);
+//        g->drawCircle(0, 0, _ballRadius);
+//        g->endFill();
+//        //------------------------------------------    
     }
     //--------------------------------------------------------------
     //
@@ -434,13 +423,13 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);
-        g->drawRect(0, 0, _width, _height);
+        g->drawRect(18, 18, _width, _height);
         //横線・縦線
         g->lineStyle(1, _lineColor);
-        g->moveTo(0, ball->y());
-        g->lineTo(_width, ball->y());
-        g->moveTo(ball->x(), 0);
-        g->lineTo(ball->x(), _height);
+        g->moveTo(18, ball->y());
+        g->lineTo(18 + _width, ball->y());
+        g->moveTo(ball->x(), 18);
+        g->lineTo(ball->x(), 18 + _height);
         //------------------------------------------
         
         _ballOut();
@@ -455,14 +444,14 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, _activeColor);
         g->beginFill(_normalColor, 1);
-        g->drawRect(0, 0, _width, _height);
+        g->drawRect(18, 18, _width, _height);
         //横線・縦線
         g->lineStyle(1, _activeColor);
-        g->moveTo(0, ball->y());
-        g->lineTo(_width, ball->y());
-        g->moveTo(ball->x(), 0);
-        g->lineTo(ball->x(), _height);
-        //------------------------------------------    
+        g->moveTo(18, ball->y());
+        g->lineTo(18 + _width, ball->y());
+        g->moveTo(ball->x(), 18);
+        g->lineTo(ball->x(), 18 + _height);
+        //------------------------------------------
     }
     //--------------------------------------------------------------
     //
@@ -474,19 +463,20 @@ namespace fl2d {
         
         Graphics* g;
         
+        
+        
         //------------------------------------------
         g = graphics();
         g->clear();
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);
-        g->drawRect(0, 0, _width, _height);
-        g->lineStyle(1, _lineColor);
+        g->drawRect(18, 18, _width, _height);
         //横線・縦線
         g->lineStyle(1, _lineColor);
-        g->moveTo(0, ball->y());
-        g->lineTo(_width, ball->y());
-        g->moveTo(ball->x(), 0);
-        g->lineTo(ball->x(), _height);
+        g->moveTo(18, ball->y());
+        g->lineTo(18 + _width, ball->y());
+        g->moveTo(ball->x(), 18);
+        g->lineTo(ball->x(), 18 + _height);
         //------------------------------------------
     }
 
@@ -498,7 +488,7 @@ namespace fl2d {
         //------------------------------------------
         g = ball->graphics();
         g->clear();
-        g->beginFill(0xFF0000, 0);
+        g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
         g->lineStyle(1, _lineColor);
         g->beginFill(_overColor, 1);
@@ -520,7 +510,7 @@ namespace fl2d {
         //------------------------------------------
         g = ball->graphics();
         g->clear();
-        g->beginFill(0xFF0000, 0);
+        g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);
@@ -541,7 +531,7 @@ namespace fl2d {
         //------------------------------------------
         g = ball->graphics();
         g->clear();
-        g->beginFill(0xFF0000, 0);
+        g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
         g->lineStyle(1, _lineColor);
         g->beginFill(_activeColor, 1);
@@ -563,7 +553,7 @@ namespace fl2d {
         //------------------------------------------
         g = ball->graphics();
         g->clear();
-        g->beginFill(0xFF0000, 0);
+        g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
         g->lineStyle(1, _lineColor);
         g->beginFill(_normalColor, 1);

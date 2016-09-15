@@ -18,24 +18,33 @@ namespace fl2d {
         protected:
             
         private:
-            TextField* _labelText;
+            float _uiWidth;
+            float _uiHeight;
             
-            ofFloatColor* _lineColor;
-            ofFloatColor* _normalColor;
-            ofFloatColor* _overColor;
-            ofFloatColor* _activeColor;
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
             
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
+            ofFloatColor _deactiveColor;
+
+            TextField* _label;
+
             bool _bSelected;
             
         public:
             RadioButton(float width = 100);
             ~RadioButton();
             
-            string label();
-            void label(string value, int color = 0xffffff);
+            TextField* label();
             
-            void textColor(int color = 0xffffff);
-            
+            string labelText();
+            void labelText(string value);
+        
             bool selected();
             void selected(bool value, bool dispatch = true);
             
@@ -44,7 +53,8 @@ namespace fl2d {
             virtual void _over();
             virtual void _press();
         
-            virtual void _drawGraphics(const ofFloatColor& outerColor, const ofFloatColor* innerColor = NULL);
+            virtual void _drawGraphics(const ofFloatColor& outerColor);
+            virtual void _drawGraphics(const ofFloatColor& outerColor, const ofFloatColor& innerColor);
         
         private:
             

@@ -20,20 +20,25 @@ namespace fl2d {
         protected:
             
         private:
-            TextField* _labelText;
-            TextField* _xRatioText;
-            TextField* _yRatioText;
-            TextField* _xValueText;
-            TextField* _yValueText;
-            
             float _width;
             float _height;
-            
+        
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
+
             float _lineColor;
             float _normalColor;
             float _overColor;
             float _activeColor;
-            
+
+            TextField* _label;
+            TextField* _xRatioText;
+            TextField* _yRatioText;
+            TextField* _xValueText;
+            TextField* _yValueText;
+        
             float _ballRadius;
             
             float _xRatio;
@@ -59,10 +64,8 @@ namespace fl2d {
             Pad2D(float width = 100, float height = 100, float left = 0, float right = 100, float top = 0, float bottom = 100);
             ~Pad2D();
             
-            string label();
-            void label(string value, int color = 0x0);
-            
-            void textColor(int color = 0x0);
+            TextField* label();
+            void label(TextField* value);
         
             float xRatio();
             void xRatio(float value, bool dispatch = true);

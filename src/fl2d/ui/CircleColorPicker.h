@@ -17,16 +17,21 @@ namespace fl2d {
         protected:
             
         private:
-            TextField* _labelText;
+            float _uiWidth;
+            float _uiHeight;
+                
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
             
-            float _imageWidth;
-            float _imageHeight;
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
             
-            float _lineColor;
-            float _normalColor;
-            float _overColor;
-            float _activeColor;
-            
+            TextField* _label;
+
             ofImage* _pixelCaptureImage;
             ofImage* _colorWheelImage;
             ofColor* _selectedPixel;
@@ -37,11 +42,9 @@ namespace fl2d {
             CircleColorPicker(float width = 100, float height = 100);
             ~CircleColorPicker();
             
-            string label();
-            void label(string value, int color = 0xffffff);
-            
-            void textColor(int color = 0xffffff);
-            
+            TextField* label();
+            void label(TextField* value);
+        
             const ofColor& getPixel(int x, int y);
             
             int red();

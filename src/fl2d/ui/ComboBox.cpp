@@ -1,6 +1,10 @@
 ﻿#include "ComboBox.h"
 
 namespace fl2d {
+    //水平
+    string ComboBox::DROPDOWNLIST_UP = "up";
+    //垂直
+    string ComboBox::DROPDOWNLIST_DOWN = "down";
 
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
@@ -19,25 +23,27 @@ namespace fl2d {
         
         _selectedIndex = 0;
         
+        _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
+        _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
+        _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
+        _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
+        
+        _lineColor.setHex(FlashConfig::UI_LINE_COLOR);
+        _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
+        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
+
         //------------------------------------------
         //ラベル
-        _labelText = new TextField();
-        _labelText->x(0);
-        _labelText->y(0);
-        _labelText->width(_dropdownWidth);
-        _labelText->autoSize(TextFieldAutoSize::CENTER);
-        _labelText->textColor(0x0);
-        _labelText->text("COMBO BOX");
-        _labelText->mouseEnabled(false);
-        addChild(_labelText);
+        _label = NULL;
         //------------------------------------------
         
         //------------------------------------------
         //ボタン
         _topButton = new Button(_dropdownWidth);
-        _topButton->label("");
+        _topButton->labelText("");
         _topButton->x(0);
-        _topButton->y(15);
+        _topButton->y(0);
         _topButton->toggleEnabled(true);
         _topButton->addEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
         _topButton->addEventListener(FocusEvent::FOCUS_OUT, this, &ComboBox::_eventHandler);
@@ -45,7 +51,7 @@ namespace fl2d {
         
         _buttonContainer = new Sprite();
         _buttonContainer->x(0);
-        _buttonContainer->y(15 + 20);
+        _buttonContainer->y(18);
         
         _selectedButton = NULL;
         //------------------------------------------
@@ -54,6 +60,10 @@ namespace fl2d {
         //アイテム
         _selectedItem = NULL;
         //------------------------------------------
+        
+        _mode = "down";
+        
+        _enabled = true;
     }
 
     //--------------------------------------------------------------
@@ -70,8 +80,7 @@ namespace fl2d {
         
         //------------------------------------------
         //ラベル
-        delete _labelText;
-        _labelText = NULL;
+        _label = NULL;
         //------------------------------------------
         
         //------------------------------------------
@@ -93,6 +102,10 @@ namespace fl2d {
         _itemList.clear();
         _selectedItem = NULL;
         //------------------------------------------
+        
+        _mode = "";
+        
+        _enabled = false;
     }
 
     //==============================================================
@@ -120,18 +133,15 @@ namespace fl2d {
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
-    //--------------------------------------------------------------
-    //
-    string ComboBox::label() { return _labelText->text(); }
-    void ComboBox::label(string value, int color) {
-        _labelText->text(value);
-        _labelText->textColor(color);
-    }
     
     //--------------------------------------------------------------
     //
-    void ComboBox::removeAll() {
+    TextField* ComboBox::label() { return _label; }
+    void ComboBox::label(TextField* value) { _label = value; }
+    
+    //--------------------------------------------------------------
+    //
+    void ComboBox::removeAllItems() {
         if(_buttonContainer->parent()) removeChild(_buttonContainer);
         
         int i; int l;
@@ -151,7 +161,7 @@ namespace fl2d {
         g = _buttonContainer->graphics();
         g->clear();
         
-        _topButton->label("");
+        _topButton->labelText("");
         _selectedIndex = 0;
         _selectedItem = NULL;
     }
@@ -163,9 +173,8 @@ namespace fl2d {
         _selectedIndex = value;
         if(value < 0) _selectedIndex = 0;
         if(_itemList.size() - 1 <= value) _selectedIndex = _itemList.size() - 1;
-        cout << "HOGE = " << _buttonList.size() << ", " << _selectedIndex << endl;
         //------------------------------------------
-        if(_selectedButton) {
+        if(_selectedButton != NULL) {
             _selectedButton->selected(false);
             _selectedButton->alpha(0.5);
         }
@@ -174,7 +183,7 @@ namespace fl2d {
         _selectedItem = _itemList[_selectedIndex];
         
         //------------------------------------------
-        _topButton->label(_selectedItem->getProperty<string>("label"));
+        _topButton->labelText(_selectedItem->getProperty<string>("label"));
         _topButton->selected(false);
         if(_buttonContainer->parent()) removeChild(_buttonContainer);
         //------------------------------------------
@@ -200,6 +209,23 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     int ComboBox::numItems() { return _itemList.size(); }
+
+    //--------------------------------------------------------------
+    //
+    bool ComboBox::enabled() { return _enabled; }
+    void ComboBox::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        _topButton->enabled(_enabled);
+        
+        if(_enabled) {
+            if(_label != NULL) _label->textColor(_labelNormalColor);
+        } else {
+            if(_label != NULL) _label->textColor(_labelDeactiveColor);
+        }
+    }
 
     //==============================================================
     // PROTECTED / PRIVATE METHOD
@@ -239,6 +265,7 @@ namespace fl2d {
             if(target == _topButton) {
                 if(_topButton->selected()){
                     addChild(_buttonContainer);
+                    if(parent()) ((DisplayObjectContainer*)parent())->addChild(this);
                 } else {
                     removeChild(_buttonContainer);
                 }
@@ -257,7 +284,7 @@ namespace fl2d {
                 //------------------------------------------
                 
                 //------------------------------------------
-                _topButton->label(_selectedItem->getProperty<string>("label"));
+                _topButton->labelText(_selectedItem->getProperty<string>("label"));
                 _topButton->selected(false);
                 if(_buttonContainer->parent()) removeChild(_buttonContainer);
                 //------------------------------------------

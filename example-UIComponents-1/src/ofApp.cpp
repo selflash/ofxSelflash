@@ -3,49 +3,66 @@
 //--------------------------------------------------------------
 //
 void ofApp::setup() {
+    ofBackground(0);
     ofSetWindowTitle("example-UIComponents-1");
-    
-    ofxSelflash::setup();
+    ofDisableAntiAliasing();
     
     //--------------------------------------
-    //UI„Ç≥„É≥„Éù„Éº„Éç„É≥„Éà„ÅÆÁîüÊàê„Å®„Çπ„ÉÜ„Éº„Ç∏„Å´ÈÖçÁΩÆ
+//    ofxSelflash::autoUpdate(false);
+    ofxSelflash::autoDraw(false);
+    ofxSelflash::setup(false);
+    //--------------------------------------
+    
+    //--------------------------------------
+    //UIコンポーネント
     uiComponents = new UIComponents();
     uiComponents->setup();
     ofxSelflash::stage()->addChild(uiComponents);
     //--------------------------------------
     
     //--------------------------------------
-    //ÂêÑUI„ÇíÁõ£Ë¶ñ„Åô„Çã
-    //„Çπ„É©„Ç§„ÉÄ„Éº„ÇíÁõ£Ë¶ñ
+    //スライダー
     uiComponents->slider001->addEventListener(flSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->slider002->addEventListener(flSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº„ÇíÁõ£Ë¶ñ
+    //レンジスライダー
     uiComponents->rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->rangeSlider002->addEventListener(flRangeSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº„ÇíÁõ£Ë¶ñ
+    //カラースラーダー
     uiComponents->colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Éú„Çø„É≥„ÇíÁõ£Ë¶ñ
+    //ボタン
     uiComponents->btn001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->btn002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->btn002->addEventListener(flEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->btn003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->btn004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->btn005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    //„É©„Ç∏„Ç™„Éú„Çø„É≥„ÇíÁõ£Ë¶ñ
+    //ラジオボタン
     uiComponents->radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio002->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio003->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //2D„Éë„ÉÉ„Éâ„ÇíÁõ£Ë¶ñ
+    //2Dパッド
     uiComponents->pad001->addEventListener(flPadEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->pad002->addEventListener(flPadEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº„ÇíÁõ£Ë¶ñ
+    //カラーピッカー
     uiComponents->colorPicker001->addEventListener(flColorPickerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ„ÇíÁõ£Ë¶ñ
-    uiComponents->joystick001->addEventListener(flJoystickEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Éä„É≥„Éê„Éº„ÉÄ„Ç§„Ç¢„É©„Éº„ÇíÁõ£Ë¶ñ
+    
+    //ジョイスティック1D
+    uiComponents->joystick1D001->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D002->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D003->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D004->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D005->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D006->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D007->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D101->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1D102->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    //ジョイスティック2D
+    uiComponents->joystick2D001->addEventListener(flJoystick2DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    //ナンバーダイアラー
     uiComponents->dialer001->addEventListener(flNumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
 //    uiComponents->dialer002->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
 //    uiComponents->dialer003->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ„ÇíÁõ£Ë¶ñ
+    //コンボボックス
     uiComponents->comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->comboBox002->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->comboBox003->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
@@ -107,11 +124,14 @@ void ofApp::update() {
 //
 void ofApp::draw() {
     //--------------------------------------
-    //„ÉÜ„Çπ„Éà
     _count += _speed;
     
     ofPushMatrix();
     ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
+    
+    ofPushMatrix();
+    ofTranslate(_position);
+
     ofRotateX(_count);
     ofRotateY(_count * 0.75);
     
@@ -119,8 +139,22 @@ void ofApp::draw() {
     ofNoFill();
     ofDrawBox(0, 0, 0, 200, 200, 200);
     ofPopStyle();
-    
+
     ofPopMatrix();
+
+    ofPopMatrix();
+    //--------------------------------------
+    
+    //----------------------------------
+    ofxSelflash::draw();
+    //----------------------------------
+
+    //--------------------------------------
+    ofPushStyle();
+    ofNoFill();
+    ofSetColor(255, 255, 255, 200);
+    ofCircle(ofGetMouseX(), ofGetMouseY(), 5);
+    ofPopStyle();
     //--------------------------------------
 }
 
@@ -131,18 +165,24 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 //
 void ofApp::_uiComponentsEventHandler(flEvent& event) {
-//    cout << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")" << endl;
+    cout << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")" << endl;
     
 //    //------------------------------------------
-//    //„Ç§„Éô„É≥„Éà„Çø„Ç§„Éó„ÇíÂá∫Âäõ
+//    //イベントタイプ
 //    cout << "event.type          = " << event.type() << endl;
-//    //„Ç´„É¨„É≥„Éà„Çø„Éº„Ç≤„ÉÉ„Éà„ÅÆ„Ç¢„Éâ„É¨„Çπ„Å®name„Éó„É≠„Éë„ÉÜ„Ç£„ÇíÂá∫Âäõ
+//    //カレントターゲット
 //    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-//    //„Çø„Éº„Ç≤„ÉÉ„Éà„ÅÆ„Ç¢„Éâ„É¨„Çπ„Å®name„Éó„É≠„Éë„ÉÜ„Ç£„ÇíÂá∫Âäõ
+//    //イベントターゲット
 //    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
 //    //------------------------------------------
     
-    //„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥
+    //マウスダウンイベント
+    if(event.type() == flEvent::CHANGE) {
+        flButton* button = (flButton*)(event.currentTarget());
+
+    }
+    
+    //マウスダウンイベント
     if(event.type() == flMouseEvent::MOUSE_DOWN) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
@@ -229,12 +269,10 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         cout << "-------------" << endl;
         
         //------------------------------------------
-        //„Ç§„Éô„É≥„Éà„Åã„ÇâÂÄ§„ÇíÂèñÂæó(intÂûã)
         cout << colorSlider->name() << " :" <<
         " R:" << colorSliderEvent.redValue<int>() <<
         " G:" << colorSliderEvent.greenValue<int>() <<
         " B:" << colorSliderEvent.blueValue<int>() << endl;
-        //„Ç§„Éô„É≥„Éà„Åã„ÇâÂÄ§„ÇíÂèñÂæó(floatÂûã)
         cout << colorSlider->name() << " :" <<
         " R:" << colorSliderEvent.redValue<float>() <<
         " G:" << colorSliderEvent.greenValue<float>() <<
@@ -242,12 +280,10 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         //------------------------------------------
         
         //------------------------------------------
-//        //„Ç´„É¨„É≥„Éà„Çø„Éº„Ç≤„ÉÉ„Éà„Åã„ÇâÂÄ§„ÇíÂèñÂæó(intÂûã)
 //        cout << colorSlider->name() << " :" <<
 //        " R:" << colorSlider->redValue<int>() <<
 //        " G:" << colorSlider->greenValue<int>() <<
 //        " B:" << colorSlider->blueValue<int>() << endl;
-//        //„Ç´„É¨„É≥„Éà„Çø„Éº„Ç≤„ÉÉ„Éà„Åã„ÇâÂÄ§„ÇíÂèñÂæó(floatÂûã)
 //        cout << colorSlider->name() << " :" <<
 //        " R:" << colorSlider->redValue<float>() <<
 //        " G:" << colorSlider->greenValue<float>() <<
@@ -255,7 +291,7 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         //------------------------------------------
     }
     
-    //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº
+    //カラーピッカー
     if(event.type() == flColorPickerEvent::CHANGE) {
         flColorPickerEvent& colorPickerEvent = *(flColorPickerEvent*) &event;
         flCircleColorPicker* colorPicker = (flCircleColorPicker*)(event.currentTarget());
@@ -263,22 +299,54 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         if(colorPicker == uiComponents->colorPicker001) ofBackground(colorPicker->red(), colorPicker->green(), colorPicker->blue(), 255);
     }
     
-    //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ„Éë„ÉÉ„Éâ
-    if(event.type() == flJoystickEvent::UP) {
-        flJoystickEvent& joystickEvent = *(flJoystickEvent*) &event;
-        flJoystick* joystick = (flJoystick*)(event.currentTarget());
+    //ジョイスティック1D
+    if(event.type() == flJoystick1DEvent::CHANGE) {
+        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
+        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+        
+        if(joystick == uiComponents->joystick1D001) {
+            _position.x = _position.x + joystick->value();
+            
+            uiComponents->joystick1D002->moveLever(joystick->value());
+        }
     }
-    if(event.type() == flJoystickEvent::DOWN) {
-        flJoystickEvent& joystickEvent = *(flJoystickEvent*) &event;
-        flJoystick* joystick = (flJoystick*)(event.currentTarget());
+    if(event.type() == flJoystick1DEvent::UP) {
+        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
+        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
     }
-    if(event.type() == flJoystickEvent::LEFT) {
-        flJoystickEvent& joystickEvent = *(flJoystickEvent*) &event;
-        flJoystick* joystick = (flJoystick*)(event.currentTarget());
+    if(event.type() == flJoystick1DEvent::DOWN) {
+        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
+        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
     }
-    if(event.type() == flJoystickEvent::RIGHT) {
-        flJoystickEvent& joystickEvent = *(flJoystickEvent*) &event;
-        flJoystick* joystick = (flJoystick*)(event.currentTarget());
+    if(event.type() == flJoystick1DEvent::LEFT) {
+        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
+        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick1DEvent::RIGHT) {
+        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
+        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    }
+    
+    //ジョイスティック2D
+    if(event.type() == flJoystick2DEvent::CHANGE) {
+        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
+        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2DEvent::UP) {
+        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
+        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2DEvent::DOWN) {
+        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
+        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2DEvent::LEFT) {
+        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
+        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2DEvent::RIGHT) {
+        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
+        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
     }
 }
 

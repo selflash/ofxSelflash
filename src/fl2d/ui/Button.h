@@ -6,6 +6,7 @@
 #include "../display/Shape.h"
 #include "../display/Sprite.h"
 #include "../texts/TextField.h"
+#include "../events/ButtonEvent.h"
 
 namespace fl2d {
     
@@ -16,20 +17,24 @@ namespace fl2d {
         protected:
 
         private:
-            TextField* _labelText;
-            
-            float _buttonWidth;
-            float _buttonHeight;
+            float _uiWidth;
+            float _uiHeight;
             
             float _labelNormalColor;
             float _labelOverColor;
             float _labelActiveColor;
-            
-            float _lineColor;
-            float _normalColor;
-            float _overColor;
-            float _activeColor;
-            
+            float _labelDeactiveColor;
+        
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
+            ofFloatColor _deactiveColor;
+
+            TextField* _label;
+            string _labelTextNotSelected;
+            string _labelTextSelected;
+
             bool _toggleEnabled;
             bool _selected;
             
@@ -37,21 +42,46 @@ namespace fl2d {
             string _stringValue;
             float _floatValue;
             int _intValue;
-            
+        
+            bool _enabled;
+        
         public:
-            Button(float buttonWidth = 100, float buttonHeight = 20);
+            Button(float width = 100, float height = 18);
             ~Button();
-            
-            string label();
-            void label(string value, int color = FlashConfig::UI_LABEL_NORMAL_COLOR);
-            
-            void textColor(int color = FlashConfig::UI_LABEL_NORMAL_COLOR);
-            
+
+            TextField* label();
+
+            string labelText();
+            void labelText(string value, string state = "default");
+        
+            inline ofFloatColor backgroundNormalColor() { return _normalColor; }
+            inline void backgroundNormalColor(int color) {
+                _normalColor.setHex(color);
+
+                if(_enabled) {
+                    _label->textColor(0xffffff);
+                } else {
+                    _label->textColor(0x999999);
+                }
+                
+                Graphics* g;
+                g = graphics();
+                g->clear();
+                g->lineStyle(1, _lineColor.getHex());
+                if(_enabled) {
+                    g->beginFill(_normalColor.getHex());
+                } else {
+                    g->beginFill(_normalColor.getHex() * 0.5);
+                }
+                g->drawRect(0, 0, _uiWidth, _uiHeight);
+                g->endFill();
+            }
+
             bool toggleEnabled();
             void toggleEnabled(bool value);
             
             bool selected();
-            void selected(bool value);
+            void selected(bool value, bool dispatch = true);
             
             void* pointerValue();
             void pointerValue(void* value);
@@ -64,12 +94,15 @@ namespace fl2d {
             
             int intValue();
             void intValue(int value);
+        
+            bool enabled();
+            void enabled(bool value);
 
         protected:
             //virtual void _setup();
             //virtual void _update();
             //virtual void _draw();
-            
+        
             virtual void _over();
             virtual void _out();
             virtual void _press();

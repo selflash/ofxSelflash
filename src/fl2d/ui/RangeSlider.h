@@ -23,14 +23,18 @@ namespace fl2d {
         protected:
             
         private:
-            TextField* _labelText;
             TextField* _minValueText;
             TextField* _maxValueText;
-                
-            ofFloatColor* _lineColor;
-            ofFloatColor* _normalColor;
-            ofFloatColor* _overColor;
-            ofFloatColor* _activeColor;
+                    
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
+            
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
         
             float _trackWidth;
             float _trackHeight;
@@ -54,11 +58,8 @@ namespace fl2d {
         public:
             RangeSlider(float trackWidth = 200, float min = 0, float max = 100, float minValue = 40, float maxValue = 60);
             ~RangeSlider();
-            
-            string label();
-            void label(string value, int color = FlashConfig::UI_LABEL_NORMAL_COLOR);
-            
-            void textColor(int color = FlashConfig::UI_LABEL_NORMAL_COLOR);
+        
+            void textColor(int color);
             
             float min();
             void min(float value, bool dispatch = true);
@@ -88,8 +89,8 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
         
-            virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
-            virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
+            virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
+            virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
         
             void _over();
             void _out();

@@ -21,14 +21,19 @@ namespace fl2d {
         protected:
             
         private:
-            TextField* _labelText;
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
+            
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
+        
+            TextField* _label;
             TextField* _valueText;
-        
-            ofFloatColor* _lineColor;
-            ofFloatColor* _normalColor;
-            ofFloatColor* _overColor;
-            ofFloatColor* _activeColor;
-        
+
             float _trackWidth;
             float _trackHeight;
             float _thumbWidth;
@@ -47,11 +52,11 @@ namespace fl2d {
         public:
             Slider(float trackWidth = 200, float min = 0, float max = 100, float defaultValue = 0);
             ~Slider();
-            
-            string label();
-            void label(string value, int color = 0xffffff);
-            
-            void textColor(int color = 0xffffff);
+        
+            TextField* label();
+            void label(TextField* value);        
+        
+            void textColor(int color);
             
             float min();
             void min(float value, bool dispatch = true);
@@ -76,8 +81,8 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
 
-            virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
-            virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
+            virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
+            virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
         
             virtual void _trackOver();
             virtual void _trackOut();

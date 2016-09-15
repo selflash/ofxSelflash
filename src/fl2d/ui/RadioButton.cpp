@@ -14,29 +14,32 @@ namespace fl2d {
         
         buttonMode(true);
         mouseChildren(false);
+
+        _uiWidth = width;
+        _uiHeight = 18;
         
-        _lineColor = new ofFloatColor();
-        _lineColor->setHex(FlashConfig::UI_LINE_COLOR);
+        _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
+        _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
+        _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
+        _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
         
-        _normalColor = new ofFloatColor();
-        _normalColor->setHex(FlashConfig::UI_NORMAL_COLOR);
-        
-        _overColor = new ofFloatColor();
-        _overColor->setHex(FlashConfig::UI_OVER_COLOR);
-        
-        _activeColor = new ofFloatColor();
-        _activeColor->setHex(FlashConfig::UI_ACTIVE_COLOR);
+        _lineColor.setHex(FlashConfig::UI_LINE_COLOR);
+        _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
+        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
+        _deactiveColor.setHex(FlashConfig::UI_DEACTIVE_COLOR);
         
         _bSelected = false;
         
         //------------------------------------------
-        _labelText = new TextField();
-        _labelText->x(20);
-        _labelText->y(0);
-        _labelText->autoSize(TextFieldAutoSize::LEFT);
-        _labelText->textColor(0x0);
-        _labelText->text("RADIO BUTTON");
-        addChild(_labelText);
+        _label = new TextField();
+        _label->x(20);
+        _label->autoSize(TextFieldAutoSize::LEFT);
+        _label->textColor(_labelNormalColor);
+        _label->text("Radio Button");
+        _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 1);
+//        _label->mouseEnabled(false);
+        addChild(_label);
         //------------------------------------------
 
         //------------------------------------------
@@ -52,19 +55,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     RadioButton::~RadioButton() {
-        
-        delete _lineColor;
-        _lineColor = NULL;
-        
-        delete _normalColor;
-        _normalColor = NULL;
-        
-        delete _overColor;
-        _overColor = NULL;
-        
-        delete _activeColor;
-        _activeColor = NULL;
-        
         removeEventListener(MouseEvent::MOUSE_OVER, &RadioButton::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_OUT, &RadioButton::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_DOWN, &RadioButton::_mouseEventHandler);
@@ -77,21 +67,19 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    string RadioButton::label() { return _labelText->text(); }
-    void RadioButton::label(string value, int color) {
-        _labelText->text(value);
-        _labelText->textColor(color);
+    TextField* RadioButton::label() { return _label; }
+    
+    //--------------------------------------------------------------
+    //
+    string RadioButton::labelText() { return _label->text(); }
+    void RadioButton::labelText(string value) {
+        _label->text(value);
         
         if(isMouseOver()) {
             _over();
         } else {
             _normal();
         }
-    }
-    //--------------------------------------------------------------
-    //
-    void RadioButton::textColor(int color) {
-        _labelText->textColor(color);
     }
 
     //--------------------------------------------------------------
@@ -108,19 +96,19 @@ namespace fl2d {
             _normal();
         }
         
-        if(_bSelected) {
-            if(isMouseOver()) {
-                _labelText->textColor(_activeColor->getHex());
-            } else {
-                _labelText->textColor(_overColor->getHex());
-            }
-        } else {
-            if(isMouseOver()) {
-                _labelText->textColor(_activeColor->getHex());
-            } else {
-                _labelText->textColor(0xffffff);
-            }
-        }
+//        if(_bSelected) {
+//            if(isMouseOver()) {
+//                _label->textColor(_labelOverColor);
+//            } else {
+//                _label->textColor(_labelNormalColor);
+//            }
+//        } else {
+//            if(isMouseOver()) {
+//                _label->textColor(_labelOverColor);
+//            } else {
+//                _label->textColor(_labelNormalColor);
+//            }
+//        }
         
         if(dispatch) {
             dispatchEvent(new Event(Event::CHANGE));
@@ -134,24 +122,38 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void RadioButton::_drawGraphics(const ofFloatColor& outerColor, const ofFloatColor* innerColor) {
+    void RadioButton::_drawGraphics(const ofFloatColor& outerColor) {
         Graphics* g = graphics();
         g->clear();
         
         //ヒットエリア
         g->beginFill(0xff0000, 0.0);
-        g->drawRect(0, 0, 6 + _labelText->x() + _labelText->width(), 15);
+        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
         //外側
-        g->lineStyle(2, outerColor.getHex());
-        g->drawCircle(7, 7.5, 6);
+        g->lineStyle(1, outerColor.getHex());
+        g->drawCircle(7, 8, 6);
+        g->endFill();
+    }
+    
+    void RadioButton::_drawGraphics(const ofFloatColor& outerColor, const ofFloatColor& innerColor) {
+        Graphics* g = graphics();
+        g->clear();
+        
+        //ヒットエリア
+        g->beginFill(0xff0000, 0.0);
+        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->endFill();
+        
+        //外側
+        g->lineStyle(1, outerColor.getHex());
+        g->drawCircle(7, 8, 6);
         g->endFill();
         
         //内側
-        if(innerColor == NULL) return;
-        g->beginFill(innerColor->getHex());
-        g->drawCircle(7, 7.5, 3);
+        g->beginFill(innerColor.getHex());
+        g->drawCircle(7, 8, 3);
         g->endFill();
     }
 
@@ -159,23 +161,23 @@ namespace fl2d {
     //
     void RadioButton::_over() {
         if(_bSelected) {
-            _drawGraphics(*_overColor, _activeColor);
+            _drawGraphics(_overColor, _activeColor);
         } else {
-            _drawGraphics(*_overColor);
+            _drawGraphics(_overColor);
         }
         
-        _labelText->textColor(_activeColor->getHex());
+        _label->textColor(_labelOverColor);
     }
 
     //--------------------------------------------------------------
     //
     void RadioButton::_normal() {
         if(_bSelected) {
-            _drawGraphics(*_normalColor, _activeColor);
-            _labelText->textColor(_overColor->getHex());
+            _drawGraphics(_lineColor, _activeColor);
+            _label->textColor(_overColor.getHex());
         } else {
-            _drawGraphics(*_normalColor);
-            _labelText->textColor(0xffffff);
+            _drawGraphics(_lineColor);
+            _label->textColor(_labelNormalColor);
         }
     }
 

@@ -21,17 +21,15 @@ namespace fl2d {
         
         _roundEnabled = false;
         
-        _lineColor = new ofFloatColor();
-        _lineColor->setHex(FlashConfig::UI_LINE_COLOR);
+        _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
+        _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
+        _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
+        _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
         
-        _normalColor = new ofFloatColor();
-        _normalColor->setHex(FlashConfig::UI_NORMAL_COLOR);
-        
-        _overColor = new ofFloatColor();
-        _overColor->setHex(FlashConfig::UI_OVER_COLOR);
-        
-        _activeColor = new ofFloatColor();
-        _activeColor->setHex(FlashConfig::UI_ACTIVE_COLOR);
+        _lineColor.setHex(FlashConfig::UI_LINE_COLOR);
+        _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
+        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
         
         _min = min;
         _max = max;
@@ -44,7 +42,7 @@ namespace fl2d {
         _range = _maxValue - _minValue;
         //------------------------------------------
         _trackWidth = trackWidth;
-        _trackHeight = 15;
+        _trackHeight = 18;
         _thumbWidth = 10;
         
         _percent = (_max - _min) / _trackWidth;    
@@ -55,9 +53,9 @@ namespace fl2d {
         //------------------------------------------
         track = new Sprite();
         track->name("track");
-        _drawTrackGraphics(*_lineColor, *_normalColor);
+        _drawTrackGraphics(_lineColor, _normalColor);
         track->x(0);
-        track->y(15);
+        track->y(0);
         track->useHandCursor(true);
         //track->mouseEnabled(false);
         track->addEventListener(MouseEvent::ROLL_OVER, this, &RangeSlider::_mouseEventHandler);
@@ -103,39 +101,29 @@ namespace fl2d {
         
         //バーのグラフィックス
         _barWidth = farThumb->x() - (nearThumb->x() + _thumbWidth);
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         
         //------------------------------------------
-        _labelText = new TextField();
-        _labelText->x(0);
-        _labelText->y(0);
-        _labelText->width(_trackWidth);
-        _labelText->autoSize(TextFieldAutoSize::LEFT);
-        _labelText->textColor(0x0);
-        _labelText->text("RANGE SLIDER");
-        addChild(_labelText);
-        
         _minValueText = new TextField();
         _minValueText->x(0);
-        _minValueText->y(15 + 1);
         _minValueText->width(_trackWidth);
         _minValueText->autoSize(TextFieldAutoSize::LEFT);
-        _minValueText->textColor(0xffffff);
+        _minValueText->textColor(_labelNormalColor);
         _minValueText->text(ofToString(_minValue));
         _minValueText->mouseEnabled(false);
         _minValueText->visible(false);
-        _minValueText->y(15 + _trackHeight * 0.5 - _minValueText->textHeight() * 0.5);
+        _minValueText->y(_trackHeight * 0.5 - _minValueText->textHeight() * 0.5);
         addChild(_minValueText);
         
         _maxValueText = new TextField();
         _maxValueText->x(0);
         _maxValueText->width(_trackWidth);
         _maxValueText->autoSize(TextFieldAutoSize::RIGHT);
-        _maxValueText->textColor(0xffffff);
+        _maxValueText->textColor(_labelNormalColor);
         _maxValueText->text(ofToString(_maxValue));
         _maxValueText->mouseEnabled(false);
         _maxValueText->visible(false);
-        _maxValueText->y(15 + _trackHeight * 0.5 - _maxValueText->textHeight() * 0.5);
+        _maxValueText->y(_trackHeight * 0.5 - _maxValueText->textHeight() * 0.5);
         addChild(_maxValueText);
         //------------------------------------------
         
@@ -152,18 +140,6 @@ namespace fl2d {
         _barAlpha = 0.0;
         
         _roundEnabled = false;
-        
-        delete _lineColor;
-        _lineColor = NULL;
-        
-        delete _normalColor;
-        _normalColor = NULL;
-        
-        delete _overColor;
-        _overColor = NULL;
-        
-        delete _activeColor;
-        _activeColor = NULL;
         
         _min = 0.0;
         _max = 0.0;
@@ -194,9 +170,6 @@ namespace fl2d {
         farThumb = NULL;
         
         _barWidth = 0.0;
-        
-        delete _labelText;
-        _labelText = NULL;
         
         delete _minValueText;
         _minValueText = NULL;
@@ -250,7 +223,7 @@ namespace fl2d {
             
             //------------------------------------------
             //表示の更新
-            _drawBarGraphics(*_overColor, *_lineColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
             //------------------------------------------
             
             //------------------------------------------
@@ -292,7 +265,7 @@ namespace fl2d {
             
             //------------------------------------------
             //表示の更新
-            _drawBarGraphics(*_overColor, *_lineColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
             //------------------------------------------
             
             //------------------------------------------
@@ -334,7 +307,7 @@ namespace fl2d {
             
             //------------------------------------------
             //表示の更新
-            _drawBarGraphics(*_overColor, *_lineColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
             //------------------------------------------
             
             //------------------------------------------
@@ -360,22 +333,10 @@ namespace fl2d {
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
-    //--------------------------------------------------------------
-    //
-    string RangeSlider::label() { return _labelText->text(); }
-    //--------------------------------------------------------------
-    //
-    void RangeSlider::label(string value, int color) {
-        _labelText->text(value);
-        _labelText->textColor(color);
-        _minValueText->textColor(color);
-        _maxValueText->textColor(color);
-    }
+    
     //--------------------------------------------------------------
     //
     void RangeSlider::textColor(int color) {
-        _labelText->textColor(color);
         _minValueText->textColor(color);
         _maxValueText->textColor(color);
     }
@@ -408,7 +369,7 @@ namespace fl2d {
         
         //------------------------------------------
         //表示の更新
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -451,7 +412,7 @@ namespace fl2d {
         
         //------------------------------------------
         //表示の更新
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -496,7 +457,7 @@ namespace fl2d {
         
         //------------------------------------------
         //表示の更新
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -541,7 +502,7 @@ namespace fl2d {
         
         //------------------------------------------
         //表示の更新
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -563,50 +524,50 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    int RangeSlider::barColor() { return _activeColor->getHex(); }
+    int RangeSlider::barColor() { return _activeColor.getHex(); }
     void RangeSlider::barColor(int value) {
-        _activeColor->setHex(value);
+        _activeColor.setHex(value);
         
         if(farThumb->isMouseOver() || track->isMouseOver()) {
-            _drawBarGraphics(*_overColor, *_activeColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
         } else {
-            _drawBarGraphics(*_lineColor, *_activeColor);
+            _drawBarGraphics(_lineColor, _activeColor, 1);
         }
     }
     void RangeSlider::barColor(int red, int green, int blue, int alpha) {
-        _activeColor->r = red;
-        _activeColor->g = green;
-        _activeColor->b = blue;
-        _activeColor->a = alpha;
+        _activeColor.r = red;
+        _activeColor.g = green;
+        _activeColor.b = blue;
+        _activeColor.a = alpha;
         
         if(farThumb->isMouseOver() || track->isMouseOver()) {
-            _drawBarGraphics(*_overColor, *_activeColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
         } else {
-            _drawBarGraphics(*_lineColor, *_activeColor);
+            _drawBarGraphics(_lineColor, _activeColor, 1);
         }
     }
     void RangeSlider::barColor(const ofColor& color) {
-        _activeColor->r = color.r / 255.0;
-        _activeColor->g = color.g / 255.0;
-        _activeColor->b = color.b / 255.0;
-        _activeColor->a = color.a / 255.0;
+        _activeColor.r = color.r / 255.0;
+        _activeColor.g = color.g / 255.0;
+        _activeColor.b = color.b / 255.0;
+        _activeColor.a = color.a / 255.0;
         
         if(farThumb->isMouseOver() || track->isMouseOver()) {
-            _drawBarGraphics(*_overColor, *_activeColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
         } else {
-            _drawBarGraphics(*_lineColor, *_activeColor);
+            _drawBarGraphics(_lineColor, _activeColor, 1);
         }
     }
     void RangeSlider::barColor(const ofFloatColor& color) {
-        _activeColor->r = color.r;
-        _activeColor->g = color.g;
-        _activeColor->b = color.b;
-        _activeColor->a = color.a;
+        _activeColor.r = color.r;
+        _activeColor.g = color.g;
+        _activeColor.b = color.b;
+        _activeColor.a = color.a;
         
         if(farThumb->isMouseOver() || track->isMouseOver()) {
-            _drawBarGraphics(*_overColor, *_activeColor);
+            _drawBarGraphics(_overColor, _activeColor, 1);
         } else {
-            _drawBarGraphics(*_lineColor, *_activeColor);
+            _drawBarGraphics(_lineColor, _activeColor, 1);
         }
     }
     
@@ -621,24 +582,24 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void RangeSlider::_drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor) {
+    void RangeSlider::_drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {
         Graphics* g;
         g = track->graphics();
         g->clear();
-        g->lineStyle(1, lineColor.getHex());
-        //            g->beginFill(0xff0000, _barAlpha);
+        g->lineStyle(thickness, lineColor.getHex());
+//            g->beginFill(0xff0000, _barAlpha);
         g->beginFill(fillColor.getHex(), _trackAlpha);
         g->drawRect(0, 0, _trackWidth, _trackHeight);
         g->endFill();
     }
     //--------------------------------------------------------------
     //
-    void RangeSlider::_drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor) {
+    void RangeSlider::_drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {
         Graphics* g;
         g = bar->graphics();
         g->clear();
-        g->lineStyle(1, lineColor.getHex());
-        //            g->beginFill(0xff0000, _barAlpha);
+        g->lineStyle(thickness, lineColor.getHex());
+//            g->beginFill(0xff0000, _barAlpha);
         g->beginFill(fillColor.getHex(), _barAlpha);
         g->drawRect(nearThumb->x() + _thumbWidth, 0, _barWidth, _trackHeight);
         g->endFill();
@@ -653,8 +614,8 @@ namespace fl2d {
         if(farThumb->isMouseDown()) return;
         
         //------------------------------------------
-        _drawTrackGraphics(*_overColor, *_normalColor);
-        _drawBarGraphics(*_overColor, *_activeColor);
+        _drawTrackGraphics(_overColor, _normalColor, 1);
+        _drawBarGraphics(_overColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -671,8 +632,8 @@ namespace fl2d {
         if(farThumb->isMouseDown()) return;
         
         //------------------------------------------
-        _drawTrackGraphics(*_lineColor, *_normalColor);
-        _drawBarGraphics(*_lineColor, *_activeColor);
+        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawBarGraphics(_lineColor, _activeColor, 1);
         //------------------------------------------
         
         //------------------------------------------
@@ -684,8 +645,8 @@ namespace fl2d {
     //
     void RangeSlider::_press() {
         //------------------------------------------
-        _minValueText->textColor(0x0);
-        _maxValueText->textColor(0x0);
+        _minValueText->textColor(_labelNormalColor);
+        _maxValueText->textColor(_labelNormalColor);
         //------------------------------------------
     }
     //--------------------------------------------------------------
@@ -693,18 +654,18 @@ namespace fl2d {
     void RangeSlider::_release() {
         if(nearThumb->isMouseOver() || track->isMouseOver()) {
             //------------------------------------------
-            _drawTrackGraphics(*_overColor, *_normalColor);
-            _drawBarGraphics(*_overColor, *_activeColor);
+            _drawTrackGraphics(_overColor, _normalColor, 1);
+            _drawBarGraphics(_overColor, _activeColor, 1);
             //------------------------------------------
             
             //------------------------------------------
-            _minValueText->textColor(0xffffff);
-            _maxValueText->textColor(0xffffff);
+            _minValueText->textColor(_labelNormalColor);
+            _maxValueText->textColor(_labelNormalColor);
             //------------------------------------------
         } else {
             //------------------------------------------
-            _drawTrackGraphics(*_lineColor, *_normalColor);
-            _drawBarGraphics(*_lineColor, *_activeColor);
+            _drawTrackGraphics(_lineColor, _normalColor, 1);
+            _drawBarGraphics(_lineColor, _activeColor, 1);
             //------------------------------------------
             
             //------------------------------------------

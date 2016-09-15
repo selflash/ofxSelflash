@@ -9,7 +9,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Font::setup() {
-        _font->loadFont(FlashConfig::_FONT_PATH, 10, true, true);
+        float fontSize = 10;
+        _font->loadFont(FlashConfig::_FONT_PATH, fontSize, true, true);
         
         std::string text = "";
         text += "1234567890-^¥!#$%&'()0=~|'";

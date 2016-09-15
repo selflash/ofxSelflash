@@ -21,6 +21,8 @@ namespace fl2d {
     class ComboBox : public Sprite {
         
         public:
+            static string DROPDOWNLIST_UP;
+            static string DROPDOWNLIST_DOWN;
         
         protected:
             
@@ -34,8 +36,18 @@ namespace fl2d {
             int _selectedIndex;
             //------------------------------------------
         
-            TextField* _labelText;
-        
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
+            
+            ofFloatColor _lineColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
+
+            TextField* _label;
+
             //------------------------------------------
             Button* _topButton;
             Sprite* _buttonContainer;
@@ -50,25 +62,36 @@ namespace fl2d {
             Object* _selectedItem;
             //------------------------------------------
         
+            string _mode;
+        
+            bool _enabled;
+        
         public:
             ComboBox(float dropdownWidth = 150);
             ~ComboBox();
             
-            string label();
-            void label(string value, int color = 0xffffff);
-            
-//            void textColor(const int& color = 0xffffff);
-        
-            template <class T>
-            void addItem(string label, const T& value, int color = 0xffffff) {
-                int l = _itemList.size();
+            TextField* label();
+            void label(TextField* value);
 
+            string itemLabelText(int index) {
+                if(index < 0 || index > _buttonList.size() - 1) return "";
+                
+                return _itemList[index]->getProperty<string>("label");
+            }
+            void itemLabelText(string value, int index) {
+                if(index < 0 || index > _buttonList.size() - 1) return;
+                
+                _buttonList[index]->labelText(value);
+                _itemList[index]->setProperty<string>("label", value);
+            }
+
+            template <class T>
+            void addItem(string label, const T& value) {
                 //--------------------------------------
                 Button* button = new Button(_dropdownWidth);
-                button->label(label, color);
-                button->setProperty<int>("index", l);
+                button->labelText(label);
+                button->setProperty<int>("index", _buttonList.size());
                 button->x(0);
-                button->y(20 * l);
                 button->alpha(0.5);
                 button->toggleEnabled(true);
                 button->addEventListener(MouseEvent::ROLL_OVER, this, &ComboBox::_mouseEventHandler);
@@ -76,13 +99,25 @@ namespace fl2d {
                 button->addEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
                 _buttonContainer->addChild(button);
                 _buttonList.push_back(button);
+                
+                int l = _buttonList.size();
+                for(int i = 0; i < l; i++) {
+                    Button* button = _buttonList[i];
+                    if(_mode == "down") button->y(18 * i);
+                    if(_mode == "up") button->y(18 * i - (18 * l));
+                }
                 //--------------------------------------
-
+                
                 Graphics* g;
                 g = _buttonContainer->graphics();
                 g->clear();
                 g->beginFill(0x000000, 0.8);
-                g->drawRect(0, 0, _dropdownWidth, 20 * (l + 1));
+                if(_mode == "down") {
+                    g->drawRect(0, 0, _dropdownWidth, 18 * l);
+                }
+                if(_mode == "up") {
+                    g->drawRect(0, 0, _dropdownWidth, -18 * l);
+                }
                 g->endFill();
                 
                 //--------------------------------------
@@ -105,11 +140,110 @@ namespace fl2d {
                 }
             }
         
+            void removeItemByIndex(int index) {
+                //--------------------------------------
+                //children()の箇所はリファクタリングとかで外に出したらダメ
+                if(index < 0 || index > _buttonList.size() - 1) return;
+                
+                Button* button = _buttonList[index];
+                button->removeEventListener(MouseEvent::ROLL_OVER, this, &ComboBox::_mouseEventHandler);
+                button->removeEventListener(MouseEvent::ROLL_OUT, this, &ComboBox::_mouseEventHandler);
+                button->removeEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
+//                button->removeAllEventListener();
+                _buttonContainer->removeChild(button);
+                delete button;
+                _buttonList.erase(_buttonList.begin() + index);
+                //--------------------------------------
+                
+                //--------------------------------------
+                int l = _buttonList.size();
+                for(int i = 0; i < l; i++) {
+                    Button* button = _buttonList[i];
+                    button->setProperty<int>("index", i);
+                    if(_mode == "down") button->y(18 * i);
+                    if(_mode == "up") button->y(18 * i - (18 * l));
+                }
+                //--------------------------------------
+
+                Graphics* g;
+                g = _buttonContainer->graphics();
+                g->clear();
+                g->beginFill(0x000000, 0.8);
+                if(_mode == "down") {
+                    g->drawRect(0, 0, _dropdownWidth, 18 * _buttonList.size());
+                }
+                if(_mode == "up") {
+                    g->drawRect(0, 0, _dropdownWidth, -18 * _buttonList.size());
+                }
+                g->endFill();
+                
+                Object* item = _itemList[index];
+                delete item;
+                _itemList.erase(_itemList.begin() + index);
+                //--------------------------------------
+                
+                //--------------------------------------
+                _selectedButton = NULL;
+                _selectedItem = NULL;
+                
+                if(_buttonList.size() == 0) {
+                    _buttonList.clear();
+                    _itemList.clear();
+                    _topButton->labelText("");
+                    _selectedIndex = 0;
+                    _selectedItem = NULL;
+                } else if(_selectedIndex == index) {
+                    if(index == 0) {
+                        selectedIndex(index);
+                    } else {
+                        selectedIndex(index - 1);
+                    }
+                }
+                //--------------------------------------
+            }
+
+            inline void mode(string value) {
+                _mode = value;
+                
+                if(_mode == "down") {
+                    _buttonContainer->y(18 + 18);
+                    
+                    int l = _buttonList.size();
+                    for(int i = 0; i < l; i++) {
+                        Button* button = _buttonList[i];
+                        button->y(18 * i);
+                    }
+                    
+                    Graphics* g;
+                    g = _buttonContainer->graphics();
+                    g->clear();
+                    g->beginFill(0x000000, 0.8);
+                    g->drawRect(0, 0, _dropdownWidth, 18 * l);
+                    g->endFill();
+                }
+                if(_mode == "up") {
+                    _buttonContainer->y(18);
+                    
+                    int l = _buttonList.size();
+                    for(int i = 0; i < l; i++) {
+                        Button* button = _buttonList[i];
+                        button->y(18 * i - (18 * l));
+                    }
+
+                    Graphics* g;
+                    g = _buttonContainer->graphics();
+                    g->clear();
+                    g->beginFill(0x000000, 0.8);
+                    g->drawRect(0, 0, _dropdownWidth, -18 * l);
+                    g->endFill();
+                }
+            }
+        
 //            void removeItem(const string& label);
 //            void removeItemAt(const int& index);
 //            void replaceItemAt();
 //            void sortItems();
-            void removeAll();
+            void removeAllItems();
         
             //0から始まるインデックス番号
             int selectedIndex();
@@ -121,8 +255,11 @@ namespace fl2d {
             template <class T>
             T selectedValue() { return _selectedItem->getProperty<T>("value"); }
         
-            int numItems();
-            
+            int numItems();        
+        
+            bool enabled();
+            void enabled(bool value);
+
         protected:
             virtual void _setup();
             virtual void _update();

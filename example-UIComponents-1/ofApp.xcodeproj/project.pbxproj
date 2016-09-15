@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117366D31D47845A004AB332 /* JoyStick2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117366D11D47845A004AB332 /* JoyStick2D.cpp */; };
+		117366D61D478498004AB332 /* Joystick2DEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117366D41D478498004AB332 /* Joystick2DEvent.cpp */; };
+		117366D91D48860F004AB332 /* JoyStick1D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117366D71D48860F004AB332 /* JoyStick1D.cpp */; };
+		117366DC1D488627004AB332 /* JoyStick1DEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117366DA1D488627004AB332 /* JoyStick1DEvent.cpp */; };
+		11C4A49F1CE8DCCC00349501 /* Vec2Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11C4A49B1CE8DCCC00349501 /* Vec2Slider.cpp */; };
+		11C4A4A01CE8DCCC00349501 /* Vec3Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11C4A49D1CE8DCCC00349501 /* Vec3Slider.cpp */; };
+		11C4A4A31CE8DCD600349501 /* ButtonEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11C4A4A11CE8DCD600349501 /* ButtonEvent.cpp */; };
+		11D2CE4F1D372BE20007AB0A /* Vec2SliderEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11D2CE4B1D372BE20007AB0A /* Vec2SliderEvent.cpp */; };
+		11D2CE501D372BE20007AB0A /* Vec3SliderEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11D2CE4D1D372BE20007AB0A /* Vec3SliderEvent.cpp */; };
 		192704771991DA1B00E75F42 /* UIComponents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192704751991DA1B00E75F42 /* UIComponents.cpp */; };
 		197B9EA21A739B42004F9547 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E271A739B42004F9547 /* Object.cpp */; };
 		197B9EA31A739B42004F9547 /* BItmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E2A1A739B42004F9547 /* BItmap.cpp */; };
@@ -27,7 +36,6 @@
 		197B9EB21A739B42004F9547 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E491A739B42004F9547 /* Event.cpp */; };
 		197B9EB31A739B42004F9547 /* EventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E4B1A739B42004F9547 /* EventDispatcher.cpp */; };
 		197B9EB41A739B42004F9547 /* FocusEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E4E1A739B42004F9547 /* FocusEvent.cpp */; };
-		197B9EB51A739B42004F9547 /* JoystickEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E501A739B42004F9547 /* JoystickEvent.cpp */; };
 		197B9EB61A739B42004F9547 /* KeyboardEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E521A739B42004F9547 /* KeyboardEvent.cpp */; };
 		197B9EB71A739B42004F9547 /* MouseEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E541A739B42004F9547 /* MouseEvent.cpp */; };
 		197B9EB81A739B42004F9547 /* NumberDialerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E561A739B42004F9547 /* NumberDialerEvent.cpp */; };
@@ -50,7 +58,6 @@
 		197B9EC91A739B42004F9547 /* CircleColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E801A739B42004F9547 /* CircleColorPicker.cpp */; };
 		197B9ECA1A739B42004F9547 /* ColorSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E821A739B42004F9547 /* ColorSlider.cpp */; };
 		197B9ECB1A739B42004F9547 /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E841A739B42004F9547 /* ComboBox.cpp */; };
-		197B9ECC1A739B42004F9547 /* Joystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E861A739B42004F9547 /* Joystick.cpp */; };
 		197B9ECD1A739B42004F9547 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E881A739B42004F9547 /* Keyboard.cpp */; };
 		197B9ECE1A739B42004F9547 /* Mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E8A1A739B42004F9547 /* Mouse.cpp */; };
 		197B9ECF1A739B42004F9547 /* NumberDialer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 197B9E8C1A739B42004F9547 /* NumberDialer.cpp */; };
@@ -114,6 +121,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		117366D11D47845A004AB332 /* JoyStick2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoyStick2D.cpp; sourceTree = "<group>"; };
+		117366D21D47845A004AB332 /* JoyStick2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStick2D.h; sourceTree = "<group>"; };
+		117366D41D478498004AB332 /* Joystick2DEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Joystick2DEvent.cpp; sourceTree = "<group>"; };
+		117366D51D478498004AB332 /* Joystick2DEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joystick2DEvent.h; sourceTree = "<group>"; };
+		117366D71D48860F004AB332 /* JoyStick1D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoyStick1D.cpp; sourceTree = "<group>"; };
+		117366D81D48860F004AB332 /* JoyStick1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStick1D.h; sourceTree = "<group>"; };
+		117366DA1D488627004AB332 /* JoyStick1DEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoyStick1DEvent.cpp; sourceTree = "<group>"; };
+		117366DB1D488627004AB332 /* JoyStick1DEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStick1DEvent.h; sourceTree = "<group>"; };
+		11C4A49B1CE8DCCC00349501 /* Vec2Slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2Slider.cpp; sourceTree = "<group>"; };
+		11C4A49C1CE8DCCC00349501 /* Vec2Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec2Slider.h; sourceTree = "<group>"; };
+		11C4A49D1CE8DCCC00349501 /* Vec3Slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3Slider.cpp; sourceTree = "<group>"; };
+		11C4A49E1CE8DCCC00349501 /* Vec3Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3Slider.h; sourceTree = "<group>"; };
+		11C4A4A11CE8DCD600349501 /* ButtonEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonEvent.cpp; sourceTree = "<group>"; };
+		11C4A4A21CE8DCD600349501 /* ButtonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonEvent.h; sourceTree = "<group>"; };
+		11D2CE4B1D372BE20007AB0A /* Vec2SliderEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2SliderEvent.cpp; sourceTree = "<group>"; };
+		11D2CE4C1D372BE20007AB0A /* Vec2SliderEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec2SliderEvent.h; sourceTree = "<group>"; };
+		11D2CE4D1D372BE20007AB0A /* Vec3SliderEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3SliderEvent.cpp; sourceTree = "<group>"; };
+		11D2CE4E1D372BE20007AB0A /* Vec3SliderEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3SliderEvent.h; sourceTree = "<group>"; };
 		192704751991DA1B00E75F42 /* UIComponents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponents.cpp; sourceTree = "<group>"; };
 		192704761991DA1B00E75F42 /* UIComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
 		197B9E271A739B42004F9547 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
@@ -155,8 +180,6 @@
 		197B9E4D1A739B42004F9547 /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
 		197B9E4E1A739B42004F9547 /* FocusEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FocusEvent.cpp; sourceTree = "<group>"; };
 		197B9E4F1A739B42004F9547 /* FocusEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusEvent.h; sourceTree = "<group>"; };
-		197B9E501A739B42004F9547 /* JoystickEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JoystickEvent.cpp; sourceTree = "<group>"; };
-		197B9E511A739B42004F9547 /* JoystickEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoystickEvent.h; sourceTree = "<group>"; };
 		197B9E521A739B42004F9547 /* KeyboardEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardEvent.cpp; sourceTree = "<group>"; };
 		197B9E531A739B42004F9547 /* KeyboardEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardEvent.h; sourceTree = "<group>"; };
 		197B9E541A739B42004F9547 /* MouseEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseEvent.cpp; sourceTree = "<group>"; };
@@ -202,8 +225,6 @@
 		197B9E831A739B42004F9547 /* ColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSlider.h; sourceTree = "<group>"; };
 		197B9E841A739B42004F9547 /* ComboBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComboBox.cpp; sourceTree = "<group>"; };
 		197B9E851A739B42004F9547 /* ComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboBox.h; sourceTree = "<group>"; };
-		197B9E861A739B42004F9547 /* Joystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Joystick.cpp; sourceTree = "<group>"; };
-		197B9E871A739B42004F9547 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joystick.h; sourceTree = "<group>"; };
 		197B9E881A739B42004F9547 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Keyboard.cpp; sourceTree = "<group>"; };
 		197B9E891A739B42004F9547 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
 		197B9E8A1A739B42004F9547 /* Mouse.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Mouse.cpp; sourceTree = "<group>"; };
@@ -354,6 +375,12 @@
 		197B9E401A739B42004F9547 /* events */ = {
 			isa = PBXGroup;
 			children = (
+				11D2CE4B1D372BE20007AB0A /* Vec2SliderEvent.cpp */,
+				11D2CE4C1D372BE20007AB0A /* Vec2SliderEvent.h */,
+				11D2CE4D1D372BE20007AB0A /* Vec3SliderEvent.cpp */,
+				11D2CE4E1D372BE20007AB0A /* Vec3SliderEvent.h */,
+				11C4A4A11CE8DCD600349501 /* ButtonEvent.cpp */,
+				11C4A4A21CE8DCD600349501 /* ButtonEvent.h */,
 				197B9E411A739B42004F9547 /* AnimationEvent.cpp */,
 				197B9E421A739B42004F9547 /* AnimationEvent.h */,
 				197B9E431A739B42004F9547 /* ColorPickerEvent.cpp */,
@@ -369,8 +396,10 @@
 				197B9E4D1A739B42004F9547 /* EventHandler.h */,
 				197B9E4E1A739B42004F9547 /* FocusEvent.cpp */,
 				197B9E4F1A739B42004F9547 /* FocusEvent.h */,
-				197B9E501A739B42004F9547 /* JoystickEvent.cpp */,
-				197B9E511A739B42004F9547 /* JoystickEvent.h */,
+				117366DA1D488627004AB332 /* JoyStick1DEvent.cpp */,
+				117366DB1D488627004AB332 /* JoyStick1DEvent.h */,
+				117366D41D478498004AB332 /* Joystick2DEvent.cpp */,
+				117366D51D478498004AB332 /* Joystick2DEvent.h */,
 				197B9E521A739B42004F9547 /* KeyboardEvent.cpp */,
 				197B9E531A739B42004F9547 /* KeyboardEvent.h */,
 				197B9E541A739B42004F9547 /* MouseEvent.cpp */,
@@ -453,6 +482,10 @@
 		197B9E7D1A739B42004F9547 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				11C4A49B1CE8DCCC00349501 /* Vec2Slider.cpp */,
+				11C4A49C1CE8DCCC00349501 /* Vec2Slider.h */,
+				11C4A49D1CE8DCCC00349501 /* Vec3Slider.cpp */,
+				11C4A49E1CE8DCCC00349501 /* Vec3Slider.h */,
 				197B9E7E1A739B42004F9547 /* Button.cpp */,
 				197B9E7F1A739B42004F9547 /* Button.h */,
 				197B9E801A739B42004F9547 /* CircleColorPicker.cpp */,
@@ -461,8 +494,10 @@
 				197B9E831A739B42004F9547 /* ColorSlider.h */,
 				197B9E841A739B42004F9547 /* ComboBox.cpp */,
 				197B9E851A739B42004F9547 /* ComboBox.h */,
-				197B9E861A739B42004F9547 /* Joystick.cpp */,
-				197B9E871A739B42004F9547 /* Joystick.h */,
+				117366D71D48860F004AB332 /* JoyStick1D.cpp */,
+				117366D81D48860F004AB332 /* JoyStick1D.h */,
+				117366D11D47845A004AB332 /* JoyStick2D.cpp */,
+				117366D21D47845A004AB332 /* JoyStick2D.h */,
 				197B9E881A739B42004F9547 /* Keyboard.cpp */,
 				197B9E891A739B42004F9547 /* Keyboard.h */,
 				197B9E8A1A739B42004F9547 /* Mouse.cpp */,
@@ -681,6 +716,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117366D31D47845A004AB332 /* JoyStick2D.cpp in Sources */,
 				197B9ED71A739B42004F9547 /* NativeWindow.cpp in Sources */,
 				197B9EC51A739B42004F9547 /* Font.cpp in Sources */,
 				197B9EBE1A739B42004F9547 /* Flash2D.cpp in Sources */,
@@ -689,9 +725,11 @@
 				197B9ECE1A739B42004F9547 /* Mouse.cpp in Sources */,
 				197B9EAB1A739B42004F9547 /* Shape.cpp in Sources */,
 				197B9EA31A739B42004F9547 /* BItmap.cpp in Sources */,
+				117366DC1D488627004AB332 /* JoyStick1DEvent.cpp in Sources */,
 				197B9EBB1A739B42004F9547 /* RangeSliderEvent.cpp in Sources */,
 				197B9EBC1A739B42004F9547 /* SliderEvent.cpp in Sources */,
 				197B9EAD1A739B42004F9547 /* Stage.cpp in Sources */,
+				117366D61D478498004AB332 /* Joystick2DEvent.cpp in Sources */,
 				197B9EC61A739B42004F9547 /* TextField.cpp in Sources */,
 				197B9EB01A739B42004F9547 /* ColorSliderEvent.cpp in Sources */,
 				197B9ECB1A739B42004F9547 /* ComboBox.cpp in Sources */,
@@ -702,7 +740,6 @@
 				197B9EB41A739B42004F9547 /* FocusEvent.cpp in Sources */,
 				197B9ECF1A739B42004F9547 /* NumberDialer.cpp in Sources */,
 				197B9ED11A739B42004F9547 /* Pad3D.cpp in Sources */,
-				197B9EB51A739B42004F9547 /* JoystickEvent.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				197B9EAE1A739B42004F9547 /* AnimationEvent.cpp in Sources */,
 				197B9EC81A739B42004F9547 /* Button.cpp in Sources */,
@@ -713,8 +750,11 @@
 				197B9ECA1A739B42004F9547 /* ColorSlider.cpp in Sources */,
 				197B9EA41A739B42004F9547 /* BitmapData.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				11C4A49F1CE8DCCC00349501 /* Vec2Slider.cpp in Sources */,
 				197B9EC71A739B42004F9547 /* TextFieldAutoSize.cpp in Sources */,
+				11D2CE4F1D372BE20007AB0A /* Vec2SliderEvent.cpp in Sources */,
 				197B9EBD1A739B42004F9547 /* SoundEvent.cpp in Sources */,
+				11C4A4A01CE8DCCC00349501 /* Vec3Slider.cpp in Sources */,
 				197B9ED51A739B42004F9547 /* ScrollKit.cpp in Sources */,
 				197B9EC01A739B42004F9547 /* ColorTransform.cpp in Sources */,
 				197B9EA21A739B42004F9547 /* Object.cpp in Sources */,
@@ -722,13 +762,15 @@
 				197B9ED01A739B42004F9547 /* Pad2D.cpp in Sources */,
 				197B9EB81A739B42004F9547 /* NumberDialerEvent.cpp in Sources */,
 				197B9EAA1A739B42004F9547 /* MovieClip.cpp in Sources */,
+				11D2CE501D372BE20007AB0A /* Vec3SliderEvent.cpp in Sources */,
 				197B9ED31A739B42004F9547 /* RangeSlider.cpp in Sources */,
 				197B9EB31A739B42004F9547 /* EventDispatcher.cpp in Sources */,
 				197B9EB21A739B42004F9547 /* Event.cpp in Sources */,
-				197B9ECC1A739B42004F9547 /* Joystick.cpp in Sources */,
 				197B9EA91A739B42004F9547 /* InteractiveObject.cpp in Sources */,
 				197B9EAF1A739B42004F9547 /* ColorPickerEvent.cpp in Sources */,
 				197B9ECD1A739B42004F9547 /* Keyboard.cpp in Sources */,
+				11C4A4A31CE8DCD600349501 /* ButtonEvent.cpp in Sources */,
+				117366D91D48860F004AB332 /* JoyStick1D.cpp in Sources */,
 				192704771991DA1B00E75F42 /* UIComponents.cpp in Sources */,
 				197B9EC21A739B42004F9547 /* Particle2D.cpp in Sources */,
 				197B9EBA1A739B42004F9547 /* RadioButtonEvent.cpp in Sources */,

@@ -15,6 +15,7 @@ class ofApp : public ofBaseApp {
         flTextField* textField002;
         flTextField* textField003;
         flTextField* textField004;
+        flTextField* textField005;
         //--------------------------------------
     
     protected:

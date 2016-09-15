@@ -53,14 +53,17 @@ typedef fl2d::BlendMode flBlendMode;
 #include "events/MouseEvent.h"
 #include "events/KeyboardEvent.h"
 #include "events/SliderEvent.h"
-//#include "events/ButtonEvent.h"
+#include "events/ButtonEvent.h"
 #include "events/RadioButtonEvent.h"
 #include "events/NumberDialerEvent.h"
 #include "events/RangeSliderEvent.h"
 #include "events/ColorSliderEvent.h"
+#include "events/Vec2SliderEvent.h"
+#include "events/Vec3SliderEvent.h"
 #include "events/ColorPickerEvent.h"
 #include "events/PadEvent.h"
-#include "events/JoystickEvent.h"
+#include "events/Joystick1DEvent.h"
+#include "events/Joystick2DEvent.h"
 #include "events/ComboBoxEvent.h"
 
 typedef fl2d::EventDispatcher flEventDispatcher;
@@ -72,14 +75,17 @@ typedef fl2d::FocusEvent flFocusEvent;
 typedef fl2d::MouseEvent flMouseEvent;
 typedef fl2d::KeyboardEvent flKeyboardEvent;
 typedef fl2d::SliderEvent flSliderEvent;
-//typedef fl2d::ButtonEvent ButtonEvent;
+typedef fl2d::ButtonEvent flButtonEvent;
 typedef fl2d::RadioButtonEvent flRadioButtonEvent;
 typedef fl2d::NumberDialerEvent flNumberDialerEvent;
 typedef fl2d::RangeSliderEvent flRangeSliderEvent;
 typedef fl2d::ColorSliderEvent flColorSliderEvent;
+typedef fl2d::Vec2SliderEvent flVec2SliderEvent;
+typedef fl2d::Vec3SliderEvent flVec3SliderEvent;
 typedef fl2d::ColorPickerEvent flColorPickerEvent;
 typedef fl2d::PadEvent flPadEvent;
-typedef fl2d::JoystickEvent flJoystickEvent;
+typedef fl2d::Joystick1DEvent flJoystick1DEvent;
+typedef fl2d::Joystick2DEvent flJoystick2DEvent;
 typedef fl2d::ComboBoxEvent flComboBoxEvent;
 
 
@@ -126,10 +132,13 @@ typedef fl2d::TextFieldAutoSize flTextFieldAutoSize;
 #include "ui/Slider.h"
 #include "ui/RangeSlider.h"
 #include "ui/ColorSlider.h"
+#include "ui/Vec2Slider.h"
+#include "ui/Vec3Slider.h"
 #include "ui/CircleColorPicker.h"
 #include "ui/Pad2D.h"
 #include "ui/Pad3D.h"
-#include "ui/Joystick.h"
+#include "ui/Joystick2D.h"
+#include "ui/Joystick1D.h"
 #include "ui/ScrollKit.h"
 #include "ui/ComboBox.h"
 
@@ -141,10 +150,13 @@ typedef fl2d::NumberDialer flNumberDialer;
 typedef fl2d::Slider flSlider;
 typedef fl2d::RangeSlider flRangeSlider;
 typedef fl2d::ColorSlider flColorSlider;
+typedef fl2d::Vec2Slider flVec2Slider;
+typedef fl2d::Vec3Slider flVec3Slider;
 typedef fl2d::CircleColorPicker flCircleColorPicker;
 typedef fl2d::Pad2D flPad2D;
 typedef fl2d::Pad3D flPad3D;
-typedef fl2d::Joystick flJoystick;
+typedef fl2d::Joystick1D flJoystick1D;
+typedef fl2d::Joystick2D flJoystick2D;
 typedef fl2d::ScrollKit flScrollKit;
 typedef fl2d::ComboBox flComboBox;
 

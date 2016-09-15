@@ -10,6 +10,18 @@
 
 //--------------------------------------------------------------
 //
+void NativeWindow::orderToDefault() {
+    NSWindow *window = [NSApp mainWindow];
+    
+    if (window) {
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        [window setLevel:NSNormalWindowLevel];
+        [pool release];
+    }
+}
+
+//--------------------------------------------------------------
+//
 void NativeWindow::orderToBack() {
     NSWindow *window = [NSApp mainWindow];
     

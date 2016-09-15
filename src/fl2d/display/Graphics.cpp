@@ -49,6 +49,8 @@ namespace fl2d {
     void Graphics::__draw() {
         //cout << _commandList.size() << endl;
         
+        ofPushStyle();
+        
         if(_smoothing) ofEnableSmoothing();
 
         int i; int l;
@@ -81,6 +83,8 @@ namespace fl2d {
         }
         
         ofDisableSmoothing();
+        
+        ofPopStyle();
     }
 
     //==============================================================

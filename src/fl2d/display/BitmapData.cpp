@@ -21,7 +21,7 @@ namespace fl2d {
         _image = new ofImage();
         //_image->allocate(_width, _height, OF_IMAGE_COLOR_ALPHA);
         
-        _pixels = (unsigned char*)malloc(_width*_height*4);
+        _pixels = (unsigned char*)malloc(_width * _height * 4);
         
         // ピクセルデータを準備
         int i;

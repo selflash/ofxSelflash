@@ -81,7 +81,7 @@ namespace fl2d {
         _labelText->width(_width);
         _labelText->autoSize(TextFieldAutoSize::CENTER);
         _labelText->textColor(0x000000);
-        _labelText->text("PAD 2D");
+        _labelText->text("Pad 2D");
         addChild(_labelText);
         
         _value1Text = new TextField();

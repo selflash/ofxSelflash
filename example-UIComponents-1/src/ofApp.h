@@ -14,6 +14,8 @@ class ofApp : public ofBaseApp {
         float _speed;
         ofFloatColor _color;
     
+        ofVec3f _position;
+    
 	public:
 		void setup();
 		void update();

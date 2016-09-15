@@ -21,45 +21,48 @@ BasicController::BasicController() {
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;
     //--------------------------------------
-    marginLeft = 10;
-    marginTop = 15;
+    marginLeft = 5;
+    marginTop = 5;
     spacing = 100;
-    lineSpacing = 20;
+    lineSpacing = 22.5;
     
     titleTf = new flTextField();
     titleTf->x(marginLeft + spacing * 0);
-    titleTf->y(marginTop + lineSpacing * 0);
+    titleTf->y(marginTop + lineSpacing * 0 - 1);
     titleTf->width(120);
     titleTf->textColor(0xffffff);
-    titleTf->text("[CONTROLLER]");
+    titleTf->text("[Contoller]");
+    titleTf->mouseEnabled(false);
     addChild(titleTf);
     //--------------------------------------
     
     _isMinimize = false;
     
     //最小化ボタン
-    minimizeButton = new flButton(20);
-    minimizeButton->label("-");
+    minimizeButton = new flButton(18, 13);
+    minimizeButton->labelText("-");
     minimizeButton->toggleEnabled(true);
     minimizeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_buttonEventHandler);
     addChild(minimizeButton);
     
     //閉じるボタン
-    xButton = new flButton(20);
-    xButton->label("x");
-    xButton->addEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_buttonEventHandler);
-    addChild(xButton);
+    closeButton = new flButton(18, 13);
+    closeButton->labelText("x");
+    closeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_buttonEventHandler);
+    addChild(closeButton);
     
     _backWidth = 0;
     _backHeight = 0;
     
     _minBackWidth = 0;
-    _minBackHeight = 40;
+    _minBackHeight = 22.5;
     
     _normalBackWidth = 0;
     _normalBackHeight = 0;
     
     _onTop = true;
+    
+    _isDraggable = true;
 }
 
 //--------------------------------------------------------------
@@ -79,9 +82,9 @@ BasicController::~BasicController() {
     minimizeButton = NULL;
     
     //閉じるボタン
-    xButton->removeEventListener(flMouseEvent::MOUSE_UP, &BasicController::_buttonEventHandler);
-    delete xButton;
-    xButton = NULL;
+    closeButton->removeEventListener(flMouseEvent::MOUSE_UP, &BasicController::_buttonEventHandler);
+    delete closeButton;
+    closeButton = NULL;
     
     _backWidth = 0;
     _backHeight = 0;
@@ -93,6 +96,8 @@ BasicController::~BasicController() {
     _normalBackHeight = 0;
     
     _onTop = false;
+    
+    _isDraggable = false;
 }
 
 //==============================================================
@@ -108,11 +113,11 @@ void BasicController::setup() {
     
     _updateRect();
     
-    minimizeButton->x(width() - 60);
-    minimizeButton->y(10);
+    minimizeButton->x(width() - 50);
+    minimizeButton->y(5);
     
-    xButton->x(width() - 30);
-    xButton->y(10);
+    closeButton->x(width() - 25);
+    closeButton->y(5);
 }
 
 //==============================================================
@@ -143,11 +148,17 @@ void BasicController::minimize() {
     int i; int l;
     l = numChildren();
     for(i = 0; i < l; i++) {
-        getChildAt(i)->visible(false);
+        DisplayObject* child = getChildAt(i);
+        
+        if(child == titleTf) continue;
+        if(child == closeButton) continue;
+        if(child == minimizeButton) continue;
+        
+        child->visible(false);
     }
-    titleTf->visible(true);
-    minimizeButton->visible(true);
-    xButton->visible(true);
+//    titleTf->visible(true);
+//    minimizeButton->visible(true);
+//    closeButton->visible(true);
     //----------------------------------
 }
 //--------------------------------------------------------------
@@ -175,7 +186,13 @@ void BasicController::normalize() {
     int i; int l;
     l = numChildren();
     for(i = 0; i < l; i++) {
-        getChildAt(i)->visible(true);
+        DisplayObject* child = getChildAt(i);
+        
+        if(child == titleTf) continue;
+        if(child == closeButton) continue;
+        if(child == minimizeButton) continue;
+        
+        child->visible(true);
     }
     
     if(parent()) ((DisplayObjectContainer*)parent())->addChild(this);
@@ -239,9 +256,11 @@ void BasicController::_mouseEventHandler(flEvent& event) {
         flButton* button = (flButton*)(event.currentTarget());
         
         if(event.target() == this) {
-            if(_onTop) ((DisplayObjectContainer*)parent())->addChild(this);
-            startDrag();
-            stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_mouseEventHandler);
+            if(_isDraggable) {
+                if(_onTop) ((DisplayObjectContainer*)parent())->addChild(this);
+                startDrag();
+                stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_mouseEventHandler);
+            }
         }
     }
     //ボタン(マウスアップ)
@@ -261,7 +280,7 @@ void BasicController::_mouseEventHandler(flEvent& event) {
 //
 void BasicController::_buttonEventHandler(flEvent& event) {
     if(event.type() == flMouseEvent::MOUSE_UP) {
-        if(event.target() == xButton) dispatchEvent(new flEvent(flEvent::CLOSE));
+        if(event.target() == closeButton) dispatchEvent(new flEvent(flEvent::CLOSE));
         if(event.target() == minimizeButton) {
             if(minimizeButton->selected()) {
                 minimize();

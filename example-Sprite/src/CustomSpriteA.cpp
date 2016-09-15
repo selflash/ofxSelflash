@@ -12,6 +12,7 @@ CustomSpriteA::CustomSpriteA() {
     _target = this;
     
     buttonMode(true);
+//    visible(false);
     
     //--------------------------------------
     flGraphics* g;
@@ -44,12 +45,14 @@ void CustomSpriteA::_setup() {
 //--------------------------------------------------------------
 //
 void CustomSpriteA::_update() {
+    cout << "[CustomSpriteA]_update()" << endl;
     
 }
 
 //--------------------------------------------------------------
 //
 void CustomSpriteA::_draw() {
+    cout << "[CustomSpriteA]_draw()" << endl;
     
 }
 

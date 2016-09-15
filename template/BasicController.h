@@ -1,26 +1,13 @@
 ﻿#pragma once
 
 #include "ofMain.h"
-#include "../ofxSelflash.h"
-//#include "../display/Sprite.h"
-//#include "../texts/TextField.h"
-//#include "../ui/Button.h"
-//#include "../ui/Slider.h"
-//#include "../ui/NumberDialer.h"
-//#include "../ui/ColorSlider.h"
-//#include "../ui/Joystick.h"
-//#include "../ui/ComboBox.h"
-//#include "../ui/Pad2D.h"
-//#include "../ui/RadioButton.h"
-//#include "../ui/CircleColorPicker.h"
-
-//using namespace fl2d;
+#include "../src/ofxSelflash.h"
 
 class BasicController : public flSprite {
     public:
         flTextField* titleTf;
         flButton* minimizeButton;
-        flButton* xButton;
+        flButton* closeButton;
         
         //--------------------------------------
         //テキストフィールド(000)
@@ -142,8 +129,42 @@ class BasicController : public flSprite {
         flTextField* text633; flTextField* text634; flTextField* text635;
         flTextField* text636; flTextField* text637; flTextField* text638;
         flTextField* text639;
+        //テキストフィールド(700)
+        flTextField* text700; flTextField* text701; flTextField* text702;
+        flTextField* text703; flTextField* text704; flTextField* text705;
+        flTextField* text706; flTextField* text707; flTextField* text708;
+        flTextField* text709;
+        flTextField* text710; flTextField* text711; flTextField* text712;
+        flTextField* text713; flTextField* text714; flTextField* text715;
+        flTextField* text716; flTextField* text717; flTextField* text718;
+        flTextField* text719;
+        flTextField* text720; flTextField* text721; flTextField* text722;
+        flTextField* text723; flTextField* text724; flTextField* text725;
+        flTextField* text726; flTextField* text727; flTextField* text728;
+        flTextField* text729;
+        flTextField* text730; flTextField* text731; flTextField* text732;
+        flTextField* text733; flTextField* text734; flTextField* text735;
+        flTextField* text736; flTextField* text737; flTextField* text738;
+        flTextField* text739;
+        //テキストフィールド(800)
+        flTextField* text800; flTextField* text801; flTextField* text802;
+        flTextField* text803; flTextField* text804; flTextField* text805;
+        flTextField* text806; flTextField* text807; flTextField* text808;
+        flTextField* text809;
+        flTextField* text810; flTextField* text811; flTextField* text812;
+        flTextField* text813; flTextField* text814; flTextField* text815;
+        flTextField* text816; flTextField* text817; flTextField* text818;
+        flTextField* text819;
+        flTextField* text820; flTextField* text821; flTextField* text822;
+        flTextField* text823; flTextField* text824; flTextField* text825;
+        flTextField* text826; flTextField* text827; flTextField* text828;
+        flTextField* text829;
+        flTextField* text830; flTextField* text831; flTextField* text832;
+        flTextField* text833; flTextField* text834; flTextField* text835;
+        flTextField* text836; flTextField* text837; flTextField* text838;
+        flTextField* text839;
         //--------------------------------------
-        
+    
         //--------------------------------------
         //ボタン(000)
         flButton* btn000; flButton* btn001; flButton* btn002; flButton* btn003; flButton* btn004;
@@ -165,6 +186,10 @@ class BasicController : public flSprite {
         flButton* btn115; flButton* btn116; flButton* btn117; flButton* btn118; flButton* btn119;
         flButton* btn120; flButton* btn121; flButton* btn122; flButton* btn123; flButton* btn124;
         flButton* btn125; flButton* btn126; flButton* btn127; flButton* btn128; flButton* btn129;
+        flButton* btn130; flButton* btn131; flButton* btn132; flButton* btn133; flButton* btn134;
+        flButton* btn135; flButton* btn136; flButton* btn137; flButton* btn138; flButton* btn139;
+        flButton* btn140; flButton* btn141; flButton* btn142; flButton* btn143; flButton* btn144;
+        flButton* btn145; flButton* btn146; flButton* btn147; flButton* btn148; flButton* btn149;
         //ボタン(200)
         flButton* btn200; flButton* btn201; flButton* btn202; flButton* btn203; flButton* btn204;
         flButton* btn205; flButton* btn206; flButton* btn207; flButton* btn208; flButton* btn209;
@@ -175,7 +200,8 @@ class BasicController : public flSprite {
         //ボタン(300)
         flButton* btn300; flButton* btn301; flButton* btn302; flButton* btn303; flButton* btn304;
         flButton* btn305; flButton* btn306; flButton* btn307; flButton* btn308; flButton* btn309;
-        flButton* btn310;
+        flButton* btn310; flButton* btn311; flButton* btn312; flButton* btn313; flButton* btn314;
+        flButton* btn315; flButton* btn316; flButton* btn317; flButton* btn318; flButton* btn319;
         //ボタン(400)
         flButton* btn400; flButton* btn401; flButton* btn402; flButton* btn403; flButton* btn404;
         flButton* btn405; flButton* btn406; flButton* btn407; flButton* btn408; flButton* btn409;
@@ -183,7 +209,10 @@ class BasicController : public flSprite {
         //ボタン(500)
         flButton* btn500; flButton* btn501; flButton* btn502; flButton* btn503; flButton* btn504;
         flButton* btn505; flButton* btn506; flButton* btn507; flButton* btn508; flButton* btn509;
-        flButton* btn510;
+        flButton* btn510; flButton* btn511; flButton* btn512; flButton* btn513; flButton* btn514;
+        flButton* btn515; flButton* btn516; flButton* btn517; flButton* btn518; flButton* btn519;
+        flButton* btn520; flButton* btn521; flButton* btn522; flButton* btn523; flButton* btn524;
+        flButton* btn525; flButton* btn526; flButton* btn527; flButton* btn528; flButton* btn529;
         //ボタン(600)
         flButton* btn600; flButton* btn601; flButton* btn602; flButton* btn603; flButton* btn604;
         flButton* btn605; flButton* btn606; flButton* btn607; flButton* btn608; flButton* btn609;
@@ -359,7 +388,7 @@ class BasicController : public flSprite {
         flColorSlider* colorSlider020; flColorSlider* colorSlider021; flColorSlider* colorSlider022; flColorSlider* colorSlider023;
         flColorSlider* colorSlider024; flColorSlider* colorSlider025; flColorSlider* colorSlider026; flColorSlider* colorSlider027;
         flColorSlider* colorSlider028; flColorSlider* colorSlider029;
-        //RGBライダー(100)
+        //カラースライダー(100)
         flColorSlider* colorSlider100; flColorSlider* colorSlider101; flColorSlider* colorSlider102; flColorSlider* colorSlider103;
         flColorSlider* colorSlider104; flColorSlider* colorSlider105; flColorSlider* colorSlider106; flColorSlider* colorSlider107;
         flColorSlider* colorSlider108; flColorSlider* colorSlider109;
@@ -440,7 +469,193 @@ class BasicController : public flSprite {
         flColorSlider* colorSlider824; flColorSlider* colorSlider825; flColorSlider* colorSlider826; flColorSlider* colorSlider827;
         flColorSlider* colorSlider828; flColorSlider* colorSlider829;
         //--------------------------------------
-        
+    
+        //--------------------------------------
+        //Vec3スライダー(000)
+        flVec3Slider* vec3Slider000; flVec3Slider* vec3Slider001; flVec3Slider* vec3Slider002; flVec3Slider* vec3Slider003;
+        flVec3Slider* vec3Slider004; flVec3Slider* vec3Slider005; flVec3Slider* vec3Slider006; flVec3Slider* vec3Slider007;
+        flVec3Slider* vec3Slider008; flVec3Slider* vec3Slider009;
+        flVec3Slider* vec3Slider010; flVec3Slider* vec3Slider011; flVec3Slider* vec3Slider012; flVec3Slider* vec3Slider013;
+        flVec3Slider* vec3Slider014; flVec3Slider* vec3Slider015; flVec3Slider* vec3Slider016; flVec3Slider* vec3Slider017;
+        flVec3Slider* vec3Slider018; flVec3Slider* vec3Slider019;
+        flVec3Slider* vec3Slider020; flVec3Slider* vec3Slider021; flVec3Slider* vec3Slider022; flVec3Slider* vec3Slider023;
+        flVec3Slider* vec3Slider024; flVec3Slider* vec3Slider025; flVec3Slider* vec3Slider026; flVec3Slider* vec3Slider027;
+        flVec3Slider* vec3Slider028; flVec3Slider* vec3Slider029;
+        //Vec3スライダー(100)
+        flVec3Slider* vec3Slider100; flVec3Slider* vec3Slider101; flVec3Slider* vec3Slider102; flVec3Slider* vec3Slider103;
+        flVec3Slider* vec3Slider104; flVec3Slider* vec3Slider105; flVec3Slider* vec3Slider106; flVec3Slider* vec3Slider107;
+        flVec3Slider* vec3Slider108; flVec3Slider* vec3Slider109;
+        flVec3Slider* vec3Slider110; flVec3Slider* vec3Slider111; flVec3Slider* vec3Slider112; flVec3Slider* vec3Slider113;
+        flVec3Slider* vec3Slider114; flVec3Slider* vec3Slider115; flVec3Slider* vec3Slider116; flVec3Slider* vec3Slider117;
+        flVec3Slider* vec3Slider118; flVec3Slider* vec3Slider119;
+        flVec3Slider* vec3Slider120; flVec3Slider* vec3Slider121; flVec3Slider* vec3Slider122; flVec3Slider* vec3Slider123;
+        flVec3Slider* vec3Slider124; flVec3Slider* vec3Slider125; flVec3Slider* vec3Slider126; flVec3Slider* vec3Slider127;
+        flVec3Slider* vec3Slider128; flVec3Slider* vec3Slider129;
+        //Vec3スライダー(200)
+        flVec3Slider* vec3Slider200; flVec3Slider* vec3Slider201; flVec3Slider* vec3Slider202; flVec3Slider* vec3Slider203;
+        flVec3Slider* vec3Slider204; flVec3Slider* vec3Slider205; flVec3Slider* vec3Slider206; flVec3Slider* vec3Slider207;
+        flVec3Slider* vec3Slider208; flVec3Slider* vec3Slider209;
+        flVec3Slider* vec3Slider210; flVec3Slider* vec3Slider211; flVec3Slider* vec3Slider212; flVec3Slider* vec3Slider213;
+        flVec3Slider* vec3Slider214; flVec3Slider* vec3Slider215; flVec3Slider* vec3Slider216; flVec3Slider* vec3Slider217;
+        flVec3Slider* vec3Slider218; flVec3Slider* vec3Slider219;
+        flVec3Slider* vec3Slider220; flVec3Slider* vec3Slider221; flVec3Slider* vec3Slider222; flVec3Slider* vec3Slider223;
+        flVec3Slider* vec3Slider224; flVec3Slider* vec3Slider225; flVec3Slider* vec3Slider226; flVec3Slider* vec3Slider227;
+        flVec3Slider* vec3Slider228; flVec3Slider* vec3Slider229;
+        //Vec3スライダー(300)
+        flVec3Slider* vec3Slider300; flVec3Slider* vec3Slider301; flVec3Slider* vec3Slider302; flVec3Slider* vec3Slider303;
+        flVec3Slider* vec3Slider304; flVec3Slider* vec3Slider305; flVec3Slider* vec3Slider306; flVec3Slider* vec3Slider307;
+        flVec3Slider* vec3Slider308; flVec3Slider* vec3Slider309;
+        flVec3Slider* vec3Slider310; flVec3Slider* vec3Slider311; flVec3Slider* vec3Slider312; flVec3Slider* vec3Slider313;
+        flVec3Slider* vec3Slider314; flVec3Slider* vec3Slider315; flVec3Slider* vec3Slider316; flVec3Slider* vec3Slider317;
+        flVec3Slider* vec3Slider318; flVec3Slider* vec3Slider319;
+        flVec3Slider* vec3Slider320; flVec3Slider* vec3Slider321; flVec3Slider* vec3Slider322; flVec3Slider* vec3Slider323;
+        flVec3Slider* vec3Slider324; flVec3Slider* vec3Slider325; flVec3Slider* vec3Slider326; flVec3Slider* vec3Slider327;
+        flVec3Slider* vec3Slider328; flVec3Slider* vec3Slider329;
+        //Vec3スライダー(400)
+        flVec3Slider* vec3Slider400; flVec3Slider* vec3Slider401; flVec3Slider* vec3Slider402; flVec3Slider* vec3Slider403;
+        flVec3Slider* vec3Slider404; flVec3Slider* vec3Slider405; flVec3Slider* vec3Slider406; flVec3Slider* vec3Slider407;
+        flVec3Slider* vec3Slider408; flVec3Slider* vec3Slider409;
+        flVec3Slider* vec3Slider410; flVec3Slider* vec3Slider411; flVec3Slider* vec3Slider412; flVec3Slider* vec3Slider413;
+        flVec3Slider* vec3Slider414; flVec3Slider* vec3Slider415; flVec3Slider* vec3Slider416; flVec3Slider* vec3Slider417;
+        flVec3Slider* vec3Slider418; flVec3Slider* vec3Slider419;
+        flVec3Slider* vec3Slider420; flVec3Slider* vec3Slider421; flVec3Slider* vec3Slider422; flVec3Slider* vec3Slider423;
+        flVec3Slider* vec3Slider424; flVec3Slider* vec3Slider425; flVec3Slider* vec3Slider426; flVec3Slider* vec3Slider427;
+        flVec3Slider* vec3Slider428; flVec3Slider* vec3Slider429;
+        //Vec3スライダー(500)
+        flVec3Slider* vec3Slider500; flVec3Slider* vec3Slider501; flVec3Slider* vec3Slider502; flVec3Slider* vec3Slider503;
+        flVec3Slider* vec3Slider504; flVec3Slider* vec3Slider505; flVec3Slider* vec3Slider506; flVec3Slider* vec3Slider507;
+        flVec3Slider* vec3Slider508; flVec3Slider* vec3Slider509;
+        flVec3Slider* vec3Slider510; flVec3Slider* vec3Slider511; flVec3Slider* vec3Slider512; flVec3Slider* vec3Slider513;
+        flVec3Slider* vec3Slider514; flVec3Slider* vec3Slider515; flVec3Slider* vec3Slider516; flVec3Slider* vec3Slider517;
+        flVec3Slider* vec3Slider518; flVec3Slider* vec3Slider519;
+        flVec3Slider* vec3Slider520; flVec3Slider* vec3Slider521; flVec3Slider* vec3Slider522; flVec3Slider* vec3Slider523;
+        flVec3Slider* vec3Slider524; flVec3Slider* vec3Slider525; flVec3Slider* vec3Slider526; flVec3Slider* vec3Slider527;
+        flVec3Slider* vec3Slider528; flVec3Slider* vec3Slider529;
+        //Vec3スライダー(600)
+        flVec3Slider* vec3Slider600; flVec3Slider* vec3Slider601; flVec3Slider* vec3Slider602; flVec3Slider* vec3Slider603;
+        flVec3Slider* vec3Slider604; flVec3Slider* vec3Slider605; flVec3Slider* vec3Slider606; flVec3Slider* vec3Slider607;
+        flVec3Slider* vec3Slider608; flVec3Slider* vec3Slider609;
+        flVec3Slider* vec3Slider610; flVec3Slider* vec3Slider611; flVec3Slider* vec3Slider612; flVec3Slider* vec3Slider613;
+        flVec3Slider* vec3Slider614; flVec3Slider* vec3Slider615; flVec3Slider* vec3Slider616; flVec3Slider* vec3Slider617;
+        flVec3Slider* vec3Slider618; flVec3Slider* vec3Slider619;
+        flVec3Slider* vec3Slider620; flVec3Slider* vec3Slider621; flVec3Slider* vec3Slider622; flVec3Slider* vec3Slider623;
+        flVec3Slider* vec3Slider624; flVec3Slider* vec3Slider625; flVec3Slider* vec3Slider626; flVec3Slider* vec3Slider627;
+        flVec3Slider* vec3Slider628; flVec3Slider* vec3Slider629;
+        //Vec3スライダー(700)
+        flVec3Slider* vec3Slider700; flVec3Slider* vec3Slider701; flVec3Slider* vec3Slider702; flVec3Slider* vec3Slider703;
+        flVec3Slider* vec3Slider704; flVec3Slider* vec3Slider705; flVec3Slider* vec3Slider706; flVec3Slider* vec3Slider707;
+        flVec3Slider* vec3Slider708; flVec3Slider* vec3Slider709;
+        flVec3Slider* vec3Slider710; flVec3Slider* vec3Slider711; flVec3Slider* vec3Slider712; flVec3Slider* vec3Slider713;
+        flVec3Slider* vec3Slider714; flVec3Slider* vec3Slider715; flVec3Slider* vec3Slider716; flVec3Slider* vec3Slider717;
+        flVec3Slider* vec3Slider718; flVec3Slider* vec3Slider719;
+        flVec3Slider* vec3Slider720; flVec3Slider* vec3Slider721; flVec3Slider* vec3Slider722; flVec3Slider* vec3Slider723;
+        flVec3Slider* vec3Slider724; flVec3Slider* vec3Slider725; flVec3Slider* vec3Slider726; flVec3Slider* vec3Slider727;
+        flVec3Slider* vec3Slider728; flVec3Slider* vec3Slider729;
+        //Vec3スライダー(800)
+        flVec3Slider* vec3Slider800; flVec3Slider* vec3Slider801; flVec3Slider* vec3Slider802; flVec3Slider* vec3Slider803;
+        flVec3Slider* vec3Slider804; flVec3Slider* vec3Slider805; flVec3Slider* vec3Slider806; flVec3Slider* vec3Slider807;
+        flVec3Slider* vec3Slider808; flVec3Slider* vec3Slider809;
+        flVec3Slider* vec3Slider810; flVec3Slider* vec3Slider811; flVec3Slider* vec3Slider812; flVec3Slider* vec3Slider813;
+        flVec3Slider* vec3Slider814; flVec3Slider* vec3Slider815; flVec3Slider* vec3Slider816; flVec3Slider* vec3Slider817;
+        flVec3Slider* vec3Slider818; flVec3Slider* vec3Slider819;
+        flVec3Slider* vec3Slider820; flVec3Slider* vec3Slider821; flVec3Slider* vec3Slider822; flVec3Slider* vec3Slider823;
+        flVec3Slider* vec3Slider824; flVec3Slider* vec3Slider825; flVec3Slider* vec3Slider826; flVec3Slider* vec3Slider827;
+        flVec3Slider* vec3Slider828; flVec3Slider* vec3Slider829;
+        //--------------------------------------
+    
+        //--------------------------------------
+        //Vec2スライダー(000)
+        flVec2Slider* vec2Slider000; flVec2Slider* vec2Slider001; flVec2Slider* vec2Slider002; flVec2Slider* vec2Slider003;
+        flVec2Slider* vec2Slider004; flVec2Slider* vec2Slider005; flVec2Slider* vec2Slider006; flVec2Slider* vec2Slider007;
+        flVec2Slider* vec2Slider008; flVec2Slider* vec2Slider009;
+        flVec2Slider* vec2Slider010; flVec2Slider* vec2Slider011; flVec2Slider* vec2Slider012; flVec2Slider* vec2Slider013;
+        flVec2Slider* vec2Slider014; flVec2Slider* vec2Slider015; flVec2Slider* vec2Slider016; flVec2Slider* vec2Slider017;
+        flVec2Slider* vec2Slider018; flVec2Slider* vec2Slider019;
+        flVec2Slider* vec2Slider020; flVec2Slider* vec2Slider021; flVec2Slider* vec2Slider022; flVec2Slider* vec2Slider023;
+        flVec2Slider* vec2Slider024; flVec2Slider* vec2Slider025; flVec2Slider* vec2Slider026; flVec2Slider* vec2Slider027;
+        flVec2Slider* vec2Slider028; flVec2Slider* vec2Slider029;
+        //Vec2スライダー(100)
+        flVec2Slider* vec2Slider100; flVec2Slider* vec2Slider101; flVec2Slider* vec2Slider102; flVec2Slider* vec2Slider103;
+        flVec2Slider* vec2Slider104; flVec2Slider* vec2Slider105; flVec2Slider* vec2Slider106; flVec2Slider* vec2Slider107;
+        flVec2Slider* vec2Slider108; flVec2Slider* vec2Slider109;
+        flVec2Slider* vec2Slider110; flVec2Slider* vec2Slider111; flVec2Slider* vec2Slider112; flVec2Slider* vec2Slider113;
+        flVec2Slider* vec2Slider114; flVec2Slider* vec2Slider115; flVec2Slider* vec2Slider116; flVec2Slider* vec2Slider117;
+        flVec2Slider* vec2Slider118; flVec2Slider* vec2Slider119;
+        flVec2Slider* vec2Slider120; flVec2Slider* vec2Slider121; flVec2Slider* vec2Slider122; flVec2Slider* vec2Slider123;
+        flVec2Slider* vec2Slider124; flVec2Slider* vec2Slider125; flVec2Slider* vec2Slider126; flVec2Slider* vec2Slider127;
+        flVec2Slider* vec2Slider128; flVec2Slider* vec2Slider129;
+        //Vec2スライダー(200)
+        flVec2Slider* vec2Slider200; flVec2Slider* vec2Slider201; flVec2Slider* vec2Slider202; flVec2Slider* vec2Slider203;
+        flVec2Slider* vec2Slider204; flVec2Slider* vec2Slider205; flVec2Slider* vec2Slider206; flVec2Slider* vec2Slider207;
+        flVec2Slider* vec2Slider208; flVec2Slider* vec2Slider209;
+        flVec2Slider* vec2Slider210; flVec2Slider* vec2Slider211; flVec2Slider* vec2Slider212; flVec2Slider* vec2Slider213;
+        flVec2Slider* vec2Slider214; flVec2Slider* vec2Slider215; flVec2Slider* vec2Slider216; flVec2Slider* vec2Slider217;
+        flVec2Slider* vec2Slider218; flVec2Slider* vec2Slider219;
+        flVec2Slider* vec2Slider220; flVec2Slider* vec2Slider221; flVec2Slider* vec2Slider222; flVec2Slider* vec2Slider223;
+        flVec2Slider* vec2Slider224; flVec2Slider* vec2Slider225; flVec2Slider* vec2Slider226; flVec2Slider* vec2Slider227;
+        flVec2Slider* vec2Slider228; flVec2Slider* vec2Slider229;
+        //Vec2スライダー(300)
+        flVec2Slider* vec2Slider300; flVec2Slider* vec2Slider301; flVec2Slider* vec2Slider302; flVec2Slider* vec2Slider303;
+        flVec2Slider* vec2Slider304; flVec2Slider* vec2Slider305; flVec2Slider* vec2Slider306; flVec2Slider* vec2Slider307;
+        flVec2Slider* vec2Slider308; flVec2Slider* vec2Slider309;
+        flVec2Slider* vec2Slider310; flVec2Slider* vec2Slider311; flVec2Slider* vec2Slider312; flVec2Slider* vec2Slider313;
+        flVec2Slider* vec2Slider314; flVec2Slider* vec2Slider315; flVec2Slider* vec2Slider316; flVec2Slider* vec2Slider317;
+        flVec2Slider* vec2Slider318; flVec2Slider* vec2Slider319;
+        flVec2Slider* vec2Slider320; flVec2Slider* vec2Slider321; flVec2Slider* vec2Slider322; flVec2Slider* vec2Slider323;
+        flVec2Slider* vec2Slider324; flVec2Slider* vec2Slider325; flVec2Slider* vec2Slider326; flVec2Slider* vec2Slider327;
+        flVec2Slider* vec2Slider328; flVec2Slider* vec2Slider329;
+        //Vec2スライダー(400)
+        flVec2Slider* vec2Slider400; flVec2Slider* vec2Slider401; flVec2Slider* vec2Slider402; flVec2Slider* vec2Slider403;
+        flVec2Slider* vec2Slider404; flVec2Slider* vec2Slider405; flVec2Slider* vec2Slider406; flVec2Slider* vec2Slider407;
+        flVec2Slider* vec2Slider408; flVec2Slider* vec2Slider409;
+        flVec2Slider* vec2Slider410; flVec2Slider* vec2Slider411; flVec2Slider* vec2Slider412; flVec2Slider* vec2Slider413;
+        flVec2Slider* vec2Slider414; flVec2Slider* vec2Slider415; flVec2Slider* vec2Slider416; flVec2Slider* vec2Slider417;
+        flVec2Slider* vec2Slider418; flVec2Slider* vec2Slider419;
+        flVec2Slider* vec2Slider420; flVec2Slider* vec2Slider421; flVec2Slider* vec2Slider422; flVec2Slider* vec2Slider423;
+        flVec2Slider* vec2Slider424; flVec2Slider* vec2Slider425; flVec2Slider* vec2Slider426; flVec2Slider* vec2Slider427;
+        flVec2Slider* vec2Slider428; flVec2Slider* vec2Slider429;
+        //Vec2スライダー(500)
+        flVec2Slider* vec2Slider500; flVec2Slider* vec2Slider501; flVec2Slider* vec2Slider502; flVec2Slider* vec2Slider503;
+        flVec2Slider* vec2Slider504; flVec2Slider* vec2Slider505; flVec2Slider* vec2Slider506; flVec2Slider* vec2Slider507;
+        flVec2Slider* vec2Slider508; flVec2Slider* vec2Slider509;
+        flVec2Slider* vec2Slider510; flVec2Slider* vec2Slider511; flVec2Slider* vec2Slider512; flVec2Slider* vec2Slider513;
+        flVec2Slider* vec2Slider514; flVec2Slider* vec2Slider515; flVec2Slider* vec2Slider516; flVec2Slider* vec2Slider517;
+        flVec2Slider* vec2Slider518; flVec2Slider* vec2Slider519;
+        flVec2Slider* vec2Slider520; flVec2Slider* vec2Slider521; flVec2Slider* vec2Slider522; flVec2Slider* vec2Slider523;
+        flVec2Slider* vec2Slider524; flVec2Slider* vec2Slider525; flVec2Slider* vec2Slider526; flVec2Slider* vec2Slider527;
+        flVec2Slider* vec2Slider528; flVec2Slider* vec2Slider529;
+        //Vec2スライダー(600)
+        flVec2Slider* vec2Slider600; flVec2Slider* vec2Slider601; flVec2Slider* vec2Slider602; flVec2Slider* vec2Slider603;
+        flVec2Slider* vec2Slider604; flVec2Slider* vec2Slider605; flVec2Slider* vec2Slider606; flVec2Slider* vec2Slider607;
+        flVec2Slider* vec2Slider608; flVec2Slider* vec2Slider609;
+        flVec2Slider* vec2Slider610; flVec2Slider* vec2Slider611; flVec2Slider* vec2Slider612; flVec2Slider* vec2Slider613;
+        flVec2Slider* vec2Slider614; flVec2Slider* vec2Slider615; flVec2Slider* vec2Slider616; flVec2Slider* vec2Slider617;
+        flVec2Slider* vec2Slider618; flVec2Slider* vec2Slider619;
+        flVec2Slider* vec2Slider620; flVec2Slider* vec2Slider621; flVec2Slider* vec2Slider622; flVec2Slider* vec2Slider623;
+        flVec2Slider* vec2Slider624; flVec2Slider* vec2Slider625; flVec2Slider* vec2Slider626; flVec2Slider* vec2Slider627;
+        flVec2Slider* vec2Slider628; flVec2Slider* vec2Slider629;
+        //Vec2スライダー(700)
+        flVec2Slider* vec2Slider700; flVec2Slider* vec2Slider701; flVec2Slider* vec2Slider702; flVec2Slider* vec2Slider703;
+        flVec2Slider* vec2Slider704; flVec2Slider* vec2Slider705; flVec2Slider* vec2Slider706; flVec2Slider* vec2Slider707;
+        flVec2Slider* vec2Slider708; flVec2Slider* vec2Slider709;
+        flVec2Slider* vec2Slider710; flVec2Slider* vec2Slider711; flVec2Slider* vec2Slider712; flVec2Slider* vec2Slider713;
+        flVec2Slider* vec2Slider714; flVec2Slider* vec2Slider715; flVec2Slider* vec2Slider716; flVec2Slider* vec2Slider717;
+        flVec2Slider* vec2Slider718; flVec2Slider* vec2Slider719;
+        flVec2Slider* vec2Slider720; flVec2Slider* vec2Slider721; flVec2Slider* vec2Slider722; flVec2Slider* vec2Slider723;
+        flVec2Slider* vec2Slider724; flVec2Slider* vec2Slider725; flVec2Slider* vec2Slider726; flVec2Slider* vec2Slider727;
+        flVec2Slider* vec2Slider728; flVec2Slider* vec2Slider729;
+        //Vec2スライダー(800)
+        flVec2Slider* vec2Slider800; flVec2Slider* vec2Slider801; flVec2Slider* vec2Slider802; flVec2Slider* vec2Slider803;
+        flVec2Slider* vec2Slider804; flVec2Slider* vec2Slider805; flVec2Slider* vec2Slider806; flVec2Slider* vec2Slider807;
+        flVec2Slider* vec2Slider808; flVec2Slider* vec2Slider809;
+        flVec2Slider* vec2Slider810; flVec2Slider* vec2Slider811; flVec2Slider* vec2Slider812; flVec2Slider* vec2Slider813;
+        flVec2Slider* vec2Slider814; flVec2Slider* vec2Slider815; flVec2Slider* vec2Slider816; flVec2Slider* vec2Slider817;
+        flVec2Slider* vec2Slider818; flVec2Slider* vec2Slider819;
+        flVec2Slider* vec2Slider820; flVec2Slider* vec2Slider821; flVec2Slider* vec2Slider822; flVec2Slider* vec2Slider823;
+        flVec2Slider* vec2Slider824; flVec2Slider* vec2Slider825; flVec2Slider* vec2Slider826; flVec2Slider* vec2Slider827;
+        flVec2Slider* vec2Slider828; flVec2Slider* vec2Slider829;
+        //--------------------------------------
+    
         //--------------------------------------
         //ボタン(000)
         flNumberDialer* dialer000; flNumberDialer* dialer001; flNumberDialer* dialer002; flNumberDialer* dialer003; flNumberDialer* dialer004;
@@ -720,19 +935,34 @@ class BasicController : public flSprite {
         flRadioButton* radio733; flRadioButton* radio734; flRadioButton* radio735;
         flRadioButton* radio736; flRadioButton* radio737; flRadioButton* radio738;
         flRadioButton* radio739;
+        //シンプルラジオボタン(900)
+        flRadioButton* radio900; flRadioButton* radio901; flRadioButton* radio902;
+        flRadioButton* radio903; flRadioButton* radio904; flRadioButton* radio905;
+        flRadioButton* radio999;    
         //--------------------------------------
 
-        
+    
         //--------------------------------------
-        //ジョイスティック(000)
-        flJoystick* joystick000; flJoystick* joystick001; flJoystick* joystick002; flJoystick* joystick003; flJoystick* joystick004;
-        flJoystick* joystick005; flJoystick* joystick006; flJoystick* joystick007; flJoystick* joystick008; flJoystick* joystick009;
-        //ジョイスティック(100)
-        flJoystick* joystick100; flJoystick* joystick101; flJoystick* joystick102; flJoystick* joystick103; flJoystick* joystick104;
-        flJoystick* joystick105; flJoystick* joystick106; flJoystick* joystick107; flJoystick* joystick108; flJoystick* joystick109;
-        //ジョイスティック(200)
-        flJoystick* joystick200; flJoystick* joystick201; flJoystick* joystick202; flJoystick* joystick203; flJoystick* joystick204;
-        flJoystick* joystick205; flJoystick* joystick206; flJoystick* joystick207; flJoystick* joystick208; flJoystick* joystick209;
+        //ジョイスティック1D(000)
+        flJoystick1D* joystick1D000; flJoystick1D* joystick1D001; flJoystick1D* joystick1D002; flJoystick1D* joystick1D003; flJoystick1D* joystick1D004;
+        flJoystick1D* joystick1D005; flJoystick1D* joystick1D006; flJoystick1D* joystick1D007; flJoystick1D* joystick1D008; flJoystick1D* joystick1D009;
+        //ジョイスティック1D(100)
+        flJoystick1D* joystick1D100; flJoystick1D* joystick1D101; flJoystick1D* joystick1D102; flJoystick1D* joystick1D103; flJoystick1D* joystick1D104;
+        flJoystick1D* joystick1D105; flJoystick1D* joystick1D106; flJoystick1D* joystick1D107; flJoystick1D* joystick1D108; flJoystick1D* joystick1D109;
+        //ジョイスティック1D(200)
+        flJoystick1D* joystick1D200; flJoystick1D* joystick1D201; flJoystick1D* joystick1D202; flJoystick1D* joystick1D203; flJoystick1D* joystick1D204;
+        flJoystick1D* joystick1D205; flJoystick1D* joystick1D206; flJoystick1D* joystick1D207; flJoystick1D* joystick1D208; flJoystick1D* joystick1D209;
+        //--------------------------------------
+        //--------------------------------------
+        //ジョイスティック2D(000)
+        flJoystick2D* joystick2D000; flJoystick2D* joystick2D001; flJoystick2D* joystick2D002; flJoystick2D* joystick2D003; flJoystick2D* joystick2D004;
+        flJoystick2D* joystick2D005; flJoystick2D* joystick2D006; flJoystick2D* joystick2D007; flJoystick2D* joystick2D008; flJoystick2D* joystick2D009;
+        //ジョイスティック2D(100)
+        flJoystick2D* joystick2D100; flJoystick2D* joystick2D101; flJoystick2D* joystick2D102; flJoystick2D* joystick2D103; flJoystick2D* joystick2D104;
+        flJoystick2D* joystick2D105; flJoystick2D* joystick2D106; flJoystick2D* joystick2D107; flJoystick2D* joystick2D108; flJoystick2D* joystick2D109;
+        //ジョイスティック2D(200)
+        flJoystick2D* joystick2D200; flJoystick2D* joystick2D201; flJoystick2D* joystick2D202; flJoystick2D* joystick2D203; flJoystick2D* joystick2D204;
+        flJoystick2D* joystick2D205; flJoystick2D* joystick2D206; flJoystick2D* joystick2D207; flJoystick2D* joystick2D208; flJoystick2D* joystick2D209;
         //--------------------------------------
         
         //--------------------------------------
@@ -819,6 +1049,7 @@ class BasicController : public flSprite {
         bool _isMinimize;
     
         bool _onTop;
+        bool _isDraggable;
     
     private:
         
@@ -830,7 +1061,18 @@ class BasicController : public flSprite {
         
         virtual void minimize();
         virtual void normalize();
-    
+
+        virtual inline bool isDraggable() { return _isDraggable; }
+        virtual inline bool isDraggable(bool value) {
+            _isDraggable = value;
+            useHandCursor(_isDraggable);
+            
+            if(!_isDraggable) {
+                if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, &BasicController::_mouseEventHandler);
+                stopDrag();
+            }
+        }
+
     protected:
         virtual void _mouseEventHandler(flEvent& event);
         virtual void _buttonEventHandler(flEvent& event);

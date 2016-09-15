@@ -5,6 +5,8 @@ void ofApp::setup() {
     ofSetWindowTitle("example-Sprite");
     
     ofxSelflash::setup();
+    ofxSelflash::autoUpdate(false);
+    ofxSelflash::autoDraw(false);
     flStage* stage = ofxSelflash::stage();
     
     container = new Container();
@@ -14,12 +16,12 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    
+    ofxSelflash::update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    
+    ofxSelflash::draw();
 }
 
 //--------------------------------------------------------------

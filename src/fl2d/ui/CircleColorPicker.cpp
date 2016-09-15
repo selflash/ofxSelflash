@@ -14,15 +14,20 @@ namespace fl2d {
         _target = this;
         name("CircleColorPicker");
         
-        _imageWidth = width;
-        _imageHeight = height;
+        _uiWidth = width;
+        _uiHeight = height;
         
-        _radius = _imageWidth * 0.5f - 2;
+        _radius = _uiWidth * 0.5 - 2;
         
-        _lineColor = FlashConfig::UI_LINE_COLOR;
-        _normalColor = FlashConfig::UI_NORMAL_COLOR;
-        _overColor = FlashConfig::UI_OVER_COLOR;
-        _activeColor = FlashConfig::UI_ACTIVE_COLOR;
+        _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
+        _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
+        _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
+        _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
+        
+        _lineColor.setHex(FlashConfig::UI_LINE_COLOR);
+        _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
+        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
         
         buttonMode(true);
             
@@ -30,8 +35,8 @@ namespace fl2d {
         g = graphics();
         g->smoothing(true);
         g->clear();
-        g->lineStyle(2, _lineColor);
-        g->drawCircle(_radius + 2, 16 + _radius + 1.5, _radius);
+        g->lineStyle(1, _lineColor.getHex());
+        g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
         addEventListener(MouseEvent::MOUSE_OVER, this, &CircleColorPicker::_mouseEventHandler);
@@ -44,8 +49,8 @@ namespace fl2d {
         _colorWheelImage = new ofImage();
         _colorWheelImage->loadImage(FlashConfig::_COLORWHEEL_IMAGE_PATH);
         //_colorWheelImage->setAnchorPercent(0.5,0.5);
-//        this->width(_imageWidth);
-//        this->height(20 + _imageWidth);
+//        this->width(_uiWidth);
+//        this->height(20 + _uiWidth);
         
         _pixelCaptureImage = new ofImage();
         
@@ -54,21 +59,19 @@ namespace fl2d {
         
         //------------------------------------------
         //ラベル
-        _labelText = new TextField();
-        _labelText->x(0);
-        _labelText->y(0);
-        _labelText->width(_imageWidth);
-        _labelText->autoSize(TextFieldAutoSize::CENTER);
-        _labelText->textColor(0x0);
-        _labelText->text("COLOR PICKER");
-        addChild(_labelText);
-        //------------------------------------------    
+        _label = NULL;
+        //------------------------------------------
     }
 
     //--------------------------------------------------------------
     //
     CircleColorPicker::~CircleColorPicker() {
         //cout << "[CircleColorPicker]~CircleColorPicker()" << endl;
+        
+        _uiWidth = 0.0;
+        _uiHeight = 0.0;
+        
+        _radius = 0.0;
         
         removeEventListener(MouseEvent::MOUSE_OVER, &CircleColorPicker::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_OUT, &CircleColorPicker::_mouseEventHandler);
@@ -81,6 +84,11 @@ namespace fl2d {
         
         delete _pixelCaptureImage;
         _pixelCaptureImage = NULL;
+        
+        delete _selectedPixel;
+        _selectedPixel = NULL;
+        
+        _label = NULL;
     }
 
     //==============================================================
@@ -103,7 +111,7 @@ namespace fl2d {
     //
     void CircleColorPicker::_draw() {
         ofSetColor(255, 255, 255, 255);
-        _colorWheelImage->draw(0, 16, _imageWidth, _imageHeight);
+        _colorWheelImage->draw(0, 0, _uiWidth, _uiHeight);
     }
 
     //==============================================================
@@ -112,13 +120,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    string CircleColorPicker::label() { return _labelText->text(); }
-    void CircleColorPicker::label(string value, int color) { _labelText->text(value, color); }
-    //--------------------------------------------------------------
-    //
-    void CircleColorPicker::textColor(int color) {
-        _labelText->textColor(color);
-    }
+    TextField* CircleColorPicker::label() { return _label; }
+    void CircleColorPicker::label(TextField* value) { _label = value; }
 
     //--------------------------------------------------------------
     //
@@ -185,8 +188,8 @@ namespace fl2d {
         Graphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(3, _overColor);
-        g->drawCircle(_radius + 2, 16 + _radius + 1.5, _radius);
+        g->lineStyle(1, _overColor.getHex());
+        g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
 
@@ -198,8 +201,8 @@ namespace fl2d {
         Graphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(2, _lineColor);
-        g->drawCircle(_radius + 2, 16 + _radius + 1.5, _radius);
+        g->lineStyle(1, _lineColor.getHex());
+        g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
 
@@ -209,8 +212,8 @@ namespace fl2d {
         Graphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(3, _activeColor);
-        g->drawCircle(_radius + 2, 16 + _radius + 1.5, _radius);
+        g->lineStyle(1, _activeColor.getHex());
+        g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
         getPixel(mouseX(), mouseY());
@@ -235,8 +238,8 @@ namespace fl2d {
         Graphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(2, _lineColor);
-        g->drawCircle(_radius + 2, 16 + _radius + 1.5, _radius);
+        g->lineStyle(1, _lineColor.getHex());
+        g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
 

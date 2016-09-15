@@ -1,6 +1,9 @@
 ﻿#include "TextField.h"
 
 namespace fl2d {
+    
+    string TextField::TEXT_FIELD_TYPE_DYNAMIC = "dynamic";
+    string TextField::TEXT_FIELD_TYPE_INPUT = "input";
 
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
@@ -13,17 +16,11 @@ namespace fl2d {
         
         name("TextField");
         
-        _normalColor = new ofFloatColor();
-        _normalColor->setHex(0x333333);
+        _normalColor.setHex(0x333333);
+        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
+        _textColor.setHex(0xffffff);
         
-        _overColor = new ofFloatColor();
-        _overColor->setHex(FlashConfig::UI_OVER_COLOR);
-        
-        _activeColor = new ofFloatColor();
-        _activeColor->setHex(FlashConfig::UI_ACTIVE_COLOR);
-        
-        _textColor = new ofFloatColor();
-        _textColor->setHex(0xffffff);
         _text = "";
         
         _type = TEXT_FIELD_TYPE_DYNAMIC;
@@ -54,18 +51,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     TextField::~TextField() {
-        delete _normalColor;
-        _normalColor = NULL;
-        
-        delete _overColor;
-        _overColor = NULL;
-        
-        delete _activeColor;
-        _activeColor = NULL;
-        
-        delete _textColor;
-        _textColor = NULL;
-        
         _text = "";
         
         _type = TEXT_FIELD_TYPE_DYNAMIC;
@@ -161,9 +146,8 @@ namespace fl2d {
 //        _font.drawStringAsShapes(_text, 0, 0);
         
         ofPushStyle();
-        
-        ofSetColor(*_textColor);
-        Font::drawString(_text, 1, -3);
+        ofSetColor(_textColor);
+        Font::drawString(_text, 1, -1);
         ofPopStyle();
         
         ofPopMatrix();
@@ -240,9 +224,9 @@ namespace fl2d {
         //---------------------------------
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_isActive) {
-                _drawGraphics(0xcc0000, 0xffffff);
+                _drawGraphics(0xcc0000, 0xffffff, 1);
             } else {
-                _drawGraphics(0x000000, 0xffffff);
+                _drawGraphics(0x000000, 0xffffff, 1);
             }
         }
         //---------------------------------
@@ -274,9 +258,9 @@ namespace fl2d {
         //---------------------------------
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_isActive) {
-                _drawGraphics(0xcc0000, 0xffffff);
+                _drawGraphics(0xcc0000, 0xffffff, 1);
             } else {
-                _drawGraphics(0x000000, 0xffffff);
+                _drawGraphics(0x000000, 0xffffff, 1);
             }
         }
         //---------------------------------
@@ -298,16 +282,16 @@ namespace fl2d {
         if(temp <= 0.0) temp = 0.0;
         
         _alpha = temp;
-        _textColor->a = _alpha;
+        _textColor.a = _alpha;
         _graphics->__alpha = _alpha;
     }
 
     //--------------------------------------------------------------
     //
-    int TextField::textColor() { return _textColor->getHex(); }
+    int TextField::textColor() { return _textColor.getHex(); }
     void TextField::textColor(int value) {
-        _textColor->setHex(value);
-        _textColor->a = _alpha;
+        _textColor.setHex(value);
+        _textColor.a = _alpha;
     }
 
     //--------------------------------------------------------------
@@ -320,7 +304,7 @@ namespace fl2d {
         
 		ofRectangle bounds = Font::getStringBoundingBox(_text, 0, 0);
         _textWidth = bounds.width + 6;
-        _textHeight = _numLine * Font::getMaxStringHeight();
+        _textHeight = _numLine * Font::getMaxStringHeight() + 3;
         
         if(color != -1) textColor(color);
         
@@ -345,9 +329,9 @@ namespace fl2d {
         //---------------------------------
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_isActive) {
-                _drawGraphics(_activeColor->getHex(), 0xffffff);
+                _drawGraphics(_activeColor.getHex(), 0xffffff, 1);
             } else {
-                _drawGraphics(_normalColor->getHex(), 0xffffff);
+                _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
             }
         }
         //---------------------------------
@@ -383,14 +367,14 @@ namespace fl2d {
         _isActive = value;
         
         if(_isActive) {
-            _drawGraphics(_activeColor->getHex(), 0xffffff);
+            _drawGraphics(_activeColor.getHex(), 0xffffff, 1);
             
             ofAddListener(ofEvents().keyPressed, this, &TextField::_keyPressedEventHandler);
             ofAddListener(ofEvents().keyReleased, this, &TextField::_keyReleasedEventHandler);
             
             addEventListener(FocusEvent::FOCUS_OUT, this, &TextField::_eventHandler);
         } else {
-            _drawGraphics(_normalColor->getHex(), 0xffffff);
+            _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
             
             ofRemoveListener(ofEvents().keyPressed, this, &TextField::_keyPressedEventHandler);
             ofRemoveListener(ofEvents().keyReleased, this, &TextField::_keyReleasedEventHandler);
@@ -411,9 +395,10 @@ namespace fl2d {
         
         mouseEnabled(true);
         
-        _drawGraphics(_normalColor->getHex(), 0xffffff);
+        _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
         
-        addEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
+//        addEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
+        addEventListener(MouseEvent::MOUSE_DOWN, this, &TextField::_mouseEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -426,25 +411,26 @@ namespace fl2d {
         
         _graphics->clear();
         
-        removeEventListener(MouseEvent::MOUSE_UP, &TextField::_mouseEventHandler);
+//        removeEventListener(MouseEvent::MOUSE_UP, &TextField::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, &TextField::_mouseEventHandler);
     }
     
     //--------------------------------------------------------------
     //
-    void TextField::_drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor) {
+    void TextField::_drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {
         Graphics* g = _graphics;
         //_graphics->clear();
-        g->lineStyle(1, lineColor.getHex());
+        g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex());
         g->drawRect(0, 0, width(), height());
         g->endFill();
     }
     //--------------------------------------------------------------
     //
-    void TextField::_drawGraphics(int lineColor, int fillColor) {
+    void TextField::_drawGraphics(int lineColor, int fillColor, float thickness) {
         Graphics* g = _graphics;
         g->clear();
-        g->lineStyle(1, lineColor);
+        g->lineStyle(thickness, lineColor);
         g->beginFill(fillColor);
         g->drawRect(0, 0, width(), height());
         g->endFill();
@@ -457,10 +443,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void TextField::_mouseEventHandler(Event& event) {
-        cout << "[TextField]_mouseEventHandler(" + event.type() + ")" << endl;
+        if(debug()) cout << "[TextField]_mouseEventHandler(" + event.type() + ")" << endl;
         
-        if(event.type() == MouseEvent::MOUSE_UP) {
-            active(true);
+//        if(event.type() == MouseEvent::MOUSE_UP) {
+//            active(!active());
+//        }
+        if(event.type() == MouseEvent::MOUSE_DOWN) {
+            active(!active());
         }
     }
 
@@ -469,7 +458,7 @@ namespace fl2d {
     void TextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
         //エンターキーなら区切り文字を
         if(event.key == OF_KEY_RETURN) {
-            event.key = '\n';
+            event.key = '\r\n';
             _text.end();
         }
         //デリートキーなら一文字削除
@@ -499,6 +488,9 @@ namespace fl2d {
         //cout << "[TextField]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
         
         if(event.type() == FocusEvent::FOCUS_OUT) {
+            Event* event = new Event(Event::CHANGE);
+            dispatchEvent(event);
+            
             active(false);
         }
     }

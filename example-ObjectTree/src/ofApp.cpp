@@ -58,6 +58,15 @@ void ofApp::setup() {
     textField004->y(100);
     textField004->mouseEnabled(false);
     stage->addChild(textField004);
+    
+    //
+    textField005 = new flTextField();
+    textField005->textColor(0x000000);
+    textField005->text("");
+    textField005->x(10);
+    textField005->y(120);
+    textField005->mouseEnabled(false);
+    stage->addChild(textField005);
     //--------------------------------------
 }
 
@@ -101,6 +110,8 @@ void ofApp::draw() {
             textField004->text("topMostHitInteractiveObjectPrev = NONE");
         }
     }
+    
+//    textField005->text("Stage->focus = " + stage->focus()->name());
 }
 
 //--------------------------------------------------------------
@@ -125,7 +136,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-
+    textField005->text("Stage->focus = " + ofxSelflash::stage()->focus()->name());
 }
 
 //--------------------------------------------------------------

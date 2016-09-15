@@ -17,6 +17,15 @@ class UIComponents : public flSprite {
         //--------------------------------------
         //RGBスライダー
         flColorSlider* colorSlider001;
+        flColorSlider* colorSlider002;
+        //--------------------------------------
+        //--------------------------------------
+        //Vec2スライダー
+        flVec2Slider* vec2Slider001;
+        //--------------------------------------
+        //--------------------------------------
+        //Vec3スライダー
+        flVec3Slider* vec3Slider001;
         //--------------------------------------
         //--------------------------------------
         //ボタン
@@ -25,6 +34,7 @@ class UIComponents : public flSprite {
         flButton* btn003;
         flButton* btn004;
         flButton* btn005;
+        flButton* btn006;
         //--------------------------------------
         //--------------------------------------
         //2Dパッド
@@ -55,8 +65,19 @@ class UIComponents : public flSprite {
         flCircleColorPicker* colorPicker001;
         //--------------------------------------
         //--------------------------------------
-        //ジョイスティック
-        flJoystick* joystick001;
+        //ジョイスティック1D
+        flJoystick1D* joystick1D001;
+        flJoystick1D* joystick1D002;
+        flJoystick1D* joystick1D003;
+        flJoystick1D* joystick1D004;
+        flJoystick1D* joystick1D005;
+        flJoystick1D* joystick1D006;
+        flJoystick1D* joystick1D007;
+    
+        flJoystick1D* joystick1D101;
+        flJoystick1D* joystick1D102;
+        //ジョイスティック2D
+        flJoystick2D* joystick2D001;
         //--------------------------------------
         //--------------------------------------
         //ナンバーダイアラー

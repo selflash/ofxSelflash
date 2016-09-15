@@ -17,25 +17,27 @@
 #include "../display/Graphics.h"
 #include "../events/MouseEvent.h"
 
-#define TEXT_FIELD_TYPE_DYNAMIC    "dynamic"
-#define TEXT_FIELD_TYPE_INPUT      "input"
+//#define TEXT_FIELD_TYPE_DYNAMIC    "dynamic"
+//#define TEXT_FIELD_TYPE_INPUT      "input"
 
 namespace fl2d {
     
     class TextField : public InteractiveObject {
         
         public:
+            static string TEXT_FIELD_TYPE_DYNAMIC;
+            static string TEXT_FIELD_TYPE_INPUT;
         
         protected:
         
         private:
-            ofFloatColor* _normalColor;
-            ofFloatColor* _overColor;
-            ofFloatColor* _activeColor;
+            ofFloatColor _normalColor;
+            ofFloatColor _overColor;
+            ofFloatColor _activeColor;
             
             Graphics* _graphics;
         
-            ofFloatColor* _textColor;
+            ofFloatColor _textColor;
             string _text;
             
             string _type;
@@ -120,8 +122,8 @@ namespace fl2d {
             virtual void draw();
             virtual void _draw();
         
-            virtual void _drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
-            virtual void _drawGraphics(int lineColor, int fillColor);
+            virtual void _drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
+            virtual void _drawGraphics(int lineColor, int fillColor, float thickness = 1.0);
         
         private:
             void _addListeners();
