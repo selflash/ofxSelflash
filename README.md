@@ -1,5 +1,7 @@
-# ofxSelflash
+# ofxSelflash ver0.5.0
 =========
+
+last update 2016.9.15
 
 Copyright (c) 2015 selflash
 
@@ -63,6 +65,9 @@ Features:
 + events/MouseEvent.h
 + events/KeyboardEvent.h
 + events/SliderEvent.h
++ events/Vec2SliderEvent.h
++ events/Vec3SliderEvent.h
++ events/SliderEvent.h
 + events/ButtonEvent.h
 + events/RadioButtonEvent.h
 + events/NumberDialerEvent.h
@@ -70,8 +75,10 @@ Features:
 + events/ColorSliderEvent.h
 + events/ColorPickerEvent.h
 + events/PadEvent.h
-+ events/JoystickEvent.h
++ events/Joystick1DEvent.h
++ events/Joystick2DEvent.h
 + events/ComboBoxEvent.h
++ events/ButtonEvent.h
 
 [fl2d.geom](https://github.com/selflash/ofxSelflash/wiki/geom)
 + geom/ColorTransform.h
@@ -95,19 +102,22 @@ Features:
 + ui/RadioButton.h
 + ui/NumberDialer.h
 + ui/Slider.h
++ ui/Vec2Slider.h
++ ui/Vec3Slider.h
 + ui/RangeSlider.h
 + ui/ColorSlider.h
 + ui/CircleColorPicker.h
 + ui/Pad2D.h
 + ui/Pad3D.h
-+ ui/Joystick.h
++ ui/Joystick1D.h
++ ui/Joystick2D.h
 + ui/ScrollKit.h
 + ui/ComboBox.h"
 
-fl3d.primitive  
-fl3d.render  
-fl3d.camera  
-fl3d.light  
+[fl3d.primitive]
+[fl3d.render]
+[fl3d.camera] 
+[fl3d.light]
 
 
 
