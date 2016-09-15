@@ -68,6 +68,12 @@ Requirements
 Features:
 --------
 
++ ofxSelflash.h
+
+[fl2d]
++ Flash2D.h
++ FlashConfig.h
+
 [fl2d.core](https://github.com/selflash/ofxSelflash/wiki/core)
 + core/Object.h
 
@@ -147,6 +153,19 @@ Features:
 [fl3d.camera] 
 [fl3d.light]
 
+[fltw]
++ CallBackFuncion.h
++ DelayedCallFunction.h
++ ofxSTweener.h
++ ofxSTweener2D.h
++ STween.h
++ STweenCore.h
++ STweener.h
++ STweeneSelector.h
+
+[fltw.fl2d]
+[fltw.fl3d]
+
 
 
 Getting Started
@@ -187,4 +206,15 @@ void ofApp::setup() {
 
 Updates:
 --------
-Coming soon.
+
+Ver 0.5.0 - 2015.9.15
++ [Remove] fltw.*  (Tween Library)
+
++ [Remove] events.JoystickEvent.h
++ [Remove] ui.Joystick.h
+
++ [Add] events.Joystick1DEvent.h
++ [Add] events.Joystick2DEvent.h
++ [Add] ui.Joystick1D.h
++ [Add] ui.Joystick2D.h
++ [Add] events.ButtonEvent.h
