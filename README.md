@@ -10,17 +10,15 @@ MIT License.
 Description:
 --------
 
-ofxSelflash is an Open Frameworks addon to be able to write a code like AS3 on an Open Frameworks.  
+ofxSelflash is addon to be able to write a code like AS3 on openFrameworks.
 
 + 'fl2d' package is classes like built-in classes of ActionScript3.0.
 + 'fl3d' package is classes that imitated classes of PaperVision3D.
 + 'tween' package is classes that imitated TweenMax API.
 
-I'm going to commit it on this repository soon.
-
-
-This addon is still in development!!!!!
+This addon is still in development.
 The following example is unable to build.
+
 + example-3D-1
 + example-3D-2
 + example-3D-Deferred-1
