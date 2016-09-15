@@ -3,10 +3,15 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetWindowTitle("example-Sprite");
+    ofDisableAntiAliasing();
     
-    ofxSelflash::setup();
+    //--------------------------------------
+    //Ready ofxSelflash
     ofxSelflash::autoUpdate(false);
     ofxSelflash::autoDraw(false);
+    ofxSelflash::setup(false);
+    //--------------------------------------
+    
     flStage* stage = ofxSelflash::stage();
     
     container = new Container();

@@ -3,8 +3,15 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetWindowTitle("example-TextField");
+    ofDisableAntiAliasing();
     
-    ofxSelflash::setup();
+    //--------------------------------------
+    //Ready ofxSelflash
+    ofxSelflash::autoUpdate(false);
+    ofxSelflash::autoDraw(false);
+    ofxSelflash::setup(false);
+    //--------------------------------------
+    
     flStage* stage = ofxSelflash::stage();
     
     //---------------------------------
@@ -99,6 +106,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    //----------------------------------
+    ofxSelflash::update();
+    //----------------------------------
+    
     if(!isTween) return;
     int frameNum = ofGetFrameNum();
     
@@ -130,6 +141,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    //----------------------------------
+    ofxSelflash::draw();
+    //----------------------------------
     
     //---------------------------------
     if(isShowRect) {
@@ -148,8 +162,8 @@ void ofApp::draw(){
     
     //---------------------------------
     string help = "";
-    help += "[ ALT ] play / stop tween.\n";
-    help += "[SPACE] show / hide rect.\n";
+    help += "[ ALT ] Play / Stop Tween.\n";
+    help += "[SPACE] Show / Hide Rect.\n";
     
     ofPushMatrix();
     ofTranslate(600, 20);
@@ -160,7 +174,7 @@ void ofApp::draw(){
     //---------------------------------
     string info;
     info = "";
-    info += "[DEFAULT]\n";
+    info += "[Default]\n";
 //    info += "__________________________________________________\n";
     ofPushMatrix();
     ofTranslate(20, 50);
@@ -170,23 +184,23 @@ void ofApp::draw(){
     
     //---------------------------------
     info = "";
-    info += "[AUTO SIZE]\n";
-    info += "width = " + ofToString(textField101->width()) + "\n";
-    info += "height = " + ofToString(textField101->height()) + "\n";
-    info += "scaleX = " + ofToString(textField101->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField101->scaleY()) + "\n";
+    info += "[Auto Size]\n";
+    info += "Width = " + ofToString(textField101->width()) + "\n";
+    info += "Height = " + ofToString(textField101->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField101->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField101->scaleY()) + "\n";
     
     info += "\n";
-    info += "width = " + ofToString(textField102->width()) + "\n";
-    info += "height = " + ofToString(textField102->height()) + "\n";
-    info += "scaleX = " + ofToString(textField102->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField102->scaleY()) + "\n";
+    info += "Width = " + ofToString(textField102->width()) + "\n";
+    info += "Height = " + ofToString(textField102->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField102->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField102->scaleY()) + "\n";
     
     info += "\n";
-    info += "width = " + ofToString(textField103->width()) + "\n";
-    info += "height = " + ofToString(textField103->height()) + "\n";
-    info += "scaleX = " + ofToString(textField103->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField103->scaleY()) + "\n";
+    info += "Width = " + ofToString(textField103->width()) + "\n";
+    info += "Height = " + ofToString(textField103->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField103->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField103->scaleY()) + "\n";
 
     ofPushMatrix();
     ofTranslate(20, 100);
@@ -196,36 +210,36 @@ void ofApp::draw(){
     
     //---------------------------------
     info = "";
-    info += "[INPUT TEXT]\n";
+    info += "[Input Text]\n";
     
     info += "TextField\n";
-    info += "width = " + ofToString(textField201->width()) + "\n";
-    info += "height = " + ofToString(textField201->height()) + "\n";
-    info += "scaleX = " + ofToString(textField201->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField201->scaleY()) + "\n";
-    info += "textWidth = " + ofToString(textField201->textWidth()) + "\n";
-    info += "textHeight = " + ofToString(textField201->textHeight()) + "\n";
-    info += "autoSize = " + ofToString(textField201->autoSize()) + "\n";
+    info += "Width = " + ofToString(textField201->width()) + "\n";
+    info += "Height = " + ofToString(textField201->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField201->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField201->scaleY()) + "\n";
+    info += "TextWidth = " + ofToString(textField201->textWidth()) + "\n";
+    info += "TextHeight = " + ofToString(textField201->textHeight()) + "\n";
+    info += "AutoSize = " + ofToString(textField201->autoSize()) + "\n";
     
     info += "\n";
     info += "TextField (width fixed)\n";
-    info += "width = " + ofToString(textField202->width()) + "\n";
-    info += "height = " + ofToString(textField202->height()) + "\n";
-    info += "scaleX = " + ofToString(textField202->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField202->scaleY()) + "\n";
-    info += "textWidth = " + ofToString(textField202->textWidth()) + "\n";
-    info += "textHeight = " + ofToString(textField202->textHeight()) + "\n";
-    info += "autoSize = " + ofToString(textField202->autoSize()) + "\n";
+    info += "Width = " + ofToString(textField202->width()) + "\n";
+    info += "Height = " + ofToString(textField202->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField202->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField202->scaleY()) + "\n";
+    info += "TextWidth = " + ofToString(textField202->textWidth()) + "\n";
+    info += "TextHeight = " + ofToString(textField202->textHeight()) + "\n";
+    info += "AutoSize = " + ofToString(textField202->autoSize()) + "\n";
     
     info += "\n";
     info += "TextField (width fixed)\n";
-    info += "width = " + ofToString(textField203->width()) + "\n";
-    info += "height = " + ofToString(textField203->height()) + "\n";
-    info += "scaleX = " + ofToString(textField203->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(textField203->scaleY()) + "\n";
-    info += "textWidth = " + ofToString(textField203->textWidth()) + "\n";
-    info += "textHeight = " + ofToString(textField203->textHeight()) + "\n";
-    info += "autoSize = " + ofToString(textField203->autoSize()) + "\n";
+    info += "Width = " + ofToString(textField203->width()) + "\n";
+    info += "Height = " + ofToString(textField203->height()) + "\n";
+    info += "ScaleX = " + ofToString(textField203->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(textField203->scaleY()) + "\n";
+    info += "TextWidth = " + ofToString(textField203->textWidth()) + "\n";
+    info += "TextHeight = " + ofToString(textField203->textHeight()) + "\n";
+    info += "AutoSize = " + ofToString(textField203->autoSize()) + "\n";
     
     ofPushMatrix();
     ofTranslate(20, 350);

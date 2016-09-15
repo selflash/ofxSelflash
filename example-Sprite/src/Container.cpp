@@ -70,18 +70,18 @@ void Container::_draw() {
     //---------------------------------
     string info;
     info = "";
-    info += "[Width and height tween]\n";
-    info += "width = " + ofToString(spriteA->width()) + "\n";
-    info += "height = " + ofToString(spriteA->height()) + "\n";
-    info += "scaleX = " + ofToString(spriteA->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(spriteA->scaleY()) + "\n";
+    info += "[Width and Height Tween]\n";
+    info += "Width = " + ofToString(spriteA->width()) + "\n";
+    info += "Height = " + ofToString(spriteA->height()) + "\n";
+    info += "ScaleX = " + ofToString(spriteA->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(spriteA->scaleY()) + "\n";
     
     info += "\n";
-    info += "[ScaleX and scaleY tween]\n";
-    info += "width = " + ofToString(spriteB->width()) + "\n";
-    info += "height = " + ofToString(spriteB->height()) + "\n";
-    info += "scaleX = " + ofToString(spriteB->scaleX()) + "\n";
-    info += "scaleY = " + ofToString(spriteB->scaleY()) + "\n";
+    info += "[ScaleX and ScaleY Tween]\n";
+    info += "Width = " + ofToString(spriteB->width()) + "\n";
+    info += "Height = " + ofToString(spriteB->height()) + "\n";
+    info += "ScaleX = " + ofToString(spriteB->scaleX()) + "\n";
+    info += "ScaleY = " + ofToString(spriteB->scaleY()) + "\n";
     
     ofPushMatrix();
     ofTranslate(20, 20);

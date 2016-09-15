@@ -3,8 +3,15 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetWindowTitle("example-HitArea");
+    ofDisableAntiAliasing();
     
-    ofxSelflash::setup();
+    //--------------------------------------
+    //Ready ofxSelflash
+    ofxSelflash::autoUpdate(false);
+    ofxSelflash::autoDraw(false);
+    ofxSelflash::setup(false);
+    //--------------------------------------
+
     flStage* stage = ofxSelflash::stage();
     
     container = new Container();
@@ -15,7 +22,7 @@ void ofApp::setup() {
     //タイトル
     textField000 = new flTextField();
     textField000->textColor(0x000000);
-    textField000->text("Stage info");
+    textField000->text("Stage Info");
     textField000->x(10);
     textField000->y(20);
 //    textField000->width(100);
@@ -63,42 +70,48 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    
+    //----------------------------------
+    ofxSelflash::update();
+    //----------------------------------
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+    //----------------------------------
+    ofxSelflash::draw();
+    //----------------------------------
+    
     flStage* stage = ofxSelflash::stage();
     flDisplayObject* disp = stage->topMostHitDisplayObject();
     
     if(disp) {
-        textField001->text("topMostHitDisplayObject = " + disp->name());
+        textField001->text("TopMostHitDisplayObject = " + disp->name());
     } else {
-        textField001->text("topMostHitDisplayObject = NONE");
+        textField001->text("TopMostHitDisplayObject = NONE");
     }
     
     flDisplayObject* dispPrev = stage->topMostHitDisplayObjectPrev();
     if(dispPrev != disp) {
         if(dispPrev) {
-            textField002->text("topMostHitDisplayObjectPrev = " + dispPrev->name());
+            textField002->text("TopMostHitDisplayObjectPrev = " + dispPrev->name());
         } else {
-            textField002->text("topMostHitDisplayObjectPrev = NONE");
+            textField002->text("TopMostHitDisplayObjectPrev = NONE");
         }
     }
     
     flInteractiveObject* intDisp = stage->topMostHitInteractiveObject();
     if(intDisp) {
-        textField003->text("topMostHitInteractiveObject = " + intDisp->name());
+        textField003->text("TopMostHitInteractiveObject = " + intDisp->name());
     } else {
-        textField003->text("topMostHitInteractiveObject = NONE");
+        textField003->text("TopMostHitInteractiveObject = NONE");
     }
     
     flInteractiveObject* intDispPrev = stage->topMostHitInteractiveObjectPrev();
     if(intDispPrev != intDisp) {
         if(intDispPrev) {
-            textField004->text("topMostHitInteractiveObjectPrev = " + intDispPrev->name());
+            textField004->text("TopMostHitInteractiveObjectPrev = " + intDispPrev->name());
         } else {
-            textField004->text("topMostHitInteractiveObjectPrev = NONE");
+            textField004->text("TopMostHitInteractiveObjectPrev = NONE");
         }
     }
 }
