@@ -148,10 +148,10 @@ Features:
 + ui/ScrollKit.h
 + ui/ComboBox.h"
 
-[fl3d.primitive]
-[fl3d.render]
-[fl3d.camera] 
-[fl3d.light]
+[fl3d.primitive]   
+[fl3d.render]  
+[fl3d.camera]  
+[fl3d.light]  
 
 [fltw]
 + CallBackFuncion.h
@@ -163,8 +163,8 @@ Features:
 + STweener.h
 + STweeneSelector.h
 
-[fltw.fl2d]
-[fltw.fl3d]
+[fltw.fl2d]  
+[fltw.fl3d]  
 
 
 
