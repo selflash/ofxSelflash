@@ -209,6 +209,9 @@ void ofApp::setup() {
 Updates:
 --------
 
+Ver 0.5.1 - 2015.11.4
++ [Fixed] can build on openFrameworks0.9.7
+
 Ver 0.5.0 - 2015.9.15
 + [Remove] fltw.*  (Tween Library)
 
