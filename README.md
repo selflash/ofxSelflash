@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.0
+# ofxSelflash ver0.5.1
 =========
 
-last update 2016.9.15
+last update 2016.11.4
 
 Copyright (c) 2015 selflash
 
@@ -10,7 +10,7 @@ MIT License.
 Description:
 --------
 
-ofxSelflash is addon to be able to write a code like AS3 on openFrameworks.
+ofxSelflash is addon to be able to write a code like AS3 on openFrameworks0.9.7
 
 + 'fl2d' package is classes like built-in classes of ActionScript3.0.
 + 'fl3d' package is classes that imitated classes of PaperVision3D.
