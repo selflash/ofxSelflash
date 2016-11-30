@@ -13,7 +13,7 @@ namespace fl2d {
         debug(true);
         if(debug()) cout << "[Bitmap]Bitmap1()" << endl;
         
-        _typeID = TYPE_BITMAP;
+        _typeID = FL_TYPE_BITMAP;
         _target = this;
         
         name("Bitmap");
@@ -37,7 +37,7 @@ namespace fl2d {
         debug(true);
         if(debug()) cout << "[Bitmap]Bitmap2()" << endl;
         
-        _typeID = TYPE_BITMAP;
+        _typeID = FL_TYPE_BITMAP;
         _target = this;
         _mode = 1;
 
@@ -58,7 +58,7 @@ namespace fl2d {
         debug(true);
         if(debug()) cout << "[Bitmap]Bitmap3()" << endl;
         
-        _typeID = TYPE_BITMAP;
+        _typeID = FL_TYPE_BITMAP;
         _target = this;
         _mode = 2;
         

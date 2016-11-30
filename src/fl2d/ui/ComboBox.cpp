@@ -71,7 +71,7 @@ namespace fl2d {
     ComboBox::~ComboBox() {
         //cout << "[ComboBox]~ComboBox()" << endl;
         
-        removeEventListener(MouseEvent::MOUSE_DOWN, &ComboBox::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
         
         _dropdownWidth = 0;
         _rowCount = 0;
@@ -85,8 +85,8 @@ namespace fl2d {
         
         //------------------------------------------
         //ボタン
-        _topButton->removeEventListener(MouseEvent::MOUSE_DOWN, &ComboBox::_mouseEventHandler);
-        _topButton->removeEventListener(FocusEvent::FOCUS_OUT, &ComboBox::_eventHandler);
+        _topButton->removeEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
+        _topButton->removeEventListener(FocusEvent::FOCUS_OUT, this, &ComboBox::_eventHandler);
         delete _topButton;
         _topButton = NULL;
         
@@ -148,9 +148,9 @@ namespace fl2d {
         l = _buttonList.size();
         for(i = 0; i < l; i++) {
             Button* button = _buttonList[i];
-            button->removeEventListener(MouseEvent::ROLL_OVER, &ComboBox::_mouseEventHandler);
-            button->removeEventListener(MouseEvent::ROLL_OUT, &ComboBox::_mouseEventHandler);
-            button->removeEventListener(MouseEvent::MOUSE_DOWN, &ComboBox::_mouseEventHandler);
+            button->removeEventListener(MouseEvent::ROLL_OVER, this, &ComboBox::_mouseEventHandler);
+            button->removeEventListener(MouseEvent::ROLL_OUT, this, &ComboBox::_mouseEventHandler);
+            button->removeEventListener(MouseEvent::MOUSE_DOWN, this, &ComboBox::_mouseEventHandler);
             _buttonContainer->removeChild(button);
         }
         

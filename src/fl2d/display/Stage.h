@@ -134,6 +134,8 @@ namespace fl2d {
             void _mouseDragEventHandler(ofMouseEventArgs& event);
             void _mouseDownEventHandler(ofMouseEventArgs& event);
             void _mouseUpEventHandler(ofMouseEventArgs& event);
+            void _mouseScrolledEventHandler(ofMouseEventArgs& event);
+//            void _mouseScrolledEventHandler(int x, int y, float scrollX, float scrollY);
             void _resizeEventHandler(ofResizeEventArgs& event);
             
             void _keyDownEventHandler(ofKeyEventArgs& event);

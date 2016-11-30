@@ -36,7 +36,7 @@ namespace fl2d {
             //押したキーまたは離したキーの文字コード値を含みます。
             //int charCode();
             //押したキーまたは離したキーのキーコード値です。
-            virtual int keyCode();
+            virtual inline int keyCode() { return __keyCode; }
             
         private:
             

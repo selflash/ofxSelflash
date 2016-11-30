@@ -41,7 +41,6 @@ namespace fl2d {
         
         _currentTarget = NULL;
         _target = NULL;
-        _listener = NULL;
     }
 
     //--------------------------------------------------------------
@@ -51,28 +50,6 @@ namespace fl2d {
         
         _currentTarget = NULL;
         _target = NULL;
-        _listener = NULL;
     }
-
-    //--------------------------------------------------------------
-    //
-    Event* Event::clone() { return new Event(_type); }
-
-    //--------------------------------------------------------------
-    //
-    const string& Event::type() { return _type; }
-
-    //--------------------------------------------------------------
-    //
-    void* Event::currentTarget() { return _currentTarget; }
-    void Event::currentTarget(void* value) { _currentTarget = value; }
-
-    //--------------------------------------------------------------
-    //
-    void* Event::target() { return _target; }
-    void Event::target(void* value) { _target = value; }
-
-    //--------------------------------------------------------------
-    //
-    void* Event::listener() { return _listener; }
+    
 }

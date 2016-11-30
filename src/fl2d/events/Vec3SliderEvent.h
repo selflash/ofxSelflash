@@ -28,9 +28,9 @@ namespace fl2d {
             ~Vec3SliderEvent();
 
             //----------------------------------
-            inline virtual float xValue() { return __vec3f.x; }
-            inline virtual float yValue() { return __vec3f.y; }
-            inline virtual float zValue() { return __vec3f.z; }
+            virtual inline float xValue() { return __vec3f.x; }
+            virtual inline float yValue() { return __vec3f.y; }
+            virtual inline float zValue() { return __vec3f.z; }
             //----------------------------------
         
         protected:

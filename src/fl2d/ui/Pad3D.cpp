@@ -111,14 +111,14 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Pad3D::~Pad3D() {
-        removeEventListener(MouseEvent::ROLL_OVER, &Pad3D::_mouseEventHandler);
-        removeEventListener(MouseEvent::ROLL_OUT, &Pad3D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_DOWN, &Pad3D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_UP, &Pad3D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OVER, this, &Pad3D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OUT, this, &Pad3D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, this, &Pad3D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_UP, this, &Pad3D::_mouseEventHandler);
         
-        ball->removeEventListener(MouseEvent::ROLL_OVER, &Pad3D::_mouseEventHandler);
-        ball->removeEventListener(MouseEvent::ROLL_OUT, &Pad3D::_mouseEventHandler);
-        ball->removeEventListener(MouseEvent::MOUSE_DOWN, &Pad3D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::ROLL_OVER, this, &Pad3D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::ROLL_OUT, this, &Pad3D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Pad3D::_mouseEventHandler);
         delete ball;
         ball = NULL;
     }
@@ -432,7 +432,7 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.target() == stage()) {
                 _ballRelease();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &Pad3D::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Pad3D::_mouseEventHandler);
             }
         }
         

@@ -164,8 +164,8 @@ void Container::_mouseEventHandler(flEvent& event) {
     if(event.type() == flMouseEvent::MOUSE_UP) {
         if(event.currentTarget() == stage()) {
             stopDrag();
-            stage()->removeEventListener(flMouseEvent::MOUSE_UP, &Container::_mouseEventHandler);
-            stage()->removeEventListener(flMouseEvent::MOUSE_MOVE, &Container::_moveEventHandler);
+            stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &Container::_mouseEventHandler);
+            stage()->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &Container::_moveEventHandler);
             
             _forceX = (x() - _preX) * 0.5;
             _forceY = (y() - _preY) * 0.5;

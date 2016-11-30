@@ -12,25 +12,18 @@ namespace fl2d {
     //string MouseEvent::DOUBLE_CLICK = "doubleClick";
     string MouseEvent::MOUSE_MOVE = "mouseMove";
     string MouseEvent::DRAGGING = "dragging";
+    string MouseEvent::MOUSE_SCROLLED = "mouseScrolled";
 
     //--------------------------------------------------------------
     //
     MouseEvent::MouseEvent(string type):Event(type) {
-        __localX = 0.0;
-        __localY = 0.0;
-        
-        __stageX = 0.0;
-        __stageY = 0.0;
+
     }
 
     //--------------------------------------------------------------
     //
     MouseEvent::~MouseEvent() {
-        __localX = 0.0;
-        __localY = 0.0;
         
-        __stageX = 0.0;
-        __stageY = 0.0;
     }
 
 }

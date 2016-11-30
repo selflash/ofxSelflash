@@ -32,7 +32,7 @@ namespace fl2d {
             Joystick1DEvent(string type);
             ~Joystick1DEvent();
             
-            virtual float value();
+            virtual inline float value() { return __value; }
             
         protected:
             

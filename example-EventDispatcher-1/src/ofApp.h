@@ -18,7 +18,7 @@ class ofApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-
+    void callback(float &val);
         void eventHandler(flEvent& event);
 
 		void keyPressed(int key);
@@ -30,7 +30,8 @@ class ofApp : public ofBaseApp {
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+    
+
     private:
 
 };

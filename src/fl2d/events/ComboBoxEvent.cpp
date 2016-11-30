@@ -20,9 +20,5 @@ namespace fl2d {
     ComboBoxEvent::~ComboBoxEvent() {
         __label = "";
     }
-
-    //--------------------------------------------------------------
-    //
-    const string& ComboBoxEvent::label() { return __label; }
-
+    
 }

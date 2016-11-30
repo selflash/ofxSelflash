@@ -122,11 +122,11 @@ namespace fl2d {
         ofFill();
         ofSetColor(50);
         ofSetLineWidth(0);
-        ofRect($viewport);
+        ofDrawRectangle($viewport);
         ofNoFill();
         ofSetColor(25);
         ofSetLineWidth(1.0f);
-        ofRect($viewport);
+        ofDrawRectangle($viewport);
         //ofPopStyle();
     }
 

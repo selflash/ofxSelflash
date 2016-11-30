@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     InteractiveObject::InteractiveObject() {
-        _typeID = TYPE_INTERACTIVE_OBJECT;
+        _typeID = FL_TYPE_INTERACTIVE_OBJECT;
         _target = this;
         
         name("InteractiveObject");

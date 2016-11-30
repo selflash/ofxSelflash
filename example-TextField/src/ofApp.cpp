@@ -154,10 +154,10 @@ void ofApp::draw(){
         
         ofSetColor(255, 0, 0, 100);
         ofNoFill();
-        ofRect(textField001->x(), textField001->y(), textField001->width(), textField001->height());
-        ofRect(textField101->x(), textField101->y(), textField101->width(), textField101->height());
-        ofRect(textField102->x(), textField102->y(), textField102->width(), textField102->height());
-        ofRect(textField103->x(), textField103->y(), textField103->width(), textField103->height());
+        ofDrawRectangle(textField001->x(), textField001->y(), textField001->width(), textField001->height());
+        ofDrawRectangle(textField101->x(), textField101->y(), textField101->width(), textField101->height());
+        ofDrawRectangle(textField102->x(), textField102->y(), textField102->width(), textField102->height());
+        ofDrawRectangle(textField103->x(), textField103->y(), textField103->width(), textField103->height());
         
         ofPopStyle();
     }
@@ -165,8 +165,8 @@ void ofApp::draw(){
     
     //---------------------------------
     string help = "";
-    help += "[ ALT ] Play / Stop Tween.\n";
-    help += "[SPACE] Show / Hide Rect.\n";
+    help += "Press [ ALT ] Play / Stop Tween.\n";
+    help += "Press [SPACE] Show / Hide Rect.\n";
     
     ofPushMatrix();
     ofTranslate(600, 20);
@@ -254,7 +254,7 @@ void ofApp::draw(){
     ofPushStyle();
     ofNoFill();
     ofSetColor(255, 255, 255, 200);
-    ofCircle(ofGetMouseX(), ofGetMouseY(), 5);
+    ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 5);
     ofPopStyle();
     //--------------------------------------
 }

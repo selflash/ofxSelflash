@@ -5,7 +5,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Object::Object(){
-        _typeID = TYPE_OBJECT;
+        _typeID = FL_TYPE_OBJECT;
         _no = 0;
         
         _debug = false;

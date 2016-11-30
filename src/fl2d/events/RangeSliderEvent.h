@@ -28,9 +28,9 @@ namespace fl2d {
             RangeSliderEvent(string type);
             ~RangeSliderEvent();
 
-            virtual float minValue();
-            virtual float maxValue();
-            virtual float range();
+            virtual inline float minValue() { return __minValue; }
+            virtual inline float maxValue() { return __maxValue; }
+            virtual inline float range() { return __range; }
             
         protected:
             

@@ -115,7 +115,7 @@ namespace fl2d {
     //
 	void BlendMode::draw(ofTexture& blendTgt, int blendMode, int x, int y) {
         _blendShader->begin();
-        _blendShader->setUniformTexture("base", _base->getTextureReference(), 1);
+        _blendShader->setUniformTexture("base", _base->getTexture(), 1);
         _blendShader->setUniform1i("blendTgt", 0);
         _blendShader->setUniform1i("mode", blendMode);
         
@@ -129,7 +129,7 @@ namespace fl2d {
     //
 	void BlendMode::draw(ofTexture& blendTgt, int blendMode, int x, int y, int width, int height) {
         _blendShader->begin();
-        _blendShader->setUniformTexture("base", _base->getTextureReference(), 1);
+        _blendShader->setUniformTexture("base", _base->getTexture(), 1);
         _blendShader->setUniform1i("blendTgt", 0);
         _blendShader->setUniform1i("mode", blendMode);
         

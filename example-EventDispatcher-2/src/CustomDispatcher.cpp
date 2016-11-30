@@ -55,13 +55,13 @@ void CustomDispatcher::eventHandler(flEvent& event) {
     if(event.type() == flEvent::INIT) {
         cout << "A -> INIT" << endl;
 //        removeEventListener(Event::INIT, &CustomDispatcher::eventHandler);
-        removeEventListener(flEvent::INIT);
+        removeEventListeners(flEvent::INIT);
 //        removeAllEventListener();
     }
     
     if(event.type() == CustomEvent::TEST1) {
         cout << "A -> TEST1" << endl;
-        removeEventListener(CustomEvent::TEST1);
+        removeEventListeners(CustomEvent::TEST1);
 //        removeEventListener(CustomEvent::TEST1, &CustomDispatcher::eventHandler);
     }
 }

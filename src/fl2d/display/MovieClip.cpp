@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     MovieClip::MovieClip(int maxFrameNum) {
-        _typeID = TYPE_MOVIE_CLIP;
+        _typeID = FL_TYPE_MOVIE_CLIP;
         _target = this;
         
         name("MovieClip");

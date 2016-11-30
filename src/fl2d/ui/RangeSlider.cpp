@@ -153,13 +153,13 @@ namespace fl2d {
         
         _percent = 0.0;
         
-        track->removeEventListener(MouseEvent::ROLL_OVER, &RangeSlider::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::ROLL_OUT, &RangeSlider::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::MOUSE_DOWN, &RangeSlider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OVER, this, &RangeSlider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OUT, this, &RangeSlider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::MOUSE_DOWN, this, &RangeSlider::_mouseEventHandler);
         delete track;
         track = NULL;
         
-        bar->removeEventListener(MouseEvent::MOUSE_DOWN, &RangeSlider::_mouseEventHandler);
+        bar->removeEventListener(MouseEvent::MOUSE_DOWN, this, &RangeSlider::_mouseEventHandler);
         delete bar;
         bar = NULL;
         
@@ -725,7 +725,7 @@ namespace fl2d {
                 _draggablePoint->y = 0;
                 
                 _release();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &RangeSlider::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &RangeSlider::_mouseEventHandler);
             }
         }
     }

@@ -15,7 +15,6 @@ namespace fl2d {
     };
     void Stage::clear() {
         if(_instance) {
-            _instance->removeAllEventListener();
             delete _instance;
             _instance = NULL;
         }
@@ -31,7 +30,7 @@ namespace fl2d {
 //        debug(true);
         if(debug()) cout << "[Stage]Stage()" << endl;
         
-        _typeID = TYPE_STAGE;
+        _typeID = FL_TYPE_STAGE;
         _target = this;
         name("Stage");
         
@@ -77,10 +76,11 @@ namespace fl2d {
         ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, FlashConfig::MOUSE_PRIORITY);
         ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, FlashConfig::MOUSE_PRIORITY);
         ofAddListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, FlashConfig::MOUSE_PRIORITY);
+        ofAddListener(ofEvents().mouseScrolled, this, &Stage::_mouseScrolledEventHandler, FlashConfig::KEYBOARD_PRIORITY);
         
         ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, FlashConfig::KEYBOARD_PRIORITY);
         ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, FlashConfig::KEYBOARD_PRIORITY);
-        
+
         ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, FlashConfig::WINDOW_PRIORITY);
         
         if(FlashConfig::AUTO_UPDATE) {
@@ -146,13 +146,14 @@ namespace fl2d {
         ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
         ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
         ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
+        ofRemoveListener(ofEvents().mouseScrolled, this, &Stage::_mouseScrolledEventHandler);
         
         ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
         ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
+        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
         
         ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
         ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
-        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
         //------------------------------------
         
         BlendMode::destroy();
@@ -469,7 +470,8 @@ namespace fl2d {
         // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
             char frame[10];
-            sprintf(frame, "%05d", ofGetFrameNum());
+            //sprintf(frame, "%05d", ofGetFrameNum());
+            sprintf(frame, "%05llu", ofGetFrameNum());
             cout << "" << endl;
             cout << frame << " :: bHitDisplayObjectChanged = " << (bHitDisplayObjectChanged ? "true" : "false") << endl;
             cout << frame << " :: bMousePressed = "	<< (__isMousePressed ? "true" : "false") << endl;
@@ -997,11 +999,11 @@ namespace fl2d {
             
             ofSetHexColor(0xff0000);
             float n = 5 / child->scaleX();
-            ofLine(-n, 0, n, 0);
-            ofLine(0, -n, 0, n);
+            ofDrawLine(-n, 0, n, 0);
+            ofDrawLine(0, -n, 0, n);
             
             ofNoFill();
-            ofRect(child->_rect->left(), child->_rect->top(), child->_rect->right(), child->_rect->bottom());
+            ofDrawRectangle(child->_rect->left(), child->_rect->top(), child->_rect->right(), child->_rect->bottom());
             ofFill();
             
             ofSetHexColor(0x000000);
@@ -1149,6 +1151,9 @@ namespace fl2d {
                     focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
                     focusEvent->_target = _focus;
                     _focus->dispatchEvent(focusEvent);
+                    if(true) {
+                        cout << "focus out = " << _focus->name().c_str() << endl;
+                    }
                     
                     // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
                     //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
@@ -1165,6 +1170,9 @@ namespace fl2d {
                 focusEvent = new FocusEvent(FocusEvent::FOCUS_IN);
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
+                if(true) {
+                    cout << "focus in = " << _focus->name().c_str() << endl;
+                }
             }
             //------------------------------------
             
@@ -1207,6 +1215,9 @@ namespace fl2d {
                 focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
+                if(true) {
+                    cout << "focus out = " << _focus->name().c_str() << endl;
+                }
                 
                 _focus = this;
                 
@@ -1300,6 +1311,22 @@ namespace fl2d {
         //------------------------------------
     }
 
+    //--------------------------------------------------------------
+    //
+    void Stage::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
+        //------------------------------------
+        MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_SCROLLED);
+        mouseEvent->_target = this;
+        mouseEvent->__localX = mouseX();
+        mouseEvent->__localY = mouseY();
+        mouseEvent->__stageX = mouseX();
+        mouseEvent->__stageY = mouseY();
+        mouseEvent->__scrollX = event.scrollX;
+        mouseEvent->__scrollY = event.scrollY;
+        dispatchEvent(mouseEvent);
+        //------------------------------------
+    }
+    
     //--------------------------------------------------------------
     //
     void Stage::_keyDownEventHandler(ofKeyEventArgs& event) {
@@ -1412,11 +1439,11 @@ namespace fl2d {
     //
     bool Stage::_isInteractiveObject(DisplayObject* displayObject) {
         bool bInteractiveObject = false;
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == TYPE_INTERACTIVE_OBJECT);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == TYPE_TEXT_FIELD);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == TYPE_DISPLAY_OBJECT_CONTAINER);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == TYPE_SPRITE);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == TYPE_MOVIE_CLIP);
+        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
+        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
+        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
+        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_SPRITE);
+        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
         return bInteractiveObject;
     }
@@ -1425,9 +1452,9 @@ namespace fl2d {
     //
     bool Stage::_isDisplayObjectContainer(DisplayObject* displayObject) {
         bool bDisplayObjectContainer = false;
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == TYPE_DISPLAY_OBJECT_CONTAINER);
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == TYPE_SPRITE);
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == TYPE_MOVIE_CLIP);
+        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
+        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_SPRITE);
+        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
         return bDisplayObjectContainer;
     }
@@ -1436,8 +1463,8 @@ namespace fl2d {
     //
     bool Stage::_isSprite(DisplayObject* displayObject) {
         bool bSprite = false;
-        bSprite = bSprite || (displayObject->typeID() == TYPE_SPRITE);
-        bSprite = bSprite || (displayObject->typeID() == TYPE_MOVIE_CLIP);
+        bSprite = bSprite || (displayObject->typeID() == FL_TYPE_SPRITE);
+        bSprite = bSprite || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
         return bSprite;
     }

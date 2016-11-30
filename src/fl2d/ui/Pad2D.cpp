@@ -180,16 +180,16 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Pad2D::~Pad2D() {
-        removeEventListener(MouseEvent::ROLL_OVER, &Pad2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::ROLL_OUT, &Pad2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_OVER, &Pad2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_OUT, &Pad2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_DOWN, &Pad2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_UP, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OVER, this, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OUT, this, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_OVER, this, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_OUT, this, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, this, &Pad2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_UP, this, &Pad2D::_mouseEventHandler);
         
-        ball->removeEventListener(MouseEvent::ROLL_OVER, &Pad2D::_mouseEventHandler);
-        ball->removeEventListener(MouseEvent::ROLL_OUT, &Pad2D::_mouseEventHandler);
-        ball->removeEventListener(MouseEvent::MOUSE_DOWN, &Pad2D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::ROLL_OVER, this, &Pad2D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::ROLL_OUT, this, &Pad2D::_mouseEventHandler);
+        ball->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Pad2D::_mouseEventHandler);
         delete ball;
         ball = NULL;
         
@@ -610,7 +610,7 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.target() == stage()) {
                 _ballRelease();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &Pad2D::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Pad2D::_mouseEventHandler);
             }
         }
         

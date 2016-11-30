@@ -229,7 +229,7 @@ void InteractiveBox::_mouseEventHandler(flEvent& event) {
             _release();
             
             stopDrag();
-            stage()->removeEventListener(flMouseEvent::MOUSE_UP, &InteractiveBox::_mouseEventHandler);
+            stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &InteractiveBox::_mouseEventHandler);
         }
     }
 }

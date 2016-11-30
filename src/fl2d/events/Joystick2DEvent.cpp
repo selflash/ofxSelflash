@@ -22,11 +22,4 @@ namespace fl2d {
         __yValue = 0.0;
     }
     
-    //--------------------------------------------------------------
-    //
-    float Joystick2DEvent::xValue() { return __xValue; }
-    //--------------------------------------------------------------
-    //
-    float Joystick2DEvent::yValue() { return __yValue; }
-    
 }

@@ -27,11 +27,11 @@ namespace fl2d {
             PadEvent(string type);
             ~PadEvent();
             
-            virtual float xRatio();
-            virtual float yRatio();
-            virtual float xValue();
-            virtual float yValue();
-            virtual float zValue();
+            virtual inline float xRatio() { return __xRatio; }
+            virtual inline float yRatio() { return __yRatio; }
+            virtual inline float xValue() { return __xValue; }
+            virtual inline float yValue() { return __yValue; }
+            virtual inline float zValue() { return __zValue; }
         
         protected:
             

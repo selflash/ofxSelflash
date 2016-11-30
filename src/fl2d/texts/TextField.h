@@ -31,13 +31,21 @@ namespace fl2d {
         protected:
         
         private:
+            float _labelNormalColor;
+            float _labelOverColor;
+            float _labelActiveColor;
+            float _labelDeactiveColor;
+        
+            ofFloatColor _lineColor;
             ofFloatColor _normalColor;
             ofFloatColor _overColor;
             ofFloatColor _activeColor;
-            
+            ofFloatColor _deactiveColor;
+        
             Graphics* _graphics;
         
             ofFloatColor _textColor;
+            vector<string> _texts;
             string _text;
             
             string _type;
@@ -51,6 +59,8 @@ namespace fl2d {
             string _autoSize;
             float _tx;
             int _numLine;
+        
+            bool _enabledAntiAliasing;
 
 //            //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。
 //            bool _background;
@@ -84,7 +94,8 @@ namespace fl2d {
             bool _addedListeners;
             
             bool _isActive;
-            
+            bool _enabled;
+
         public:
             TextField();
             ~TextField();
@@ -101,7 +112,7 @@ namespace fl2d {
             virtual float alpha();
             virtual void alpha(float value);
                 
-            virtual const string& text();
+            virtual const string text();
             virtual void text(const string& value, int color = -1);
             virtual void appendText(const string& value);
             
@@ -110,13 +121,21 @@ namespace fl2d {
             
             int textColor();
             void textColor(int value);
+            void textColor(ofFloatColor value);
         
             string autoSize();
             void autoSize(string value);
             
             bool active();
             void active(bool value);
+            
+            bool enabled();
+            void enabled(bool value);
         
+            bool enabledAntiAliasing() { return _enabledAntiAliasing; }
+            void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
+
+
         protected:
             virtual void update();
             virtual void draw();

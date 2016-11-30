@@ -8,26 +8,17 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    EventDispatcher::EventDispatcher(){
-        _typeID = TYPE_EVENT_DISPATCHER;
+    EventDispatcher::EventDispatcher() {
+        _typeID = FL_TYPE_EVENT_DISPATCHER;
         _target = this;
-        
-        _isDispatchEvent = "";
-        _removeEventType = "";
 
         _debugEnabled = false;
     }
 
     //--------------------------------------------------------------
     //
-    EventDispatcher::~EventDispatcher(){
+    EventDispatcher::~EventDispatcher() {
         _target = NULL;
-        
-        _isDispatchEvent = "";
-        _removeEventType = "";
-        
-        handler = NULL;
-        _eventHandlerList.clear();
         
         _debugEnabled = false;
     }
@@ -35,9 +26,18 @@ namespace fl2d {
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
+    //--------------------------------------------------------------
+    //
+    void EventDispatcher::dispatchEvent(Event* event) {
+        event->currentTarget(_target);
+        if(!event->target()) event->target(_target);
+        
+        ofNotifyEvent(_handlers[event->type()], *event);
+    }
+    
     //==============================================================
-    // PRIVATE METHOD
+    // PROTECTED / PRIVATE METHOD
     //==============================================================
 
 }

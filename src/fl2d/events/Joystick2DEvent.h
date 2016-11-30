@@ -33,8 +33,8 @@ namespace fl2d {
             Joystick2DEvent(string type);
             ~Joystick2DEvent();
             
-            virtual float xValue();
-            virtual float yValue();
+            virtual inline float xValue() { return __xValue; }
+            virtual inline float yValue() { return __yValue; }
             
         protected:
             

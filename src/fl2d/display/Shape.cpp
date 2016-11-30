@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Shape::Shape() {
-        _typeID = TYPE_SHAPE;
+        _typeID = FL_TYPE_SHAPE;
         //_target = this;
         
         name("Shape");

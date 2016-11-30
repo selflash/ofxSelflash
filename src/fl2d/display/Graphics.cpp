@@ -9,6 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Graphics::Graphics() {
+//        _typeID = FL_TYPE_GRAPHICS;
         //_commandList = NULL;
         
         _thickness = 1;
@@ -58,18 +59,18 @@ namespace fl2d {
         for(i = 0; i < l; i++) {
             DrawCommand* command = _commandList[i];
             int type = command->type;
-            if(type == COMMAND_BEGIN_FILL) _beginFill(command->color, command->alpha);
-            //if(type == COMMAND_BEAGIN_GRADIENT_FILL) _drawCircle(command.x, command.y, command.radius);
-            if(type == COMMAND_END_FILL) _endFill();
-            if(type == COMMAND_DRAW_CIRCLE) _drawCircle(command->x, command->y, command->radius);
-            //if(type == COMMAND_DRAW_ELLIPSE) _drawCircle(command.x, command.y, command.radius);
-            if(type == COMMAND_DRAW_RECT) _drawRect(command->x, command->y, command->width, command->height);
-            if(type == COMMAND_DRAW_ROUNDRECT) _drawRoundRect(command->x, command->y, command->width, command->height, command->radius);
-            if(type == COMMAND_LINESTYLE) _lineStyle(command->thickness, command->color, command->alpha);
-            if(type == COMMAND_LINE_TO) _lineTo(command->x, command->y);
-            if(type == COMMAND_MOVE_TO) _moveTo(command->x, command->y);
-            //if(type == COMMAND_CURVE_TO) _curveTo(command.x, command.y, command.radius);
-            if(type == COMMAND_CLEAR) {
+            if(type == FL_COMMAND_BEGIN_FILL) _beginFill(command->color, command->alpha);
+            //if(type == FL_COMMAND_BEAGIN_GRADIENT_FILL) _drawCircle(command.x, command.y, command.radius);
+            if(type == FL_COMMAND_END_FILL) _endFill();
+            if(type == FL_COMMAND_DRAW_CIRCLE) _drawCircle(command->x, command->y, command->radius);
+            //if(type == FL_COMMAND_DRAW_ELLIPSE) _drawCircle(command.x, command.y, command.radius);
+            if(type == FL_COMMAND_DRAW_RECT) _drawRect(command->x, command->y, command->width, command->height);
+            if(type == FL_COMMAND_DRAW_ROUNDRECT) _drawRoundRect(command->x, command->y, command->width, command->height, command->radius);
+            if(type == FL_COMMAND_LINESTYLE) _lineStyle(command->thickness, command->color, command->alpha);
+            if(type == FL_COMMAND_LINE_TO) _lineTo(command->x, command->y);
+            if(type == FL_COMMAND_MOVE_TO) _moveTo(command->x, command->y);
+            //if(type == FL_COMMAND_CURVE_TO) _curveTo(command.x, command.y, command.radius);
+            if(type == FL_COMMAND_CLEAR) {
     //            _clear();
                 //_fillEnabled = false;
     //            _commandList.erase(_commandList.begin() + i);
@@ -95,7 +96,7 @@ namespace fl2d {
     //
     void Graphics::lineStyle(float thickness, int color, float alpha) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_LINESTYLE;
+        command->type = FL_COMMAND_LINESTYLE;
         command->thickness = thickness;
         command->color = color;
         command->alpha = alpha;
@@ -107,7 +108,7 @@ namespace fl2d {
     //
     void Graphics::beginFill(int color, float alpha) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_BEGIN_FILL;
+        command->type = FL_COMMAND_BEGIN_FILL;
         command->color = color;
         command->alpha = alpha;
         
@@ -118,7 +119,7 @@ namespace fl2d {
     //
     void Graphics::endFill() {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_END_FILL;
+        command->type = FL_COMMAND_END_FILL;
         
         _commandList.push_back(command);    
     }
@@ -127,7 +128,7 @@ namespace fl2d {
     //
     void Graphics::drawCircle(float x, float y, float radius) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_DRAW_CIRCLE;
+        command->type = FL_COMMAND_DRAW_CIRCLE;
         command->x = x;
         command->y = y;
         command->radius = radius;
@@ -150,7 +151,7 @@ namespace fl2d {
     //
     void Graphics::drawRect(float x, float y, float width, float height) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_DRAW_RECT;
+        command->type = FL_COMMAND_DRAW_RECT;
         command->x = x;
         command->y = y;
         command->width = width;
@@ -172,7 +173,7 @@ namespace fl2d {
     //
     void Graphics::drawRoundRect(float x, float y, float width, float height, float radius) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_DRAW_ROUNDRECT;
+        command->type = FL_COMMAND_DRAW_ROUNDRECT;
         command->x = x;
         command->y = y;
         command->width = width;
@@ -195,7 +196,7 @@ namespace fl2d {
     //
     void Graphics::lineTo(float x, float y) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_LINE_TO;
+        command->type = FL_COMMAND_LINE_TO;
         command->x = x;
         command->y = y;
         
@@ -208,7 +209,7 @@ namespace fl2d {
     //
     void Graphics::moveTo(float x, float y) {
         DrawCommand* command = new DrawCommand();
-        command->type = COMMAND_MOVE_TO;
+        command->type = FL_COMMAND_MOVE_TO;
         command->x = x;
         command->y = y;
         
@@ -221,7 +222,7 @@ namespace fl2d {
     //
     void Graphics::clear() {
 //        DrawCommand* command = new DrawCommand();
-//        command->type = COMMAND_CLEAR;
+//        command->type = FL_COMMAND_CLEAR;
 //        command->index = _commandList.size();
         
         _fillEnabled = false;
@@ -309,14 +310,14 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            ofCircle(x, y, radius);
+            ofDrawCircle(x, y, radius);
         }
         
         if(_lineEnabled){
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofCircle(x, y, radius);
+            ofDrawCircle(x, y, radius);
             ofFill();
         }
         
@@ -330,7 +331,7 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            ofRect(x, y, width, height);
+            ofDrawRectangle(x, y, width, height);
         }
         
         if(_lineEnabled) {
@@ -338,7 +339,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofRect(x, y, width, height);
+            ofDrawRectangle(x, y, width, height);
             //ofLine(x - 1, y - 1, x, y);
             ofFill();
         }
@@ -353,14 +354,14 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            ofRectRounded(x, y, width, height, radius);
+            ofDrawRectRounded(x, y, width, height, radius);
         }
         
         if(_lineEnabled) {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofRectRounded(x, y, width, height, radius);
+            ofDrawRectRounded(x, y, width, height, radius);
             ofFill();
         }
         
@@ -375,7 +376,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofLine(_moveToX, _moveToY, x, y);
+            ofDrawLine(_moveToX, _moveToY, x, y);
             ofFill();
         }
         

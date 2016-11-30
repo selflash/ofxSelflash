@@ -27,11 +27,11 @@ namespace fl2d {
             ColorSliderEvent(string type);
             ~ColorSliderEvent();
 
-            virtual int hexValue();
+            virtual int hexValue() { return __color.getHex(); }
         
             //----------------------------------
             //型を渡さなかったらintで処理される
-            virtual int redValue();
+            virtual inline int redValue() { return __color.r * 255.0; }
             template <class T>
             const T redValue() {
                 if (typeid(T) == typeid(float)) {
@@ -44,7 +44,7 @@ namespace fl2d {
             
             //----------------------------------
             //型を渡さなかったらintで処理される
-            virtual int greenValue();
+            virtual inline int greenValue() { return __color.g * 255.0; }
             template <class T>
             const T greenValue() {
                 if (typeid(T) == typeid(float)) {
@@ -57,7 +57,7 @@ namespace fl2d {
             
             //----------------------------------
             //型を渡さなかったらintで処理される
-            virtual int blueValue();
+            virtual inline int blueValue() { return __color.b * 255.0; }
             template <class T>
             const T blueValue() {
                 if (typeid(T) == typeid(float)) {
@@ -70,7 +70,7 @@ namespace fl2d {
             
             //----------------------------------
             //型を渡さなかったらintで処理される
-            virtual int alphaValue();
+            virtual inline int alphaValue() { return __color.a * 255.0; }
             template <class T>
             const T alphaValue() {
                 if (typeid(T) == typeid(float)) {

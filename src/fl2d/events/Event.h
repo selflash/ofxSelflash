@@ -49,7 +49,6 @@ namespace fl2d {
         
             void* _currentTarget;
             void* _target;
-            void* _listener;
         
         private:
         
@@ -57,19 +56,17 @@ namespace fl2d {
             Event(string type);
             ~Event();
             
-            virtual Event* clone();
+            virtual inline Event* clone() { return new Event(_type); }
             
-            virtual const string& type();
+            virtual inline string type() { return _type; }
         
 //            virtual const string& data();
 
-            virtual void* currentTarget();
-            virtual void currentTarget(void* value);
+            virtual inline void* currentTarget() { return _currentTarget; }
+            virtual inline void currentTarget(void* value) { _currentTarget = value; }
         
-            virtual void* target();
-            virtual void target(void* value);
-        
-            virtual void* listener();
+            virtual inline void* target() { return _target; }
+            virtual inline void target(void* value) { _target = value; }
         
             template <class T>
             T data() { return getProperty<T>("data"); }

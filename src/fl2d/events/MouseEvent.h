@@ -32,14 +32,19 @@ namespace fl2d {
             static string MOUSE_MOVE;
             static string DRAGGING;
         
+            static string MOUSE_SCROLLED;
+
         protected:
         
         private:
-            float __localX;
-            float __localY;
-        
-            float __stageX;
-            float __stageY;
+            float __localX{ 0.0 };
+            float __localY{ 0.0 };
+
+            float __stageX{ 0.0 };
+            float __stageY{ 0.0 };
+
+            float __scrollX{ 0.0 };
+            float __scrollY{ 0.0 };
         
         public:
             MouseEvent(string type);
@@ -80,6 +85,9 @@ namespace fl2d {
             
             inline float stageX() { return __stageX; }
             inline float stageY() { return __stageY; }
+        
+            inline float scrollX() { return __scrollX; }
+            inline float scrollY() { return __scrollY; }
         
         protected:
         

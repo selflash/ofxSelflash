@@ -7,13 +7,19 @@ void ofApp::setup() {
     //---------------------------------------
     dispatcherA = new flEventDispatcher();
     dispatcherA->debug(true);
+    
     dispatcherA->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherA->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
+//    dispatcherA->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
+//    dispatcherA->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+
     dispatcherB = new CustomDispatcher();
     dispatcherB->debug(true);
     dispatcherB->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherB->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+
+//    dispatcherB->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
     //アドレスを表示
     cout << "----------------------------" << endl;
@@ -35,12 +41,12 @@ void ofApp::draw() {
     
     ofSetColor(255, 255, 255);
     string text = "";
-    text += "1 : A.dispatchEvent(Event::INIT)\n";
-    text += "2 : A.dispatchEvent(CustomEvent::TEST1)\n";
-    text += "3 : B.dispatchEvent(Event::INIT)\n";
-    text += "4 : B.dispatchEvent(CustomEvent::TEST1)\n";
-    text += "5 : B.dispatchTest1()\n";
-    text += "6 : B.dispatchTest2()\n";
+    text += "Press [ 1 ] : A.dispatchEvent(Event::INIT)\n";
+    text += "Press [ 2 ] : A.dispatchEvent(CustomEvent::TEST1)\n";
+    text += "Press [ 3 ] : B.dispatchEvent(Event::INIT)\n";
+    text += "Press [ 4 ] : B.dispatchEvent(CustomEvent::TEST1)\n";
+    text += "Press [ 5 ] : B.dispatchTest1()\n";
+    text += "Press [ 6 ] : B.dispatchTest2()\n";
     ofDrawBitmapString(text, 10, 15);
     
     ofPopStyle();
@@ -49,7 +55,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::eventHandler(flEvent& event) {
-    cout << "[testApp]eventHandler()" << endl;
+    cout << "[ofApp]eventHandler(" << event.type() << ")" << endl;
     
     //---------------------------------------
     cout << "[event.type] = " << event.type() << endl;

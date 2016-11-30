@@ -103,9 +103,9 @@ namespace fl2d {
         _dragVector = "";
         _type = "";
 
-        track->removeEventListener(MouseEvent::ROLL_OVER, &NumberDialer::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::ROLL_OUT, &NumberDialer::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::MOUSE_DOWN, &NumberDialer::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OVER, this, &NumberDialer::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OUT, this, &NumberDialer::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::MOUSE_DOWN, this, &NumberDialer::_mouseEventHandler);
         delete track;
         track = NULL;
 
@@ -406,7 +406,7 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.target() == stage()) {
                 _release();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &NumberDialer::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &NumberDialer::_mouseEventHandler);
             }
         }
     }

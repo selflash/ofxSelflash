@@ -20,8 +20,4 @@ namespace fl2d {
         __value = 0.0;
     }
     
-    //--------------------------------------------------------------
-    //
-    float Joystick1DEvent::value() { return __value; }
-    
 }

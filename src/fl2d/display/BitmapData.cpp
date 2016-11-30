@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     BitmapData::BitmapData(int width, int height, bool transparent, int fillColor) {
-        _typeID = TYPE_BITMAPDATA;
+        _typeID = FL_TYPE_BITMAPDATA;
         _target = this;
         
         name("BitmapData");
@@ -77,7 +77,8 @@ namespace fl2d {
     // TODO _image->getPixels()をしないでちゃんとpixelsを用意しておく
     void BitmapData::draw(ofImage& source) {
         unsigned char * pixels2;
-        pixels2 = source.getPixels();
+//        pixels2 = source.getPixels(); //0.8.*
+        pixels2 = source.getPixels().getData();
         
         
         //_width = source.getWidth();

@@ -93,14 +93,14 @@ namespace fl2d {
     Joystick2D::~Joystick2D() {
         //cout << "[Joystick2D]~Joystick2D()" << endl;
         
-        removeEventListener(MouseEvent::ROLL_OVER, &Joystick2D::_mouseEventHandler);
-        removeEventListener(MouseEvent::ROLL_OUT, &Joystick2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OVER, this, &Joystick2D::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OUT, this, &Joystick2D::_mouseEventHandler);
         
-        lever->removeEventListener(MouseEvent::ROLL_OVER, &Joystick2D::_mouseEventHandler);
-        lever->removeEventListener(MouseEvent::ROLL_OUT, &Joystick2D::_mouseEventHandler);
-        lever->removeEventListener(MouseEvent::MOUSE_DOWN, &Joystick2D::_mouseEventHandler);
-        lever->removeEventListener(MouseEvent::MOUSE_MOVE, &Joystick2D::_mouseEventHandler);
-        lever->removeEventListener(MouseEvent::DRAGGING, &Joystick2D::_mouseEventHandler);
+        lever->removeEventListener(MouseEvent::ROLL_OVER, this, &Joystick2D::_mouseEventHandler);
+        lever->removeEventListener(MouseEvent::ROLL_OUT, this, &Joystick2D::_mouseEventHandler);
+        lever->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Joystick2D::_mouseEventHandler);
+        lever->removeEventListener(MouseEvent::MOUSE_MOVE, this, &Joystick2D::_mouseEventHandler);
+        lever->removeEventListener(MouseEvent::DRAGGING, this, &Joystick2D::_mouseEventHandler);
         
         _xValue = 0.0;
         _yValue = 0.0;
@@ -564,7 +564,7 @@ namespace fl2d {
             //if(event.target() == this) _areaRelease();
             if(event.currentTarget() == stage()){
                 _ballRelease();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &Joystick2D::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Joystick2D::_mouseEventHandler);
             }
         }
         

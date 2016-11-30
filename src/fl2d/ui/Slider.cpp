@@ -111,18 +111,18 @@ namespace fl2d {
         
         _label = NULL;
 
-        track->removeEventListener(MouseEvent::ROLL_OVER, &Slider::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::ROLL_OUT, &Slider::_mouseEventHandler);
-        track->removeEventListener(MouseEvent::MOUSE_DOWN, &Slider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OVER, this, &Slider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::ROLL_OUT, this, &Slider::_mouseEventHandler);
+        track->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Slider::_mouseEventHandler);
         delete track;
         track = NULL;
         
         delete bar;
         bar = NULL;
         
-        thumb->removeEventListener(MouseEvent::ROLL_OVER, &Slider::_mouseEventHandler);
-        thumb->removeEventListener(MouseEvent::ROLL_OUT, &Slider::_mouseEventHandler);
-        thumb->removeEventListener(MouseEvent::MOUSE_DOWN, &Slider::_mouseEventHandler);
+        thumb->removeEventListener(MouseEvent::ROLL_OVER, this, &Slider::_mouseEventHandler);
+        thumb->removeEventListener(MouseEvent::ROLL_OUT, this, &Slider::_mouseEventHandler);
+        thumb->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Slider::_mouseEventHandler);
         delete thumb;
         thumb = NULL;
         
@@ -570,7 +570,7 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.currentTarget() == stage()) {
                 _thumbRelease();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &Slider::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Slider::_mouseEventHandler);
             }
         }
     }

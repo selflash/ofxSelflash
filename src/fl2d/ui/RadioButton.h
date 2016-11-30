@@ -21,10 +21,10 @@ namespace fl2d {
             float _uiWidth;
             float _uiHeight;
             
-            float _labelNormalColor;
-            float _labelOverColor;
-            float _labelActiveColor;
-            float _labelDeactiveColor;
+            ofFloatColor _labelNormalColor;
+            ofFloatColor _labelOverColor;
+            ofFloatColor _labelActiveColor;
+            ofFloatColor _labelDeactiveColor;
             
             ofFloatColor _lineColor;
             ofFloatColor _normalColor;
@@ -34,8 +34,10 @@ namespace fl2d {
 
             TextField* _label;
 
-            bool _bSelected;
-            
+            bool _selected;
+
+            bool _enabled;
+
         public:
             RadioButton(float width = 100);
             ~RadioButton();
@@ -47,7 +49,10 @@ namespace fl2d {
         
             bool selected();
             void selected(bool value, bool dispatch = true);
-            
+        
+            bool enabled();
+            void enabled(bool value);
+
         protected:
             virtual void _normal();
             virtual void _over();

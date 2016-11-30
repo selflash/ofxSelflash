@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     DisplayObjectContainer::DisplayObjectContainer() {
-        _typeID = TYPE_DISPLAY_OBJECT_CONTAINER;
+        _typeID = FL_TYPE_DISPLAY_OBJECT_CONTAINER;
         _target = this;
         
         name("DisplayObjectContainer");
@@ -387,9 +387,9 @@ namespace fl2d {
     bool DisplayObjectContainer::_hasChildren(DisplayObject* displayObject) {
         bool b;
         b = false;
-        b = b || (displayObject->typeID() == TYPE_DISPLAY_OBJECT_CONTAINER);
-        b = b || (displayObject->typeID() == TYPE_SPRITE);
-        b = b || (displayObject->typeID() == TYPE_MOVIE_CLIP);
+        b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
+        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
+        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
         return b;
     }

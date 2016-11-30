@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Sprite::Sprite() {
-        _typeID = TYPE_SPRITE;
+        _typeID = FL_TYPE_SPRITE;
         _target = this;
         
         name("Sprite");

@@ -31,7 +31,7 @@ namespace fl2d {
             int _height;
             
             Rectangle _rect;
-            
+
         public:
             BitmapData(int width, int height, bool transparent = true, int fillColor = 0xFFFFFF);
             ~BitmapData();

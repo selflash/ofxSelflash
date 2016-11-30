@@ -1,5 +1,4 @@
-﻿
-/**
+﻿/**
  
  Original code ported from julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashObject.h
@@ -15,39 +14,40 @@
 using namespace std;
 
 //Flash2D
-#define TYPE_OBJECT                      0
-#define TYPE_EVENT_DISPATCHER            1
-#define TYPE_DISPLAY_OBJECT              2
-#define TYPE_INTERACTIVE_OBJECT          3
-#define TYPE_DISPLAY_OBJECT_CONTAINER    4
-#define TYPE_SPRITE                      5
-#define TYPE_MOVIE_CLIP                  6
-#define TYPE_STAGE                       7
-#define TYPE_BITMAPDATA                  8
-#define TYPE_BITMAP                      9
-#define TYPE_SHAPE                      10
-#define TYPE_TEXT_FIELD                 11
+#define FL_TYPE_OBJECT                      0
+#define FL_TYPE_EVENT_DISPATCHER            1
+#define FL_TYPE_DISPLAY_OBJECT              2
+#define FL_TYPE_INTERACTIVE_OBJECT          3
+#define FL_TYPE_DISPLAY_OBJECT_CONTAINER    4
+#define FL_TYPE_SPRITE                      5
+#define FL_TYPE_MOVIE_CLIP                  6
+#define FL_TYPE_STAGE                       7
+#define FL_TYPE_GRAPHICS                    8
+#define FL_TYPE_BITMAPDATA                  9
+#define FL_TYPE_BITMAP                     10
+#define FL_TYPE_SHAPE                      11
+#define FL_TYPE_TEXT_FIELD                 12
 
 //Flash3D
-#define TYPE_DISPLAY_OBJECT3D           12
-#define TYPE_DISPLAY_OBJECT_CONTAINER3D 13
-#define TYPE_SCENE3D                    14
-#define TYPE_LIGHT_OBJECT3D             15
-#define TYPE_CAMERA_OBJECT3D            16
-#define TYPE_RENDER_ENGINE              17
-#define TYPE_PLANE3D                    18
-#define TYPE_CUBE3D                     19
-#define TYPE_CONE3D                     20
-#define TYPE_CYLINDER3D                 21
-#define TYPE_ICOSPHERE3D                22
-#define TYPE_SPHERE3D                   23
-#define TYPE_BILLBOARD3D                24
-#define TYPE_PARTICLE_SPHERE3D          25
-#define TYPE_PARTICLES3D                26
-#define TYPE_ROOM3D                     27
-#define TYPE_LINE3D                     28
-#define TYPE_RIBBON3D                   29
-#define TYPE_MODEL_LOADER3D             30
+#define FL_TYPE_DISPLAY_OBJECT3D           13
+#define FL_TYPE_DISPLAY_OBJECT_CONTAINER3D 14
+#define FL_TYPE_SCENE3D                    15
+#define FL_TYPE_LIGHT_OBJECT3D             16
+#define FL_TYPE_CAMERA_OBJECT3D            17
+#define FL_TYPE_RENDER_ENGINE              18
+#define FL_TYPE_PLANE3D                    19
+#define FL_TYPE_CUBE3D                     20
+#define FL_TYPE_CONE3D                     21
+#define FL_TYPE_CYLINDER3D                 22
+#define FL_TYPE_ICOSPHERE3D                23
+#define FL_TYPE_SPHERE3D                   24
+#define FL_TYPE_BILLBOARD3D                25
+#define FL_TYPE_PARTICLE_SPHERE3D          26
+#define FL_TYPE_PARTICLES3D                27
+#define FL_TYPE_ROOM3D                     28
+#define FL_TYPE_LINE3D                     29
+#define FL_TYPE_RIBBON3D                   30
+#define FL_TYPE_MODEL_LOADER3D             31
 
 namespace fl2d {
     

@@ -20,8 +20,4 @@ namespace fl2d {
         __keyCode = 0;
     }
 
-    //--------------------------------------------------------------
-    //
-    int KeyboardEvent::keyCode() { return __keyCode; }
-
 }

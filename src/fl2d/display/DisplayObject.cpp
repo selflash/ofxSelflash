@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     DisplayObject::DisplayObject() {
-        _typeID = TYPE_DISPLAY_OBJECT;
+        _typeID = FL_TYPE_DISPLAY_OBJECT;
         _target = this;
         _name = "DisplayObject";
         

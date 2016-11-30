@@ -27,16 +27,4 @@ namespace fl2d {
         __range = 0.0f;
     }
 
-    //--------------------------------------------------------------
-    //
-    float RangeSliderEvent::minValue() { return __minValue; }
-
-    //--------------------------------------------------------------
-    //
-    float RangeSliderEvent::maxValue() { return __maxValue; }
-
-    //--------------------------------------------------------------
-    //
-    float RangeSliderEvent::range() { return __range; }
-
 }

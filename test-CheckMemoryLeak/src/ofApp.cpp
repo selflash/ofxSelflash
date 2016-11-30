@@ -25,7 +25,7 @@ void ofApp::keyPressed(int key) {
         flStage* stage = ofxSelflash::stage();
     }
     
-    if(key == 'r') {
+    if(key == 'c') {
         ofxSelflash::clear();
     }
 }

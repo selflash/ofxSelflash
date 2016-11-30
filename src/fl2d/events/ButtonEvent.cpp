@@ -22,9 +22,5 @@ namespace fl2d {
     ButtonEvent::~ButtonEvent() {
         
     }
-    
-    //--------------------------------------------------------------
-    //
-//    ButtonEvent* ButtonEvent::clone() { return new ButtonEvent(_type); }
 
 }

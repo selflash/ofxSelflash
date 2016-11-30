@@ -52,6 +52,12 @@ void NativeWindow::orderToFront() {
 
 //--------------------------------------------------------------
 //
+void NativeWindow::orderToDefault() {
+    
+}
+
+//--------------------------------------------------------------
+//
 void NativeWindow::orderToBack() {
 
 }

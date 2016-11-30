@@ -47,7 +47,7 @@ namespace fl2d {
         
         //------------------------------------------
         _colorWheelImage = new ofImage();
-        _colorWheelImage->loadImage(FlashConfig::_COLORWHEEL_IMAGE_PATH);
+        _colorWheelImage->load(FlashConfig::_COLORWHEEL_IMAGE_PATH);
         //_colorWheelImage->setAnchorPercent(0.5,0.5);
 //        this->width(_uiWidth);
 //        this->height(20 + _uiWidth);
@@ -73,11 +73,11 @@ namespace fl2d {
         
         _radius = 0.0;
         
-        removeEventListener(MouseEvent::MOUSE_OVER, &CircleColorPicker::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_OUT, &CircleColorPicker::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_DOWN, &CircleColorPicker::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_OVER, this, &CircleColorPicker::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_OUT, this, &CircleColorPicker::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, this, &CircleColorPicker::_mouseEventHandler);
         //removeEventListener(MouseEvent::MOUSE_UP, &CircleColorPicker::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_MOVE, &CircleColorPicker::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_MOVE, this, &CircleColorPicker::_mouseEventHandler);
         
         delete _colorWheelImage;
         _colorWheelImage = NULL;
@@ -274,7 +274,7 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.currentTarget() == stage()) {
                 _release();
-                stage()->removeEventListener(MouseEvent::MOUSE_UP, &CircleColorPicker::_mouseEventHandler);
+                stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &CircleColorPicker::_mouseEventHandler);
             }
         }
         if(event.type() == MouseEvent::MOUSE_MOVE) {

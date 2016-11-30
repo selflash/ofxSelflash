@@ -76,10 +76,10 @@ namespace fl2d {
     Button::~Button() {
         //cout << "[Button]~Button()" << endl;
         
-        removeEventListener(MouseEvent::ROLL_OVER, &Button::_mouseEventHandler);
-        removeEventListener(MouseEvent::ROLL_OUT, &Button::_mouseEventHandler);
-        removeEventListener(MouseEvent::MOUSE_DOWN, &Button::_mouseEventHandler);
-        //removeEventListener(MouseEvent::MOUSE_UP, &Button::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OVER, this, &Button::_mouseEventHandler);
+        removeEventListener(MouseEvent::ROLL_OUT, this, &Button::_mouseEventHandler);
+        removeEventListener(MouseEvent::MOUSE_DOWN, this, &Button::_mouseEventHandler);
+        //removeEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
         
         _labelTextNotSelected = "";
         _labelTextSelected = "";
@@ -145,51 +145,53 @@ namespace fl2d {
         
         _selected = value;
         
-        if(isMouseOver()) {
-            _over();
-        } else {
-            _out();
-        }
-        
-        Graphics* g;
-        
-        if(_selected) {
-            _label->text(_labelTextSelected);
+        if(_enabled) {
             if(isMouseOver()) {
-                _label->textColor(_labelActiveColor);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, _overColor.getHex());
-                g->beginFill(_activeColor.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
+                _over();
             } else {
-                _label->textColor(_labelNormalColor);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, _lineColor.getHex());
-                g->beginFill(_activeColor.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
+                _out();
             }
-        } else {
-            _label->text(_labelTextNotSelected);
-            if(isMouseOver()) {
-                _label->textColor(_labelActiveColor);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, _overColor.getHex());
-                g->beginFill(_normalColor.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
+            
+            Graphics* g;
+        
+            if(_selected) {
+                _label->text(_labelTextSelected);
+                if(isMouseOver()) {
+                    _label->textColor(_labelActiveColor);
+                    g = graphics();
+                    g->clear();
+                    g->lineStyle(1, _overColor.getHex());
+                    g->beginFill(_activeColor.getHex());
+                    g->drawRect(0, 0, _uiWidth, _uiHeight);
+                    g->endFill();
+                } else {
+                    _label->textColor(_labelNormalColor);
+                    g = graphics();
+                    g->clear();
+                    g->lineStyle(1, _lineColor.getHex());
+                    g->beginFill(_activeColor.getHex());
+                    g->drawRect(0, 0, _uiWidth, _uiHeight);
+                    g->endFill();
+                }
             } else {
-                _label->textColor(_labelNormalColor);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, _lineColor.getHex());
-                g->beginFill(_normalColor.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
+                _label->text(_labelTextNotSelected);
+                if(isMouseOver()) {
+                    _label->textColor(_labelActiveColor);
+                    g = graphics();
+                    g->clear();
+                    g->lineStyle(1, _overColor.getHex());
+                    g->beginFill(_normalColor.getHex());
+                    g->drawRect(0, 0, _uiWidth, _uiHeight);
+                    g->endFill();
+                } else {
+                    _label->textColor(_labelNormalColor);
+                    g = graphics();
+                    g->clear();
+                    g->lineStyle(1, _lineColor.getHex());
+                    g->beginFill(_normalColor.getHex());
+                    g->drawRect(0, 0, _uiWidth, _uiHeight);
+                    g->endFill();
+                }
             }
         }
         

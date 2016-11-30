@@ -36,12 +36,11 @@ namespace fl2d {
                 
                 _currentTarget = NULL;
                 _target = NULL;
-                _listener = NULL;
             }
             
             ~ComboBoxEvent();
 
-            virtual const string& label();
+            virtual inline string label() { return __label; }
 
             template <class T>
             T data() { return getProperty<T>("data"); }

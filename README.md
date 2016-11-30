@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.1
+# ofxSelflash ver0.5.2
 =========
 
-last update 2016.11.4
+last update 2016.11.30
 
 Copyright (c) 2015 selflash
 
@@ -208,6 +208,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.2 - 2015.11.30
++ [Fixed] Couldn't work EventDispatcher.removeEventListener on openFrameworks0.9.x
 
 Ver 0.5.1 - 2015.11.4
 + [Fixed] can build on openFrameworks0.9.7
