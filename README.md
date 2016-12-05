@@ -68,10 +68,6 @@ ScreenShot
 + example-ExtendsSprite
 ![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
 
-[](
-Requirements\
---------
-)
 
 Features:
 --------
