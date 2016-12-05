@@ -10,9 +10,9 @@ namespace fl2d {
     //
     BitmapData::BitmapData(int width, int height, bool transparent, int fillColor) {
         _typeID = FL_TYPE_BITMAPDATA;
-        _target = this;
+//        _target = this;
         
-        name("BitmapData");
+//        name("BitmapData");
         
         _width = width;
         _height = height;
@@ -61,17 +61,17 @@ namespace fl2d {
     // SETUP / UPDATE / DRAW
     //==============================================================
 
-    //--------------------------------------------------------------
-    //
-    void BitmapData::setup() {
-        
-    }
-
-    //--------------------------------------------------------------
-    //
-    void BitmapData::update() {
-        
-    }
+//    //--------------------------------------------------------------
+//    //
+//    void BitmapData::setup() {
+//        
+//    }
+//
+//    //--------------------------------------------------------------
+//    //
+//    void BitmapData::update() {
+//        
+//    }
 
     //--------------------------------------------------------------
     // TODO _image->getPixels()をしないでちゃんとpixelsを用意しておく

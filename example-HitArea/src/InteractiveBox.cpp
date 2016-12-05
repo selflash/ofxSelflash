@@ -111,9 +111,9 @@ void InteractiveBox::_draw() {
     ofNoFill();
     ofSetLineWidth(1);
     ofSetColor(_areaColor->getNormalized());
-    ofRect(_rect->x(), _rect->y(), _rect->width(), _rect->height());
-//    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
-//    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+    ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+//    ofDrawRectangle(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
+//    ofDrawRectangle(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
     //--------------------------------------
     
     //--------------------------------------

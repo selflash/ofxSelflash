@@ -17,7 +17,8 @@ namespace fl2d {
     string Event::CHANGE = "change";
     string Event::COMPLETE = "complete";
     //string Event::CONNECT = "connect";
-    //string Event::ENTER_FRAME = "enterFrame";
+    string Event::ENTER_FRAME = "enterFrame";
+    string Event::EXIT_FRAME = "exitFrame";
     //string Event::FULLSCREEN = "fullScreen";
     //string Event::ID3 = "id3";
     string Event::INIT = "init";

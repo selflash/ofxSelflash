@@ -58,6 +58,8 @@ namespace fl2d {
         _isActive = false;
         _enabled = true;
         
+        _activeLineWidth = 3;
+        
         _enabledAntiAliasing = false;
     }
 
@@ -82,6 +84,8 @@ namespace fl2d {
         
         _isActive = false;
         _enabled = false;
+        
+        _activeLineWidth = 0;
         
         _enabledAntiAliasing = false;
     }
@@ -243,7 +247,7 @@ namespace fl2d {
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_enabled) {
                 if(_isActive) {
-                    _drawGraphics(0xcc0000, 0xffffff, 1);
+                    _drawGraphics(0xcc0000, 0xffffff, _activeLineWidth);
                 } else {
                     _drawGraphics(0x000000, 0xffffff, 1);
                 }
@@ -281,7 +285,7 @@ namespace fl2d {
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_enabled) {
                 if(_isActive) {
-                    _drawGraphics(0xcc0000, 0xffffff, 1);
+                    _drawGraphics(0xcc0000, 0xffffff, _activeLineWidth);
                 } else {
                     _drawGraphics(0x000000, 0xffffff, 1);
                 }
@@ -337,9 +341,6 @@ namespace fl2d {
         return _text;
     }
     void TextField::text(const string& value, int color) {
-        
-        
-        
         _text = value;
         
         _numLine = StringUtil::getLength(_text, "\n") + 1;
@@ -372,7 +373,7 @@ namespace fl2d {
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_enabled) {
                 if(_isActive) {
-                    _drawGraphics(_activeColor.getHex(), 0xffffff, 1);
+                    _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
                 } else {
                     _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
                 }
@@ -413,7 +414,7 @@ namespace fl2d {
         
         if(_enabled) {
             if(_isActive) {
-                _drawGraphics(_activeColor.getHex(), 0xffffff, 1);
+                _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
                 
                 ofAddListener(ofEvents().keyPressed, this, &TextField::_keyPressedEventHandler);
                 ofAddListener(ofEvents().keyReleased, this, &TextField::_keyReleasedEventHandler);
@@ -440,7 +441,7 @@ namespace fl2d {
         
         if(_enabled) {
             if(_isActive) {
-                _drawGraphics(_activeColor.getHex(), 0xffffff, 1);
+                _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
                 
                 ofAddListener(ofEvents().keyPressed, this, &TextField::_keyPressedEventHandler);
                 ofAddListener(ofEvents().keyReleased, this, &TextField::_keyReleasedEventHandler);
@@ -539,11 +540,31 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void TextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
+//        char str = (char)event.key;
+        
         //エンターキーなら区切り文字を
         if(event.key == OF_KEY_RETURN) {
             event.key = '\r\n';
             _text.end();
         }
+        
+        if(event.key == OF_KEY_LEFT) {
+            //TODO
+            return;
+        }
+        if(event.key == OF_KEY_RIGHT) {
+            //TODO
+            return;
+        }
+        if(event.key == OF_KEY_UP) {
+            //TODO
+            return;
+        }
+        if(event.key == OF_KEY_DOWN) {
+            //TODO
+            return;
+        }
+        
         //デリートキーなら一文字削除
         if(event.key == OF_KEY_DEL || event.key == OF_KEY_BACKSPACE) {
             if(text().size() != 0) {
@@ -551,7 +572,7 @@ namespace fl2d {
             } else {
                 text("");
             }
-        }else{
+        } else {
             text(text() + (char)event.key);
         }
     }

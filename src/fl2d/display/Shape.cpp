@@ -15,6 +15,8 @@ namespace fl2d {
         name("Shape");
         
         graphics = new Graphics();
+        
+        ofAddListener(ofEvents().update, this, &Shape::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -24,8 +26,17 @@ namespace fl2d {
         
         delete graphics;
         graphics = NULL;
+        
+        ofRemoveListener(ofEvents().update, this, &Shape::_updateEventHandler);
     }
 
+    //--------------------------------------------------------------
+    //
+    void Shape::_updateEventHandler(ofEventArgs& args) {
+        Event* event = new Event(Event::ENTER_FRAME);
+        dispatchEvent(event);
+    }
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================

@@ -40,6 +40,8 @@ namespace fl2d {
             //virtual void drawOnFrame();
             
         private:
+            void _updateEventHandler(ofEventArgs& args);
+
             //void _drawBitmap();
             
     };

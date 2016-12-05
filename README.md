@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.2
+# ofxSelflash ver0.5.3
 =========
 
-last update 2016.11.30
+last update 2016.12.5
 
 Copyright (c) 2015 selflash
 
@@ -63,6 +63,11 @@ ScreenShot
 + example-Tweener-6
 + example-UIComponents-1
 ![example-UIComponents-1](example-UIComponents-1/screenshot.png)
++ example-BasicController
+![example-BasicController](example-BasicController/screenshot.png)
++ example-ExtendsSprite
+![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
+
 
 Requirements
 --------
@@ -208,6 +213,11 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.3 - 2015.12.5
++ [Add] Dispatch enter-frame-event.
++ [Add] example-BasicController.
++ [Add] example-ExtendsSprite.
 
 Ver 0.5.2 - 2015.11.30
 + [Fixed] Couldn't work EventDispatcher.removeEventListener on openFrameworks0.9.x

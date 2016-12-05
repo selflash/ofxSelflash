@@ -97,7 +97,8 @@ namespace fl2d {
             virtual void updateOnFrame();
             
         private:
-            
+            void _updateEventHandler(ofEventArgs& args);
+        
             void _setTotalFrames(int totalFrames = 1);
             
             void _addFrameChildren();

@@ -1,6 +1,6 @@
 ﻿/**
  
- Original code ported from Akira-Hayasaka :: ofxPSBlend
+ Original code is Akira-Hayasaka :: ofxPSBlend
  https://github.com/Akira-Hayasaka/ofxPSBlend
  
  ActionScript3.0 Reference

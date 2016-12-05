@@ -172,6 +172,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Stage::update() {
+        Event* event = new Event(Event::ENTER_FRAME);
+        dispatchEvent(event);
 
         //------------------------------------
         if(_topMostHitInteractiveObject) {
@@ -365,6 +367,14 @@ namespace fl2d {
         for(int i = 0; i < children.size(); i++) {
             DisplayObject* child;
             child = children[i];
+            
+            //------------------------------------
+            //Dispatch enter-frame-event
+//            if(_isDisplayObject(child)) {
+//                Event* event = new Event(Event::ENTER_FRAME);
+//                child->dispatchEvent(event);
+//            }
+            //------------------------------------
             
             if(!child->visible()) continue;
             
@@ -594,8 +604,8 @@ namespace fl2d {
         // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
             if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)cout << "\n==========================================================" << endl;
-            if(_topMostHitInteractiveObject) cout << "‚ñ†topMostHitInteractiveObject     = " << _topMostHitInteractiveObject->name().c_str() << endl;
-            if(_topMostHitInteractiveObjectPrev) cout << "‚ñ°topMostHitInteractiveObjectPrev = " << _topMostHitInteractiveObjectPrev->name().c_str() << endl;
+            if(_topMostHitInteractiveObject) cout << "TopMostHitInteractiveObject     = " << _topMostHitInteractiveObject->name().c_str() << endl;
+            if(_topMostHitInteractiveObjectPrev) cout << "TopMostHitInteractiveObjectPrev = " << _topMostHitInteractiveObjectPrev->name().c_str() << endl;
             if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)cout <<         "==========================================================\n" << endl;
         }
         //------------------------------------
@@ -1152,7 +1162,7 @@ namespace fl2d {
                     focusEvent->_target = _focus;
                     _focus->dispatchEvent(focusEvent);
                     if(true) {
-                        cout << "focus out = " << _focus->name().c_str() << endl;
+//                        cout << "focus out = " << _focus->name().c_str() << endl;
                     }
                     
                     // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
@@ -1171,7 +1181,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-                    cout << "focus in = " << _focus->name().c_str() << endl;
+//                    cout << "focus in = " << _focus->name().c_str() << endl;
                 }
             }
             //------------------------------------
@@ -1216,7 +1226,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-                    cout << "focus out = " << _focus->name().c_str() << endl;
+//                    cout << "focus out = " << _focus->name().c_str() << endl;
                 }
                 
                 _focus = this;
@@ -1228,7 +1238,7 @@ namespace fl2d {
                 _focus->dispatchEvent(focusEvent);
                 
                 if(true) {
-                    cout << "focus in = " << _focus->name().c_str() << endl;
+//                    cout << "focus in = " << _focus->name().c_str() << endl;
                 }
             }
             //------------------------------------
@@ -1438,35 +1448,48 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     bool Stage::_isInteractiveObject(DisplayObject* displayObject) {
-        bool bInteractiveObject = false;
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_SPRITE);
-        bInteractiveObject = bInteractiveObject || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
+        bool b = false;
+        b = b || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
+        b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
+        b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
+        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
+        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
-        return bInteractiveObject;
+        return b;
     }
-
+    
+    //--------------------------------------------------------------
+    //
+    bool Stage::_isDisplayObject(DisplayObject* displayObject) {
+        bool b = false;
+        b = b || (displayObject->typeID() == FL_TYPE_SHAPE);
+        b = b || (displayObject->typeID() == FL_TYPE_BITMAP);
+        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
+        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
+        b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
+        
+        return b;
+    }
+    
     //--------------------------------------------------------------
     //
     bool Stage::_isDisplayObjectContainer(DisplayObject* displayObject) {
-        bool bDisplayObjectContainer = false;
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_SPRITE);
-        bDisplayObjectContainer = bDisplayObjectContainer || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
+        bool b = false;
+        b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
+        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
+        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
-        return bDisplayObjectContainer;
+        return b;
     }
 
     //--------------------------------------------------------------
     //
     bool Stage::_isSprite(DisplayObject* displayObject) {
-        bool bSprite = false;
-        bSprite = bSprite || (displayObject->typeID() == FL_TYPE_SPRITE);
-        bSprite = bSprite || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
+        bool b = false;
+        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
+        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         
-        return bSprite;
+        return b;
     }
 
 }

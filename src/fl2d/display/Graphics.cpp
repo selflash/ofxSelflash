@@ -9,7 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Graphics::Graphics() {
-//        _typeID = FL_TYPE_GRAPHICS;
+        _typeID = FL_TYPE_GRAPHICS;
         //_commandList = NULL;
         
         _thickness = 1;
@@ -21,6 +21,8 @@ namespace fl2d {
         __rect = new Rectangle();
         
         _smoothing = false;
+        
+        _IsMoveTo = false;
     }
 
     //--------------------------------------------------------------
@@ -39,6 +41,8 @@ namespace fl2d {
         __rect = NULL;
         
         _smoothing = false;
+        
+        _IsMoveTo = false;
     }
 
     //==============================================================
@@ -278,6 +282,16 @@ namespace fl2d {
         
         _fillEnabled = true;
         
+//        if(_IsMoveTo) {
+//            ofEndShape();
+//            ofPopStyle();
+//        }
+//        _IsMoveTo = false;
+        ofSetColor(_fillColor);
+        
+//        ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+//        ofBeginShape();
+
         //ofFill();
         //ofSetColor(_fillColor);
     }
@@ -298,6 +312,13 @@ namespace fl2d {
         _lineEnabled = false;
         _fillEnabled = false;
         
+        
+//        if(_IsMoveTo) {
+//            ofEndShape();
+//            ofPopStyle();
+//        }
+//        _IsMoveTo = false;
+
         //ofFill();
         //ofSetColor(_fillColor);
     }
@@ -335,7 +356,6 @@ namespace fl2d {
         }
         
         if(_lineEnabled) {
-        //if(false){
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
@@ -382,6 +402,10 @@ namespace fl2d {
         
         _moveToX = x;
         _moveToY = y;
+
+        if(_fillEnabled) {
+            ofVertex(x, y);
+        }
         
         ofPopStyle();
     }
@@ -390,6 +414,24 @@ namespace fl2d {
     void Graphics::_moveTo(float x, float y) {
         _moveToX = x;
         _moveToY = y;
+        
+        if(_fillEnabled) {
+//            if(_IsMoveTo) {
+//                cout << x << ", " << y << endl;
+//                ofEndShape();
+//                ofPopStyle();
+//            }
+//            _IsMoveTo = true;
+            
+//            ofPushStyle();
+//            ofFill();
+//            ofSetColor(_fillColor);
+//            
+//            ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+//            ofBeginShape();
+            
+            ofVertex(x, y);
+        }
     }
     //--------------------------------------------------------------
     //

@@ -1,6 +1,6 @@
 ﻿/**
  
- Original code ported from julapy :: ofxFlash
+ Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashSprite.h
  
  ActionScript3.0 Reference
@@ -74,6 +74,8 @@ namespace fl2d {
             virtual void _updateRect();
         
         private:
+            void _updateEventHandler(ofEventArgs& args);
+        
             void _mouseDragging(int x, int y, int id);
             void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
 

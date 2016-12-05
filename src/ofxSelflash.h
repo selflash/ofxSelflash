@@ -10,7 +10,7 @@
 //using namespace fl2d;
 
 #if defined(FLASH_3D)
-#include "Flash3D.h"
+#include "./fl3d/Flash3D.h"
 //using namespace fl3d;
 #endif
 
@@ -38,7 +38,7 @@ class ofxSelflash {
         static inline void drawPriority(ofEventOrder value) { FlashConfig::DRAW_PRIORITY = value; }
 
         static inline void setup(const bool& use3D = false) {
-            ofLog(OF_LOG_VERBOSE) << "[ofxSelflash]setup()";
+//            cout << "[ofxSelflash]setup()" << endl;
             
             Flash2D::setup();
             
@@ -50,7 +50,7 @@ class ofxSelflash {
         }
     
         static inline void clear() {
-            ofLog(OF_LOG_VERBOSE) << "[ofxSelflash]clear()";
+//            cout << "[ofxSelflash]clear()" << endl;
 
             Flash2D::clear();
             

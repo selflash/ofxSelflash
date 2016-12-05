@@ -24,6 +24,8 @@ namespace fl2d {
         _useHandCursor = false;
         
         _draggableArea = NULL;
+        
+        ofAddListener(ofEvents().update, this, &Sprite::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -43,8 +45,17 @@ namespace fl2d {
         
         delete _draggableArea;
         _draggableArea = NULL;
+        
+        ofRemoveListener(ofEvents().update, this, &Sprite::_updateEventHandler);
     }
-
+    
+    //--------------------------------------------------------------
+    //
+    void Sprite::_updateEventHandler(ofEventArgs& args) {
+        Event* event = new Event(Event::ENTER_FRAME);
+        dispatchEvent(event);
+    }
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================

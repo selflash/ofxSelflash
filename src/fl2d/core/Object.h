@@ -73,13 +73,13 @@ namespace fl2d {
             Object();
             ~Object();
             
-            virtual bool debug();
-            virtual void debug(bool value);
+            virtual inline bool debug() { return _debug; }
+            virtual inline void debug(bool value) { _debug = value; }
             
-            virtual int typeID();
+            virtual inline int typeID() { return _typeID; }
             
-            virtual int no();
-            virtual void no(int value);
+            virtual inline int no() { return _no; }
+            virtual inline void no(int value) { _no = value; }
 
             //--------------------------------------------------------------
             //

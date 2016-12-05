@@ -24,6 +24,8 @@ namespace fl2d {
         _bPlay = false;
         
         play();
+        
+        ofAddListener(ofEvents().update, this, &MovieClip::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -36,6 +38,15 @@ namespace fl2d {
         _frameIndex = 0;
         
         _bPlay = false;
+        
+        ofRemoveListener(ofEvents().update, this, &MovieClip::_updateEventHandler);
+    }
+    
+    //--------------------------------------------------------------
+    //
+    void MovieClip::_updateEventHandler(ofEventArgs& args) {
+        Event* event = new Event(Event::ENTER_FRAME);
+        dispatchEvent(event);
     }
 
     //==============================================================

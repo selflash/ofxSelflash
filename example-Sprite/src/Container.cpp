@@ -50,6 +50,8 @@ void Container::_setup() {
 //--------------------------------------------------------------
 //
 void Container::_update() {
+//    cout << "[Container]_update()" << endl;
+    
     int frameNum = ofGetFrameNum();
     float w = sin(frameNum * 0.05) * 50 + 200;
     float h = sin(frameNum * 0.075) * 50 + 200;
@@ -66,6 +68,7 @@ void Container::_update() {
 //--------------------------------------------------------------
 //
 void Container::_draw() {
+//    cout << "[Container]_draw()" << endl;
     
     //---------------------------------
     string info;

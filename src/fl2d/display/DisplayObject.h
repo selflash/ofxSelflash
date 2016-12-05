@@ -1,6 +1,6 @@
 ﻿/**
  
- Original code ported from julapy :: ofxFlash
+ Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashDisplayObject.h
  
  ActionScript3.0 Reference

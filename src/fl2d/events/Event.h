@@ -28,7 +28,8 @@ namespace fl2d {
             static string CLOSE;
             static string COMPLETE;
             //static string CONNECT;
-            //static string ENTER_FRAME;
+            static string ENTER_FRAME;
+            static string EXIT_FRAME;
             //static string FULLSCREEN;
             //static string ID3;
             static string INIT;

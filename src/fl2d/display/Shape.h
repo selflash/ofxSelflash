@@ -36,6 +36,7 @@ namespace fl2d {
 //            virtual void updateOnFrame(){};
         
         private:
-            
+            void _updateEventHandler(ofEventArgs& args);
+        
         };
 }

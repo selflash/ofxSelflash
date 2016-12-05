@@ -60,6 +60,8 @@ namespace fl2d {
             float _tx;
             int _numLine;
         
+            int _activeLineWidth;
+        
             bool _enabledAntiAliasing;
 
 //            //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。

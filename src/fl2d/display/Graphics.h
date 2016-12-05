@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 
+#include "../core/Object.h"
 #include "../geom/Rectangle.h"
 #include "../geom/Matrix.h"
 
@@ -32,7 +33,7 @@ namespace fl2d {
     class Shape;
     class Sprite;
     
-    class Graphics {
+    class Graphics : public Object {
         friend TextField;
         friend Shape;
         friend Sprite;
@@ -73,7 +74,7 @@ namespace fl2d {
             
             float _moveToX;
             float _moveToY;
-            
+            bool _IsMoveTo;
         
             bool _smoothing;
             

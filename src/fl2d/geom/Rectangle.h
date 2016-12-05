@@ -1,9 +1,9 @@
 ﻿/**
  
- Original code ported from Gnash :: SWFRect
+ Original code is Gnash :: SWFRect
  http://www.gnu.org/software/gnash/
  
- Original code ported from julapy :: ofxFlash
+ Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/geom/ofxFlashRectangle.h
  
  ActionScript3.0 Reference

@@ -13,7 +13,7 @@
 namespace fl2d {
     
     class Bitmap;
-    class BitmapData : public DisplayObject {
+    class BitmapData : public Object {
         friend Bitmap;
         
         public:
@@ -37,8 +37,8 @@ namespace fl2d {
             ~BitmapData();
             //virtual ofTexture& getTextureReference();
             
-            virtual void setup();
-            virtual void update();
+//            virtual void setup();
+//            virtual void update();
             
             bool transparent();
             

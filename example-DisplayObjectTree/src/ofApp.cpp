@@ -95,7 +95,6 @@ void ofApp::draw() {
     flFont::drawString("Drag and move any DisplayObject", 12, 15);
     ofPopStyle();
 
-    
     flStage* stage = ofxSelflash::stage();
     flDisplayObject* disp = stage->topMostHitDisplayObject();
     

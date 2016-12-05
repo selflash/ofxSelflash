@@ -1,9 +1,9 @@
 ﻿/**
  
- Original code ported from Gnash :: SWFMatrix
+ Original code is Gnash :: SWFMatrix
  http://www.gnu.org/software/gnash/
  
- Original code ported from julapy :: ofxFlash
+ Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlashLite/blob/master/src/geom/ofxFlashMatrix.h
  
  ActionScript3.0 Reference

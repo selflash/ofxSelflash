@@ -34,6 +34,8 @@ namespace fl2d {
         if(!event->target()) event->target(_target);
         
         ofNotifyEvent(_handlers[event->type()], *event);
+        
+        delete event;
     }
     
     //==============================================================

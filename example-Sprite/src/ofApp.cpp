@@ -16,6 +16,7 @@ void ofApp::setup() {
     
     container = new Container();
     container->setup();
+    container->addEventListener(flEvent::ENTER_FRAME, this, &ofApp::_enterFrameEventHandler);
     stage->addChild(container);
 }
 
@@ -27,6 +28,12 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofxSelflash::draw();
+}
+
+//--------------------------------------------------------------
+void ofApp::_enterFrameEventHandler(flEvent& event) {
+    cout << "[ofApp]_enterFrameEventHandler("<< event.type() << ")" << endl;
+    
 }
 
 //--------------------------------------------------------------

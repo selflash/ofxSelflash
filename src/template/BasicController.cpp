@@ -22,13 +22,13 @@ BasicController::BasicController() {
     float spacing; float lineSpacing;
     //--------------------------------------
     marginLeft = 5;
-    marginTop = 5;
+    marginTop = 0;
     spacing = 100;
     lineSpacing = 22.5;
     
     titleTf = new flTextField();
     titleTf->x(marginLeft + spacing * 0);
-    titleTf->y(marginTop + lineSpacing * 0 - 1);
+    titleTf->y(marginTop + lineSpacing * 0);
     titleTf->width(120);
     titleTf->textColor(0xffffff);
     titleTf->text("[Contoller]");

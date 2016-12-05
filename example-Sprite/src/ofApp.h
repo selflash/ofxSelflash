@@ -27,5 +27,5 @@ class ofApp : public ofBaseApp {
 		void gotMessage(ofMessage msg);
 		
     private:
-
+        void _enterFrameEventHandler(flEvent& event);
 };

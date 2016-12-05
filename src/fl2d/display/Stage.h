@@ -1,6 +1,6 @@
 ﻿/**
  
- Original code ported from julapy :: ofxFlash
+ Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashStage.h
  
  ActionScript3.0 Reference
@@ -142,6 +142,7 @@ namespace fl2d {
             void _keyUpEventHandler(ofKeyEventArgs& event);
             
             bool _isInteractiveObject(DisplayObject* displayObject);
+            bool _isDisplayObject(DisplayObject* displayObject);
             bool _isDisplayObjectContainer(DisplayObject* displayObject);
             bool _isSprite(DisplayObject* displayObject);
     };

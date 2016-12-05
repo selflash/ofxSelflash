@@ -29,6 +29,8 @@ namespace fl2d {
     //    _bitmapData = NULL;
         _bitmapImage = NULL;
         _fboImage = NULL;
+        
+        ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -50,6 +52,8 @@ namespace fl2d {
         _bitmapData = NULL;
     //    _bitmapImage = NULL;
         _fboImage = NULL;
+        
+        ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -71,6 +75,8 @@ namespace fl2d {
         _bitmapData = NULL;
         _bitmapImage = NULL;
     //    _fboImage = NULL;
+        
+        ofRemoveListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
 
     //--------------------------------------------------------------
@@ -87,8 +93,17 @@ namespace fl2d {
         
     //    delete _fboImage;
         _fboImage = NULL;
+        
+        ofRemoveListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
-
+    
+    //--------------------------------------------------------------
+    //
+    void Bitmap::_updateEventHandler(ofEventArgs& args) {
+        Event* event = new Event(Event::ENTER_FRAME);
+        dispatchEvent(event);
+    }
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
