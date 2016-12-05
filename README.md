@@ -205,9 +205,6 @@ void ofApp::setup() {
     
     //Add to display-object-tree
     stage->addChild(sprite);
-    
-    //When you wanna remove sprite
-    //stage->removeChild(sprite);
 }
 ```
 
