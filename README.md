@@ -72,7 +72,10 @@ ScreenShot
 How to use
 --------
 
-(howtouse/1-1.png)
+![1-1](howtouse/1-1.png)
+![1-2](howtouse/1-2.png)
+![1-3](howtouse/1-3.png)
+![2-1](howtouse/2-1.png)
 
 
 Features:
