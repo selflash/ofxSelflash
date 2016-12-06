@@ -69,6 +69,12 @@ ScreenShot
 ![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
 
 
+How to use
+--------
+
+(howtouse/1-1.png)
+
+
 Features:
 --------
 
