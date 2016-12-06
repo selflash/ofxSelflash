@@ -72,9 +72,16 @@ ScreenShot
 How to use
 --------
 
+If you see following error when you build.
 ![1-1](howtouse/1-1.png)
+
+Please change 'C++ Source' to 'Objective-C++ Srouce' of NativeWindow.cpp.
 ![1-2](howtouse/1-2.png)
+
+Also change Mouse.cpp please.
 ![1-3](howtouse/1-3.png)
+
+Please Copy fl-folder from ofxSelflash/bin/data to your project-folder/bin/data
 ![2-1](howtouse/2-1.png)
 
 
