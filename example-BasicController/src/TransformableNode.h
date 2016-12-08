@@ -36,7 +36,7 @@ class TransformableNode {
 
     public:
         TransformableNode();
-        ~TransformableNode();
+        virtual ~TransformableNode();
 
         void begin();
         void end();

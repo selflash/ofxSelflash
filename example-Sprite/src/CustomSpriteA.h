@@ -10,7 +10,7 @@ class CustomSpriteA : public flSprite {
     
     public:
         CustomSpriteA();
-        ~CustomSpriteA();
+        virtual ~CustomSpriteA();
 
     protected:
         virtual void _setup();

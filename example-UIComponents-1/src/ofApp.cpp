@@ -31,12 +31,12 @@ void ofApp::setup() {
     //カラースラーダー
     uiComponents->colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ボタン
-    uiComponents->btn001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->btn002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->btn002->addEventListener(flEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->btn003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->btn004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->btn005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button002->addEventListener(flEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     //ラジオボタン
     uiComponents->radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio002->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
@@ -156,7 +156,7 @@ void ofApp::draw() {
     ofPushStyle();
     ofNoFill();
     ofSetColor(255, 255, 255, 200);
-    ofCircle(ofGetMouseX(), ofGetMouseY(), 5);
+    ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 5);
     ofPopStyle();
     //--------------------------------------
 }
@@ -190,11 +190,11 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
         
-        if(button == uiComponents->btn001);
-        if(button == uiComponents->btn002);
-        if(button == uiComponents->btn003) ofBackground(255, 255, 255, 255);
-        if(button == uiComponents->btn004) ofBackground(120, 120, 120, 255);
-        if(button == uiComponents->btn005) ofBackground(0, 0, 0, 255);
+        if(button == uiComponents->button001);
+        if(button == uiComponents->button002);
+        if(button == uiComponents->button003) ofBackground(255, 255, 255, 255);
+        if(button == uiComponents->button004) ofBackground(120, 120, 120, 255);
+        if(button == uiComponents->button005) ofBackground(0, 0, 0, 255);
     };
     
     //マウスアップイベント

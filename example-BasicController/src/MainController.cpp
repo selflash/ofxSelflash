@@ -77,13 +77,13 @@ void MainController::_setup() {
     spacing = 155;
     lineSpacing = 22.5;
     
-    btn001 = new flButton(150);
-    btn001->labelText("Full Screen");
-    btn001->x(marginLeft + spacing * 0);
-    btn001->y(marginTop + lineSpacing * 1);
-    btn001->toggleEnabled(true);
-    btn001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(btn001);
+    button001 = new flButton(150);
+    button001->labelText("Full Screen");
+    button001->x(marginLeft + spacing * 0);
+    button001->y(marginTop + lineSpacing * 1);
+    button001->toggleEnabled(true);
+    button001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button001);
     
     textField = new flTextField();
     textField->text("Window Depth");
@@ -119,21 +119,21 @@ void MainController::_setup() {
     textField->mouseEnabled(false);
     addChild(textField);
     
-    btn101 = new flButton(150);
-    btn101->labelText("Controller 1");
-    btn101->x(marginLeft + spacing * 0);
-    btn101->y(marginTop + lineSpacing * 3);
-    btn101->toggleEnabled(true);
-    btn101->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(btn101);
+    button101 = new flButton(150);
+    button101->labelText("Controller 1");
+    button101->x(marginLeft + spacing * 0);
+    button101->y(marginTop + lineSpacing * 3);
+    button101->toggleEnabled(true);
+    button101->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button101);
     
-    btn102 = new flButton(150);
-    btn102->labelText("Controller 2");
-    btn102->x(marginLeft + spacing * 1);
-    btn102->y(marginTop + lineSpacing * 3);
-    btn102->toggleEnabled(true);
-    btn102->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(btn102);
+    button102 = new flButton(150);
+    button102->labelText("Controller 2");
+    button102->x(marginLeft + spacing * 1);
+    button102->y(marginTop + lineSpacing * 3);
+    button102->toggleEnabled(true);
+    button102->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button102);
     //--------------------------------------
     
     //--------------------------------------
@@ -237,12 +237,12 @@ void MainController::_uiEventHandler(flEvent& event) {
         //コントローラー1
         if(target == _controller1) {
             ((flStage*)stage())->removeChild(target);
-            btn101->selected(false, false);
+            button101->selected(false, false);
         }
         //コントローラー2
         if(target == _controller2) {
             ((flStage*)stage())->removeChild(target);
-            btn102->selected(false, false);
+            button102->selected(false, false);
         }
     }
     
@@ -267,7 +267,7 @@ void MainController::_uiEventHandler(flEvent& event) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
         
-        if(button == btn001) {
+        if(button == button001) {
             if(button->selected()) {
                 ofSetFullscreen(true);
             } else {
@@ -275,14 +275,14 @@ void MainController::_uiEventHandler(flEvent& event) {
             }
         }
         
-        if(button == btn101) {
+        if(button == button101) {
             if(button->selected()) {
                 ((flStage*)stage())->addChild(_controller1);
             } else {
                 ((flStage*)stage())->removeChild(_controller1);
             }
         }
-        if(button == btn102) {
+        if(button == button102) {
             if(button->selected()) {
                 ((flStage*)stage())->addChild(_controller2);
             } else {

@@ -14,6 +14,7 @@
 		119D01D41DF4481100A47DA8 /* TransformableNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D01D21DF4481100A47DA8 /* TransformableNode.cpp */; };
 		119D01DA1DF44C0D00A47DA8 /* SubController1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D01D81DF44C0D00A47DA8 /* SubController1.cpp */; };
 		119D01DE1DF4DD8C00A47DA8 /* SubController2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D01DC1DF4DD8C00A47DA8 /* SubController2.cpp */; };
+		119D023D1DF9833000A47DA8 /* BasicDraggableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D023B1DF9833000A47DA8 /* BasicDraggableObject.cpp */; };
 		137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8C36764527AE9D7AE546001 /* ColorPickerEvent.cpp */; };
 		15DE4F56DC0BC0077A1634DD /* JoyStick2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF43BD7D57560CBEC986746B /* JoyStick2D.cpp */; };
 		1A0C4143D28CF79010A55DEC /* DisplayObjectContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934C907048A975D99C0815F1 /* DisplayObjectContainer.cpp */; };
@@ -113,7 +114,7 @@
 		028D6539BD527C596E3DBAC1 /* EventHandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EventHandler.h; path = ../../../addons/ofxSelflash/src/fl2d/events/EventHandler.h; sourceTree = SOURCE_ROOT; };
 		062789D17FA12DC05823D76B /* BlendMode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BlendMode.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/BlendMode.cpp; sourceTree = SOURCE_ROOT; };
 		06832DA7E5ABD037E32A91DE /* SoundEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SoundEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/SoundEvent.h; sourceTree = SOURCE_ROOT; };
-		09890E72CEBB3A9E723B1953 /* Particle2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Particle2D.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Particle2D.h; sourceTree = SOURCE_ROOT; };
+		09890E72CEBB3A9E723B1953 /* Particle2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Particle2D.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Particle2D.h; sourceTree = SOURCE_ROOT; };
 		1100C1A79F8ED8E4AE9402E9 /* Vec2Slider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Vec2Slider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec2Slider.h; sourceTree = SOURCE_ROOT; };
 		119640891DCC9A7000224B46 /* MainController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainController.cpp; sourceTree = "<group>"; };
 		1196408A1DCC9A7000224B46 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
@@ -125,13 +126,15 @@
 		119D01D91DF44C0D00A47DA8 /* SubController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubController1.h; sourceTree = "<group>"; };
 		119D01DC1DF4DD8C00A47DA8 /* SubController2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SubController2.cpp; sourceTree = "<group>"; };
 		119D01DD1DF4DD8C00A47DA8 /* SubController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubController2.h; sourceTree = "<group>"; };
+		119D023B1DF9833000A47DA8 /* BasicDraggableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicDraggableObject.cpp; sourceTree = "<group>"; };
+		119D023C1DF9833000A47DA8 /* BasicDraggableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDraggableObject.h; sourceTree = "<group>"; };
 		11CDE014AAB3CE676B80B47F /* Button.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Button.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Button.h; sourceTree = SOURCE_ROOT; };
 		124F661C0057DC01DA2D7A80 /* Vec3Slider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Vec3Slider.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec3Slider.cpp; sourceTree = SOURCE_ROOT; };
 		140A801B9F36D6BABFF92354 /* Flash2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Flash2D.h; path = ../../../addons/ofxSelflash/src/fl2d/Flash2D.h; sourceTree = SOURCE_ROOT; };
 		17E2E964F4C7EBBB0FBF015D /* BItmap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BItmap.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BItmap.h; sourceTree = SOURCE_ROOT; };
 		18B89E1ABB14F25ED5C24B86 /* NumberDialer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NumberDialer.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/NumberDialer.cpp; sourceTree = SOURCE_ROOT; };
 		1BCAF75614C4443162AD1A09 /* RangeSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RangeSlider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/RangeSlider.h; sourceTree = SOURCE_ROOT; };
-		1BFCC737129B5043B3565D99 /* InteractiveObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = InteractiveObject.h; path = ../../../addons/ofxSelflash/src/fl2d/display/InteractiveObject.h; sourceTree = SOURCE_ROOT; };
+		1BFCC737129B5043B3565D99 /* InteractiveObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = InteractiveObject.h; path = ../../../addons/ofxSelflash/src/fl2d/display/InteractiveObject.h; sourceTree = SOURCE_ROOT; };
 		1F353272AD60D404636FD941 /* ComboBox.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ComboBox.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/ComboBox.cpp; sourceTree = SOURCE_ROOT; };
 		1FD0106EF7016167887D1F26 /* Shape.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Shape.h; path = ../../../addons/ofxSelflash/src/fl2d/display/Shape.h; sourceTree = SOURCE_ROOT; };
 		21D9F4E25DD095979198CC2E /* ComboBoxEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ComboBoxEvent.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/ComboBoxEvent.cpp; sourceTree = SOURCE_ROOT; };
@@ -200,7 +203,7 @@
 		9A9F224F3C0B709AF7805E1D /* Graphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Graphics.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/Graphics.cpp; sourceTree = SOURCE_ROOT; };
 		9B1D5139CE40A3EE68DF10CE /* Font.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Font.cpp; path = ../../../addons/ofxSelflash/src/fl2d/texts/Font.cpp; sourceTree = SOURCE_ROOT; };
 		9D54BFF96DC12D1A1F5A9954 /* Slider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Slider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Slider.h; sourceTree = SOURCE_ROOT; };
-		9DA508BF0A7DA48076722B6E /* TextField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TextField.h; path = ../../../addons/ofxSelflash/src/fl2d/texts/TextField.h; sourceTree = SOURCE_ROOT; };
+		9DA508BF0A7DA48076722B6E /* TextField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TextField.h; path = ../../../addons/ofxSelflash/src/fl2d/texts/TextField.h; sourceTree = SOURCE_ROOT; };
 		A0851D7075A9E890852E9DF4 /* NumberDialerEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NumberDialerEvent.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/NumberDialerEvent.cpp; sourceTree = SOURCE_ROOT; };
 		A42B53F8B6BD90FA18BA60E0 /* RadioButtonEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RadioButtonEvent.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/RadioButtonEvent.cpp; sourceTree = SOURCE_ROOT; };
 		A4E31BD8F4BE3821DD629A18 /* Pad3D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Pad3D.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Pad3D.h; sourceTree = SOURCE_ROOT; };
@@ -248,10 +251,10 @@
 		F576EEB49BF5AC2EB72580AB /* Event.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Event.h; path = ../../../addons/ofxSelflash/src/fl2d/events/Event.h; sourceTree = SOURCE_ROOT; };
 		F71A244FCD58B0A52A7923EF /* RadioButtonEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RadioButtonEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/RadioButtonEvent.h; sourceTree = SOURCE_ROOT; };
 		F912A29472C7B0E7FD00EFB2 /* PadEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = PadEvent.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/PadEvent.cpp; sourceTree = SOURCE_ROOT; };
-		F9729818BE32412F1D4FEF25 /* Stage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Stage.h; path = ../../../addons/ofxSelflash/src/fl2d/display/Stage.h; sourceTree = SOURCE_ROOT; };
+		F9729818BE32412F1D4FEF25 /* Stage.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Stage.h; path = ../../../addons/ofxSelflash/src/fl2d/display/Stage.h; sourceTree = SOURCE_ROOT; };
 		FAAB9730DFB0AF65E33A901D /* Object.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Object.h; path = ../../../addons/ofxSelflash/src/fl2d/core/Object.h; sourceTree = SOURCE_ROOT; };
 		FBB6C913BAF8A7A8800E3AB8 /* ColorSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ColorSlider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/ColorSlider.h; sourceTree = SOURCE_ROOT; };
-		FC7640369DCDCE0E5D027FA6 /* BlendMode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BlendMode.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BlendMode.h; sourceTree = SOURCE_ROOT; };
+		FC7640369DCDCE0E5D027FA6 /* BlendMode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BlendMode.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BlendMode.h; sourceTree = SOURCE_ROOT; };
 		FE9244FC835BDDE804946300 /* JoyStick1D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JoyStick1D.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/JoyStick1D.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -270,6 +273,8 @@
 		119D01CD1DF4469000A47DA8 /* template */ = {
 			isa = PBXGroup;
 			children = (
+				119D023B1DF9833000A47DA8 /* BasicDraggableObject.cpp */,
+				119D023C1DF9833000A47DA8 /* BasicDraggableObject.h */,
 				119D01CE1DF4469000A47DA8 /* BasicController.cpp */,
 				119D01CF1DF4469000A47DA8 /* BasicController.h */,
 			);
@@ -654,6 +659,7 @@
 				496403E71DEF84928A1EF641 /* Graphics.cpp in Sources */,
 				71560AD81E183D9DE12ABF0F /* InteractiveObject.cpp in Sources */,
 				25DA37963DE2EC746EDAEFFF /* MovieClip.cpp in Sources */,
+				119D023D1DF9833000A47DA8 /* BasicDraggableObject.cpp in Sources */,
 				119D01D01DF4469000A47DA8 /* BasicController.cpp in Sources */,
 				AC786B4DBFE72EC74969FC1C /* Shape.cpp in Sources */,
 				549E722C7BBF7D6E63B46BC3 /* Sprite.cpp in Sources */,

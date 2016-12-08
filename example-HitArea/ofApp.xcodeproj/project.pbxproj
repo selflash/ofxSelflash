@@ -11,6 +11,8 @@
 		0C6D65E1FAD493429199B1AA /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CC6B14B154761FB61DB8 /* Button.cpp */; };
 		1196407D1DCC98F200224B46 /* Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119640791DCC98F200224B46 /* Container.cpp */; };
 		1196407E1DCC98F200224B46 /* InteractiveBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1196407B1DCC98F200224B46 /* InteractiveBox.cpp */; };
+		119D026E1DF988C200A47DA8 /* BasicController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D026A1DF988C200A47DA8 /* BasicController.cpp */; };
+		119D026F1DF988C200A47DA8 /* BasicDraggableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D026C1DF988C200A47DA8 /* BasicDraggableObject.cpp */; };
 		137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8C36764527AE9D7AE546001 /* ColorPickerEvent.cpp */; };
 		15DE4F56DC0BC0077A1634DD /* JoyStick2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF43BD7D57560CBEC986746B /* JoyStick2D.cpp */; };
 		1A0C4143D28CF79010A55DEC /* DisplayObjectContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934C907048A975D99C0815F1 /* DisplayObjectContainer.cpp */; };
@@ -116,6 +118,10 @@
 		1196407A1DCC98F200224B46 /* Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Container.h; sourceTree = "<group>"; };
 		1196407B1DCC98F200224B46 /* InteractiveBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveBox.cpp; sourceTree = "<group>"; };
 		1196407C1DCC98F200224B46 /* InteractiveBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveBox.h; sourceTree = "<group>"; };
+		119D026A1DF988C200A47DA8 /* BasicController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicController.cpp; sourceTree = "<group>"; };
+		119D026B1DF988C200A47DA8 /* BasicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicController.h; sourceTree = "<group>"; };
+		119D026C1DF988C200A47DA8 /* BasicDraggableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicDraggableObject.cpp; sourceTree = "<group>"; };
+		119D026D1DF988C200A47DA8 /* BasicDraggableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDraggableObject.h; sourceTree = "<group>"; };
 		11CDE014AAB3CE676B80B47F /* Button.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Button.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Button.h; sourceTree = SOURCE_ROOT; };
 		124F661C0057DC01DA2D7A80 /* Vec3Slider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Vec3Slider.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec3Slider.cpp; sourceTree = SOURCE_ROOT; };
 		140A801B9F36D6BABFF92354 /* Flash2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Flash2D.h; path = ../../../addons/ofxSelflash/src/fl2d/Flash2D.h; sourceTree = SOURCE_ROOT; };
@@ -258,6 +264,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		119D02691DF988C200A47DA8 /* template */ = {
+			isa = PBXGroup;
+			children = (
+				119D026A1DF988C200A47DA8 /* BasicController.cpp */,
+				119D026B1DF988C200A47DA8 /* BasicController.h */,
+				119D026C1DF988C200A47DA8 /* BasicDraggableObject.cpp */,
+				119D026D1DF988C200A47DA8 /* BasicDraggableObject.h */,
+			);
+			name = template;
+			path = ../src/template;
+			sourceTree = "<group>";
+		};
 		351E758B47E30F7AE3C88CE9 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +440,7 @@
 		C6F37CDAA6E165092FB46701 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				119D02691DF988C200A47DA8 /* template */,
 				56F4B4FA8115FC9346E29B5E /* fl2d */,
 				88CF517EAA3CE5BF870884BC /* ofxSelflash.h */,
 				5B36264183DD3DF240007E1A /* utils */,
@@ -490,13 +509,13 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
+				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				119640791DCC98F200224B46 /* Container.cpp */,
 				1196407A1DCC98F200224B46 /* Container.h */,
 				1196407B1DCC98F200224B46 /* InteractiveBox.cpp */,
 				1196407C1DCC98F200224B46 /* InteractiveBox.h */,
-				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
-				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -630,6 +649,7 @@
 				71560AD81E183D9DE12ABF0F /* InteractiveObject.cpp in Sources */,
 				25DA37963DE2EC746EDAEFFF /* MovieClip.cpp in Sources */,
 				AC786B4DBFE72EC74969FC1C /* Shape.cpp in Sources */,
+				119D026E1DF988C200A47DA8 /* BasicController.cpp in Sources */,
 				549E722C7BBF7D6E63B46BC3 /* Sprite.cpp in Sources */,
 				AFE7763ECF32AEE5CB33C127 /* Stage.cpp in Sources */,
 				BA37F4E88866FB4E8FC08967 /* AnimationEvent.cpp in Sources */,
@@ -667,6 +687,7 @@
 				0C6D65E1FAD493429199B1AA /* Button.cpp in Sources */,
 				8F4EE1CD61FE80E09AED6E7C /* CircleColorPicker.cpp in Sources */,
 				2E55BF1E35174D1D0B572E8D /* ColorSlider.cpp in Sources */,
+				119D026F1DF988C200A47DA8 /* BasicDraggableObject.cpp in Sources */,
 				C0173EB4946165CB90176987 /* ComboBox.cpp in Sources */,
 				F8A49413BA2DAA6AF447E28F /* JoyStick1D.cpp in Sources */,
 				15DE4F56DC0BC0077A1634DD /* JoyStick2D.cpp in Sources */,

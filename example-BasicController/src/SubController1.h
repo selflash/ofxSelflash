@@ -22,7 +22,7 @@ class SubController1 : public BasicController {
     
     public:
         SubController1(string title = "Sub Controller");
-        ~SubController1();
+        virtual ~SubController1();
         
         //virtual void setup();
         //virtual void update();

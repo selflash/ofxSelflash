@@ -18,7 +18,7 @@ class ofApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-    void callback(float &val);
+    
         void eventHandler(flEvent& event);
 
 		void keyPressed(int key);

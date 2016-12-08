@@ -77,14 +77,22 @@ void DocumentRoot::_update() {
         _preX = x();
         _preY = y();
     }
+    //--------------------------------------
     
-    //動いた分背景の塗りを帳尻合わせる時
-//    flGraphics* g;
-//    g = graphics();
-//    g->clear();
-//    g->beginFill(0x0000cc, 0.2);
-//    g->drawRect(-x(), -y(), ofGetWidth(), ofGetHeight());
-//    g->endFill();
+    //--------------------------------------
+    flGraphics* g;
+    g = graphics();
+    g->clear();
+    
+    //背景色
+    g->beginFill(0x888888, 0.1);
+    g->drawRect(0, 0, ofGetWidth(), ofGetHeight());
+    g->endFill();
+    
+    //透明のヒットエリア
+    g->beginFill(0x0000cc, 0);
+    g->drawRect(-x(), -y(), ofGetWidth(), ofGetHeight());
+    g->endFill();
     //--------------------------------------
     
     //-----------------------------------

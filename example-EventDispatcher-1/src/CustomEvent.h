@@ -11,7 +11,7 @@ class CustomEvent : public flEvent {
         
     public:
         CustomEvent(string type);
-        ~CustomEvent();
+        virtual ~CustomEvent();
     
     private:
         

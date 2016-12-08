@@ -24,7 +24,7 @@ class InteractiveBox:public flSprite {
     
     public:
         InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, int areaColor = 0xff0000);
-        ~InteractiveBox();
+        virtual ~InteractiveBox();
 
         void title(std::string value);
 

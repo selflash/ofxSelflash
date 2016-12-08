@@ -252,46 +252,46 @@ void UIComponents::_setup() {
     marginTop = 10;
     lineSpacing = 22.5;
     
-    btn001 = new flButton(150);
-    btn001->labelText("Button");
-    btn001->x(marginLeft + spacing * 0);
-    btn001->y(marginTop + lineSpacing * 0);
-    btn001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    addChild(btn001);
-    btn002 = new flButton(150);
-    btn002->labelText("Lock", "selected");
-    btn002->labelText("Unlock", "notSelected");
-    btn002->toggleEnabled(true);
-    btn002->x(marginLeft + spacing * 0);
-    btn002->y(marginTop + lineSpacing * 1);
-    btn002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    btn002->addEventListener(flMouseEvent::CHANGE, this, &UIComponents::_uiEventHandler);
-    addChild(btn002);
-    btn003 = new flButton(150);
-    btn003->labelText("White");
-    btn003->x(marginLeft + spacing * 0);
-    btn003->y(marginTop + lineSpacing * 2);
-    btn003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    addChild(btn003);
-    btn004 = new flButton(150);
-    btn004->labelText("Glay");
-    btn004->x(marginLeft + spacing * 0);
-    btn004->y(marginTop + lineSpacing * 3);
-    btn004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    addChild(btn004);
-    btn005 = new flButton(150);
-    btn005->labelText("Black");
-    btn005->x(marginLeft + spacing * 0);
-    btn005->y(marginTop + lineSpacing * 4);
-    btn005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    addChild(btn005);
-    btn006 = new flButton(150);
-    btn006->labelText("Disable");
-    btn006->x(marginLeft + spacing * 0);
-    btn006->y(marginTop + lineSpacing * 5);
-    btn006->enabled(false);
-    btn006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    addChild(btn006);
+    button001 = new flButton(150);
+    button001->labelText("Button");
+    button001->x(marginLeft + spacing * 0);
+    button001->y(marginTop + lineSpacing * 0);
+    button001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    addChild(button001);
+    button002 = new flButton(150);
+    button002->labelText("Lock", "selected");
+    button002->labelText("Unlock", "notSelected");
+    button002->toggleEnabled(true);
+    button002->x(marginLeft + spacing * 0);
+    button002->y(marginTop + lineSpacing * 1);
+    button002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button002->addEventListener(flMouseEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    addChild(button002);
+    button003 = new flButton(150);
+    button003->labelText("White");
+    button003->x(marginLeft + spacing * 0);
+    button003->y(marginTop + lineSpacing * 2);
+    button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    addChild(button003);
+    button004 = new flButton(150);
+    button004->labelText("Glay");
+    button004->x(marginLeft + spacing * 0);
+    button004->y(marginTop + lineSpacing * 3);
+    button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    addChild(button004);
+    button005 = new flButton(150);
+    button005->labelText("Black");
+    button005->x(marginLeft + spacing * 0);
+    button005->y(marginTop + lineSpacing * 4);
+    button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    addChild(button005);
+    button006 = new flButton(150);
+    button006->labelText("Disable");
+    button006->x(marginLeft + spacing * 0);
+    button006->y(marginTop + lineSpacing * 5);
+    button006->enabled(false);
+    button006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    addChild(button006);
     //--------------------------------------
     
     //--------------------------------------
@@ -617,11 +617,11 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         flButton* button = (flButton*)(event.currentTarget());
         
         //メインコントローラー
-        if(button == btn001);
-        if(button == btn002);
-        if(button == btn003) ofBackground(255, 255, 255, 255);
-        if(button == btn004) ofBackground(120, 120, 120, 255);
-        if(button == btn005) ofBackground(0, 0, 0, 255);
+        if(button == button001);
+        if(button == button002);
+        if(button == button003) ofBackground(255, 255, 255, 255);
+        if(button == button004) ofBackground(120, 120, 120, 255);
+        if(button == button005) ofBackground(0, 0, 0, 255);
     };
     
     //マウスアップ
@@ -629,22 +629,22 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
         
-        if(button == btn001);
-        if(button == btn002);
-        if(button == btn003);
-        if(button == btn004);
-        if(button == btn005);
+        if(button == button001);
+        if(button == button002);
+        if(button == button003);
+        if(button == button004);
+        if(button == button005);
     };
     //マウスチェンジ
     if(event.type() == flMouseEvent::CHANGE) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
         
-        if(button == btn001);
-        if(button == btn002) btn006->enabled(button->selected());
-        if(button == btn003);
-        if(button == btn004);
-        if(button == btn005);
+        if(button == button001);
+        if(button == button002) button006->enabled(button->selected());
+        if(button == button003);
+        if(button == button004);
+        if(button == button005);
     };
     
     //コンボボックス

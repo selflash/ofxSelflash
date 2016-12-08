@@ -15,7 +15,7 @@ class Container : public flSprite {
     
     public:
         Container();
-        ~Container();
+        virtual ~Container();
         
     protected:
         virtual void _setup();

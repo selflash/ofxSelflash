@@ -10,7 +10,7 @@ class CustomDispatcher : public flEventDispatcher {
         
     public:
         CustomDispatcher();
-        ~CustomDispatcher();
+        virtual ~CustomDispatcher();
     
         void addListeners();
         void removeListeners();

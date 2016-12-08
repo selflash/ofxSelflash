@@ -29,7 +29,7 @@ class MainController : public BasicController {
         
     public:
         MainController();
-        ~MainController();
+        virtual ~MainController();
         
         //virtual void setup();
         //virtual void update();

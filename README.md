@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.3
+# ofxSelflash ver0.5.4
 =========
 
-last update 2016.12.5
+last update 2016.12.8
 
 Copyright (c) 2015 selflash
 
@@ -65,6 +65,8 @@ ScreenShot
 ![example-UIComponents-1](example-UIComponents-1/screenshot.png)
 + example-BasicController
 ![example-BasicController](example-BasicController/screenshot.png)
++ example-BasicDraggableObject
+![example-BasicDraggableObject](example-BasicDraggableObject/screenshot.png)
 + example-ExtendsSprite
 ![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
 
@@ -223,6 +225,10 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.4 - 2015.12.8
++ [Add] src/template/BasicDraggableObject.
++ [Add] example-BasicDraggableObject.
 
 Ver 0.5.3 - 2015.12.5
 + [Add] Dispatch enter-frame-event.

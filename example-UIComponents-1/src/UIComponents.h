@@ -29,12 +29,12 @@ class UIComponents : public flSprite {
         //--------------------------------------
         //--------------------------------------
         //ボタン
-        flButton* btn001;
-        flButton* btn002;
-        flButton* btn003;
-        flButton* btn004;
-        flButton* btn005;
-        flButton* btn006;
+        flButton* button001;
+        flButton* button002;
+        flButton* button003;
+        flButton* button004;
+        flButton* button005;
+        flButton* button006;
         //--------------------------------------
         //--------------------------------------
         //2Dパッド
@@ -101,7 +101,7 @@ class UIComponents : public flSprite {
     
     public:
         UIComponents();
-        ~UIComponents();
+        virtual ~UIComponents();
         
     protected:
         virtual void _setup();
