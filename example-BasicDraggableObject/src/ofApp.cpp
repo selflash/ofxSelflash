@@ -10,10 +10,9 @@ void ofApp::setup() {
     ofxSelflash::drawPriority(OF_EVENT_ORDER_BEFORE_APP);
 //    ofxSelflash::drawPriority(OF_EVENT_ORDER_AFTER_APP);
     ofxSelflash::setup();
-    //--------------------------------------
-    
     flStage* stage = ofxSelflash::stage();
     
+    //load image
     ofImage image;
     image.load("selflash.jpeg");
     

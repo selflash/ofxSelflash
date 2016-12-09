@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    ofSetWindowTitle("example-Eventdispatcher-1");
     
     //---------------------------------------
     dispatcherA = new flEventDispatcher();

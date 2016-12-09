@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		078974189602C5C3ACD4180B /* FlashConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E227ED8010FD7BBBA73B3896 /* FlashConfig.cpp */; };
 		0C6D65E1FAD493429199B1AA /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CC6B14B154761FB61DB8 /* Button.cpp */; };
-		1196407D1DCC98F200224B46 /* Container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119640791DCC98F200224B46 /* Container.cpp */; };
 		1196407E1DCC98F200224B46 /* InteractiveBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1196407B1DCC98F200224B46 /* InteractiveBox.cpp */; };
 		119D026E1DF988C200A47DA8 /* BasicController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D026A1DF988C200A47DA8 /* BasicController.cpp */; };
 		119D026F1DF988C200A47DA8 /* BasicDraggableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D026C1DF988C200A47DA8 /* BasicDraggableObject.cpp */; };
@@ -114,8 +113,6 @@
 		06832DA7E5ABD037E32A91DE /* SoundEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SoundEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/SoundEvent.h; sourceTree = SOURCE_ROOT; };
 		09890E72CEBB3A9E723B1953 /* Particle2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Particle2D.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Particle2D.h; sourceTree = SOURCE_ROOT; };
 		1100C1A79F8ED8E4AE9402E9 /* Vec2Slider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Vec2Slider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec2Slider.h; sourceTree = SOURCE_ROOT; };
-		119640791DCC98F200224B46 /* Container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Container.cpp; sourceTree = "<group>"; };
-		1196407A1DCC98F200224B46 /* Container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Container.h; sourceTree = "<group>"; };
 		1196407B1DCC98F200224B46 /* InteractiveBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveBox.cpp; sourceTree = "<group>"; };
 		1196407C1DCC98F200224B46 /* InteractiveBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveBox.h; sourceTree = "<group>"; };
 		119D026A1DF988C200A47DA8 /* BasicController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicController.cpp; sourceTree = "<group>"; };
@@ -512,8 +509,6 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				119640791DCC98F200224B46 /* Container.cpp */,
-				1196407A1DCC98F200224B46 /* Container.h */,
 				1196407B1DCC98F200224B46 /* InteractiveBox.cpp */,
 				1196407C1DCC98F200224B46 /* InteractiveBox.h */,
 			);
@@ -671,7 +666,6 @@
 				544E8D151CAD6A9EA28B3887 /* SliderEvent.cpp in Sources */,
 				6FDD41015C79EEE652C5DF51 /* SoundEvent.cpp in Sources */,
 				60E6D414AD382BE449882CE4 /* Vec2SliderEvent.cpp in Sources */,
-				1196407D1DCC98F200224B46 /* Container.cpp in Sources */,
 				5978D05E2A94B9E6D3204646 /* Vec3SliderEvent.cpp in Sources */,
 				C78278E8EE590621F2D57636 /* Flash2D.cpp in Sources */,
 				078974189602C5C3ACD4180B /* FlashConfig.cpp in Sources */,

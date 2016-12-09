@@ -14,9 +14,30 @@ void ofApp::setup() {
 
     flStage* stage = ofxSelflash::stage();
     
-    container = new Container();
-    container->setup();
-    stage->addChild(container);
+    //--------------------------------------
+    //ボックスA
+    boxA = new InteractiveBox();
+    boxA->setup();
+    boxA->title("Target");
+    boxA->name("BoxA");
+    boxA->x(160);
+    boxA->y(340);
+    stage->addChild(boxA);
+    //--------------------------------------
+    
+    //--------------------------------------
+    //ボックスB
+    boxB = new InteractiveBox();
+    boxB->setup();
+    boxB->title("Hit Area");
+    boxB->name("BoxB");
+    boxB->x(480);
+    boxB->y(200);
+    boxB->mouseEnabled(false);
+    stage->addChild(boxB);
+    
+    boxA->hitArea(boxB);
+    //--------------------------------------
     
     //--------------------------------------
     //タイトル
@@ -70,16 +91,12 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    //----------------------------------
     ofxSelflash::update();
-    //----------------------------------
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    //----------------------------------
     ofxSelflash::draw();
-    //----------------------------------
     
     ofPushStyle();
     ofSetColor(0);

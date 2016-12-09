@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    ofSetWindowTitle("example-EventdispatcherA-2");
+    ofSetWindowTitle("example-Eventdispatcher-2");
     
     //---------------------------------------
     dispatcherA = new flEventDispatcher();

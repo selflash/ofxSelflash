@@ -3,11 +3,14 @@
 #include "ofMain.h"
 
 #include "ofxSelflash.h"
-#include "Container.h"
+#include "InteractiveBox.h"
 
 class ofApp : public ofBaseApp {
     public:
-        Container* container;
+        //--------------------------------------
+        InteractiveBox* boxA;
+        InteractiveBox* boxB;
+        //--------------------------------------
     
         //--------------------------------------
         flTextField* textField000;
