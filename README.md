@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.4
+# ofxSelflash ver0.5.5
 =========
 
-last update 2016.12.8
+last update 2016.12.9
 
 Copyright (c) 2015 selflash
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.5 - 2015.12.9
++ [Fixed] width, height, scaleX, scaleY property.
 
 Ver 0.5.4 - 2015.12.8
 + [Add] src/template/BasicDraggableObject.
