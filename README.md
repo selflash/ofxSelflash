@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.5
+# ofxSelflash ver0.5.6
 =========
 
-last update 2016.12.9
+last update 2016.12.19
 
 Copyright (c) 2015 selflash
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.6 - 2015.12.19
++ [Fixed] Bitmap.height().
 
 Ver 0.5.5 - 2015.12.9
 + [Fixed] width, height, scaleX, scaleY property.
