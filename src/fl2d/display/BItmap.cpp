@@ -75,7 +75,7 @@ namespace fl2d {
         _image = image;
 
         _imageWidth = _image.getWidth();
-        _imageHeight = _image.getWidth();
+        _imageHeight = _image.getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
@@ -102,7 +102,7 @@ namespace fl2d {
         _texture_ptr = texture;
         
         _imageWidth = _texture_ptr->getWidth();
-        _imageHeight = _texture_ptr->getWidth();
+        _imageHeight = _texture_ptr->getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
@@ -128,7 +128,7 @@ namespace fl2d {
         _texture = texture;
         
         _imageWidth = _texture.getWidth();
-        _imageHeight = _texture.getWidth();
+        _imageHeight = _texture.getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
@@ -155,7 +155,7 @@ namespace fl2d {
         _fboImage = fboImage;
         
         _imageWidth = _fboImage.getWidth();
-        _imageHeight = _fboImage.getWidth();
+        _imageHeight = _fboImage.getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
