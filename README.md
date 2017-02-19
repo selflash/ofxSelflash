@@ -227,7 +227,7 @@ Updates:
 --------
 
 Ver 0.5.7 - 2017.2.20
-+ [Fixed] Bitmap.height().
++ [Fixed] CompoundAlpha.
 
 Ver 0.5.6 - 2016.12.19
 + [Fixed] Bitmap.height().
