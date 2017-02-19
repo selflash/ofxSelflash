@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.6
+# ofxSelflash ver0.5.7
 =========
 
-last update 2016.12.19
+last update 2017.2.20
 
 Copyright (c) 2015 selflash
 
@@ -226,28 +226,31 @@ void ofApp::setup() {
 Updates:
 --------
 
-Ver 0.5.6 - 2015.12.19
+Ver 0.5.7 - 2017.2.20
 + [Fixed] Bitmap.height().
 
-Ver 0.5.5 - 2015.12.9
+Ver 0.5.6 - 2016.12.19
++ [Fixed] Bitmap.height().
+
+Ver 0.5.5 - 2016.12.9
 + [Fixed] width, height, scaleX, scaleY property.
 
-Ver 0.5.4 - 2015.12.8
+Ver 0.5.4 - 2016.12.8
 + [Add] src/template/BasicDraggableObject.
 + [Add] example-BasicDraggableObject.
 
-Ver 0.5.3 - 2015.12.5
+Ver 0.5.3 - 2016.12.5
 + [Add] Dispatch enter-frame-event.
 + [Add] example-BasicController.
 + [Add] example-ExtendsSprite.
 
-Ver 0.5.2 - 2015.11.30
+Ver 0.5.2 - 2016.11.30
 + [Fixed] Couldn't work EventDispatcher.removeEventListener on openFrameworks0.9.x
 
-Ver 0.5.1 - 2015.11.4
+Ver 0.5.1 - 2016.11.4
 + [Fixed] can build on openFrameworks0.9.7
 
-Ver 0.5.0 - 2015.9.15
+Ver 0.5.0 - 2016.9.15
 + [Remove] fltw.*  (Tween Library)
 
 + [Remove] events.JoystickEvent.h
