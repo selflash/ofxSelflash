@@ -76,6 +76,9 @@ namespace fl2d {
     //
     void Sprite::draw() {
         if(!visible()) return;
+        
+        ofPushStyle();
+
         ofDisableLighting();
         
         //-- matrix transform.
@@ -89,7 +92,7 @@ namespace fl2d {
         }
         
         glDisable(GL_DEPTH_TEST);
-        ofSetColor(255, 255, 255, 255 * __compoundAlpha);
+        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         ofEnableAlphaBlending();
         _graphics->__draw();
         if(_smoothing) ofEnableSmoothing();
@@ -109,6 +112,8 @@ namespace fl2d {
             glPopMatrix();
         }
         
+        ofPopStyle();
+
         //--------------------------------------
         //ヒットエリアの表示
     //    ofNoFill();
@@ -237,11 +242,11 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //TODO
-    float Sprite::alpha() { return _alpha; }
-    void Sprite::alpha(float value) {
-        _alpha = value;
-        _graphics->__alpha = _alpha;
-    }
+//    float Sprite::alpha() { return _alpha; }
+//    void Sprite::alpha(float value) {
+//        _alpha = value;
+//        _graphics->__alpha = _alpha;
+//    }
 
     //--------------------------------------------------------------
     //
@@ -336,6 +341,13 @@ namespace fl2d {
 //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
     
+    //--------------------------------------------------------------
+    //
+    void Sprite::__compoundAlpha(float value){
+        _compoundAlpha = value;
+        _graphics->__compoundAlpha(_compoundAlpha);
+    }
+
     //--------------------------------------------------------------
     //
     void Sprite::_mouseDragging(int x, int y, int id) {

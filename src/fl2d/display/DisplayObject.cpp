@@ -35,11 +35,11 @@ namespace fl2d {
         _rotationZ = 0.0;
         
         _alpha = 1.0;
-        __compoundAlpha	= 1.0;
+        _compoundAlpha	= 1.0;
         
         _visible = true;
         
-        _blendMode = BLEND_MODE_NORMAL;
+        _blendMode = FL_BLEND_MODE_NORMAL;
         _level = -1;
 
 //        _matrix = NULL;
@@ -80,11 +80,11 @@ namespace fl2d {
         _rotationZ = 0.0;
         
         _alpha = 0.0;
-        __compoundAlpha	= 0.0;
+        _compoundAlpha	= 0.0;
         
         _visible = false;
         
-        _blendMode = BLEND_MODE_NORMAL;
+        _blendMode = FL_BLEND_MODE_NORMAL;
         _level = 0;
         
 //        _matrix = NULL;
@@ -125,6 +125,9 @@ namespace fl2d {
     //
     void DisplayObject::draw() {
         if(!visible()) return;
+        
+        ofPushStyle();
+
         ofDisableLighting();
         
         //-- matrix transform.
@@ -137,7 +140,7 @@ namespace fl2d {
             glMultMatrixf(matrix().getPtr());
         }
         glDisable(GL_DEPTH_TEST);
-        ofSetColor(255, 255, 255, 255 * __compoundAlpha);
+        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         ofEnableAlphaBlending();
         if(_smoothing) ofEnableSmoothing();
         _draw();
@@ -148,6 +151,8 @@ namespace fl2d {
         if(!bIdentity){
             glPopMatrix();
         }
+        
+        ofPopStyle();
     };
 
 
@@ -211,7 +216,7 @@ namespace fl2d {
         //今まで親への参照がもっていなくてvalueに親への参照が入ってる時
         if(!_parent && value) {
             _parent = value;
-            __compoundAlpha = _parent->__compoundAlpha * _alpha;
+            _compoundAlpha = _parent->__compoundAlpha() * _alpha;
             
             Event* event = new Event(Event::ADDED);
             event->target(_target);
@@ -362,9 +367,6 @@ namespace fl2d {
     //
     float DisplayObject::alpha() { return _alpha; }
     void DisplayObject::alpha(float value) { _alpha = value; }
-    //--------------------------------------------------------------
-    //
-    //const float& DisplayObject::compoundAlpha(){ return __compoundAlpha; }
 
     //--------------------------------------------------------------
     //
@@ -553,4 +555,8 @@ namespace fl2d {
 //        //--------------------------------------
     }
 
+    //--------------------------------------------------------------
+    //
+    float DisplayObject::__compoundAlpha(){ return _compoundAlpha; }
+    void DisplayObject::__compoundAlpha(float value){ _compoundAlpha = value; }
 }

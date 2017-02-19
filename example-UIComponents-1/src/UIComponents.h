@@ -91,7 +91,11 @@ class UIComponents : public flSprite {
         flComboBox* comboBox002;
         flComboBox* comboBox003;
         //--------------------------------------
-        
+    
+        //--------------------------------------
+        flAngler* angler000;
+        //--------------------------------------
+    
         //--------------------------------------
         flScrollKit* scrollKit001;
         flSprite* body001;

@@ -79,8 +79,11 @@ namespace fl2d {
             bool _smoothing;
             
             //Sprite
-            float __alpha;
+//            float __alpha;
             Rectangle* __rect;
+        
+            float _compoundAlpha;
+
         
         public:
             Graphics();
@@ -137,6 +140,9 @@ namespace fl2d {
             void _moveTo(float x, float y);
             
             void _clear(int index);
+
+            float __compoundAlpha();
+            void __compoundAlpha(float value);
 
 //            float _left();
 //            float _right();

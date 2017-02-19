@@ -16,6 +16,7 @@ void ofApp::setup() {
     
     documentRoot = new DocumentRoot();
     documentRoot->setup();
+//    documentRoot->alpha(0.5);
     stage->addChild(documentRoot);
 }
 

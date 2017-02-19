@@ -16,6 +16,7 @@ void ofApp::setup() {
     
     container = new Container();
     container->setup();
+//    container->alpha(0.1);
     stage->addChild(container);
     
     //--------------------------------------

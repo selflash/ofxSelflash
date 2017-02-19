@@ -126,8 +126,11 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void TextField::draw() {
-        
         if(!visible()) return;
+        
+        ofPushStyle();
+
+        ofDisableLighting();
         
         //-- matrix transform.
         bool bIdentity = true;
@@ -139,12 +142,21 @@ namespace fl2d {
             glMultMatrixf(matrix().getPtr());
         }
         
+        glDisable(GL_DEPTH_TEST);
+        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        ofEnableAlphaBlending();
         _graphics->__draw();
+        if(_smoothing) ofEnableSmoothing();
         _draw();
+        ofDisableSmoothing();
+        //oFでは標準ではアルファブレンディング有効
+        //ofDisableAlphaBlending();
         
         if(!bIdentity){
             glPopMatrix();
         }
+        
+        ofPopStyle();
     }
 
     //--------------------------------------------------------------
@@ -166,7 +178,7 @@ namespace fl2d {
 //        _font.drawStringAsShapes(_text, 0, 0);
         
         ofPushStyle();
-        ofSetColor(_textColor);
+        ofSetColor(_textColor, 255 * _compoundAlpha);
         if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
         Font::drawString(_text, 1, -1);
         if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
@@ -312,8 +324,8 @@ namespace fl2d {
         if(temp <= 0.0) temp = 0.0;
         
         _alpha = temp;
-        _textColor.a = _alpha;
-        _graphics->__alpha = _alpha;
+//        _textColor.a = _alpha;
+//        _graphics->__alpha = _alpha;
     }
 
     //--------------------------------------------------------------
@@ -321,11 +333,11 @@ namespace fl2d {
     int TextField::textColor() { return _textColor.getHex(); }
     void TextField::textColor(int value) {
         _textColor.setHex(value);
-        _textColor.a = _alpha;
+//        _textColor.a = _alpha;
     }
     void TextField::textColor(ofFloatColor value) {
         _textColor.setHex(value.getHex());
-        _textColor.a = _alpha;
+//        _textColor.a = _alpha;
     }
 
     //--------------------------------------------------------------
@@ -499,6 +511,14 @@ namespace fl2d {
         removeEventListener(MouseEvent::MOUSE_DOWN, this, &TextField::_mouseEventHandler);
     }
     
+    
+    //--------------------------------------------------------------
+    //
+    void TextField::__compoundAlpha(float value){
+        _compoundAlpha = value;
+        _graphics->__compoundAlpha(_compoundAlpha);
+    }
+
     //--------------------------------------------------------------
     //
     void TextField::_drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {

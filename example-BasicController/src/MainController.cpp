@@ -173,7 +173,7 @@ void MainController::_draw() {
     if(_isMinimize) return;
     
     ofPushStyle();
-    ofSetColor(255, 255, 255, 255);
+    ofSetColor(255, 255, 255, 255 * _compoundAlpha);
     flFont::drawString("When the stage has a focus.\nScroll to change scale.\nDrag to change rotatin.", 5, 105);
     ofPopStyle();
 }

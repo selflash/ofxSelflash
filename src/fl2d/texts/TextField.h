@@ -142,7 +142,9 @@ namespace fl2d {
             virtual void update();
             virtual void draw();
             virtual void _draw();
-        
+
+            virtual void __compoundAlpha(float value);
+
             virtual void _drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
             virtual void _drawGraphics(int lineColor, int fillColor, float thickness = 1.0);
         

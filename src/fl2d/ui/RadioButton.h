@@ -37,6 +37,8 @@ namespace fl2d {
             bool _selected;
 
             bool _enabled;
+        
+            bool _hitAreaAlpha = 0.0;
 
         public:
             RadioButton(float width = 100);

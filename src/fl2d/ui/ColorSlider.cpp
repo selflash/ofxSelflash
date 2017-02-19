@@ -78,7 +78,7 @@ namespace fl2d {
         //RED
         _label1Text = new TextField();
         _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
+        _label1Text->y(height * 0);
         _label1Text->width(15);
         _label1Text->autoSize(TextFieldAutoSize::CENTER);
         _label1Text->textColor(_labelNormalColor);
@@ -88,7 +88,7 @@ namespace fl2d {
         //GREEN
         _label2Text = new TextField();
         _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
+        _label2Text->y(height * 1);
         _label2Text->width(15);
         _label2Text->autoSize(TextFieldAutoSize::CENTER);
         _label2Text->textColor(_labelNormalColor);
@@ -98,7 +98,7 @@ namespace fl2d {
         //BLUE
         _label3Text = new TextField();
         _label3Text->x(width + 5);
-        _label3Text->y(height * 2 + 3);
+        _label3Text->y(height * 2);
         _label3Text->width(15);
         _label3Text->autoSize(TextFieldAutoSize::CENTER);
         _label3Text->textColor(_labelNormalColor);
@@ -109,7 +109,7 @@ namespace fl2d {
             //ALPHA
             _label4Text = new TextField();
             _label4Text->x(width + 5);
-            _label4Text->y(height * 3 + 3);
+            _label4Text->y(height * 3);
             _label4Text->width(15);
             _label4Text->autoSize(TextFieldAutoSize::CENTER);
             _label4Text->textColor(_labelNormalColor);
@@ -200,7 +200,7 @@ namespace fl2d {
         //RED
         _label1Text = new TextField();
         _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
+        _label1Text->y(height * 0);
         _label1Text->width(15);
         _label1Text->autoSize(TextFieldAutoSize::CENTER);
         _label1Text->textColor(_labelNormalColor);
@@ -210,7 +210,7 @@ namespace fl2d {
         //GREEN
         _label2Text = new TextField();
         _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
+        _label2Text->y(height * 1);
         _label2Text->width(15);
         _label2Text->autoSize(TextFieldAutoSize::CENTER);
         _label2Text->textColor(_labelNormalColor);
@@ -220,7 +220,7 @@ namespace fl2d {
         //BLUE
         _label3Text = new TextField();
         _label3Text->x(width + 5);
-        _label3Text->y(height * 2 + 3);
+        _label3Text->y(height * 2);
         _label3Text->width(15);
         _label3Text->autoSize(TextFieldAutoSize::CENTER);
         _label3Text->textColor(_labelNormalColor);
@@ -313,7 +313,7 @@ namespace fl2d {
         //RED
         _label1Text = new TextField();
         _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
+        _label1Text->y(height * 0);
         _label1Text->width(15);
         _label1Text->autoSize(TextFieldAutoSize::CENTER);
         _label1Text->textColor(_labelNormalColor);
@@ -323,7 +323,7 @@ namespace fl2d {
         //GREEN
         _label2Text = new TextField();
         _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
+        _label2Text->y(height * 1);
         _label2Text->width(15);
         _label2Text->autoSize(TextFieldAutoSize::CENTER);
         _label2Text->textColor(_labelNormalColor);
@@ -333,7 +333,7 @@ namespace fl2d {
         //BLUE
         _label3Text = new TextField();
         _label3Text->x(width + 5);
-        _label3Text->y(height * 2 + 3);
+        _label3Text->y(height * 2);
         _label3Text->width(15);
         _label3Text->autoSize(TextFieldAutoSize::CENTER);
         _label3Text->textColor(_labelNormalColor);
@@ -343,7 +343,7 @@ namespace fl2d {
         //ALPHA
         _label4Text = new TextField();
         _label4Text->x(width + 5);
-        _label4Text->y(height * 3 + 3);
+        _label4Text->y(height * 3);
         _label4Text->width(15);
         _label4Text->autoSize(TextFieldAutoSize::CENTER);
         _label4Text->textColor(_labelNormalColor);
@@ -433,7 +433,7 @@ namespace fl2d {
         //RED
         _label1Text = new TextField();
         _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
+        _label1Text->y(height * 0);
         _label1Text->width(15);
         _label1Text->autoSize(TextFieldAutoSize::CENTER);
         _label1Text->textColor(_labelNormalColor);
@@ -443,7 +443,7 @@ namespace fl2d {
         //GREEN
         _label2Text = new TextField();
         _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
+        _label2Text->y(height * 1);
         _label2Text->width(15);
         _label2Text->autoSize(TextFieldAutoSize::CENTER);
         _label2Text->textColor(_labelNormalColor);
@@ -453,7 +453,7 @@ namespace fl2d {
         //BLUE
         _label3Text = new TextField();
         _label3Text->x(width + 5);
-        _label3Text->y(height * 2 + 3);
+        _label3Text->y(height * 2);
         _label3Text->width(15);
         _label3Text->autoSize(TextFieldAutoSize::CENTER);
         _label3Text->textColor(_labelNormalColor);
@@ -463,7 +463,7 @@ namespace fl2d {
         //ALPHA
         _label4Text = new TextField();
         _label4Text->x(width + 5);
-        _label4Text->y(height * 3 + 3);
+        _label4Text->y(height * 3);
         _label4Text->width(15);
         _label4Text->autoSize(TextFieldAutoSize::CENTER);
         _label4Text->textColor(_labelNormalColor);

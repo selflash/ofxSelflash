@@ -220,7 +220,7 @@ void DocumentRoot::_keyboardEventHandler(flEvent& event) {
 void DocumentRoot::_moveEventHandler(flEvent& event) {
     //cout << "[DocumentRoot]_moveEventHandler(" << event.type() << ")" << endl;
     
-    cout << "mouse is moving" << endl;
+//    cout << "mouse is moving" << endl;
 }
 
 //--------------------------------------------------------------

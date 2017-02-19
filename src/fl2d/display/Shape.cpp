@@ -65,6 +65,9 @@ namespace fl2d {
     //
     void Shape::draw() {
         if(!visible()) return;
+        
+        ofPushStyle();
+
         ofDisableLighting();
         
         //-- matrix transform.
@@ -78,7 +81,7 @@ namespace fl2d {
         }
         
         glDisable(GL_DEPTH_TEST);
-        ofSetColor(255, 255, 255, 255 * __compoundAlpha);
+        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         ofEnableAlphaBlending();
         _graphics->__draw();
         if(_smoothing) ofEnableSmoothing();
@@ -90,6 +93,8 @@ namespace fl2d {
         if(!bIdentity){
             glPopMatrix();
         }
+        
+        ofPopStyle();
     }
     
     //==============================================================
@@ -98,11 +103,11 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //TODO
-    float Shape::alpha() { return _alpha; }
-    void Shape::alpha(float value) {
-        _alpha = value;
-        _graphics->__alpha = _alpha;
-    }
+//    float Shape::alpha() { return _alpha; }
+//    void Shape::alpha(float value) {
+//        _alpha = value;
+//        _graphics->__alpha = _alpha;
+//    }
 
     //==============================================================
     // PROTECTED / PRIVATE METHOD
@@ -122,5 +127,11 @@ namespace fl2d {
 //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
 
+    //--------------------------------------------------------------
+    //
+    void Shape::__compoundAlpha(float value){
+        _compoundAlpha = value;
+        _graphics->__compoundAlpha(_compoundAlpha);
+    }
 }
 

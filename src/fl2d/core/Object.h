@@ -55,9 +55,9 @@ namespace fl2d {
         public:
             
         protected:
-            bool _debug;
-            int _typeID;
-            int _no;
+            bool _debug = false;
+            int _typeID = 0;
+            int _no = 0;
         
             map<string, shared_ptr<void> > _properties;
         
@@ -83,53 +83,53 @@ namespace fl2d {
 
             //--------------------------------------------------------------
             //
-            bool getBoolProperty(string propertyName) {
+            inline bool getBoolProperty(string propertyName) {
                 return _boolProperties[propertyName];
             }
-            void setBoolProperty(string propertyName, bool value) {
+            inline void setBoolProperty(string propertyName, bool value) {
                 _boolProperties[propertyName] = value;
             }
         
             //--------------------------------------------------------------
             //
-            string getStringProperty(string propertyName) {
+            inline string getStringProperty(string propertyName) {
                 return _stringProperties[propertyName];
             }
-            void setStringProperty(string propertyName, string value) {
+            inline void setStringProperty(string propertyName, string value) {
                 _stringProperties[propertyName] = value;
             }
         
             //--------------------------------------------------------------
             //
-            int getIntProperty(string propertyName) {
+            inline int getIntProperty(string propertyName) {
                 return _intProperties[propertyName];
             }
-            void setIntProperty(string propertyName, int value) {
+            inline void setIntProperty(string propertyName, int value) {
                 _intProperties[propertyName] = value;
             }
         
             //--------------------------------------------------------------
             //
-            float getFloatProperty(string propertyName) {
+            inline float getFloatProperty(string propertyName) {
                 return _floatProperties[propertyName];
             }
-            void setFloatProperty(string propertyName, float value) {
+            inline void setFloatProperty(string propertyName, float value) {
                 _floatProperties[propertyName] = value;
             }
         
             //--------------------------------------------------------------
             //
-            double getDoubleProperty(string propertyName) {
+            inline double getDoubleProperty(string propertyName) {
                 return _doubleProperties[propertyName];
             }
-            void setDoubleProperty(string propertyName, double value) {
+            inline void setDoubleProperty(string propertyName, double value) {
                 _doubleProperties[propertyName] = value;
             }
         
             //--------------------------------------------------------------
             //
             template <class T>
-            T& getProperty(string propertyName) {
+            inline T& getProperty(string propertyName) {
 //                cout << propertyName << ", " << *static_cast<T*>(_properties[propertyName]) << endl;
 //                cout << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << endl;
                 
@@ -138,14 +138,14 @@ namespace fl2d {
             //--------------------------------------------------------------
             //
             template <class T>
-            void setProperty(string propertyName, const T* value) {
+            inline void setProperty(string propertyName, const T* value) {
                 _properties[propertyName] = shared_ptr<T>(new T(*value));
 //                cout << "[Object]setProperty1(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")" << endl;
             }
             //--------------------------------------------------------------
             //
             template <class T>
-            void setProperty(string propertyName, const T& value) {
+            inline void setProperty(string propertyName, const T& value) {
                 _properties[propertyName] = shared_ptr<T>(new T(value));
 
 //                cout << "[Object]setProperty2(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")" << endl;

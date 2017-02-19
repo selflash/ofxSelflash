@@ -305,7 +305,7 @@ void UIComponents::_setup() {
     radio001->x(marginLeft + spacing * 0);
     radio001->y(marginTop + lineSpacing * 0);
     radio001->selected(true);
-    radio001->enabled(false);
+//    radio001->enabled(false);
     radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(radio001);
     radio002 = new flRadioButton();
@@ -566,6 +566,22 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
+//    label = new flTextField();
+//    label->text("Angler");
+//    label->x(marginLeft + spacing * 0 + 25);
+//    label->y(marginTop + lineSpacing * 6);
+//    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    addChild(label);
+//    angler000 = new flAngler(100);
+//    angler000->label(label);
+//    angler000->x(marginLeft + spacing * 0 + 25);
+//    angler000->y(marginTop + lineSpacing * 7);
+////    angler000->alpha(0.0);
+//    addChild(angler000);
+    //--------------------------------------
+    
+    //--------------------------------------
     //2Dパッド
     marginLeft = 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10;
     marginTop = 10;
@@ -658,9 +674,9 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
         
-        if(radio == radio002) {
-            radio001->enabled(radio->selected());
-        }
+//        if(radio == radio002) {
+//            radio001->enabled(radio->selected());
+//        }
     }
     
     //ナンバーダイアラー

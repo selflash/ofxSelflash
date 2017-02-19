@@ -110,7 +110,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_draw() {
-        ofSetColor(255, 255, 255, 255);
+//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _colorWheelImage->draw(0, 0, _uiWidth, _uiHeight);
     }
 

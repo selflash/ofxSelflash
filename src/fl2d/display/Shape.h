@@ -29,14 +29,15 @@ namespace fl2d {
             virtual void update();
             virtual void draw();
             
-            virtual float alpha();
-            virtual void alpha(float value);
+//            virtual float alpha();
+//            virtual void alpha(float value);
         
             virtual inline Graphics* graphics() { return _graphics; }
 
         protected:
 //            virtual void updateOnFrame(){};
             virtual void _updateRect();
+            virtual void __compoundAlpha(float value);
         
         private:
             void _updateEventHandler(ofEventArgs& args);

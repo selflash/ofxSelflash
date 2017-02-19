@@ -27,7 +27,31 @@ class BasicController : public flSprite {
         flTextField* text033 = NULL; flTextField* text034 = NULL; flTextField* text035 = NULL;
         flTextField* text036 = NULL; flTextField* text037 = NULL; flTextField* text038 = NULL;
         flTextField* text039 = NULL;
-        //テキストフィールド(100)    
+        flTextField* text040 = NULL; flTextField* text041 = NULL; flTextField* text042 = NULL;
+        flTextField* text043 = NULL; flTextField* text044 = NULL; flTextField* text045 = NULL;
+        flTextField* text046 = NULL; flTextField* text047 = NULL; flTextField* text048 = NULL;
+        flTextField* text049 = NULL;
+        flTextField* text050 = NULL; flTextField* text051 = NULL; flTextField* text052 = NULL;
+        flTextField* text053 = NULL; flTextField* text054 = NULL; flTextField* text055 = NULL;
+        flTextField* text056 = NULL; flTextField* text057 = NULL; flTextField* text058 = NULL;
+        flTextField* text059 = NULL;
+        flTextField* text060 = NULL; flTextField* text061 = NULL; flTextField* text062 = NULL;
+        flTextField* text063 = NULL; flTextField* text064 = NULL; flTextField* text065 = NULL;
+        flTextField* text066 = NULL; flTextField* text067 = NULL; flTextField* text068 = NULL;
+        flTextField* text069 = NULL;
+        flTextField* text070 = NULL; flTextField* text071 = NULL; flTextField* text072 = NULL;
+        flTextField* text073 = NULL; flTextField* text074 = NULL; flTextField* text075 = NULL;
+        flTextField* text076 = NULL; flTextField* text077 = NULL; flTextField* text078 = NULL;
+        flTextField* text079 = NULL;
+        flTextField* text080 = NULL; flTextField* text081 = NULL; flTextField* text082 = NULL;
+        flTextField* text083 = NULL; flTextField* text084 = NULL; flTextField* text085 = NULL;
+        flTextField* text086 = NULL; flTextField* text087 = NULL; flTextField* text088 = NULL;
+        flTextField* text089 = NULL;
+        flTextField* text090 = NULL; flTextField* text091 = NULL; flTextField* text092 = NULL;
+        flTextField* text093 = NULL; flTextField* text094 = NULL; flTextField* text095 = NULL;
+        flTextField* text096 = NULL; flTextField* text097 = NULL; flTextField* text098 = NULL;
+        flTextField* text099 = NULL;
+        //テキストフィールド(100)
         flTextField* text100 = NULL; flTextField* text101 = NULL; flTextField* text102 = NULL;
         flTextField* text103 = NULL; flTextField* text104 = NULL; flTextField* text105 = NULL;
         flTextField* text106 = NULL; flTextField* text107 = NULL; flTextField* text108 = NULL;
@@ -44,7 +68,31 @@ class BasicController : public flSprite {
         flTextField* text133 = NULL; flTextField* text134 = NULL; flTextField* text135 = NULL;
         flTextField* text136 = NULL; flTextField* text137 = NULL; flTextField* text138 = NULL;
         flTextField* text139 = NULL;
-        //テキストフィールド(200)    
+        flTextField* text140 = NULL; flTextField* text141 = NULL; flTextField* text142 = NULL;
+        flTextField* text143 = NULL; flTextField* text144 = NULL; flTextField* text145 = NULL;
+        flTextField* text146 = NULL; flTextField* text147 = NULL; flTextField* text148 = NULL;
+        flTextField* text149 = NULL;
+        flTextField* text150 = NULL; flTextField* text151 = NULL; flTextField* text152 = NULL;
+        flTextField* text153 = NULL; flTextField* text154 = NULL; flTextField* text155 = NULL;
+        flTextField* text156 = NULL; flTextField* text157 = NULL; flTextField* text158 = NULL;
+        flTextField* text159 = NULL;
+        flTextField* text160 = NULL; flTextField* text161 = NULL; flTextField* text162 = NULL;
+        flTextField* text163 = NULL; flTextField* text164 = NULL; flTextField* text165 = NULL;
+        flTextField* text166 = NULL; flTextField* text167 = NULL; flTextField* text168 = NULL;
+        flTextField* text169 = NULL;
+        flTextField* text170 = NULL; flTextField* text171 = NULL; flTextField* text172 = NULL;
+        flTextField* text173 = NULL; flTextField* text174 = NULL; flTextField* text175 = NULL;
+        flTextField* text176 = NULL; flTextField* text177 = NULL; flTextField* text178 = NULL;
+        flTextField* text179 = NULL;
+        flTextField* text180 = NULL; flTextField* text181 = NULL; flTextField* text182 = NULL;
+        flTextField* text183 = NULL; flTextField* text184 = NULL; flTextField* text185 = NULL;
+        flTextField* text186 = NULL; flTextField* text187 = NULL; flTextField* text188 = NULL;
+        flTextField* text189 = NULL;
+        flTextField* text190 = NULL; flTextField* text191 = NULL; flTextField* text192 = NULL;
+        flTextField* text193 = NULL; flTextField* text194 = NULL; flTextField* text195 = NULL;
+        flTextField* text196 = NULL; flTextField* text197 = NULL; flTextField* text198 = NULL;
+        flTextField* text199 = NULL;
+        //テキストフィールド(200)
         flTextField* text200 = NULL; flTextField* text201 = NULL; flTextField* text202 = NULL;
         flTextField* text203 = NULL; flTextField* text204 = NULL; flTextField* text205 = NULL;
         flTextField* text206 = NULL; flTextField* text207 = NULL; flTextField* text208 = NULL;
@@ -190,6 +238,16 @@ class BasicController : public flSprite {
         flButton* button135 = NULL; flButton* button136 = NULL; flButton* button137 = NULL; flButton* button138 = NULL; flButton* button139 = NULL;
         flButton* button140 = NULL; flButton* button141 = NULL; flButton* button142 = NULL; flButton* button143 = NULL; flButton* button144 = NULL;
         flButton* button145 = NULL; flButton* button146 = NULL; flButton* button147 = NULL; flButton* button148 = NULL; flButton* button149 = NULL;
+        flButton* button150 = NULL; flButton* button151 = NULL; flButton* button152 = NULL; flButton* button153 = NULL; flButton* button154 = NULL;
+        flButton* button155 = NULL; flButton* button156 = NULL; flButton* button157 = NULL; flButton* button158 = NULL; flButton* button159 = NULL;
+        flButton* button160 = NULL; flButton* button161 = NULL; flButton* button162 = NULL; flButton* button163 = NULL; flButton* button164 = NULL;
+        flButton* button165 = NULL; flButton* button166 = NULL; flButton* button167 = NULL; flButton* button168 = NULL; flButton* button169 = NULL;
+        flButton* button170 = NULL; flButton* button171 = NULL; flButton* button172 = NULL; flButton* button173 = NULL; flButton* button174 = NULL;
+        flButton* button175 = NULL; flButton* button176 = NULL; flButton* button177 = NULL; flButton* button178 = NULL; flButton* button179 = NULL;
+        flButton* button180 = NULL; flButton* button181 = NULL; flButton* button182 = NULL; flButton* button183 = NULL; flButton* button184 = NULL;
+        flButton* button185 = NULL; flButton* button186 = NULL; flButton* button187 = NULL; flButton* button188 = NULL; flButton* button189 = NULL;
+        flButton* button190 = NULL; flButton* button191 = NULL; flButton* button192 = NULL; flButton* button193 = NULL; flButton* button194 = NULL;
+        flButton* button195 = NULL; flButton* button196 = NULL; flButton* button197 = NULL; flButton* button198 = NULL; flButton* button199 = NULL;
         //ボタン(200)
         flButton* button200 = NULL; flButton* button201 = NULL; flButton* button202 = NULL; flButton* button203 = NULL; flButton* button204 = NULL;
         flButton* button205 = NULL; flButton* button206 = NULL; flButton* button207 = NULL; flButton* button208 = NULL; flButton* button209 = NULL;
@@ -197,11 +255,17 @@ class BasicController : public flSprite {
         flButton* button215 = NULL; flButton* button216 = NULL; flButton* button217 = NULL; flButton* button218 = NULL; flButton* button219 = NULL;
         flButton* button220 = NULL; flButton* button221 = NULL; flButton* button222 = NULL; flButton* button223 = NULL; flButton* button224 = NULL;
         flButton* button225 = NULL; flButton* button226 = NULL; flButton* button227 = NULL; flButton* button228 = NULL; flButton* button229 = NULL;
+        flButton* button290 = NULL; flButton* button291 = NULL; flButton* button292 = NULL; flButton* button293 = NULL; flButton* button294 = NULL;
+        flButton* button295 = NULL; flButton* button296 = NULL; flButton* button297 = NULL; flButton* button298 = NULL; flButton* button299 = NULL;
         //ボタン(300)
         flButton* button300 = NULL; flButton* button301 = NULL; flButton* button302 = NULL; flButton* button303 = NULL; flButton* button304 = NULL;
         flButton* button305 = NULL; flButton* button306 = NULL; flButton* button307 = NULL; flButton* button308 = NULL; flButton* button309 = NULL;
         flButton* button310 = NULL; flButton* button311 = NULL; flButton* button312 = NULL; flButton* button313 = NULL; flButton* button314 = NULL;
         flButton* button315 = NULL; flButton* button316 = NULL; flButton* button317 = NULL; flButton* button318 = NULL; flButton* button319 = NULL;
+        flButton* button350 = NULL; flButton* button351 = NULL; flButton* button352 = NULL; flButton* button353 = NULL; flButton* button354 = NULL;
+        flButton* button355 = NULL; flButton* button356 = NULL; flButton* button357 = NULL; flButton* button358 = NULL; flButton* button359 = NULL;
+        flButton* button390 = NULL; flButton* button391 = NULL; flButton* button392 = NULL; flButton* button393 = NULL; flButton* button394 = NULL;
+        flButton* button395 = NULL; flButton* button396 = NULL; flButton* button397 = NULL; flButton* button398 = NULL; flButton* button399 = NULL;
         //ボタン(400)
         flButton* button400 = NULL; flButton* button401 = NULL; flButton* button402 = NULL; flButton* button403 = NULL; flButton* button404 = NULL;
         flButton* button405 = NULL; flButton* button406 = NULL; flButton* button407 = NULL; flButton* button408 = NULL; flButton* button409 = NULL;
@@ -216,7 +280,10 @@ class BasicController : public flSprite {
         //ボタン(600)
         flButton* button600 = NULL; flButton* button601 = NULL; flButton* button602 = NULL; flButton* button603 = NULL; flButton* button604 = NULL;
         flButton* button605 = NULL; flButton* button606 = NULL; flButton* button607 = NULL; flButton* button608 = NULL; flButton* button609 = NULL;
-        flButton* button610 = NULL;
+        flButton* button610 = NULL; flButton* button611 = NULL; flButton* button612 = NULL; flButton* button613 = NULL; flButton* button614 = NULL;
+        flButton* button615 = NULL; flButton* button616 = NULL; flButton* button617 = NULL; flButton* button618 = NULL; flButton* button619 = NULL;
+        flButton* button620 = NULL; flButton* button621 = NULL; flButton* button622 = NULL; flButton* button623 = NULL; flButton* button624 = NULL;
+        flButton* button625 = NULL; flButton* button626 = NULL; flButton* button627 = NULL; flButton* button628 = NULL; flButton* button629 = NULL;
         //ボタン(700)
         flButton* button700 = NULL; flButton* button701 = NULL; flButton* button702 = NULL; flButton* button703 = NULL; flButton* button704 = NULL;
         flButton* button705 = NULL; flButton* button706 = NULL; flButton* button707 = NULL; flButton* button708 = NULL; flButton* button709 = NULL;
@@ -242,6 +309,9 @@ class BasicController : public flSprite {
         flSlider* slider020 = NULL; flSlider* slider021 = NULL; flSlider* slider022 = NULL; flSlider* slider023 = NULL;
         flSlider* slider024 = NULL; flSlider* slider025 = NULL; flSlider* slider026 = NULL; flSlider* slider027 = NULL;
         flSlider* slider028 = NULL; flSlider* slider029 = NULL;
+        flSlider* slider030 = NULL; flSlider* slider031 = NULL; flSlider* slider032 = NULL; flSlider* slider033 = NULL;
+        flSlider* slider034 = NULL; flSlider* slider035 = NULL; flSlider* slider036 = NULL; flSlider* slider037 = NULL;
+        flSlider* slider038 = NULL; flSlider* slider039 = NULL;
         //スライダー(100)
         flSlider* slider100 = NULL; flSlider* slider101 = NULL; flSlider* slider102 = NULL; flSlider* slider103 = NULL;
         flSlider* slider104 = NULL; flSlider* slider105 = NULL; flSlider* slider106 = NULL; flSlider* slider107 = NULL;
@@ -252,6 +322,9 @@ class BasicController : public flSprite {
         flSlider* slider120 = NULL; flSlider* slider121 = NULL; flSlider* slider122 = NULL; flSlider* slider123 = NULL;
         flSlider* slider124 = NULL; flSlider* slider125 = NULL; flSlider* slider126 = NULL; flSlider* slider127 = NULL;
         flSlider* slider128 = NULL; flSlider* slider129 = NULL;
+        flSlider* slider130 = NULL; flSlider* slider131 = NULL; flSlider* slider132 = NULL; flSlider* slider133 = NULL;
+        flSlider* slider134 = NULL; flSlider* slider135 = NULL; flSlider* slider136 = NULL; flSlider* slider137 = NULL;
+        flSlider* slider138 = NULL; flSlider* slider139 = NULL;
         //スライダー(200)
         flSlider* slider200 = NULL; flSlider* slider201 = NULL; flSlider* slider202 = NULL; flSlider* slider203 = NULL;
         flSlider* slider204 = NULL; flSlider* slider205 = NULL; flSlider* slider206 = NULL; flSlider* slider207 = NULL;
@@ -262,6 +335,9 @@ class BasicController : public flSprite {
         flSlider* slider220 = NULL; flSlider* slider221 = NULL; flSlider* slider222 = NULL; flSlider* slider223 = NULL;
         flSlider* slider224 = NULL; flSlider* slider225 = NULL; flSlider* slider226 = NULL; flSlider* slider227 = NULL;
         flSlider* slider228 = NULL; flSlider* slider229 = NULL;
+        flSlider* slider230 = NULL; flSlider* slider231 = NULL; flSlider* slider232 = NULL; flSlider* slider233 = NULL;
+        flSlider* slider234 = NULL; flSlider* slider235 = NULL; flSlider* slider236 = NULL; flSlider* slider237 = NULL;
+        flSlider* slider238 = NULL; flSlider* slider239 = NULL;
         //スライダー(300)
         flSlider* slider300 = NULL; flSlider* slider301 = NULL; flSlider* slider302 = NULL; flSlider* slider303 = NULL;
         flSlider* slider304 = NULL; flSlider* slider305 = NULL; flSlider* slider306 = NULL; flSlider* slider307 = NULL;
@@ -272,6 +348,9 @@ class BasicController : public flSprite {
         flSlider* slider320 = NULL; flSlider* slider321 = NULL; flSlider* slider322 = NULL; flSlider* slider323 = NULL;
         flSlider* slider324 = NULL; flSlider* slider325 = NULL; flSlider* slider326 = NULL; flSlider* slider327 = NULL;
         flSlider* slider328 = NULL; flSlider* slider329 = NULL;
+        flSlider* slider330 = NULL; flSlider* slider331 = NULL; flSlider* slider332 = NULL; flSlider* slider333 = NULL;
+        flSlider* slider334 = NULL; flSlider* slider335 = NULL; flSlider* slider336 = NULL; flSlider* slider337 = NULL;
+        flSlider* slider338 = NULL; flSlider* slider339 = NULL;
         //スライダー(400)
         flSlider* slider400 = NULL; flSlider* slider401 = NULL; flSlider* slider402 = NULL; flSlider* slider403 = NULL;
         flSlider* slider404 = NULL; flSlider* slider405 = NULL; flSlider* slider406 = NULL; flSlider* slider407 = NULL;
@@ -282,6 +361,9 @@ class BasicController : public flSprite {
         flSlider* slider420 = NULL; flSlider* slider421 = NULL; flSlider* slider422 = NULL; flSlider* slider423 = NULL;
         flSlider* slider424 = NULL; flSlider* slider425 = NULL; flSlider* slider426 = NULL; flSlider* slider427 = NULL;
         flSlider* slider428 = NULL; flSlider* slider429 = NULL;
+        flSlider* slider430 = NULL; flSlider* slider431 = NULL; flSlider* slider432 = NULL; flSlider* slider433 = NULL;
+        flSlider* slider434 = NULL; flSlider* slider435 = NULL; flSlider* slider436 = NULL; flSlider* slider437 = NULL;
+        flSlider* slider438 = NULL; flSlider* slider439 = NULL;
         //スライダー(500)
         flSlider* slider500 = NULL; flSlider* slider501 = NULL; flSlider* slider502 = NULL; flSlider* slider503 = NULL;
         flSlider* slider504 = NULL; flSlider* slider505 = NULL; flSlider* slider506 = NULL; flSlider* slider507 = NULL;
@@ -292,6 +374,9 @@ class BasicController : public flSprite {
         flSlider* slider520 = NULL; flSlider* slider521 = NULL; flSlider* slider522 = NULL; flSlider* slider523 = NULL;
         flSlider* slider524 = NULL; flSlider* slider525 = NULL; flSlider* slider526 = NULL; flSlider* slider527 = NULL;
         flSlider* slider528 = NULL; flSlider* slider529 = NULL;
+        flSlider* slider530 = NULL; flSlider* slider531 = NULL; flSlider* slider532 = NULL; flSlider* slider533 = NULL;
+        flSlider* slider534 = NULL; flSlider* slider535 = NULL; flSlider* slider536 = NULL; flSlider* slider537 = NULL;
+        flSlider* slider538 = NULL; flSlider* slider539 = NULL;
         //スライダー(600)
         flSlider* slider600 = NULL; flSlider* slider601 = NULL; flSlider* slider602 = NULL; flSlider* slider603 = NULL;
         flSlider* slider604 = NULL; flSlider* slider605 = NULL; flSlider* slider606 = NULL; flSlider* slider607 = NULL;
@@ -302,6 +387,48 @@ class BasicController : public flSprite {
         flSlider* slider620 = NULL; flSlider* slider621 = NULL; flSlider* slider622 = NULL; flSlider* slider623 = NULL;
         flSlider* slider624 = NULL; flSlider* slider625 = NULL; flSlider* slider626 = NULL; flSlider* slider627 = NULL;
         flSlider* slider628 = NULL; flSlider* slider629 = NULL;
+        flSlider* slider630 = NULL; flSlider* slider631 = NULL; flSlider* slider632 = NULL; flSlider* slider633 = NULL;
+        flSlider* slider634 = NULL; flSlider* slider635 = NULL; flSlider* slider636 = NULL; flSlider* slider637 = NULL;
+        flSlider* slider638 = NULL; flSlider* slider639 = NULL;
+        //スライダー(700)
+        flSlider* slider700 = NULL; flSlider* slider701 = NULL; flSlider* slider702 = NULL; flSlider* slider703 = NULL;
+        flSlider* slider704 = NULL; flSlider* slider705 = NULL; flSlider* slider706 = NULL; flSlider* slider707 = NULL;
+        flSlider* slider708 = NULL; flSlider* slider709 = NULL;
+        flSlider* slider710 = NULL; flSlider* slider711 = NULL; flSlider* slider712 = NULL; flSlider* slider713 = NULL;
+        flSlider* slider714 = NULL; flSlider* slider715 = NULL; flSlider* slider716 = NULL; flSlider* slider717 = NULL;
+        flSlider* slider718 = NULL; flSlider* slider719 = NULL;
+        flSlider* slider720 = NULL; flSlider* slider721 = NULL; flSlider* slider722 = NULL; flSlider* slider723 = NULL;
+        flSlider* slider724 = NULL; flSlider* slider725 = NULL; flSlider* slider726 = NULL; flSlider* slider727 = NULL;
+        flSlider* slider728 = NULL; flSlider* slider729 = NULL;
+        flSlider* slider730 = NULL; flSlider* slider731 = NULL; flSlider* slider732 = NULL; flSlider* slider733 = NULL;
+        flSlider* slider734 = NULL; flSlider* slider735 = NULL; flSlider* slider736 = NULL; flSlider* slider737 = NULL;
+        flSlider* slider738 = NULL; flSlider* slider739 = NULL;
+        //スライダー(800)
+        flSlider* slider800 = NULL; flSlider* slider801 = NULL; flSlider* slider802 = NULL; flSlider* slider803 = NULL;
+        flSlider* slider804 = NULL; flSlider* slider805 = NULL; flSlider* slider806 = NULL; flSlider* slider807 = NULL;
+        flSlider* slider808 = NULL; flSlider* slider809 = NULL;
+        flSlider* slider810 = NULL; flSlider* slider811 = NULL; flSlider* slider812 = NULL; flSlider* slider813 = NULL;
+        flSlider* slider814 = NULL; flSlider* slider815 = NULL; flSlider* slider816 = NULL; flSlider* slider817 = NULL;
+        flSlider* slider818 = NULL; flSlider* slider819 = NULL;
+        flSlider* slider820 = NULL; flSlider* slider821 = NULL; flSlider* slider822 = NULL; flSlider* slider823 = NULL;
+        flSlider* slider824 = NULL; flSlider* slider825 = NULL; flSlider* slider826 = NULL; flSlider* slider827 = NULL;
+        flSlider* slider828 = NULL; flSlider* slider829 = NULL;
+        flSlider* slider830 = NULL; flSlider* slider831 = NULL; flSlider* slider832 = NULL; flSlider* slider833 = NULL;
+        flSlider* slider834 = NULL; flSlider* slider835 = NULL; flSlider* slider836 = NULL; flSlider* slider837 = NULL;
+        flSlider* slider838 = NULL; flSlider* slider839 = NULL;
+        //スライダー(900)
+        flSlider* slider900 = NULL; flSlider* slider901 = NULL; flSlider* slider902 = NULL; flSlider* slider903 = NULL;
+        flSlider* slider904 = NULL; flSlider* slider905 = NULL; flSlider* slider906 = NULL; flSlider* slider907 = NULL;
+        flSlider* slider908 = NULL; flSlider* slider909 = NULL;
+        flSlider* slider910 = NULL; flSlider* slider911 = NULL; flSlider* slider912 = NULL; flSlider* slider913 = NULL;
+        flSlider* slider914 = NULL; flSlider* slider915 = NULL; flSlider* slider916 = NULL; flSlider* slider917 = NULL;
+        flSlider* slider918 = NULL; flSlider* slider919 = NULL;
+        flSlider* slider920 = NULL; flSlider* slider921 = NULL; flSlider* slider922 = NULL; flSlider* slider923 = NULL;
+        flSlider* slider924 = NULL; flSlider* slider925 = NULL; flSlider* slider926 = NULL; flSlider* slider927 = NULL;
+        flSlider* slider928 = NULL; flSlider* slider929 = NULL;
+        flSlider* slider930 = NULL; flSlider* slider931 = NULL; flSlider* slider932 = NULL; flSlider* slider933 = NULL;
+        flSlider* slider934 = NULL; flSlider* slider935 = NULL; flSlider* slider936 = NULL; flSlider* slider937 = NULL;
+        flSlider* slider938 = NULL; flSlider* slider939 = NULL;
         //--------------------------------------
 
         //--------------------------------------
@@ -662,8 +789,10 @@ class BasicController : public flSprite {
         flNumberDialer* dialer005 = NULL; flNumberDialer* dialer006 = NULL; flNumberDialer* dialer007 = NULL; flNumberDialer* dialer008 = NULL; flNumberDialer* dialer009 = NULL;
         flNumberDialer* dialer010 = NULL; flNumberDialer* dialer011 = NULL; flNumberDialer* dialer012 = NULL; flNumberDialer* dialer013 = NULL; flNumberDialer* dialer014 = NULL;
         flNumberDialer* dialer015 = NULL; flNumberDialer* dialer016 = NULL; flNumberDialer* dialer017 = NULL; flNumberDialer* dialer018 = NULL; flNumberDialer* dialer019 = NULL;
-        flNumberDialer* dialer020 = NULL; flNumberDialer* dialer021 = NULL; flNumberDialer* dialer022 = NULL; flNumberDialer* dialer023 = NULL; flNumberDialer* dialer024;
+        flNumberDialer* dialer020 = NULL; flNumberDialer* dialer021 = NULL; flNumberDialer* dialer022 = NULL; flNumberDialer* dialer023 = NULL; flNumberDialer* dialer024 = NULL;
         flNumberDialer* dialer025 = NULL; flNumberDialer* dialer026 = NULL; flNumberDialer* dialer027 = NULL; flNumberDialer* dialer028 = NULL; flNumberDialer* dialer029 = NULL;
+        flNumberDialer* dialer030 = NULL; flNumberDialer* dialer031 = NULL; flNumberDialer* dialer032 = NULL; flNumberDialer* dialer033 = NULL; flNumberDialer* dialer034 = NULL;
+        flNumberDialer* dialer035 = NULL; flNumberDialer* dialer036 = NULL; flNumberDialer* dialer037 = NULL; flNumberDialer* dialer038 = NULL; flNumberDialer* dialer039 = NULL;
         //ボタン(100)
         flNumberDialer* dialer100 = NULL; flNumberDialer* dialer101 = NULL; flNumberDialer* dialer102 = NULL; flNumberDialer* dialer103 = NULL; flNumberDialer* dialer104 = NULL;
         flNumberDialer* dialer105 = NULL; flNumberDialer* dialer106 = NULL; flNumberDialer* dialer107 = NULL; flNumberDialer* dialer108 = NULL; flNumberDialer* dialer109 = NULL;
@@ -671,6 +800,8 @@ class BasicController : public flSprite {
         flNumberDialer* dialer115 = NULL; flNumberDialer* dialer116 = NULL; flNumberDialer* dialer117 = NULL; flNumberDialer* dialer118 = NULL; flNumberDialer* dialer119 = NULL;
         flNumberDialer* dialer120 = NULL; flNumberDialer* dialer121 = NULL; flNumberDialer* dialer122 = NULL; flNumberDialer* dialer123 = NULL; flNumberDialer* dialer124 = NULL;
         flNumberDialer* dialer125 = NULL; flNumberDialer* dialer126 = NULL; flNumberDialer* dialer127 = NULL; flNumberDialer* dialer128 = NULL; flNumberDialer* dialer129 = NULL;
+        flNumberDialer* dialer130 = NULL; flNumberDialer* dialer131 = NULL; flNumberDialer* dialer132 = NULL; flNumberDialer* dialer133 = NULL; flNumberDialer* dialer134 = NULL;
+        flNumberDialer* dialer135 = NULL; flNumberDialer* dialer136 = NULL; flNumberDialer* dialer137 = NULL; flNumberDialer* dialer138 = NULL; flNumberDialer* dialer139 = NULL;
         //ボタン(200)
         flNumberDialer* dialer200 = NULL; flNumberDialer* dialer201 = NULL; flNumberDialer* dialer202 = NULL; flNumberDialer* dialer203 = NULL; flNumberDialer* dialer204 = NULL;
         flNumberDialer* dialer205 = NULL; flNumberDialer* dialer206 = NULL; flNumberDialer* dialer207 = NULL; flNumberDialer* dialer208 = NULL; flNumberDialer* dialer209 = NULL;
@@ -678,34 +809,71 @@ class BasicController : public flSprite {
         flNumberDialer* dialer215 = NULL; flNumberDialer* dialer216 = NULL; flNumberDialer* dialer217 = NULL; flNumberDialer* dialer218 = NULL; flNumberDialer* dialer219 = NULL;
         flNumberDialer* dialer220 = NULL; flNumberDialer* dialer221 = NULL; flNumberDialer* dialer222 = NULL; flNumberDialer* dialer223 = NULL; flNumberDialer* dialer224 = NULL;
         flNumberDialer* dialer225 = NULL; flNumberDialer* dialer226 = NULL; flNumberDialer* dialer227 = NULL; flNumberDialer* dialer228 = NULL; flNumberDialer* dialer229 = NULL;
+        flNumberDialer* dialer230 = NULL; flNumberDialer* dialer231 = NULL; flNumberDialer* dialer232 = NULL; flNumberDialer* dialer233 = NULL; flNumberDialer* dialer234 = NULL;
+        flNumberDialer* dialer235 = NULL; flNumberDialer* dialer236 = NULL; flNumberDialer* dialer237 = NULL; flNumberDialer* dialer238 = NULL; flNumberDialer* dialer239 = NULL;
         //ボタン(300)
         flNumberDialer* dialer300 = NULL; flNumberDialer* dialer301 = NULL; flNumberDialer* dialer302 = NULL; flNumberDialer* dialer303 = NULL; flNumberDialer* dialer304 = NULL;
         flNumberDialer* dialer305 = NULL; flNumberDialer* dialer306 = NULL; flNumberDialer* dialer307 = NULL; flNumberDialer* dialer308 = NULL; flNumberDialer* dialer309 = NULL;
-        flNumberDialer* dialer310 = NULL;
+        flNumberDialer* dialer310 = NULL; flNumberDialer* dialer311 = NULL; flNumberDialer* dialer312 = NULL; flNumberDialer* dialer313 = NULL; flNumberDialer* dialer314 = NULL;
+        flNumberDialer* dialer315 = NULL; flNumberDialer* dialer316 = NULL; flNumberDialer* dialer317 = NULL; flNumberDialer* dialer318 = NULL; flNumberDialer* dialer319 = NULL;
+        flNumberDialer* dialer320 = NULL; flNumberDialer* dialer321 = NULL; flNumberDialer* dialer322 = NULL; flNumberDialer* dialer323 = NULL; flNumberDialer* dialer324 = NULL;
+        flNumberDialer* dialer325 = NULL; flNumberDialer* dialer326 = NULL; flNumberDialer* dialer327 = NULL; flNumberDialer* dialer328 = NULL; flNumberDialer* dialer329 = NULL;
+        flNumberDialer* dialer330 = NULL; flNumberDialer* dialer331 = NULL; flNumberDialer* dialer332 = NULL; flNumberDialer* dialer333 = NULL; flNumberDialer* dialer334 = NULL;
+        flNumberDialer* dialer335 = NULL; flNumberDialer* dialer336 = NULL; flNumberDialer* dialer337 = NULL; flNumberDialer* dialer338 = NULL; flNumberDialer* dialer339 = NULL;
         //ボタン(400)
         flNumberDialer* dialer400 = NULL; flNumberDialer* dialer401 = NULL; flNumberDialer* dialer402 = NULL; flNumberDialer* dialer403 = NULL; flNumberDialer* dialer404 = NULL;
         flNumberDialer* dialer405 = NULL; flNumberDialer* dialer406 = NULL; flNumberDialer* dialer407 = NULL; flNumberDialer* dialer408 = NULL; flNumberDialer* dialer409 = NULL;
-        flNumberDialer* dialer410 = NULL;
+        flNumberDialer* dialer410 = NULL; flNumberDialer* dialer411 = NULL; flNumberDialer* dialer412 = NULL; flNumberDialer* dialer413 = NULL; flNumberDialer* dialer414 = NULL;
+        flNumberDialer* dialer415 = NULL; flNumberDialer* dialer416 = NULL; flNumberDialer* dialer417 = NULL; flNumberDialer* dialer418 = NULL; flNumberDialer* dialer419 = NULL;
+        flNumberDialer* dialer420 = NULL; flNumberDialer* dialer421 = NULL; flNumberDialer* dialer422 = NULL; flNumberDialer* dialer423 = NULL; flNumberDialer* dialer424 = NULL;
+        flNumberDialer* dialer425 = NULL; flNumberDialer* dialer426 = NULL; flNumberDialer* dialer427 = NULL; flNumberDialer* dialer428 = NULL; flNumberDialer* dialer429 = NULL;
+        flNumberDialer* dialer430 = NULL; flNumberDialer* dialer431 = NULL; flNumberDialer* dialer432 = NULL; flNumberDialer* dialer433 = NULL; flNumberDialer* dialer434 = NULL;
+        flNumberDialer* dialer435 = NULL; flNumberDialer* dialer436 = NULL; flNumberDialer* dialer437 = NULL; flNumberDialer* dialer438 = NULL; flNumberDialer* dialer439 = NULL;
         //ボタン(500)
         flNumberDialer* dialer500 = NULL; flNumberDialer* dialer501 = NULL; flNumberDialer* dialer502 = NULL; flNumberDialer* dialer503 = NULL; flNumberDialer* dialer504 = NULL;
         flNumberDialer* dialer505 = NULL; flNumberDialer* dialer506 = NULL; flNumberDialer* dialer507 = NULL; flNumberDialer* dialer508 = NULL; flNumberDialer* dialer509 = NULL;
-        flNumberDialer* dialer510 = NULL;
+        flNumberDialer* dialer510 = NULL; flNumberDialer* dialer511 = NULL; flNumberDialer* dialer512 = NULL; flNumberDialer* dialer513 = NULL; flNumberDialer* dialer514 = NULL;
+        flNumberDialer* dialer515 = NULL; flNumberDialer* dialer516 = NULL; flNumberDialer* dialer517 = NULL; flNumberDialer* dialer518 = NULL; flNumberDialer* dialer519 = NULL;
+        flNumberDialer* dialer520 = NULL; flNumberDialer* dialer521 = NULL; flNumberDialer* dialer522 = NULL; flNumberDialer* dialer523 = NULL; flNumberDialer* dialer524 = NULL;
+        flNumberDialer* dialer525 = NULL; flNumberDialer* dialer526 = NULL; flNumberDialer* dialer527 = NULL; flNumberDialer* dialer528 = NULL; flNumberDialer* dialer529 = NULL;
+        flNumberDialer* dialer530 = NULL; flNumberDialer* dialer531 = NULL; flNumberDialer* dialer532 = NULL; flNumberDialer* dialer533 = NULL; flNumberDialer* dialer534 = NULL;
+        flNumberDialer* dialer535 = NULL; flNumberDialer* dialer536 = NULL; flNumberDialer* dialer537 = NULL; flNumberDialer* dialer538 = NULL; flNumberDialer* dialer539 = NULL;
         //ボタン(600)
         flNumberDialer* dialer600 = NULL; flNumberDialer* dialer601 = NULL; flNumberDialer* dialer602 = NULL; flNumberDialer* dialer603 = NULL; flNumberDialer* dialer604 = NULL;
         flNumberDialer* dialer605 = NULL; flNumberDialer* dialer606 = NULL; flNumberDialer* dialer607 = NULL; flNumberDialer* dialer608 = NULL; flNumberDialer* dialer609 = NULL;
-        flNumberDialer* dialer610 = NULL;
+        flNumberDialer* dialer610 = NULL; flNumberDialer* dialer611 = NULL; flNumberDialer* dialer612 = NULL; flNumberDialer* dialer613 = NULL; flNumberDialer* dialer614 = NULL;
+        flNumberDialer* dialer615 = NULL; flNumberDialer* dialer616 = NULL; flNumberDialer* dialer617 = NULL; flNumberDialer* dialer618 = NULL; flNumberDialer* dialer619 = NULL;
+        flNumberDialer* dialer620 = NULL; flNumberDialer* dialer621 = NULL; flNumberDialer* dialer622 = NULL; flNumberDialer* dialer623 = NULL; flNumberDialer* dialer624 = NULL;
+        flNumberDialer* dialer625 = NULL; flNumberDialer* dialer626 = NULL; flNumberDialer* dialer627 = NULL; flNumberDialer* dialer628 = NULL; flNumberDialer* dialer629 = NULL;
+        flNumberDialer* dialer630 = NULL; flNumberDialer* dialer631 = NULL; flNumberDialer* dialer632 = NULL; flNumberDialer* dialer633 = NULL; flNumberDialer* dialer634 = NULL;
+        flNumberDialer* dialer635 = NULL; flNumberDialer* dialer636 = NULL; flNumberDialer* dialer637 = NULL; flNumberDialer* dialer638 = NULL; flNumberDialer* dialer639 = NULL;
         //ボタン(700)
         flNumberDialer* dialer700 = NULL; flNumberDialer* dialer701 = NULL; flNumberDialer* dialer702 = NULL; flNumberDialer* dialer703 = NULL; flNumberDialer* dialer704 = NULL;
         flNumberDialer* dialer705 = NULL; flNumberDialer* dialer706 = NULL; flNumberDialer* dialer707 = NULL; flNumberDialer* dialer708 = NULL; flNumberDialer* dialer709 = NULL;
-        flNumberDialer* dialer710 = NULL;
+        flNumberDialer* dialer710 = NULL; flNumberDialer* dialer711 = NULL; flNumberDialer* dialer712 = NULL; flNumberDialer* dialer713 = NULL; flNumberDialer* dialer714 = NULL;
+        flNumberDialer* dialer715 = NULL; flNumberDialer* dialer716 = NULL; flNumberDialer* dialer717 = NULL; flNumberDialer* dialer718 = NULL; flNumberDialer* dialer719 = NULL;
+        flNumberDialer* dialer720 = NULL; flNumberDialer* dialer721 = NULL; flNumberDialer* dialer722 = NULL; flNumberDialer* dialer723 = NULL; flNumberDialer* dialer724 = NULL;
+        flNumberDialer* dialer725 = NULL; flNumberDialer* dialer726 = NULL; flNumberDialer* dialer727 = NULL; flNumberDialer* dialer728 = NULL; flNumberDialer* dialer729 = NULL;
+        flNumberDialer* dialer730 = NULL; flNumberDialer* dialer731 = NULL; flNumberDialer* dialer732 = NULL; flNumberDialer* dialer733 = NULL; flNumberDialer* dialer734 = NULL;
+        flNumberDialer* dialer735 = NULL; flNumberDialer* dialer736 = NULL; flNumberDialer* dialer737 = NULL; flNumberDialer* dialer738 = NULL; flNumberDialer* dialer739 = NULL;
         //ボタン(800)
         flNumberDialer* dialer800 = NULL; flNumberDialer* dialer801 = NULL; flNumberDialer* dialer802 = NULL; flNumberDialer* dialer803 = NULL; flNumberDialer* dialer804 = NULL;
         flNumberDialer* dialer805 = NULL; flNumberDialer* dialer806 = NULL; flNumberDialer* dialer807 = NULL; flNumberDialer* dialer808 = NULL; flNumberDialer* dialer809 = NULL;
-        flNumberDialer* dialer810 = NULL;
+        flNumberDialer* dialer810 = NULL; flNumberDialer* dialer811 = NULL; flNumberDialer* dialer812 = NULL; flNumberDialer* dialer813 = NULL; flNumberDialer* dialer814 = NULL;
+        flNumberDialer* dialer815 = NULL; flNumberDialer* dialer816 = NULL; flNumberDialer* dialer817 = NULL; flNumberDialer* dialer818 = NULL; flNumberDialer* dialer819 = NULL;
+        flNumberDialer* dialer820 = NULL; flNumberDialer* dialer821 = NULL; flNumberDialer* dialer822 = NULL; flNumberDialer* dialer823 = NULL; flNumberDialer* dialer824 = NULL;
+        flNumberDialer* dialer825 = NULL; flNumberDialer* dialer826 = NULL; flNumberDialer* dialer827 = NULL; flNumberDialer* dialer828 = NULL; flNumberDialer* dialer829 = NULL;
+        flNumberDialer* dialer830 = NULL; flNumberDialer* dialer831 = NULL; flNumberDialer* dialer832 = NULL; flNumberDialer* dialer833 = NULL; flNumberDialer* dialer834 = NULL;
+        flNumberDialer* dialer835 = NULL; flNumberDialer* dialer836 = NULL; flNumberDialer* dialer837 = NULL; flNumberDialer* dialer838 = NULL; flNumberDialer* dialer839 = NULL;
         //ボタン(900)
         flNumberDialer* dialer900 = NULL; flNumberDialer* dialer901 = NULL; flNumberDialer* dialer902 = NULL; flNumberDialer* dialer903 = NULL; flNumberDialer* dialer904 = NULL;
         flNumberDialer* dialer905 = NULL; flNumberDialer* dialer906 = NULL; flNumberDialer* dialer907 = NULL; flNumberDialer* dialer908 = NULL; flNumberDialer* dialer909 = NULL;
-        flNumberDialer* dialer910 = NULL;
+        flNumberDialer* dialer910 = NULL; flNumberDialer* dialer911 = NULL; flNumberDialer* dialer912 = NULL; flNumberDialer* dialer913 = NULL; flNumberDialer* dialer914 = NULL;
+        flNumberDialer* dialer915 = NULL; flNumberDialer* dialer916 = NULL; flNumberDialer* dialer917 = NULL; flNumberDialer* dialer918 = NULL; flNumberDialer* dialer919 = NULL;
+        flNumberDialer* dialer920 = NULL; flNumberDialer* dialer921 = NULL; flNumberDialer* dialer922 = NULL; flNumberDialer* dialer923 = NULL; flNumberDialer* dialer924 = NULL;
+        flNumberDialer* dialer925 = NULL; flNumberDialer* dialer926 = NULL; flNumberDialer* dialer927 = NULL; flNumberDialer* dialer928 = NULL; flNumberDialer* dialer929 = NULL;
+        flNumberDialer* dialer930 = NULL; flNumberDialer* dialer931 = NULL; flNumberDialer* dialer932 = NULL; flNumberDialer* dialer933 = NULL; flNumberDialer* dialer934 = NULL;
+        flNumberDialer* dialer935 = NULL; flNumberDialer* dialer936 = NULL; flNumberDialer* dialer937 = NULL; flNumberDialer* dialer938 = NULL; flNumberDialer* dialer939 = NULL;
         //--------------------------------------
         
         //--------------------------------------
@@ -833,6 +1001,30 @@ class BasicController : public flSprite {
         flRadioButton* radio133 = NULL; flRadioButton* radio134 = NULL; flRadioButton* radio135 = NULL;
         flRadioButton* radio136 = NULL; flRadioButton* radio137 = NULL; flRadioButton* radio138 = NULL;
         flRadioButton* radio139 = NULL;
+        flRadioButton* radio140 = NULL; flRadioButton* radio141 = NULL; flRadioButton* radio142 = NULL;
+        flRadioButton* radio143 = NULL; flRadioButton* radio144 = NULL; flRadioButton* radio145 = NULL;
+        flRadioButton* radio146 = NULL; flRadioButton* radio147 = NULL; flRadioButton* radio148 = NULL;
+        flRadioButton* radio149 = NULL;
+        flRadioButton* radio150 = NULL; flRadioButton* radio151 = NULL; flRadioButton* radio152 = NULL;
+        flRadioButton* radio153 = NULL; flRadioButton* radio154 = NULL; flRadioButton* radio155 = NULL;
+        flRadioButton* radio156 = NULL; flRadioButton* radio157 = NULL; flRadioButton* radio158 = NULL;
+        flRadioButton* radio159 = NULL;
+        flRadioButton* radio160 = NULL; flRadioButton* radio161 = NULL; flRadioButton* radio162 = NULL;
+        flRadioButton* radio163 = NULL; flRadioButton* radio164 = NULL; flRadioButton* radio165 = NULL;
+        flRadioButton* radio166 = NULL; flRadioButton* radio167 = NULL; flRadioButton* radio168 = NULL;
+        flRadioButton* radio169 = NULL;
+        flRadioButton* radio170 = NULL; flRadioButton* radio171 = NULL; flRadioButton* radio172 = NULL;
+        flRadioButton* radio173 = NULL; flRadioButton* radio174 = NULL; flRadioButton* radio175 = NULL;
+        flRadioButton* radio176 = NULL; flRadioButton* radio177 = NULL; flRadioButton* radio178 = NULL;
+        flRadioButton* radio179 = NULL;
+        flRadioButton* radio180 = NULL; flRadioButton* radio181 = NULL; flRadioButton* radio182 = NULL;
+        flRadioButton* radio183 = NULL; flRadioButton* radio184 = NULL; flRadioButton* radio185 = NULL;
+        flRadioButton* radio186 = NULL; flRadioButton* radio187 = NULL; flRadioButton* radio188 = NULL;
+        flRadioButton* radio189 = NULL;
+        flRadioButton* radio190 = NULL; flRadioButton* radio191 = NULL; flRadioButton* radio192 = NULL;
+        flRadioButton* radio193 = NULL; flRadioButton* radio194 = NULL; flRadioButton* radio195 = NULL;
+        flRadioButton* radio196 = NULL; flRadioButton* radio197 = NULL; flRadioButton* radio198 = NULL;
+        flRadioButton* radio199 = NULL;
         //シンプルラジオボタン(200)
         flRadioButton* radio200 = NULL; flRadioButton* radio201 = NULL; flRadioButton* radio202 = NULL;
         flRadioButton* radio203 = NULL; flRadioButton* radio204 = NULL; flRadioButton* radio205 = NULL;
@@ -867,6 +1059,14 @@ class BasicController : public flSprite {
         flRadioButton* radio333 = NULL; flRadioButton* radio334 = NULL; flRadioButton* radio335 = NULL;
         flRadioButton* radio336 = NULL; flRadioButton* radio337 = NULL; flRadioButton* radio338 = NULL;
         flRadioButton* radio339 = NULL;
+        flRadioButton* radio340 = NULL; flRadioButton* radio341 = NULL; flRadioButton* radio342 = NULL;
+        flRadioButton* radio343 = NULL; flRadioButton* radio344 = NULL; flRadioButton* radio345 = NULL;
+        flRadioButton* radio346 = NULL; flRadioButton* radio347 = NULL; flRadioButton* radio348 = NULL;
+        flRadioButton* radio349 = NULL;
+        flRadioButton* radio350 = NULL; flRadioButton* radio551 = NULL; flRadioButton* radio352 = NULL;
+        flRadioButton* radio353 = NULL; flRadioButton* radio354 = NULL; flRadioButton* radio355 = NULL;
+        flRadioButton* radio356 = NULL; flRadioButton* radio357 = NULL; flRadioButton* radio358 = NULL;
+        flRadioButton* radio359 = NULL;
         //シンプルラジオボタン(400)
         flRadioButton* radio400 = NULL; flRadioButton* radio401 = NULL; flRadioButton* radio402 = NULL;
         flRadioButton* radio403 = NULL; flRadioButton* radio404 = NULL; flRadioButton* radio405 = NULL;
@@ -935,12 +1135,42 @@ class BasicController : public flSprite {
         flRadioButton* radio733 = NULL; flRadioButton* radio734 = NULL; flRadioButton* radio735 = NULL;
         flRadioButton* radio736 = NULL; flRadioButton* radio737 = NULL; flRadioButton* radio738 = NULL;
         flRadioButton* radio739 = NULL;
+        //シンプルラジオボタン(800)
+        flRadioButton* radio800 = NULL; flRadioButton* radio801 = NULL; flRadioButton* radio802 = NULL;
+        flRadioButton* radio803 = NULL; flRadioButton* radio804 = NULL; flRadioButton* radio805 = NULL;
+        flRadioButton* radio806 = NULL; flRadioButton* radio807 = NULL; flRadioButton* radio808 = NULL;
+        flRadioButton* radio809 = NULL;
+        flRadioButton* radio810 = NULL; flRadioButton* radio811 = NULL; flRadioButton* radio812 = NULL;
+        flRadioButton* radio813 = NULL; flRadioButton* radio814 = NULL; flRadioButton* radio815 = NULL;
+        flRadioButton* radio816 = NULL; flRadioButton* radio817 = NULL; flRadioButton* radio818 = NULL;
+        flRadioButton* radio819 = NULL;
+        flRadioButton* radio820 = NULL; flRadioButton* radio821 = NULL; flRadioButton* radio822 = NULL;
+        flRadioButton* radio823 = NULL; flRadioButton* radio824 = NULL; flRadioButton* radio825 = NULL;
+        flRadioButton* radio826 = NULL; flRadioButton* radio827 = NULL; flRadioButton* radio828 = NULL;
+        flRadioButton* radio829 = NULL;
+        flRadioButton* radio830 = NULL; flRadioButton* radio831 = NULL; flRadioButton* radio832 = NULL;
+        flRadioButton* radio833 = NULL; flRadioButton* radio834 = NULL; flRadioButton* radio835 = NULL;
+        flRadioButton* radio836 = NULL; flRadioButton* radio837 = NULL; flRadioButton* radio838 = NULL;
+        flRadioButton* radio839 = NULL;
         //シンプルラジオボタン(900)
         flRadioButton* radio900 = NULL; flRadioButton* radio901 = NULL; flRadioButton* radio902 = NULL;
         flRadioButton* radio903 = NULL; flRadioButton* radio904 = NULL; flRadioButton* radio905 = NULL;
-        flRadioButton* radio999 = NULL;    
+        flRadioButton* radio906 = NULL; flRadioButton* radio907 = NULL; flRadioButton* radio908 = NULL;
+        flRadioButton* radio909 = NULL;
+        flRadioButton* radio910 = NULL; flRadioButton* radio911 = NULL; flRadioButton* radio912 = NULL;
+        flRadioButton* radio913 = NULL; flRadioButton* radio914 = NULL; flRadioButton* radio915 = NULL;
+        flRadioButton* radio916 = NULL; flRadioButton* radio917 = NULL; flRadioButton* radio918 = NULL;
+        flRadioButton* radio919 = NULL;
+        flRadioButton* radio920 = NULL; flRadioButton* radio921 = NULL; flRadioButton* radio922 = NULL;
+        flRadioButton* radio923 = NULL; flRadioButton* radio924 = NULL; flRadioButton* radio925 = NULL;
+        flRadioButton* radio926 = NULL; flRadioButton* radio927 = NULL; flRadioButton* radio928 = NULL;
+        flRadioButton* radio929 = NULL;
+        flRadioButton* radio930 = NULL; flRadioButton* radio931 = NULL; flRadioButton* radio932 = NULL;
+        flRadioButton* radio933 = NULL; flRadioButton* radio934 = NULL; flRadioButton* radio935 = NULL;
+        flRadioButton* radio936 = NULL; flRadioButton* radio937 = NULL; flRadioButton* radio938 = NULL;
+        flRadioButton* radio939 = NULL;
+        flRadioButton* radio999 = NULL;
         //--------------------------------------
-
     
         //--------------------------------------
         //ジョイスティック1D(000)
@@ -1036,6 +1266,36 @@ class BasicController : public flSprite {
         flComboBox* comboBox620 = NULL; flComboBox* comboBox621 = NULL; flComboBox* comboBox622 = NULL; flComboBox* comboBox623 = NULL;
         flComboBox* comboBox624 = NULL; flComboBox* comboBox625 = NULL; flComboBox* comboBox626 = NULL; flComboBox* comboBox627 = NULL;
         flComboBox* comboBox628 = NULL; flComboBox* comboBox629 = NULL;
+        //コンボボックス(700)
+        flComboBox* comboBox700 = NULL; flComboBox* comboBox701 = NULL; flComboBox* comboBox702 = NULL; flComboBox* comboBox703 = NULL;
+        flComboBox* comboBox704 = NULL; flComboBox* comboBox705 = NULL; flComboBox* comboBox706 = NULL; flComboBox* comboBox707 = NULL;
+        flComboBox* comboBox708 = NULL; flComboBox* comboBox709 = NULL;
+        flComboBox* comboBox710 = NULL; flComboBox* comboBox711 = NULL; flComboBox* comboBox712 = NULL; flComboBox* comboBox713 = NULL;
+        flComboBox* comboBox714 = NULL; flComboBox* comboBox715 = NULL; flComboBox* comboBox716 = NULL; flComboBox* comboBox717 = NULL;
+        flComboBox* comboBox718 = NULL; flComboBox* comboBox719 = NULL;
+        flComboBox* comboBox720 = NULL; flComboBox* comboBox721 = NULL; flComboBox* comboBox722 = NULL; flComboBox* comboBox723 = NULL;
+        flComboBox* comboBox724 = NULL; flComboBox* comboBox725 = NULL; flComboBox* comboBox726 = NULL; flComboBox* comboBox727 = NULL;
+        flComboBox* comboBox728 = NULL; flComboBox* comboBox729 = NULL;
+        //コンボボックス(800)
+        flComboBox* comboBox800 = NULL; flComboBox* comboBox801 = NULL; flComboBox* comboBox802 = NULL; flComboBox* comboBox803 = NULL;
+        flComboBox* comboBox804 = NULL; flComboBox* comboBox805 = NULL; flComboBox* comboBox806 = NULL; flComboBox* comboBox807 = NULL;
+        flComboBox* comboBox808 = NULL; flComboBox* comboBox809 = NULL;
+        flComboBox* comboBox810 = NULL; flComboBox* comboBox811 = NULL; flComboBox* comboBox812 = NULL; flComboBox* comboBox813 = NULL;
+        flComboBox* comboBox814 = NULL; flComboBox* comboBox815 = NULL; flComboBox* comboBox816 = NULL; flComboBox* comboBox817 = NULL;
+        flComboBox* comboBox818 = NULL; flComboBox* comboBox819 = NULL;
+        flComboBox* comboBox820 = NULL; flComboBox* comboBox821 = NULL; flComboBox* comboBox822 = NULL; flComboBox* comboBox823 = NULL;
+        flComboBox* comboBox824 = NULL; flComboBox* comboBox825 = NULL; flComboBox* comboBox826 = NULL; flComboBox* comboBox827 = NULL;
+        flComboBox* comboBox828 = NULL; flComboBox* comboBox829 = NULL;
+        //コンボボックス(900)
+        flComboBox* comboBox900 = NULL; flComboBox* comboBox901 = NULL; flComboBox* comboBox902 = NULL; flComboBox* comboBox903 = NULL;
+        flComboBox* comboBox904 = NULL; flComboBox* comboBox905 = NULL; flComboBox* comboBox906 = NULL; flComboBox* comboBox907 = NULL;
+        flComboBox* comboBox908 = NULL; flComboBox* comboBox909 = NULL;
+        flComboBox* comboBox910 = NULL; flComboBox* comboBox911 = NULL; flComboBox* comboBox912 = NULL; flComboBox* comboBox913 = NULL;
+        flComboBox* comboBox914 = NULL; flComboBox* comboBox915 = NULL; flComboBox* comboBox916 = NULL; flComboBox* comboBox917 = NULL;
+        flComboBox* comboBox918 = NULL; flComboBox* comboBox919 = NULL;
+        flComboBox* comboBox920 = NULL; flComboBox* comboBox921 = NULL; flComboBox* comboBox922 = NULL; flComboBox* comboBox923 = NULL;
+        flComboBox* comboBox924 = NULL; flComboBox* comboBox925 = NULL; flComboBox* comboBox926 = NULL; flComboBox* comboBox927 = NULL;
+        flComboBox* comboBox928 = NULL; flComboBox* comboBox929 = NULL;
         //--------------------------------------
     
     protected:

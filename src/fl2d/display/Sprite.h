@@ -49,8 +49,8 @@ namespace fl2d {
             virtual float scaleY();
             virtual void scaleY(float value);
         
-            virtual float alpha();
-            virtual void alpha(float value);
+//            virtual float alpha();
+//            virtual void alpha(float value);
         
             virtual inline Graphics* graphics() { return _graphics; }
         
@@ -75,6 +75,8 @@ namespace fl2d {
         
         private:
             void _updateEventHandler(ofEventArgs& args);
+        
+            virtual void __compoundAlpha(float value);
         
             void _mouseDragging(int x, int y, int id);
             void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };

@@ -79,7 +79,10 @@ namespace fl2d {
             
         private:
             static void _loadShader();
-            
+        
+//            static string _getFragmentProgramGL3();
+//            static string _getFragmentProgramGL2();
+        
     };
     
 }

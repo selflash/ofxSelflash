@@ -194,6 +194,9 @@ namespace fl2d {
     //
     void Bitmap::draw() {
         if(!visible()) return;
+
+        ofPushStyle();
+
         ofDisableLighting();
         
         //-- matrix transform.
@@ -207,7 +210,7 @@ namespace fl2d {
         }
         glDisable(GL_DEPTH_TEST);
         
-        ofSetColor(255, 255, 255, 255 * __compoundAlpha);
+        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         ofEnableAlphaBlending();
         if(_smoothing) ofEnableSmoothing();
         
@@ -234,6 +237,8 @@ namespace fl2d {
         if(!bIdentity){
             glPopMatrix();
         }
+        
+        ofPopStyle();
     }
 
     /*

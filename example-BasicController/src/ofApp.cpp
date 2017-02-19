@@ -34,6 +34,7 @@ void ofApp::setup() {
     mainController->controller1()->text102->text("Y : " + ofToString(transformableNode.y()));
     mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
     mainController->addEventListener("uiEvent1", this, &ofApp::_uiEventHandler);
+//    mainController->alpha(0.5);
     ofxSelflash::stage()->addChild(mainController);
     //--------------------------------------
 }

@@ -52,6 +52,8 @@ namespace fl2d {
         addEventListener(MouseEvent::MOUSE_UP, this, &RadioButton::_mouseEventHandler);
         
         _enabled = true;
+        
+//        _hitAreaAlpha = 0.5;
     }
 
     //--------------------------------------------------------------
@@ -63,6 +65,8 @@ namespace fl2d {
         removeEventListener(MouseEvent::MOUSE_UP, this, &RadioButton::_mouseEventHandler);
         
         _enabled = false;
+        
+        _hitAreaAlpha = 0.0;
     }
 
     //==============================================================
@@ -171,7 +175,7 @@ namespace fl2d {
         g->clear();
         
         //ヒットエリア
-        g->beginFill(0xff0000, 0.0);
+        g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
@@ -186,7 +190,7 @@ namespace fl2d {
         g->clear();
         
         //ヒットエリア
-        g->beginFill(0xff0000, 0.0);
+        g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         

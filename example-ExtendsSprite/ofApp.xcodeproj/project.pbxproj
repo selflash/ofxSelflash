@@ -12,6 +12,9 @@
 		1196406D1DCC875D00224B46 /* DocumentRoot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119640691DCC875D00224B46 /* DocumentRoot.cpp */; };
 		119D02501DF9864D00A47DA8 /* BasicController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D024C1DF9864D00A47DA8 /* BasicController.cpp */; };
 		119D02511DF9864D00A47DA8 /* BasicDraggableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D024E1DF9864D00A47DA8 /* BasicDraggableObject.cpp */; };
+		11F23FC51E5A003400FFF182 /* AnglerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FC11E5A003400FFF182 /* AnglerEvent.cpp */; };
+		11F23FC61E5A003400FFF182 /* RotarySliderEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FC31E5A003400FFF182 /* RotarySliderEvent.cpp */; };
+		11F23FC91E5A004F00FFF182 /* Angler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FC71E5A004F00FFF182 /* Angler.cpp */; };
 		137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8C36764527AE9D7AE546001 /* ColorPickerEvent.cpp */; };
 		15DE4F56DC0BC0077A1634DD /* JoyStick2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF43BD7D57560CBEC986746B /* JoyStick2D.cpp */; };
 		1A0C4143D28CF79010A55DEC /* DisplayObjectContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934C907048A975D99C0815F1 /* DisplayObjectContainer.cpp */; };
@@ -108,7 +111,6 @@
 /* Begin PBXFileReference section */
 		01B6435CBA1B2079B2322F43 /* Transform.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Transform.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Transform.h; sourceTree = SOURCE_ROOT; };
 		023E5D6BD941DEE7F969D565 /* MovieClip.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = MovieClip.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/MovieClip.cpp; sourceTree = SOURCE_ROOT; };
-		028D6539BD527C596E3DBAC1 /* EventHandler.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EventHandler.h; path = ../../../addons/ofxSelflash/src/fl2d/events/EventHandler.h; sourceTree = SOURCE_ROOT; };
 		062789D17FA12DC05823D76B /* BlendMode.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BlendMode.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/BlendMode.cpp; sourceTree = SOURCE_ROOT; };
 		06832DA7E5ABD037E32A91DE /* SoundEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SoundEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/SoundEvent.h; sourceTree = SOURCE_ROOT; };
 		09890E72CEBB3A9E723B1953 /* Particle2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Particle2D.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Particle2D.h; sourceTree = SOURCE_ROOT; };
@@ -120,6 +122,12 @@
 		119D024E1DF9864D00A47DA8 /* BasicDraggableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicDraggableObject.cpp; sourceTree = "<group>"; };
 		119D024F1DF9864D00A47DA8 /* BasicDraggableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDraggableObject.h; sourceTree = "<group>"; };
 		11CDE014AAB3CE676B80B47F /* Button.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Button.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Button.h; sourceTree = SOURCE_ROOT; };
+		11F23FC11E5A003400FFF182 /* AnglerEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnglerEvent.cpp; path = ../src/fl2d/events/AnglerEvent.cpp; sourceTree = "<group>"; };
+		11F23FC21E5A003400FFF182 /* AnglerEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnglerEvent.h; path = ../src/fl2d/events/AnglerEvent.h; sourceTree = "<group>"; };
+		11F23FC31E5A003400FFF182 /* RotarySliderEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RotarySliderEvent.cpp; path = ../src/fl2d/events/RotarySliderEvent.cpp; sourceTree = "<group>"; };
+		11F23FC41E5A003400FFF182 /* RotarySliderEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RotarySliderEvent.h; path = ../src/fl2d/events/RotarySliderEvent.h; sourceTree = "<group>"; };
+		11F23FC71E5A004F00FFF182 /* Angler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Angler.cpp; path = ../src/fl2d/ui/Angler.cpp; sourceTree = "<group>"; };
+		11F23FC81E5A004F00FFF182 /* Angler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Angler.h; path = ../src/fl2d/ui/Angler.h; sourceTree = "<group>"; };
 		124F661C0057DC01DA2D7A80 /* Vec3Slider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Vec3Slider.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec3Slider.cpp; sourceTree = SOURCE_ROOT; };
 		140A801B9F36D6BABFF92354 /* Flash2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Flash2D.h; path = ../../../addons/ofxSelflash/src/fl2d/Flash2D.h; sourceTree = SOURCE_ROOT; };
 		17E2E964F4C7EBBB0FBF015D /* BItmap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BItmap.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BItmap.h; sourceTree = SOURCE_ROOT; };
@@ -276,6 +284,8 @@
 		351E758B47E30F7AE3C88CE9 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				11F23FC71E5A004F00FFF182 /* Angler.cpp */,
+				11F23FC81E5A004F00FFF182 /* Angler.h */,
 				5A01CC6B14B154761FB61DB8 /* Button.cpp */,
 				11CDE014AAB3CE676B80B47F /* Button.h */,
 				633425CA7B7C7C6C6CA6F80C /* CircleColorPicker.cpp */,
@@ -355,6 +365,10 @@
 		6D4170A5316CAFE89B9364BA /* events */ = {
 			isa = PBXGroup;
 			children = (
+				11F23FC11E5A003400FFF182 /* AnglerEvent.cpp */,
+				11F23FC21E5A003400FFF182 /* AnglerEvent.h */,
+				11F23FC31E5A003400FFF182 /* RotarySliderEvent.cpp */,
+				11F23FC41E5A003400FFF182 /* RotarySliderEvent.h */,
 				81022B629DBD3EBE5D1B12E0 /* AnimationEvent.cpp */,
 				526BD9569CD59A26EAFA768C /* AnimationEvent.h */,
 				40CCF8A4E3D12BCC697AB0F2 /* ButtonEvent.cpp */,
@@ -369,7 +383,6 @@
 				F576EEB49BF5AC2EB72580AB /* Event.h */,
 				4C6966F5DEF63F897E9A7728 /* EventDispatcher.cpp */,
 				C1E30EF9E987DE97F5507F42 /* EventDispatcher.h */,
-				028D6539BD527C596E3DBAC1 /* EventHandler.h */,
 				B5AE32969766115EF96458F7 /* FocusEvent.cpp */,
 				441F95DB750DA18EC9324557 /* FocusEvent.h */,
 				DDF9C941BE61C6446964D89E /* JoyStick1DEvent.cpp */,
@@ -644,6 +657,7 @@
 				71560AD81E183D9DE12ABF0F /* InteractiveObject.cpp in Sources */,
 				25DA37963DE2EC746EDAEFFF /* MovieClip.cpp in Sources */,
 				AC786B4DBFE72EC74969FC1C /* Shape.cpp in Sources */,
+				11F23FC61E5A003400FFF182 /* RotarySliderEvent.cpp in Sources */,
 				119D02501DF9864D00A47DA8 /* BasicController.cpp in Sources */,
 				549E722C7BBF7D6E63B46BC3 /* Sprite.cpp in Sources */,
 				AFE7763ECF32AEE5CB33C127 /* Stage.cpp in Sources */,
@@ -651,6 +665,8 @@
 				746E370F9117E805D7683182 /* ButtonEvent.cpp in Sources */,
 				137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */,
 				A70ABBA2EB3F1CE17D8B9CBE /* ColorSliderEvent.cpp in Sources */,
+				11F23FC51E5A003400FFF182 /* AnglerEvent.cpp in Sources */,
+				11F23FC91E5A004F00FFF182 /* Angler.cpp in Sources */,
 				AC61CB58628095359DEB6FE0 /* ComboBoxEvent.cpp in Sources */,
 				A18541FB6F30F2C5A01A11B0 /* Event.cpp in Sources */,
 				119D02511DF9864D00A47DA8 /* BasicDraggableObject.cpp in Sources */,

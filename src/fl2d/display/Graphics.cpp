@@ -17,12 +17,14 @@ namespace fl2d {
         _lineEnabled = false;
         _fillEnabled = false;
         
-        __alpha = 1.0;
+//        __alpha = 1.0;
         __rect = new Rectangle();
         
         _smoothing = false;
         
         _IsMoveTo = false;
+        
+        _compoundAlpha = 1.0;
     }
 
     //--------------------------------------------------------------
@@ -35,7 +37,7 @@ namespace fl2d {
         _lineEnabled = false;
         _fillEnabled = false;
         
-        __alpha = 0.0;
+//        __alpha = 0.0;
         
         delete __rect;
         __rect = NULL;
@@ -43,6 +45,8 @@ namespace fl2d {
         _smoothing = false;
         
         _IsMoveTo = false;
+        
+        _compoundAlpha = 0.0;
     }
 
     //==============================================================
@@ -260,7 +264,7 @@ namespace fl2d {
         _lineColor.r = (color >> 16) & 0xff;
         _lineColor.g = (color >> 8) & 0xff;
         _lineColor.b = (color >> 0) & 0xff;
-        _lineColor.a = (__alpha * 255) * alpha;
+        _lineColor.a = (_compoundAlpha * 255) * alpha;
         
         _lineEnabled = true;
         
@@ -279,7 +283,7 @@ namespace fl2d {
         _fillColor.r = (color >> 16) & 0xff;
         _fillColor.g = (color >> 8) & 0xff;
         _fillColor.b = (color >> 0) & 0xff;
-        _fillColor.a = (__alpha * 255) * alpha;
+        _fillColor.a = (_compoundAlpha * 255) * alpha;
         
         _fillEnabled = true;
         
@@ -332,6 +336,7 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
+            ofSetCircleResolution(100);
             ofDrawCircle(x, y, radius);
         }
         
@@ -339,6 +344,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
+            ofSetCircleResolution(100);
             ofDrawCircle(x, y, radius);
             ofFill();
         }
@@ -461,6 +467,11 @@ namespace fl2d {
 //        __rect->__setNull();
         __rect->__setZero();
     }
+
+    //--------------------------------------------------------------
+    //
+    float Graphics::__compoundAlpha(){ return _compoundAlpha; }
+    void Graphics::__compoundAlpha(float value){ _compoundAlpha = value; }
 
 //    //--------------------------------------------------------------
 //    //

@@ -115,10 +115,10 @@ void BasicController::setup() {
     
     _updateRect();
     
-    minimizeButton->x(width() - 50);
+    minimizeButton->x(width() - 53);
     minimizeButton->y(5);
     
-    closeButton->x(width() - 25);
+    closeButton->x(width() - 28);
     closeButton->y(5);
 }
 

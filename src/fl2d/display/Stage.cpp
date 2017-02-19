@@ -140,21 +140,27 @@ namespace fl2d {
         //------------------------------------
         
         //------------------------------------
+        //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
+        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, FlashConfig::MOUSE_PRIORITY);
+        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, FlashConfig::MOUSE_PRIORITY);
+        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, FlashConfig::MOUSE_PRIORITY);
+        ofRemoveListener(ofEvents().mouseScrolled, this, &Stage::_mouseScrolledEventHandler, FlashConfig::KEYBOARD_PRIORITY);
+        
+        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, FlashConfig::KEYBOARD_PRIORITY);
+        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, FlashConfig::KEYBOARD_PRIORITY);
+        
+        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, FlashConfig::WINDOW_PRIORITY);
+        
+        if(FlashConfig::AUTO_UPDATE) {
+            ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler, FlashConfig::UPDATE_PRIORITY);
+        }
+        if(FlashConfig::AUTO_DRAW) {
+            ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler, FlashConfig::DRAW_PRIORITY);
+        }
+        
         _priority = OF_EVENT_ORDER_BEFORE_APP;
-        
-        //ofRemoveListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler);
-        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
-        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
-        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
-        ofRemoveListener(ofEvents().mouseScrolled, this, &Stage::_mouseScrolledEventHandler);
-        
-        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
-        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
-        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
-        
-        ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
-        ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
         //------------------------------------
+
         
         BlendMode::destroy();
     }
@@ -323,33 +329,33 @@ namespace fl2d {
         if(_priority == value) return;
         _priority = value;
         
-        //------------------------------------
-        //ofRemoveListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler);
-        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
-        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
-        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
-        
-        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
-        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
-        
-        ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
-        ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
-        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
-        //------------------------------------
-        
-        //------------------------------------
-        //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
-        ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, _priority);
-        ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, _priority);
-        ofAddListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, _priority);
-        
-        ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, _priority);
-        ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, _priority);
-        
-        ofAddListener(ofEvents().update, this, &Stage::_updateEventHandler, _priority);
-        ofAddListener(ofEvents().draw, this, &Stage::_drawEventHandler, _priority);
-        ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, _priority);
-        //------------------------------------
+//        //------------------------------------
+//        //ofRemoveListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler);
+//        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
+//        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
+//        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
+//        
+//        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
+//        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
+//        
+//        ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
+//        ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
+//        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
+//        //------------------------------------
+//        
+//        //------------------------------------
+//        //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
+//        ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, _priority);
+//        ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, _priority);
+//        ofAddListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, _priority);
+//        
+//        ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, _priority);
+//        ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, _priority);
+//        
+//        ofAddListener(ofEvents().update, this, &Stage::_updateEventHandler, _priority);
+//        ofAddListener(ofEvents().draw, this, &Stage::_drawEventHandler, _priority);
+//        ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, _priority);
+//        //------------------------------------
     }
 
     //==============================================================
@@ -386,7 +392,7 @@ namespace fl2d {
             child->transform(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
-            child->__compoundAlpha = parent->__compoundAlpha * child->_alpha;
+//            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
             //child->updateOnFrame();
             
             //------------------------------------ topMostHitDisplayObject
@@ -826,6 +832,8 @@ namespace fl2d {
             
 //            if(!child->visible()) continue;
             
+            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
+
             if(_hasChildren(child)) {
                 DisplayObjectContainer* container;
                 container = (DisplayObjectContainer*)child;

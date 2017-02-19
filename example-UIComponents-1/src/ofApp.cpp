@@ -18,6 +18,7 @@ void ofApp::setup() {
     //UIコンポーネント
     uiComponents = new UIComponents();
     uiComponents->setup();
+//    uiComponents->alpha(0.2);
     ofxSelflash::stage()->addChild(uiComponents);
     //--------------------------------------
     

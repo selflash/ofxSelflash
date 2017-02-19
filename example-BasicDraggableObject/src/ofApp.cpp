@@ -21,6 +21,7 @@ void ofApp::setup() {
     draggableObject = new BasicDraggableObject();
     draggableObject->x(10);
     draggableObject->y(10);
+//    draggableObject->alpha(0.5);
     stage->addChild(draggableObject);
     
     flBitmap* bitmap1 = new flBitmap(image);
@@ -33,9 +34,11 @@ void ofApp::setup() {
     imageFrame1 = new ImageFrame1();
     imageFrame1->x(draggableObject->x() + draggableObject->width() + 20 + 10);
     imageFrame1->y(10);
+//    imageFrame1->alpha(0.5);
     stage->addChild(imageFrame1);
     
     flBitmap* bitmap2 = new flBitmap(image);
+//    bitmap2->alpha(0.5);
     imageFrame1->addChild(bitmap2);
     cout << "imageFrame1 = " << imageFrame1->width() << " " << imageFrame1->height() << endl;
     //--------------------------------------

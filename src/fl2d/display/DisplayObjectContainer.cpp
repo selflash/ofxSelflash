@@ -66,6 +66,9 @@ namespace fl2d {
     //
     void DisplayObjectContainer::draw() {
         if(!visible()) return;
+        
+        ofPushStyle();
+
         ofDisableLighting();
         
         //-- matrix transform.
@@ -97,6 +100,8 @@ namespace fl2d {
         if(!bIdentity) {
             glPopMatrix();
         }
+        
+        ofPopStyle();
     }
 
     //==============================================================

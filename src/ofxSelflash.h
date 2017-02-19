@@ -6,16 +6,16 @@
 
 // version 1.0.0
 
-#include "./fl2d/Flash2D.h"
+#include "fl2d/Flash2D.h"
 //using namespace fl2d;
 
 #if defined(FLASH_3D)
-#include "./fl3d/Flash3D.h"
+#include "fl3d/Flash3D.h"
 //using namespace fl3d;
 #endif
 
-#include "./utils/MathUtil.h"
-#include "./utils/NativeWindow.h"
+#include "utils/MathUtil.h"
+#include "utils/NativeWindow.h"
 
 class ofxSelflash {
     public:

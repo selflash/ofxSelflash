@@ -13,6 +13,9 @@
 		119640861DCC998700224B46 /* CustomSpriteA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119640831DCC998700224B46 /* CustomSpriteA.cpp */; };
 		119D02761DF9891600A47DA8 /* BasicController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D02721DF9891600A47DA8 /* BasicController.cpp */; };
 		119D02771DF9891600A47DA8 /* BasicDraggableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119D02741DF9891600A47DA8 /* BasicDraggableObject.cpp */; };
+		11F23FD91E5A016C00FFF182 /* AnglerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FD51E5A016C00FFF182 /* AnglerEvent.cpp */; };
+		11F23FDA1E5A016C00FFF182 /* RotarySliderEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FD71E5A016C00FFF182 /* RotarySliderEvent.cpp */; };
+		11F23FDD1E5A017D00FFF182 /* Angler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11F23FDB1E5A017D00FFF182 /* Angler.cpp */; };
 		137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8C36764527AE9D7AE546001 /* ColorPickerEvent.cpp */; };
 		15DE4F56DC0BC0077A1634DD /* JoyStick2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF43BD7D57560CBEC986746B /* JoyStick2D.cpp */; };
 		1A0C4143D28CF79010A55DEC /* DisplayObjectContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934C907048A975D99C0815F1 /* DisplayObjectContainer.cpp */; };
@@ -122,6 +125,12 @@
 		119D02741DF9891600A47DA8 /* BasicDraggableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicDraggableObject.cpp; sourceTree = "<group>"; };
 		119D02751DF9891600A47DA8 /* BasicDraggableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDraggableObject.h; sourceTree = "<group>"; };
 		11CDE014AAB3CE676B80B47F /* Button.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Button.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Button.h; sourceTree = SOURCE_ROOT; };
+		11F23FD51E5A016C00FFF182 /* AnglerEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnglerEvent.cpp; path = ../src/fl2d/events/AnglerEvent.cpp; sourceTree = "<group>"; };
+		11F23FD61E5A016C00FFF182 /* AnglerEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnglerEvent.h; path = ../src/fl2d/events/AnglerEvent.h; sourceTree = "<group>"; };
+		11F23FD71E5A016C00FFF182 /* RotarySliderEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RotarySliderEvent.cpp; path = ../src/fl2d/events/RotarySliderEvent.cpp; sourceTree = "<group>"; };
+		11F23FD81E5A016C00FFF182 /* RotarySliderEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RotarySliderEvent.h; path = ../src/fl2d/events/RotarySliderEvent.h; sourceTree = "<group>"; };
+		11F23FDB1E5A017D00FFF182 /* Angler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Angler.cpp; path = ../src/fl2d/ui/Angler.cpp; sourceTree = "<group>"; };
+		11F23FDC1E5A017D00FFF182 /* Angler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Angler.h; path = ../src/fl2d/ui/Angler.h; sourceTree = "<group>"; };
 		124F661C0057DC01DA2D7A80 /* Vec3Slider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Vec3Slider.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/Vec3Slider.cpp; sourceTree = SOURCE_ROOT; };
 		140A801B9F36D6BABFF92354 /* Flash2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Flash2D.h; path = ../../../addons/ofxSelflash/src/fl2d/Flash2D.h; sourceTree = SOURCE_ROOT; };
 		17E2E964F4C7EBBB0FBF015D /* BItmap.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = BItmap.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BItmap.h; sourceTree = SOURCE_ROOT; };
@@ -138,7 +147,7 @@
 		2A1B640305B12E7F8C79956B /* Object.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Object.cpp; path = ../../../addons/ofxSelflash/src/fl2d/core/Object.cpp; sourceTree = SOURCE_ROOT; };
 		2FA975E190A197E5614AFC5A /* TextFieldAutoSize.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TextFieldAutoSize.h; path = ../../../addons/ofxSelflash/src/fl2d/texts/TextFieldAutoSize.h; sourceTree = SOURCE_ROOT; };
 		306FA0BAC24424B4C41CCB14 /* JoyStick2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = JoyStick2D.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/JoyStick2D.h; sourceTree = SOURCE_ROOT; };
-		3634C362E960536F92A5EF02 /* Sprite.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Sprite.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/Sprite.cpp; sourceTree = SOURCE_ROOT; };
+		3634C362E960536F92A5EF02 /* Sprite.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Sprite.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/Sprite.cpp; sourceTree = SOURCE_ROOT; };
 		3718D2D878F22EECAD5CCE7B /* Pad2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Pad2D.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Pad2D.h; sourceTree = SOURCE_ROOT; };
 		37CEF776AD3652D4E698D348 /* BitmapData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = BitmapData.h; path = ../../../addons/ofxSelflash/src/fl2d/display/BitmapData.h; sourceTree = SOURCE_ROOT; };
 		37DCA6DEB377242CDA3434FB /* Loader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Loader.h; path = ../../../addons/ofxSelflash/src/fl2d/net/Loader.h; sourceTree = SOURCE_ROOT; };
@@ -151,7 +160,7 @@
 		4147E7384A85E1CF87A8E466 /* DisplayObjectContainer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DisplayObjectContainer.h; path = ../../../addons/ofxSelflash/src/fl2d/display/DisplayObjectContainer.h; sourceTree = SOURCE_ROOT; };
 		436D127F6297203DD6426905 /* BItmap.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BItmap.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/BItmap.cpp; sourceTree = SOURCE_ROOT; };
 		441F95DB750DA18EC9324557 /* FocusEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FocusEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/FocusEvent.h; sourceTree = SOURCE_ROOT; };
-		45233E53B2B61A96360CA807 /* Rectangle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Rectangle.cpp; path = ../../../addons/ofxSelflash/src/fl2d/geom/Rectangle.cpp; sourceTree = SOURCE_ROOT; };
+		45233E53B2B61A96360CA807 /* Rectangle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Rectangle.cpp; path = ../../../addons/ofxSelflash/src/fl2d/geom/Rectangle.cpp; sourceTree = SOURCE_ROOT; };
 		474EB80D04414EB5A323382C /* NumberDialerEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NumberDialerEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/NumberDialerEvent.h; sourceTree = SOURCE_ROOT; };
 		4C6966F5DEF63F897E9A7728 /* EventDispatcher.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EventDispatcher.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/EventDispatcher.cpp; sourceTree = SOURCE_ROOT; };
 		4FE918E71E3B4C43BBCEAAD6 /* Rectangle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Rectangle.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Rectangle.h; sourceTree = SOURCE_ROOT; };
@@ -193,7 +202,7 @@
 		95DF8889396F3F8A4866B552 /* DisplayObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DisplayObject.h; path = ../../../addons/ofxSelflash/src/fl2d/display/DisplayObject.h; sourceTree = SOURCE_ROOT; };
 		9691035A4C798136A7457265 /* MovieClip.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MovieClip.h; path = ../../../addons/ofxSelflash/src/fl2d/display/MovieClip.h; sourceTree = SOURCE_ROOT; };
 		9A0862D23E156094B32902B1 /* Pad2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Pad2D.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/Pad2D.cpp; sourceTree = SOURCE_ROOT; };
-		9A9F224F3C0B709AF7805E1D /* Graphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Graphics.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/Graphics.cpp; sourceTree = SOURCE_ROOT; };
+		9A9F224F3C0B709AF7805E1D /* Graphics.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Graphics.cpp; path = ../../../addons/ofxSelflash/src/fl2d/display/Graphics.cpp; sourceTree = SOURCE_ROOT; };
 		9B1D5139CE40A3EE68DF10CE /* Font.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Font.cpp; path = ../../../addons/ofxSelflash/src/fl2d/texts/Font.cpp; sourceTree = SOURCE_ROOT; };
 		9D54BFF96DC12D1A1F5A9954 /* Slider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Slider.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/Slider.h; sourceTree = SOURCE_ROOT; };
 		9DA508BF0A7DA48076722B6E /* TextField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TextField.h; path = ../../../addons/ofxSelflash/src/fl2d/texts/TextField.h; sourceTree = SOURCE_ROOT; };
@@ -204,7 +213,7 @@
 		ACD2CD794DFBAFDDC8525246 /* CircleColorPicker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CircleColorPicker.h; path = ../../../addons/ofxSelflash/src/fl2d/ui/CircleColorPicker.h; sourceTree = SOURCE_ROOT; };
 		AD3F44F299F8B18FF1FD192A /* Matrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Matrix.h; path = ../../../addons/ofxSelflash/src/fl2d/geom/Matrix.h; sourceTree = SOURCE_ROOT; };
 		B5AE32969766115EF96458F7 /* FocusEvent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FocusEvent.cpp; path = ../../../addons/ofxSelflash/src/fl2d/events/FocusEvent.cpp; sourceTree = SOURCE_ROOT; };
-		B69DF379BD34F785A1BBB8C8 /* Matrix.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Matrix.cpp; path = ../../../addons/ofxSelflash/src/fl2d/geom/Matrix.cpp; sourceTree = SOURCE_ROOT; };
+		B69DF379BD34F785A1BBB8C8 /* Matrix.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Matrix.cpp; path = ../../../addons/ofxSelflash/src/fl2d/geom/Matrix.cpp; sourceTree = SOURCE_ROOT; };
 		B78C9D4C8C3B78FA80A7BC37 /* RadioButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RadioButton.cpp; path = ../../../addons/ofxSelflash/src/fl2d/ui/RadioButton.cpp; sourceTree = SOURCE_ROOT; };
 		B9D0B60EAE29B9EE9EB099AD /* RangeSliderEvent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = RangeSliderEvent.h; path = ../../../addons/ofxSelflash/src/fl2d/events/RangeSliderEvent.h; sourceTree = SOURCE_ROOT; };
 		BB66B8873D744791C7D5E6E8 /* NativeWindow.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = NativeWindow.h; path = ../../../addons/ofxSelflash/src/utils/NativeWindow.h; sourceTree = SOURCE_ROOT; };
@@ -278,6 +287,8 @@
 		351E758B47E30F7AE3C88CE9 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				11F23FDB1E5A017D00FFF182 /* Angler.cpp */,
+				11F23FDC1E5A017D00FFF182 /* Angler.h */,
 				5A01CC6B14B154761FB61DB8 /* Button.cpp */,
 				11CDE014AAB3CE676B80B47F /* Button.h */,
 				633425CA7B7C7C6C6CA6F80C /* CircleColorPicker.cpp */,
@@ -357,6 +368,10 @@
 		6D4170A5316CAFE89B9364BA /* events */ = {
 			isa = PBXGroup;
 			children = (
+				11F23FD51E5A016C00FFF182 /* AnglerEvent.cpp */,
+				11F23FD61E5A016C00FFF182 /* AnglerEvent.h */,
+				11F23FD71E5A016C00FFF182 /* RotarySliderEvent.cpp */,
+				11F23FD81E5A016C00FFF182 /* RotarySliderEvent.h */,
 				81022B629DBD3EBE5D1B12E0 /* AnimationEvent.cpp */,
 				526BD9569CD59A26EAFA768C /* AnimationEvent.h */,
 				40CCF8A4E3D12BCC697AB0F2 /* ButtonEvent.cpp */,
@@ -651,6 +666,7 @@
 				549E722C7BBF7D6E63B46BC3 /* Sprite.cpp in Sources */,
 				AFE7763ECF32AEE5CB33C127 /* Stage.cpp in Sources */,
 				BA37F4E88866FB4E8FC08967 /* AnimationEvent.cpp in Sources */,
+				11F23FDA1E5A016C00FFF182 /* RotarySliderEvent.cpp in Sources */,
 				746E370F9117E805D7683182 /* ButtonEvent.cpp in Sources */,
 				137C61A7B9C158344F5D5226 /* ColorPickerEvent.cpp in Sources */,
 				A70ABBA2EB3F1CE17D8B9CBE /* ColorSliderEvent.cpp in Sources */,
@@ -666,6 +682,7 @@
 				28629ABEDFD2FD0CD1FE3C37 /* PadEvent.cpp in Sources */,
 				3F59D8FB4165913BBF72BDF3 /* RadioButtonEvent.cpp in Sources */,
 				FBA8157A52B0C5156240B298 /* RangeSliderEvent.cpp in Sources */,
+				11F23FD91E5A016C00FFF182 /* AnglerEvent.cpp in Sources */,
 				544E8D151CAD6A9EA28B3887 /* SliderEvent.cpp in Sources */,
 				6FDD41015C79EEE652C5DF51 /* SoundEvent.cpp in Sources */,
 				60E6D414AD382BE449882CE4 /* Vec2SliderEvent.cpp in Sources */,
@@ -683,6 +700,7 @@
 				D92014B1BE491D440AD4547A /* TextFieldAutoSize.cpp in Sources */,
 				0C6D65E1FAD493429199B1AA /* Button.cpp in Sources */,
 				8F4EE1CD61FE80E09AED6E7C /* CircleColorPicker.cpp in Sources */,
+				11F23FDD1E5A017D00FFF182 /* Angler.cpp in Sources */,
 				2E55BF1E35174D1D0B572E8D /* ColorSlider.cpp in Sources */,
 				C0173EB4946165CB90176987 /* ComboBox.cpp in Sources */,
 				119D02771DF9891600A47DA8 /* BasicDraggableObject.cpp in Sources */,

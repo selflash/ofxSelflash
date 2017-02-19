@@ -53,6 +53,8 @@ typedef fl2d::BlendMode flBlendMode;
 #include "events/MouseEvent.h"
 #include "events/KeyboardEvent.h"
 #include "events/SliderEvent.h"
+#include "events/RotarySliderEvent.h"
+#include "events/AnglerEvent.h"
 #include "events/ButtonEvent.h"
 #include "events/RadioButtonEvent.h"
 #include "events/NumberDialerEvent.h"
@@ -75,6 +77,8 @@ typedef fl2d::FocusEvent flFocusEvent;
 typedef fl2d::MouseEvent flMouseEvent;
 typedef fl2d::KeyboardEvent flKeyboardEvent;
 typedef fl2d::SliderEvent flSliderEvent;
+typedef fl2d::RotarySliderEvent flRotarySliderEvent;
+typedef fl2d::AnglerEvent flAnglerEvent;
 typedef fl2d::ButtonEvent flButtonEvent;
 typedef fl2d::RadioButtonEvent flRadioButtonEvent;
 typedef fl2d::NumberDialerEvent flNumberDialerEvent;
@@ -134,6 +138,8 @@ typedef fl2d::TextFieldAutoSize flTextFieldAutoSize;
 #include "ui/ColorSlider.h"
 #include "ui/Vec2Slider.h"
 #include "ui/Vec3Slider.h"
+#include "ui/RotarySlider.h"
+#include "ui/Angler.h"
 #include "ui/CircleColorPicker.h"
 #include "ui/Pad2D.h"
 #include "ui/Pad3D.h"
@@ -152,6 +158,8 @@ typedef fl2d::RangeSlider flRangeSlider;
 typedef fl2d::ColorSlider flColorSlider;
 typedef fl2d::Vec2Slider flVec2Slider;
 typedef fl2d::Vec3Slider flVec3Slider;
+typedef fl2d::RotarySlider flRotarySlider;
+typedef fl2d::Angler flAngler;
 typedef fl2d::CircleColorPicker flCircleColorPicker;
 typedef fl2d::Pad2D flPad2D;
 typedef fl2d::Pad3D flPad3D;

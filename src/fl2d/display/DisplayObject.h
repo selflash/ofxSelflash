@@ -15,20 +15,20 @@
 #include "../geom/Matrix.h"
 #include "../geom/Rectangle.h"
 
-#define	BLEND_MODE_NORMAL		0
-#define	BLEND_MODE_LAYER		1
-#define	BLEND_MODE_MULTIPLY		2
-#define	BLEND_MODE_SCREEN		3
-#define	BLEND_MODE_LIGHTEN		4
-#define	BLEND_MODE_DARKEN		5
-#define	BLEND_MODE_DIFFERENCE	6
-#define	BLEND_MODE_ADD			7
-#define	BLEND_MODE_SUBTRACT		8
-#define	BLEND_MODE_INVERT		9
-#define	BLEND_MODE_ALPHA		10
-#define	BLEND_MODE_ERASE		11
-#define	BLEND_MODE_OVERLAY		12
-#define	BLEND_MODE_HARDLIGHT	13
+#define	FL_BLEND_MODE_NORMAL		0
+#define	FL_BLEND_MODE_LAYER		    1
+#define	FL_BLEND_MODE_MULTIPLY		2
+#define	FL_BLEND_MODE_SCREEN		3
+#define	FL_BLEND_MODE_LIGHTEN		4
+#define	FL_BLEND_MODE_DARKEN		5
+#define	FL_BLEND_MODE_DIFFERENCE	6
+#define	FL_BLEND_MODE_ADD			7
+#define	FL_BLEND_MODE_SUBTRACT		8
+#define	FL_BLEND_MODE_INVERT		9
+#define	FL_BLEND_MODE_ALPHA		   10
+#define	FL_BLEND_MODE_ERASE		   11
+#define	FL_BLEND_MODE_OVERLAY	   12
+#define	FL_BLEND_MODE_HARDLIGHT    13
 
 namespace fl2d {
     
@@ -60,7 +60,7 @@ namespace fl2d {
         
             float _alpha;
             //Bitmap, Stage,
-            float __compoundAlpha;
+            float _compoundAlpha;
         
             bool _visible;
         
@@ -193,6 +193,8 @@ namespace fl2d {
         
             virtual void _updateRect();
         
+            virtual float __compoundAlpha();
+            virtual void __compoundAlpha(float value);
 
             //virtual void updateOnFrame(){};
             //virtual void drawOnFrame(){};
