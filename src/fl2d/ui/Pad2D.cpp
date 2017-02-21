@@ -107,7 +107,7 @@ namespace fl2d {
         ball = new Sprite();
         ball->useHandCursor(true);
         g = ball->graphics();
-        g->smoothing(true);
+        g->enabledSmoothing(true);
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);

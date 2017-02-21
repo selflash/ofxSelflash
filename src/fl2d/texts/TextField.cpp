@@ -60,7 +60,7 @@ namespace fl2d {
         
         _activeLineWidth = 3;
         
-        _enabledAntiAliasing = false;
+//        _enabledAntiAliasing = false;
     }
 
     //--------------------------------------------------------------
@@ -87,7 +87,7 @@ namespace fl2d {
         
         _activeLineWidth = 0;
         
-        _enabledAntiAliasing = false;
+//        _enabledAntiAliasing = false;
     }
 
     //==============================================================
@@ -128,10 +128,19 @@ namespace fl2d {
     void TextField::draw() {
         if(!visible()) return;
         
-        ofPushStyle();
-
-        ofDisableLighting();
+        GLboolean preLighting = glIsEnabled(GL_LIGHTING);
+        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
+        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
+        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
         
+        ofDisableLighting();
+        ofEnableAlphaBlending();
+        glDisable(GL_DEPTH_TEST);
+        if(_enabledSmoothing) { ofEnableSmoothing(); }
+        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+        
+        //------------------------------------------
         //-- matrix transform.
         bool bIdentity = true;
         bIdentity = matrix().isIdentity();
@@ -142,21 +151,22 @@ namespace fl2d {
             glMultMatrixf(matrix().getPtr());
         }
         
-        glDisable(GL_DEPTH_TEST);
+        ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        ofEnableAlphaBlending();
         _graphics->__draw();
-        if(_smoothing) ofEnableSmoothing();
         _draw();
-        ofDisableSmoothing();
-        //oFでは標準ではアルファブレンディング有効
-        //ofDisableAlphaBlending();
+        ofPopStyle();
         
         if(!bIdentity){
             glPopMatrix();
         }
+        //------------------------------------------
         
-        ofPopStyle();
+        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
+        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
+        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
     }
 
     //--------------------------------------------------------------
@@ -179,9 +189,9 @@ namespace fl2d {
         
         ofPushStyle();
         ofSetColor(_textColor, 255 * _compoundAlpha);
-        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+//        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
         Font::drawString(_text, 1, -1);
-        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
+//        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         
         ofPopMatrix();

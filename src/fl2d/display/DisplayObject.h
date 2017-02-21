@@ -75,7 +75,8 @@ namespace fl2d {
             ofPoint _rectTransformed[4];
             Rectangle* _pixelBounds;
                 
-            bool _smoothing;
+            bool _enabledSmoothing;
+            bool _enabledAntiAliasing;
         
             int	_mouseX;
             int	_mouseY;
@@ -176,8 +177,11 @@ namespace fl2d {
             
             virtual void transform(const Matrix& mat);
             
-            virtual bool smoothing();
-            virtual void smoothing(bool value);
+            virtual bool enabledSmoothing();
+            virtual void enabledSmoothing(bool value);
+            
+            virtual bool enabledAntiAliasing();
+            virtual void enabledAntiAliasing(bool value);
         
             virtual int mouseX();
             virtual int mouseY();

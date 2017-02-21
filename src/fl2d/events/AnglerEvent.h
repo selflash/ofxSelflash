@@ -18,23 +18,17 @@ namespace fl2d {
             
         public:
             static string CHANGE;
-            static string UP;
-            static string DOWN;
-            static string LEFT;
-            static string RIGHT;
-            
+        
         protected:
-            float __xValue;
-            float __yValue;
-            
+            float __value;
+        
         private:
             
         public:
             AnglerEvent(string type);
             virtual ~AnglerEvent();
             
-            virtual inline float xValue() { return __xValue; }
-            virtual inline float yValue() { return __yValue; }
+            virtual inline float value() { return __value; }
             
         protected:
             

@@ -66,11 +66,20 @@ namespace fl2d {
     //
     void DisplayObjectContainer::draw() {
         if(!visible()) return;
-        
-        ofPushStyle();
 
-        ofDisableLighting();
+        GLboolean preLighting = glIsEnabled(GL_LIGHTING);
+        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
+        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
+        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
         
+        ofDisableLighting();
+        ofEnableAlphaBlending();
+        glDisable(GL_DEPTH_TEST);
+        if(_enabledSmoothing) { ofEnableSmoothing(); }
+        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+        
+        //------------------------------------------
         //-- matrix transform.
         bool bIdentity = true;
         bIdentity = matrix().isIdentity();
@@ -80,15 +89,10 @@ namespace fl2d {
             glPushMatrix();
             glMultMatrixf(matrix().getPtr());
         }
-        glDisable(GL_DEPTH_TEST);
         
-        //ofSetColor(255, 255, 255, __compoundAlpha * 255);
-        ofEnableAlphaBlending();
-        if(_smoothing) ofEnableSmoothing();
+        ofPushStyle();
+//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
-        ofDisableSmoothing();
-        //oF„Åß„ÅØÊ®ôÊ∫ñ„Åß„ÅØ„Ç¢„É´„Éï„Ç°„Éñ„É¨„É≥„Éá„Ç£„É≥„Ç∞ÊúâÂäπ
-        //ofDisableAlphaBlending();
         
         for(int i = 0; i < children.size(); i++) {
             DisplayObject* child;
@@ -96,12 +100,18 @@ namespace fl2d {
             //child->drawOnFrame();
             child->draw();
         }
+        ofPopStyle();
         
         if(!bIdentity) {
             glPopMatrix();
         }
+        //------------------------------------------
         
-        ofPopStyle();
+        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
+        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
+        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
     }
 
     //==============================================================

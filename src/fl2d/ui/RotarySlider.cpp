@@ -40,7 +40,6 @@ namespace fl2d {
         Graphics* g;
         //------------------------------------------
         g = graphics();
-        g->smoothing(true);
         g->clear();
         g->lineStyle(1, _normalLineColor.getHex());
         g->beginFill(_normalColor.getHex(), 1);
@@ -52,7 +51,6 @@ namespace fl2d {
         //------------------------------------------
         lever = new Sprite();
         g = lever->graphics();
-        g->smoothing(true);
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);

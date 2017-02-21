@@ -190,33 +190,58 @@ namespace fl2d {
     // SETUP / UPDATE / DRAW
     //==============================================================
 
+//    //--------------------------------------------------------------
+//    //
+//    void Bitmap::draw() {
+//        if(!visible()) return;
+//
+//        GLboolean preLighting = glIsEnabled(GL_LIGHTING);
+//        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
+//        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
+//        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+//        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
+//        
+//        ofDisableLighting();
+//        ofEnableAlphaBlending();
+//        glDisable(GL_DEPTH_TEST);
+//        if(_smoothing) {
+//            ofEnableSmoothing();
+//            ofEnableAntiAliasing();
+//        }
+//        
+//        //------------------------------------------
+//        //-- matrix transform.
+//        bool bIdentity = true;
+//        bIdentity = matrix().isIdentity();
+//        bIdentity = false;
+//        
+//        if(!bIdentity){
+//            glPushMatrix();
+//            glMultMatrixf(matrix().getPtr());
+//        }
+//        
+//        ofPushStyle();
+//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+//        _draw();
+//        ofPopStyle();
+//        
+//        if(!bIdentity){
+//            glPopMatrix();
+//        }
+//        //------------------------------------------
+//        
+//        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+//        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+//        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
+//        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
+//        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
+//    }
+    
     //--------------------------------------------------------------
     //
-    void Bitmap::draw() {
-        if(!visible()) return;
-
-        ofPushStyle();
-
-        ofDisableLighting();
-        
-        //-- matrix transform.
-        bool bIdentity = true;
-        bIdentity = matrix().isIdentity();
-        bIdentity = false;
-        
-        if(!bIdentity){
-            glPushMatrix();
-            glMultMatrixf(matrix().getPtr());
-        }
-        glDisable(GL_DEPTH_TEST);
-        
-        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        ofEnableAlphaBlending();
-        if(_smoothing) ofEnableSmoothing();
-        
+    void Bitmap::_draw() {
         //--------------------------------------
         //draw image
-        ofPushStyle();        
         switch(_mode) {
             case 0: _bitmapData->__draw(0, 0); break;
             case 1: _image_ptr->draw(0, 0); break;
@@ -225,20 +250,7 @@ namespace fl2d {
             case 4: _texture.draw(0, 0); break;
             case 5: _fboImage.draw(0, 0); break;
         }
-        ofPopStyle();
         //--------------------------------------
-
-        _draw();
-        
-        ofDisableSmoothing();
-        //oFでは標準ではアルファブレンディング有効
-        //ofDisableAlphaBlending();
-        
-        if(!bIdentity){
-            glPopMatrix();
-        }
-        
-        ofPopStyle();
     }
 
     /*

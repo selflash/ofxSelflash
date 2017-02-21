@@ -62,7 +62,7 @@ namespace fl2d {
         
             int _activeLineWidth;
         
-            bool _enabledAntiAliasing;
+//            bool _enabledAntiAliasing;
 
 //            //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。
 //            bool _background;
@@ -134,8 +134,8 @@ namespace fl2d {
             bool enabled();
             void enabled(bool value);
         
-            bool enabledAntiAliasing() { return _enabledAntiAliasing; }
-            void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
+//            bool enabledAntiAliasing() { return _enabledAntiAliasing; }
+//            void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
 
 
         protected:

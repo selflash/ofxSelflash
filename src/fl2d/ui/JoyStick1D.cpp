@@ -61,7 +61,7 @@ namespace fl2d {
         Graphics* g;
         //------------------------------------------
         g = graphics();
-        g->smoothing(true);
+        g->enabledSmoothing(true);
         g->clear();
         g->lineStyle(1, _normalLineColor.getHex());
         g->beginFill(_normalColor.getHex(), 1);
@@ -92,7 +92,7 @@ namespace fl2d {
         //------------------------------------------
         lever = new Sprite();
         g = lever->graphics();
-        g->smoothing(true);
+        g->enabledSmoothing(true);
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
@@ -322,11 +322,11 @@ namespace fl2d {
                     lever->x(_center.x);
                 } else {
                     lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
-                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                    
-                    Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
-                    event->__value = _value;
-                    dispatchEvent(event);
+//                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
+//                    
+//                    Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
+//                    event->__value = _value;
+//                    dispatchEvent(event);
                 }
             } else
                 //垂直
@@ -336,17 +336,17 @@ namespace fl2d {
                         lever->y(_center.y);
                     } else {
                         lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
-                        _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                        
-                        Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
-                        event->__value = _value;
-                        dispatchEvent(event);
+//                        _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
+//                        
+//                        Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
+//                        event->__value = _value;
+//                        dispatchEvent(event);
                     }
                 }
             //------------------------------------------
         }
         
-        //        _flgX = false;
+//        _flgX = false;
         _flg = false;
     }
     

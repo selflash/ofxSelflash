@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.7
+# ofxSelflash ver0.5.8
 =========
 
-last update 2017.2.20
+last update 2017.2.21
 
 Copyright (c) 2015 selflash
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.8 - 2017.2.21
++ [Fixed] Smoothing and AntiAliasing.
 
 Ver 0.5.7 - 2017.2.20
 + [Fixed] CompoundAlpha.

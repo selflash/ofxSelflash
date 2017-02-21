@@ -43,7 +43,7 @@ namespace fl2d {
             Bitmap(ofFbo fboImage);
             virtual ~Bitmap();
             
-            virtual void draw();
+//            virtual void draw();
             //virtual ofTexture& getTextureReference();
 
             virtual float width();
@@ -59,6 +59,7 @@ namespace fl2d {
             virtual void scaleY(float value);
 
         protected:
+            virtual void _draw();
             virtual void _updateRect();
             //virtual void updateOnFrame();
             //virtual void drawOnFrame();

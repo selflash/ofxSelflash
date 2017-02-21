@@ -20,7 +20,8 @@ namespace fl2d {
 //        __alpha = 1.0;
         __rect = new Rectangle();
         
-        _smoothing = false;
+        _enabledSmoothing = false;
+        _enabledAntiAliasing = false;
         
         _IsMoveTo = false;
         
@@ -42,7 +43,8 @@ namespace fl2d {
         delete __rect;
         __rect = NULL;
         
-        _smoothing = false;
+        _enabledSmoothing = false;
+        _enabledAntiAliasing = false;
         
         _IsMoveTo = false;
         
@@ -58,10 +60,12 @@ namespace fl2d {
     void Graphics::__draw() {
         //cout << _commandList.size() << endl;
         
-        ofPushStyle();
-        
-        if(_smoothing) ofEnableSmoothing();
+        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
+        if(_enabledSmoothing) { ofEnableSmoothing(); }
+        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
 
+        ofPushStyle();
         int i; int l;
         l = _commandList.size();
         for(i = 0; i < l; i++) {
@@ -90,10 +94,10 @@ namespace fl2d {
                 //return;
             }
         }
-        
-        ofDisableSmoothing();
-        
         ofPopStyle();
+        
+        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
     }
 
     //==============================================================
@@ -247,11 +251,6 @@ namespace fl2d {
         
     //    _commandList.push_back(command);
     }
-
-    //--------------------------------------------------------------
-    //
-    void Graphics::smoothing(bool value) { _smoothing = value; }
-    bool Graphics::smoothing() { return _smoothing; }
 
     //==============================================================
     // PRIVATE METHOD

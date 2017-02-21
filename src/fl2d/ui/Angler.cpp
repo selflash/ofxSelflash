@@ -14,8 +14,7 @@ namespace fl2d {
         _target = this;
         name("Angler");
         
-        _xValue = 0.0;
-        _yValue = 0.0;
+        _value = 0.0;
         
         _areaRadius = areaDiameter * 0.5;
         _leverRadius = leverDiameter * 0.5;
@@ -40,7 +39,6 @@ namespace fl2d {
         Graphics* g;
         //------------------------------------------
         g = graphics();
-        g->smoothing(true);
         g->clear();
         g->lineStyle(1, _normalLineColor.getHex());
         g->beginFill(_normalColor.getHex(), 1);
@@ -52,7 +50,6 @@ namespace fl2d {
         //------------------------------------------
         lever = new Sprite();
         g = lever->graphics();
-        g->smoothing(true);
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
@@ -102,8 +99,7 @@ namespace fl2d {
         lever->removeEventListener(MouseEvent::MOUSE_MOVE, this, &Angler::_mouseEventHandler);
         lever->removeEventListener(MouseEvent::DRAGGING, this, &Angler::_mouseEventHandler);
         
-        _xValue = 0.0;
-        _yValue = 0.0;
+        _value = 0.0;
         
         _areaRadius = 0.0;
         _leverRadius = 0.0;
@@ -142,6 +138,8 @@ namespace fl2d {
     void Angler::_update() {
         //cout << "isMouseDown" << lever->isMouseDown() << endl;
         
+        float distance = _center->distance(ofVec2f(lever->x(), lever->y()));
+
         if(lever->isMouseDown()) {
             //------------------------------------------
             float shiftX; float shiftY;
@@ -163,103 +161,34 @@ namespace fl2d {
             lever->x(tx);
             lever->y(ty);
             //------------------------------------------
+            
             //------------------------------------------
-            _xValue = (lever->x() - _center->x) / (_areaRadius - _leverRadius);
-            _yValue = -1 * (lever->y() - _center->y) / (_areaRadius - _leverRadius);
+            if(distance >= _areaRadius - _leverRadius - 2) {
+                if(!_flg) {
+                    float n = _areaRadius / (_areaRadius - _leverRadius);
+                    _outPosition.x = _center->x + (lever->x() - _center->x) * n;
+                    _outPosition.y = _center->y + (lever->y() - _center->y) * n;
+                    
+                    _flg = true;
+                    _zeroAngle = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                }
+            }
             
-            AnglerEvent* event;
-            
-            event = new AnglerEvent(AnglerEvent::CHANGE);
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
+            if(_flg) {
+                //------------------------------------------
+                _value = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                _value = _value - _zeroAngle;
+                if(_value > 180.0) { _value -= 360.0; }
+                if(_value < -180.0) { _value += 360.0; }
+                //------------------------------------------
+            }
+            //------------------------------------------
+
+            //------------------------------------------
+            AnglerEvent* event = new AnglerEvent(AnglerEvent::CHANGE);
+            event->__value = _value;
             dispatchEvent(event);
-            
-            if(_xValue > 0) {
-                event = new AnglerEvent(AnglerEvent::RIGHT);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_xValue < 0) {
-                event = new AnglerEvent(AnglerEvent::LEFT);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_yValue > 0) {
-                event = new AnglerEvent(AnglerEvent::UP);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_yValue < 0) {
-                event = new AnglerEvent(AnglerEvent::DOWN);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
             //------------------------------------------
-            
-        } else if(_flgX || _flgY) {
-            //------------------------------------------
-            float shiftX; float shiftY;
-            float tx; float ty;
-            
-            tx = _targetX;
-            ty = _targetY;
-            if(!_flgX) tx = lever->x() + (_center->x - lever->x()) * 0.4f;
-            if(!_flgY) ty = lever->y() + (_center->y - lever->y()) * 0.4f;
-            
-            shiftX = tx - _center->x;
-            shiftY = ty - _center->y;
-            
-            float distance = _center->distance(ofPoint(tx, ty));
-            if((_areaRadius - _leverRadius - 2) < distance){
-                float n = (_areaRadius - _leverRadius - 2) / distance;
-                tx = _center->x + (shiftX * n);
-                ty = _center->y + (shiftY * n);
-            }
-            
-            lever->x(tx);
-            lever->y(ty);
-            //------------------------------------------
-            //------------------------------------------
-            _xValue = (lever->x() - _center->x) / (_areaRadius - _leverRadius);
-            _yValue = -1 * (lever->y() - _center->y) / (_areaRadius - _leverRadius);
-            
-            AnglerEvent* event;
-            
-            event = new AnglerEvent(AnglerEvent::CHANGE);
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
-            
-            if(_flgX && _xValue > 0) {
-                event = new AnglerEvent(AnglerEvent::RIGHT);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_flgX && _xValue < 0) {
-                event = new AnglerEvent(AnglerEvent::LEFT);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_flgY && _yValue > 0) {
-                event = new AnglerEvent(AnglerEvent::UP);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            if(_flgY && _yValue < 0) {
-                event = new AnglerEvent(AnglerEvent::DOWN);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-            }
-            //------------------------------------------
-            
         } else {
             //------------------------------------------
             float distanceX = _center->x - lever->x();
@@ -271,60 +200,46 @@ namespace fl2d {
             } else {
                 lever->x(lever->x() + (_center->x - lever->x()) * 0.4f);
                 lever->y(lever->y() + (_center->y - lever->y()) * 0.4f);
-                
-                _xValue = (lever->x() - _center->x) / (_areaRadius - _leverRadius);
-                _yValue = -1 * (lever->y() - _center->y) / (_areaRadius - _leverRadius);
-                
-                AnglerEvent* event = new AnglerEvent(AnglerEvent::CHANGE);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
             }
             //------------------------------------------
+            
+            //------------------------------------------
+            if(distance == 0.0) {
+                _flg = false;
+                _zeroAngle = 0.0;
+            }
+            
+            _outPosition.x = _center->x;
+            _outPosition.y = _center->y;
+            _value = 0.0;
+            //------------------------------------------
         }
-        
-        _flgX = false;
-        _flgY = false;
     }
     
     //--------------------------------------------------------------
     //
     void Angler::_draw() {
-        float distance = _center->distance(ofVec2f(lever->x(), lever->y()));
-        
         if(lever->isMouseDown()) {
+            GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+            ofEnableSmoothing();
+            
             ofPushStyle();
-            ofSetHexColor(_labelActiveColor);
+            ofSetHexColor(_normalLineColor.getHex());
+            ofDrawLine(_center->x, _center->y, _outPosition.x, _outPosition.y);
+            ofPopStyle();
+            
+            ofPushStyle();
+            ofSetHexColor(_activeLineColor.getHex());
             ofDrawLine(_center->x, _center->y, lever->x(), lever->y());
             ofPopStyle();
             
-            if(distance >= _areaRadius - _leverRadius - 2) {
-                if(!_flg) {
-                    _flg = true;
-                    _zeroAngle = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
-                }
-            }
+            if(preLineSmooth == GL_FALSE) ofDisableSmoothing();
             
-            if(_flg) {
-                //------------------------------------------
-                ofPushStyle();
-                ofTranslate(*_center);
-                float angle = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
-                
-                angle = angle - _zeroAngle;
-                if(angle > 180.0) { angle -= 360.0; }
-                if(angle < -180.0) { angle += 360.0; }
-                
-                ofDrawBitmapString(ofToString(angle), -30, 15);
-                ofTranslate(-*_center);
-                ofPopStyle();
-                //------------------------------------------
-            }
-        } else {
-            if(distance == 0.0) {
-                _flg = false;
-                _zeroAngle = 0.0;
-            }
+            ofPushStyle();
+            ofTranslate(*_center);
+            ofDrawBitmapString(ofToString(_value), -30, 15);
+            ofTranslate(-*_center);
+            ofPopStyle();
         }
     }
     
@@ -339,39 +254,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    float Angler::xValue() { return _xValue; }
-    //--------------------------------------------------------------
-    //
-    float Angler::yValue() { return _yValue; }
-    
-    //--------------------------------------------------------------
-    //
-    void Angler::leverUp(float value) {
-        //cout << "[Angler]leverUp()" << endl;
-        _targetY = lever->y() - (_areaRadius - _leverRadius - 2) * value;
-        _flgY = true;
-    }
-    //--------------------------------------------------------------
-    //
-    void Angler::leverDown(float value) {
-        //cout << "[Angler]leverDown()" << endl;
-        _targetY = lever->y() + (_areaRadius - _leverRadius - 2) * value;
-        _flgY = true;
-    }
-    //--------------------------------------------------------------
-    //
-    void Angler::leverLeft(float value) {
-        //cout << "[Angler]leverLeft()" << endl;
-        _targetX = lever->x() - (_areaRadius - _leverRadius - 2) * value;
-        _flgX = true;
-    }
-    //--------------------------------------------------------------
-    //
-    void Angler::leverRight(float value) {
-        //cout << "[Angler]leverRight()" << endl;
-        _targetX = lever->x() + (_areaRadius - _leverRadius - 2) * value;
-        _flgX = true;
-    }
+    float Angler::value() { return _value; }
     
     //--------------------------------------------------------------
     //

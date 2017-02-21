@@ -33,7 +33,7 @@ namespace fl2d {
             
         Graphics* g;
         g = graphics();
-        g->smoothing(true);
+        g->enabledSmoothing(true);
         g->clear();
         g->lineStyle(1, _lineColor.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);

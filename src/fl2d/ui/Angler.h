@@ -35,8 +35,7 @@ namespace fl2d {
         TextField* _label;
         
         //------------------------------------------
-        float _xValue;
-        float _yValue;
+        float _value;
         
         ofPoint* _center;
         
@@ -57,6 +56,7 @@ namespace fl2d {
         
         float _zeroAngle = 0.0;
         bool _flg = false;
+        ofVec2f _outPosition;
         
     public:
         Angler(float areaDiameter = 50, float leverDiameter = 10);
@@ -65,13 +65,7 @@ namespace fl2d {
         TextField* label();
         void label(TextField* value);
         
-        float xValue();
-        float yValue();
-        
-        void leverUp(float value = 1.0);
-        void leverDown(float value = 1.0);
-        void leverLeft(float value = 1.0);
-        void leverRight(float value = 1.0);
+        float value();
         
         bool enabled();
         void enabled(bool value);

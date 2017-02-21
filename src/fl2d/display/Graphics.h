@@ -76,8 +76,9 @@ namespace fl2d {
             float _moveToY;
             bool _IsMoveTo;
         
-            bool _smoothing;
-            
+            bool _enabledSmoothing;
+            bool _enabledAntiAliasing;
+        
             //Sprite
 //            float __alpha;
             Rectangle* __rect;
@@ -110,9 +111,12 @@ namespace fl2d {
             
             void clear();
             
-            void smoothing(bool value);
-            bool smoothing();
-            
+            inline bool enabledSmoothing() { return _enabledSmoothing; }
+            inline void enabledSmoothing(bool value) { _enabledSmoothing = value; }
+
+            inline bool enabledAntiAliasing() { return _enabledAntiAliasing; }
+            inline void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
+
         protected:
             
         private:
