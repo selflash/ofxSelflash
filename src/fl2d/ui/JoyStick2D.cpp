@@ -272,13 +272,13 @@ namespace fl2d {
                 lever->x(lever->x() + (_center->x - lever->x()) * 0.4f);
                 lever->y(lever->y() + (_center->y - lever->y()) * 0.4f);
                 
-//                _xValue = (lever->x() - _center->x) / (_areaRadius - _leverRadius);
-//                _yValue = -1 * (lever->y() - _center->y) / (_areaRadius - _leverRadius);
-//                
-//                Joystick2DEvent* event = new Joystick2DEvent(Joystick2DEvent::CHANGE);
-//                event->__xValue = _xValue;
-//                event->__yValue = _yValue;
-//                dispatchEvent(event);
+                _xValue = (lever->x() - _center->x) / (_areaRadius - _leverRadius);
+                _yValue = -1 * (lever->y() - _center->y) / (_areaRadius - _leverRadius);
+                
+                Joystick2DEvent* event = new Joystick2DEvent(Joystick2DEvent::CHANGE);
+                event->__xValue = _xValue;
+                event->__yValue = _yValue;
+                dispatchEvent(event);
             }
             //------------------------------------------
         }

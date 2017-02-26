@@ -322,11 +322,11 @@ namespace fl2d {
                     lever->x(_center.x);
                 } else {
                     lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
-//                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-//                    
-//                    Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
-//                    event->__value = _value;
-//                    dispatchEvent(event);
+                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
+                    
+                    Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
+                    event->__value = _value;
+                    dispatchEvent(event);
                 }
             } else
                 //垂直
@@ -336,11 +336,11 @@ namespace fl2d {
                         lever->y(_center.y);
                     } else {
                         lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
-//                        _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-//                        
-//                        Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
-//                        event->__value = _value;
-//                        dispatchEvent(event);
+                        _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
+                        
+                        Joystick1DEvent* event = new Joystick1DEvent(Joystick1DEvent::CHANGE);
+                        event->__value = _value;
+                        dispatchEvent(event);
                     }
                 }
             //------------------------------------------
