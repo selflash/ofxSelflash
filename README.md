@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.8
+# ofxSelflash ver0.5.9
 =========
 
-last update 2017.2.21
+last update 2017.2.26
 
 Copyright (c) 2015 selflash
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.9 - 2017.2.26
++ [Fixed] JoyStick1D.cpp and JoyStick2D.cpp.
 
 Ver 0.5.8 - 2017.2.21
 + [Fixed] Smoothing and AntiAliasing.
