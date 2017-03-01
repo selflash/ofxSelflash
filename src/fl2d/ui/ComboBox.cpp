@@ -224,6 +224,10 @@ namespace fl2d {
             if(_label != NULL) _label->textColor(_labelNormalColor);
         } else {
             if(_label != NULL) _label->textColor(_labelDeactiveColor);
+            
+            _topButton->selected(false);
+            if(_buttonContainer->parent()) removeChild(_buttonContainer);
+//            if(_topButton->isFocus()) { _topButton->focusOut(); }
         }
     }
 

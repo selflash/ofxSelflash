@@ -101,27 +101,46 @@ namespace fl2d {
         
         _selected = value;
         
+//        if(_enabled) {
+//            if(isMouseOver()){
+//                _over();
+//            } else {
+//                _normal();
+//            }
+//            
+//    //        if(_selected) {
+//    //            if(isMouseOver()) {
+//    //                _label->textColor(_labelOverColor);
+//    //            } else {
+//    //                _label->textColor(_labelNormalColor);
+//    //            }
+//    //        } else {
+//    //            if(isMouseOver()) {
+//    //                _label->textColor(_labelOverColor);
+//    //            } else {
+//    //                _label->textColor(_labelNormalColor);
+//    //            }
+//    //        }
+//        }
+        
         if(_enabled) {
-            if(isMouseOver()){
-                _over();
-            } else {
-                _normal();
-            }
+            _label->textColor(_labelNormalColor.getHex());
             
-    //        if(_selected) {
-    //            if(isMouseOver()) {
-    //                _label->textColor(_labelOverColor);
-    //            } else {
-    //                _label->textColor(_labelNormalColor);
-    //            }
-    //        } else {
-    //            if(isMouseOver()) {
-    //                _label->textColor(_labelOverColor);
-    //            } else {
-    //                _label->textColor(_labelNormalColor);
-    //            }
-    //        }
+            if(_selected) {
+                _drawGraphics(_lineColor, _activeColor);
+            } else {
+                _drawGraphics(_lineColor);
+            }
+        } else {
+            _label->textColor(_labelDeactiveColor.getHex());
+            
+            if(_selected) {
+                _drawGraphics(_labelDeactiveColor, _activeColor);
+            } else {
+                _drawGraphics(_labelDeactiveColor);
+            }
         }
+        
         
         if(dispatch) {
             dispatchEvent(new Event(Event::CHANGE));

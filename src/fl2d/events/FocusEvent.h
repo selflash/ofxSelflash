@@ -2,7 +2,7 @@
  
  ActionScript3.0 Reference
  flash.events.FocusEvent
- http://livedocs.adobe.com/flash/9.0_jp/ActionScriptLangRefV3/flash/events/FocusEvent.html
+ http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/events/FocusEvent.html
  
  */
 

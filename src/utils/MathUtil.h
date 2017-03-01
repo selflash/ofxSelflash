@@ -7,7 +7,7 @@ class MathUtil {
     
         //--------------------------------------------------------------
         //
-        static inline double round(double value, int n = 3) {
+        inline static double round(double value, int n = 3) {
             double dst;
             //処理を行う桁を10-1 の位にする
             dst = value * pow((double)10, (double)(-n - 1));
@@ -19,7 +19,7 @@ class MathUtil {
     
         //--------------------------------------------------------------
         //??
-        static inline double roundd(const double& value) {
+        inline static double roundd(const double& value) {
             double result;
             if (value > 0.0) {
                 result = floor(value + 0.5);
@@ -33,7 +33,7 @@ class MathUtil {
     
         //--------------------------------------------------------------
         //
-        static inline float getAngle(float x, float y) {
+        inline static float getAngle(float x, float y) {
             auto getAtan = [](float x, float y)->float {
                 if(x > 0.0) {
                     return atan(y / x);
@@ -50,7 +50,7 @@ class MathUtil {
         
         //--------------------------------------------------------------
         //
-        static inline float getAngle(ofVec2f point) {
+        inline static float getAngle(ofVec2f point) {
             return getAngle(point.x, point.y);
         }
 

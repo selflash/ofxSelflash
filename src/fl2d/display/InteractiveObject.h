@@ -69,11 +69,13 @@ namespace fl2d {
             virtual bool isRollOver();
             virtual bool isMouseDown();
             virtual bool isFocus();
-        
+
+//            virtual void focusOut();
+
         protected:
             InteractiveObject();
             virtual ~InteractiveObject();
-            
+        
         private:
             
     };

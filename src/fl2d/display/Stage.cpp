@@ -268,13 +268,20 @@ namespace fl2d {
     //    glEnable(GL_BLEND);
     //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         //glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        ofEnableAlphaBlending();
         
+        
+        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
+        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
+
+        ofEnableAlphaBlending();
         glDisable(GL_DEPTH_TEST);
         
         DisplayObjectContainer::draw();
         //_drawChildren(this, children);
         
+        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
+        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
+
         //oF„Åß„ÅØÊ®ôÊ∫ñ„Åß„ÅØ„Ç¢„É´„Éï„Ç°„Éñ„É¨„É≥„Éá„Ç£„É≥„Ç∞ÊúâÂäπ
         //ofDisableAlphaBlending();
     //    glBlendFunc(GL_ONE, GL_ZERO);

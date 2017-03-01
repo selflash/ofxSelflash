@@ -98,9 +98,19 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     bool InteractiveObject::isFocus() { return __isFocus; }
+    
+    //--------------------------------------------------------------
+    //
+//    void InteractiveObject::focusOut() {
+//        __isFocus = false;
+//        FocusEvent* focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
+//        focusEvent->_target = this;
+//        dispatchEvent(focusEvent);
+//    }
 
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
+
 
 }

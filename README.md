@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.9
+# ofxSelflash ver0.5.10
 =========
 
-last update 2017.2.26
+last update 2017.3.1
 
 Copyright (c) 2015 selflash
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.10 - 2017.3.1
++ [Fixed] ofEnableAlphaBlending. Stage::draw() in Stage.cpp
 
 Ver 0.5.9 - 2017.2.26
 + [Fixed] JoyStick1D.cpp and JoyStick2D.cpp.

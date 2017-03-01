@@ -14,6 +14,7 @@
 #include "../display/Sprite.h"
 #include "../texts/TextField.h"
 #include "Button.h"
+#include "../events/FocusEvent.h"
 #include "../events/ComboBoxEvent.h"
 
 namespace fl2d {
