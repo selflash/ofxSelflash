@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.10
+# ofxSelflash ver0.5.11
 =========
 
-last update 2017.3.1
+Last update 2018.1.17
 
 Copyright (c) 2015 selflash
 
