@@ -1,4 +1,4 @@
-#include "BasicController.h"
+﻿#include "BasicController.h"
 
 //==============================================================
 // CONSTRUCTOR / DESTRUCTOR
@@ -199,6 +199,12 @@ void BasicController::normalize() {
     
     if(parent()) ((DisplayObjectContainer*)parent())->addChild(this);
     //----------------------------------
+}
+
+//--------------------------------------------------------------
+//
+void BasicController::resize(float w, float h) {
+
 }
 
 //==============================================================

@@ -63,6 +63,11 @@ namespace fl2d {
         
         _mode = "down";
         
+        _pointerValue = NULL;
+        _stringValue = "";
+        _floatValue = 0.0;
+        _intValue = 0;
+
         _enabled = true;
     }
 
@@ -105,6 +110,11 @@ namespace fl2d {
         
         _mode = "";
         
+        _pointerValue = NULL;
+        _stringValue = "";
+        _floatValue = 0.0;
+        _intValue = 0;
+
         _enabled = false;
     }
 
@@ -209,6 +219,26 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     int ComboBox::numItems() { return _itemList.size(); }
+
+    //--------------------------------------------------------------
+    //
+    void* ComboBox::pointerValue() { return _pointerValue; }
+    void ComboBox::pointerValue(void* value) { _pointerValue = value; }
+    
+    //--------------------------------------------------------------
+    //
+    string ComboBox::stringValue() { return _stringValue; }
+    void ComboBox::stringValue(string value) { _stringValue = value; }
+    
+    //--------------------------------------------------------------
+    //
+    float ComboBox::floatValue() { return _floatValue; }
+    void ComboBox::floatValue(float value) { _floatValue = value; }
+    
+    //--------------------------------------------------------------
+    //
+    int ComboBox::intValue() { return _intValue; }
+    void ComboBox::intValue(int value) { _intValue = value; }
 
     //--------------------------------------------------------------
     //

@@ -91,6 +91,8 @@ namespace fl2d {
         } else {
             _normal();
         }
+        
+        _updateRect();
     }
 
     //--------------------------------------------------------------
@@ -124,11 +126,13 @@ namespace fl2d {
 //        }
         
         if(_enabled) {
-            _label->textColor(_labelNormalColor.getHex());
+//            _label->textColor(_labelNormalColor.getHex());
             
             if(_selected) {
+                _label->textColor(_labelActiveColor.getHex());
                 _drawGraphics(_lineColor, _activeColor);
             } else {
+                _label->textColor(_labelNormalColor.getHex());
                 _drawGraphics(_lineColor);
             }
         } else {

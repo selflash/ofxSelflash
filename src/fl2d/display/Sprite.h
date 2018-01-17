@@ -35,7 +35,7 @@ namespace fl2d {
             virtual ~Sprite();
 
             virtual void update();
-            virtual void draw();
+            virtual void draw(bool applyMatrix = true);
             
             virtual float width();
             virtual void width(float value);

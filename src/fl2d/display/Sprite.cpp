@@ -74,28 +74,34 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     //
-    void Sprite::draw() {
-        if(!visible()) return;
+    void Sprite::draw(bool applyMatrix) {
+        if(!visible() && applyMatrix) return;
+        
+        // save off current state of blend enabled
+        GLboolean blendEnabled;
+        glGetBooleanv(GL_BLEND, &blendEnabled);
+        // save off current state of src / dst blend functions
+        GLint blendSrc; GLint blendDst;
+        glGetIntegerv(GL_BLEND_SRC_ALPHA, &blendSrc);
+        glGetIntegerv(GL_BLEND_DST_ALPHA, &blendDst);
+        ofEnableAlphaBlending();
         
         GLboolean preLighting = glIsEnabled(GL_LIGHTING);
-        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
         GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
         GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
         GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
-        
         ofDisableLighting();
-        ofEnableAlphaBlending();
         glDisable(GL_DEPTH_TEST);
-        if(_enabledSmoothing) { ofEnableSmoothing(); }
-        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+        if(_enabledSmoothing) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
         
         //------------------------------------------
         //-- matrix transform.
-        bool bIdentity = true;
-        bIdentity = matrix().isIdentity();
-        bIdentity = false;
-        
-        if(!bIdentity){
+//        bool bIdentity = true;
+//        bIdentity = matrix().isIdentity();
+//        bIdentity = false;
+//        if(!bIdentity){
+        if(applyMatrix){
             glPushMatrix();
             glMultMatrixf(matrix().getPtr());
         }
@@ -113,7 +119,8 @@ namespace fl2d {
         }
         ofPopStyle();
         
-        if(!bIdentity) {
+//        if(!bIdentity) {
+        if(applyMatrix) {
             glPopMatrix();
         }
         //------------------------------------------
@@ -121,8 +128,11 @@ namespace fl2d {
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
         if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
-        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
         if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
+        
+        // restore saved state of blend enabled and blend functions
+        if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
+        glBlendFunc(blendSrc, blendDst);
 
         //--------------------------------------
         //ヒットエリアの表示

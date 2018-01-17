@@ -27,7 +27,7 @@ namespace fl2d {
             virtual ~Shape();
         
             virtual void update();
-            virtual void draw();
+            virtual void draw(bool applyMatrix = true);
             
 //            virtual float alpha();
 //            virtual void alpha(float value);

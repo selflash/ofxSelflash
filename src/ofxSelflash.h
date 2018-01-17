@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //Comment in, if you want to use api of 3d
 //#define FLASH_3D

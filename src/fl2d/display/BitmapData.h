@@ -63,8 +63,10 @@ namespace fl2d {
             
             void draw(ofImage& source);
             
-            void fillRect(Rectangle rect, int color);
-            
+//            void fillRect(Rectangle rect, int color);
+            void fillRect(Rectangle rect, ofColor color);
+            void clear();
+        
             void floodFill(int x, int y, int color);
             
             //Rectangle* generateFilterRect(Rectangle* sourceRect, BitmapFilter filter);
@@ -73,14 +75,26 @@ namespace fl2d {
             int getPixel32(int x, int y);
             
             //ByteArray getPixels(Rectangle* rect);
-            
-            //void setPixel(int x, int y, int color);
-            
+        
+            void lock() { };
+            void unlock() {
+                _image->update();
+//                if(_transparent) {
+//                    //アルファ用に格納
+//                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
+//                } else {
+//                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR);
+//                }
+            }
+//            void setPixel(int x, int y, int color);
+            void setPixel(int x, int y, ofColor color);
+        
             //hitTest();
             
         protected:
             //for Bitmap
             void __draw(float x, float y);
+        
         private:
             virtual void _draw();
             

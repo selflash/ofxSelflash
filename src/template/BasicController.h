@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "../ofxSelflash.h"
@@ -262,6 +262,12 @@ class BasicController : public flSprite {
         flButton* button305 = NULL; flButton* button306 = NULL; flButton* button307 = NULL; flButton* button308 = NULL; flButton* button309 = NULL;
         flButton* button310 = NULL; flButton* button311 = NULL; flButton* button312 = NULL; flButton* button313 = NULL; flButton* button314 = NULL;
         flButton* button315 = NULL; flButton* button316 = NULL; flButton* button317 = NULL; flButton* button318 = NULL; flButton* button319 = NULL;
+        flButton* button320 = NULL; flButton* button321 = NULL; flButton* button322 = NULL; flButton* button323 = NULL; flButton* button324 = NULL;
+        flButton* button325 = NULL; flButton* button326 = NULL; flButton* button327 = NULL; flButton* button328 = NULL; flButton* button329 = NULL;
+        flButton* button330 = NULL; flButton* button331 = NULL; flButton* button332 = NULL; flButton* button333 = NULL; flButton* button334 = NULL;
+        flButton* button335 = NULL; flButton* button336 = NULL; flButton* button337 = NULL; flButton* button338 = NULL; flButton* button339 = NULL;
+        flButton* button340 = NULL; flButton* button341 = NULL; flButton* button342 = NULL; flButton* button343 = NULL; flButton* button344 = NULL;
+        flButton* button345 = NULL; flButton* button346 = NULL; flButton* button347 = NULL; flButton* button348 = NULL; flButton* button349 = NULL;
         flButton* button350 = NULL; flButton* button351 = NULL; flButton* button352 = NULL; flButton* button353 = NULL; flButton* button354 = NULL;
         flButton* button355 = NULL; flButton* button356 = NULL; flButton* button357 = NULL; flButton* button358 = NULL; flButton* button359 = NULL;
         flButton* button390 = NULL; flButton* button391 = NULL; flButton* button392 = NULL; flButton* button393 = NULL; flButton* button394 = NULL;
@@ -515,6 +521,15 @@ class BasicController : public flSprite {
         flColorSlider* colorSlider020 = NULL; flColorSlider* colorSlider021 = NULL; flColorSlider* colorSlider022 = NULL; flColorSlider* colorSlider023 = NULL;
         flColorSlider* colorSlider024 = NULL; flColorSlider* colorSlider025 = NULL; flColorSlider* colorSlider026 = NULL; flColorSlider* colorSlider027 = NULL;
         flColorSlider* colorSlider028 = NULL; flColorSlider* colorSlider029 = NULL;
+        flColorSlider* colorSlider030 = NULL; flColorSlider* colorSlider031 = NULL; flColorSlider* colorSlider032 = NULL; flColorSlider* colorSlider033 = NULL;
+        flColorSlider* colorSlider034 = NULL; flColorSlider* colorSlider035 = NULL; flColorSlider* colorSlider036 = NULL; flColorSlider* colorSlider037 = NULL;
+        flColorSlider* colorSlider038 = NULL; flColorSlider* colorSlider039 = NULL;
+        flColorSlider* colorSlider040 = NULL; flColorSlider* colorSlider041 = NULL; flColorSlider* colorSlider042 = NULL; flColorSlider* colorSlider043 = NULL;
+        flColorSlider* colorSlider044 = NULL; flColorSlider* colorSlider045 = NULL; flColorSlider* colorSlider046 = NULL; flColorSlider* colorSlider047 = NULL;
+        flColorSlider* colorSlider048 = NULL; flColorSlider* colorSlider049 = NULL;
+        flColorSlider* colorSlider050 = NULL; flColorSlider* colorSlider051 = NULL; flColorSlider* colorSlider052 = NULL; flColorSlider* colorSlider053 = NULL;
+        flColorSlider* colorSlider054 = NULL; flColorSlider* colorSlider055 = NULL; flColorSlider* colorSlider056 = NULL; flColorSlider* colorSlider057 = NULL;
+        flColorSlider* colorSlider058 = NULL; flColorSlider* colorSlider059 = NULL;
         //カラースライダー(100)
         flColorSlider* colorSlider100 = NULL; flColorSlider* colorSlider101 = NULL; flColorSlider* colorSlider102 = NULL; flColorSlider* colorSlider103 = NULL;
         flColorSlider* colorSlider104 = NULL; flColorSlider* colorSlider105 = NULL; flColorSlider* colorSlider106 = NULL; flColorSlider* colorSlider107 = NULL;
@@ -984,6 +999,10 @@ class BasicController : public flSprite {
         flRadioButton* radio033 = NULL; flRadioButton* radio034 = NULL; flRadioButton* radio035 = NULL;
         flRadioButton* radio036 = NULL; flRadioButton* radio037 = NULL; flRadioButton* radio038 = NULL;
         flRadioButton* radio039 = NULL;
+        flRadioButton* radio040 = NULL; flRadioButton* radio041 = NULL; flRadioButton* radio042 = NULL;
+        flRadioButton* radio043 = NULL; flRadioButton* radio044 = NULL; flRadioButton* radio045 = NULL;
+        flRadioButton* radio046 = NULL; flRadioButton* radio047 = NULL; flRadioButton* radio048 = NULL;
+        flRadioButton* radio049 = NULL;
         //シンプルラジオボタン(100)
         flRadioButton* radio100 = NULL; flRadioButton* radio101 = NULL; flRadioButton* radio102 = NULL;
         flRadioButton* radio103 = NULL; flRadioButton* radio104 = NULL; flRadioButton* radio105 = NULL;
@@ -1176,6 +1195,8 @@ class BasicController : public flSprite {
         //ジョイスティック1D(000)
         flJoystick1D* joystick1D000 = NULL; flJoystick1D* joystick1D001 = NULL; flJoystick1D* joystick1D002 = NULL; flJoystick1D* joystick1D003 = NULL; flJoystick1D* joystick1D004 = NULL;
         flJoystick1D* joystick1D005 = NULL; flJoystick1D* joystick1D006 = NULL; flJoystick1D* joystick1D007 = NULL; flJoystick1D* joystick1D008 = NULL; flJoystick1D* joystick1D009 = NULL;
+        flJoystick1D* joystick1D010 = NULL; flJoystick1D* joystick1D011 = NULL; flJoystick1D* joystick1D012 = NULL; flJoystick1D* joystick1D013 = NULL; flJoystick1D* joystick1D014 = NULL;
+        flJoystick1D* joystick1D015 = NULL; flJoystick1D* joystick1D016 = NULL; flJoystick1D* joystick1D017 = NULL; flJoystick1D* joystick1D018 = NULL; flJoystick1D* joystick1D019 = NULL;
         //ジョイスティック1D(100)
         flJoystick1D* joystick1D100 = NULL; flJoystick1D* joystick1D101 = NULL; flJoystick1D* joystick1D102 = NULL; flJoystick1D* joystick1D103 = NULL; flJoystick1D* joystick1D104 = NULL;
         flJoystick1D* joystick1D105 = NULL; flJoystick1D* joystick1D106 = NULL; flJoystick1D* joystick1D107 = NULL; flJoystick1D* joystick1D108 = NULL; flJoystick1D* joystick1D109 = NULL;
@@ -1187,6 +1208,8 @@ class BasicController : public flSprite {
         //ジョイスティック2D(000)
         flJoystick2D* joystick2D000 = NULL; flJoystick2D* joystick2D001 = NULL; flJoystick2D* joystick2D002 = NULL; flJoystick2D* joystick2D003 = NULL; flJoystick2D* joystick2D004 = NULL;
         flJoystick2D* joystick2D005 = NULL; flJoystick2D* joystick2D006 = NULL; flJoystick2D* joystick2D007 = NULL; flJoystick2D* joystick2D008 = NULL; flJoystick2D* joystick2D009 = NULL;
+        flJoystick2D* joystick2D010 = NULL; flJoystick2D* joystick2D011 = NULL; flJoystick2D* joystick2D012 = NULL; flJoystick2D* joystick2D013 = NULL; flJoystick2D* joystick2D014 = NULL;
+        flJoystick2D* joystick2D015 = NULL; flJoystick2D* joystick2D016 = NULL; flJoystick2D* joystick2D017 = NULL; flJoystick2D* joystick2D018 = NULL; flJoystick2D* joystick2D019 = NULL;
         //ジョイスティック2D(100)
         flJoystick2D* joystick2D100 = NULL; flJoystick2D* joystick2D101 = NULL; flJoystick2D* joystick2D102 = NULL; flJoystick2D* joystick2D103 = NULL; flJoystick2D* joystick2D104 = NULL;
         flJoystick2D* joystick2D105 = NULL; flJoystick2D* joystick2D106 = NULL; flJoystick2D* joystick2D107 = NULL; flJoystick2D* joystick2D108 = NULL; flJoystick2D* joystick2D109 = NULL;
@@ -1299,12 +1322,12 @@ class BasicController : public flSprite {
         //--------------------------------------
     
     protected:
-        int _backWidth;
-        int _backHeight;
-        int _minBackWidth;
-        int _minBackHeight;
-        int _normalBackWidth;
-        int _normalBackHeight;
+        float _backWidth;
+        float _backHeight;
+        float _minBackWidth;
+        float _minBackHeight;
+        float _normalBackWidth;
+        float _normalBackHeight;
     
         bool _isMinimize;
     
@@ -1321,6 +1344,14 @@ class BasicController : public flSprite {
         
         virtual void minimize();
         virtual void normalize();
+        virtual void resize(float w, float h);
+
+        virtual inline float backWidth() { return _backWidth; }
+        virtual inline float backHeight() { return _backHeight; }
+        virtual inline float minBackWidth() { return _minBackWidth; }
+        virtual inline float minBackHeight() { return _minBackHeight; }
+        virtual inline float normalBackWidth() { return _normalBackWidth; }
+        virtual inline float normalBackHeight() { return _normalBackHeight; }
 
         virtual inline bool dragEnabled() { return _dragEnabled = NULL; }
         virtual inline void dragEnabled(bool value) {

@@ -400,6 +400,8 @@ namespace fl2d {
         
         if(isMouseOver()) {
             _over();
+            dispatchEvent(new ButtonEvent(ButtonEvent::MOUSE_UP));
+            dispatchEvent(new ButtonEvent(ButtonEvent::CLICK));
             return;
         }
         
@@ -436,10 +438,14 @@ namespace fl2d {
         }
         if(event.type() == MouseEvent::MOUSE_DOWN) {
             if(event.target() == this) _press();
+            addEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
             if(stage()) stage()->addEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
         }
         if(event.type() == MouseEvent::MOUSE_UP) {
-            if(event.target() == stage()) _release();
+            removeEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
+            if(stage()) stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
+//            if(event.target() == stage()) _release();
+            _release();
         }
     }
 

@@ -242,6 +242,7 @@ namespace fl2d {
     void Bitmap::_draw() {
         //--------------------------------------
         //draw image
+//        cout << "_mode = " << _mode << endl;
         switch(_mode) {
             case 0: _bitmapData->__draw(0, 0); break;
             case 1: _image_ptr->draw(0, 0); break;

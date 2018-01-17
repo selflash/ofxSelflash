@@ -10,14 +10,14 @@ MIT License.
 Description:
 --------
 
-ofxSelflash is addon to be able to write a code like AS3 on openFrameworks0.9.7
+ofxSelflash is an addon that allows you to write code like AS3 on openFrameworks.
 
-+ 'fl2d' package is classes like built-in classes of ActionScript3.0.
-+ 'fl3d' package is classes that imitated classes of PaperVision3D.
-+ 'tween' package is classes that imitated TweenMax API.
++ A "fl2d" package is classes in imitation of ActionScript3.0.
++ A "fl3d" package is classes in imitation of PaperVision3D.
++ A "tween" package is classes in imitation of TweenMax.
 
 This addon is still in development.
-The following example is unable to build.
+Following examples are unable to build.
 
 + example-3D-1
 + example-3D-2
@@ -77,13 +77,13 @@ How to use
 If you see following error when you build.
 ![1-1](howtouse/1-1.png)
 
-Please change 'C++ Source' to 'Objective-C++ Srouce' of NativeWindow.cpp.
+Please change "C++ Source" to "Objective-C++ Source" of NativeWindow.cpp.
 ![1-2](howtouse/1-2.png)
 
-Also change Mouse.cpp please.
+Please also change Mouse.cpp in the same way.
 ![1-3](howtouse/1-3.png)
 
-Please Copy fl-folder from ofxSelflash/bin/data to your project-folder/bin/data
+Please copy fl-folder in "ofxSelflash/bin/data" to "your project folder/bin/data".
 ![2-1](howtouse/2-1.png)
 
 
@@ -225,6 +225,9 @@ void ofApp::setup() {
 
 Updates:
 --------
+
+Ver 0.5.11 - 2018.1.17
++ [Fixed] some bugs.
 
 Ver 0.5.10 - 2017.3.1
 + [Fixed] ofEnableAlphaBlending. Stage::draw() in Stage.cpp

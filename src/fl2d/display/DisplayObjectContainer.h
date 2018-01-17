@@ -29,7 +29,7 @@ namespace fl2d {
             
         public:
             virtual void update();
-            virtual void draw();
+            virtual void draw(bool applyMatrix = true);
             
             bool mouseChildren();
             void mouseChildren(bool value);

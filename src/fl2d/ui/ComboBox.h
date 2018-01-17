@@ -65,6 +65,11 @@ namespace fl2d {
         
             string _mode;
         
+            void* _pointerValue;
+            string _stringValue;
+            float _floatValue;
+            int _intValue;
+
             bool _enabled;
         
         public:
@@ -257,6 +262,18 @@ namespace fl2d {
             T selectedValue() { return _selectedItem->getProperty<T>("value"); }
         
             int numItems();        
+            
+            void* pointerValue();
+            void pointerValue(void* value);
+            
+            string stringValue();
+            void stringValue(string value);
+            
+            float floatValue();
+            void floatValue(float value);
+            
+            int intValue();
+            void intValue(int value);
         
             bool enabled();
             void enabled(bool value);

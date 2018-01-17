@@ -12,6 +12,8 @@ namespace fl2d {
     string SoundEvent::ON_LEFT_BEAT = "onLeftBeat";
     string SoundEvent::ON_RIGHT_BEAT = "onRightBeat";
 
+    string SoundEvent::COMPLETED = "completed";
+
     //--------------------------------------------------------------
     //
     SoundEvent::SoundEvent(string type):Event(type) {

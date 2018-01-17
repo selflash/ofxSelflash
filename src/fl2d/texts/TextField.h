@@ -140,7 +140,7 @@ namespace fl2d {
 
         protected:
             virtual void update();
-            virtual void draw();
+            virtual void draw(bool applyMatrix = true);
             virtual void _draw();
 
             virtual void __compoundAlpha(float value);

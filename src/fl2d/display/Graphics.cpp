@@ -62,8 +62,8 @@ namespace fl2d {
         
         GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
         GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
-        if(_enabledSmoothing) { ofEnableSmoothing(); }
-        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+        if(_enabledSmoothing) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
 
         ofPushStyle();
         int i; int l;

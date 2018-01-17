@@ -9,6 +9,7 @@ namespace fl2d {
     string ButtonEvent::ROLL_OUT = "buttonRollOut";
     string ButtonEvent::MOUSE_DOWN = "buttonMouseDown";
     string ButtonEvent::MOUSE_UP = "buttonMouseUp";
+    string ButtonEvent::CLICK = "buttonClick";
 
     //--------------------------------------------------------------
     //

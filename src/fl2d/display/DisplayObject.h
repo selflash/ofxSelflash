@@ -86,7 +86,7 @@ namespace fl2d {
         public:
             virtual void setup();
             virtual void update();
-            virtual void draw();
+            virtual void draw(bool applyMatrix = true);
             
             virtual string name();
             virtual void name(string value);

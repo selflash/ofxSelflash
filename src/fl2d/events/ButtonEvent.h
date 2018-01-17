@@ -15,6 +15,7 @@ namespace fl2d {
             static string ROLL_OUT;
             static string MOUSE_DOWN;
             static string MOUSE_UP;
+            static string CLICK;
         
         protected:
         

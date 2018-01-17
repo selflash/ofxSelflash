@@ -55,6 +55,8 @@ namespace fl2d {
             bool enabled();
             void enabled(bool value);
 
+            inline void activeColor(ofFloatColor value) { _activeColor = value; };
+
         protected:
             virtual void _normal();
             virtual void _over();
