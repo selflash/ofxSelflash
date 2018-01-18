@@ -92,8 +92,10 @@ namespace fl2d {
 //        bIdentity = false;
         
         if(applyMatrix){
-            glPushMatrix();
-            glMultMatrixf(matrix().getPtr());
+//            glPushMatrix();
+            ofPushMatrix();
+//            glMultMatrixf(matrix().getPtr());
+            ofMultMatrix(matrix().getPtr());
         }
         
         ofPushStyle();
@@ -109,7 +111,8 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-            glPopMatrix();
+//            glPopMatrix();
+            ofPopMatrix();
         }
         //------------------------------------------
         

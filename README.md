@@ -1,7 +1,7 @@
-# ofxSelflash ver0.5.11
+# ofxSelflash ver0.5.12
 =========
 
-Last update 2018.1.17
+Last update 2018.1.18
 
 Copyright (c) 2015 selflash
 
@@ -226,9 +226,11 @@ void ofApp::setup() {
 
 Updates:
 --------
+Ver 0.5.12 - 2018.1.18
++ [Fixed] A bug of drawing on GLSL4.1 has beed fixed
 
 Ver 0.5.11 - 2018.1.17
-+ [Fixed] some bugs.
++ [Fixed] Some bugs have been fixed.
 
 Ver 0.5.10 - 2017.3.1
 + [Fixed] ofEnableAlphaBlending. Stage::draw() in Stage.cpp
@@ -258,10 +260,10 @@ Ver 0.5.3 - 2016.12.5
 + [Add] example-ExtendsSprite.
 
 Ver 0.5.2 - 2016.11.30
-+ [Fixed] Couldn't work EventDispatcher.removeEventListener on openFrameworks0.9.x
++ [Fixed] Didn't work EventDispatcher.removeEventListener on openFrameworks0.9.x
 
 Ver 0.5.1 - 2016.11.4
-+ [Fixed] can build on openFrameworks0.9.7
++ [Fixed] Didn't build on openFrameworks0.9.7
 
 Ver 0.5.0 - 2016.9.15
 + [Remove] fltw.*  (Tween Library)

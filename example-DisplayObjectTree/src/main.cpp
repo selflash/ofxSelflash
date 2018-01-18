@@ -3,6 +3,13 @@
 
 //========================================================================
 int main() {
+//    ofGLWindowSettings settings;
+//    settings.width = 1024;
+//    settings.height = 768;
+//    settings.windowMode = OF_WINDOW;
+//    settings.setGLVersion(4, 1);
+//    ofCreateWindow(settings);
+
 	ofSetupOpenGL(1760, 810, OF_WINDOW);			// <-------- setup the GL context
 
 //    ofGLWindowSettings settings;
