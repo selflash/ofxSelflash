@@ -1,8 +1,8 @@
-﻿#include "ColorPickerEvent.h"
+#include "ColorPickerEvent.h"
 
 namespace fl2d {
     
-    string ColorPickerEvent::CHANGE = "radioButtonChange";
+    string ColorPickerEvent::CHANGE = "colorPickerChange";
     
     //--------------------------------------------------------------
     //

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 #include "../FlashConfig.h"
@@ -23,6 +23,12 @@ namespace fl2d {
         
             static ofRectangle getStringBoundingBox(const string& text, float x = 0.0, float y = 0.0);
             static void drawString(const string& text, float x = 0.0, float y = 0.0);
+            static void drawStringHighlight(
+                                            const string& text,
+                                            float x = 0.0, float y = 0.0,
+                                            const ofColor& background = ofColor::black,
+                                            const ofColor& foreground = ofColor::white
+                                            );
             static float getLineHeight();
             static float getMaxStringWidth();
             static float getMaxStringHeight();

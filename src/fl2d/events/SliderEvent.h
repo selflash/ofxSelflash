@@ -1,4 +1,4 @@
-﻿/**
+/**
  ActionScript3.0 Reference
  fl.events.SliderEvent
  

@@ -1,4 +1,4 @@
-﻿#include "RangeSlider.h"
+#include "RangeSlider.h"
 
 namespace fl2d {
 

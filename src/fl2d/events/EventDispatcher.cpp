@@ -1,4 +1,4 @@
-﻿#include "EventDispatcher.h"
+#include "EventDispatcher.h"
 
 namespace fl2d {
 

@@ -1,4 +1,4 @@
-﻿#include "TextField.h"
+#include "TextField.h"
 
 namespace fl2d {
     

@@ -45,12 +45,21 @@ class UIComponents : public flSprite {
         flPad2D* pad005;
         //--------------------------------------
         //--------------------------------------
+        //チェックボックス
+        flCheckBox* check001;
+        flCheckBox* check002;
+        flCheckBox* check003;
+//        flCheckBox* check004;
+//        flCheckBox* check005;
+        //--------------------------------------
+        //--------------------------------------
         //ラジオボタン
+        flRadioButtonGroup* radioButtonGroup;
         flRadioButton* radio001;
         flRadioButton* radio002;
         flRadioButton* radio003;
-        flRadioButton* radio004;
-        flRadioButton* radio005;
+//        flRadioButton* radio004;
+//        flRadioButton* radio005;
         //--------------------------------------
         //--------------------------------------
         //インプットテキストフィールド
@@ -66,18 +75,18 @@ class UIComponents : public flSprite {
         //--------------------------------------
         //--------------------------------------
         //ジョイスティック1D
-        flJoystick1D* joystick1D001;
-        flJoystick1D* joystick1D002;
-        flJoystick1D* joystick1D003;
-        flJoystick1D* joystick1D004;
-        flJoystick1D* joystick1D005;
-        flJoystick1D* joystick1D006;
-        flJoystick1D* joystick1D007;
+        flJoystick1* joystick1001;
+        flJoystick1* joystick1002;
+        flJoystick1* joystick1003;
+        flJoystick1* joystick1004;
+        flJoystick1* joystick1005;
+        flJoystick1* joystick1006;
+        flJoystick1* joystick1007;
     
-        flJoystick1D* joystick1D101;
-        flJoystick1D* joystick1D102;
+        flJoystick1* joystick1101;
+        flJoystick1* joystick1102;
         //ジョイスティック2D
-        flJoystick2D* joystick2D001;
+        flJoystick2* joystick2001;
         //--------------------------------------
         //--------------------------------------
         //ナンバーダイアラー
@@ -91,7 +100,13 @@ class UIComponents : public flSprite {
         flComboBox* comboBox002;
         flComboBox* comboBox003;
         //--------------------------------------
-    
+        //--------------------------------------
+        //ヒストグラムビュワー
+        flHistgramViewer* hViewer001;
+        flHistgramViewer* hViewer002;
+        flHistgramViewer* hViewer003;
+        //--------------------------------------
+
         //--------------------------------------
         flAngler* angler000;
         //--------------------------------------

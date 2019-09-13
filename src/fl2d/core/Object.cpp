@@ -1,4 +1,4 @@
-﻿#include "Object.h"
+#include "Object.h"
 
 namespace fl2d {
     

@@ -1,4 +1,4 @@
-﻿#include "CircleColorPicker.h"
+#include "CircleColorPicker.h"
 
 namespace fl2d {
 

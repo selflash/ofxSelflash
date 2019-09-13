@@ -1,4 +1,4 @@
-﻿#include "Pad3D.h"
+#include "Pad3D.h"
 
 namespace fl2d {
 

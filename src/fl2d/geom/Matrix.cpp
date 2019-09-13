@@ -1,4 +1,4 @@
-﻿#include "Matrix.h"
+#include "Matrix.h"
 
 namespace fl2d {
 
@@ -32,7 +32,7 @@ namespace fl2d {
     //	[  0   0   1   ]
     //
     //
-    //	[  a   b   0   0  ]		ofxFlash 4x4 matrix.
+    //	[  a   b   0   0  ]		ofxSelflash 4x4 matrix.
     //	[  c   d   0   0  ]
     //	[  0   0   0   0  ]
     //	[  tx  ty  0   0  ]

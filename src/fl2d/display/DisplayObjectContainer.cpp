@@ -1,4 +1,4 @@
-﻿#include "DisplayObjectContainer.h"
+#include "DisplayObjectContainer.h"
 
 namespace fl2d {
 

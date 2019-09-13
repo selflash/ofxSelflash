@@ -100,14 +100,14 @@ void SubController2::_setup() {
 //    slider001->addEventListener(flSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(slider001);
     
-    radio001 = new flRadioButton();
-    radio001->labelText("Fill Enabled");
-    radio001->x(marginLeft + spacing * 1);
-    radio001->y(marginTop + lineSpacing * 2 + 10);
-//    radio001->selected(true);
-//    radio001->enabled(false);
-//    radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &SubController2::_uiEventHandler);
-    addChild(radio001);
+    check001 = new flCheckBox();
+    check001->labelText("Fill Enabled");
+    check001->x(marginLeft + spacing * 1);
+    check001->y(marginTop + lineSpacing * 2 + 10);
+//    check001->selected(true);
+//    check001->enabled(false);
+//    check001->addEventListener(flRadioButtonEvent::CHANGE, this, &SubController2::_uiEventHandler);
+    addChild(check001);
     //--------------------------------------
 }
 
@@ -158,6 +158,12 @@ void SubController2::_uiEventHandler(flEvent& event) {
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
     };
     
+    //チェックボックス
+    if(event.type() == flCheckBoxEvent::CHANGE) {
+        flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
+        flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
+    }
+
     //ラジオボタン
     if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
@@ -207,50 +213,50 @@ void SubController2::_uiEventHandler(flEvent& event) {
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoystick1DEvent::CHANGE) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::CHANGE) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
         
         flEvent* newEvent = new flEvent("uiEvent");
         newEvent->target(joystick);
         dispatchEvent(newEvent);
     }
-    if(event.type() == flJoystick1DEvent::UP) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::UP) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::DOWN) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::DOWN) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::LEFT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::LEFT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::RIGHT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::RIGHT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoystick2DEvent::CHANGE) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::CHANGE) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::UP) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::UP) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::DOWN) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::DOWN) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::LEFT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::LEFT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::RIGHT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::RIGHT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
 }

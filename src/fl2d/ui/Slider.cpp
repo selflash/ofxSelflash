@@ -1,4 +1,4 @@
-﻿#include "Slider.h"
+#include "Slider.h"
 
 namespace fl2d {
 

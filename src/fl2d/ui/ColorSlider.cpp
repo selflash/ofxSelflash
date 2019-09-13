@@ -1,4 +1,4 @@
-﻿#include "ColorSlider.h"
+#include "ColorSlider.h"
 
 namespace fl2d {
 

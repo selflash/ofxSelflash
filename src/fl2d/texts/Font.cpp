@@ -1,4 +1,4 @@
-﻿#include "Font.h"
+#include "Font.h"
 
 namespace fl2d {
     
@@ -46,7 +46,35 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Font::drawString(const std::string& text, float x, float y) {
+        if(text == "") return;
+        
         _font->drawString(text, x, y);
+    }
+    //--------------------------------------------------------------
+    //
+    void Font::drawStringHighlight(
+                          const std::string& text,
+                          float x, float y,
+                          const ofColor& background,
+                          const ofColor& foreground
+                          ) {
+        if(text != "") {
+            ofPushStyle();
+            ofSetColor(background);
+            ofRectangle boundingBox = _font->getStringBoundingBox(text, x, y);
+            ofDrawRectangle(
+                            boundingBox.x - 2,
+                            boundingBox.y - 2,
+                            boundingBox.width + 4,
+                            boundingBox.height + 4
+                            );
+            ofPopStyle();
+            
+            ofPushStyle();
+            ofSetColor(foreground);
+            _font->drawString(text, x, y);
+            ofPopStyle();
+        }
     }
     
     //--------------------------------------------------------------

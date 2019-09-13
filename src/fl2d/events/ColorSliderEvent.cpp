@@ -1,8 +1,8 @@
-﻿#include "ColorSliderEvent.h"
+#include "ColorSliderEvent.h"
 
 namespace fl2d {
 
-    string ColorSliderEvent::CHANGE = "ColorSliderChange";
+    string ColorSliderEvent::CHANGE = "colorSliderChange";
     string ColorSliderEvent::THUMB_DRAG = "thumbDrag";
     string ColorSliderEvent::THUMB_PRESS = "thumbPress";
     string ColorSliderEvent::THUMB_RELEASE = "thumbRelease";

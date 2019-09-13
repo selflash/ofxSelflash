@@ -1,4 +1,4 @@
-﻿/**
+/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashSprite.h

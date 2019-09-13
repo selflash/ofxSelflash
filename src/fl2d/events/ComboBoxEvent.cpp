@@ -1,4 +1,4 @@
-﻿#include "ComboBoxEvent.h"
+#include "ComboBoxEvent.h"
 
 namespace fl2d {
 

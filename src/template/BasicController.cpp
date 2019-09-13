@@ -1,4 +1,4 @@
-﻿#include "BasicController.h"
+#include "BasicController.h"
 
 //==============================================================
 // CONSTRUCTOR / DESTRUCTOR
@@ -25,7 +25,7 @@ BasicController::BasicController() {
     marginLeft = 5;
     marginTop = 0;
     spacing = 100;
-    lineSpacing = 22.5;
+    lineSpacing = 22;
     
     titleTf = new flTextField();
     titleTf->x(marginLeft + spacing * 0);
@@ -56,7 +56,7 @@ BasicController::BasicController() {
     _backHeight = 0;
     
     _minBackWidth = 0;
-    _minBackHeight = 22.5;
+    _minBackHeight = 22;
     
     _normalBackWidth = 0;
     _normalBackHeight = 0;
@@ -136,7 +136,7 @@ void BasicController::minimize() {
     //----------------------------------
     _backWidth = _minBackWidth;
     _backHeight = _minBackHeight;
-    
+
     flGraphics* g;
     g = graphics();
     g->clear();
@@ -281,6 +281,92 @@ void BasicController::_mouseEventHandler(flEvent& event) {
             stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &BasicController::_mouseEventHandler);
             stopDrag();
         }
+    }
+    
+    //チェックボックス
+    if(event.type() == flCheckBoxEvent::CHANGE) {
+        flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
+        flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
+    }
+    
+    //ラジオボタン
+    if(event.type() == flRadioButtonEvent::CHANGE) {
+        flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
+        flRadioButton* radio = (flRadioButton*)(event.currentTarget());
+    }
+    
+    //ナンバーダイアラー
+    if(event.type() == flNumberDialerEvent::CHANGE) {
+        flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
+        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+    }
+    
+    //2Dパッド
+    if(event.type() == flPadEvent::CHANGE) {
+        flPadEvent& padEvent = *(flPadEvent*) &event;
+        flPad2D* pad = (flPad2D*)(event.currentTarget());
+    }
+    
+    //スライダー
+    if(event.type() == flSliderEvent::CHANGE) {
+        flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
+        flSlider* slider = (flSlider*)(event.currentTarget());
+    }
+    
+    //レンジスライダー
+    if(event.type() == flRangeSliderEvent::CHANGE) {
+        flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
+        flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
+    }
+    
+    //カラースライダー
+    if(event.type() == flColorSliderEvent::CHANGE) {
+        flColorSliderEvent& colorSliderEvent = *(flColorSliderEvent*) &event;
+        flColorSlider* slider = (flColorSlider*)(event.currentTarget());
+    }
+    
+    //ジョイスティック1軸
+    if(event.type() == flJoystick1Event::CHANGE) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick1Event::UP) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick1Event::DOWN) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick1Event::LEFT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick1Event::RIGHT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    }
+    
+    //ジョイスティック2軸
+    if(event.type() == flJoystick2Event::CHANGE) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2Event::UP) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2Event::DOWN) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2Event::LEFT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    }
+    if(event.type() == flJoystick2Event::RIGHT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
 }
 

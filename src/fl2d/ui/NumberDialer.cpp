@@ -1,9 +1,7 @@
-﻿#include "NumberDialer.h"
+#include "NumberDialer.h"
 
 namespace fl2d {
-    //水平
     string NumberDialer::HORIZONTALLY = "horizontally";
-    //垂直
     string NumberDialer::VERTICALLY = "vertically";
 
     

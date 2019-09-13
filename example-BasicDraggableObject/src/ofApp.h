@@ -4,16 +4,16 @@
 
 #include "ofxSelflash.h"
 #include "BasicDraggableObject.h"
-#include "ImageFrame1.h"
-#include "ImageFrame2.h"
-#include "ImageFrame3.h"
+#include "FrameBorder1.h"
+#include "FrameBorder2.h"
+#include "FrameBorder3.h"
 
 class ofApp : public ofBaseApp {
     public:
-        BasicDraggableObject* draggableObject;
-        ImageFrame1* imageFrame1;
-        ImageFrame2* imageFrame2;
-        ImageFrame3* imageFrame3;
+        BasicDraggableObject* noFrameBorder;
+        FrameBorder1* frameBorder1;
+        FrameBorder2* frameBorder2;
+        FrameBorder3* frameBorder3;
     
     protected:
     

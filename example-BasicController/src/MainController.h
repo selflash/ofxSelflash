@@ -11,10 +11,10 @@
 #include "ofMain.h"
 #include "../../addons/ofxSelflash/src/ofxSelflash.h"
 #include "../../addons/ofxSelflash/src/template/BasicController.h"
-#include "../../addons/ofxSelflash/src/utils/NativeWindow.h"
 
 #include "./SubController1.h"
 #include "./SubController2.h"
+#include "./NativeWindow.h"
 
 class MainController : public BasicController {
     

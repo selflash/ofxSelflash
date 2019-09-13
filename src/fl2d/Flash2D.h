@@ -1,4 +1,4 @@
-﻿/**
+/**
  [メモ]
  ■基本設計は「完全コンストラクタ」パターンです。
  
@@ -56,6 +56,7 @@ typedef fl2d::BlendMode flBlendMode;
 #include "events/RotarySliderEvent.h"
 #include "events/AnglerEvent.h"
 #include "events/ButtonEvent.h"
+#include "events/CheckBoxEvent.h"
 #include "events/RadioButtonEvent.h"
 #include "events/NumberDialerEvent.h"
 #include "events/RangeSliderEvent.h"
@@ -64,9 +65,10 @@ typedef fl2d::BlendMode flBlendMode;
 #include "events/Vec3SliderEvent.h"
 #include "events/ColorPickerEvent.h"
 #include "events/PadEvent.h"
-#include "events/Joystick1DEvent.h"
-#include "events/Joystick2DEvent.h"
+#include "events/Joystick1Event.h"
+#include "events/Joystick2Event.h"
 #include "events/ComboBoxEvent.h"
+#include "events/HistgramViewerEvent.h"
 
 typedef fl2d::EventDispatcher flEventDispatcher;
 typedef fl2d::Event flEvent;
@@ -80,6 +82,7 @@ typedef fl2d::SliderEvent flSliderEvent;
 typedef fl2d::RotarySliderEvent flRotarySliderEvent;
 typedef fl2d::AnglerEvent flAnglerEvent;
 typedef fl2d::ButtonEvent flButtonEvent;
+typedef fl2d::CheckBoxEvent flCheckBoxEvent;
 typedef fl2d::RadioButtonEvent flRadioButtonEvent;
 typedef fl2d::NumberDialerEvent flNumberDialerEvent;
 typedef fl2d::RangeSliderEvent flRangeSliderEvent;
@@ -88,9 +91,10 @@ typedef fl2d::Vec2SliderEvent flVec2SliderEvent;
 typedef fl2d::Vec3SliderEvent flVec3SliderEvent;
 typedef fl2d::ColorPickerEvent flColorPickerEvent;
 typedef fl2d::PadEvent flPadEvent;
-typedef fl2d::Joystick1DEvent flJoystick1DEvent;
-typedef fl2d::Joystick2DEvent flJoystick2DEvent;
+typedef fl2d::Joystick1Event flJoystick1Event;
+typedef fl2d::Joystick2Event flJoystick2Event;
 typedef fl2d::ComboBoxEvent flComboBoxEvent;
+typedef fl2d::HistgramViewerEvent flHistgramViewerEvent;
 
 
 
@@ -131,6 +135,7 @@ typedef fl2d::TextFieldAutoSize flTextFieldAutoSize;
 #include "ui/Mouse.h"
 #include "ui/Keyboard.h"
 #include "ui/Button.h"
+#include "ui/CheckBox.h"
 #include "ui/RadioButton.h"
 #include "ui/NumberDialer.h"
 #include "ui/Slider.h"
@@ -143,14 +148,17 @@ typedef fl2d::TextFieldAutoSize flTextFieldAutoSize;
 #include "ui/CircleColorPicker.h"
 #include "ui/Pad2D.h"
 #include "ui/Pad3D.h"
-#include "ui/Joystick2D.h"
-#include "ui/Joystick1D.h"
+#include "ui/Joystick2.h"
+#include "ui/Joystick1.h"
 #include "ui/ScrollKit.h"
 #include "ui/ComboBox.h"
+#include "ui/HistgramViewer.h"
 
 typedef fl2d::Mouse flMouse;
 typedef fl2d::Keyboard flKeyboard;
 typedef fl2d::Button flButton;
+typedef fl2d::CheckBox flCheckBox;
+typedef fl2d::RadioButtonGroup flRadioButtonGroup;
 typedef fl2d::RadioButton flRadioButton;
 typedef fl2d::NumberDialer flNumberDialer;
 typedef fl2d::Slider flSlider;
@@ -163,10 +171,11 @@ typedef fl2d::Angler flAngler;
 typedef fl2d::CircleColorPicker flCircleColorPicker;
 typedef fl2d::Pad2D flPad2D;
 typedef fl2d::Pad3D flPad3D;
-typedef fl2d::Joystick1D flJoystick1D;
-typedef fl2d::Joystick2D flJoystick2D;
+typedef fl2d::Joystick1 flJoystick1;
+typedef fl2d::Joystick2 flJoystick2;
 typedef fl2d::ScrollKit flScrollKit;
 typedef fl2d::ComboBox flComboBox;
+typedef fl2d::HistgramViewer flHistgramViewer;
 
 class Flash2D {
     public:

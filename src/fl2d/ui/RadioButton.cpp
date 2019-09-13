@@ -1,4 +1,4 @@
-﻿#include "RadioButton.h"
+#include "RadioButton.h"
 
 namespace fl2d {
 
@@ -37,13 +37,13 @@ namespace fl2d {
         _label->autoSize(TextFieldAutoSize::LEFT);
         _label->textColor(_labelNormalColor.getHex());
         _label->text("Radio Button");
-        _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 1);
+        _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 3);
 //        _label->mouseEnabled(false);
         addChild(_label);
         //------------------------------------------
 
-        Graphics* g = graphics();
-        g->enabledSmoothing(true);
+//        Graphics* g = graphics();
+//        g->enabledSmoothing(true);
 
         //------------------------------------------
         _normal();
@@ -54,9 +54,10 @@ namespace fl2d {
         addEventListener(MouseEvent::MOUSE_DOWN, this, &RadioButton::_mouseEventHandler);
         addEventListener(MouseEvent::MOUSE_UP, this, &RadioButton::_mouseEventHandler);
         
-        _enabled = true;
+        _enabled = true;        
+        //_hitAreaAlpha = 0.5;
         
-//        _hitAreaAlpha = 0.5;
+        _groupOwner = NULL;
     }
 
     //--------------------------------------------------------------
@@ -67,9 +68,16 @@ namespace fl2d {
         removeEventListener(MouseEvent::MOUSE_DOWN, this, &RadioButton::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_UP, this, &RadioButton::_mouseEventHandler);
         
-        _enabled = false;
+        delete _label;
+        _label = NULL;
         
+        _enabled = false;
         _hitAreaAlpha = 0.0;
+        
+        if(_groupOwner != NULL) {
+            _groupOwner->_notice(this);
+        }
+        _groupOwner = NULL;
     }
 
     //==============================================================
@@ -207,7 +215,7 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-        g->drawCircle(7, 8, 6);
+        g->drawCircle(7, 7, 6);
         g->endFill();
     }
     
@@ -222,12 +230,12 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-        g->drawCircle(7, 8, 6);
+        g->drawCircle(7, 7, 6);
         g->endFill();
         
         //内側
         g->beginFill(innerColor.getHex());
-        g->drawCircle(7, 8, 3);
+        g->drawCircle(7, 7, 3);
         g->endFill();
     }
 
@@ -260,6 +268,12 @@ namespace fl2d {
     void RadioButton::_press() {
         selected(!selected());
     }
+    
+    //--------------------------------------------------------------
+    //
+    void RadioButton::_setGroupOwner(RadioButtonGroup* groupOwner) {
+        _groupOwner = groupOwner;
+    }
 
     //==============================================================
     // EVENT HANDLER
@@ -284,4 +298,82 @@ namespace fl2d {
         }
     }
 
+    //--------------------------------------------------------------
+    //
+    //--------------------------------------------------------------
+
+    //--------------------------------------------------------------
+    //
+    RadioButtonGroup::RadioButtonGroup() {
+        
+    }
+    //--------------------------------------------------------------
+    //
+    RadioButtonGroup::~RadioButtonGroup() {
+        vector<RadioButton*>::iterator it = _radioButtonList.begin();
+        while (it != _radioButtonList.end()) {
+            RadioButton* radioButton = ((RadioButton*)*it);
+            radioButton->_setGroupOwner(NULL);
+            radioButton->removeEventListener(RadioButtonEvent::CHANGE, this, &RadioButtonGroup::_uiEventHandler);
+            it = _radioButtonList.erase(it);
+        }
+        _radioButtonList.clear();
+    }
+    
+    //--------------------------------------------------------------
+    //
+    RadioButton* RadioButtonGroup::createRadioButton() {
+        //cout << "[RadioButtonGroup]createRadioButton()" << endl;
+        RadioButton* radioButton = new RadioButton();
+        radioButton->_setGroupOwner(this);
+        radioButton->addEventListener(RadioButtonEvent::CHANGE, this, &RadioButtonGroup::_uiEventHandler);
+        _radioButtonList.push_back(radioButton);
+        return radioButton;
+    }
+    
+    //--------------------------------------------------------------
+    //
+    void RadioButtonGroup::removeRadioButton(RadioButton* radioButton) {
+        vector<RadioButton*>::iterator it = _radioButtonList.begin();
+        while (it != _radioButtonList.end()) {
+            if (*it == radioButton) {
+                RadioButton* radioButton = ((RadioButton*)*it);
+                radioButton->_setGroupOwner(NULL);
+                radioButton->removeEventListener(RadioButtonEvent::CHANGE, this, &RadioButtonGroup::_uiEventHandler);
+                it = _radioButtonList.erase(it);
+            } else ++it;
+        }
+        
+        it = _radioButtonList.begin();
+        while (it != _radioButtonList.end()) {
+            cout << *it << endl;
+            ++it;
+        }
+        
+        return radioButton;
+    }
+    
+    //--------------------------------------------------------------
+    //
+    void RadioButtonGroup::_uiEventHandler(Event& event) {
+        //cout << "[RadioButtonGroup]_uiEventHandler()" << endl;
+        RadioButtonEvent& radioButtonEvent = *(RadioButtonEvent*) &event;
+        RadioButton* radio = (RadioButton*)(event.currentTarget());
+        
+        if(radio->selected()) {
+            for(auto& b : _radioButtonList) {
+                if(b != radio) {
+                    b->selected(false);
+                }
+            }
+        }
+    }
+    
+    //--------------------------------------------------------------
+    //
+    void RadioButtonGroup::_notice(RadioButton* radioButton) {
+        removeRadioButton(radioButton);
+        
+        cout << "_radioButtonList.size = " << _radioButtonList.size() << endl;
+    }
 }

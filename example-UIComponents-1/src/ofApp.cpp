@@ -39,7 +39,7 @@ void ofApp::setup() {
     uiComponents->button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     //ラジオボタン
-    uiComponents->radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    //uiComponents->radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio002->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio003->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //2Dパッド
@@ -49,17 +49,17 @@ void ofApp::setup() {
     uiComponents->colorPicker001->addEventListener(flColorPickerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     
     //ジョイスティック1D
-    uiComponents->joystick1D001->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D002->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D003->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D004->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D005->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D006->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D007->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D101->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1D102->addEventListener(flJoystick1DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1001->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1002->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1003->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1004->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1005->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1006->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1007->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1101->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick1102->addEventListener(flJoystick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ジョイスティック2D
-    uiComponents->joystick2D001->addEventListener(flJoystick2DEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    uiComponents->joystick2001->addEventListener(flJoystick2Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ナンバーダイアラー
     uiComponents->dialer001->addEventListener(flNumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
 //    uiComponents->dialer002->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
@@ -304,53 +304,53 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoystick1DEvent::CHANGE) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::CHANGE) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
         
-        if(joystick == uiComponents->joystick1D001) {
+        if(joystick == uiComponents->joystick1001) {
             _position.x = _position.x + joystick->value();
             
-            uiComponents->joystick1D002->moveLever(joystick->value());
+            uiComponents->joystick1002->moveLever(joystick->value());
         }
     }
-    if(event.type() == flJoystick1DEvent::UP) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::UP) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::DOWN) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::DOWN) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::LEFT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::LEFT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::RIGHT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::RIGHT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoystick2DEvent::CHANGE) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::CHANGE) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::UP) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::UP) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::DOWN) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::DOWN) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::LEFT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::LEFT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::RIGHT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::RIGHT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
 }
 

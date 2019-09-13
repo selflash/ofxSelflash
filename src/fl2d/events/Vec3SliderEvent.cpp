@@ -1,8 +1,8 @@
-﻿#include "Vec3SliderEvent.h"
+#include "Vec3SliderEvent.h"
 
 namespace fl2d {
 
-    string Vec3SliderEvent::CHANGE = "Vec3SliderChange";
+    string Vec3SliderEvent::CHANGE = "vec3SliderChange";
     string Vec3SliderEvent::THUMB_DRAG = "thumbDrag";
     string Vec3SliderEvent::THUMB_PRESS = "thumbPress";
     string Vec3SliderEvent::THUMB_RELEASE = "thumbRelease";

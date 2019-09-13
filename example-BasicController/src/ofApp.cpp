@@ -66,7 +66,7 @@ void ofApp::draw() {
 
     ofPushStyle();
     //Fill or No Fill
-    if(mainController->controller2()->radio001->selected()) {
+    if(mainController->controller2()->check001->selected()) {
         ofFill();
     } else {
         ofNoFill();
@@ -157,34 +157,34 @@ void ofApp::_uiEventHandler(flEvent& event) {
 //    //------------------------------------------
     
     if(event.type() == "uiEvent1") {
-        if(event.target() == mainController->controller1()->joystick1D001) {
-            float velY = mainController->controller1()->joystick1D001->value() * 2;
+        if(event.target() == mainController->controller1()->joystick1001) {
+            float velY = mainController->controller1()->joystick1001->value() * 2;
             transformableNode.rotationY(transformableNode.rotationY() + velY);
             mainController->controller1()->text001->text("X : " + ofToString(transformableNode.rotationY()));
         }
-        if(event.target() == mainController->controller1()->joystick1D002) {
-            float velX = mainController->controller1()->joystick1D002->value() * 2;
+        if(event.target() == mainController->controller1()->joystick1002) {
+            float velX = mainController->controller1()->joystick1002->value() * 2;
             transformableNode.rotationX(transformableNode.rotationX() + velX);
             mainController->controller1()->text002->text("Y : " + ofToString(transformableNode.rotationX()));
         }
-        if(event.target() == mainController->controller1()->joystick1D003) {
-            float velZ = mainController->controller1()->joystick1D003->value() * 2;
+        if(event.target() == mainController->controller1()->joystick1003) {
+            float velZ = mainController->controller1()->joystick1003->value() * 2;
             transformableNode.rotationZ(transformableNode.rotationZ() + velZ);
             mainController->controller1()->text003->text("Z : " + ofToString(transformableNode.rotationZ()));
         }
         
-        if(event.target() == mainController->controller1()->joystick1D101) {
-            float velX = mainController->controller1()->joystick1D101->value();
+        if(event.target() == mainController->controller1()->joystick1101) {
+            float velX = mainController->controller1()->joystick1101->value();
             transformableNode.x(transformableNode.x() + velX);
             mainController->controller1()->text101->text("X : " + ofToString(transformableNode.x()));
         }
-        if(event.target() == mainController->controller1()->joystick1D102) {
-            float velY = mainController->controller1()->joystick1D102->value();
+        if(event.target() == mainController->controller1()->joystick1102) {
+            float velY = mainController->controller1()->joystick1102->value();
             transformableNode.y(transformableNode.y() + velY);
             mainController->controller1()->text102->text("Y : " + ofToString(transformableNode.y()));
         }
-        if(event.target() == mainController->controller1()->joystick1D103) {
-            float velZ = mainController->controller1()->joystick1D103->value();
+        if(event.target() == mainController->controller1()->joystick1103) {
+            float velZ = mainController->controller1()->joystick1103->value();
             transformableNode.z(transformableNode.z() + velZ);
             mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
         }
@@ -250,47 +250,47 @@ void ofApp::_uiEventHandler(flEvent& event) {
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoystick1DEvent::CHANGE) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::CHANGE) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::UP) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::UP) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::DOWN) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::DOWN) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::LEFT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::LEFT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1DEvent::RIGHT) {
-        flJoystick1DEvent& joystickEvent = *(flJoystick1DEvent*) &event;
-        flJoystick1D* joystick = (flJoystick1D*)(event.currentTarget());
+    if(event.type() == flJoystick1Event::RIGHT) {
+        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
+        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoystick2DEvent::CHANGE) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::CHANGE) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::UP) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::UP) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::DOWN) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::DOWN) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::LEFT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::LEFT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2DEvent::RIGHT) {
-        flJoystick2DEvent& joystickEvent = *(flJoystick2DEvent*) &event;
-        flJoystick2D* joystick = (flJoystick2D*)(event.currentTarget());
+    if(event.type() == flJoystick2Event::RIGHT) {
+        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
+        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
     }
 }
 

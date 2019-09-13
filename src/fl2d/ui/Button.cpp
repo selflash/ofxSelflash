@@ -1,4 +1,4 @@
-﻿#include "Button.h"
+#include "Button.h"
 
 namespace fl2d {
 

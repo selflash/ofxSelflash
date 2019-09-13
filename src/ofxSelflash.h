@@ -1,21 +1,11 @@
-﻿#pragma once
-
-//Comment in, if you want to use api of 3d
-//#define FLASH_3D
-//Comment in, if you want to use AssimpModelLoader
+#pragma once
 
 // version 1.0.0
 
 #include "fl2d/Flash2D.h"
 //using namespace fl2d;
 
-#if defined(FLASH_3D)
-#include "fl3d/Flash3D.h"
-//using namespace fl3d;
-#endif
-
 #include "utils/MathUtil.h"
-#include "utils/NativeWindow.h"
 
 class ofxSelflash {
     public:
@@ -41,22 +31,12 @@ class ofxSelflash {
 //            cout << "[ofxSelflash]setup()" << endl;
             
             Flash2D::setup();
-            
-#if defined(FLASH_3D)
-            if(use3D) Flash3D::setup();
-#endif
-            
             flStage::instance();
         }
     
         static inline void clear() {
 //            cout << "[ofxSelflash]clear()" << endl;
-
             Flash2D::clear();
-            
-#if defined(FLASH_3D)
-            Flash3D::clear();
-#endif
         }
     
         static inline void update() { flStage::instance()->update(); }

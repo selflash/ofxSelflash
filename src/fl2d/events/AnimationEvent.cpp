@@ -1,4 +1,4 @@
-﻿#include "AnimationEvent.h"
+#include "AnimationEvent.h"
 
 namespace fl2d {
     

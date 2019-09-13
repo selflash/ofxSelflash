@@ -10,6 +10,8 @@ void ofApp::setup() {
     ofxSelflash::drawPriority(OF_EVENT_ORDER_BEFORE_APP);
 //    ofxSelflash::drawPriority(OF_EVENT_ORDER_AFTER_APP);
     ofxSelflash::setup();
+    //--------------------------------------
+    
     flStage* stage = ofxSelflash::stage();
     
     //load image
@@ -17,53 +19,53 @@ void ofApp::setup() {
     image.load("selflash.jpeg");
     
     //--------------------------------------
-    //make simple draggable object.
-    draggableObject = new BasicDraggableObject();
-    draggableObject->x(10);
-    draggableObject->y(10);
-//    draggableObject->alpha(0.5);
-    stage->addChild(draggableObject);
+    //make a simple draggable object.
+    noFrameBorder = new BasicDraggableObject();
+    noFrameBorder->x(10);
+    noFrameBorder->y(10);
+//    noFrameBorder->alpha(0.5);
+    stage->addChild(noFrameBorder);
     
     flBitmap* bitmap1 = new flBitmap(image);
-    draggableObject->addChild(bitmap1);
-    cout << "draggableObject = " << draggableObject->width() << " " << draggableObject->height() << endl;
+    noFrameBorder->addChild(bitmap1);
+    cout << "noFrameBorder = " << noFrameBorder->width() << " " << noFrameBorder->height() << endl;
     //--------------------------------------
     
     //--------------------------------------
-    //Image Frame1
-    imageFrame1 = new ImageFrame1();
-    imageFrame1->x(draggableObject->x() + draggableObject->width() + 20 + 10);
-    imageFrame1->y(10);
-//    imageFrame1->alpha(0.5);
-    stage->addChild(imageFrame1);
+    //Frame Border1
+    frameBorder1 = new FrameBorder1();
+    frameBorder1->x(noFrameBorder->x() + noFrameBorder->width() + 20 + 10);
+    frameBorder1->y(10);
+//    frameBorder1->alpha(0.5);
+    stage->addChild(frameBorder1);
     
     flBitmap* bitmap2 = new flBitmap(image);
 //    bitmap2->alpha(0.5);
-    imageFrame1->addChild(bitmap2);
-    cout << "imageFrame1 = " << imageFrame1->width() << " " << imageFrame1->height() << endl;
+    frameBorder1->addChild(bitmap2);
+    cout << "frameBorder1 = " << frameBorder1->width() << " " << frameBorder1->height() << endl;
     //--------------------------------------
 
     //--------------------------------------
-    //Image Frame2
-    imageFrame2 = new ImageFrame2();
-    imageFrame2->setup();
-    imageFrame2->x(10);
+    //Frame Border2
+    frameBorder2 = new FrameBorder2();
+    frameBorder2->setup();
+    frameBorder2->x(10);
     
-    imageFrame1->update(); //must update for property fo width/height
+    frameBorder1->update(); //must update for property fo width/height
 
-    imageFrame2->y(draggableObject->y() + draggableObject->height() + 20 + 10);
-    stage->addChild(imageFrame2);
-    cout << "imageFrame2 = " << imageFrame2->width() << " " << imageFrame2->height() << endl;
+    frameBorder2->y(noFrameBorder->y() + noFrameBorder->height() + 20 + 10);
+    stage->addChild(frameBorder2);
+    cout << "frameBorder2 = " << frameBorder2->width() << " " << frameBorder2->height() << endl;
     //--------------------------------------
     
     //--------------------------------------
-    //Image Frame3
-    imageFrame3 = new ImageFrame3();
-    imageFrame3->setup();
-    imageFrame3->x(imageFrame2->x() + imageFrame2->width() + 10);
-    imageFrame3->y(imageFrame1->y() + imageFrame1->height() + 10);
-    stage->addChild(imageFrame3);
-    cout << "imageFrame3 = " << imageFrame3->width() << " " << imageFrame3->height() << endl;
+    //Frame Border3
+    frameBorder3 = new FrameBorder3();
+    frameBorder3->setup();
+    frameBorder3->x(frameBorder2->x() + frameBorder2->width() + 10);
+    frameBorder3->y(frameBorder1->y() + frameBorder1->height() + 10);
+    stage->addChild(frameBorder3);
+    cout << "frameBorder3 = " << frameBorder3->width() << " " << frameBorder3->height() << endl;
     //--------------------------------------
 }
 
@@ -84,10 +86,10 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
     if(key == 'f') ofToggleFullscreen();
     if(key == '1') {
-        draggableObject->dragEnabled(!draggableObject->dragEnabled());
-        imageFrame1->dragEnabled(!imageFrame1->dragEnabled());
-        imageFrame2->dragEnabled(!imageFrame2->dragEnabled());
-        imageFrame3->dragEnabled(!imageFrame3->dragEnabled());
+        noFrameBorder->dragEnabled(!noFrameBorder->dragEnabled());
+        frameBorder1->dragEnabled(!frameBorder1->dragEnabled());
+        frameBorder2->dragEnabled(!frameBorder2->dragEnabled());
+        frameBorder3->dragEnabled(!frameBorder3->dragEnabled());
     }
 }
 

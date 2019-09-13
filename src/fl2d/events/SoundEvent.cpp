@@ -1,4 +1,4 @@
-﻿#include "SoundEvent.h"
+#include "SoundEvent.h"
 
 namespace fl2d {
     

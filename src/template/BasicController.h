@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 #include "../ofxSelflash.h"
@@ -980,9 +980,219 @@ class BasicController : public flSprite {
         flCircleColorPicker* colorPicker515 = NULL; flCircleColorPicker* colorPicker516 = NULL; flCircleColorPicker* colorPicker517 = NULL;
         flCircleColorPicker* colorPicker518 = NULL; flCircleColorPicker* colorPicker519 = NULL;
         //--------------------------------------
-        
+    
         //--------------------------------------
-        //シンプルラジオボタン(000)
+        //チェックボックス(000)
+        flCheckBox* check000 = NULL; flCheckBox* check001 = NULL; flCheckBox* check002 = NULL;
+        flCheckBox* check003 = NULL; flCheckBox* check004 = NULL; flCheckBox* check005 = NULL;
+        flCheckBox* check006 = NULL; flCheckBox* check007 = NULL; flCheckBox* check008 = NULL;
+        flCheckBox* check009 = NULL;
+        flCheckBox* check010 = NULL; flCheckBox* check011 = NULL; flCheckBox* check012 = NULL;
+        flCheckBox* check013 = NULL; flCheckBox* check014 = NULL; flCheckBox* check015 = NULL;
+        flCheckBox* check016 = NULL; flCheckBox* check017 = NULL; flCheckBox* check018 = NULL;
+        flCheckBox* check019 = NULL;
+        flCheckBox* check020 = NULL; flCheckBox* check021 = NULL; flCheckBox* check022 = NULL;
+        flCheckBox* check023 = NULL; flCheckBox* check024 = NULL; flCheckBox* check025 = NULL;
+        flCheckBox* check026 = NULL; flCheckBox* check027 = NULL; flCheckBox* check028 = NULL;
+        flCheckBox* check029 = NULL;
+        flCheckBox* check030 = NULL; flCheckBox* check031 = NULL; flCheckBox* check032 = NULL;
+        flCheckBox* check033 = NULL; flCheckBox* check034 = NULL; flCheckBox* check035 = NULL;
+        flCheckBox* check036 = NULL; flCheckBox* check037 = NULL; flCheckBox* check038 = NULL;
+        flCheckBox* check039 = NULL;
+        flCheckBox* check040 = NULL; flCheckBox* check041 = NULL; flCheckBox* check042 = NULL;
+        flCheckBox* check043 = NULL; flCheckBox* check044 = NULL; flCheckBox* check045 = NULL;
+        flCheckBox* check046 = NULL; flCheckBox* check047 = NULL; flCheckBox* check048 = NULL;
+        flCheckBox* check049 = NULL;
+        //チェックボックス(100)
+        flCheckBox* check100 = NULL; flCheckBox* check101 = NULL; flCheckBox* check102 = NULL;
+        flCheckBox* check103 = NULL; flCheckBox* check104 = NULL; flCheckBox* check105 = NULL;
+        flCheckBox* check106 = NULL; flCheckBox* check107 = NULL; flCheckBox* check108 = NULL;
+        flCheckBox* check109 = NULL;
+        flCheckBox* check110 = NULL; flCheckBox* check111 = NULL; flCheckBox* check112 = NULL;
+        flCheckBox* check113 = NULL; flCheckBox* check114 = NULL; flCheckBox* check115 = NULL;
+        flCheckBox* check116 = NULL; flCheckBox* check117 = NULL; flCheckBox* check118 = NULL;
+        flCheckBox* check119 = NULL;
+        flCheckBox* check120 = NULL; flCheckBox* check121 = NULL; flCheckBox* check122 = NULL;
+        flCheckBox* check123 = NULL; flCheckBox* check124 = NULL; flCheckBox* check125 = NULL;
+        flCheckBox* check126 = NULL; flCheckBox* check127 = NULL; flCheckBox* check128 = NULL;
+        flCheckBox* check129 = NULL;
+        flCheckBox* check130 = NULL; flCheckBox* check131 = NULL; flCheckBox* check132 = NULL;
+        flCheckBox* check133 = NULL; flCheckBox* check134 = NULL; flCheckBox* check135 = NULL;
+        flCheckBox* check136 = NULL; flCheckBox* check137 = NULL; flCheckBox* check138 = NULL;
+        flCheckBox* check139 = NULL;
+        flCheckBox* check140 = NULL; flCheckBox* check141 = NULL; flCheckBox* check142 = NULL;
+        flCheckBox* check143 = NULL; flCheckBox* check144 = NULL; flCheckBox* check145 = NULL;
+        flCheckBox* check146 = NULL; flCheckBox* check147 = NULL; flCheckBox* check148 = NULL;
+        flCheckBox* check149 = NULL;
+        flCheckBox* check150 = NULL; flCheckBox* check151 = NULL; flCheckBox* check152 = NULL;
+        flCheckBox* check153 = NULL; flCheckBox* check154 = NULL; flCheckBox* check155 = NULL;
+        flCheckBox* check156 = NULL; flCheckBox* check157 = NULL; flCheckBox* check158 = NULL;
+        flCheckBox* check159 = NULL;
+        flCheckBox* check160 = NULL; flCheckBox* check161 = NULL; flCheckBox* check162 = NULL;
+        flCheckBox* check163 = NULL; flCheckBox* check164 = NULL; flCheckBox* check165 = NULL;
+        flCheckBox* check166 = NULL; flCheckBox* check167 = NULL; flCheckBox* check168 = NULL;
+        flCheckBox* check169 = NULL;
+        flCheckBox* check170 = NULL; flCheckBox* check171 = NULL; flCheckBox* check172 = NULL;
+        flCheckBox* check173 = NULL; flCheckBox* check174 = NULL; flCheckBox* check175 = NULL;
+        flCheckBox* check176 = NULL; flCheckBox* check177 = NULL; flCheckBox* check178 = NULL;
+        flCheckBox* check179 = NULL;
+        flCheckBox* check180 = NULL; flCheckBox* check181 = NULL; flCheckBox* check182 = NULL;
+        flCheckBox* check183 = NULL; flCheckBox* check184 = NULL; flCheckBox* check185 = NULL;
+        flCheckBox* check186 = NULL; flCheckBox* check187 = NULL; flCheckBox* check188 = NULL;
+        flCheckBox* check189 = NULL;
+        flCheckBox* check190 = NULL; flCheckBox* check191 = NULL; flCheckBox* check192 = NULL;
+        flCheckBox* check193 = NULL; flCheckBox* check194 = NULL; flCheckBox* check195 = NULL;
+        flCheckBox* check196 = NULL; flCheckBox* check197 = NULL; flCheckBox* check198 = NULL;
+        flCheckBox* check199 = NULL;
+        //チェックボックス(200)
+        flCheckBox* check200 = NULL; flCheckBox* check201 = NULL; flCheckBox* check202 = NULL;
+        flCheckBox* check203 = NULL; flCheckBox* check204 = NULL; flCheckBox* check205 = NULL;
+        flCheckBox* check206 = NULL; flCheckBox* check207 = NULL; flCheckBox* check208 = NULL;
+        flCheckBox* check209 = NULL;
+        flCheckBox* check210 = NULL; flCheckBox* check211 = NULL; flCheckBox* check212 = NULL;
+        flCheckBox* check213 = NULL; flCheckBox* check214 = NULL; flCheckBox* check215 = NULL;
+        flCheckBox* check216 = NULL; flCheckBox* check217 = NULL; flCheckBox* check218 = NULL;
+        flCheckBox* check219 = NULL;
+        flCheckBox* check220 = NULL; flCheckBox* check221 = NULL; flCheckBox* check222 = NULL;
+        flCheckBox* check223 = NULL; flCheckBox* check224 = NULL; flCheckBox* check225 = NULL;
+        flCheckBox* check226 = NULL; flCheckBox* check227 = NULL; flCheckBox* check228 = NULL;
+        flCheckBox* check229 = NULL;
+        flCheckBox* check230 = NULL; flCheckBox* check231 = NULL; flCheckBox* check232 = NULL;
+        flCheckBox* check233 = NULL; flCheckBox* check234 = NULL; flCheckBox* check235 = NULL;
+        flCheckBox* check236 = NULL; flCheckBox* check237 = NULL; flCheckBox* check238 = NULL;
+        flCheckBox* check239 = NULL;
+        //チェックボックス(300)
+        flCheckBox* check300 = NULL; flCheckBox* check301 = NULL; flCheckBox* check302 = NULL;
+        flCheckBox* check303 = NULL; flCheckBox* check304 = NULL; flCheckBox* check305 = NULL;
+        flCheckBox* check306 = NULL; flCheckBox* check307 = NULL; flCheckBox* check308 = NULL;
+        flCheckBox* check309 = NULL;
+        flCheckBox* check310 = NULL; flCheckBox* check311 = NULL; flCheckBox* check312 = NULL;
+        flCheckBox* check313 = NULL; flCheckBox* check314 = NULL; flCheckBox* check315 = NULL;
+        flCheckBox* check316 = NULL; flCheckBox* check317 = NULL; flCheckBox* check318 = NULL;
+        flCheckBox* check319 = NULL;
+        flCheckBox* check320 = NULL; flCheckBox* check321 = NULL; flCheckBox* check322 = NULL;
+        flCheckBox* check323 = NULL; flCheckBox* check324 = NULL; flCheckBox* check325 = NULL;
+        flCheckBox* check326 = NULL; flCheckBox* check327 = NULL; flCheckBox* check328 = NULL;
+        flCheckBox* check329 = NULL;
+        flCheckBox* check330 = NULL; flCheckBox* check331 = NULL; flCheckBox* check332 = NULL;
+        flCheckBox* check333 = NULL; flCheckBox* check334 = NULL; flCheckBox* check335 = NULL;
+        flCheckBox* check336 = NULL; flCheckBox* check337 = NULL; flCheckBox* check338 = NULL;
+        flCheckBox* check339 = NULL;
+        flCheckBox* check340 = NULL; flCheckBox* check341 = NULL; flCheckBox* check342 = NULL;
+        flCheckBox* check343 = NULL; flCheckBox* check344 = NULL; flCheckBox* check345 = NULL;
+        flCheckBox* check346 = NULL; flCheckBox* check347 = NULL; flCheckBox* check348 = NULL;
+        flCheckBox* check349 = NULL;
+        flCheckBox* check350 = NULL; flCheckBox* check351 = NULL; flCheckBox* check352 = NULL;
+        flCheckBox* check353 = NULL; flCheckBox* check354 = NULL; flCheckBox* check355 = NULL;
+        flCheckBox* check356 = NULL; flCheckBox* check357 = NULL; flCheckBox* check358 = NULL;
+        flCheckBox* check359 = NULL;
+        //チェックボックス(400)
+        flCheckBox* check400 = NULL; flCheckBox* check401 = NULL; flCheckBox* check402 = NULL;
+        flCheckBox* check403 = NULL; flCheckBox* check404 = NULL; flCheckBox* check405 = NULL;
+        flCheckBox* check406 = NULL; flCheckBox* check407 = NULL; flCheckBox* check408 = NULL;
+        flCheckBox* check409 = NULL;
+        flCheckBox* check410 = NULL; flCheckBox* check411 = NULL; flCheckBox* check412 = NULL;
+        flCheckBox* check413 = NULL; flCheckBox* check414 = NULL; flCheckBox* check415 = NULL;
+        flCheckBox* check416 = NULL; flCheckBox* check417 = NULL; flCheckBox* check418 = NULL;
+        flCheckBox* check419 = NULL;
+        flCheckBox* check420 = NULL; flCheckBox* check421 = NULL; flCheckBox* check422 = NULL;
+        flCheckBox* check423 = NULL; flCheckBox* check424 = NULL; flCheckBox* check425 = NULL;
+        flCheckBox* check426 = NULL; flCheckBox* check427 = NULL; flCheckBox* check428 = NULL;
+        flCheckBox* check429 = NULL;
+        flCheckBox* check430 = NULL; flCheckBox* check431 = NULL; flCheckBox* check432 = NULL;
+        flCheckBox* check433 = NULL; flCheckBox* check434 = NULL; flCheckBox* check435 = NULL;
+        flCheckBox* check436 = NULL; flCheckBox* check437 = NULL; flCheckBox* check438 = NULL;
+        flCheckBox* check439 = NULL;
+        //チェックボックス(500)
+        flCheckBox* check500 = NULL; flCheckBox* check501 = NULL; flCheckBox* check502 = NULL;
+        flCheckBox* check503 = NULL; flCheckBox* check504 = NULL; flCheckBox* check505 = NULL;
+        flCheckBox* check506 = NULL; flCheckBox* check507 = NULL; flCheckBox* check508 = NULL;
+        flCheckBox* check509 = NULL;
+        flCheckBox* check510 = NULL; flCheckBox* check511 = NULL; flCheckBox* check512 = NULL;
+        flCheckBox* check513 = NULL; flCheckBox* check514 = NULL; flCheckBox* check515 = NULL;
+        flCheckBox* check516 = NULL; flCheckBox* check517 = NULL; flCheckBox* check518 = NULL;
+        flCheckBox* check519 = NULL;
+        flCheckBox* check520 = NULL; flCheckBox* check521 = NULL; flCheckBox* check522 = NULL;
+        flCheckBox* check523 = NULL; flCheckBox* check524 = NULL; flCheckBox* check525 = NULL;
+        flCheckBox* check526 = NULL; flCheckBox* check527 = NULL; flCheckBox* check528 = NULL;
+        flCheckBox* check529 = NULL;
+        flCheckBox* check530 = NULL; flCheckBox* check531 = NULL; flCheckBox* check532 = NULL;
+        flCheckBox* check533 = NULL; flCheckBox* check534 = NULL; flCheckBox* check535 = NULL;
+        flCheckBox* check536 = NULL; flCheckBox* check537 = NULL; flCheckBox* check538 = NULL;
+        flCheckBox* check539 = NULL;
+        //チェックボックス(600)
+        flCheckBox* check600 = NULL; flCheckBox* check601 = NULL; flCheckBox* check602 = NULL;
+        flCheckBox* check603 = NULL; flCheckBox* check604 = NULL; flCheckBox* check605 = NULL;
+        flCheckBox* check606 = NULL; flCheckBox* check607 = NULL; flCheckBox* check608 = NULL;
+        flCheckBox* check609 = NULL;
+        flCheckBox* check610 = NULL; flCheckBox* check611 = NULL; flCheckBox* check612 = NULL;
+        flCheckBox* check613 = NULL; flCheckBox* check614 = NULL; flCheckBox* check615 = NULL;
+        flCheckBox* check616 = NULL; flCheckBox* check617 = NULL; flCheckBox* check618 = NULL;
+        flCheckBox* check619 = NULL;
+        flCheckBox* check620 = NULL; flCheckBox* check621 = NULL; flCheckBox* check622 = NULL;
+        flCheckBox* check623 = NULL; flCheckBox* check624 = NULL; flCheckBox* check625 = NULL;
+        flCheckBox* check626 = NULL; flCheckBox* check627 = NULL; flCheckBox* check628 = NULL;
+        flCheckBox* check629 = NULL;
+        flCheckBox* check630 = NULL; flCheckBox* check631 = NULL; flCheckBox* check632 = NULL;
+        flCheckBox* check633 = NULL; flCheckBox* check634 = NULL; flCheckBox* check635 = NULL;
+        flCheckBox* check636 = NULL; flCheckBox* check637 = NULL; flCheckBox* check638 = NULL;
+        flCheckBox* check639 = NULL;
+        //チェックボックス(700)
+        flCheckBox* check700 = NULL; flCheckBox* check701 = NULL; flCheckBox* check702 = NULL;
+        flCheckBox* check703 = NULL; flCheckBox* check704 = NULL; flCheckBox* check705 = NULL;
+        flCheckBox* check706 = NULL; flCheckBox* check707 = NULL; flCheckBox* check708 = NULL;
+        flCheckBox* check709 = NULL;
+        flCheckBox* check710 = NULL; flCheckBox* check711 = NULL; flCheckBox* check712 = NULL;
+        flCheckBox* check713 = NULL; flCheckBox* check714 = NULL; flCheckBox* check715 = NULL;
+        flCheckBox* check716 = NULL; flCheckBox* check717 = NULL; flCheckBox* check718 = NULL;
+        flCheckBox* check719 = NULL;
+        flCheckBox* check720 = NULL; flCheckBox* check721 = NULL; flCheckBox* check722 = NULL;
+        flCheckBox* check723 = NULL; flCheckBox* check724 = NULL; flCheckBox* check725 = NULL;
+        flCheckBox* check726 = NULL; flCheckBox* check727 = NULL; flCheckBox* check728 = NULL;
+        flCheckBox* check729 = NULL;
+        flCheckBox* check730 = NULL; flCheckBox* check731 = NULL; flCheckBox* check732 = NULL;
+        flCheckBox* check733 = NULL; flCheckBox* check734 = NULL; flCheckBox* check735 = NULL;
+        flCheckBox* check736 = NULL; flCheckBox* check737 = NULL; flCheckBox* check738 = NULL;
+        flCheckBox* check739 = NULL;
+        //チェックボックス(800)
+        flCheckBox* check800 = NULL; flCheckBox* check801 = NULL; flCheckBox* check802 = NULL;
+        flCheckBox* check803 = NULL; flCheckBox* check804 = NULL; flCheckBox* check805 = NULL;
+        flCheckBox* check806 = NULL; flCheckBox* check807 = NULL; flCheckBox* check808 = NULL;
+        flCheckBox* check809 = NULL;
+        flCheckBox* check810 = NULL; flCheckBox* check811 = NULL; flCheckBox* check812 = NULL;
+        flCheckBox* check813 = NULL; flCheckBox* check814 = NULL; flCheckBox* check815 = NULL;
+        flCheckBox* check816 = NULL; flCheckBox* check817 = NULL; flCheckBox* check818 = NULL;
+        flCheckBox* check819 = NULL;
+        flCheckBox* check820 = NULL; flCheckBox* check821 = NULL; flCheckBox* check822 = NULL;
+        flCheckBox* check823 = NULL; flCheckBox* check824 = NULL; flCheckBox* check825 = NULL;
+        flCheckBox* check826 = NULL; flCheckBox* check827 = NULL; flCheckBox* check828 = NULL;
+        flCheckBox* check829 = NULL;
+        flCheckBox* check830 = NULL; flCheckBox* check831 = NULL; flCheckBox* check832 = NULL;
+        flCheckBox* check833 = NULL; flCheckBox* check834 = NULL; flCheckBox* check835 = NULL;
+        flCheckBox* check836 = NULL; flCheckBox* check837 = NULL; flCheckBox* check838 = NULL;
+        flCheckBox* check839 = NULL;
+        //チェックボックス(900)
+        flCheckBox* check900 = NULL; flCheckBox* check901 = NULL; flCheckBox* check902 = NULL;
+        flCheckBox* check903 = NULL; flCheckBox* check904 = NULL; flCheckBox* check905 = NULL;
+        flCheckBox* check906 = NULL; flCheckBox* check907 = NULL; flCheckBox* check908 = NULL;
+        flCheckBox* check909 = NULL;
+        flCheckBox* check910 = NULL; flCheckBox* check911 = NULL; flCheckBox* check912 = NULL;
+        flCheckBox* check913 = NULL; flCheckBox* check914 = NULL; flCheckBox* check915 = NULL;
+        flCheckBox* check916 = NULL; flCheckBox* check917 = NULL; flCheckBox* check918 = NULL;
+        flCheckBox* check919 = NULL;
+        flCheckBox* check920 = NULL; flCheckBox* check921 = NULL; flCheckBox* check922 = NULL;
+        flCheckBox* check923 = NULL; flCheckBox* check924 = NULL; flCheckBox* check925 = NULL;
+        flCheckBox* check926 = NULL; flCheckBox* check927 = NULL; flCheckBox* check928 = NULL;
+        flCheckBox* check929 = NULL;
+        flCheckBox* check930 = NULL; flCheckBox* check931 = NULL; flCheckBox* check932 = NULL;
+        flCheckBox* check933 = NULL; flCheckBox* check934 = NULL; flCheckBox* check935 = NULL;
+        flCheckBox* check936 = NULL; flCheckBox* check937 = NULL; flCheckBox* check938 = NULL;
+        flCheckBox* check939 = NULL;
+        flCheckBox* check999 = NULL;
+        //--------------------------------------
+    
+        //--------------------------------------
+        //ラジオボタン(000)
         flRadioButton* radio000 = NULL; flRadioButton* radio001 = NULL; flRadioButton* radio002 = NULL;
         flRadioButton* radio003 = NULL; flRadioButton* radio004 = NULL; flRadioButton* radio005 = NULL;
         flRadioButton* radio006 = NULL; flRadioButton* radio007 = NULL; flRadioButton* radio008 = NULL;
@@ -1003,7 +1213,7 @@ class BasicController : public flSprite {
         flRadioButton* radio043 = NULL; flRadioButton* radio044 = NULL; flRadioButton* radio045 = NULL;
         flRadioButton* radio046 = NULL; flRadioButton* radio047 = NULL; flRadioButton* radio048 = NULL;
         flRadioButton* radio049 = NULL;
-        //シンプルラジオボタン(100)
+        //ラジオボタン(100)
         flRadioButton* radio100 = NULL; flRadioButton* radio101 = NULL; flRadioButton* radio102 = NULL;
         flRadioButton* radio103 = NULL; flRadioButton* radio104 = NULL; flRadioButton* radio105 = NULL;
         flRadioButton* radio106 = NULL; flRadioButton* radio107 = NULL; flRadioButton* radio108 = NULL;
@@ -1044,7 +1254,7 @@ class BasicController : public flSprite {
         flRadioButton* radio193 = NULL; flRadioButton* radio194 = NULL; flRadioButton* radio195 = NULL;
         flRadioButton* radio196 = NULL; flRadioButton* radio197 = NULL; flRadioButton* radio198 = NULL;
         flRadioButton* radio199 = NULL;
-        //シンプルラジオボタン(200)
+        //ラジオボタン(200)
         flRadioButton* radio200 = NULL; flRadioButton* radio201 = NULL; flRadioButton* radio202 = NULL;
         flRadioButton* radio203 = NULL; flRadioButton* radio204 = NULL; flRadioButton* radio205 = NULL;
         flRadioButton* radio206 = NULL; flRadioButton* radio207 = NULL; flRadioButton* radio208 = NULL;
@@ -1061,7 +1271,7 @@ class BasicController : public flSprite {
         flRadioButton* radio233 = NULL; flRadioButton* radio234 = NULL; flRadioButton* radio235 = NULL;
         flRadioButton* radio236 = NULL; flRadioButton* radio237 = NULL; flRadioButton* radio238 = NULL;
         flRadioButton* radio239 = NULL;
-        //シンプルラジオボタン(300)
+        //ラジオボタン(300)
         flRadioButton* radio300 = NULL; flRadioButton* radio301 = NULL; flRadioButton* radio302 = NULL;
         flRadioButton* radio303 = NULL; flRadioButton* radio304 = NULL; flRadioButton* radio305 = NULL;
         flRadioButton* radio306 = NULL; flRadioButton* radio307 = NULL; flRadioButton* radio308 = NULL;
@@ -1082,11 +1292,11 @@ class BasicController : public flSprite {
         flRadioButton* radio343 = NULL; flRadioButton* radio344 = NULL; flRadioButton* radio345 = NULL;
         flRadioButton* radio346 = NULL; flRadioButton* radio347 = NULL; flRadioButton* radio348 = NULL;
         flRadioButton* radio349 = NULL;
-        flRadioButton* radio350 = NULL; flRadioButton* radio551 = NULL; flRadioButton* radio352 = NULL;
+        flRadioButton* radio350 = NULL; flRadioButton* radio351 = NULL; flRadioButton* radio352 = NULL;
         flRadioButton* radio353 = NULL; flRadioButton* radio354 = NULL; flRadioButton* radio355 = NULL;
         flRadioButton* radio356 = NULL; flRadioButton* radio357 = NULL; flRadioButton* radio358 = NULL;
         flRadioButton* radio359 = NULL;
-        //シンプルラジオボタン(400)
+        //ラジオボタン(400)
         flRadioButton* radio400 = NULL; flRadioButton* radio401 = NULL; flRadioButton* radio402 = NULL;
         flRadioButton* radio403 = NULL; flRadioButton* radio404 = NULL; flRadioButton* radio405 = NULL;
         flRadioButton* radio406 = NULL; flRadioButton* radio407 = NULL; flRadioButton* radio408 = NULL;
@@ -1103,7 +1313,7 @@ class BasicController : public flSprite {
         flRadioButton* radio433 = NULL; flRadioButton* radio434 = NULL; flRadioButton* radio435 = NULL;
         flRadioButton* radio436 = NULL; flRadioButton* radio437 = NULL; flRadioButton* radio438 = NULL;
         flRadioButton* radio439 = NULL;
-        //シンプルラジオボタン(500)
+        //ラジオボタン(500)
         flRadioButton* radio500 = NULL; flRadioButton* radio501 = NULL; flRadioButton* radio502 = NULL;
         flRadioButton* radio503 = NULL; flRadioButton* radio504 = NULL; flRadioButton* radio505 = NULL;
         flRadioButton* radio506 = NULL; flRadioButton* radio507 = NULL; flRadioButton* radio508 = NULL;
@@ -1120,7 +1330,7 @@ class BasicController : public flSprite {
         flRadioButton* radio533 = NULL; flRadioButton* radio534 = NULL; flRadioButton* radio535 = NULL;
         flRadioButton* radio536 = NULL; flRadioButton* radio537 = NULL; flRadioButton* radio538 = NULL;
         flRadioButton* radio539 = NULL;
-        //シンプルラジオボタン(600)
+        //ラジオボタン(600)
         flRadioButton* radio600 = NULL; flRadioButton* radio601 = NULL; flRadioButton* radio602 = NULL;
         flRadioButton* radio603 = NULL; flRadioButton* radio604 = NULL; flRadioButton* radio605 = NULL;
         flRadioButton* radio606 = NULL; flRadioButton* radio607 = NULL; flRadioButton* radio608 = NULL;
@@ -1137,7 +1347,7 @@ class BasicController : public flSprite {
         flRadioButton* radio633 = NULL; flRadioButton* radio634 = NULL; flRadioButton* radio635 = NULL;
         flRadioButton* radio636 = NULL; flRadioButton* radio637 = NULL; flRadioButton* radio638 = NULL;
         flRadioButton* radio639 = NULL;
-        //シンプルラジオボタン(700)
+        //ラジオボタン(700)
         flRadioButton* radio700 = NULL; flRadioButton* radio701 = NULL; flRadioButton* radio702 = NULL;
         flRadioButton* radio703 = NULL; flRadioButton* radio704 = NULL; flRadioButton* radio705 = NULL;
         flRadioButton* radio706 = NULL; flRadioButton* radio707 = NULL; flRadioButton* radio708 = NULL;
@@ -1154,7 +1364,7 @@ class BasicController : public flSprite {
         flRadioButton* radio733 = NULL; flRadioButton* radio734 = NULL; flRadioButton* radio735 = NULL;
         flRadioButton* radio736 = NULL; flRadioButton* radio737 = NULL; flRadioButton* radio738 = NULL;
         flRadioButton* radio739 = NULL;
-        //シンプルラジオボタン(800)
+        //ラジオボタン(800)
         flRadioButton* radio800 = NULL; flRadioButton* radio801 = NULL; flRadioButton* radio802 = NULL;
         flRadioButton* radio803 = NULL; flRadioButton* radio804 = NULL; flRadioButton* radio805 = NULL;
         flRadioButton* radio806 = NULL; flRadioButton* radio807 = NULL; flRadioButton* radio808 = NULL;
@@ -1171,7 +1381,7 @@ class BasicController : public flSprite {
         flRadioButton* radio833 = NULL; flRadioButton* radio834 = NULL; flRadioButton* radio835 = NULL;
         flRadioButton* radio836 = NULL; flRadioButton* radio837 = NULL; flRadioButton* radio838 = NULL;
         flRadioButton* radio839 = NULL;
-        //シンプルラジオボタン(900)
+        //ラジオボタン(900)
         flRadioButton* radio900 = NULL; flRadioButton* radio901 = NULL; flRadioButton* radio902 = NULL;
         flRadioButton* radio903 = NULL; flRadioButton* radio904 = NULL; flRadioButton* radio905 = NULL;
         flRadioButton* radio906 = NULL; flRadioButton* radio907 = NULL; flRadioButton* radio908 = NULL;
@@ -1193,29 +1403,29 @@ class BasicController : public flSprite {
     
         //--------------------------------------
         //ジョイスティック1D(000)
-        flJoystick1D* joystick1D000 = NULL; flJoystick1D* joystick1D001 = NULL; flJoystick1D* joystick1D002 = NULL; flJoystick1D* joystick1D003 = NULL; flJoystick1D* joystick1D004 = NULL;
-        flJoystick1D* joystick1D005 = NULL; flJoystick1D* joystick1D006 = NULL; flJoystick1D* joystick1D007 = NULL; flJoystick1D* joystick1D008 = NULL; flJoystick1D* joystick1D009 = NULL;
-        flJoystick1D* joystick1D010 = NULL; flJoystick1D* joystick1D011 = NULL; flJoystick1D* joystick1D012 = NULL; flJoystick1D* joystick1D013 = NULL; flJoystick1D* joystick1D014 = NULL;
-        flJoystick1D* joystick1D015 = NULL; flJoystick1D* joystick1D016 = NULL; flJoystick1D* joystick1D017 = NULL; flJoystick1D* joystick1D018 = NULL; flJoystick1D* joystick1D019 = NULL;
+        flJoystick1* joystick1000 = NULL; flJoystick1* joystick1001 = NULL; flJoystick1* joystick1002 = NULL; flJoystick1* joystick1003 = NULL; flJoystick1* joystick1004 = NULL;
+        flJoystick1* joystick1005 = NULL; flJoystick1* joystick1006 = NULL; flJoystick1* joystick1007 = NULL; flJoystick1* joystick1008 = NULL; flJoystick1* joystick1009 = NULL;
+        flJoystick1* joystick1010 = NULL; flJoystick1* joystick1011 = NULL; flJoystick1* joystick1012 = NULL; flJoystick1* joystick1013 = NULL; flJoystick1* joystick1014 = NULL;
+        flJoystick1* joystick1015 = NULL; flJoystick1* joystick1016 = NULL; flJoystick1* joystick1017 = NULL; flJoystick1* joystick1018 = NULL; flJoystick1* joystick1019 = NULL;
         //ジョイスティック1D(100)
-        flJoystick1D* joystick1D100 = NULL; flJoystick1D* joystick1D101 = NULL; flJoystick1D* joystick1D102 = NULL; flJoystick1D* joystick1D103 = NULL; flJoystick1D* joystick1D104 = NULL;
-        flJoystick1D* joystick1D105 = NULL; flJoystick1D* joystick1D106 = NULL; flJoystick1D* joystick1D107 = NULL; flJoystick1D* joystick1D108 = NULL; flJoystick1D* joystick1D109 = NULL;
+        flJoystick1* joystick1100 = NULL; flJoystick1* joystick1101 = NULL; flJoystick1* joystick1102 = NULL; flJoystick1* joystick1103 = NULL; flJoystick1* joystick1104 = NULL;
+        flJoystick1* joystick1105 = NULL; flJoystick1* joystick1106 = NULL; flJoystick1* joystick1107 = NULL; flJoystick1* joystick1108 = NULL; flJoystick1* joystick1109 = NULL;
         //ジョイスティック1D(200)
-        flJoystick1D* joystick1D200 = NULL; flJoystick1D* joystick1D201 = NULL; flJoystick1D* joystick1D202 = NULL; flJoystick1D* joystick1D203 = NULL; flJoystick1D* joystick1D204 = NULL;
-        flJoystick1D* joystick1D205 = NULL; flJoystick1D* joystick1D206 = NULL; flJoystick1D* joystick1D207 = NULL; flJoystick1D* joystick1D208 = NULL; flJoystick1D* joystick1D209 = NULL;
+        flJoystick1* joystick1200 = NULL; flJoystick1* joystick1201 = NULL; flJoystick1* joystick1202 = NULL; flJoystick1* joystick1203 = NULL; flJoystick1* joystick1204 = NULL;
+        flJoystick1* joystick1205 = NULL; flJoystick1* joystick1206 = NULL; flJoystick1* joystick1207 = NULL; flJoystick1* joystick1208 = NULL; flJoystick1* joystick1209 = NULL;
         //--------------------------------------
         //--------------------------------------
         //ジョイスティック2D(000)
-        flJoystick2D* joystick2D000 = NULL; flJoystick2D* joystick2D001 = NULL; flJoystick2D* joystick2D002 = NULL; flJoystick2D* joystick2D003 = NULL; flJoystick2D* joystick2D004 = NULL;
-        flJoystick2D* joystick2D005 = NULL; flJoystick2D* joystick2D006 = NULL; flJoystick2D* joystick2D007 = NULL; flJoystick2D* joystick2D008 = NULL; flJoystick2D* joystick2D009 = NULL;
-        flJoystick2D* joystick2D010 = NULL; flJoystick2D* joystick2D011 = NULL; flJoystick2D* joystick2D012 = NULL; flJoystick2D* joystick2D013 = NULL; flJoystick2D* joystick2D014 = NULL;
-        flJoystick2D* joystick2D015 = NULL; flJoystick2D* joystick2D016 = NULL; flJoystick2D* joystick2D017 = NULL; flJoystick2D* joystick2D018 = NULL; flJoystick2D* joystick2D019 = NULL;
+        flJoystick2* joystick2000 = NULL; flJoystick2* joystick2001 = NULL; flJoystick2* joystick2002 = NULL; flJoystick2* joystick2003 = NULL; flJoystick2* joystick2004 = NULL;
+        flJoystick2* joystick2005 = NULL; flJoystick2* joystick2006 = NULL; flJoystick2* joystick2007 = NULL; flJoystick2* joystick2008 = NULL; flJoystick2* joystick2009 = NULL;
+        flJoystick2* joystick2010 = NULL; flJoystick2* joystick2011 = NULL; flJoystick2* joystick2012 = NULL; flJoystick2* joystick2013 = NULL; flJoystick2* joystick2014 = NULL;
+        flJoystick2* joystick2015 = NULL; flJoystick2* joystick2016 = NULL; flJoystick2* joystick2017 = NULL; flJoystick2* joystick2018 = NULL; flJoystick2* joystick2019 = NULL;
         //ジョイスティック2D(100)
-        flJoystick2D* joystick2D100 = NULL; flJoystick2D* joystick2D101 = NULL; flJoystick2D* joystick2D102 = NULL; flJoystick2D* joystick2D103 = NULL; flJoystick2D* joystick2D104 = NULL;
-        flJoystick2D* joystick2D105 = NULL; flJoystick2D* joystick2D106 = NULL; flJoystick2D* joystick2D107 = NULL; flJoystick2D* joystick2D108 = NULL; flJoystick2D* joystick2D109 = NULL;
+        flJoystick2* joystick2100 = NULL; flJoystick2* joystick2101 = NULL; flJoystick2* joystick2102 = NULL; flJoystick2* joystick2103 = NULL; flJoystick2* joystick2104 = NULL;
+        flJoystick2* joystick2105 = NULL; flJoystick2* joystick2106 = NULL; flJoystick2* joystick2107 = NULL; flJoystick2* joystick2108 = NULL; flJoystick2* joystick2109 = NULL;
         //ジョイスティック2D(200)
-        flJoystick2D* joystick2D200 = NULL; flJoystick2D* joystick2D201 = NULL; flJoystick2D* joystick2D202 = NULL; flJoystick2D* joystick2D203 = NULL; flJoystick2D* joystick2D204 = NULL;
-        flJoystick2D* joystick2D205 = NULL; flJoystick2D* joystick2D206 = NULL; flJoystick2D* joystick2D207 = NULL; flJoystick2D* joystick2D208 = NULL; flJoystick2D* joystick2D209 = NULL;
+        flJoystick2* joystick2200 = NULL; flJoystick2* joystick2201 = NULL; flJoystick2* joystick2202 = NULL; flJoystick2* joystick2203 = NULL; flJoystick2* joystick2204 = NULL;
+        flJoystick2* joystick2205 = NULL; flJoystick2* joystick2206 = NULL; flJoystick2* joystick2207 = NULL; flJoystick2* joystick2208 = NULL; flJoystick2* joystick2209 = NULL;
         //--------------------------------------
         
         //--------------------------------------

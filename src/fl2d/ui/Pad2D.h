@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 
@@ -22,7 +22,10 @@ namespace fl2d {
         private:
             float _width;
             float _height;
-        
+            float _areaWidth;
+            float _areaHeight;
+            float _n;
+
             float _labelNormalColor;
             float _labelOverColor;
             float _labelActiveColor;
@@ -61,7 +64,8 @@ namespace fl2d {
             NumberDialer* _dialer04;
         
         public:
-            Pad2D(float width = 100, float height = 100, float left = 0, float right = 100, float top = 0, float bottom = 100);
+            Pad2D(float width = 100, float height = 100);
+            Pad2D(float width, float height, float left, float right, float top, float bottom);
             virtual ~Pad2D();
             
             TextField* label();

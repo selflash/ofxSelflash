@@ -1,4 +1,4 @@
-﻿#include "MovieClip.h"
+#include "MovieClip.h"
 
 namespace fl2d {
 
