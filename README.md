@@ -161,8 +161,8 @@ Features:
 + ui/Pad3D.h
 + ui/Joystick1.h
 + ui/Joystick2.h
-+ ui/HistgramViewer.h
-~+ ui/ScrollKit.h~
++ ui/HistgramViewer.h  
+~+ ui/ScrollKit.h~  
 + ui/ComboBox.h"
 
 ~[fl3d.primitive]~  
@@ -180,7 +180,7 @@ Features:
 ~+ STweener.h~  
 ~+ STweeneSelector.h~  
 
-[fltw.fl2d]  
+~[fltw.fl2d]~  
 ~[fltw.fl3d]~  
 
 
