@@ -13,9 +13,9 @@ Description:
 ofxSelflash is an addon that allows you to write code like AS3 on openFrameworks.
 The operation has been confirmed on oepnFrameworks 0.10.1 on macOS Sierra and Windows10.
 
-+ A "fl2d" package is classes in imitation of ActionScript3.0.
-~+ A "fl3d" package is classes in imitation of PaperVision3D.~
-~+ A "tween" package is classes in imitation of TweenMax.~
++ A "fl2d" package is classes in imitation of ActionScript3.0.  
+~+ A "fl3d" package is classes in imitation of PaperVision3D.~  
+~+ A "tween" package is classes in imitation of TweenMax.~  
 
 This addon is still in development.
 Following examples are unable to build.
@@ -76,7 +76,7 @@ How to build
 --------
 
 Copy the fl-Folder in "ofxSelflash/bin/data" to "your project folder/bin/data".
-![1-1](howtouse/2-1.png)
+![1-1](howtouse/1-1.png)
 
 
 Features:
