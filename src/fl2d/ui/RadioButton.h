@@ -88,7 +88,7 @@ namespace fl2d {
         virtual ~RadioButtonGroup();
         
         RadioButton* createRadioButton();
-        void removeRadioButton(RadioButton* radioButton);
+		RadioButton* removeRadioButton(RadioButton* radioButton);
         
     private:
         void _notice(RadioButton* radioButton);

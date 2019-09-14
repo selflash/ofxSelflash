@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "flmath.h"
 #include "flstringutil.h"

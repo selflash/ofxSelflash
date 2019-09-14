@@ -333,7 +333,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void RadioButtonGroup::removeRadioButton(RadioButton* radioButton) {
+	RadioButton* RadioButtonGroup::removeRadioButton(RadioButton* radioButton) {
         vector<RadioButton*>::iterator it = _radioButtonList.begin();
         while (it != _radioButtonList.end()) {
             if (*it == radioButton) {
