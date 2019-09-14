@@ -1,12 +1,14 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 
-#include "../FlashConfig.h"
-#include "../display/Sprite.h"
-#include "../texts/TextField.h"
-#include "../events/AnglerEvent.h"
-#include "../../utils/MathUtil.h"
+#include "FlashConfig.h"
+#include "Sprite.h"
+#include "TextField.h"
+#include "AnglerEvent.h"
+#include "flmath.h"
+
+using namespace flinternal;
 
 namespace fl2d {
     

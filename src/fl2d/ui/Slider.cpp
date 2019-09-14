@@ -1,11 +1,11 @@
 #include "Slider.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Slider::Slider(float trackWidth, float min, float max, float defaultValue) {
@@ -29,7 +29,7 @@ namespace fl2d {
         
         _min = min;
         _max = max;
-//        _range = _max - _min;
+        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -40,7 +40,7 @@ namespace fl2d {
         _trackWidth = trackWidth;
         _trackHeight = 18;
         _thumbWidth = 20;
-//        _barWidth = (_value -_min) / (_range / _trackWidth);
+        //        _barWidth = (_value -_min) / (_range / _trackWidth);
         if(_max > _min) {
             _barWidth = (_value -_min) / (_range / _trackWidth);
         } else {
@@ -85,7 +85,7 @@ namespace fl2d {
         thumb->addEventListener(MouseEvent::ROLL_OUT, this, &Slider::_mouseEventHandler);
         thumb->addEventListener(MouseEvent::MOUSE_DOWN, this, &Slider::_mouseEventHandler);
         track->addChild(thumb);
-
+        
         //------------------------------------------
         _valueText = new TextField();
         _valueText->x(0);
@@ -101,16 +101,16 @@ namespace fl2d {
         
         _draggablePoint = new ofPoint(0, 0);
         
-//        value(defaultValue, false);
+        //        value(defaultValue, false);
     }
-
+    
     //--------------------------------------------------------------
     //
     Slider::~Slider() {
         //cout << "[Slider]~Slider()" << endl;
         
         _label = NULL;
-
+        
         track->removeEventListener(MouseEvent::ROLL_OVER, this, &Slider::_mouseEventHandler);
         track->removeEventListener(MouseEvent::ROLL_OUT, this, &Slider::_mouseEventHandler);
         track->removeEventListener(MouseEvent::MOUSE_DOWN, this, &Slider::_mouseEventHandler);
@@ -132,17 +132,17 @@ namespace fl2d {
         delete _draggablePoint;
         _draggablePoint = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Slider::_setup() {
         //cout << "[Slider]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Slider::_update() {
@@ -159,10 +159,10 @@ namespace fl2d {
             //------------------------------------------
             if(_max > _min) {
                 _value = (_range * _percent) + _min;
-                if(_roundEnabled) _value = MathUtil::roundd((_range * _percent) + _min);
+                if(_roundEnabled) _value = flmath::roundd((_range * _percent) + _min);
             } else {
                 _value = _min - (_range * _percent);
-                if(_roundEnabled) _value = MathUtil::roundd(_min - (_range * _percent));
+                if(_roundEnabled) _value = flmath::roundd(_min - (_range * _percent));
             }
             _valueText->text(ofToString(_value));
             //------------------------------------------
@@ -180,13 +180,13 @@ namespace fl2d {
             //------------------------------------------
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void Slider::_draw() {
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -201,13 +201,13 @@ namespace fl2d {
     void Slider::textColor(int color) {
         _valueText->textColor(color);
     }
-
+    
     //--------------------------------------------------------------
     //
     float Slider::min() { return _min; }
     void Slider::min(float value, bool dispatch) {
         _min = value;
-//        _range = _max - _min;
+        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -216,7 +216,7 @@ namespace fl2d {
         
         _percent = _barWidth / _trackWidth;
         _value = _range * _percent + _min;
-        if(_roundEnabled) _value = MathUtil::roundd(_range * _percent + _min);
+        if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
         
         _valueText->text(ofToString(_value));
         
@@ -235,7 +235,7 @@ namespace fl2d {
     float Slider::max() { return _max; }
     void Slider::max(float value, bool dispatch) {
         _max = value;
-//        _range = _max - _min;
+        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -244,7 +244,7 @@ namespace fl2d {
         
         _percent = _barWidth / _trackWidth;
         _value = _range * _percent + _min;
-        if(_roundEnabled) _value = MathUtil::roundd(_range * _percent + _min);
+        if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
         
         _valueText->text(ofToString(_value));
         
@@ -258,7 +258,7 @@ namespace fl2d {
         }
         //------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     float Slider::value() { return _value; }
@@ -267,9 +267,9 @@ namespace fl2d {
         //------------------------------------------
         _value = value;
         
-        if(_roundEnabled) _value = MathUtil::roundd(_value);
-//        if(_value < _min) _value = _min;
-//        if(_value > _max) _value = _max;
+        if(_roundEnabled) _value = flmath::roundd(_value);
+        //        if(_value < _min) _value = _min;
+        //        if(_value > _max) _value = _max;
         if(_max > _min) {
             if(_value < _min) _value = _min;
             if(_value > _max) _value = _max;
@@ -286,9 +286,9 @@ namespace fl2d {
         } else {
             _barWidth = (_min - _value) / (_range / _trackWidth);
         }
-//        _barWidth = (_min - _value) / (_range / _trackWidth);
-//        _barWidth = (_value - _min) / (_range / _trackWidth);
-//        _barWidth = _value / (_range / _trackWidth);
+        //        _barWidth = (_min - _value) / (_range / _trackWidth);
+        //        _barWidth = (_value - _min) / (_range / _trackWidth);
+        //        _barWidth = _value / (_range / _trackWidth);
         _drawBarGraphics(_lineColor, _activeColor);
         //------------------------------------------
         //------------------------------------------
@@ -305,7 +305,7 @@ namespace fl2d {
         }
         //------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     int Slider::barColor() { return _activeColor.getHex(); }
@@ -354,12 +354,12 @@ namespace fl2d {
             _drawBarGraphics(_lineColor, _activeColor, 1);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     bool Slider::roundEnabled() { return _roundEnabled; }
     void Slider::roundEnabled(bool value) { _roundEnabled = value; }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -371,7 +371,7 @@ namespace fl2d {
         g = track->graphics();
         g->clear();
         g->beginFill(0xff0000, 0);
-//        g->drawRect(-10, 0, _trackWidth + 20, _trackHeight);
+        //        g->drawRect(-10, 0, _trackWidth + 20, _trackHeight);
         g->drawRect(-5, 0, _trackWidth + 10, _trackHeight);
         g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex());
@@ -437,14 +437,14 @@ namespace fl2d {
         thumb->x(temp - _thumbWidth * 0.5);
         //------------------------------------------
         //------------------------------------------
-//        _value = _range * _percent + _min;
-//        if(_roundEnabled) _value = MathUtil::roundd(_range * _percent + _min);
+        //        _value = _range * _percent + _min;
+        //        if(_roundEnabled) _value = MathUtil::roundd(_range * _percent + _min);
         if(_max > _min) {
             _value = (_range * _percent) + _min;
-            if(_roundEnabled) _value = MathUtil::roundd((_range * _percent) + _min);
+            if(_roundEnabled) _value = flmath::roundd((_range * _percent) + _min);
         } else {
             _value = _min - (_range * _percent);
-            if(_roundEnabled) _value = MathUtil::roundd(_min - (_range * _percent));
+            if(_roundEnabled) _value = flmath::roundd(_min - (_range * _percent));
         }
         _valueText->text(ofToString(_value));
         //------------------------------------------
@@ -479,7 +479,7 @@ namespace fl2d {
         _valueText->textColor(_labelNormalColor);
         //------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     void Slider::_thumbOver() {
@@ -534,18 +534,18 @@ namespace fl2d {
             _valueText->visible(false);
         }
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Slider::_mouseEventHandler(Event& event) {
-//        cout << "[Slider]_mouseEventHandler(" << event.type() << ")" << endl;
-//        cout << "[Slider]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
-//        cout << "[Slider]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
-//        cout << "[Slider]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
+        //        cout << "[Slider]_mouseEventHandler(" << event.type() << ")" << endl;
+        //        cout << "[Slider]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
+        //        cout << "[Slider]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
+        //        cout << "[Slider]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
         
         //ROLL OVER
         if(event.type() == MouseEvent::ROLL_OVER) {
@@ -574,5 +574,5 @@ namespace fl2d {
             }
         }
     }
-
+    
 }

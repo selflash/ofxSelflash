@@ -47,9 +47,9 @@ void MainController::_setup() {
     
     BasicController::_setup();
     
-//    minimizeButton->visible(false);
+    //    minimizeButton->visible(false);
     closeButton->visible(false);
-//    isDraggable(false);
+    //    isDraggable(false);
     
     _normalBackWidth = 315;
     _normalBackHeight = 145;
@@ -329,7 +329,7 @@ void MainController::_uiEventHandler(flEvent& event) {
         flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
         flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
     }
-
+    
     //ラジオボタン
     if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;

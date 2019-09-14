@@ -1,11 +1,11 @@
-﻿#include "Vec3Slider.h"
+#include "Vec3Slider.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Vec3Slider::Vec3Slider(
@@ -30,32 +30,32 @@ namespace fl2d {
         _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
         
         _label = NULL;
-
+        
         float height = 18 + 2;
         
         //------------------------------------------
         //X
         xSlider = new Slider(width, xMin, xMax, defaultXValue);
-//        xSlider->label("");
+        //        xSlider->label("");
         xSlider->x(0);
         xSlider->y(height * 0);
         xSlider->addEventListener(SliderEvent::CHANGE, this, &Vec3Slider::_eventHandler);
         addChild(xSlider);
         //Y
         ySlider = new Slider(width, yMin, yMax, defaultYValue);
-//        ySlider->label("");
+        //        ySlider->label("");
         ySlider->x(0);
         ySlider->y(height * 1);
         ySlider->addEventListener(SliderEvent::CHANGE, this, &Vec3Slider::_eventHandler);
         addChild(ySlider);
         //Z
         zSlider = new Slider(width, zMin, zMax, defaultZValue);
-//        zSlider->label("");
+        //        zSlider->label("");
         zSlider->x(0);
         zSlider->y(height * 2);
         zSlider->addEventListener(SliderEvent::CHANGE, this, &Vec3Slider::_eventHandler);
         addChild(zSlider);
-
+        
         //------------------------------------------
         //X
         _label1Text = new TextField();
@@ -93,14 +93,14 @@ namespace fl2d {
         _vec3Value.y = ySlider->value();
         _vec3Value.z = zSlider->value();
     }
-
+    
     //--------------------------------------------------------------
     //
     Vec3Slider::~Vec3Slider() {
         //cout << "[Vec3Slider]~Vec3Slider()" << endl;
         
         _label = NULL;
-
+        
         delete xSlider;
         xSlider = NULL;
         
@@ -119,29 +119,29 @@ namespace fl2d {
         delete _label3Text;
         _label3Text = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Vec3Slider::_setup() {
         //cout << "[Vec3Slider]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Vec3Slider::_update() {
-
+        
     }
-
+    
     //--------------------------------------------------------------
     //
     void Vec3Slider::_draw(){
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -150,7 +150,7 @@ namespace fl2d {
     //
     TextField* Vec3Slider::label() { return _label; }
     void Vec3Slider::label(TextField* value) { _label = value; }
-
+    
     //--------------------------------------------------------------
     //
     void Vec3Slider::textColor(int color) {
@@ -158,7 +158,7 @@ namespace fl2d {
         _label2Text->textColor(color);
         _label3Text->textColor(color);
     }
-
+    
     //--------------------------------------------------------------
     //
     ofVec3f Vec3Slider::vec3Value() { return _vec3Value; }
@@ -175,7 +175,7 @@ namespace fl2d {
         _vec3Value.y = ySlider->value();
         _vec3Value.z = zSlider->value();
         //------------------------------------------
-
+        
         if(dispatch) {
             Vec3SliderEvent* vec3SliderEvent = new Vec3SliderEvent(Vec3SliderEvent::CHANGE);
             vec3SliderEvent->_target = this;
@@ -183,11 +183,11 @@ namespace fl2d {
             dispatchEvent(vec3SliderEvent);
         }
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
@@ -195,8 +195,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Vec3Slider::_eventHandler(Event& event) {
-//        ofLog(OF_LOG_VERBOSE) << "[Vec3Slider]_eventHandler(" << event.type() << ")" << endl;
-//        cout << "[Vec3Slider]_eventHandler(" << event.type() << ")" << endl;
+        //        ofLog(OF_LOG_VERBOSE) << "[Vec3Slider]_eventHandler(" << event.type() << ")" << endl;
+        //        cout << "[Vec3Slider]_eventHandler(" << event.type() << ")" << endl;
         
         _vec3Value.x = xSlider->value();
         _vec3Value.y = ySlider->value();
@@ -208,5 +208,5 @@ namespace fl2d {
         vec3SliderEvent->__vec3f = _vec3Value;
         dispatchEvent(vec3SliderEvent);
     }
-
+    
 }

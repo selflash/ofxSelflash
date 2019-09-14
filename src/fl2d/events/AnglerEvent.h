@@ -1,4 +1,4 @@
-﻿/**
+/**
  ActionScript3.0 Reference
  fl.events.SliderEvent
  
@@ -14,26 +14,26 @@ namespace fl2d {
     
     class Angler;
     class AnglerEvent : public Event {
-            friend class Angler;
-            
-        public:
-            static string CHANGE;
+        friend class Angler;
         
-        protected:
-            float __value;
+    public:
+        static string CHANGE;
         
-        private:
-            
-        public:
-            AnglerEvent(string type);
-            virtual ~AnglerEvent();
-            
-            virtual inline float value() { return __value; }
-            
-        protected:
-            
-        private:
-            
+    protected:
+        float __value;
+        
+    private:
+        
+    public:
+        AnglerEvent(string type);
+        virtual ~AnglerEvent();
+        
+        virtual inline float value() { return __value; }
+        
+    protected:
+        
+    private:
+        
     };
     
 }

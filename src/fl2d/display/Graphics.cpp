@@ -1,11 +1,11 @@
 #include "Graphics.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Graphics::Graphics() {
@@ -17,7 +17,7 @@ namespace fl2d {
         _lineEnabled = false;
         _fillEnabled = false;
         
-//        __alpha = 1.0;
+        //        __alpha = 1.0;
         __rect = new Rectangle();
         
         _enabledSmoothing = false;
@@ -27,7 +27,7 @@ namespace fl2d {
         
         _compoundAlpha = 1.0;
     }
-
+    
     //--------------------------------------------------------------
     //
     Graphics::~Graphics() {
@@ -38,7 +38,7 @@ namespace fl2d {
         _lineEnabled = false;
         _fillEnabled = false;
         
-//        __alpha = 0.0;
+        //        __alpha = 0.0;
         
         delete __rect;
         __rect = NULL;
@@ -50,11 +50,11 @@ namespace fl2d {
         
         _compoundAlpha = 0.0;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::__draw() {
@@ -64,7 +64,7 @@ namespace fl2d {
         GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
         if(_enabledSmoothing) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         if(_enabledAntiAliasing) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
-
+        
         ofPushStyle();
         int i; int l;
         l = _commandList.size();
@@ -83,10 +83,10 @@ namespace fl2d {
             if(type == FL_COMMAND_MOVE_TO) _moveTo(command->x, command->y);
             //if(type == FL_COMMAND_CURVE_TO) _curveTo(command.x, command.y, command.radius);
             if(type == FL_COMMAND_CLEAR) {
-    //            _clear();
+                //            _clear();
                 //_fillEnabled = false;
-    //            _commandList.erase(_commandList.begin() + i);
-    //            _clear(command->index);
+                //            _commandList.erase(_commandList.begin() + i);
+                //            _clear(command->index);
                 //_commandList.erase(_commandList.begin() + i);
                 //--i;
                 //--l;
@@ -99,11 +99,11 @@ namespace fl2d {
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
         if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::lineStyle(float thickness, int color, float alpha) {
@@ -115,7 +115,7 @@ namespace fl2d {
         
         _commandList.push_back(command);    
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::beginFill(int color, float alpha) {
@@ -126,7 +126,7 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::endFill() {
@@ -135,7 +135,7 @@ namespace fl2d {
         
         _commandList.push_back(command);    
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::drawCircle(float x, float y, float radius) {
@@ -158,7 +158,7 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::drawRect(float x, float y, float width, float height) {
@@ -180,7 +180,7 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::drawRoundRect(float x, float y, float width, float height, float radius) {
@@ -203,7 +203,7 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::lineTo(float x, float y) {
@@ -216,7 +216,7 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::moveTo(float x, float y) {
@@ -229,13 +229,13 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::clear() {
-//        DrawCommand* command = new DrawCommand();
-//        command->type = FL_COMMAND_CLEAR;
-//        command->index = _commandList.size();
+        //        DrawCommand* command = new DrawCommand();
+        //        command->type = FL_COMMAND_CLEAR;
+        //        command->index = _commandList.size();
         
         _fillEnabled = false;
         
@@ -246,16 +246,16 @@ namespace fl2d {
         }
         _commandList.clear();
         
-//        __rect->__setNull();
+        //        __rect->__setNull();
         __rect->__setZero();
         
-    //    _commandList.push_back(command);
+        //    _commandList.push_back(command);
     }
-
+    
     //==============================================================
     // PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::_lineStyle(float thickness, int color, float alpha) {
@@ -268,12 +268,12 @@ namespace fl2d {
         _lineEnabled = true;
         
         _thickness = thickness;
-
+        
         //ofNoFill();
         //ofSetLineWidth(thickness);
         //ofSetColor(_lineColor);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::_beginFill(int color, float alpha) {
@@ -286,20 +286,20 @@ namespace fl2d {
         
         _fillEnabled = true;
         
-//        if(_IsMoveTo) {
-//            ofEndShape();
-//            ofPopStyle();
-//        }
-//        _IsMoveTo = false;
+        //        if(_IsMoveTo) {
+        //            ofEndShape();
+        //            ofPopStyle();
+        //        }
+        //        _IsMoveTo = false;
         ofSetColor(_fillColor);
         
-//        ofSetPolyMode(OF_POLY_WINDING_NONZERO);
-//        ofBeginShape();
-
+        //        ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+        //        ofBeginShape();
+        
         //ofFill();
         //ofSetColor(_fillColor);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::_endFill() {
@@ -317,16 +317,16 @@ namespace fl2d {
         _fillEnabled = false;
         
         
-//        if(_IsMoveTo) {
-//            ofEndShape();
-//            ofPopStyle();
-//        }
-//        _IsMoveTo = false;
-
+        //        if(_IsMoveTo) {
+        //            ofEndShape();
+        //            ofPopStyle();
+        //        }
+        //        _IsMoveTo = false;
+        
         //ofFill();
         //ofSetColor(_fillColor);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Graphics::_drawCircle(float x, float y, float radius) {
@@ -408,7 +408,7 @@ namespace fl2d {
         
         _moveToX = x;
         _moveToY = y;
-
+        
         if(_fillEnabled) {
             ofVertex(x, y);
         }
@@ -422,19 +422,19 @@ namespace fl2d {
         _moveToY = y;
         
         if(_fillEnabled) {
-//            if(_IsMoveTo) {
-//                cout << x << ", " << y << endl;
-//                ofEndShape();
-//                ofPopStyle();
-//            }
-//            _IsMoveTo = true;
+            //            if(_IsMoveTo) {
+            //                cout << x << ", " << y << endl;
+            //                ofEndShape();
+            //                ofPopStyle();
+            //            }
+            //            _IsMoveTo = true;
             
-//            ofPushStyle();
-//            ofFill();
-//            ofSetColor(_fillColor);
-//            
-//            ofSetPolyMode(OF_POLY_WINDING_NONZERO);
-//            ofBeginShape();
+            //            ofPushStyle();
+            //            ofFill();
+            //            ofSetColor(_fillColor);
+            //            
+            //            ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+            //            ofBeginShape();
             
             ofVertex(x, y);
         }
@@ -443,15 +443,15 @@ namespace fl2d {
     //
     void Graphics::_clear(int index) {
         //cout << _commandList.size() << endl;
-    //    _commandList.clear();
+        //    _commandList.clear();
         
         _fillEnabled = false;
         
         //TODO メモリーリークしてない？
-    //    for(int i = 0; i < _commandList.size(); i++) {
-    //        _commandList.erase(_commandList.begin() + i);
-    //        if(i == index) break;
-    //    }
+        //    for(int i = 0; i < _commandList.size(); i++) {
+        //        _commandList.erase(_commandList.begin() + i);
+        //        if(i == index) break;
+        //    }
         
         int i = 0;
         int l = _commandList.size();
@@ -463,33 +463,33 @@ namespace fl2d {
             --l;
         }
         
-//        __rect->__setNull();
+        //        __rect->__setNull();
         __rect->__setZero();
     }
-
+    
     //--------------------------------------------------------------
     //
     float Graphics::__compoundAlpha(){ return _compoundAlpha; }
     void Graphics::__compoundAlpha(float value){ _compoundAlpha = value; }
-
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_left() { return __rect->left(); }
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_right() { return __rect->right(); }
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_top() { return __rect->top(); }
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_bottom() { return __rect->bottom(); }
-//
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_width() { return __rect->width(); }
-//    //--------------------------------------------------------------
-//    //
-//    float Graphics::_height() { return __rect->height(); }
+    
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_left() { return __rect->left(); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_right() { return __rect->right(); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_top() { return __rect->top(); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_bottom() { return __rect->bottom(); }
+    //
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_width() { return __rect->width(); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Graphics::_height() { return __rect->height(); }
     
 }

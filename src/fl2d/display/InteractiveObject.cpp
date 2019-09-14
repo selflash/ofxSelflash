@@ -1,11 +1,11 @@
-﻿#include "InteractiveObject.h"
+#include "InteractiveObject.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     InteractiveObject::InteractiveObject() {
@@ -29,7 +29,7 @@ namespace fl2d {
         __isMouseReleased = false;
         __isFocus = false;
     }
-
+    
     //--------------------------------------------------------------
     //
     InteractiveObject::~InteractiveObject() {
@@ -50,11 +50,11 @@ namespace fl2d {
         __isMouseReleased = false;
         __isFocus = false;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -64,27 +64,27 @@ namespace fl2d {
     void InteractiveObject::drop(ofDragInfo& info) {
         
     }
-
+    
     //--------------------------------------------------------------
     //
     bool InteractiveObject::buttonMode() { return _buttonMode; }
     void InteractiveObject::buttonMode(bool value) { _buttonMode = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool InteractiveObject::mouseEnabled() { return _mouseEnabled; }
     void InteractiveObject::mouseEnabled(bool value) { _mouseEnabled = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool InteractiveObject::doubleClickEnabled() { return _doubleClickEnabled; }
     void InteractiveObject::doubleClickEnabled(bool value) { _doubleClickEnabled = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool InteractiveObject::mouseUpOutside() { return _mouseUpOutside; }
     void InteractiveObject::mouseUpOutside(bool value) { _mouseUpOutside = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool InteractiveObject::isMouseOver() { return __isMouseOver; }
@@ -94,23 +94,23 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     bool InteractiveObject::isMouseDown() { return __isMouseDown; }
-//    const bool& InteractiveObject::isMouseDown() { return __isMousePressed; }
+    //    const bool& InteractiveObject::isMouseDown() { return __isMousePressed; }
     //--------------------------------------------------------------
     //
     bool InteractiveObject::isFocus() { return __isFocus; }
     
     //--------------------------------------------------------------
     //
-//    void InteractiveObject::focusOut() {
-//        __isFocus = false;
-//        FocusEvent* focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
-//        focusEvent->_target = this;
-//        dispatchEvent(focusEvent);
-//    }
-
+    //    void InteractiveObject::focusOut() {
+    //        __isFocus = false;
+    //        FocusEvent* focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
+    //        focusEvent->_target = this;
+    //        dispatchEvent(focusEvent);
+    //    }
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
-
+    
+    
 }

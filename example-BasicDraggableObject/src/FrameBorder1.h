@@ -4,20 +4,22 @@
 #include "ofxSelflash.h"
 #include "BasicDraggableObject.h"
 
+using namespace fltemplate;
+
 class FrameBorder1 : public BasicDraggableObject {
-    public:
-        
-    protected:
+public:
     
-    private:
+protected:
     
-    public:
+private:
     
-    protected:
-//        virtual void _setup();
-        virtual void _update();
-//        virtual void _draw();
+public:
     
-    private:
+protected:
+    //        virtual void _setup();
+    virtual void _update();
+    //        virtual void _draw();
+    
+private:
     
 };

@@ -20,7 +20,7 @@ namespace fl2d {
         _maxStringWidth = _font->stringWidth(text);
         _maxStringHeight = _font->stringHeight(text);
         
-//        _font->setLetterSpacing(2);
+        //        _font->setLetterSpacing(2);
         _font->setLineHeight(getMaxStringHeight());
     }
     
@@ -42,7 +42,7 @@ namespace fl2d {
     ofRectangle Font::getStringBoundingBox(const std::string& text, float x, float y) {
         return _font->getStringBoundingBox(text, x, y);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Font::drawString(const std::string& text, float x, float y) {
@@ -53,11 +53,11 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Font::drawStringHighlight(
-                          const std::string& text,
-                          float x, float y,
-                          const ofColor& background,
-                          const ofColor& foreground
-                          ) {
+                                   const std::string& text,
+                                   float x, float y,
+                                   const ofColor& background,
+                                   const ofColor& foreground
+                                   ) {
         if(text != "") {
             ofPushStyle();
             ofSetColor(background);
@@ -88,5 +88,5 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     float Font::getMaxStringHeight() { return _maxStringHeight; }
-
+    
 }

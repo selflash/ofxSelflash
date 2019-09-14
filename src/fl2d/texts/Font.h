@@ -1,41 +1,41 @@
 #pragma once
 
 #include "ofMain.h"
-#include "../FlashConfig.h"
+#include "FlashConfig.h"
 
 namespace fl2d {
     
     class Font {
-        public:
+    public:
         
-        protected:
-            
-        private:
-            static ofTrueTypeFont* _font;
+    protected:
         
-            static float _maxStringWidth;
-            static float _maxStringHeight;
+    private:
+        static ofTrueTypeFont* _font;
         
-        public:
-            static void setup();
-            static void clear();
-            static void registerFont(ofTrueTypeFont* font);
+        static float _maxStringWidth;
+        static float _maxStringHeight;
         
-            static ofRectangle getStringBoundingBox(const string& text, float x = 0.0, float y = 0.0);
-            static void drawString(const string& text, float x = 0.0, float y = 0.0);
-            static void drawStringHighlight(
-                                            const string& text,
-                                            float x = 0.0, float y = 0.0,
-                                            const ofColor& background = ofColor::black,
-                                            const ofColor& foreground = ofColor::white
-                                            );
-            static float getLineHeight();
-            static float getMaxStringWidth();
-            static float getMaxStringHeight();
+    public:
+        static void setup();
+        static void clear();
+        static void registerFont(ofTrueTypeFont* font);
         
-        protected:
-            
-        private:
+        static ofRectangle getStringBoundingBox(const string& text, float x = 0.0, float y = 0.0);
+        static void drawString(const string& text, float x = 0.0, float y = 0.0);
+        static void drawStringHighlight(
+                                        const string& text,
+                                        float x = 0.0, float y = 0.0,
+                                        const ofColor& background = ofColor::black,
+                                        const ofColor& foreground = ofColor::white
+                                        );
+        static float getLineHeight();
+        static float getMaxStringWidth();
+        static float getMaxStringHeight();
+        
+    protected:
+        
+    private:
         
     };
     

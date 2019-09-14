@@ -45,10 +45,10 @@ namespace fl2d {
         if(_type == VERTICALLY) {
             _center = ofPoint(_uiLength * 0.5, _leverRadius);
         } else
-        //垂直
-        if(_type == HORIZONTALLY) {
-            _center = ofPoint(_leverRadius, _uiLength * 0.5);
-        }
+            //垂直
+            if(_type == HORIZONTALLY) {
+                _center = ofPoint(_leverRadius, _uiLength * 0.5);
+            }
         
         Graphics* g;
         //------------------------------------------
@@ -67,16 +67,16 @@ namespace fl2d {
                              _leverRadius
                              );
         } else
-        //垂直
-        if(_type == HORIZONTALLY) {
-            g->drawRoundRect(
-                             0,
-                             0,
-                             _leverRadius * 2,
-                             _uiLength,
-                             _leverRadius
-                             );
-        }
+            //垂直
+            if(_type == HORIZONTALLY) {
+                g->drawRoundRect(
+                                 0,
+                                 0,
+                                 _leverRadius * 2,
+                                 _uiLength,
+                                 _leverRadius
+                                 );
+            }
         g->endFill();
         addEventListener(MouseEvent::ROLL_OVER, this, &Joystick1::_mouseEventHandler);
         addEventListener(MouseEvent::ROLL_OUT, this, &Joystick1::_mouseEventHandler);
@@ -112,10 +112,10 @@ namespace fl2d {
         if(_type == VERTICALLY) {
             _targetValue = _center.x;
         } else
-        //垂直
-        if(_type == HORIZONTALLY) {
-            _targetValue = _center.y;
-        }
+            //垂直
+            if(_type == HORIZONTALLY) {
+                _targetValue = _center.y;
+            }
         //------------------------------------------
         
         //------------------------------------------
@@ -255,21 +255,21 @@ namespace fl2d {
                 
                 _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
             } else
-            //垂直
-            if(_type == HORIZONTALLY) {
-                float ty = _targetValue;
-                if(!_flg) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
-                float shiftY = ty - _center.y;
-                
-                float distance = _center.distance(ofPoint(_center.x, ty));
-                if((_uiLength * 0.5 - _leverRadius - 1) < distance){
-                    float n = (_uiLength * 0.5 - _leverRadius - 1) / distance;
-                    ty = _center.y + (shiftY * n);
+                //垂直
+                if(_type == HORIZONTALLY) {
+                    float ty = _targetValue;
+                    if(!_flg) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
+                    float shiftY = ty - _center.y;
+                    
+                    float distance = _center.distance(ofPoint(_center.x, ty));
+                    if((_uiLength * 0.5 - _leverRadius - 1) < distance){
+                        float n = (_uiLength * 0.5 - _leverRadius - 1) / distance;
+                        ty = _center.y + (shiftY * n);
+                    }
+                    lever->y(ty);
+                    
+                    _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
                 }
-                lever->y(ty);
-                
-                _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-            }
             //------------------------------------------
             
             //------------------------------------------
@@ -338,7 +338,7 @@ namespace fl2d {
             //------------------------------------------
         }
         
-//        _flgX = false;
+        //        _flgX = false;
         _flg = false;
     }
     
@@ -393,10 +393,10 @@ namespace fl2d {
         if(_type == VERTICALLY) {
             _targetValue = lever->x() - (_uiLength * 0.5 - _leverRadius - 1) * value;
         } else
-        if(_type == HORIZONTALLY) {
-            _targetValue = lever->y() - (_uiLength * 0.5 - _leverRadius - 1) * value;
-        }
-
+            if(_type == HORIZONTALLY) {
+                _targetValue = lever->y() - (_uiLength * 0.5 - _leverRadius - 1) * value;
+            }
+        
         _flg = true;
     }
     
@@ -435,16 +435,16 @@ namespace fl2d {
                              _leverRadius
                              );
         } else
-        //垂直
-        if(_type == HORIZONTALLY) {
-            g->drawRoundRect(
-                             0,
-                             0,
-                             _leverRadius * 2,
-                             _uiLength,
-                             _leverRadius
-                             );
-        }
+            //垂直
+            if(_type == HORIZONTALLY) {
+                g->drawRoundRect(
+                                 0,
+                                 0,
+                                 _leverRadius * 2,
+                                 _uiLength,
+                                 _leverRadius
+                                 );
+            }
         g->endFill();
         //------------------------------------------
         
@@ -465,7 +465,7 @@ namespace fl2d {
         g->endFill();
         //------------------------------------------
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -490,16 +490,16 @@ namespace fl2d {
                              _leverRadius
                              );
         } else
-        //垂直
-        if(_type == HORIZONTALLY) {
-            g->drawRoundRect(
-                             0,
-                             0,
-                             _leverRadius * 2,
-                             _uiLength,
-                             _leverRadius
-                             );
-        }
+            //垂直
+            if(_type == HORIZONTALLY) {
+                g->drawRoundRect(
+                                 0,
+                                 0,
+                                 _leverRadius * 2,
+                                 _uiLength,
+                                 _leverRadius
+                                 );
+            }
         g->endFill();
     }
     //--------------------------------------------------------------

@@ -8,7 +8,7 @@ void ofApp::setup() {
     //--------------------------------------
     //Ready ofxSelflash
     ofxSelflash::drawPriority(OF_EVENT_ORDER_BEFORE_APP);
-//    ofxSelflash::drawPriority(OF_EVENT_ORDER_AFTER_APP);
+    //    ofxSelflash::drawPriority(OF_EVENT_ORDER_AFTER_APP);
     ofxSelflash::setup();
     //--------------------------------------
     
@@ -23,7 +23,7 @@ void ofApp::setup() {
     noFrameBorder = new BasicDraggableObject();
     noFrameBorder->x(10);
     noFrameBorder->y(10);
-//    noFrameBorder->alpha(0.5);
+    //    noFrameBorder->alpha(0.5);
     stage->addChild(noFrameBorder);
     
     flBitmap* bitmap1 = new flBitmap(image);
@@ -36,15 +36,15 @@ void ofApp::setup() {
     frameBorder1 = new FrameBorder1();
     frameBorder1->x(noFrameBorder->x() + noFrameBorder->width() + 20 + 10);
     frameBorder1->y(10);
-//    frameBorder1->alpha(0.5);
+    //    frameBorder1->alpha(0.5);
     stage->addChild(frameBorder1);
     
     flBitmap* bitmap2 = new flBitmap(image);
-//    bitmap2->alpha(0.5);
+    //    bitmap2->alpha(0.5);
     frameBorder1->addChild(bitmap2);
     cout << "frameBorder1 = " << frameBorder1->width() << " " << frameBorder1->height() << endl;
     //--------------------------------------
-
+    
     //--------------------------------------
     //Frame Border2
     frameBorder2 = new FrameBorder2();
@@ -52,7 +52,7 @@ void ofApp::setup() {
     frameBorder2->x(10);
     
     frameBorder1->update(); //must update for property fo width/height
-
+    
     frameBorder2->y(noFrameBorder->y() + noFrameBorder->height() + 20 + 10);
     stage->addChild(frameBorder2);
     cout << "frameBorder2 = " << frameBorder2->width() << " " << frameBorder2->height() << endl;
@@ -95,17 +95,17 @@ void ofApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
@@ -115,20 +115,20 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

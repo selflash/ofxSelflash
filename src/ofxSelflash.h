@@ -5,8 +5,6 @@
 #include "fl2d/Flash2D.h"
 //using namespace fl2d;
 
-#include "utils/MathUtil.h"
-
 class ofxSelflash {
     public:
     

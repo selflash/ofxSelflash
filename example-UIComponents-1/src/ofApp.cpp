@@ -18,7 +18,7 @@ void ofApp::setup() {
     //UIコンポーネント
     uiComponents = new UIComponents();
     uiComponents->setup();
-//    uiComponents->alpha(0.2);
+    //    uiComponents->alpha(0.2);
     ofxSelflash::stage()->addChild(uiComponents);
     //--------------------------------------
     
@@ -62,8 +62,8 @@ void ofApp::setup() {
     uiComponents->joystick2001->addEventListener(flJoystick2Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ナンバーダイアラー
     uiComponents->dialer001->addEventListener(flNumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-//    uiComponents->dialer002->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-//    uiComponents->dialer003->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    //    uiComponents->dialer002->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    //    uiComponents->dialer003->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //コンボボックス
     uiComponents->comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->comboBox002->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
@@ -78,42 +78,42 @@ void ofApp::setup() {
     Object* object = new Object();
     float x = 100.5;
     
-//    object->setProperty<float>("x", &x);
-//    cout << object->getProperty<float>("x") << endl;
-//    
-//    object->setProperty<int>("y", 150);
-//    cout << object->getProperty<int>("y") << endl;
-//
-//    ofFloatColor* color1 = new ofFloatColor();
-//    color1->r = 255;
-//    color1->g = 100;
-//    
-//    object->setProperty<ofFloatColor>("color", color1);
-//    ofFloatColor* color2 = &object->getProperty<ofFloatColor>("color");
-//    cout << "R : " << color2->r << endl;
-//    cout << "G : " << color2->g << endl;
-//    cout << "B : " << color2->b << endl;
-//    cout << "A : " << color2->a << endl;
-//    
-//    ofFloatColor* color3 = new ofFloatColor();
-//    color3->r = 155;
-//    color3->g = 130;
-//    object->setProperty<ofFloatColor>("color1", color3);
-//    ofFloatColor* color4 = &object->getProperty<ofFloatColor>("color1");
-//    cout << "R : " << color4->r << endl;
-//    cout << "G : " << color4->g << endl;
-//    cout << "B : " << color4->b << endl;
-//    cout << "A : " << color4->a << endl;
+    //    object->setProperty<float>("x", &x);
+    //    cout << object->getProperty<float>("x") << endl;
+    //    
+    //    object->setProperty<int>("y", 150);
+    //    cout << object->getProperty<int>("y") << endl;
+    //
+    //    ofFloatColor* color1 = new ofFloatColor();
+    //    color1->r = 255;
+    //    color1->g = 100;
+    //    
+    //    object->setProperty<ofFloatColor>("color", color1);
+    //    ofFloatColor* color2 = &object->getProperty<ofFloatColor>("color");
+    //    cout << "R : " << color2->r << endl;
+    //    cout << "G : " << color2->g << endl;
+    //    cout << "B : " << color2->b << endl;
+    //    cout << "A : " << color2->a << endl;
+    //    
+    //    ofFloatColor* color3 = new ofFloatColor();
+    //    color3->r = 155;
+    //    color3->g = 130;
+    //    object->setProperty<ofFloatColor>("color1", color3);
+    //    ofFloatColor* color4 = &object->getProperty<ofFloatColor>("color1");
+    //    cout << "R : " << color4->r << endl;
+    //    cout << "G : " << color4->g << endl;
+    //    cout << "B : " << color4->b << endl;
+    //    cout << "A : " << color4->a << endl;
     
-//    object->setProperty<string>("label", "hoge");
-//    cout << object->getProperty<string>("label") << endl;
-
+    //    object->setProperty<string>("label", "hoge");
+    //    cout << object->getProperty<string>("label") << endl;
     
-//
-//    cout << object->setProperty<float>("x", &x) << endl;
-//    cout << object->setProperty<float>("x", x) << endl;
-//    object->setProperty<float>("x", 100);
-//    cout << object->getProperty<float>("x") << endl;
+    
+    //
+    //    cout << object->setProperty<float>("x", &x) << endl;
+    //    cout << object->setProperty<float>("x", x) << endl;
+    //    object->setProperty<float>("x", 100);
+    //    cout << object->getProperty<float>("x") << endl;
 }
 
 //--------------------------------------------------------------
@@ -135,7 +135,7 @@ void ofApp::draw() {
     
     ofPushMatrix();
     ofTranslate(_position);
-
+    
     ofRotateX(_count);
     ofRotateY(_count * 0.75);
     
@@ -143,16 +143,16 @@ void ofApp::draw() {
     ofNoFill();
     ofDrawBox(0, 0, 0, 200, 200, 200);
     ofPopStyle();
-
+    
     ofPopMatrix();
-
+    
     ofPopMatrix();
     //--------------------------------------
     
     //----------------------------------
     ofxSelflash::draw();
     //----------------------------------
-
+    
     //--------------------------------------
     ofPushStyle();
     ofNoFill();
@@ -171,19 +171,19 @@ void ofApp::draw() {
 void ofApp::_uiComponentsEventHandler(flEvent& event) {
     cout << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")" << endl;
     
-//    //------------------------------------------
-//    //イベントタイプ
-//    cout << "event.type          = " << event.type() << endl;
-//    //カレントターゲット
-//    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-//    //イベントターゲット
-//    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
-//    //------------------------------------------
+    //    //------------------------------------------
+    //    //イベントタイプ
+    //    cout << "event.type          = " << event.type() << endl;
+    //    //カレントターゲット
+    //    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
+    //    //イベントターゲット
+    //    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
+    //    //------------------------------------------
     
     //マウスダウンイベント
     if(event.type() == flEvent::CHANGE) {
         flButton* button = (flButton*)(event.currentTarget());
-
+        
     }
     
     //マウスダウンイベント
@@ -284,14 +284,14 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         //------------------------------------------
         
         //------------------------------------------
-//        cout << colorSlider->name() << " :" <<
-//        " R:" << colorSlider->redValue<int>() <<
-//        " G:" << colorSlider->greenValue<int>() <<
-//        " B:" << colorSlider->blueValue<int>() << endl;
-//        cout << colorSlider->name() << " :" <<
-//        " R:" << colorSlider->redValue<float>() <<
-//        " G:" << colorSlider->greenValue<float>() <<
-//        " B:" << colorSlider->blueValue<float>() << endl;
+        //        cout << colorSlider->name() << " :" <<
+        //        " R:" << colorSlider->redValue<int>() <<
+        //        " G:" << colorSlider->greenValue<int>() <<
+        //        " B:" << colorSlider->blueValue<int>() << endl;
+        //        cout << colorSlider->name() << " :" <<
+        //        " R:" << colorSlider->redValue<float>() <<
+        //        " G:" << colorSlider->greenValue<float>() <<
+        //        " B:" << colorSlider->blueValue<float>() << endl;
         //------------------------------------------
     }
     
@@ -357,53 +357,53 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
 //--------------------------------------------------------------
 //
 void ofApp::keyPressed(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mousePressed(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mouseReleased(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

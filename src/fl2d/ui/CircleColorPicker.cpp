@@ -1,11 +1,11 @@
 #include "CircleColorPicker.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     CircleColorPicker::CircleColorPicker(float width, float height) {
@@ -30,7 +30,7 @@ namespace fl2d {
         _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
         
         buttonMode(true);
-            
+        
         Graphics* g;
         g = graphics();
         g->enabledSmoothing(true);
@@ -49,8 +49,8 @@ namespace fl2d {
         _colorWheelImage = new ofImage();
         _colorWheelImage->load(FlashConfig::_COLORWHEEL_IMAGE_PATH);
         //_colorWheelImage->setAnchorPercent(0.5,0.5);
-//        this->width(_uiWidth);
-//        this->height(20 + _uiWidth);
+        //        this->width(_uiWidth);
+        //        this->height(20 + _uiWidth);
         
         _pixelCaptureImage = new ofImage();
         
@@ -62,7 +62,7 @@ namespace fl2d {
         _label = NULL;
         //------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     CircleColorPicker::~CircleColorPicker() {
@@ -90,39 +90,39 @@ namespace fl2d {
         
         _label = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_setup() {
         //cout << "[SimpleSlider]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_update() {
         
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_draw() {
-//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        //        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _colorWheelImage->draw(0, 0, _uiWidth, _uiHeight);
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* CircleColorPicker::label() { return _label; }
     void CircleColorPicker::label(TextField* value) { _label = value; }
-
+    
     //--------------------------------------------------------------
     //
     const ofColor& CircleColorPicker::getPixel(int x, int y) {
@@ -142,7 +142,7 @@ namespace fl2d {
         
         return *_selectedPixel;
     }
-
+    
     //--------------------------------------------------------------
     //
     int CircleColorPicker::red() { return _selectedPixel->r; }
@@ -152,7 +152,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     int CircleColorPicker::blue() { return _selectedPixel->b; }
-
+    
     //--------------------------------------------------------------
     //
     string CircleColorPicker::hexCode() {
@@ -165,7 +165,7 @@ namespace fl2d {
         
         return returnValue;
     }
-
+    
     //--------------------------------------------------------------
     //
     int CircleColorPicker::hue() { return _selectedPixel->getHue(); }
@@ -175,11 +175,11 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     int CircleColorPicker::brightness() { return _selectedPixel->getBrightness(); }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_over() {
@@ -192,7 +192,7 @@ namespace fl2d {
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_out() {
@@ -205,7 +205,7 @@ namespace fl2d {
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_press() {
@@ -218,15 +218,15 @@ namespace fl2d {
         
         getPixel(mouseX(), mouseY());
         
-    //    cout << "Red: " << red() << endl;
-    //    cout << "Green: " << green() << endl;
-    //    cout << "Blue: " << blue() << endl;
-    //    cout << "Hue: " << hue() << endl;
-    //    cout << "Saturation: " << saturation() << endl;
-    //    cout << "Brightness: " << brightness() << endl;
-    //    cout << "Hexcode: " << hexCode() << endl;
+        //    cout << "Red: " << red() << endl;
+        //    cout << "Green: " << green() << endl;
+        //    cout << "Blue: " << blue() << endl;
+        //    cout << "Hue: " << hue() << endl;
+        //    cout << "Saturation: " << saturation() << endl;
+        //    cout << "Brightness: " << brightness() << endl;
+        //    cout << "Hexcode: " << hexCode() << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_release() {
@@ -242,17 +242,17 @@ namespace fl2d {
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_move() {
         getPixel(mouseX(), mouseY());
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void CircleColorPicker::_mouseEventHandler(Event& event) {
@@ -283,5 +283,5 @@ namespace fl2d {
             }
         }
     }
-
+    
 }

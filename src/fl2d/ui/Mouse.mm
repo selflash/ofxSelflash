@@ -9,14 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 namespace fl2d {
-
+    
     int Mouse::_currentType = FLASH_MOUSE_TYPE_ARROW;
-
+    
     ofImage* Mouse::_arrowImage;
     ofImage* Mouse::_pointingHandImage;
     ofImage* Mouse::_openHandImage;
     ofImage* Mouse::_closeHandImage;
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::setup() {
@@ -24,7 +24,7 @@ namespace fl2d {
         //ofDisableArbTex();
         //_handCursorImage->loadImage("components/hand_cursor.png");
     }
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::draw(float x, float y) {
@@ -34,11 +34,11 @@ namespace fl2d {
         //ofDisableAlphaBlending();
         //ofPopStyle();
     }
-
+    
     //--------------------------------------------------------------
     //
     bool Mouse::currentType() { return _currentType; }
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::hide() {
@@ -49,7 +49,7 @@ namespace fl2d {
     void Mouse::show() {
         //ofShowCursor();
     }
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::changeCursor(int type) {
@@ -62,28 +62,28 @@ namespace fl2d {
         
         _currentType = type;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::showHandCursor() {
-//    [[NSCursor pointingHandCursor] set];
-//    [[NSCursor openHandCursor] set];
-//    [[NSCursor closedHandCursor] set];
-//    [[NSCursor IBeamCursor] set];
-//    [[NSCursor contextualMenuCursor] set];
-//    [[NSCursor resizeLeftCursor] set];
-//    [[NSCursor resizeRightCursor] set];
-//    [[NSCursor resizeUpCursor] set];
-//    [[NSCursor resizeDownCursor] set];
-//    [[NSCursor crosshairCursor] set];
+        //    [[NSCursor pointingHandCursor] set];
+        //    [[NSCursor openHandCursor] set];
+        //    [[NSCursor closedHandCursor] set];
+        //    [[NSCursor IBeamCursor] set];
+        //    [[NSCursor contextualMenuCursor] set];
+        //    [[NSCursor resizeLeftCursor] set];
+        //    [[NSCursor resizeRightCursor] set];
+        //    [[NSCursor resizeUpCursor] set];
+        //    [[NSCursor resizeDownCursor] set];
+        //    [[NSCursor crosshairCursor] set];
     };
-
+    
     //--------------------------------------------------------------
     //
     void Mouse::hideHandCursor() {
         [[NSCursor arrowCursor] set];
     }
-        
+    
 }
 
 #elif defined _WIN32

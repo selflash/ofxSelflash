@@ -1,16 +1,16 @@
 #include "Event.h"
 
 namespace fl2d {
-
+    
     string Event::ADDED = "added";
     string Event::ADDED_TO_STAGE = "addedToStage";
-
+    
     string Event::REMOVED = "removed";
     string Event::REMOVED_FROM_STAGE = "removedFromStage";
-
+    
     //string Event::ACTIVATE = "activate";
     //string Event::DEACTIVATE = "deactivate";
-
+    
     //string Event::OPEN = "open";
     string Event::CLOSE = "close";
     //string Event::CANCEL = "cancel";
@@ -32,18 +32,18 @@ namespace fl2d {
     //string Event::TAB_ENABLED_CHANGE = "tabEnabledChange";
     //string Event::TAB_INDEX_CHANGE = "tabIndexChange";
     //string Event::UNLOAD = "unload";
-
+    
     //--------------------------------------------------------------
     //
     Event::Event(string type) {
-//        cout << "[Event]Event1()" << endl;
+        //        cout << "[Event]Event1()" << endl;
         
         _type = type;
         
         _currentTarget = NULL;
         _target = NULL;
     }
-
+    
     //--------------------------------------------------------------
     //
     Event::~Event() {

@@ -8,7 +8,7 @@
 //
 void FrameBorder3::_setup() {
     _image.load("selflash.jpeg");
-
+    
     flGraphics* g;
     g = graphics();
     g->clear();

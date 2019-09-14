@@ -34,7 +34,7 @@ void ofApp::setup() {
     mainController->controller1()->text102->text("Y : " + ofToString(transformableNode.y()));
     mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
     mainController->addEventListener("uiEvent1", this, &ofApp::_uiEventHandler);
-//    mainController->alpha(0.5);
+    //    mainController->alpha(0.5);
     ofxSelflash::stage()->addChild(mainController);
     //--------------------------------------
 }
@@ -63,7 +63,7 @@ void ofApp::draw() {
     ofPushMatrix();
     ofRotateX(_rotation);
     ofRotateY(_rotation * 0.75);
-
+    
     ofPushStyle();
     //Fill or No Fill
     if(mainController->controller2()->check001->selected()) {
@@ -96,7 +96,7 @@ void ofApp::draw() {
     //----------------------------------
     ofxSelflash::draw();
     //----------------------------------
-
+    
     //----------------------------------
     //Draw Mouse Guide
     ofPushStyle();
@@ -122,7 +122,7 @@ void ofApp::draw() {
 //
 void ofApp::_eventHandler(flEvent& event) {
     cout << "[ofApp]_eventHandler(" << event.type() << ")" << endl;
-//    cout << "[ofApp]this          = " << this << "," << ((flDisplayObject*) this)->name() << endl;
+    //    cout << "[ofApp]this          = " << this << "," << ((flDisplayObject*) this)->name() << endl;
     cout << "[ofApp]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name() << endl;
     cout << "[ofApp]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name() << endl;
     
@@ -147,14 +147,14 @@ void ofApp::_eventHandler(flEvent& event) {
 void ofApp::_uiEventHandler(flEvent& event) {
     cout << "[ofApp]_uiEventHandler(" << event.type() << ")" << endl;
     
-//    //------------------------------------------
-//    //イベントタイプ
-//    cout << "event.type          = " << event.type() << endl;
-//    //カレントターゲット
-//    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-//    //イベントターゲット
-//    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
-//    //------------------------------------------
+    //    //------------------------------------------
+    //    //イベントタイプ
+    //    cout << "event.type          = " << event.type() << endl;
+    //    //カレントターゲット
+    //    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
+    //    //イベントターゲット
+    //    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
+    //    //------------------------------------------
     
     if(event.type() == "uiEvent1") {
         if(event.target() == mainController->controller1()->joystick1001) {
@@ -189,7 +189,7 @@ void ofApp::_uiEventHandler(flEvent& event) {
             mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
         }
     }
-
+    
     //ボタン(ダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {
         flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
@@ -297,25 +297,25 @@ void ofApp::_uiEventHandler(flEvent& event) {
 //--------------------------------------------------------------
 //
 void ofApp::keyPressed(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
@@ -335,17 +335,17 @@ void ofApp::mouseReleased(int x, int y, int button) {
 //--------------------------------------------------------------
 //
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

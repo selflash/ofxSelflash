@@ -3,12 +3,12 @@
 namespace fl2d {
     string NumberDialer::HORIZONTALLY = "horizontally";
     string NumberDialer::VERTICALLY = "vertically";
-
+    
     
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     NumberDialer::NumberDialer(float width, float height) {
@@ -29,7 +29,7 @@ namespace fl2d {
         _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
         _overColor.setHex(FlashConfig::UI_OVER_COLOR);
         _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
-
+        
         _dragVector = VERTICALLY;
         _type = HORIZONTALLY;
         
@@ -40,7 +40,7 @@ namespace fl2d {
         //横
         track->y(0);
         //縦
-//        track->y(0);
+        //        track->y(0);
         track->addEventListener(MouseEvent::ROLL_OVER, this, &NumberDialer::_mouseEventHandler);
         track->addEventListener(MouseEvent::ROLL_OUT, this, &NumberDialer::_mouseEventHandler);
         track->addEventListener(MouseEvent::MOUSE_DOWN, this, &NumberDialer::_mouseEventHandler);
@@ -55,7 +55,7 @@ namespace fl2d {
         //------------------------------------------
         //値
         _valueText = new TextField();
-//        _valueText->x(15 -  _uiHeight * 0.5 + _valueText->textHeight() * 0.5);
+        //        _valueText->x(15 -  _uiHeight * 0.5 + _valueText->textHeight() * 0.5);
         _valueText->width(_uiWidth);
         _valueText->autoSize(TextFieldAutoSize::CENTER);
         _valueText->textColor(_labelNormalColor);
@@ -63,8 +63,8 @@ namespace fl2d {
         //横
         _valueText->y(_uiHeight * 0.5 - _valueText->textHeight() * 0.5 - 1);
         //縦
-//        _valueText->x(_uiHeight * 0.5 + _valueText->textHeight() * 0.5);
-//        _valueText->rotation(90);
+        //        _valueText->x(_uiHeight * 0.5 + _valueText->textHeight() * 0.5);
+        //        _valueText->rotation(90);
         
         _valueText->mouseEnabled(false);
         addChild(_valueText);
@@ -75,21 +75,21 @@ namespace fl2d {
         _tempValue = 0.0;
         _stepValue = 1.0;
         
-//        _min = 0 / 0.f;
-//        _max = 0 / 0.f;
+        //        _min = 0 / 0.f;
+        //        _max = 0 / 0.f;
         _min = numeric_limits<float>::quiet_NaN();
         _max = numeric_limits<float>::quiet_NaN();
         
-//        _weight = 0.025;
+        //        _weight = 0.025;
         _weight = 1.0;
         _roundEnabled = false;
-
+        
         _invertEnabled = false;
         
         _startPos = new ofPoint(0, 0);
         //------------------------------------------    
     }
-
+    
     //--------------------------------------------------------------
     //
     NumberDialer::~NumberDialer() {
@@ -100,13 +100,13 @@ namespace fl2d {
         
         _dragVector = "";
         _type = "";
-
+        
         track->removeEventListener(MouseEvent::ROLL_OVER, this, &NumberDialer::_mouseEventHandler);
         track->removeEventListener(MouseEvent::ROLL_OUT, this, &NumberDialer::_mouseEventHandler);
         track->removeEventListener(MouseEvent::MOUSE_DOWN, this, &NumberDialer::_mouseEventHandler);
         delete track;
         track = NULL;
-
+        
         _label = NULL;
         
         delete _valueText;
@@ -118,19 +118,19 @@ namespace fl2d {
         
         _min = 0.0;
         _max = 0.0;
-
+        
         _weight = 0.0;
         _roundEnabled = false;
         _invertEnabled = false;
-
+        
         delete _startPos;
         _startPos = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_update() {
@@ -158,7 +158,7 @@ namespace fl2d {
             if(!isnan(_max)) if(_max <= _value) _value = _max;
             
             if(_roundEnabled) {
-                _valueText->text(ofToString(MathUtil::roundd(_value)));
+                _valueText->text(ofToString(flmath::roundd(_value)));
             } else {
                 _valueText->text(ofToString(_value));
             }
@@ -167,18 +167,18 @@ namespace fl2d {
             //イベント
             if(valuePrev != _value) {
                 NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-//                event->_target = this;
+                //                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
             //------------------------------------------
         }
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* NumberDialer::label() { return _label; }
@@ -195,9 +195,9 @@ namespace fl2d {
             track->x(0);
             track->y(15);
             
-//            _labelText->x(0);
-//            _labelText->y(0);
-//            _labelText->rotation(0);
+            //            _labelText->x(0);
+            //            _labelText->y(0);
+            //            _labelText->rotation(0);
             
             _valueText->x(0);
             _valueText->y(15 +  _uiHeight * 0.5 - _valueText->textHeight() * 0.5);
@@ -208,9 +208,9 @@ namespace fl2d {
             track->x(0);
             track->y(0);
             
-//            _labelText->x(_uiHeight + 15);
-//            _labelText->y(0);
-//            _labelText->rotation(90);
+            //            _labelText->x(_uiHeight + 15);
+            //            _labelText->y(0);
+            //            _labelText->rotation(90);
             
             _valueText->x(_uiHeight * 0.5 + _valueText->textHeight() * 0.5);
             _valueText->y(0);
@@ -223,18 +223,18 @@ namespace fl2d {
             _out();
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     float NumberDialer::value() {
-        if(_roundEnabled) return MathUtil::roundd(_value);
+        if(_roundEnabled) return flmath::roundd(_value);
         return _value;
     }
     void NumberDialer::value(float value, bool dispatch) {
         if(_value == value) return;
         
         _value = value;
-        if(_roundEnabled) _value = MathUtil::roundd(_value);
+        if(_roundEnabled) _value = flmath::roundd(_value);
         if(_value < _min) _value = _min;
         if(_value > _max) _value = _max;
         _valueText->text(ofToString(_value));
@@ -243,13 +243,13 @@ namespace fl2d {
         if(dispatch) {
             //イベント
             NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-//            event->_target = this;
+            //            event->_target = this;
             event->data<float>(_value);
             dispatchEvent(event);
         }
         //------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     float NumberDialer::stepValue() { return _stepValue; }
@@ -260,7 +260,7 @@ namespace fl2d {
     float NumberDialer::min() { return _min; }
     void NumberDialer::min(float value, bool dispatch) {
         _min = value;
-        if(_roundEnabled) _min = MathUtil::roundd(_min);
+        if(_roundEnabled) _min = flmath::roundd(_min);
         
         if(_value <= _min) {
             _value = _min;
@@ -270,7 +270,7 @@ namespace fl2d {
             if(dispatch) {
                 //イベント
                 NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-//                event->_target = this;
+                //                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -282,7 +282,7 @@ namespace fl2d {
     float NumberDialer::max() { return _max; }
     void NumberDialer::max(float value, bool dispatch) {
         _max = value;
-        if(_roundEnabled) _max = MathUtil::roundd(_max);
+        if(_roundEnabled) _max = flmath::roundd(_max);
         
         if(_max <= _value) {
             _value = _max;
@@ -292,7 +292,7 @@ namespace fl2d {
             if(dispatch) {
                 //イベント
                 NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-//                event->_target = this;
+                //                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -314,7 +314,7 @@ namespace fl2d {
     //
     bool NumberDialer::invertEnabled() { return _invertEnabled; }
     void NumberDialer::invertEnabled(bool value) { _invertEnabled = value; }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -333,17 +333,17 @@ namespace fl2d {
         if(_type == VERTICALLY) g->drawRect(0, 0, _uiHeight, _uiWidth);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_over() {
         if(track->isMouseDown()) return;
         
         _valueText->textColor(_labelNormalColor);
-
+        
         _drawTrackGraphics(_overColor, _normalColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_out() {
@@ -351,7 +351,7 @@ namespace fl2d {
         
         _drawTrackGraphics(_lineColor, _normalColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_press() {
@@ -359,11 +359,11 @@ namespace fl2d {
         _startPos->x = track->mouseX();
         _startPos->y = track->mouseY();
         
-//        _valueText->textColor(0x0);
+        //        _valueText->textColor(0x0);
         
         _drawTrackGraphics(_overColor, _activeColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_release() {
@@ -376,18 +376,18 @@ namespace fl2d {
         
         _drawTrackGraphics(_lineColor, _normalColor, 1);
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void NumberDialer::_mouseEventHandler(Event& event) {
-//        cout << "[NumberDialer]_mouseEventHandler(" << event.type() << ")" << endl;
-//        cout << "[NumberDialer]this          = " << this << ", " << ((DisplayObject*) this)->name() << endl;
-//        cout << "[NumberDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-//        cout << "[NumberDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
+        //        cout << "[NumberDialer]_mouseEventHandler(" << event.type() << ")" << endl;
+        //        cout << "[NumberDialer]this          = " << this << ", " << ((DisplayObject*) this)->name() << endl;
+        //        cout << "[NumberDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
+        //        cout << "[NumberDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
         
         if(event.type() == MouseEvent::ROLL_OVER) {
             if(event.target() == track) _over();
@@ -408,5 +408,5 @@ namespace fl2d {
             }
         }
     }
-
+    
 }

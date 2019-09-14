@@ -1,21 +1,21 @@
 #pragma once
 
 class NativeWindow {
-    public:
-        
-    protected:
-
-    private:
+public:
     
-    public:
-        static void orderToDefault();
-        static void orderToBack();
-        static void orderToFront();
+protected:
     
-    protected:
-        
-    private:
-        NativeWindow() { };
-        ~NativeWindow() { };
-
+private:
+    
+public:
+    static void orderToDefault();
+    static void orderToBack();
+    static void orderToFront();
+    
+protected:
+    
+private:
+    NativeWindow() { };
+    ~NativeWindow() { };
+    
 };

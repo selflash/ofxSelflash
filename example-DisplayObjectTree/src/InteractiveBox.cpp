@@ -66,7 +66,7 @@ InteractiveBox::~InteractiveBox() {
     
     _graphicsWidth = 0.0;
     _graphicsHeight = 0.0;
-
+    
     _lineColor = 0;
     _normalColor = 0;
     _overColor = 0;
@@ -84,7 +84,7 @@ InteractiveBox::~InteractiveBox() {
 //
 void InteractiveBox::_setup() {
     //cout << "[InteractiveBox]_setup()" << endl;
-
+    
     //--------------------------------------
     _drawTrackGraphics(*_lineColor, *_normalColor);
     //--------------------------------------
@@ -112,8 +112,8 @@ void InteractiveBox::_draw() {
     ofSetLineWidth(1);
     ofSetColor(_areaColor->getNormalized());
     ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
-//    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
-//    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+    //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
+    //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
     //--------------------------------------
     
     //--------------------------------------
@@ -121,14 +121,14 @@ void InteractiveBox::_draw() {
     text += name() + "\n";
     text += "X = " + ofToString(x()) + "\n";
     text += "Y = " + ofToString(y()) + "\n";
-//    text += "width = " + ofToString(width()) + "\n";
-//    text += "height = " + ofToString(height()) + "\n";
-//    text += "scaleX = " + ofToString(scaleX()) + "\n";
-//    text += "scaleY = " + ofToString(scaleY()) + "\n";
+    //    text += "width = " + ofToString(width()) + "\n";
+    //    text += "height = " + ofToString(height()) + "\n";
+    //    text += "scaleX = " + ofToString(scaleX()) + "\n";
+    //    text += "scaleY = " + ofToString(scaleY()) + "\n";
     
     ofPushStyle();
     ofSetColor(0x000000);
-//    ofDrawBitmapString(text, 10, 50);
+    //    ofDrawBitmapString(text, 10, 50);
     flFont::drawString(text, 10, 50);
     ofPopStyle();
     //--------------------------------------
@@ -197,7 +197,7 @@ void InteractiveBox::_release() {
 //--------------------------------------------------------------
 //
 void InteractiveBox::_mouseEventHandler(flEvent& event) {
-//    cout << "[InteractiveBox]_mouseEventHandler(" << event.type() << ")" << endl;
+    //    cout << "[InteractiveBox]_mouseEventHandler(" << event.type() << ")" << endl;
     
     if(event.type() == flMouseEvent::ROLL_OVER) {
         if(event.target() == this) _over();

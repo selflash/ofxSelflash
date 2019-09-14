@@ -63,7 +63,7 @@ void UIComponents::_setup() {
     label->text("Slider1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-//    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     slider001 = new flSlider(150);
@@ -77,7 +77,7 @@ void UIComponents::_setup() {
     label->text("Slider2 (Inverse)");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 2);
-//    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     slider002 = new flSlider(150, 10.0, 0.0, 5);
@@ -152,7 +152,7 @@ void UIComponents::_setup() {
     colorSlider002->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(colorSlider002);
     //--------------------------------------
-
+    
     //--------------------------------------
     //Vec2スライダー
     marginLeft = 10;
@@ -173,7 +173,7 @@ void UIComponents::_setup() {
     vec2Slider001->addEventListener(flVec2SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(vec2Slider001);
     //--------------------------------------
-
+    
     //--------------------------------------
     //Vec3スライダー
     marginLeft = 10;
@@ -202,7 +202,7 @@ void UIComponents::_setup() {
     marginTop = 537;
     spacing = 150;
     lineSpacing = 22;
-
+    
     label = new flTextField();
     label->text("Text Field Example");
     label->x(marginLeft + spacing * 0);
@@ -227,10 +227,10 @@ void UIComponents::_setup() {
     text002->addEventListener(flEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(text002);
     //cout << text002->y() + text002->height() << endl;
-
+    
     addChild(text001);
     //--------------------------------------
-
+    
     
     //--------------------------------------
     //カラーピッカー
@@ -254,7 +254,7 @@ void UIComponents::_setup() {
     colorPicker001->addEventListener(flColorPickerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     //--------------------------------------
     
-
+    
     //--------------------------------------
     //ボタン
     marginLeft = 10 + 150 + 10 + 10;
@@ -308,15 +308,15 @@ void UIComponents::_setup() {
     button006->enabled(false);
     button006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button006);
-//    cout << button006->y() + button006->height() << endl;
+    //    cout << button006->y() + button006->height() << endl;
     //--------------------------------------
-
+    
     //--------------------------------------
     //チェックボックス
     marginLeft = 10 + 150 + 10 + 10;
     marginTop = 163;
     lineSpacing = 22;
-
+    
     label = new flTextField();
     label->text("Check Box Example");
     label->x(marginLeft + spacing * 0);
@@ -344,7 +344,7 @@ void UIComponents::_setup() {
     check003->y(marginTop + lineSpacing * 3);
     check003->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(check003);
-//    cout << check003->y() + check003->height() << endl;
+    //    cout << check003->y() + check003->height() << endl;
     //--------------------------------------
     
     //--------------------------------------
@@ -354,7 +354,7 @@ void UIComponents::_setup() {
     lineSpacing = 22;
     
     radioButtonGroup = new flRadioButtonGroup();
-
+    
     label = new flTextField();
     label->text("Radio Button Example");
     label->x(marginLeft + spacing * 0);
@@ -382,16 +382,16 @@ void UIComponents::_setup() {
     radio003->y(marginTop + lineSpacing * 3);
     radio003->addEventListener(flRadioButtonEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(radio003);
-//    cout << radio003->y() + radio003->height() << endl;
-
+    //    cout << radio003->y() + radio003->height() << endl;
+    
     //When delete the radio button.
-//    removeChild(radio001);
-//    delete radio001;
-//    radio001 = NULL;
+    //    removeChild(radio001);
+    //    delete radio001;
+    //    radio001 = NULL;
     //When leave the group.
-//    radioButtonGroup->removeRadioButton(radio001);
+    //    radioButtonGroup->removeRadioButton(radio001);
     //You can delete only the radio button group.
-//    delete radioButtonGroup;
+    //    delete radioButtonGroup;
     //--------------------------------------
     
     //--------------------------------------
@@ -408,8 +408,8 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     
-//    marginLeft = 10 + 150 + 10 + 10;
-//    marginTop = 275;
+    //    marginLeft = 10 + 150 + 10 + 10;
+    //    marginTop = 275;
     spacing = 22;
     lineSpacing = 22;
     
@@ -458,7 +458,7 @@ void UIComponents::_setup() {
     joystick1007->type(flJoystick1::HORIZONTALLY);
     addChild(joystick1007);
     //cout << joystick1007->y() + joystick1007->height() << endl;
-
+    
     marginLeft = 10 + 150 + 10 + 10;
     marginTop = 470;
     spacing = 22;
@@ -478,7 +478,7 @@ void UIComponents::_setup() {
     joystick1102->type(flJoystick1::VERTICALLY);
     joystick1102->addEventListener(flJoystick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1102);
-//    cout << joystick1102->y() + joystick1102->height() << endl;
+    //    cout << joystick1102->y() + joystick1102->height() << endl;
     //--------------------------------------
     
     //--------------------------------------
@@ -502,14 +502,14 @@ void UIComponents::_setup() {
     addChild(joystick2001);
     //cout << joystick2001->y() + joystick2001->height() << endl;
     //--------------------------------------
-
+    
     //--------------------------------------
     //ナンバーダイアラー
     marginLeft = 10 + 150 + 10 + 10 + 150 + 10 + 10;
     marginTop = 10;
     spacing = 150;
     lineSpacing = 22;
-
+    
     label = new flTextField();
     label->text("Number Dialer Example");
     label->x(marginLeft + spacing * 0);
@@ -569,7 +569,7 @@ void UIComponents::_setup() {
     dialer003->max(100);
     dialer003->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer003);
-//    cout << dialer003->y() + dialer003->width() << endl;
+    //    cout << dialer003->y() + dialer003->width() << endl;
     //--------------------------------------
     
     //--------------------------------------
@@ -608,7 +608,7 @@ void UIComponents::_setup() {
     comboBox001->addItem<string>("Test6", "test6");
     comboBox001->addItem<string>("Test7", "test7");
     comboBox001->selectedIndex(1, false);
-//    comboBox001->visible(false);
+    //    comboBox001->visible(false);
     comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(comboBox001);
     
@@ -649,8 +649,8 @@ void UIComponents::_setup() {
     comboBox003->selectedIndex(1, false);
     comboBox003->addEventListener(flComboBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(comboBox003);
-//    cout << comboBox003->y() + comboBox003->height() << endl;
-
+    //    cout << comboBox003->y() + comboBox003->height() << endl;
+    
     //    comboBox003->removeAll();
     //    comboBox003->addItem<float>("0.0", 0.0);
     //    comboBox003->addItem<float>("0.1", 0.1);
@@ -659,19 +659,19 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-//    label = new flTextField();
-//    label->text("Angler");
-//    label->x(marginLeft + spacing * 0 + 25);
-//    label->y(marginTop + lineSpacing * 6);
-//    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
-//    label->mouseEnabled(false);
-//    addChild(label);
-//    angler000 = new flAngler(100);
-//    angler000->label(label);
-//    angler000->x(marginLeft + spacing * 0 + 25);
-//    angler000->y(marginTop + lineSpacing * 7);
-////    angler000->alpha(0.0);
-//    addChild(angler000);
+    //    label = new flTextField();
+    //    label->text("Angler");
+    //    label->x(marginLeft + spacing * 0 + 25);
+    //    label->y(marginTop + lineSpacing * 6);
+    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->mouseEnabled(false);
+    //    addChild(label);
+    //    angler000 = new flAngler(100);
+    //    angler000->label(label);
+    //    angler000->x(marginLeft + spacing * 0 + 25);
+    //    angler000->y(marginTop + lineSpacing * 7);
+    ////    angler000->alpha(0.0);
+    //    addChild(angler000);
     //--------------------------------------
     
     //--------------------------------------
@@ -680,7 +680,7 @@ void UIComponents::_setup() {
     marginTop = 403;
     spacing = 170;
     lineSpacing = 22;
-
+    
     label = new flTextField();
     label->text("Pad2D Example");
     label->x(marginLeft + spacing * 0);
@@ -688,13 +688,13 @@ void UIComponents::_setup() {
     label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-
+    
     marginLeft = 10 + 150 + 10 + 10 + 150 + 10;
     marginTop = 403 + 22;
     spacing = 170;
     lineSpacing = 130;
-
-//    pad001 = new flPad2D(160, 160, -500, 500, -500, 500);
+    
+    //    pad001 = new flPad2D(160, 160, -500, 500, -500, 500);
     pad001 = new flPad2D(110, 110);
     pad001->x(marginLeft + spacing * 0 + (170 / 2 - 110 / 2));
     pad001->y(marginTop + lineSpacing * 0);
@@ -716,7 +716,7 @@ void UIComponents::_setup() {
     marginTop = 10;
     spacing = 150;
     lineSpacing = 22;
-
+    
     label = new flTextField();
     label->text("Histgram Viewer Example");
     label->x(marginLeft + spacing * 0 - 12);
@@ -726,12 +726,12 @@ void UIComponents::_setup() {
     addChild(label);
     
     hViewer001 = new flHistgramViewer(150, 150);
-//    hViewer001->labelText("Histgram 1");
+    //    hViewer001->labelText("Histgram 1");
     hViewer001->x(marginLeft + spacing * 0);
     hViewer001->y(marginTop + lineSpacing * 1);
-//    hViewer001->addEventListener(flHistgramViewerEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    //    hViewer001->addEventListener(flHistgramViewerEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(hViewer001);
-
+    
     //--------------------------------------
 }
 
@@ -739,7 +739,7 @@ void UIComponents::_setup() {
 //
 void UIComponents::_update() {
     float elapsedTime = ofGetElapsedTimef();
-    float n = sin(elapsedTime) * 10;
+    float n = sin(elapsedTime * 2) * 10;
     //ofLogNotice() << n;
     hViewer001->value(n);
 }
@@ -747,7 +747,7 @@ void UIComponents::_update() {
 //--------------------------------------------------------------
 //
 void UIComponents::_draw() {
-
+    
 }
 
 //==============================================================
@@ -810,9 +810,9 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
         
-//        if(radio == radio002) {
-//            radio001->enabled(radio->selected());
-//        }
+        //        if(radio == radio002) {
+        //            radio001->enabled(radio->selected());
+        //        }
     }
     
     //ナンバーダイアラー

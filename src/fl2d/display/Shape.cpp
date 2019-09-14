@@ -1,11 +1,11 @@
 #include "Shape.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Shape::Shape() {
@@ -18,7 +18,7 @@ namespace fl2d {
         
         ofAddListener(ofEvents().update, this, &Shape::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     Shape::~Shape() {
@@ -29,7 +29,7 @@ namespace fl2d {
         
         ofRemoveListener(ofEvents().update, this, &Shape::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Shape::_updateEventHandler(ofEventArgs& args) {
@@ -52,8 +52,8 @@ namespace fl2d {
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //--------------------------------------
         
         _update();
@@ -86,14 +86,14 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
+        //        bool bIdentity = true;
+        //        bIdentity = matrix().isIdentity();
+        //        bIdentity = false;
         
         if(applyMatrix){
-//            glPushMatrix();
+            //            glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+            //            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
@@ -104,7 +104,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-//            glPopMatrix();
+            //            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -122,15 +122,15 @@ namespace fl2d {
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //TODO
-//    float Shape::alpha() { return _alpha; }
-//    void Shape::alpha(float value) {
-//        _alpha = value;
-//        _graphics->__alpha = _alpha;
-//    }
-
+    //    float Shape::alpha() { return _alpha; }
+    //    void Shape::alpha(float value) {
+    //        _alpha = value;
+    //        _graphics->__alpha = _alpha;
+    //    }
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -145,10 +145,10 @@ namespace fl2d {
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Shape::__compoundAlpha(float value){

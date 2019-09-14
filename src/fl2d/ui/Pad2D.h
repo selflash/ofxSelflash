@@ -2,113 +2,113 @@
 
 #include "ofMain.h"
 
-#include "../FlashConfig.h"
-#include "../display/Shape.h"
-#include "../display/Sprite.h"
-#include "../texts/TextField.h"
-#include "../events/PadEvent.h"
+#include "FlashConfig.h"
+#include "Shape.h"
+#include "Sprite.h"
+#include "TextField.h"
+#include "PadEvent.h"
 #include "NumberDialer.h"
-#include "../events/NumberDialerEvent.h"
+#include "NumberDialerEvent.h"
 
 namespace fl2d {
     
     class Pad2D : public Sprite {
-            
-        public:
-            Sprite* ball;
-            
-        protected:
-            
-        private:
-            float _width;
-            float _height;
-            float _areaWidth;
-            float _areaHeight;
-            float _n;
-
-            float _labelNormalColor;
-            float _labelOverColor;
-            float _labelActiveColor;
-            float _labelDeactiveColor;
-
-            float _lineColor;
-            float _normalColor;
-            float _overColor;
-            float _activeColor;
-
-            TextField* _label;
-            TextField* _xRatioText;
-            TextField* _yRatioText;
-            TextField* _xValueText;
-            TextField* _yValueText;
         
-            float _ballRadius;
-            
-            float _xRatio;
-            float _yRatio;
-            float _xValue;
-            float _yValue;
+    public:
+        Sprite* ball;
         
-            float _leftValue;
-            float _rightValue;
-            float _topValue;
-            float _bottomValue;
-            float _rangeWidth;
-            float _rangeHeight;
+    protected:
         
-            ofPoint* _draggablePoint;
+    private:
+        float _width;
+        float _height;
+        float _areaWidth;
+        float _areaHeight;
+        float _n;
         
-            NumberDialer* _dialer01;
-            NumberDialer* _dialer02;
-            NumberDialer* _dialer03;
-            NumberDialer* _dialer04;
+        float _labelNormalColor;
+        float _labelOverColor;
+        float _labelActiveColor;
+        float _labelDeactiveColor;
         
-        public:
-            Pad2D(float width = 100, float height = 100);
-            Pad2D(float width, float height, float left, float right, float top, float bottom);
-            virtual ~Pad2D();
-            
-            TextField* label();
-            void label(TextField* value);
+        float _lineColor;
+        float _normalColor;
+        float _overColor;
+        float _activeColor;
         
-            float xRatio();
-            void xRatio(float value, bool dispatch = true);
-            
-            float yRatio();
-            void yRatio(float value, bool dispatch = true);
+        TextField* _label;
+        TextField* _xRatioText;
+        TextField* _yRatioText;
+        TextField* _xValueText;
+        TextField* _yValueText;
         
-            float xValue();
-            void xValue(float value, bool dispatch = true);
-            
-            float yValue();
-            void yValue(float value, bool dispatch = true);
+        float _ballRadius;
         
-            float rangeWidth();
-            void rangeWidth(float value, bool dispatch = true);
+        float _xRatio;
+        float _yRatio;
+        float _xValue;
+        float _yValue;
         
-            float rangeHeight();
-            void rangeHeight(float value, bool dispatch = true);
+        float _leftValue;
+        float _rightValue;
+        float _topValue;
+        float _bottomValue;
+        float _rangeWidth;
+        float _rangeHeight;
         
-        protected:
-            virtual void _setup();
-            virtual void _update();
-            virtual void _draw();
+        ofPoint* _draggablePoint;
         
-            virtual void _updateValue();
+        NumberDialer* _dialer01;
+        NumberDialer* _dialer02;
+        NumberDialer* _dialer03;
+        NumberDialer* _dialer04;
         
-            virtual void _areaOver();
-            virtual void _areaOut();
-            virtual void _areaPress();
-            virtual void _areaRelease();
-            
-            virtual void _ballOver();
-            virtual void _ballOut();
-            virtual void _ballPress();
-            virtual void _ballRelease();
-            virtual void _ballMove();
-            
-        private:
-            void _mouseEventHandler(Event& event);
-            void _uiEventHandler(Event& event);
+    public:
+        Pad2D(float width = 100, float height = 100);
+        Pad2D(float width, float height, float left, float right, float top, float bottom);
+        virtual ~Pad2D();
+        
+        TextField* label();
+        void label(TextField* value);
+        
+        float xRatio();
+        void xRatio(float value, bool dispatch = true);
+        
+        float yRatio();
+        void yRatio(float value, bool dispatch = true);
+        
+        float xValue();
+        void xValue(float value, bool dispatch = true);
+        
+        float yValue();
+        void yValue(float value, bool dispatch = true);
+        
+        float rangeWidth();
+        void rangeWidth(float value, bool dispatch = true);
+        
+        float rangeHeight();
+        void rangeHeight(float value, bool dispatch = true);
+        
+    protected:
+        virtual void _setup();
+        virtual void _update();
+        virtual void _draw();
+        
+        virtual void _updateValue();
+        
+        virtual void _areaOver();
+        virtual void _areaOut();
+        virtual void _areaPress();
+        virtual void _areaRelease();
+        
+        virtual void _ballOver();
+        virtual void _ballOut();
+        virtual void _ballPress();
+        virtual void _ballRelease();
+        virtual void _ballMove();
+        
+    private:
+        void _mouseEventHandler(Event& event);
+        void _uiEventHandler(Event& event);
     };
 }

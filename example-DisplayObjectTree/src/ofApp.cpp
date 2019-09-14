@@ -16,7 +16,7 @@ void ofApp::setup() {
     
     container = new Container();
     container->setup();
-//    container->alpha(0.1);
+    //    container->alpha(0.1);
     stage->addChild(container);
     
     //--------------------------------------
@@ -26,8 +26,8 @@ void ofApp::setup() {
     textField000->text("[Stage Info]");
     textField000->x(10);
     textField000->y(20);
-//    textField000->width(100);
-//    textField000->autoSize = TEXT_FIELD_AUTOSIZE_LEFT;
+    //    textField000->width(100);
+    //    textField000->autoSize = TEXT_FIELD_AUTOSIZE_LEFT;
     textField000->mouseEnabled(false);
     stage->addChild(textField000);
     
@@ -95,7 +95,7 @@ void ofApp::draw() {
     ofSetColor(0);
     flFont::drawString("Drag and move any DisplayObject", 12, 15);
     ofPopStyle();
-
+    
     flStage* stage = ofxSelflash::stage();
     flDisplayObject* disp = stage->topMostHitDisplayObject();
     
@@ -130,7 +130,7 @@ void ofApp::draw() {
         }
     }
     
-//    textField005->text("Stage->focus = " + stage->focus()->name());
+    //    textField005->text("Stage->focus = " + stage->focus()->name());
 }
 
 //--------------------------------------------------------------
@@ -140,17 +140,17 @@ void ofApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
@@ -160,20 +160,20 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

@@ -18,7 +18,7 @@ void ofApp::setup() {
     //クラスで宣言されたオブジェクトなので参照渡し可能
     bitmap2 = new flBitmap(&image1);
     bitmap2->x(bitmap2->width() * 1);
-//    bitmap2->scaleY(1.5);
+    //    bitmap2->scaleY(1.5);
     stage->addChild(bitmap2);
     //--------------------------------------
     
@@ -30,10 +30,10 @@ void ofApp::setup() {
     //複製渡しなのでこれ以降にimage2を編集したとしても表示に影響されない
     bitmap3 = new flBitmap(image2);
     bitmap3->x(bitmap3->width() * 2);
-//    bitmap3->scaleY(1.5);
+    //    bitmap3->scaleY(1.5);
     stage->addChild(bitmap3);
     //--------------------------------------
-
+    
     //--------------------------------------
     if(ofLoadImage(texture1, "selflash.jpeg")) cout << "loaded 3" << endl;
     
@@ -52,31 +52,31 @@ void ofApp::setup() {
     g->endFill();
     sprite->x(bitmap3->x());
     sprite->y(bitmap3->height());
-//    sprite->scaleY(1.5);
-//    sprite->height(512);
+    //    sprite->scaleY(1.5);
+    //    sprite->height(512);
     stage->addChild(sprite);
-
+    
     cout << sprite->width() << ", " << sprite->height() << endl;
     cout << sprite->scaleX() << ", " << sprite->scaleY() << endl;
-
+    
     ofTexture texture2;
     if(ofLoadImage(texture2, "selflash.jpeg")) cout << "loaded 4" << endl;
     
     //関数内で宣言されたオブジェクトは関数を抜けるとメモリ解放されるので参照渡しはエラー
     //複製渡しなのでこれ以降にtexture2を編集したとしても表示に影響されない
     bitmap5 = new flBitmap(texture2);
-//    bitmap5->x(bitmap3->x());
-//    bitmap5->y(bitmap3->height());
-//    bitmap5->height(512);
-//    bitmap5->width(512);
-//    bitmap5->scaleY(2.0);
-//    bitmap5->alpha(0.5);
+    //    bitmap5->x(bitmap3->x());
+    //    bitmap5->y(bitmap3->height());
+    //    bitmap5->height(512);
+    //    bitmap5->width(512);
+    //    bitmap5->scaleY(2.0);
+    //    bitmap5->alpha(0.5);
     sprite->addChild(bitmap5);
     //--------------------------------------
     
     cout << sprite->width() << ", " << sprite->height() << endl;
     cout << sprite->scaleX() << ", " << sprite->scaleY() << endl;
-
+    
     cout << bitmap5->width() << ", " << bitmap5->height() << endl;
     cout << bitmap5->scaleX() << ", " << bitmap5->scaleY() << endl;
 }
@@ -107,40 +107,40 @@ void ofApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

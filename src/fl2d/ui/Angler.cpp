@@ -1,4 +1,4 @@
-﻿#include "Angler.h"
+#include "Angler.h"
 
 namespace fl2d {
     
@@ -139,7 +139,7 @@ namespace fl2d {
         //cout << "isMouseDown" << lever->isMouseDown() << endl;
         
         float distance = _center->distance(ofVec2f(lever->x(), lever->y()));
-
+        
         if(lever->isMouseDown()) {
             //------------------------------------------
             float shiftX; float shiftY;
@@ -170,20 +170,20 @@ namespace fl2d {
                     _outPosition.y = _center->y + (lever->y() - _center->y) * n;
                     
                     _flg = true;
-                    _zeroAngle = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                    _zeroAngle = flmath::getAngle(lever->x() - _center->x, lever->y() - _center->y);
                 }
             }
             
             if(_flg) {
                 //------------------------------------------
-                _value = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                _value = flmath::getAngle(lever->x() - _center->x, lever->y() - _center->y);
                 _value = _value - _zeroAngle;
                 if(_value > 180.0) { _value -= 360.0; }
                 if(_value < -180.0) { _value += 360.0; }
                 //------------------------------------------
             }
             //------------------------------------------
-
+            
             //------------------------------------------
             AnglerEvent* event = new AnglerEvent(AnglerEvent::CHANGE);
             event->__value = _value;

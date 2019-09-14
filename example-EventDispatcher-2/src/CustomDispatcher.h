@@ -4,21 +4,21 @@
 #include "CustomEvent.h"
 
 class CustomDispatcher : public flEventDispatcher {
-    public:
-        
-    private:
-        
-    public:
-        CustomDispatcher();
-        virtual ~CustomDispatcher();
+public:
     
-        void addListeners();
-        void removeListeners();
+private:
     
-        void dispatchTest1();
-        void dispatchTest2();
-        
-    private:
-        void eventHandler(flEvent& event);
+public:
+    CustomDispatcher();
+    virtual ~CustomDispatcher();
+    
+    void addListeners();
+    void removeListeners();
+    
+    void dispatchTest1();
+    void dispatchTest2();
+    
+private:
+    void eventHandler(flEvent& event);
     
 };

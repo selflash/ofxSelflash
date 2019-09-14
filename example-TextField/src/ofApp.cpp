@@ -74,7 +74,7 @@ void ofApp::setup(){
     textField202->y(501);
     textField202->text("openFrameworks");
     textField202->width(200);
-//    textField202->height(50);
+    //    textField202->height(50);
     textField202->autoSize(flTextFieldAutoSize::CENTER);
     textField202->type(flTextField::TEXT_FIELD_TYPE_INPUT);
     textField202->textColor(0x990000);
@@ -87,7 +87,7 @@ void ofApp::setup(){
     textField203->y(636);
     textField203->text("openFrameworks\nopenFrameworks");
     textField203->width(200);
-//    textField203->height(50);
+    //    textField203->height(50);
     textField203->autoSize(flTextFieldAutoSize::RIGHT);
     textField203->type(flTextField::TEXT_FIELD_TYPE_INPUT);
     textField203->textColor(0x009900);
@@ -117,23 +117,23 @@ void ofApp::update(){
     int w = sin(frameNum * 0.05) * 50 + 100;
     int h = sin(frameNum * 0.07) * 50 + 100;
     
-//    textField001->width(w);
-//    textField001->height(h);
-
+    //    textField001->width(w);
+    //    textField001->height(h);
+    
     cout << (sin(frameNum * 0.05) + 1.0) / 2.0 << endl;
     textField101->scaleX((sin(frameNum * 0.05) + 1.0) / 2.0);
-
-//    textField101->width(w);
-//    textField101->height(h);
+    
+    //    textField101->width(w);
+    //    textField101->height(h);
     
     textField102->width(w);
-//    textField102->height(h);
+    //    textField102->height(h);
     
     textField103->width(w);
-//    textField103->height(h);
+    //    textField103->height(h);
     
-//    textField201->width(w);
-//    textField201->height(h);
+    //    textField201->width(w);
+    //    textField201->height(h);
     
     float a = (sin(frameNum * 0.03) + 1.0) * 0.5;
     //cout << a << endl;
@@ -178,7 +178,7 @@ void ofApp::draw(){
     string info;
     info = "";
     info += "[Default]\n";
-//    info += "__________________________________________________\n";
+    //    info += "__________________________________________________\n";
     ofPushMatrix();
     ofTranslate(20, 50);
     flFont::drawString(info, 0, 0);
@@ -204,7 +204,7 @@ void ofApp::draw(){
     info += "Height = " + ofToString(textField103->height()) + "\n";
     info += "ScaleX = " + ofToString(textField103->scaleX()) + "\n";
     info += "ScaleY = " + ofToString(textField103->scaleY()) + "\n";
-
+    
     ofPushMatrix();
     ofTranslate(20, 100);
     flFont::drawString(info, 0, 0);

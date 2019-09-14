@@ -1,9 +1,9 @@
-﻿#include "PadEvent.h"
+#include "PadEvent.h"
 
 namespace fl2d {
-
+    
     string PadEvent::CHANGE = "pad2DChange";
-
+    
     //--------------------------------------------------------------
     //
     PadEvent::PadEvent(string type):Event(type) {
@@ -13,7 +13,7 @@ namespace fl2d {
         __yValue = 0.0;
         __zValue = 0.0;
     }
-
+    
     //--------------------------------------------------------------
     //
     PadEvent::~PadEvent() {
@@ -23,5 +23,5 @@ namespace fl2d {
         __yValue = 0.0;
         __zValue = 0.0;
     }
-
+    
 }

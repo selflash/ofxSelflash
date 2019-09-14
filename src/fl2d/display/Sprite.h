@@ -17,71 +17,71 @@
 namespace fl2d {
     
     class Sprite : public DisplayObjectContainer {
-        public:
+    public:
         
-        protected:
-            Graphics* _graphics;
+    protected:
+        Graphics* _graphics;
         
-        private:
-            ofPoint _draggablePoint;
-            Rectangle* _draggableArea;
-            
-            bool _buttonMode;
-            DisplayObject* _dropTarget;
-            bool _useHandCursor;        
-            
-        public:
-            Sprite();
-            virtual ~Sprite();
-
-            virtual void update();
-            virtual void draw(bool applyMatrix = true);
-            
-            virtual float width();
-            virtual void width(float value);
-            
-            virtual float height();
-            virtual void height(float value);
+    private:
+        ofPoint _draggablePoint;
+        Rectangle* _draggableArea;
         
-            virtual float scaleX();
-            virtual void scaleX(float value);
-            
-            virtual float scaleY();
-            virtual void scaleY(float value);
+        bool _buttonMode;
+        DisplayObject* _dropTarget;
+        bool _useHandCursor;        
         
-//            virtual float alpha();
-//            virtual void alpha(float value);
+    public:
+        Sprite();
+        virtual ~Sprite();
         
-            virtual inline Graphics* graphics() { return _graphics; }
+        virtual void update();
+        virtual void draw(bool applyMatrix = true);
         
-            //TODO
-            Sprite* client;
-            Sprite* _hitArea;
-            Sprite* hitArea();
-            void hitArea(Sprite* value);
+        virtual float width();
+        virtual void width(float value);
         
-            virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
+        virtual float height();
+        virtual void height(float value);
         
-            virtual void useHandCursor(bool value);
-            virtual bool useHandCursor();
-            
-            //void startDrag(bool lockCenter = false, Rectangle bounds = NULL);
-            virtual void startDrag(bool lockCenter = false, Rectangle* bounds = NULL);
-            virtual void stopDrag();
+        virtual float scaleX();
+        virtual void scaleX(float value);
         
-        protected:
-            //virtual void updateOnFrame(){};
-            virtual void _updateRect();
+        virtual float scaleY();
+        virtual void scaleY(float value);
         
-        private:
-            void _updateEventHandler(ofEventArgs& args);
+        //            virtual float alpha();
+        //            virtual void alpha(float value);
         
-            virtual void __compoundAlpha(float value);
+        virtual inline Graphics* graphics() { return _graphics; }
         
-            void _mouseDragging(int x, int y, int id);
-            void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
-
-            // TODO :: soundTransform
+        //TODO
+        Sprite* client;
+        Sprite* _hitArea;
+        Sprite* hitArea();
+        void hitArea(Sprite* value);
+        
+        virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
+        
+        virtual void useHandCursor(bool value);
+        virtual bool useHandCursor();
+        
+        //void startDrag(bool lockCenter = false, Rectangle bounds = NULL);
+        virtual void startDrag(bool lockCenter = false, Rectangle* bounds = NULL);
+        virtual void stopDrag();
+        
+    protected:
+        //virtual void updateOnFrame(){};
+        virtual void _updateRect();
+        
+    private:
+        void _updateEventHandler(ofEventArgs& args);
+        
+        virtual void __compoundAlpha(float value);
+        
+        void _mouseDragging(int x, int y, int id);
+        void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
+        
+        // TODO :: soundTransform
     };
     
 }

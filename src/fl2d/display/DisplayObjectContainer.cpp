@@ -1,11 +1,11 @@
 #include "DisplayObjectContainer.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     DisplayObjectContainer::DisplayObjectContainer() {
@@ -17,7 +17,7 @@ namespace fl2d {
         _mouseChildren = true;
         //_tabChildren = false;
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObjectContainer::~DisplayObjectContainer() {
@@ -28,45 +28,45 @@ namespace fl2d {
         _mouseChildren = false;
         //_tabChildren = false;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::update() {
-    //    float tempLeft = _rect->left();
-    //    float tempRight = _rect->right();
-    //    float tempTop = _rect->top();
-    //    float tempBottom = _rect->bottom();
-    //    
-    //    _rect->_setToPoint(0, 0);
+        //    float tempLeft = _rect->left();
+        //    float tempRight = _rect->right();
+        //    float tempTop = _rect->top();
+        //    float tempBottom = _rect->bottom();
+        //    
+        //    _rect->_setToPoint(0, 0);
         
-//        int i; int l;
-//        DisplayObject* child;
-//        
-//        l = children.size();
-//        for(i = 0; i < l; i++) {
-//            child = children[i];
-//            float n1 = child->x();
-//            float n2 = child->y();
-//            _rect->__expandTo(n1, n2);
-//            _rect->__expandTo(n1 + child->width(), n2 + child->height());
-//        }
-//    _rect->__expandTo(tempLeft, tempTop);
-    //    _rect->__expandTo(tempRight, tempBottom);
+        //        int i; int l;
+        //        DisplayObject* child;
+        //        
+        //        l = children.size();
+        //        for(i = 0; i < l; i++) {
+        //            child = children[i];
+        //            float n1 = child->x();
+        //            float n2 = child->y();
+        //            _rect->__expandTo(n1, n2);
+        //            _rect->__expandTo(n1 + child->width(), n2 + child->height());
+        //        }
+        //    _rect->__expandTo(tempLeft, tempTop);
+        //    _rect->__expandTo(tempRight, tempBottom);
         
         _update();
-
+        
         _updateRect();
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
-
+        
         // save off current state of blend enabled
         GLboolean blendEnabled;
         glGetBooleanv(GL_BLEND, &blendEnabled);
@@ -87,19 +87,19 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
+        //        bool bIdentity = true;
+        //        bIdentity = matrix().isIdentity();
+        //        bIdentity = false;
         
         if(applyMatrix){
-//            glPushMatrix();
+            //            glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+            //            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
         ofPushStyle();
-//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        //        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
         
         for(int i = 0; i < children.size(); i++) {
@@ -111,7 +111,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-//            glPopMatrix();
+            //            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -125,20 +125,20 @@ namespace fl2d {
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObjectContainer::mouseChildren() { return _mouseChildren; }
     void DisplayObjectContainer::mouseChildren(bool value) { _mouseChildren = value; }
-
+    
     //--------------------------------------------------------------
     //
     int DisplayObjectContainer::numChildren() { return children.size(); }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObjectContainer::contains(DisplayObject* child) {
@@ -147,7 +147,7 @@ namespace fl2d {
         }
         return false;
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::stage() { return _stage; }
@@ -176,11 +176,11 @@ namespace fl2d {
             displayObject->stage(_stage);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::addChild(DisplayObject* child) {
-    //    cout << "[DisplayObjectContainer]addChild((" << child->name() << ")" << endl;
+        //    cout << "[DisplayObjectContainer]addChild((" << child->name() << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
         
         if(child->parent()){
@@ -199,7 +199,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::addChild(DisplayObject* child, int x, int y) {
-    //    cout << "[DisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
+        //    cout << "[DisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
         
         if(child->parent()){
@@ -217,7 +217,7 @@ namespace fl2d {
         
         return child;
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::addChildAt(DisplayObject* child, int index) {
@@ -236,7 +236,7 @@ namespace fl2d {
         
         return child;
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::removeChild(DisplayObject* child) {
@@ -258,7 +258,7 @@ namespace fl2d {
         
         throw "DisplayObjectContainer::removeChild\n";
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::removeChildAt(int index) {
@@ -276,7 +276,7 @@ namespace fl2d {
         
         return child;
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::removeAllChildren() {
@@ -297,14 +297,14 @@ namespace fl2d {
         
         _updateRect();        
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::getChildAt(int index) {
         if(index < 0 || index > children.size() - 1) return NULL;
         return children[index];
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObjectContainer::getChildByName(string name) {
@@ -314,7 +314,7 @@ namespace fl2d {
         
         return NULL;
     }
-
+    
     //--------------------------------------------------------------
     //
     int DisplayObjectContainer::getChildIndex(DisplayObject* child) {
@@ -324,14 +324,14 @@ namespace fl2d {
         
         return -1;
     }
-
+    
     //--------------------------------------------------------------
     //
     vector<DisplayObject*> DisplayObjectContainer::getObjectsUnderPoint(ofPoint point) {
         // TODO Êú™ÂÆüË£Ö
         return children;
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::setChildIndex(DisplayObject* child, int index) {
@@ -345,7 +345,7 @@ namespace fl2d {
             }
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::swapChildren(DisplayObject* child1, DisplayObject* child2) {
@@ -368,7 +368,7 @@ namespace fl2d {
             children.insert(children.begin() + index1, child2);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::swapChildrenAt(int index1, int index2) {
@@ -399,11 +399,11 @@ namespace fl2d {
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObjectContainer::_updateRect() {
-//        _rect->__setNull();
+        //        _rect->__setNull();
         _rect->__setZero();
         
         int i; int l;
@@ -412,7 +412,7 @@ namespace fl2d {
         l = children.size();
         for(i = 0; i < l; i++) {
             child = children[i];
-//                _rect->__expandToRect(*child->getRect(this));
+            //                _rect->__expandToRect(*child->getRect(this));
             float cx = child->x();
             float cy = child->y();
             _rect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
@@ -424,10 +424,10 @@ namespace fl2d {
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObjectContainer::_hasChildren(DisplayObject* displayObject) {
@@ -439,5 +439,5 @@ namespace fl2d {
         
         return b;
     }
-
+    
 }

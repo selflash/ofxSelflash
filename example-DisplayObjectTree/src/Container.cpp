@@ -13,13 +13,13 @@ Container::Container() {
     
     useHandCursor(true);
     
-//    Graphics* g;
-//    g = graphics();
-//    //graphics->lineStyle(0.5);
-//    g->beginFill(0xcccccc, 0);
-//    g->clear();
-//    g->drawRect(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
-//    g->endFill();
+    //    Graphics* g;
+    //    g = graphics();
+    //    //graphics->lineStyle(0.5);
+    //    g->beginFill(0xcccccc, 0);
+    //    g->clear();
+    //    g->drawRect(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
+    //    g->endFill();
     
     _forceX = 0;
     _forceY = 0;
@@ -87,7 +87,7 @@ void Container::_update() {
 //--------------------------------------------------------------
 //
 void Container::_draw() {
-
+    
 }
 
 //==============================================================
@@ -313,18 +313,18 @@ void Container::_setupBoxes() {
 //--------------------------------------------------------------
 //
 void Container::_moveEventHandler(flEvent& event) {
-//    $this->graphics->clear();
-//    $this->graphics->drawRect(-$this->x(), -$this->y(), ofGetScreenWidth(), ofGetScreenHeight());
-//    $this->graphics->endFill();
+    //    $this->graphics->clear();
+    //    $this->graphics->drawRect(-$this->x(), -$this->y(), ofGetScreenWidth(), ofGetScreenHeight());
+    //    $this->graphics->endFill();
 }
 
 //--------------------------------------------------------------
 //
 void Container::_mouseEventHandler(flEvent& event) {
-//    cout << "[Container]_mouseEventHandler(" << event.type() << ")" << endl;
-//    cout << "[PrentBox]this          = " << this << endl;
-//    cout << "[ParetBox]currentTarget = " << event.currentTarget() << endl;
-//    cout << "[ParetBox]target        = " << event.target() << endl;
+    //    cout << "[Container]_mouseEventHandler(" << event.type() << ")" << endl;
+    //    cout << "[PrentBox]this          = " << this << endl;
+    //    cout << "[ParetBox]currentTarget = " << event.currentTarget() << endl;
+    //    cout << "[ParetBox]target        = " << event.target() << endl;
     
     if(event.type() == flMouseEvent::MOUSE_OVER) {
         if(event.target() == this) {

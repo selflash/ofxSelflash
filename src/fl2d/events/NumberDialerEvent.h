@@ -8,26 +8,26 @@ namespace fl2d {
     class NumberDialer;
     class NumberDialerEvent : public Event {
         friend class NumberDialer;
-            
-        public:
-            static string CHANGE;
-            
-        protected:
-            
-        private:
         
-        public:
-            NumberDialerEvent(string type);
-            virtual ~NumberDialerEvent();
+    public:
+        static string CHANGE;
         
-            template <class T>
-            T data() { return getProperty<T>("data"); }
-            
-        protected:
-            
-        private:
-            template <class T>
-            void data(T value) { setProperty<T>("data", value); }
+    protected:
+        
+    private:
+        
+    public:
+        NumberDialerEvent(string type);
+        virtual ~NumberDialerEvent();
+        
+        template <class T>
+        T data() { return getProperty<T>("data"); }
+        
+    protected:
+        
+    private:
+        template <class T>
+        void data(T value) { setProperty<T>("data", value); }
         
     };
     

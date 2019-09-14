@@ -1,7 +1,7 @@
-﻿#include "MouseEvent.h"
+#include "MouseEvent.h"
 
 namespace fl2d {
-
+    
     string MouseEvent::MOUSE_OVER = "mouseOver";
     string MouseEvent::MOUSE_OUT = "mouseOut";
     string MouseEvent::ROLL_OVER = "rollOver";
@@ -13,17 +13,17 @@ namespace fl2d {
     string MouseEvent::MOUSE_MOVE = "mouseMove";
     string MouseEvent::DRAGGING = "dragging";
     string MouseEvent::MOUSE_SCROLLED = "mouseScrolled";
-
+    
     //--------------------------------------------------------------
     //
     MouseEvent::MouseEvent(string type):Event(type) {
-
+        
     }
-
+    
     //--------------------------------------------------------------
     //
     MouseEvent::~MouseEvent() {
         
     }
-
+    
 }

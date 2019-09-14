@@ -1,12 +1,12 @@
-﻿#include "RangeSliderEvent.h"
+#include "RangeSliderEvent.h"
 
 namespace fl2d {
-
+    
     string RangeSliderEvent::CHANGE = "rangeSliderChange";
     string RangeSliderEvent::THUMB_DRAG = "thumbDrag";
     string RangeSliderEvent::THUMB_PRESS = "thumbPress";
     string RangeSliderEvent::THUMB_RELEASE = "thumbRelease";
-
+    
     //--------------------------------------------------------------
     //
     RangeSliderEvent::RangeSliderEvent(string type):Event(type) {
@@ -16,7 +16,7 @@ namespace fl2d {
         __maxValue = 0.0f;
         __range = 0.0f;
     }
-
+    
     //--------------------------------------------------------------
     //
     RangeSliderEvent::~RangeSliderEvent() {
@@ -26,5 +26,5 @@ namespace fl2d {
         __maxValue = 0.0f;
         __range = 0.0f;
     }
-
+    
 }

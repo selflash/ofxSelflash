@@ -1,9 +1,9 @@
-﻿#include "Stage.h"
+#include "Stage.h"
 
 namespace fl2d {
-
+    
     Stage* Stage::_instance = NULL;
-
+    
     //--------------------------------------------------------------
     //
     Stage* Stage::instance() {
@@ -19,15 +19,15 @@ namespace fl2d {
             _instance = NULL;
         }
     }
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Stage::Stage() {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Stage]Stage()" << endl;
         
         _typeID = FL_TYPE_STAGE;
@@ -39,7 +39,7 @@ namespace fl2d {
         //MainTimeline
         _root = new MovieClip();
         _root->name("root1");
-//        this->addChild(_root);
+        //        this->addChild(_root);
         
         _stageWidth = ofGetWidth();
         _stageHeight = ofGetHeight();
@@ -53,14 +53,14 @@ namespace fl2d {
         
         _isMouseChanged = false;
         
-//        _isKeyDown = false;
+        //        _isKeyDown = false;
         
         _focus = this;
         __isFocus = true;
         
         _topMostHitDisplayObject = NULL;
         _topMostHitDisplayObjectPrev = NULL;
-
+        
         _topMostHitInteractiveObject = NULL;
         _topMostHitInteractiveObjectPrev = NULL;
         
@@ -68,10 +68,10 @@ namespace fl2d {
         //------------------------------------
         
         //------------------------------------
-//        _priority = OF_EVENT_ORDER_BEFORE_APP;
-//        _priority = OF_EVENT_ORDER_APP;
-//        _priority = OF_EVENT_ORDER_AFTER_APP;
-
+        //        _priority = OF_EVENT_ORDER_BEFORE_APP;
+        //        _priority = OF_EVENT_ORDER_APP;
+        //        _priority = OF_EVENT_ORDER_AFTER_APP;
+        
         //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
         ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, FlashConfig::MOUSE_PRIORITY);
         ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, FlashConfig::MOUSE_PRIORITY);
@@ -80,7 +80,7 @@ namespace fl2d {
         
         ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, FlashConfig::KEYBOARD_PRIORITY);
         ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, FlashConfig::KEYBOARD_PRIORITY);
-
+        
         ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, FlashConfig::WINDOW_PRIORITY);
         
         if(FlashConfig::AUTO_UPDATE) {
@@ -93,7 +93,7 @@ namespace fl2d {
         
         BlendMode::setup(_stageWidth, _stageHeight);
     }
-
+    
     //--------------------------------------------------------------
     //
     Stage::~Stage() {
@@ -120,7 +120,7 @@ namespace fl2d {
         
         _isMouseChanged = false;
         
-//        _isKeyDown = false;
+        //        _isKeyDown = false;
         
         _focus = NULL;
         __isFocus = false;
@@ -160,27 +160,27 @@ namespace fl2d {
         
         _priority = OF_EVENT_ORDER_BEFORE_APP;
         //------------------------------------
-
+        
         
         BlendMode::destroy();
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Stage::setup() {
         if(debug()) cout << "[Stage]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::update() {
         Event* event = new Event(Event::ENTER_FRAME);
         dispatchEvent(event);
-
+        
         //------------------------------------
         if(_topMostHitInteractiveObject) {
             if(_isSprite(_topMostHitInteractiveObject)) {
@@ -259,20 +259,20 @@ namespace fl2d {
         if(_mouseX != mouseXPrev || _mouseY != mouseYPrev) _mouseMove();
         //------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::draw() {
         //cout << "[Stage]draw() << endl;
         
-    //    glEnable(GL_BLEND);
-    //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        //    glEnable(GL_BLEND);
+        //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         //glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         
         
         GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
         GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
-
+        
         ofEnableAlphaBlending();
         glDisable(GL_DEPTH_TEST);
         
@@ -281,16 +281,16 @@ namespace fl2d {
         
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
         if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
-
+        
         //oF„Åß„ÅØÊ®ôÊ∫ñ„Åß„ÅØ„Ç¢„É´„Éï„Ç°„Éñ„É¨„É≥„Éá„Ç£„É≥„Ç∞ÊúâÂäπ
         //ofDisableAlphaBlending();
-    //    glBlendFunc(GL_ONE, GL_ZERO);
-    //    glDisable(GL_BLEND);
+        //    glBlendFunc(GL_ONE, GL_ZERO);
+        //    glDisable(GL_BLEND);
         
         if(false) _debugDraw(this, children);
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -299,30 +299,30 @@ namespace fl2d {
     //
     int Stage::stageWidth() { return _stageWidth; }
     int Stage::stageHeight() { return _stageHeight; }
-
+    
     //--------------------------------------------------------------
     //
     int Stage::mouseX() { return _mouseX; }
     int Stage::mouseY() { return _mouseY; }
-
+    
     //--------------------------------------------------------------
     //
-//    bool Stage::isMouseDown() { return _bMouseDown; };
-
+    //    bool Stage::isMouseDown() { return _bMouseDown; };
+    
     //--------------------------------------------------------------
     //
     InteractiveObject* Stage::focus() { return _focus; }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* Stage::topMostHitDisplayObject() { return _topMostHitDisplayObject; }
     DisplayObject* Stage::topMostHitDisplayObjectPrev() { return _topMostHitDisplayObjectPrev; }
-
+    
     //--------------------------------------------------------------
     //
     InteractiveObject* Stage::topMostHitInteractiveObject() { return _topMostHitInteractiveObject; }
     InteractiveObject* Stage::topMostHitInteractiveObjectPrev() { return _topMostHitInteractiveObjectPrev; }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* Stage::getMostHitDisplayObject(int x, int y) {
@@ -336,39 +336,39 @@ namespace fl2d {
         if(_priority == value) return;
         _priority = value;
         
-//        //------------------------------------
-//        //ofRemoveListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler);
-//        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
-//        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
-//        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
-//        
-//        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
-//        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
-//        
-//        ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
-//        ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
-//        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
-//        //------------------------------------
-//        
-//        //------------------------------------
-//        //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
-//        ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, _priority);
-//        ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, _priority);
-//        ofAddListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, _priority);
-//        
-//        ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, _priority);
-//        ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, _priority);
-//        
-//        ofAddListener(ofEvents().update, this, &Stage::_updateEventHandler, _priority);
-//        ofAddListener(ofEvents().draw, this, &Stage::_drawEventHandler, _priority);
-//        ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, _priority);
-//        //------------------------------------
+        //        //------------------------------------
+        //        //ofRemoveListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler);
+        //        ofRemoveListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler);
+        //        ofRemoveListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler);
+        //        ofRemoveListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler);
+        //
+        //        ofRemoveListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler);
+        //        ofRemoveListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler);
+        //
+        //        ofRemoveListener(ofEvents().update, this, &Stage::_updateEventHandler);
+        //        ofRemoveListener(ofEvents().draw, this, &Stage::_drawEventHandler);
+        //        ofRemoveListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler);
+        //        //------------------------------------
+        //
+        //        //------------------------------------
+        //        //ofAddListener(ofEvents().mouseMoved, this, &Stage::_mouseMoveEventHandler, _priority);
+        //        ofAddListener(ofEvents().mouseDragged, this, &Stage::_mouseDragEventHandler, _priority);
+        //        ofAddListener(ofEvents().mousePressed, this, &Stage::_mouseDownEventHandler, _priority);
+        //        ofAddListener(ofEvents().mouseReleased, this, &Stage::_mouseUpEventHandler, _priority);
+        //
+        //        ofAddListener(ofEvents().keyPressed, this, &Stage::_keyDownEventHandler, _priority);
+        //        ofAddListener(ofEvents().keyReleased, this, &Stage::_keyUpEventHandler, _priority);
+        //
+        //        ofAddListener(ofEvents().update, this, &Stage::_updateEventHandler, _priority);
+        //        ofAddListener(ofEvents().draw, this, &Stage::_drawEventHandler, _priority);
+        //        ofAddListener(ofEvents().windowResized, this, &Stage::_resizeEventHandler, _priority);
+        //        //------------------------------------
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_updateChildrenOne(DisplayObject* parent, vector<DisplayObject*>& children) {
@@ -383,10 +383,10 @@ namespace fl2d {
             
             //------------------------------------
             //Dispatch enter-frame-event
-//            if(_isDisplayObject(child)) {
-//                Event* event = new Event(Event::ENTER_FRAME);
-//                child->dispatchEvent(event);
-//            }
+            //            if(_isDisplayObject(child)) {
+            //                Event* event = new Event(Event::ENTER_FRAME);
+            //                child->dispatchEvent(event);
+            //            }
             //------------------------------------
             
             if(!child->visible()) continue;
@@ -399,7 +399,7 @@ namespace fl2d {
             child->transform(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
-//            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
+            //            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
             //child->updateOnFrame();
             
             //------------------------------------ topMostHitDisplayObject
@@ -472,14 +472,14 @@ namespace fl2d {
             //parent->addToPixelBounds(child->pixelBounds());
         }
     }
-
+    
     //--------------------------------------------------------------
     // [ÂÆüË£Ö‰∏ä„ÅÆÊ≥®ÊÑè]
     // „Éª_updateMouse()„ÅÆ‰∏≠„Åß„ÅØ_topMostHitDisplayObject„Å´‰ª£ÂÖ•„Åó„Å¶„ÅØ„ÅÑ„Åë„Å™„ÅÑ
     //
     void Stage::_updateMouse() {
         //cout << "[Stage]_updateMouse()" << endl;
-
+        
         //cout << "_isMouseChanged = " << _isMouseChanged << endl;
         
         //ÊúÄÂâçÈù¢„Åß„Éû„Ç¶„Çπ„Å®„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅåÂâçÂõû„Å®Â§â„Çè„Å£„Åü„Åã„Å©„ÅÜ„Åã
@@ -514,104 +514,104 @@ namespace fl2d {
         DisplayObject* hitDisplayObject = _topMostHitDisplayObject;
         
         //if(bHitDisplayObjectChanged) {
-            //„É™„Çπ„Éà„ÇíÂâçÂõûÂàÜ„Å®„Åó„Å¶‰øùÊåÅ„Åó„Å¶„ÇØ„É™„Ç¢
-            //_lineTopDownPrev = _lineTopDown;
-            _lineBottomUpPrev = _lineBottomUp;
-            //_lineTopDown.clear();
-            _lineBottomUp.clear();
-            
-            //„Éû„Ç¶„Çπ„Å´ÊúÄÂâçÈù¢„Åß„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆË¶™„Çí„Çπ„ÉÜ„Éº„Ç∏„Åæ„ÅßËæø„Å£„Å¶InteractiveObject„Çí„É™„Çπ„Éà„Å´Âä†„Åà„Çã
-            if(hitDisplayObject) {
-                dispObj = hitDisplayObject;
-                //„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Åå„Çπ„ÉÜ„Éº„Ç∏‰ª•Â§ñ„Å´„Å™„Çã„Åæ„Åß
-                while(dispObj != this) {
-                    //------------------------------------ InteractiveObject
-                    //„ÇÇ„Åó„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„Éñ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Å™„ÇâÂá¶ÁêÜ„Åô„Çã
-                    if(_isInteractiveObject(dispObj)) {
-                        intObj = (InteractiveObject*)dispObj;
-                        
-                        //------------------------------------ mouseEnabled
-                        //[mouseEnabled„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
-                        if(intObj->mouseEnabled()) {
-                            //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
-    //                        intObj->__isMouseDown = _bMouseDown;
-//                            intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
-                            intObj->__isMousePressed = false;
-                            //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
-                            //_lineTopDown.push_back(intObj);
-                            //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
-                            _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
-                            
-                            //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
-                            if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
-                            
-                            //------------------------------------ mouseChildren
-                            //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
-                            if(_isDisplayObjectContainer(intObj)) {
-                                DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
-                                if(!dispObjContainer->mouseChildren()) {
-                                    _lineBottomUp.clear();
-                                    _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
-                                    _topMostHitInteractiveObject = intObj;
-                                }
-                            }
-                            //------------------------------------ mouseChildren
-                        } else {
+        //„É™„Çπ„Éà„ÇíÂâçÂõûÂàÜ„Å®„Åó„Å¶‰øùÊåÅ„Åó„Å¶„ÇØ„É™„Ç¢
+        //_lineTopDownPrev = _lineTopDown;
+        _lineBottomUpPrev = _lineBottomUp;
+        //_lineTopDown.clear();
+        _lineBottomUp.clear();
+        
+        //„Éû„Ç¶„Çπ„Å´ÊúÄÂâçÈù¢„Åß„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆË¶™„Çí„Çπ„ÉÜ„Éº„Ç∏„Åæ„ÅßËæø„Å£„Å¶InteractiveObject„Çí„É™„Çπ„Éà„Å´Âä†„Åà„Çã
+        if(hitDisplayObject) {
+            dispObj = hitDisplayObject;
+            //„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Åå„Çπ„ÉÜ„Éº„Ç∏‰ª•Â§ñ„Å´„Å™„Çã„Åæ„Åß
+            while(dispObj != this) {
+                //------------------------------------ InteractiveObject
+                //„ÇÇ„Åó„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„Éñ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Å™„ÇâÂá¶ÁêÜ„Åô„Çã
+                if(_isInteractiveObject(dispObj)) {
+                    intObj = (InteractiveObject*)dispObj;
                     
-                            //------------------------------------ hitArea
-                            //[hitArea„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
-                            /*
-                             „Éªmemo [AS3„Å´„Åä„Åë„ÇãhitArea„ÅÆÊåôÂãï]
-                             „ÉªhitArea„ÇíË®≠ÂÆö„Åó„ÅüSpriet„ÅØ„Éû„Ç¶„Çπ„ÅåÁÑ°Âäπ„Å´„Å™„Çã
-                             „ÉªaddChild„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ„Å®ÂèçÂøú„Åó„Å™„ÅÑ
-                             „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„ÅÆmouseEnabled„ÅØfalse„Åó„Å™„ÅÑ„Å®„ÅÑ„Åë„Å™„ÅÑ
-                             „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„Çí‰ªñ„ÅÆhitArea„Å´„Åô„Çã‰∫ã„ÅØ„Åß„Åç„Å™„ÅÑ
-                             „Éª„ÇÇ„Å£„Å®„ÇÇ‰∏ä„Å´addChild„Åï„Çå„ÅüSprite„ÅåÂÑ™ÂÖà„Åï„Çå„Çã
-                             „ÉªhitArea„ÇíË®≠ÂÆö„Åó„Å¶„ÅÑ„ÇãSprite„ÅØËá™Ë∫´„Åå„Éû„Ç¶„Çπ„Ç§„Éô„É≥„Éà„ÇíÁô∫ÁÅ´„Åó„Å™„ÅÑ
-                             */
-                            if(_isSprite(intObj)) {
-                                Sprite* sprite = (Sprite*) intObj;
-                                if(sprite->client) {
-                                    dispObj = sprite->client;
-                                    //sprite->client->dispatchEvent(mouseEvent);
-                                    //goto pushListEnd;
-                                    
-                                    intObj = (InteractiveObject*)dispObj;
-                                    //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
-    //                                intObj->__isMouseDown = _bMouseDown;
-//                                    intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
-                                    intObj->__isMousePressed = false;
-                                    //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
-                                    //_lineTopDown.push_back(intObj);
-                                    //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
-                                    _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
-                                    
-                                    //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
-                                    if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
-                                } else {
-                                    
-                                }
+                    //------------------------------------ mouseEnabled
+                    //[mouseEnabled„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
+                    if(intObj->mouseEnabled()) {
+                        //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
+                        //                        intObj->__isMouseDown = _bMouseDown;
+                        //                            intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+                        intObj->__isMousePressed = false;
+                        //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
+                        //_lineTopDown.push_back(intObj);
+                        //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
+                        _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
+                        
+                        //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+                        if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
+                        
+                        //------------------------------------ mouseChildren
+                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        if(_isDisplayObjectContainer(intObj)) {
+                            DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
+                            if(!dispObjContainer->mouseChildren()) {
+                                _lineBottomUp.clear();
+                                _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
+                                _topMostHitInteractiveObject = intObj;
                             }
-                            //------------------------------------ hitArea
-                            
-                            //------------------------------------ mouseChildren
-                            //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
-                            if(_isDisplayObjectContainer(intObj)) {
-                                DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
-                                if(!dispObjContainer->mouseChildren()) {
-                                    _lineBottomUp.clear();
-                                }
-                            }
-                            //------------------------------------ mouseChildren
                         }
-                        //------------------------------------ mouseEnabled                  
+                        //------------------------------------ mouseChildren
+                    } else {
+                        
+                        //------------------------------------ hitArea
+                        //[hitArea„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
+                        /*
+                         „Éªmemo [AS3„Å´„Åä„Åë„ÇãhitArea„ÅÆÊåôÂãï]
+                         „ÉªhitArea„ÇíË®≠ÂÆö„Åó„ÅüSpriet„ÅØ„Éû„Ç¶„Çπ„ÅåÁÑ°Âäπ„Å´„Å™„Çã
+                         „ÉªaddChild„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ„Å®ÂèçÂøú„Åó„Å™„ÅÑ
+                         „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„ÅÆmouseEnabled„ÅØfalse„Åó„Å™„ÅÑ„Å®„ÅÑ„Åë„Å™„ÅÑ
+                         „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„Çí‰ªñ„ÅÆhitArea„Å´„Åô„Çã‰∫ã„ÅØ„Åß„Åç„Å™„ÅÑ
+                         „Éª„ÇÇ„Å£„Å®„ÇÇ‰∏ä„Å´addChild„Åï„Çå„ÅüSprite„ÅåÂÑ™ÂÖà„Åï„Çå„Çã
+                         „ÉªhitArea„ÇíË®≠ÂÆö„Åó„Å¶„ÅÑ„ÇãSprite„ÅØËá™Ë∫´„Åå„Éû„Ç¶„Çπ„Ç§„Éô„É≥„Éà„ÇíÁô∫ÁÅ´„Åó„Å™„ÅÑ
+                         */
+                        if(_isSprite(intObj)) {
+                            Sprite* sprite = (Sprite*) intObj;
+                            if(sprite->client) {
+                                dispObj = sprite->client;
+                                //sprite->client->dispatchEvent(mouseEvent);
+                                //goto pushListEnd;
+                                
+                                intObj = (InteractiveObject*)dispObj;
+                                //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
+                                //                                intObj->__isMouseDown = _bMouseDown;
+                                //                                    intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+                                intObj->__isMousePressed = false;
+                                //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
+                                //_lineTopDown.push_back(intObj);
+                                //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
+                                _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
+                                
+                                //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+                                if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
+                            } else {
+                                
+                            }
+                        }
+                        //------------------------------------ hitArea
+                        
+                        //------------------------------------ mouseChildren
+                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        if(_isDisplayObjectContainer(intObj)) {
+                            DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
+                            if(!dispObjContainer->mouseChildren()) {
+                                _lineBottomUp.clear();
+                            }
+                        }
+                        //------------------------------------ mouseChildren
                     }
-                    //------------------------------------ InteractiveObject
-                    dispObj	= dispObj->parent();
+                    //------------------------------------ mouseEnabled
                 }
+                //------------------------------------ InteractiveObject
+                dispObj	= dispObj->parent();
             }
+        }
         //}
-    //pushListEnd:
+        //pushListEnd:
         
         //------------------------------------
         // „Éá„Éê„ÉÉ„Ç∞Áî®
@@ -739,97 +739,97 @@ namespace fl2d {
     mouseOverCheckEnd:
         //------------------------------------
         
-//        //------------------------------------
-//        //„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥„Ç§„Éô„É≥„Éà
-//        if(__isMousePressed) {
-//            cout << "HOGE" << endl;
-//            if(_topMostHitInteractiveObject) {
-//                //------------------------------------
-//                //„Éï„Ç©„Éº„Ç´„Çπ„ÅåÂ§â„Çè„Å£„Åü„Çâ
-//                if(_focus != _topMostHitInteractiveObject) {
-//                    FocusEvent* focusEvent;
-//
-//                    // ‰æãÂ§ñ„ÅÆÁô∫Áîü„ÅóÂæó„ÇãÁØÑÂõ≤
-//                    try {
-//                        //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
-//                        _focus->__isFocus = false;
-//                        focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
-//                        focusEvent->_target = _focus;
-//                        _focus->dispatchEvent(focusEvent);
-//                        
-//                        // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
-//    //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
-//                    } catch(const char* str ) {
-//                        // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
-//                        cout << str << endl;
-//                    }
-//                    
-//                    //„Éï„Ç©„Éº„Ç´„Çπ
-//                    _focus = _topMostHitInteractiveObject;
-//                    
-//                    //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
-//                    _focus->__isFocus = true;
-//                    focusEvent = new FocusEvent(FocusEvent::FOCUS_IN);
-//                    focusEvent->_target = _focus;
-//                    _focus->dispatchEvent(focusEvent);
-//                }
-//                //------------------------------------
-//                
-//                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
-//                    //------------------------------------
-//                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_DOWN);
-//                    mouseEvent->_target = _topMostHitInteractiveObject;
-//                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
-//                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
-//                    mouseEvent->__stageX = mouseX();
-//                    mouseEvent->__stageY = mouseY();
-//                    intObj = _lineBottomUp[i];
-////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
-//                    intObj->__isMousePressed = true;
-//                    intObj->dispatchEvent(mouseEvent);
-//                    //------------------------------------
-//                    
-//                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
-//                    if(_isDisplayObjectContainer(intObj)) {
-//                        DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
-//                        if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
-//                    }
-//                }
-//            }
-//        }
-//    mouseDownCheckEnd:
+        //        //------------------------------------
+        //        //„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥„Ç§„Éô„É≥„Éà
+        //        if(__isMousePressed) {
+        //            cout << "HOGE" << endl;
+        //            if(_topMostHitInteractiveObject) {
+        //                //------------------------------------
+        //                //„Éï„Ç©„Éº„Ç´„Çπ„ÅåÂ§â„Çè„Å£„Åü„Çâ
+        //                if(_focus != _topMostHitInteractiveObject) {
+        //                    FocusEvent* focusEvent;
+        //
+        //                    // ‰æãÂ§ñ„ÅÆÁô∫Áîü„ÅóÂæó„ÇãÁØÑÂõ≤
+        //                    try {
+        //                        //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+        //                        _focus->__isFocus = false;
+        //                        focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
+        //                        focusEvent->_target = _focus;
+        //                        _focus->dispatchEvent(focusEvent);
+        //
+        //                        // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
+        //    //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
+        //                    } catch(const char* str ) {
+        //                        // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
+        //                        cout << str << endl;
+        //                    }
+        //
+        //                    //„Éï„Ç©„Éº„Ç´„Çπ
+        //                    _focus = _topMostHitInteractiveObject;
+        //
+        //                    //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
+        //                    _focus->__isFocus = true;
+        //                    focusEvent = new FocusEvent(FocusEvent::FOCUS_IN);
+        //                    focusEvent->_target = _focus;
+        //                    _focus->dispatchEvent(focusEvent);
+        //                }
+        //                //------------------------------------
+        //
+        //                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
+        //                    //------------------------------------
+        //                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_DOWN);
+        //                    mouseEvent->_target = _topMostHitInteractiveObject;
+        //                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
+        //                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
+        //                    mouseEvent->__stageX = mouseX();
+        //                    mouseEvent->__stageY = mouseY();
+        //                    intObj = _lineBottomUp[i];
+        ////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+        //                    intObj->__isMousePressed = true;
+        //                    intObj->dispatchEvent(mouseEvent);
+        //                    //------------------------------------
+        //
+        //                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+        //                    if(_isDisplayObjectContainer(intObj)) {
+        //                        DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
+        //                        if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    mouseDownCheckEnd:
         
-//        //„Éû„Ç¶„Çπ„Ç¢„ÉÉ„Éó„Ç§„Éô„É≥„Éà
-//        if(__isMouseReleased) {
-//            if(_topMostHitInteractiveObject) {            
-//                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
-//                    //------------------------------------
-//                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_UP);
-//                    mouseEvent->_target = _topMostHitInteractiveObject;
-//                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
-//                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
-//                    mouseEvent->__stageX = mouseX();
-//                    mouseEvent->__stageY = mouseY();
-//                    intObj = _lineBottomUp[i];
-////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
-//                    intObj->__isMousePressed = true;
-//                    intObj->dispatchEvent(mouseEvent);
-//                    //------------------------------------
-//                    
-//                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
-//                    if(_isDisplayObjectContainer(intObj)) {
-//                        DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
-//                        if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
-//                    }
-//                }
-//            }
-//        }
-//    mouseUpCheckEnd:
+        //        //„Éû„Ç¶„Çπ„Ç¢„ÉÉ„Éó„Ç§„Éô„É≥„Éà
+        //        if(__isMouseReleased) {
+        //            if(_topMostHitInteractiveObject) {
+        //                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
+        //                    //------------------------------------
+        //                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_UP);
+        //                    mouseEvent->_target = _topMostHitInteractiveObject;
+        //                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
+        //                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
+        //                    mouseEvent->__stageX = mouseX();
+        //                    mouseEvent->__stageY = mouseY();
+        //                    intObj = _lineBottomUp[i];
+        ////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+        //                    intObj->__isMousePressed = true;
+        //                    intObj->dispatchEvent(mouseEvent);
+        //                    //------------------------------------
+        //
+        //                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+        //                    if(_isDisplayObjectContainer(intObj)) {
+        //                        DisplayObjectContainer* dispObjContainer = (DisplayObjectContainer*) intObj;
+        //                        if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    mouseUpCheckEnd:
         
         return;
         //----------------------------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //Â≠ê„Åã„ÇâÈ†Ü„Å´Êõ¥Êñ∞„Åó„Å¶„ÅÑ„Åè
     void Stage::_updateChildrenTwo(DisplayObject* parent, vector<DisplayObject*>& children) {
@@ -837,10 +837,10 @@ namespace fl2d {
             DisplayObject* child;
             child = children[i];
             
-//            if(!child->visible()) continue;
+            //            if(!child->visible()) continue;
             
             child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
-
+            
             if(_hasChildren(child)) {
                 DisplayObjectContainer* container;
                 container = (DisplayObjectContainer*)child;
@@ -854,7 +854,7 @@ namespace fl2d {
             child->update();
         }
     }
-
+    
     //--------------------------------------------------------------
     // ÊèèÁîª
     void Stage::_drawChildren(DisplayObject* parent, vector<DisplayObject*>& children) {
@@ -893,7 +893,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     DisplayObject* Stage::_getMostHitDisplayObject(DisplayObject* parent, vector<DisplayObject*>& children, int x, int y) {
-//        cout << "[Stage]_getMostHitDisplayObject(" << x << ", " << y << ")" << endl;
+        //        cout << "[Stage]_getMostHitDisplayObject(" << x << ", " << y << ")" << endl;
         DisplayObject* mostHitDisplayObject;
         
         int i; int l;
@@ -962,21 +962,21 @@ namespace fl2d {
                     if(container->children.size() > 0) {
                         DisplayObject* hitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
                         if(hitDisplayObject != NULL) mostHitDisplayObject = hitDisplayObject;
-//                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
+                        //                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
                     }
                 }
                 //------------------------------------ mouseChildren
             }
         }
         
-//        if(mostHitDisplayObject) cout << "[Stage]" << mostHitDisplayObject->name() << endl;
+        //        if(mostHitDisplayObject) cout << "[Stage]" << mostHitDisplayObject->name() << endl;
         return mostHitDisplayObject;
     }
     
     //--------------------------------------------------------------
     //
     void Stage::_mouseMove() {
-//        if(debug()) cout << "[Stage]_mouseMove()" << endl;
+        //        if(debug()) cout << "[Stage]_mouseMove()" << endl;
         
         if(_mouseID != 0) return;
         
@@ -1049,50 +1049,50 @@ namespace fl2d {
             }
         }
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_updateEventHandler(ofEventArgs& event) {
         update();
-//        try {
-//            update();
-//        } catch(...) {
-//            cout << "[Stage]update error" << endl;
-//            
-            //進行状況
-//            ofLog(OF_LOG_VERBOSE) << "the number is " << 10 << endl;
-//            ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
-            
-//            //警告
-//            ofLog(OF_LOG_NOTICE) << "the number is " << 10;
-//            
-//            //警告
-//            ofLog(OF_LOG_WARNING) << "the number is " << 10;
-//
-//            //エラー
-//            ofLog(OF_LOG_ERROR) << "the number is " << 10;
-//            //致命的なエラー
-//            ofLog(OF_LOG_FATAL_ERROR) << "the number is " << 10;
-//            
-//            //静かなログ
-//            ofLog(OF_LOG_SILENT) << "the number is " << 10;
-//            
-//            ofExit();
-//        }
+        //        try {
+        //            update();
+        //        } catch(...) {
+        //            cout << "[Stage]update error" << endl;
+        //
+        //進行状況
+        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 10 << endl;
+        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
+        
+        //            //警告
+        //            ofLog(OF_LOG_NOTICE) << "the number is " << 10;
+        //
+        //            //警告
+        //            ofLog(OF_LOG_WARNING) << "the number is " << 10;
+        //
+        //            //エラー
+        //            ofLog(OF_LOG_ERROR) << "the number is " << 10;
+        //            //致命的なエラー
+        //            ofLog(OF_LOG_FATAL_ERROR) << "the number is " << 10;
+        //
+        //            //静かなログ
+        //            ofLog(OF_LOG_SILENT) << "the number is " << 10;
+        //
+        //            ofExit();
+        //        }
     }
     //--------------------------------------------------------------
     //
     void Stage::_drawEventHandler(ofEventArgs& event) {
         draw();
-//        try {
-//            draw();
-//        } catch(...) {
-//            cout << "[Stage]draw error" << endl;
-//        }
+        //        try {
+        //            draw();
+        //        } catch(...) {
+        //            cout << "[Stage]draw error" << endl;
+        //        }
     }
     
     //--------------------------------------------------------------
@@ -1104,7 +1104,7 @@ namespace fl2d {
         
         //_mouseX = event.x;
         //_mouseY = event.y;
-
+        
         //dispatchEvent(new Event(MouseEvent::MOUSE_MOVE));
         
         MouseEvent* mouseEvent;
@@ -1129,7 +1129,7 @@ namespace fl2d {
         }
         //------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_mouseDragEventHandler(ofMouseEventArgs& event) {
@@ -1145,9 +1145,9 @@ namespace fl2d {
         dispatchEvent(mouseEvent);
         //------------------------------------
     }
-
+    
     //--------------------------------------------------------------
-    // 
+    //
     void Stage::_mouseDownEventHandler(ofMouseEventArgs& event) {
         if(debug()) cout << "[Stage]_mouseDownEventHandler()" << endl;
         
@@ -1161,7 +1161,7 @@ namespace fl2d {
         
         //------------------------------------
         if(_topMostHitInteractiveObject) {
-//            _topMostHitInteractiveObject->__isMousePressed = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+            //            _topMostHitInteractiveObject->__isMousePressed = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
             
             //------------------------------------
             //2016.6.8
@@ -1177,7 +1177,7 @@ namespace fl2d {
                     focusEvent->_target = _focus;
                     _focus->dispatchEvent(focusEvent);
                     if(true) {
-//                        cout << "focus out = " << _focus->name().c_str() << endl;
+                        //                        cout << "focus out = " << _focus->name().c_str() << endl;
                     }
                     
                     // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
@@ -1196,7 +1196,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-//                    cout << "focus in = " << _focus->name().c_str() << endl;
+                    //                    cout << "focus in = " << _focus->name().c_str() << endl;
                 }
             }
             //------------------------------------
@@ -1221,7 +1221,7 @@ namespace fl2d {
                     if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
                 }
             }
-            mouseDownCheckEnd:
+        mouseDownCheckEnd:
             //------------------------------------
             
             
@@ -1231,7 +1231,7 @@ namespace fl2d {
             _currentMouseDownInteractiveObject = _topMostHitInteractiveObject;
         } else {
             //------------------------------------
-            //„Éï„Ç©„Éº„Ç´„Çπ        
+            //„Éï„Ç©„Éº„Ç´„Çπ
             if(_focus != this) {
                 FocusEvent* focusEvent;
                 
@@ -1241,7 +1241,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-//                    cout << "focus out = " << _focus->name().c_str() << endl;
+                    //                    cout << "focus out = " << _focus->name().c_str() << endl;
                 }
                 
                 _focus = this;
@@ -1253,7 +1253,7 @@ namespace fl2d {
                 _focus->dispatchEvent(focusEvent);
                 
                 if(true) {
-//                    cout << "focus in = " << _focus->name().c_str() << endl;
+                    //                    cout << "focus in = " << _focus->name().c_str() << endl;
                 }
             }
             //------------------------------------
@@ -1271,10 +1271,10 @@ namespace fl2d {
         dispatchEvent(mouseEvent);
         //------------------------------------
         
-//        cout << "isFocus = " << isFocus() << endl;
-//        cout << "Stage->focus = " << focus()->name() << endl;
+        //        cout << "isFocus = " << isFocus() << endl;
+        //        cout << "Stage->focus = " << focus()->name() << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_mouseUpEventHandler(ofMouseEventArgs& event) {
@@ -1284,9 +1284,9 @@ namespace fl2d {
         __isMouseReleased = true;
         
         //------------------------------------
-    //    if(_topMostHitInteractiveObjectPrev) _topMostHitInteractiveObjectPrev->__isMouseDown = false;
+        //    if(_topMostHitInteractiveObjectPrev) _topMostHitInteractiveObjectPrev->__isMouseDown = false;
         // ÂøúÊÄ•Âá¶ÁΩÆ??
-    //    if(_topMostHitInteractiveObject) _topMostHitInteractiveObject->__isMouseDown = false;
+        //    if(_topMostHitInteractiveObject) _topMostHitInteractiveObject->__isMouseDown = false;
         
         //------------------------------------
         //2016.6.8
@@ -1314,11 +1314,11 @@ namespace fl2d {
                 }
             }
         }
-        mouseUpCheckEnd:
+    mouseUpCheckEnd:
         //------------------------------------
         
         if(_currentMouseDownInteractiveObject) {
-//            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+            //            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
             _currentMouseDownInteractiveObject->__isMouseDown = false;
             _currentMouseDownInteractiveObject = NULL;
         }
@@ -1335,7 +1335,7 @@ namespace fl2d {
         dispatchEvent(mouseEvent);
         //------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
@@ -1368,7 +1368,7 @@ namespace fl2d {
         
         //------------------------------------
         if(!Keyboard::__checkKeyIsDown(key)) {
-//        if(_isKeyDown == false) {
+            //        if(_isKeyDown == false) {
             if(debug()) cout << "[Stage]_keyDownEventHandler(KEY_PRESS)" << endl;
             keyboardEvent = new KeyboardEvent(KeyboardEvent::KEY_PRESS);
             keyboardEvent->__keyCode = key;
@@ -1395,9 +1395,9 @@ namespace fl2d {
         //------------------------------------
         
         Keyboard::__addDownKey(key);
-//        _isKeyDown = true;
+        //        _isKeyDown = true;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_keyUpEventHandler(ofKeyEventArgs& event) {
@@ -1413,7 +1413,7 @@ namespace fl2d {
         
         //------------------------------------
         if(Keyboard::__checkKeyIsDown(key)) {
-//        if(_isKeyDown) {
+            //        if(_isKeyDown) {
             if(debug()) cout << "[Stage]_keyDownEventHandler(KEY_RELEASE)" << endl;
             keyboardEvent = new KeyboardEvent(KeyboardEvent::KEY_RELEASE);
             keyboardEvent->__keyCode = key;
@@ -1440,13 +1440,13 @@ namespace fl2d {
         //------------------------------------
         
         Keyboard::__removeDownKey(key);
-//        _isKeyDown = false;
+        //        _isKeyDown = false;
     }
-
+    
     //==============================================================
     // RESIZE
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Stage::_resizeEventHandler(ofResizeEventArgs& event) {
@@ -1455,11 +1455,11 @@ namespace fl2d {
         
         BlendMode::resize(_stageWidth, _stageHeight);
     }
-
+    
     //==============================================================
     // UTILITY
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     bool Stage::_isInteractiveObject(DisplayObject* displayObject) {
@@ -1496,7 +1496,7 @@ namespace fl2d {
         
         return b;
     }
-
+    
     //--------------------------------------------------------------
     //
     bool Stage::_isSprite(DisplayObject* displayObject) {
@@ -1506,5 +1506,5 @@ namespace fl2d {
         
         return b;
     }
-
+    
 }

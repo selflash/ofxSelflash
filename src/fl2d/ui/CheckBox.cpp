@@ -1,11 +1,11 @@
 #include "CheckBox.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     CheckBox::CheckBox(float width) {
@@ -14,7 +14,7 @@ namespace fl2d {
         
         buttonMode(true);
         mouseChildren(false);
-
+        
         _uiWidth = width;
         _uiHeight = 18;
         
@@ -38,13 +38,13 @@ namespace fl2d {
         _label->textColor(_labelNormalColor.getHex());
         _label->text("Radio Button");
         _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 3);
-//        _label->mouseEnabled(false);
+        //        _label->mouseEnabled(false);
         addChild(_label);
         //------------------------------------------
-
+        
         //Graphics* g = graphics();
         //g->enabledSmoothing(true);
-
+        
         //------------------------------------------
         _normal();
         //------------------------------------------
@@ -56,9 +56,9 @@ namespace fl2d {
         
         _enabled = true;
         
-//        _hitAreaAlpha = 0.5;
+        //        _hitAreaAlpha = 0.5;
     }
-
+    
     //--------------------------------------------------------------
     //
     CheckBox::~CheckBox() {
@@ -66,18 +66,18 @@ namespace fl2d {
         removeEventListener(MouseEvent::MOUSE_OUT, this, &CheckBox::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_DOWN, this, &CheckBox::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_UP, this, &CheckBox::_mouseEventHandler);
-
+        
         delete _label;
         _label = NULL;
         
         _enabled = false;
         _hitAreaAlpha = 0.0;
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* CheckBox::label() { return _label; }
@@ -96,7 +96,7 @@ namespace fl2d {
         
         _updateRect();
     }
-
+    
     //--------------------------------------------------------------
     //
     bool CheckBox::selected() { return _selected; }
@@ -105,30 +105,30 @@ namespace fl2d {
         
         _selected = value;
         
-//        if(_enabled) {
-//            if(isMouseOver()){
-//                _over();
-//            } else {
-//                _normal();
-//            }
-//            
-//    //        if(_selected) {
-//    //            if(isMouseOver()) {
-//    //                _label->textColor(_labelOverColor);
-//    //            } else {
-//    //                _label->textColor(_labelNormalColor);
-//    //            }
-//    //        } else {
-//    //            if(isMouseOver()) {
-//    //                _label->textColor(_labelOverColor);
-//    //            } else {
-//    //                _label->textColor(_labelNormalColor);
-//    //            }
-//    //        }
-//        }
+        //        if(_enabled) {
+        //            if(isMouseOver()){
+        //                _over();
+        //            } else {
+        //                _normal();
+        //            }
+        //            
+        //    //        if(_selected) {
+        //    //            if(isMouseOver()) {
+        //    //                _label->textColor(_labelOverColor);
+        //    //            } else {
+        //    //                _label->textColor(_labelNormalColor);
+        //    //            }
+        //    //        } else {
+        //    //            if(isMouseOver()) {
+        //    //                _label->textColor(_labelOverColor);
+        //    //            } else {
+        //    //                _label->textColor(_labelNormalColor);
+        //    //            }
+        //    //        }
+        //        }
         
         if(_enabled) {
-//            _label->textColor(_labelNormalColor.getHex());
+            //            _label->textColor(_labelNormalColor.getHex());
             
             if(_selected) {
                 _label->textColor(_labelActiveColor.getHex());
@@ -153,7 +153,7 @@ namespace fl2d {
             dispatchEvent(new CheckBoxEvent(CheckBoxEvent::CHANGE));
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     bool CheckBox::enabled() { return _enabled; }
@@ -179,19 +179,19 @@ namespace fl2d {
             }
         }
         
-//        Graphics* g;
-//        g = graphics();
-//        g->clear();
-//        g->lineStyle(1, _lineColor.getHex());
-//        if(_enabled) {
-//            g->beginFill(_normalColor.getHex());
-//        } else {
-//            g->beginFill(_deactiveColor.getHex());
-//        }
-//        g->drawRect(0, 0, _uiWidth, _uiHeight);
-//        g->endFill();
+        //        Graphics* g;
+        //        g = graphics();
+        //        g->clear();
+        //        g->lineStyle(1, _lineColor.getHex());
+        //        if(_enabled) {
+        //            g->beginFill(_normalColor.getHex());
+        //        } else {
+        //            g->beginFill(_deactiveColor.getHex());
+        //        }
+        //        g->drawRect(0, 0, _uiWidth, _uiHeight);
+        //        g->endFill();
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -209,7 +209,7 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-//        g->drawCircle(7, 8, 6);
+        //        g->drawCircle(7, 8, 6);
         g->drawRect(0, 0, 15, 15);
         g->endFill();
     }
@@ -225,17 +225,17 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-//        g->drawCircle(7, 8, 6);
+        //        g->drawCircle(7, 8, 6);
         g->drawRect(0, 0, 15, 15);
         g->endFill();
         
         //内側
         g->beginFill(innerColor.getHex());
-//        g->drawCircle(7, 8, 3);
+        //        g->drawCircle(7, 8, 3);
         g->drawRect(3, 3, 8, 8);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void CheckBox::_over() {
@@ -247,7 +247,7 @@ namespace fl2d {
         
         _label->textColor(_labelOverColor.getHex());
     }
-
+    
     //--------------------------------------------------------------
     //
     void CheckBox::_normal() {
@@ -259,17 +259,17 @@ namespace fl2d {
             _label->textColor(_labelNormalColor.getHex());
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void CheckBox::_press() {
         selected(!selected());
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void CheckBox::_mouseEventHandler(Event& event) {
@@ -288,5 +288,5 @@ namespace fl2d {
             //if(event.target() == this) _normal();
         }
     }
-
+    
 }

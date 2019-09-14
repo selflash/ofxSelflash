@@ -1,7 +1,7 @@
-﻿#include "ScrollKit.h"
+#include "ScrollKit.h"
 
 namespace fl2d {
-
+    
     //--------------------------------------------------------------
     //
     ScrollKit::ScrollKit() {
@@ -40,13 +40,13 @@ namespace fl2d {
         viewport.width = 500;
         viewport.height = 600;
     }
-
+    
     //--------------------------------------------------------------
     //
     ScrollKit::~ScrollKit() {
         
     }
-
+    
     DisplayObject* ScrollKit::body() {
         return NULL;
     }
@@ -57,25 +57,25 @@ namespace fl2d {
         cout << "[PARENT] = " << _body->parent() << endl;
         if(_body->parent()) ((DisplayObjectContainer*)_body->parent())->removeChild(_body);
     }
-
-
+    
+    
     //--------------------------------------------------------------
     //
     void ScrollKit::_setup() {
         
     }
-
+    
     //--------------------------------------------------------------
     //
     void ScrollKit::_update() {
         viewport.x = x() - _body->x();
         viewport.width = 500 + _body->x();
         viewport.y = y();
-
+        
         
         _body->update();
     }
-
+    
     //--------------------------------------------------------------
     //
     void ScrollKit::_draw() {
@@ -100,22 +100,22 @@ namespace fl2d {
         ofTranslate(0, 250);
         _body->draw();
         ofPopMatrix();
-    /*
-        ofFill();
-        ofSetColor(220);
-        for(int x = 0; x < 1000; x += 20) {
-            for(int y = 0; y < 1000; y += 20) {
-                ofCircle(x, y, sin((x + y) / 100.0f + ofGetElapsedTimef()) * 5.0f);
-            }
-        }
-    */    
+        /*
+         ofFill();
+         ofSetColor(220);
+         for(int x = 0; x < 1000; x += 20) {
+         for(int y = 0; y < 1000; y += 20) {
+         ofCircle(x, y, sin((x + y) / 100.0f + ofGetElapsedTimef()) * 5.0f);
+         }
+         }
+         */    
         // restore the old viewport (now full view and oF coords)
         ofPopView();
         //--
-
+        
     }
-
-
+    
+    
     //--------------------------------------------------------------
     void ScrollKit::drawViewportOutline(const ofRectangle & $viewport) {
         //ofPushStyle();
@@ -129,17 +129,17 @@ namespace fl2d {
         ofDrawRectangle($viewport);
         //ofPopStyle();
     }
-
+    
     //--------------------------------------------------------------
     //
     void ScrollKit::_moveEventHandler(Event &event) {
-    /*
-        cout << "\n----------------------------------------------------------" << endl;
-        printf("[ScrollKit]_moveEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
-        cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
-        cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
-        cout << "----------------------------------------------------------\n" << endl;
-    */    
+        /*
+         cout << "\n----------------------------------------------------------" << endl;
+         printf("[ScrollKit]_moveEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
+         cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
+         cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
+         cout << "----------------------------------------------------------\n" << endl;
+         */    
         //cout << $this->mouseY() << endl;
         
         //cout << "HOGE" << endl;
@@ -154,61 +154,61 @@ namespace fl2d {
         
         //$this->body->y(400);
     }
-
+    
     //--------------------------------------------------------------
     //
     void ScrollKit::_mouseEventHandler(Event& event) {
-    /*
-        cout << "\n----------------------------------------------------------" << endl;
-        printf("[ScrollKit]_mouseEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
-        cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
-        cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
-        cout << "stage = " << ((DisplayObject*)event.target())->stage()->name().c_str() << endl;
-        cout << "----------------------------------------------------------\n" << endl;
-    */    
+        /*
+         cout << "\n----------------------------------------------------------" << endl;
+         printf("[ScrollKit]_mouseEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
+         cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
+         cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
+         cout << "stage = " << ((DisplayObject*)event.target())->stage()->name().c_str() << endl;
+         cout << "----------------------------------------------------------\n" << endl;
+         */    
         
         if(event.type() == MouseEvent::ROLL_OVER) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xffff00);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xffff00);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
             }
         }
         if(event.type() == MouseEvent::ROLL_OUT) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xcccccc);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xcccccc);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
             }
         }
         if(event.type() == MouseEvent::MOUSE_OVER) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xffff00);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xffff00);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
             }
         }
         if(event.type() == MouseEvent::MOUSE_OUT) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xcccccc);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xcccccc);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
             }
         }
         if(event.type() == MouseEvent::MOUSE_DOWN) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xff0000);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xff0000);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
                 //$this->startDrag();
                 
                 _disy = mouseY() - _body->y();
-
+                
                 
                 //stage()->addEventListener(MouseEvent::MOUSE_UP, this, &ScrollKit::_mouseEventHandler);
                 //stage()->addEventListener(MouseEvent::MOUSE_MOVE, this, &ScrollKit::_moveEventHandler);
@@ -216,10 +216,10 @@ namespace fl2d {
         }
         if(event.type() == MouseEvent::MOUSE_UP) {
             if(event.target() == this) {
-    //            $this->graphics->clear();
-    //            $this->graphics->beginFill(0xffff00);
-    //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
-    //            $this->graphics->endFill();
+                //            $this->graphics->clear();
+                //            $this->graphics->beginFill(0xffff00);
+                //            $this->graphics->drawRect(0, 0, $this->width(), $this->height());
+                //            $this->graphics->endFill();
                 //$this->stopDrag();
             }
             if(event.target() == this->stage()) {
@@ -228,5 +228,5 @@ namespace fl2d {
             }
         }
     }
-
+    
 }

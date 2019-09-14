@@ -1,20 +1,22 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
 
-class BasicDraggableObject : public flSprite {
-    public:
+namespace fltemplate {
     
+    class BasicDraggableObject : public flSprite {
+    public:
+        
     protected:
         bool _dragEnabled = true;
-
+        
     private:
-    
+        
     public:
         BasicDraggableObject();
         virtual ~BasicDraggableObject();
-
+        
         virtual inline bool dragEnabled() { return _dragEnabled; }
         virtual inline void dragEnabled(bool value) {
             _dragEnabled = value;
@@ -25,13 +27,15 @@ class BasicDraggableObject : public flSprite {
                 stopDrag();
             }
         }
-
+        
     protected:
-//        virtual void _setup();
-//        virtual void _update();
-//        virtual void _draw();
-    
+        //        virtual void _setup();
+        //        virtual void _update();
+        //        virtual void _draw();
+        
     private:
         void _mouseEventHandler(flEvent& event);
+        
+    };
     
-};
+}

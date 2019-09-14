@@ -1,16 +1,16 @@
-﻿
+
 #include "Bitmap.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(BitmapData* bitmapData, string pixelSnapping, bool smoothing) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(BitmapData)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -28,16 +28,16 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_bitmapData->width());
-//        height(_bitmapData->height());
+        //        width(_bitmapData->width());
+        //        height(_bitmapData->height());
         
         ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(ofImage* image) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(ofImage ptr)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -47,7 +47,7 @@ namespace fl2d {
         name("Bitmap");
         
         _image_ptr = image;
-
+        
         _imageWidth = _image_ptr->getWidth();
         _imageHeight = _image_ptr->getHeight();
         _rect->width(_imageWidth);
@@ -55,15 +55,15 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_image_ptr->getWidth());
-//        height(_image_ptr->getHeight());
+        //        width(_image_ptr->getWidth());
+        //        height(_image_ptr->getHeight());
         
         ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(ofImage image) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(ofImage)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -71,9 +71,9 @@ namespace fl2d {
         _mode = 2;
         
         name("Bitmap");
-
+        
         _image = image;
-
+        
         _imageWidth = _image.getWidth();
         _imageHeight = _image.getHeight();
         _rect->width(_imageWidth);
@@ -81,8 +81,8 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_image.getWidth());
-//        height(_image.getHeight());
+        //        width(_image.getWidth());
+        //        height(_image.getHeight());
         
         ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
@@ -90,7 +90,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(ofTexture* texture) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(ofTexture ptr)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -108,15 +108,15 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_texture_ptr->getWidth());
-//        height(_texture_ptr->getHeight());
+        //        width(_texture_ptr->getWidth());
+        //        height(_texture_ptr->getHeight());
         
         ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(ofTexture texture) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(ofTexture)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -134,16 +134,16 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_texture.getWidth());
-//        height(_texture.getHeight());
+        //        width(_texture.getWidth());
+        //        height(_texture.getHeight());
         
         ofAddListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     Bitmap::Bitmap(ofFbo fboImage) {
-//        debug(true);
+        //        debug(true);
         if(debug()) cout << "[Bitmap]Bitmap(ofFbo)" << endl;
         
         _typeID = FL_TYPE_BITMAP;
@@ -151,7 +151,7 @@ namespace fl2d {
         _mode = 5;
         
         name("Bitmap");
-
+        
         _fboImage = fboImage;
         
         _imageWidth = _fboImage.getWidth();
@@ -161,16 +161,16 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-//        width(_fboImage.getWidth());
-//        height(_fboImage.getHeight());
+        //        width(_fboImage.getWidth());
+        //        height(_fboImage.getHeight());
         
         ofRemoveListener(ofEvents().update, this, &Bitmap::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     Bitmap::~Bitmap() {
-//        delete _bitmapData;
+        //        delete _bitmapData;
         
         _bitmapData = NULL;
         _image_ptr = NULL;
@@ -189,60 +189,60 @@ namespace fl2d {
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
-//    //--------------------------------------------------------------
-//    //
-//    void Bitmap::draw() {
-//        if(!visible()) return;
-//
-//        GLboolean preLighting = glIsEnabled(GL_LIGHTING);
-//        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
-//        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
-//        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
-//        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
-//        
-//        ofDisableLighting();
-//        ofEnableAlphaBlending();
-//        glDisable(GL_DEPTH_TEST);
-//        if(_smoothing) {
-//            ofEnableSmoothing();
-//            ofEnableAntiAliasing();
-//        }
-//        
-//        //------------------------------------------
-//        //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
-//        
-//        if(!bIdentity){
-//            glPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
-//        }
-//        
-//        ofPushStyle();
-//        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-//        _draw();
-//        ofPopStyle();
-//        
-//        if(!bIdentity){
-//            glPopMatrix();
-//        }
-//        //------------------------------------------
-//        
-//        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
-//        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
-//        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
-//        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
-//        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
-//    }
+    
+    //    //--------------------------------------------------------------
+    //    //
+    //    void Bitmap::draw() {
+    //        if(!visible()) return;
+    //
+    //        GLboolean preLighting = glIsEnabled(GL_LIGHTING);
+    //        GLboolean preBlendmodeAlpha = glIsEnabled(OF_BLENDMODE_ALPHA);
+    //        GLboolean preDepthTest = glIsEnabled(GL_DEPTH_TEST);
+    //        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+    //        GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
+    //        
+    //        ofDisableLighting();
+    //        ofEnableAlphaBlending();
+    //        glDisable(GL_DEPTH_TEST);
+    //        if(_smoothing) {
+    //            ofEnableSmoothing();
+    //            ofEnableAntiAliasing();
+    //        }
+    //        
+    //        //------------------------------------------
+    //        //-- matrix transform.
+    //        bool bIdentity = true;
+    //        bIdentity = matrix().isIdentity();
+    //        bIdentity = false;
+    //        
+    //        if(!bIdentity){
+    //            glPushMatrix();
+    //            glMultMatrixf(matrix().getPtr());
+    //        }
+    //        
+    //        ofPushStyle();
+    //        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+    //        _draw();
+    //        ofPopStyle();
+    //        
+    //        if(!bIdentity){
+    //            glPopMatrix();
+    //        }
+    //        //------------------------------------------
+    //        
+    //        if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+    //        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+    //        if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
+    //        if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
+    //        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
+    //    }
     
     //--------------------------------------------------------------
     //
     void Bitmap::_draw() {
         //--------------------------------------
         //draw image
-//        cout << "_mode = " << _mode << endl;
+        //        cout << "_mode = " << _mode << endl;
         switch(_mode) {
             case 0: _bitmapData->__draw(0, 0); break;
             case 1: _image_ptr->draw(0, 0); break;
@@ -253,55 +253,55 @@ namespace fl2d {
         }
         //--------------------------------------
     }
-
+    
     /*
-    //--------------------------------------------------------------
-    //
-    ofTexture& Bitmap::getTextureReference() {
-        return bitmapData->getTextureReference();
-    }
-    */ 
-
+     //--------------------------------------------------------------
+     //
+     ofTexture& Bitmap::getTextureReference() {
+     return bitmapData->getTextureReference();
+     }
+     */ 
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     //const float Bitmap::width() {
-        //_rect->__expandToRect(bitmapImage->__rect());
+    //_rect->__expandToRect(bitmapImage->__rect());
     //    return _rect->width();
     //}
     //--------------------------------------------------------------
     //
     //const float Bitmap::height() {
-        //_rect->__expandToRect(graphics->__rect());
+    //_rect->__expandToRect(graphics->__rect());
     //    return _rect->height();
     //}
-
+    
     
     //--------------------------------------------------------------
     //
-//    float Bitmap::width() {
-//        _updateRect();
-//        
-//        return _rect->width() * scaleX();
-//    }
-//    void Bitmap::width(float value) {
-////        _updateRect();
-//        _rect->width(value);
-//    }
-//    //--------------------------------------------------------------
-//    //
-//    float Bitmap::height() {
-//        _updateRect();
-//        
-//        return _rect->height() * scaleY();
-//    }
-//    void Bitmap::height(float value) {
-////        _updateRect();
-//        _rect->height(value);
-//    }
+    //    float Bitmap::width() {
+    //        _updateRect();
+    //        
+    //        return _rect->width() * scaleX();
+    //    }
+    //    void Bitmap::width(float value) {
+    ////        _updateRect();
+    //        _rect->width(value);
+    //    }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float Bitmap::height() {
+    //        _updateRect();
+    //        
+    //        return _rect->height() * scaleY();
+    //    }
+    //    void Bitmap::height(float value) {
+    ////        _updateRect();
+    //        _rect->height(value);
+    //    }
     
     //--------------------------------------------------------------
     //
@@ -345,40 +345,40 @@ namespace fl2d {
         _targetHeight = numeric_limits<float>::quiet_NaN();
         _matrix.scaleY(value);
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     
     //--------------------------------------------------------------
     //
     void Bitmap::_updateRect() {
-//        _rect->__setZero();
-//        _rect->width(_imageWidth);
-//        _rect->height(_imageHeight);
+        //        _rect->__setZero();
+        //        _rect->width(_imageWidth);
+        //        _rect->height(_imageHeight);
         
         //--------------------------------------
-//        _realWidth = _rect->width();
-//        _realHeight = _rect->height();
+        //        _realWidth = _rect->width();
+        //        _realHeight = _rect->height();
         
-//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //--------------------------------------
     }
     
     //--------------------------------------------------------------
     //
     //void Bitmap::updateOnFrame() {
-
+    
     //}
-
+    
     //--------------------------------------------------------------
     //
     //void Bitmap::drawOnFrame() {
     //_drawBitmap();
     //}
-
+    
 }

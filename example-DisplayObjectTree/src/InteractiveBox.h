@@ -5,41 +5,41 @@
 
 class InteractiveBox:public flSprite {
     
-    public:
+public:
     
-    protected:
+protected:
     
-    private:
-        flTextField* _titleTf;
+private:
+    flTextField* _titleTf;
     
-        ofFloatColor* _lineColor;
-        ofFloatColor* _normalColor;
-        ofFloatColor* _overColor;
-        ofFloatColor* _activeColor;
+    ofFloatColor* _lineColor;
+    ofFloatColor* _normalColor;
+    ofFloatColor* _overColor;
+    ofFloatColor* _activeColor;
     
-        ofFloatColor* _areaColor;
+    ofFloatColor* _areaColor;
     
-        float _graphicsWidth;
-        float _graphicsHeight;
+    float _graphicsWidth;
+    float _graphicsHeight;
     
-    public:
-        InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, int areaColor = 0xff0000);
-        virtual ~InteractiveBox();
-
-        void title(std::string value);
-
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
+public:
+    InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, int areaColor = 0xff0000);
+    virtual ~InteractiveBox();
     
-        virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
+    void title(std::string value);
     
-    private:    
-        void _over();
-        void _out();
-        void _press();
-        void _release();
+protected:
+    virtual void _setup();
+    virtual void _update();
+    virtual void _draw();
     
-        void _mouseEventHandler(flEvent& event);
+    virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
+    
+private:    
+    void _over();
+    void _out();
+    void _press();
+    void _release();
+    
+    void _mouseEventHandler(flEvent& event);
 };

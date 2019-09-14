@@ -1,11 +1,11 @@
-﻿#include "Vec2Slider.h"
+#include "Vec2Slider.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Vec2Slider::Vec2Slider(
@@ -27,27 +27,27 @@ namespace fl2d {
         _normalColor.setHex(FlashConfig::UI_NORMAL_COLOR);
         _overColor.setHex(FlashConfig::UI_OVER_COLOR);
         _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
-
+        
         _label = NULL;
-
+        
         float height = 18 + 2;
         
         //------------------------------------------
         //X
         xSlider = new Slider(width, xMin, xMax, defaultXValue);
-//        xSlider->label("");
+        //        xSlider->label("");
         xSlider->x(0);
         xSlider->y(height * 0);
         xSlider->addEventListener(SliderEvent::CHANGE, this, &Vec2Slider::_eventHandler);
         addChild(xSlider);
         //Y
         ySlider = new Slider(width, yMin, yMax, defaultYValue);
-//        ySlider->label("");
+        //        ySlider->label("");
         ySlider->x(0);
         ySlider->y(height * 1);
         ySlider->addEventListener(SliderEvent::CHANGE, this, &Vec2Slider::_eventHandler);
         addChild(ySlider);
-
+        
         //------------------------------------------
         //X
         _label1Text = new TextField();
@@ -74,14 +74,14 @@ namespace fl2d {
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();
     }
-
+    
     //--------------------------------------------------------------
     //
     Vec2Slider::~Vec2Slider() {
         //cout << "[Vec2Slider]~Vec2Slider()" << endl;
         
         _label = NULL;
-
+        
         delete xSlider;
         xSlider = NULL;
         
@@ -94,29 +94,29 @@ namespace fl2d {
         delete _label2Text;
         _label2Text = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Vec2Slider::_setup() {
         //cout << "[Vec2Slider]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Vec2Slider::_update() {
-
+        
     }
-
+    
     //--------------------------------------------------------------
     //
     void Vec2Slider::_draw(){
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -125,14 +125,14 @@ namespace fl2d {
     //
     TextField* Vec2Slider::label() { return _label; }
     void Vec2Slider::label(TextField* value) { _label = value; }
-
+    
     //--------------------------------------------------------------
     //
     void Vec2Slider::textColor(int color) {
         _label1Text->textColor(color);
         _label2Text->textColor(color);
     }
-
+    
     //--------------------------------------------------------------
     //
     ofVec2f Vec2Slider::vec2Value() { return _vec2Value; }
@@ -147,7 +147,7 @@ namespace fl2d {
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();
         //------------------------------------------
-
+        
         if(dispatch) {
             Vec2SliderEvent* vec2SliderEvent = new Vec2SliderEvent(Vec2SliderEvent::CHANGE);
             vec2SliderEvent->_target = this;
@@ -155,11 +155,11 @@ namespace fl2d {
             dispatchEvent(vec2SliderEvent);
         }
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
@@ -167,8 +167,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Vec2Slider::_eventHandler(Event& event) {
-//        ofLog(OF_LOG_VERBOSE) << "[Vec2Slider]_eventHandler(" << event.type() << ")" << endl;
-//        cout << "[Vec2Slider]_eventHandler(" << event.type() << ")" << endl;
+        //        ofLog(OF_LOG_VERBOSE) << "[Vec2Slider]_eventHandler(" << event.type() << ")" << endl;
+        //        cout << "[Vec2Slider]_eventHandler(" << event.type() << ")" << endl;
         
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();
@@ -179,5 +179,5 @@ namespace fl2d {
         vec2SliderEvent->__vec2f = _vec2Value;
         dispatchEvent(vec2SliderEvent);
     }
-
+    
 }

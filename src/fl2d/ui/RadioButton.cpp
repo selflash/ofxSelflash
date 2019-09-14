@@ -1,11 +1,11 @@
 #include "RadioButton.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     RadioButton::RadioButton(float width) {
@@ -14,7 +14,7 @@ namespace fl2d {
         
         buttonMode(true);
         mouseChildren(false);
-
+        
         _uiWidth = width;
         _uiHeight = 18;
         
@@ -38,13 +38,13 @@ namespace fl2d {
         _label->textColor(_labelNormalColor.getHex());
         _label->text("Radio Button");
         _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 3);
-//        _label->mouseEnabled(false);
+        //        _label->mouseEnabled(false);
         addChild(_label);
         //------------------------------------------
-
-//        Graphics* g = graphics();
-//        g->enabledSmoothing(true);
-
+        
+        //        Graphics* g = graphics();
+        //        g->enabledSmoothing(true);
+        
         //------------------------------------------
         _normal();
         //------------------------------------------
@@ -59,7 +59,7 @@ namespace fl2d {
         
         _groupOwner = NULL;
     }
-
+    
     //--------------------------------------------------------------
     //
     RadioButton::~RadioButton() {
@@ -79,11 +79,11 @@ namespace fl2d {
         }
         _groupOwner = NULL;
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* RadioButton::label() { return _label; }
@@ -102,7 +102,7 @@ namespace fl2d {
         
         _updateRect();
     }
-
+    
     //--------------------------------------------------------------
     //
     bool RadioButton::selected() { return _selected; }
@@ -111,30 +111,30 @@ namespace fl2d {
         
         _selected = value;
         
-//        if(_enabled) {
-//            if(isMouseOver()){
-//                _over();
-//            } else {
-//                _normal();
-//            }
-//            
-//    //        if(_selected) {
-//    //            if(isMouseOver()) {
-//    //                _label->textColor(_labelOverColor);
-//    //            } else {
-//    //                _label->textColor(_labelNormalColor);
-//    //            }
-//    //        } else {
-//    //            if(isMouseOver()) {
-//    //                _label->textColor(_labelOverColor);
-//    //            } else {
-//    //                _label->textColor(_labelNormalColor);
-//    //            }
-//    //        }
-//        }
+        //        if(_enabled) {
+        //            if(isMouseOver()){
+        //                _over();
+        //            } else {
+        //                _normal();
+        //            }
+        //            
+        //    //        if(_selected) {
+        //    //            if(isMouseOver()) {
+        //    //                _label->textColor(_labelOverColor);
+        //    //            } else {
+        //    //                _label->textColor(_labelNormalColor);
+        //    //            }
+        //    //        } else {
+        //    //            if(isMouseOver()) {
+        //    //                _label->textColor(_labelOverColor);
+        //    //            } else {
+        //    //                _label->textColor(_labelNormalColor);
+        //    //            }
+        //    //        }
+        //        }
         
         if(_enabled) {
-//            _label->textColor(_labelNormalColor.getHex());
+            //            _label->textColor(_labelNormalColor.getHex());
             
             if(_selected) {
                 _label->textColor(_labelActiveColor.getHex());
@@ -159,7 +159,7 @@ namespace fl2d {
             dispatchEvent(new RadioButtonEvent(RadioButtonEvent::CHANGE));
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     bool RadioButton::enabled() { return _enabled; }
@@ -185,19 +185,19 @@ namespace fl2d {
             }
         }
         
-//        Graphics* g;
-//        g = graphics();
-//        g->clear();
-//        g->lineStyle(1, _lineColor.getHex());
-//        if(_enabled) {
-//            g->beginFill(_normalColor.getHex());
-//        } else {
-//            g->beginFill(_deactiveColor.getHex());
-//        }
-//        g->drawRect(0, 0, _uiWidth, _uiHeight);
-//        g->endFill();
+        //        Graphics* g;
+        //        g = graphics();
+        //        g->clear();
+        //        g->lineStyle(1, _lineColor.getHex());
+        //        if(_enabled) {
+        //            g->beginFill(_normalColor.getHex());
+        //        } else {
+        //            g->beginFill(_deactiveColor.getHex());
+        //        }
+        //        g->drawRect(0, 0, _uiWidth, _uiHeight);
+        //        g->endFill();
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -238,7 +238,7 @@ namespace fl2d {
         g->drawCircle(7, 7, 3);
         g->endFill();
     }
-
+    
     //--------------------------------------------------------------
     //
     void RadioButton::_over() {
@@ -250,7 +250,7 @@ namespace fl2d {
         
         _label->textColor(_labelOverColor.getHex());
     }
-
+    
     //--------------------------------------------------------------
     //
     void RadioButton::_normal() {
@@ -262,7 +262,7 @@ namespace fl2d {
             _label->textColor(_labelNormalColor.getHex());
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void RadioButton::_press() {
@@ -274,11 +274,11 @@ namespace fl2d {
     void RadioButton::_setGroupOwner(RadioButtonGroup* groupOwner) {
         _groupOwner = groupOwner;
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void RadioButton::_mouseEventHandler(Event& event) {
@@ -297,11 +297,11 @@ namespace fl2d {
             //if(event.target() == this) _normal();
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     //--------------------------------------------------------------
-
+    
     //--------------------------------------------------------------
     //
     RadioButtonGroup::RadioButtonGroup() {

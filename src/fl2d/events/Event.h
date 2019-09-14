@@ -9,74 +9,74 @@
 #pragma once
 
 #include <string>
-#include "../core/Object.h"
+#include "Object.h"
 
 namespace fl2d {
     
     class Event : public Object {
-        public:
-            static string ADDED;
-            static string ADDED_TO_STAGE;
-            
-            static string REMOVED;
-            static string REMOVED_FROM_STAGE;
-            
-            //static string ACTIVATE;
-            //static string DEACTIVATE;
-            //static string CANCEL;
-            static string CHANGE;
-            static string CLOSE;
-            static string COMPLETE;
-            //static string CONNECT;
-            static string ENTER_FRAME;
-            static string EXIT_FRAME;
-            //static string FULLSCREEN;
-            //static string ID3;
-            static string INIT;
-            //static string MOUSE_LEAVE;
-            //static string OPEN;
-            //static string RENDER;
-            //static string RESIZE;
-            //static string SCROLL;
-            //static string SELECT;
-            //static string SOUND_COMPLETE;
-            //static string TAB_CHILDREN_CHANEG;
-            //static string TAB_ENABLED_CHANGE;
-            //static string TAB_INDEX_CHANGE;
-            //static string UNLOAD;
-            
-        protected:
-            string _type;
+    public:
+        static string ADDED;
+        static string ADDED_TO_STAGE;
         
-            void* _currentTarget;
-            void* _target;
+        static string REMOVED;
+        static string REMOVED_FROM_STAGE;
         
-        private:
+        //static string ACTIVATE;
+        //static string DEACTIVATE;
+        //static string CANCEL;
+        static string CHANGE;
+        static string CLOSE;
+        static string COMPLETE;
+        //static string CONNECT;
+        static string ENTER_FRAME;
+        static string EXIT_FRAME;
+        //static string FULLSCREEN;
+        //static string ID3;
+        static string INIT;
+        //static string MOUSE_LEAVE;
+        //static string OPEN;
+        //static string RENDER;
+        //static string RESIZE;
+        //static string SCROLL;
+        //static string SELECT;
+        //static string SOUND_COMPLETE;
+        //static string TAB_CHILDREN_CHANEG;
+        //static string TAB_ENABLED_CHANGE;
+        //static string TAB_INDEX_CHANGE;
+        //static string UNLOAD;
         
-        public:
-            Event(string type);
-            virtual ~Event();
-            
-            virtual inline Event* clone() { return new Event(_type); }
-            
-            virtual inline string type() { return _type; }
+    protected:
+        string _type;
         
-//            virtual const string& data();
-
-            virtual inline void* currentTarget() { return _currentTarget; }
-            virtual inline void currentTarget(void* value) { _currentTarget = value; }
+        void* _currentTarget;
+        void* _target;
         
-            virtual inline void* target() { return _target; }
-            virtual inline void target(void* value) { _target = value; }
+    private:
         
-            template <class T>
-            T data() { return getProperty<T>("data"); }
+    public:
+        Event(string type);
+        virtual ~Event();
         
-        protected:
-            
-        private:
-            template <class T>
-            void data(T value) { setProperty<T>("data", value); }
+        virtual inline Event* clone() { return new Event(_type); }
+        
+        virtual inline string type() { return _type; }
+        
+        //            virtual const string& data();
+        
+        virtual inline void* currentTarget() { return _currentTarget; }
+        virtual inline void currentTarget(void* value) { _currentTarget = value; }
+        
+        virtual inline void* target() { return _target; }
+        virtual inline void target(void* value) { _target = value; }
+        
+        template <class T>
+        T data() { return getProperty<T>("data"); }
+        
+    protected:
+        
+    private:
+        template <class T>
+        void data(T value) { setProperty<T>("data", value); }
         
     };
     

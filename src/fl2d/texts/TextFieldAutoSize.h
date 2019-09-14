@@ -13,11 +13,11 @@ using namespace std;
 namespace fl2d {
     
     class TextFieldAutoSize {
-        public:
-            static string NONE;
-            static string LEFT;
-            static string RIGHT;
-            static string CENTER;
+    public:
+        static string NONE;
+        static string LEFT;
+        static string RIGHT;
+        static string CENTER;
     };
     
 }

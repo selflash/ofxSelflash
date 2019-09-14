@@ -76,14 +76,14 @@ void SubController2::_setup() {
     addChild(textField);
     colorSlider001 = new flColorSlider(185, false);
     colorSlider001->label(textField);
-//    colorSlider001->label()->width(200);
-//    colorSlider001->label()->autoSize(flTextFieldAutoSize::CENTER);
+    //    colorSlider001->label()->width(200);
+    //    colorSlider001->label()->autoSize(flTextFieldAutoSize::CENTER);
     colorSlider001->x(marginLeft + spacing * 0);
     colorSlider001->y(marginTop + lineSpacing * 1);
     colorSlider001->redValue<float>(1.0);
     colorSlider001->greenValue<float>(1.0);
     colorSlider001->blueValue<float>(1.0);
-//    colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
+    //    colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(colorSlider001);
     
     //スライダー
@@ -97,16 +97,16 @@ void SubController2::_setup() {
     slider001 = new flSlider(185, 1, 20, 1);
     slider001->x(marginLeft + spacing * 1);
     slider001->y(marginTop + lineSpacing * 1);
-//    slider001->addEventListener(flSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
+    //    slider001->addEventListener(flSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(slider001);
     
     check001 = new flCheckBox();
     check001->labelText("Fill Enabled");
     check001->x(marginLeft + spacing * 1);
     check001->y(marginTop + lineSpacing * 2 + 10);
-//    check001->selected(true);
-//    check001->enabled(false);
-//    check001->addEventListener(flRadioButtonEvent::CHANGE, this, &SubController2::_uiEventHandler);
+    //    check001->selected(true);
+    //    check001->enabled(false);
+    //    check001->addEventListener(flRadioButtonEvent::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(check001);
     //--------------------------------------
 }
@@ -125,7 +125,7 @@ void SubController2::_draw() {
     if(_isMinimize) return;
     
     //Draw Anything
-//    ofDrawBitmapString(_status, 10, 170);
+    //    ofDrawBitmapString(_status, 10, 170);
 }
 
 //==============================================================
@@ -139,7 +139,7 @@ void SubController2::_draw() {
 //--------------------------------------------------------------
 //
 void SubController2::_uiEventHandler(flEvent& event) {
-//    cout << "[SubController2]_uiEventHandler(" << event.type() << endl;
+    //    cout << "[SubController2]_uiEventHandler(" << event.type() << endl;
     
     //ボタン(マウスダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {
@@ -163,7 +163,7 @@ void SubController2::_uiEventHandler(flEvent& event) {
         flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
         flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
     }
-
+    
     //ラジオボタン
     if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;

@@ -1,4 +1,4 @@
-﻿//
+//
 //  TransformableNode.cpp
 //  ofApp
 //
@@ -60,7 +60,7 @@ TransformableNode::~TransformableNode() {
 
 //--------------------------------------------------------------
 void TransformableNode::begin() {
-//    ofPushMatrix();
+    //    ofPushMatrix();
     
     _scaleNode.transformGL();
     _rotationNode.transformGL();
@@ -72,8 +72,8 @@ void TransformableNode::end() {
     _positionNode.restoreTransformGL();
     _rotationNode.restoreTransformGL();
     _scaleNode.restoreTransformGL();
-
-//    ofPopMatrix();
+    
+    //    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -135,7 +135,7 @@ void TransformableNode::rotationX(float value) {
     
     _xRot.makeRotate(diff, 1.0, 0.0, 0.0);
     _qRot *= _xRot;
-//    setOrientation(_qRot);
+    //    setOrientation(_qRot);
     
     _rotationNode.setOrientation(_qRot);
 }
@@ -149,7 +149,7 @@ void TransformableNode::rotationY(float value) {
     _yRot.makeRotate(diff, 0.0, 1.0, 0.0);
     _qRot *= _yRot;
     
-//    setOrientation(_qRot);
+    //    setOrientation(_qRot);
     _rotationNode.setOrientation(_qRot);
 }
 
@@ -162,7 +162,7 @@ void TransformableNode::rotationZ(float value) {
     _zRot.makeRotate(diff, 0.0, 0.0, 1.0);
     _qRot *= _zRot;
     
-//    setOrientation(_qRot);
+    //    setOrientation(_qRot);
     _rotationNode.setOrientation(_qRot);
 }
 
@@ -173,7 +173,7 @@ void TransformableNode::resetRotation() {
     _rotationZ = 0.0;
     _qRot = ofQuaternion();
     
-//    setOrientation(_qRot);
+    //    setOrientation(_qRot);
     _rotationNode.setOrientation(_qRot);
 }
 
@@ -186,7 +186,7 @@ float TransformableNode::x() { return _positionNode.getPosition().x; }
 void TransformableNode::x(float value) {
     ofVec3f position = _positionNode.getPosition();
     
-//    setPosition(value, position.y, position.z);
+    //    setPosition(value, position.y, position.z);
     _positionNode.setPosition(value, position.y, position.z);
 }
 
@@ -195,7 +195,7 @@ float TransformableNode::y() { return _positionNode.getPosition().y; }
 void TransformableNode::y(float value) {
     ofVec3f position = _positionNode.getPosition();
     
-//    setPosition(position.x, value, position.z);
+    //    setPosition(position.x, value, position.z);
     _positionNode.setPosition(position.x, value, position.z);
 }
 
@@ -204,7 +204,7 @@ float TransformableNode::z() { return _positionNode.getPosition().z; }
 void TransformableNode::z(float value) {
     ofVec3f position = _positionNode.getPosition();
     
-//    setPosition(position.x, position.y, value);
+    //    setPosition(position.x, position.y, value);
     _positionNode.setPosition(position.x, position.y, value);
 }
 
@@ -213,7 +213,7 @@ float TransformableNode::scaleX() { return _scaleNode.getScale().x; }
 void TransformableNode::scaleX(float value) {
     ofVec3f scale = _scaleNode.getScale();
     
-//    setScale(value, scale.y, scale.z);
+    //    setScale(value, scale.y, scale.z);
     _scaleNode.setScale(value, scale.y, scale.z);
 }
 
@@ -222,7 +222,7 @@ float TransformableNode::scaleY() { return _scaleNode.getScale().y; }
 void TransformableNode::scaleY(float value) {
     ofVec3f scale = _scaleNode.getScale();
     
-//    setScale(scale.x, value, scale.z);
+    //    setScale(scale.x, value, scale.z);
     _scaleNode.setScale(scale.x, value, scale.z);
 }
 
@@ -231,7 +231,7 @@ float TransformableNode::scaleZ() { return _scaleNode.getScale().z; }
 void TransformableNode::scaleZ(float value) {
     ofVec3f scale = _scaleNode.getScale();
     
-//    setScale(scale.x, scale.y, value);
+    //    setScale(scale.x, scale.y, value);
     _scaleNode.setScale(scale.x, scale.y, value);
 }
 
@@ -246,25 +246,25 @@ void TransformableNode::scaleZ(float value) {
 //--------------------------------------------------------------
 //
 void TransformableNode::_mouseMoveEventHandler(ofMouseEventArgs& event) {
-//    cout << "[TransformableNode]_mouseMoveEventHandler() << endl";
+    //    cout << "[TransformableNode]_mouseMoveEventHandler() << endl";
     if(_mouseID != 0) return;
     if(!_enabled) return;
-
+    
 }
 
 //--------------------------------------------------------------
 //
 void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
-//    cout << "[TransformableNode]_mouseDragEventHandler() << endl";
+    //    cout << "[TransformableNode]_mouseDragEventHandler() << endl";
     if(_mouseID != 0) return;
     if(!_enabled) return;
     
     _mouse.x = event.x;
     _mouse.y = event.y;
-
+    
     float dx = _mouse.x - _lastMouse.x;
     float dy = _mouse.y - _lastMouse.y;
-
+    
     //Rotation
     if(_dragMode == 0) {
         float spinX = dx * 0.1;
@@ -279,8 +279,8 @@ void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
         float n = 225;
         
         if(distance < n || _isInArea) {
-//            cout << "spinX = " << spinX << endl;
-//            cout << "spinY = " << spinY << endl;
+            //            cout << "spinX = " << spinX << endl;
+            //            cout << "spinY = " << spinY << endl;
             //X軸
             rotationX(rotationX() + spinY);
             //Y軸
@@ -305,10 +305,10 @@ void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
 //--------------------------------------------------------------
 //
 void TransformableNode::_mouseDownEventHandler(ofMouseEventArgs& event) {
-//    cout << "[TransformableNode]_mouseDownEventHandler()" << endl;
+    //    cout << "[TransformableNode]_mouseDownEventHandler()" << endl;
     if(!_enabled) return;
     _mouseID = event.button;
-
+    
     _mouse.x = event.x;
     _mouse.y = event.y;
     _lastMouse = _mouse;
@@ -323,16 +323,16 @@ void TransformableNode::_mouseDownEventHandler(ofMouseEventArgs& event) {
 //--------------------------------------------------------------
 //
 void TransformableNode::_mouseUpEventHandler(ofMouseEventArgs& event) {
-//    cout << "[TransformableNode]_mouseUpEventHandler()";
+    //    cout << "[TransformableNode]_mouseUpEventHandler()";
     if(!_enabled) return;
-
+    
     _isInArea = false;
 }
 
 //--------------------------------------------------------------
 //
 void TransformableNode::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
-//    cout << "[TransformableNode]_mouseScrolledEventHandler() << endl";
+    //    cout << "[TransformableNode]_mouseScrolledEventHandler() << endl";
     if(!_enabled) return;
     
     float scrollY = event.scrollY * 0.1;

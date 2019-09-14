@@ -1,7 +1,7 @@
-﻿#include "Transform.h"
+#include "Transform.h"
 
 namespace fl2d {
-
+    
     //--------------------------------------------------------------
     //
     Transform::Transform() {
@@ -10,7 +10,7 @@ namespace fl2d {
         _pixelBounds = new Rectangle();
         _rect = new Rectangle();
     }
-
+    
     //--------------------------------------------------------------
     //
     Transform::~Transform() {
@@ -19,7 +19,7 @@ namespace fl2d {
         _pixelBounds = NULL;
         _rect = NULL;
     }
-
+    
     //--------------------------------------------------------------
     //
     void Transform::update() {
@@ -33,5 +33,5 @@ namespace fl2d {
         
         if(bDirtyMatrix3D) _matrix3D.set(matrix3D);
     }
-
+    
 }

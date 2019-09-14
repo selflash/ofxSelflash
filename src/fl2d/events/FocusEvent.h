@@ -1,4 +1,4 @@
-﻿/**
+/**
  
  ActionScript3.0 Reference
  flash.events.FocusEvent
@@ -10,7 +10,7 @@
 
 #include <string>
 #include "Event.h"
-#include "../display/InteractiveObject.h"
+#include "InteractiveObject.h"
 
 namespace fl2d {
     
@@ -19,20 +19,20 @@ namespace fl2d {
     class FocusEvent : public Event {
         friend InteractiveObject;
         friend Stage;
-            
-        public:
-            static string FOCUS_IN;
-            static string FOCUS_OUT;
-            static string KEY_FOCUS_CHANGE;
-            static string MOUSE_FOCUS_CHANGE;
-            
-        private:
-            
-        public:
-            FocusEvent(string type);
-            virtual ~FocusEvent();
-            
-        private:
+        
+    public:
+        static string FOCUS_IN;
+        static string FOCUS_OUT;
+        static string KEY_FOCUS_CHANGE;
+        static string MOUSE_FOCUS_CHANGE;
+        
+    private:
+        
+    public:
+        FocusEvent(string type);
+        virtual ~FocusEvent();
+        
+    private:
         
     };
     

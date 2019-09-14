@@ -297,7 +297,7 @@ namespace fl2d {
         
         ofPushStyle();
         ofTranslate(*_center);
-        float angle = MathUtil::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+        float angle = flmath::getAngle(lever->x() - _center->x, lever->y() - _center->y);
         ofDrawBitmapString(ofToString(angle), 0, 0);
         ofTranslate(-*_center);
         ofPopStyle();

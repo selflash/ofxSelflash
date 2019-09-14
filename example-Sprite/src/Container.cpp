@@ -50,7 +50,7 @@ void Container::_setup() {
 //--------------------------------------------------------------
 //
 void Container::_update() {
-//    cout << "[Container]_update()" << endl;
+    //    cout << "[Container]_update()" << endl;
     
     int frameNum = ofGetFrameNum();
     float w = sin(frameNum * 0.05) * 50 + 200;
@@ -68,7 +68,7 @@ void Container::_update() {
 //--------------------------------------------------------------
 //
 void Container::_draw() {
-//    cout << "[Container]_draw()" << endl;
+    //    cout << "[Container]_draw()" << endl;
     
     //---------------------------------
     string info;
@@ -91,7 +91,7 @@ void Container::_draw() {
     flFont::drawString(info, 0, 0);
     ofPopMatrix();
     //---------------------------------
-
+    
 }
 
 //==============================================================

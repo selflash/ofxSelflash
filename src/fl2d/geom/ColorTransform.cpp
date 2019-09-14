@@ -1,19 +1,19 @@
-﻿#include "ColorTransform.h"
+#include "ColorTransform.h"
 
 namespace fl2d {
-
+    
     //--------------------------------------------------------------
     //
     ColorTransform::ColorTransform(
-        float redMultiplier,
-        float greenMultiplier,
-        float blueMultiplier,
-        float alphaMultiplier,
-        float redOffset,
-        float greenOffset,
-        float blueOffset,
-        float alphaOffset
-    ) {
+                                   float redMultiplier,
+                                   float greenMultiplier,
+                                   float blueMultiplier,
+                                   float alphaMultiplier,
+                                   float redOffset,
+                                   float greenOffset,
+                                   float blueOffset,
+                                   float alphaOffset
+                                   ) {
         this->redMultiplier   = redMultiplier;
         this->greenMultiplier = greenMultiplier;
         this->blueMultiplier  = blueMultiplier;
@@ -25,13 +25,13 @@ namespace fl2d {
         
         color = 0xFFFFFF;
     }
-
+    
     //--------------------------------------------------------------
     //
     ColorTransform::~ColorTransform() {
         //
     }
-
+    
     /**
      *  Concatenates the ColorTranform object specified by the second parameter with the current ColorTransform object
      *  and sets the current object as the result, which is an additive combination of the two color transformations.
@@ -39,7 +39,7 @@ namespace fl2d {
     void ColorTransform::concat(const ColorTransform& second) {
         // not sure how flash concats these transforms. will have to look into it.
     }
-
+    
     //--------------------------------------------------------------
     //
     void ColorTransform::set(const ColorTransform& second) {
@@ -53,7 +53,7 @@ namespace fl2d {
         redMultiplier   = second.redMultiplier;
         redOffset       = second.redOffset;
     }
-
+    
     //--------------------------------------------------------------
     //
     bool ColorTransform::isEqual(const ColorTransform& second) {
@@ -69,7 +69,7 @@ namespace fl2d {
         
         return true;
     }
-
+    
     //--------------------------------------------------------------
     // Formats and returns a string that describes all of the properties of the ColorTransform object.
     //

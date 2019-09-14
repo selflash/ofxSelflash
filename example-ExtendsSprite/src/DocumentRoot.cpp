@@ -29,7 +29,7 @@ DocumentRoot::~DocumentRoot() {
 //
 void DocumentRoot::_setup() {
     cout << "[DocumentRoot]_setup()" << endl;
-        
+    
     //--------------------------------------
     //ステージに追加された時にキーボードイベントを監視する
     addEventListener(flEvent::ADDED_TO_STAGE, this, &DocumentRoot::_eventHandler);
@@ -51,7 +51,7 @@ void DocumentRoot::_setup() {
     ofSetCircleResolution(50);
     ofBackground(255,255,255);
     bSmooth = false;
-//    ofSetWindowTitle("graphics example");
+    //    ofSetWindowTitle("graphics example");
     
     ofSetFrameRate(60); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
     //-----------------------------------
@@ -190,7 +190,7 @@ void DocumentRoot::_eventHandler(flEvent& event) {
 //--------------------------------------------------------------
 //
 void DocumentRoot::_keyboardEventHandler(flEvent& event) {
-//    cout << "[DocumentRoot]_keyboardEventHandler(" + event.type() + ")";
+    //    cout << "[DocumentRoot]_keyboardEventHandler(" + event.type() + ")";
     
     flKeyboardEvent* keyboardEvent = dynamic_cast<flKeyboardEvent*>(&event);
     int key = keyboardEvent->keyCode();
@@ -220,16 +220,16 @@ void DocumentRoot::_keyboardEventHandler(flEvent& event) {
 void DocumentRoot::_moveEventHandler(flEvent& event) {
     //cout << "[DocumentRoot]_moveEventHandler(" << event.type() << ")" << endl;
     
-//    cout << "mouse is moving" << endl;
+    //    cout << "mouse is moving" << endl;
 }
 
 //--------------------------------------------------------------
 //
 void DocumentRoot::_mouseEventHandler(flEvent& event) {
-//    cout << "[DocumentRoot]_mouseEventHandler(" << event.type() << ")" << endl;
-//    cout << "[PrentBox]this          = " << this << endl;
-//    cout << "[ParetBox]currentTarget = " << event.currentTarget() << endl;
-//    cout << "[ParetBox]target        = " << event.target() << endl;
+    //    cout << "[DocumentRoot]_mouseEventHandler(" << event.type() << ")" << endl;
+    //    cout << "[PrentBox]this          = " << this << endl;
+    //    cout << "[ParetBox]currentTarget = " << event.currentTarget() << endl;
+    //    cout << "[ParetBox]target        = " << event.target() << endl;
     
     if(event.type() == flMouseEvent::MOUSE_OVER) {
         if(event.target() == this) {

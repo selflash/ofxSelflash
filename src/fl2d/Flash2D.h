@@ -1,34 +1,28 @@
-/**
- [メモ]
- ■基本設計は「完全コンストラクタ」パターンです。
- 
- */
-
 #pragma once
 
-#include "FlashConfig.h"
+#include "flmath.h"
+#include "flstringutil.h"
 
+#include "FlashConfig.h"
 typedef fl2d::FlashConfig FlashConfig;
 
 //flash.core
-#include "core/Object.h"
+#include "Object.h"
 
 typedef fl2d::Object Object;
 
-
-
 //flash.display
-#include "display/Stage.h"
-#include "display/MovieClip.h"
-#include "display/Sprite.h"
-#include "display/DisplayObjectContainer.h"
-#include "display/InteractiveObject.h"
-#include "display/BitmapData.h"
-#include "display/Bitmap.h"
-#include "display/Graphics.h"
-#include "display/Shape.h"
-#include "display/DisplayObject.h"
-#include "display/BlendMode.h"
+#include "Stage.h"
+#include "MovieClip.h"
+#include "Sprite.h"
+#include "DisplayObjectContainer.h"
+#include "InteractiveObject.h"
+#include "BitmapData.h"
+#include "Bitmap.h"
+#include "Graphics.h"
+#include "Shape.h"
+#include "DisplayObject.h"
+#include "BlendMode.h"
 
 typedef fl2d::Stage flStage;
 typedef fl2d::MovieClip flMovieClip;
@@ -45,30 +39,30 @@ typedef fl2d::BlendMode flBlendMode;
 
 
 //flash.events
-#include "events/EventDispatcher.h"
-#include "events/Event.h"
-#include "events/SoundEvent.h"
-#include "events/AnimationEvent.h"
-#include "events/FocusEvent.h"
-#include "events/MouseEvent.h"
-#include "events/KeyboardEvent.h"
-#include "events/SliderEvent.h"
-#include "events/RotarySliderEvent.h"
-#include "events/AnglerEvent.h"
-#include "events/ButtonEvent.h"
-#include "events/CheckBoxEvent.h"
-#include "events/RadioButtonEvent.h"
-#include "events/NumberDialerEvent.h"
-#include "events/RangeSliderEvent.h"
-#include "events/ColorSliderEvent.h"
-#include "events/Vec2SliderEvent.h"
-#include "events/Vec3SliderEvent.h"
-#include "events/ColorPickerEvent.h"
-#include "events/PadEvent.h"
-#include "events/Joystick1Event.h"
-#include "events/Joystick2Event.h"
-#include "events/ComboBoxEvent.h"
-#include "events/HistgramViewerEvent.h"
+#include "EventDispatcher.h"
+#include "Event.h"
+#include "SoundEvent.h"
+#include "AnimationEvent.h"
+#include "FocusEvent.h"
+#include "MouseEvent.h"
+#include "KeyboardEvent.h"
+#include "SliderEvent.h"
+#include "RotarySliderEvent.h"
+#include "AnglerEvent.h"
+#include "ButtonEvent.h"
+#include "CheckBoxEvent.h"
+#include "RadioButtonEvent.h"
+#include "NumberDialerEvent.h"
+#include "RangeSliderEvent.h"
+#include "ColorSliderEvent.h"
+#include "Vec2SliderEvent.h"
+#include "Vec3SliderEvent.h"
+#include "ColorPickerEvent.h"
+#include "PadEvent.h"
+#include "Joystick1Event.h"
+#include "Joystick2Event.h"
+#include "ComboBoxEvent.h"
+#include "HistgramViewerEvent.h"
 
 typedef fl2d::EventDispatcher flEventDispatcher;
 typedef fl2d::Event flEvent;
@@ -99,26 +93,17 @@ typedef fl2d::HistgramViewerEvent flHistgramViewerEvent;
 
 
 //flash.geom
-#include "geom/ColorTransform.h"
-#include "geom/Matrix.h"
-//#include "geom/Particle2D.h"
-#include "geom/Rectangle.h"
-#include "geom/Transform.h"
+#include "ColorTransform.h"
+#include "Matrix.h"
+//#include "Particle2D.h"
+#include "Rectangle.h"
+#include "Transform.h"
 
 typedef fl2d::ColorTransform flColorTransform;
 typedef fl2d::Matrix flMatrix;
 //typedef fl2d::Particle2D flParticle2D;
 typedef fl2d::Rectangle flRectangle;
 typedef fl2d::Transform flTransform;
-
-
-
-//flash.net
-#include "net/Loader.h"
-
-typedef fl2d::Loader flLoader;
-
-
 
 //flash.texts
 #include "texts/Font.h"
@@ -132,27 +117,27 @@ typedef fl2d::TextFieldAutoSize flTextFieldAutoSize;
 
 
 //flash.ui
-#include "ui/Mouse.h"
-#include "ui/Keyboard.h"
-#include "ui/Button.h"
-#include "ui/CheckBox.h"
-#include "ui/RadioButton.h"
-#include "ui/NumberDialer.h"
-#include "ui/Slider.h"
-#include "ui/RangeSlider.h"
-#include "ui/ColorSlider.h"
-#include "ui/Vec2Slider.h"
-#include "ui/Vec3Slider.h"
-#include "ui/RotarySlider.h"
-#include "ui/Angler.h"
-#include "ui/CircleColorPicker.h"
-#include "ui/Pad2D.h"
-#include "ui/Pad3D.h"
-#include "ui/Joystick2.h"
-#include "ui/Joystick1.h"
-#include "ui/ScrollKit.h"
-#include "ui/ComboBox.h"
-#include "ui/HistgramViewer.h"
+#include "Mouse.h"
+#include "Keyboard.h"
+#include "Button.h"
+#include "CheckBox.h"
+#include "RadioButton.h"
+#include "NumberDialer.h"
+#include "Slider.h"
+#include "RangeSlider.h"
+#include "ColorSlider.h"
+#include "Vec2Slider.h"
+#include "Vec3Slider.h"
+#include "RotarySlider.h"
+#include "Angler.h"
+#include "CircleColorPicker.h"
+#include "Pad2D.h"
+#include "Pad3D.h"
+#include "Joystick2.h"
+#include "Joystick1.h"
+#include "ScrollKit.h"
+#include "ComboBox.h"
+#include "HistgramViewer.h"
 
 typedef fl2d::Mouse flMouse;
 typedef fl2d::Keyboard flKeyboard;
@@ -178,27 +163,27 @@ typedef fl2d::ComboBox flComboBox;
 typedef fl2d::HistgramViewer flHistgramViewer;
 
 class Flash2D {
-    public:
-        
-    private:
-        static bool _isSetuped;
-
-    public:
-        static inline void setup() {
-            if(_isSetuped) return;
-            _isSetuped = true;
-            
-            fl2d::Font::setup();
-        }
+public:
     
-        static inline void clear() {
-            if(!_isSetuped) return;
-            _isSetuped = false;
-            
-            fl2d::Stage::clear();
-            
-            fl2d::Font::clear();
-        }
+private:
+    static bool _isSetuped;
+    
+public:
+    static inline void setup() {
+        if(_isSetuped) return;
+        _isSetuped = true;
+        
+        fl2d::Font::setup();
+    }
+    
+    static inline void clear() {
+        if(!_isSetuped) return;
+        _isSetuped = false;
+        
+        fl2d::Stage::clear();
+        
+        fl2d::Font::clear();
+    }
 };
 
 //グローバル
@@ -213,7 +198,7 @@ class Flash2D {
  =========================================
  
  -----------------------------------------
-【flash.display】
+ 【flash.display】
  
  [flash.display.Bitmap]
  
@@ -222,38 +207,38 @@ class Flash2D {
  [flash.display.BlendMode]
  
  [flash.display.DisplayObject]
-    ■ stageへの参照がとれない時がある
-    □ stage()の型がDisplayObjectになってる
+ ■ stageへの参照がとれない時がある
+ □ stage()の型がDisplayObjectになってる
  
  [flash.display.DisplayObjectContainer]
-    □ width, heightのsetterでの子への影響
+ □ width, heightのsetterでの子への影響
  
  [flash.display.Graphics]
-    ■ clear()の挙動が違う
+ ■ clear()の挙動が違う
  
  [flash.display.InteractiveObject]
  
  [flash.display.MovieClip]
-
+ 
  [flash.display.Sprite]
-    □ startDrag()の実装方法がベストじゃない
+ □ startDrag()の実装方法がベストじゃない
  
  [flash.display.Stage]
-    □ ハンドカーソルの表示 
-    □ 複数keyDown時の挙動
+ □ ハンドカーソルの表示
+ □ 複数keyDown時の挙動
  -----------------------------------------
  
  -----------------------------------------
-【flash.events】
+ 【flash.events】
  
  [flash.events.Event]
-
+ 
  [flash.events.EventDispathcer]
-    □ dispatch中のイベントハンドラ内でdispatch中のイベントをremoveEventListenerした時に上手く行かない
+ □ dispatch中のイベントハンドラ内でdispatch中のイベントをremoveEventListenerした時に上手く行かない
  
  [flash.events.MouseEvent]
-    □ MouseEvent.CLICKの実装
-    □ MouseEvent.DOUBLE_CLICKの実装
+ □ MouseEvent.CLICKの実装
+ □ MouseEvent.DOUBLE_CLICKの実装
  
  [flash.events.TextEvent]
  
@@ -271,13 +256,13 @@ class Flash2D {
  -----------------------------------------
  
  -----------------------------------------
-【flash.filters】
+ 【flash.filters】
  
  [flash.filters.BlurFilter]
  -----------------------------------------
  
  -----------------------------------------
-【flash.geom】
+ 【flash.geom】
  
  [flash.geom.Matrix]
  
@@ -287,21 +272,21 @@ class Flash2D {
  -----------------------------------------
  
  -----------------------------------------
-【flash.media】
+ 【flash.media】
  -----------------------------------------
  
  -----------------------------------------
-【flash.net】
+ 【flash.net】
  -----------------------------------------
  
  -----------------------------------------
-【flash.text】
+ 【flash.text】
  [flash.texts.TextField]
-    □ テキストのy座標が0より上に配置される
+ □ テキストのy座標が0より上に配置される
  -----------------------------------------
  
  -----------------------------------------
-【flash.ui】
+ 【flash.ui】
  
  [flash.ui.Keyboard]
  
@@ -323,13 +308,13 @@ class Flash2D {
  -----------------------------------------
  
  -----------------------------------------
-【flash.utils】
+ 【flash.utils】
  -----------------------------------------
  
  -----------------------------------------
  【flash.gl】
  
  [flash.gl.FrameBufferObject]
-
+ 
  -----------------------------------------
  */

@@ -1,11 +1,11 @@
 #include "HistgramViewer.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // Constructor / Destructor
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     HistgramViewer::HistgramViewer(float width, float height) {
@@ -13,10 +13,10 @@ namespace fl2d {
         
         _target = this;
         name("HistgramViewer");
-
-//        buttonMode(true);
+        
+        //        buttonMode(true);
         useHandCursor(true);
-
+        
         _uiWidth = width;
         _uiHeight = height;
         
@@ -58,10 +58,10 @@ namespace fl2d {
         //------------------------------------------
         
         _valueHistory.resize((int)_uiWidth);
-//        _avelageHistroy.resize((int)_uiWidth);
+        //        _avelageHistroy.resize((int)_uiWidth);
         for(int i = 0; i < _valueHistory.size(); i++) _line.addVertex(0, 0);
     }
-
+    
     //--------------------------------------------------------------
     //
     HistgramViewer::~HistgramViewer() {
@@ -74,7 +74,7 @@ namespace fl2d {
         
         _uiWidth = 0.0;
         _uiHeight = 0.0;
-
+        
         _label = NULL;
         
         _value = 0.0;
@@ -87,26 +87,26 @@ namespace fl2d {
         
         _valueHistory.clear();
     }
-
+    
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void HistgramViewer::_update() {
         if(isMouseDown()) {
             _valueScale = _tempValue + ((mouseY() - _startPos->y) * _weight);
             _valueScale = max(_valueScale, _min);
-//            if(!isnan(_max)) if(_max <= _value) _value = _max;
-//            if(_valueScale <= _min) _valueScale = _min;
+            //            if(!isnan(_max)) if(_max <= _value) _value = _max;
+            //            if(_valueScale <= _min) _valueScale = _min;
             ofLogNotice() << "_valueScale = " << _valueScale;
-
-//            if(_roundEnabled) {
-//                _valueText->text(ofToString(MathUtil::roundd(_value)));
-//            } else {
-//                _valueText->text(ofToString(_value));
-//            }
+            
+            //            if(_roundEnabled) {
+            //                _valueText->text(ofToString(MathUtil::roundd(_value)));
+            //            } else {
+            //                _valueText->text(ofToString(_value));
+            //            }
         }
         
         //------------------------------------------
@@ -119,25 +119,25 @@ namespace fl2d {
             }
         }
         //------------------------------------------
-
-//        //------------------------------------------
-//        {
-//            int l = _avelageHistroy.size();
-//            float sum = 0;
-//            for(int i = 0; i < l; i++) {
-//                int ni = i + 1;
-//                if(ni >= l) ni = 0;
-//                _avelageHistroy[i] = _avelageHistroy[ni];
-//            }
-//
-//            _average = 0;
-//            for(const float& n :  _valueHistory) {
-//                _average += n;
-//            }
-//            _average /= (float)l;
-//            _avelageHistroy[l - 1] = _average;
-//        }
-//        //------------------------------------------
+        
+        //        //------------------------------------------
+        //        {
+        //            int l = _avelageHistroy.size();
+        //            float sum = 0;
+        //            for(int i = 0; i < l; i++) {
+        //                int ni = i + 1;
+        //                if(ni >= l) ni = 0;
+        //                _avelageHistroy[i] = _avelageHistroy[ni];
+        //            }
+        //
+        //            _average = 0;
+        //            for(const float& n :  _valueHistory) {
+        //                _average += n;
+        //            }
+        //            _average /= (float)l;
+        //            _avelageHistroy[l - 1] = _average;
+        //        }
+        //        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -163,75 +163,75 @@ namespace fl2d {
                 _line[i].y = vy;
             }
         }
-
-//        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
+        
+        //        GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
         GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
         ofEnableSmoothing();
         ofEnableAntiAliasing();
-
+        
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         ofSetLineWidth(2);
         _line.draw();
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
-//        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
+        //        if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         //------------------------------------------
         
-//        //------------------------------------------
-//        {
-//            int l = _avelageHistroy.size();
-//            for(int i = 0; i < l; i++) {
-//                float vx = i + 1;
-//                float vy = iy - (_avelageHistroy[i] * 10) * _valueScale;
-//                vy = max(vy, 0.0f);
-//                vy = min(vy, _uiHeight - 1);
-//                _line[i].x = vx;
-//                _line[i].y = vy;
-//            }
-//
-//
-//            GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
-//            ofEnableSmoothing();
-//            ofEnableAntiAliasing();
-//
-//            ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-//            ofSetLineWidth(2);
-//            _line.draw();
-//            if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
-//        }
-//        //------------------------------------------
-
+        //        //------------------------------------------
+        //        {
+        //            int l = _avelageHistroy.size();
+        //            for(int i = 0; i < l; i++) {
+        //                float vx = i + 1;
+        //                float vy = iy - (_avelageHistroy[i] * 10) * _valueScale;
+        //                vy = max(vy, 0.0f);
+        //                vy = min(vy, _uiHeight - 1);
+        //                _line[i].x = vx;
+        //                _line[i].y = vy;
+        //            }
+        //
+        //
+        //            GLboolean preMultiSample = glIsEnabled(GL_MULTISAMPLE);
+        //            ofEnableSmoothing();
+        //            ofEnableAntiAliasing();
+        //
+        //            ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        //            ofSetLineWidth(2);
+        //            _line.draw();
+        //            if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
+        //        }
+        //        //------------------------------------------
+        
         //------------------------------------------
         float textHeight = Font::getMaxStringHeight();
         ofPushMatrix();
         ofTranslate(2, textHeight);
         ofPushStyle();
-//        ofSetColor(_textColor, 255 * _compoundAlpha);
+        //        ofSetColor(_textColor, 255 * _compoundAlpha);
         Font::drawString(ofToString(_value), 5, -1);
         ofPopStyle();
         ofPopMatrix();
         
-//        ofPushMatrix();
-//        ofTranslate(2, textHeight * 2);
-//        ofPushStyle();
-////        ofSetColor(_textColor, 255 * _compoundAlpha);
-//        Font::drawString(ofToString(_average), 5, -1);
-//        ofPopStyle();
-//        ofPopMatrix();
+        //        ofPushMatrix();
+        //        ofTranslate(2, textHeight * 2);
+        //        ofPushStyle();
+        ////        ofSetColor(_textColor, 255 * _compoundAlpha);
+        //        Font::drawString(ofToString(_average), 5, -1);
+        //        ofPopStyle();
+        //        ofPopMatrix();
         //------------------------------------------
-
+        
         ofPopStyle();
     }
-
+    
     
     //==============================================================
     // Public Method
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* HistgramViewer::label() { return _label; }
     void HistgramViewer::label(TextField* value) { _label = value; }
-
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
@@ -257,7 +257,7 @@ namespace fl2d {
     void HistgramViewer::_over() {
         _drawTrackGraphics(_overColor, _normalColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void HistgramViewer::_out() {
@@ -265,7 +265,7 @@ namespace fl2d {
         
         _drawTrackGraphics(_lineColor, _normalColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void HistgramViewer::_press() {
@@ -273,11 +273,11 @@ namespace fl2d {
         _startPos->x = mouseX();
         _startPos->y = mouseY();
         
-//        _valueText->textColor(_labelActiveColor);
+        //        _valueText->textColor(_labelActiveColor);
         
         _drawTrackGraphics(_overColor, _activeColor, 1);
     }
-
+    
     //--------------------------------------------------------------
     //
     void HistgramViewer::_release() {
@@ -288,11 +288,11 @@ namespace fl2d {
         
         _drawTrackGraphics(_lineColor, _normalColor, 1);
     }
-
+    
     //==============================================================
     // Event Handler
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void HistgramViewer::_mouseEventHandler(Event& event) {
@@ -315,9 +315,9 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             removeEventListener(MouseEvent::MOUSE_UP, this, &HistgramViewer::_mouseEventHandler);
             if(stage()) stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &HistgramViewer::_mouseEventHandler);
-//            if(event.target() == stage()) _release();
+            //            if(event.target() == stage()) _release();
             _release();
         }
     }
-
+    
 }

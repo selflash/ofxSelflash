@@ -1,4 +1,4 @@
-﻿#include "Keyboard.h"
+#include "Keyboard.h"
 
 namespace fl2d {
     
@@ -69,7 +69,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void Keyboard::__addDownKey(int value) {
-//        cout << "[Keyboard]__addDownKey(" << value << ")" << endl;
+        //        cout << "[Keyboard]__addDownKey(" << value << ")" << endl;
         
         for(int i = 0; i < _downKeyList.size(); i++) {
             if(_downKeyList[i] == value) return;
@@ -77,7 +77,7 @@ namespace fl2d {
         _downKeyList.push_back(value);
     }
     void Keyboard::__removeDownKey(int value) {
-//        cout << "[Keyboard]__removeDownKey(" << value << ")" << endl;
+        //        cout << "[Keyboard]__removeDownKey(" << value << ")" << endl;
         
         for(int i = 0; i < _downKeyList.size(); i++) {
             if(_downKeyList[i] == value) {
@@ -86,7 +86,7 @@ namespace fl2d {
         }
     }
     bool Keyboard::__checkKeyIsDown(int value) {
-//        cout << "[Keyboard]__checkKeyIsDown(" << value << ")" << endl;
+        //        cout << "[Keyboard]__checkKeyIsDown(" << value << ")" << endl;
         
         for(int i = 0; i < _downKeyList.size(); i++) {
             if(_downKeyList[i] == value) return true;

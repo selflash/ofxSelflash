@@ -7,22 +7,22 @@ namespace fl2d {
     
     class HistgramViewer;
     class HistgramViewerEvent : public Event {
-        public:
-            static string CHANGE;
+    public:
+        static string CHANGE;
         
-        protected:
+    protected:
         
-        private:
+    private:
         
-        public:
-            HistgramViewerEvent(string type);
-            virtual ~HistgramViewerEvent();
+    public:
+        HistgramViewerEvent(string type);
+        virtual ~HistgramViewerEvent();
         
-//            HistgramViewerEvent* clone();
-
-        protected:
-            
-        private:
+        //            HistgramViewerEvent* clone();
+        
+    protected:
+        
+    private:
         
     };
     

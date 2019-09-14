@@ -1,9 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-#include "../ofxSelflash.h"
+#include "ofxSelflash.h"
 
-class BasicController : public flSprite {
+namespace fltemplate {
+    
+    class BasicController : public flSprite {
     public:
         flTextField* titleTf = NULL;
         flButton* minimizeButton = NULL;
@@ -109,7 +111,7 @@ class BasicController : public flSprite {
         flTextField* text233 = NULL; flTextField* text234 = NULL; flTextField* text235 = NULL;
         flTextField* text236 = NULL; flTextField* text237 = NULL; flTextField* text238 = NULL;
         flTextField* text239 = NULL;
-        //テキストフィールド(300)    
+        //テキストフィールド(300)
         flTextField* text300 = NULL; flTextField* text301 = NULL; flTextField* text302 = NULL;
         flTextField* text303 = NULL; flTextField* text304 = NULL; flTextField* text305 = NULL;
         flTextField* text306 = NULL; flTextField* text307 = NULL; flTextField* text308 = NULL;
@@ -126,7 +128,7 @@ class BasicController : public flSprite {
         flTextField* text333 = NULL; flTextField* text334 = NULL; flTextField* text335 = NULL;
         flTextField* text336 = NULL; flTextField* text337 = NULL; flTextField* text338 = NULL;
         flTextField* text339 = NULL;
-        //テキストフィールド(400)    
+        //テキストフィールド(400)
         flTextField* text400 = NULL; flTextField* text401 = NULL; flTextField* text402 = NULL;
         flTextField* text403 = NULL; flTextField* text404 = NULL; flTextField* text405 = NULL;
         flTextField* text406 = NULL; flTextField* text407 = NULL; flTextField* text408 = NULL;
@@ -143,7 +145,7 @@ class BasicController : public flSprite {
         flTextField* text433 = NULL; flTextField* text434 = NULL; flTextField* text435 = NULL;
         flTextField* text436 = NULL; flTextField* text437 = NULL; flTextField* text438 = NULL;
         flTextField* text439 = NULL;
-        //テキストフィールド(500)    
+        //テキストフィールド(500)
         flTextField* text500 = NULL; flTextField* text501 = NULL; flTextField* text502 = NULL;
         flTextField* text503 = NULL; flTextField* text504 = NULL; flTextField* text505 = NULL;
         flTextField* text506 = NULL; flTextField* text507 = NULL; flTextField* text508 = NULL;
@@ -212,7 +214,7 @@ class BasicController : public flSprite {
         flTextField* text836 = NULL; flTextField* text837 = NULL; flTextField* text838 = NULL;
         flTextField* text839 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //ボタン(000)
         flButton* button000 = NULL; flButton* button001 = NULL; flButton* button002 = NULL; flButton* button003 = NULL; flButton* button004 = NULL;
@@ -436,7 +438,7 @@ class BasicController : public flSprite {
         flSlider* slider934 = NULL; flSlider* slider935 = NULL; flSlider* slider936 = NULL; flSlider* slider937 = NULL;
         flSlider* slider938 = NULL; flSlider* slider939 = NULL;
         //--------------------------------------
-
+        
         //--------------------------------------
         //レンジスライダー(000)
         flRangeSlider* rangeSlider000 = NULL; flRangeSlider* rangeSlider001 = NULL; flRangeSlider* rangeSlider002 = NULL; flRangeSlider* rangeSlider003 = NULL;
@@ -611,7 +613,7 @@ class BasicController : public flSprite {
         flColorSlider* colorSlider824 = NULL; flColorSlider* colorSlider825 = NULL; flColorSlider* colorSlider826 = NULL; flColorSlider* colorSlider827 = NULL;
         flColorSlider* colorSlider828 = NULL; flColorSlider* colorSlider829 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //Vec3スライダー(000)
         flVec3Slider* vec3Slider000 = NULL; flVec3Slider* vec3Slider001 = NULL; flVec3Slider* vec3Slider002 = NULL; flVec3Slider* vec3Slider003 = NULL;
@@ -704,7 +706,7 @@ class BasicController : public flSprite {
         flVec3Slider* vec3Slider824 = NULL; flVec3Slider* vec3Slider825 = NULL; flVec3Slider* vec3Slider826 = NULL; flVec3Slider* vec3Slider827 = NULL;
         flVec3Slider* vec3Slider828 = NULL; flVec3Slider* vec3Slider829 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //Vec2スライダー(000)
         flVec2Slider* vec2Slider000 = NULL; flVec2Slider* vec2Slider001 = NULL; flVec2Slider* vec2Slider002 = NULL; flVec2Slider* vec2Slider003 = NULL;
@@ -797,7 +799,7 @@ class BasicController : public flSprite {
         flVec2Slider* vec2Slider824 = NULL; flVec2Slider* vec2Slider825 = NULL; flVec2Slider* vec2Slider826 = NULL; flVec2Slider* vec2Slider827 = NULL;
         flVec2Slider* vec2Slider828 = NULL; flVec2Slider* vec2Slider829 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //ボタン(000)
         flNumberDialer* dialer000 = NULL; flNumberDialer* dialer001 = NULL; flNumberDialer* dialer002 = NULL; flNumberDialer* dialer003 = NULL; flNumberDialer* dialer004 = NULL;
@@ -929,7 +931,7 @@ class BasicController : public flSprite {
         flPad2D* pad512 = NULL; flPad2D* pad513 = NULL; flPad2D* pad514 = NULL; flPad2D* pad515 = NULL;
         flPad2D* pad516 = NULL; flPad2D* pad517 = NULL; flPad2D* pad518 = NULL; flPad2D* pad519 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //カラーピッカー(000)
         flCircleColorPicker* colorPicker000 = NULL; flCircleColorPicker* colorPicker001 = NULL; flCircleColorPicker* colorPicker002 = NULL;
@@ -980,7 +982,7 @@ class BasicController : public flSprite {
         flCircleColorPicker* colorPicker515 = NULL; flCircleColorPicker* colorPicker516 = NULL; flCircleColorPicker* colorPicker517 = NULL;
         flCircleColorPicker* colorPicker518 = NULL; flCircleColorPicker* colorPicker519 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //チェックボックス(000)
         flCheckBox* check000 = NULL; flCheckBox* check001 = NULL; flCheckBox* check002 = NULL;
@@ -1190,7 +1192,7 @@ class BasicController : public flSprite {
         flCheckBox* check939 = NULL;
         flCheckBox* check999 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //ラジオボタン(000)
         flRadioButton* radio000 = NULL; flRadioButton* radio001 = NULL; flRadioButton* radio002 = NULL;
@@ -1400,7 +1402,7 @@ class BasicController : public flSprite {
         flRadioButton* radio939 = NULL;
         flRadioButton* radio999 = NULL;
         //--------------------------------------
-    
+        
         //--------------------------------------
         //ジョイスティック1D(000)
         flJoystick1* joystick1000 = NULL; flJoystick1* joystick1001 = NULL; flJoystick1* joystick1002 = NULL; flJoystick1* joystick1003 = NULL; flJoystick1* joystick1004 = NULL;
@@ -1530,7 +1532,7 @@ class BasicController : public flSprite {
         flComboBox* comboBox924 = NULL; flComboBox* comboBox925 = NULL; flComboBox* comboBox926 = NULL; flComboBox* comboBox927 = NULL;
         flComboBox* comboBox928 = NULL; flComboBox* comboBox929 = NULL;
         //--------------------------------------
-    
+        
     protected:
         float _backWidth;
         float _backHeight;
@@ -1538,12 +1540,12 @@ class BasicController : public flSprite {
         float _minBackHeight;
         float _normalBackWidth;
         float _normalBackHeight;
-    
+        
         bool _isMinimize;
-    
+        
         bool _onTop;
         bool _dragEnabled;
-    
+        
     private:
         
     public:
@@ -1555,14 +1557,14 @@ class BasicController : public flSprite {
         virtual void minimize();
         virtual void normalize();
         virtual void resize(float w, float h);
-
+        
         virtual inline float backWidth() { return _backWidth; }
         virtual inline float backHeight() { return _backHeight; }
         virtual inline float minBackWidth() { return _minBackWidth; }
         virtual inline float minBackHeight() { return _minBackHeight; }
         virtual inline float normalBackWidth() { return _normalBackWidth; }
         virtual inline float normalBackHeight() { return _normalBackHeight; }
-
+        
         virtual inline bool dragEnabled() { return _dragEnabled = NULL; }
         virtual inline void dragEnabled(bool value) {
             _dragEnabled = value;
@@ -1573,10 +1575,12 @@ class BasicController : public flSprite {
                 stopDrag();
             }
         }
-
+        
     protected:
         virtual void _mouseEventHandler(flEvent& event);
         virtual void _buttonEventHandler(flEvent& event);
-    
+        
     private:
-};
+    };
+    
+}

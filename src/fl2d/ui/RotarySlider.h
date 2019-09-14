@@ -2,11 +2,11 @@
 
 #include "ofMain.h"
 
-#include "../FlashConfig.h"
-#include "../display/Sprite.h"
-#include "../texts/TextField.h"
-#include "../events/RotarySliderEvent.h"
-#include "../../utils/MathUtil.h"
+#include "FlashConfig.h"
+#include "Sprite.h"
+#include "TextField.h"
+#include "RotarySliderEvent.h"
+#include "flmath.h"
 
 namespace fl2d {
     

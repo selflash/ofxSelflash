@@ -50,19 +50,19 @@ void CustomDispatcher::eventHandler(flEvent& event) {
     flEventDispatcher* target = (flEventDispatcher*) event.target();
     flEventDispatcher* tarcurrentTargetget = (flEventDispatcher*) event.currentTarget();
     
-//    CustomEvent& customEvent = *(CustomEvent*) &event;
+    //    CustomEvent& customEvent = *(CustomEvent*) &event;
     
     if(event.type() == flEvent::INIT) {
         cout << "A -> INIT" << endl;
-//        removeEventListener(Event::INIT, &CustomDispatcher::eventHandler);
+        //        removeEventListener(Event::INIT, &CustomDispatcher::eventHandler);
         removeEventListeners(flEvent::INIT);
-//        removeAllEventListener();
+        //        removeAllEventListener();
     }
     
     if(event.type() == CustomEvent::TEST1) {
         cout << "A -> TEST1" << endl;
         removeEventListeners(CustomEvent::TEST1);
-//        removeEventListener(CustomEvent::TEST1, &CustomDispatcher::eventHandler);
+        //        removeEventListener(CustomEvent::TEST1, &CustomDispatcher::eventHandler);
     }
 }
 

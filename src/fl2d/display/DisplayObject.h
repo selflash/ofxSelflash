@@ -1,4 +1,4 @@
-﻿/**
+/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashDisplayObject.h
@@ -11,9 +11,9 @@
 
 #pragma once
 
-#include "../events/EventDispatcher.h"
-#include "../geom/Matrix.h"
-#include "../geom/Rectangle.h"
+#include "EventDispatcher.h"
+#include "Matrix.h"
+#include "Rectangle.h"
 
 #define	FL_BLEND_MODE_NORMAL		0
 #define	FL_BLEND_MODE_LAYER		    1
@@ -36,174 +36,174 @@ namespace fl2d {
     class DisplayObject : public EventDispatcher {
         friend Stage;
         
-        public:
-            
-        protected:
-            string _name;
+    public:
         
-            DisplayObject* _stage;
-            DisplayObject* _parent;
-            DisplayObject* _mask;
+    protected:
+        string _name;
         
-            float _z;
+        DisplayObject* _stage;
+        DisplayObject* _parent;
+        DisplayObject* _mask;
         
-            float _realWidth;
-            float _realHeight;
-            float _targetWidth;
-            float _targetHeight;
+        float _z;
         
-            float _scaleZ;
+        float _realWidth;
+        float _realHeight;
+        float _targetWidth;
+        float _targetHeight;
         
-            float _rotationX;
-            float _rotationY;
-            float _rotationZ;
+        float _scaleZ;
         
-            float _alpha;
-            //Bitmap, Stage,
-            float _compoundAlpha;
+        float _rotationX;
+        float _rotationY;
+        float _rotationZ;
         
-            bool _visible;
+        float _alpha;
+        //Bitmap, Stage,
+        float _compoundAlpha;
         
-            int	 _blendMode;
-            int	_level;
-
-            Matrix _matrix;
-            Matrix _concatenatedMatrix;
-            Matrix _concatenatedMatrixInv;
-            
-            Rectangle* _rect;
-            ofPoint _rectTransformed[4];
-            Rectangle* _pixelBounds;
-                
-            bool _enabledSmoothing;
-            bool _enabledAntiAliasing;
+        bool _visible;
         
-            int	_mouseX;
-            int	_mouseY;
+        int	 _blendMode;
+        int	_level;
         
-        private:
+        Matrix _matrix;
+        Matrix _concatenatedMatrix;
+        Matrix _concatenatedMatrixInv;
         
-        public:
-            virtual void setup();
-            virtual void update();
-            virtual void draw(bool applyMatrix = true);
-            
-            virtual string name();
-            virtual void name(string value);
-            
-            virtual DisplayObject* stage();
-            virtual void stage(DisplayObject* value);
-            
-            virtual DisplayObject* parent();
-            virtual void parent(DisplayObject* value);
-            
-            virtual DisplayObject* mask();
-            virtual void mask(DisplayObject* value);
+        Rectangle* _rect;
+        ofPoint _rectTransformed[4];
+        Rectangle* _pixelBounds;
         
-            virtual float x();
-            virtual void x(float value);
-            
-            virtual float y();
-            virtual void y(float value);
-            
-            virtual float z();
-            virtual void z(float value);
+        bool _enabledSmoothing;
+        bool _enabledAntiAliasing;
         
-            virtual float width();
-            virtual void width(float value);
-            
-            virtual float height();
-            virtual void height(float value);
+        int	_mouseX;
+        int	_mouseY;
         
-            //const float& scale();
-            //void scale(float value);
-            
-            virtual float scaleX();
-            virtual void scaleX(float value);
-            
-            virtual float scaleY();
-            virtual void scaleY(float value);
-            
-            virtual float scaleZ();
-            virtual void scaleZ(float value);
+    private:
         
-            virtual float rotation();
-            virtual void rotation(float value);
-            
-            virtual float rotationX();
-            virtual void rotationX(float value);
-            
-            virtual float rotationY();
-            virtual void rotationY(float value);
-            
-            virtual float rotationZ();
-            virtual void rotationZ(float value);
+    public:
+        virtual void setup();
+        virtual void update();
+        virtual void draw(bool applyMatrix = true);
         
-            virtual float alpha();
-            virtual void alpha(float value);
-            //const float& compoundAlpha();
-            
-            virtual bool visible();
-            virtual void visible(bool value);
-            
-            virtual int blendMode();
-            virtual void blendMode(int value);
-            
-            virtual int level();
-            virtual void level(int value);
-            
-            virtual const Matrix& matrix();
-            virtual void matrix(const Matrix& mat);
-            
-            virtual const Matrix& concatenatedMatrix();
-            
-            virtual Rectangle getRect(DisplayObject* targetCoordinateSpace);
-            
-            virtual bool hitTestObject(DisplayObject* obj);
-            
-            virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
-            
-            virtual ofPoint	globalToLocal(const ofPoint& point);
-            
-            virtual ofPoint	globalToLocal3D(const ofPoint& point);
-            
-            virtual ofPoint	local3DToGlobal(const ofPoint& point);
-            
-            virtual ofPoint	localToGlobal(const ofPoint& point);
-            
-            //	TODO :: cacheAsBitmap - maybe this can be an FBO?
-            //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
-            //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
-            
-            virtual void transform(const Matrix& mat);
-            
-            virtual bool enabledSmoothing();
-            virtual void enabledSmoothing(bool value);
-            
-            virtual bool enabledAntiAliasing();
-            virtual void enabledAntiAliasing(bool value);
+        virtual string name();
+        virtual void name(string value);
         
-            virtual int mouseX();
-            virtual int mouseY();
+        virtual DisplayObject* stage();
+        virtual void stage(DisplayObject* value);
         
-        protected:
-            DisplayObject();
-            virtual ~DisplayObject();
-            
-            //for override
-            virtual void _setup();
-            virtual void _update();
-            virtual void _draw();
+        virtual DisplayObject* parent();
+        virtual void parent(DisplayObject* value);
         
-            virtual void _updateRect();
+        virtual DisplayObject* mask();
+        virtual void mask(DisplayObject* value);
         
-            virtual float __compoundAlpha();
-            virtual void __compoundAlpha(float value);
-
-            //virtual void updateOnFrame(){};
-            //virtual void drawOnFrame(){};
+        virtual float x();
+        virtual void x(float value);
         
-        private:
+        virtual float y();
+        virtual void y(float value);
+        
+        virtual float z();
+        virtual void z(float value);
+        
+        virtual float width();
+        virtual void width(float value);
+        
+        virtual float height();
+        virtual void height(float value);
+        
+        //const float& scale();
+        //void scale(float value);
+        
+        virtual float scaleX();
+        virtual void scaleX(float value);
+        
+        virtual float scaleY();
+        virtual void scaleY(float value);
+        
+        virtual float scaleZ();
+        virtual void scaleZ(float value);
+        
+        virtual float rotation();
+        virtual void rotation(float value);
+        
+        virtual float rotationX();
+        virtual void rotationX(float value);
+        
+        virtual float rotationY();
+        virtual void rotationY(float value);
+        
+        virtual float rotationZ();
+        virtual void rotationZ(float value);
+        
+        virtual float alpha();
+        virtual void alpha(float value);
+        //const float& compoundAlpha();
+        
+        virtual bool visible();
+        virtual void visible(bool value);
+        
+        virtual int blendMode();
+        virtual void blendMode(int value);
+        
+        virtual int level();
+        virtual void level(int value);
+        
+        virtual const Matrix& matrix();
+        virtual void matrix(const Matrix& mat);
+        
+        virtual const Matrix& concatenatedMatrix();
+        
+        virtual Rectangle getRect(DisplayObject* targetCoordinateSpace);
+        
+        virtual bool hitTestObject(DisplayObject* obj);
+        
+        virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
+        
+        virtual ofPoint	globalToLocal(const ofPoint& point);
+        
+        virtual ofPoint	globalToLocal3D(const ofPoint& point);
+        
+        virtual ofPoint	local3DToGlobal(const ofPoint& point);
+        
+        virtual ofPoint	localToGlobal(const ofPoint& point);
+        
+        //	TODO :: cacheAsBitmap - maybe this can be an FBO?
+        //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
+        //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
+        
+        virtual void transform(const Matrix& mat);
+        
+        virtual bool enabledSmoothing();
+        virtual void enabledSmoothing(bool value);
+        
+        virtual bool enabledAntiAliasing();
+        virtual void enabledAntiAliasing(bool value);
+        
+        virtual int mouseX();
+        virtual int mouseY();
+        
+    protected:
+        DisplayObject();
+        virtual ~DisplayObject();
+        
+        //for override
+        virtual void _setup();
+        virtual void _update();
+        virtual void _draw();
+        
+        virtual void _updateRect();
+        
+        virtual float __compoundAlpha();
+        virtual void __compoundAlpha(float value);
+        
+        //virtual void updateOnFrame(){};
+        //virtual void drawOnFrame(){};
+        
+    private:
     };
     
 }

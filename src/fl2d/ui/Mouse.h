@@ -18,36 +18,36 @@
 namespace fl2d {
     
     class Mouse {
-        public:
-            
-        protected:
-            static ofImage* _arrowImage;
-            static ofImage* _pointingHandImage;
-            static ofImage* _openHandImage;
-            static ofImage* _closeHandImage;
+    public:
         
-        private:
-            Mouse() {};
-            virtual ~Mouse() {};
+    protected:
+        static ofImage* _arrowImage;
+        static ofImage* _pointingHandImage;
+        static ofImage* _openHandImage;
+        static ofImage* _closeHandImage;
         
-            static int _currentType;
+    private:
+        Mouse() {};
+        virtual ~Mouse() {};
         
-        public:
-            static void setup();
-            static void hide();
-            static void show();
+        static int _currentType;
         
-            static bool currentType();
+    public:
+        static void setup();
+        static void hide();
+        static void show();
         
-            static void showHandCursor();
-            static void hideHandCursor();
-            static void changeCursor(int type = 0);
-            
-            static void draw(float x, float y);
-            
-        protected:
-            
-        private:
+        static bool currentType();
+        
+        static void showHandCursor();
+        static void hideHandCursor();
+        static void changeCursor(int type = 0);
+        
+        static void draw(float x, float y);
+        
+    protected:
+        
+    private:
     };
     
 }

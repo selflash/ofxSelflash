@@ -1,15 +1,15 @@
 #include "Sprite.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Sprite::Sprite() {
-//        cout << "[Sprite]Sprite()" << endl;
+        //        cout << "[Sprite]Sprite()" << endl;
         
         _typeID = FL_TYPE_SPRITE;
         _target = this;
@@ -29,11 +29,11 @@ namespace fl2d {
         
         ofAddListener(ofEvents().update, this, &Sprite::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     Sprite::~Sprite() {
-//        cout << "[Sprite]~Sprite()" << endl;
+        //        cout << "[Sprite]~Sprite()" << endl;
         
         _target = NULL;
         
@@ -63,7 +63,7 @@ namespace fl2d {
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //TODO
     void Sprite::update() {
@@ -71,7 +71,7 @@ namespace fl2d {
         
         _updateRect();
     }
-
+    
     //--------------------------------------------------------------
     //
     void Sprite::draw(bool applyMatrix) {
@@ -97,14 +97,14 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
-//        if(!bIdentity){
+        //        bool bIdentity = true;
+        //        bIdentity = matrix().isIdentity();
+        //        bIdentity = false;
+        //        if(!bIdentity){
         if(applyMatrix){
-//            glPushMatrix();
+            //            glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+            //            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
@@ -121,9 +121,9 @@ namespace fl2d {
         }
         ofPopStyle();
         
-//        if(!bIdentity) {
+        //        if(!bIdentity) {
         if(applyMatrix) {
-//            glPopMatrix();
+            //            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -136,88 +136,88 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
-
+        
         //--------------------------------------
         //ヒットエリアの表示
-    //    ofNoFill();
-    //    ofSetLineWidth(1);
-    //    ofSetColor(255, 0, 0, 100);
-    //    ofRect(x(), y(), width(), height());
-    //    ofRect(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+        //    ofNoFill();
+        //    ofSetLineWidth(1);
+        //    ofSetColor(255, 0, 0, 100);
+        //    ofRect(x(), y(), width(), height());
+        //    ofRect(_rect->x(), _rect->y(), _rect->width(), _rect->height());
         //--------------------------------------
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
-//    //--------------------------------------------------------------
-//    //
-//    const float Sprite::width() { return _realWidth * scaleX(); }
-//    void Sprite::width(float value) {
-//        //DisplayObjectContainer::width(value);
-//        
-//        _width = value;
-//        //scaleX(_width / _realWidth);
-//
-//        
-////        _width = value;
-////        
-////        if(graphics->__rect->isNull()) return;
-////        
-////        //--------------------------------------
-////        _rect->left(graphics->__rect->left());
-////        _rect->right(graphics->__rect->right());
-////
-////        int i; int l;
-////        DisplayObject* child;
-////
-////        l = children.size();
-////        for(i = 0; i < l; i++) {
-////            child = children[i];
-////            float n1 = child->x();
-////            _rect->__expandToX(n1);
-////            _rect->__expandToX(n1 + child->width());
-////        }
-////        
-////        _realWidth = _rect->width();
-////        //--------------------------------------
-////        
-////        scaleX(_width / _realWidth);
-//    }
-//    //--------------------------------------------------------------
-//    //
-//    const float Sprite::height() { return _realHeight * scaleY(); }
-//    void Sprite::height(float value) {
-////        DisplayObjectContainer::height(value);
-//        
-//        _height = value;
-//        //scaleY(_height / _realHeight);
-//        
-////        _height = value;
-////        
-////        if(graphics->__rect->isNull()) return;
-////        
-////        //--------------------------------------
-////        _rect->top(graphics->__rect->top());
-////        _rect->bottom(graphics->__rect->bottom());
-////        
-////        int i; int l;
-////        DisplayObject* child;
-////        
-////        l = children.size();
-////        for(i = 0; i < l; i++) {
-////            child = children[i];
-////            float n2 = child->y();
-////            _rect->__expandToY(n2);
-////            _rect->__expandToY(n2 + child->height());
-////        }
-////        
-////        _realHeight = _rect->height();
-////        //--------------------------------------
-////        
-////        scaleY(_height / _realHeight);
-//    }
+    
+    //    //--------------------------------------------------------------
+    //    //
+    //    const float Sprite::width() { return _realWidth * scaleX(); }
+    //    void Sprite::width(float value) {
+    //        //DisplayObjectContainer::width(value);
+    //        
+    //        _width = value;
+    //        //scaleX(_width / _realWidth);
+    //
+    //        
+    ////        _width = value;
+    ////        
+    ////        if(graphics->__rect->isNull()) return;
+    ////        
+    ////        //--------------------------------------
+    ////        _rect->left(graphics->__rect->left());
+    ////        _rect->right(graphics->__rect->right());
+    ////
+    ////        int i; int l;
+    ////        DisplayObject* child;
+    ////
+    ////        l = children.size();
+    ////        for(i = 0; i < l; i++) {
+    ////            child = children[i];
+    ////            float n1 = child->x();
+    ////            _rect->__expandToX(n1);
+    ////            _rect->__expandToX(n1 + child->width());
+    ////        }
+    ////        
+    ////        _realWidth = _rect->width();
+    ////        //--------------------------------------
+    ////        
+    ////        scaleX(_width / _realWidth);
+    //    }
+    //    //--------------------------------------------------------------
+    //    //
+    //    const float Sprite::height() { return _realHeight * scaleY(); }
+    //    void Sprite::height(float value) {
+    ////        DisplayObjectContainer::height(value);
+    //        
+    //        _height = value;
+    //        //scaleY(_height / _realHeight);
+    //        
+    ////        _height = value;
+    ////        
+    ////        if(graphics->__rect->isNull()) return;
+    ////        
+    ////        //--------------------------------------
+    ////        _rect->top(graphics->__rect->top());
+    ////        _rect->bottom(graphics->__rect->bottom());
+    ////        
+    ////        int i; int l;
+    ////        DisplayObject* child;
+    ////        
+    ////        l = children.size();
+    ////        for(i = 0; i < l; i++) {
+    ////            child = children[i];
+    ////            float n2 = child->y();
+    ////            _rect->__expandToY(n2);
+    ////            _rect->__expandToY(n2 + child->height());
+    ////        }
+    ////        
+    ////        _realHeight = _rect->height();
+    ////        //--------------------------------------
+    ////        
+    ////        scaleY(_height / _realHeight);
+    //    }
     
     //--------------------------------------------------------------
     //
@@ -230,7 +230,7 @@ namespace fl2d {
         _targetWidth = value;
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
     }
-
+    
     //--------------------------------------------------------------
     //
     float Sprite::height() {
@@ -262,15 +262,15 @@ namespace fl2d {
     //
     bool Sprite::useHandCursor() { return _useHandCursor; }
     void Sprite::useHandCursor(bool value) { _useHandCursor = value; }
-
+    
     //--------------------------------------------------------------
     //TODO
-//    float Sprite::alpha() { return _alpha; }
-//    void Sprite::alpha(float value) {
-//        _alpha = value;
-//        _graphics->__alpha = _alpha;
-//    }
-
+    //    float Sprite::alpha() { return _alpha; }
+    //    void Sprite::alpha(float value) {
+    //        _alpha = value;
+    //        _graphics->__alpha = _alpha;
+    //    }
+    
     //--------------------------------------------------------------
     //
     Sprite* Sprite::hitArea() { return _hitArea; }
@@ -322,7 +322,7 @@ namespace fl2d {
         
         ofAddListener(ofEvents().mouseDragged, this, &Sprite::_mouseDragging);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Sprite::stopDrag() {
@@ -330,7 +330,7 @@ namespace fl2d {
         
         _draggableArea = NULL;
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
@@ -346,7 +346,7 @@ namespace fl2d {
         l = children.size();
         for(i = 0; i < l; i++) {
             child = children[i];
-//                _rect->__expandToRect(*child->getRect(this));
+            //                _rect->__expandToRect(*child->getRect(this));
             float cx = child->x();
             float cy = child->y();
             _rect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
@@ -356,12 +356,12 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         
-//        cout << "Sprite _realWidth" << _realWidth << " Sprite _realHeight" << _realHeight << endl;
+        //        cout << "Sprite _realWidth" << _realWidth << " Sprite _realHeight" << _realHeight << endl;
         
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------
@@ -370,7 +370,7 @@ namespace fl2d {
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Sprite::_mouseDragging(int x, int y, int id) {
@@ -396,5 +396,5 @@ namespace fl2d {
         
         dispatchEvent(new MouseEvent(MouseEvent::DRAGGING));
     }
-
+    
 }

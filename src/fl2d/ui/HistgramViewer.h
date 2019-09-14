@@ -2,11 +2,11 @@
 
 #include "ofMain.h"
 
-#include "../FlashConfig.h"
-#include "../display/Shape.h"
-#include "../display/Sprite.h"
-#include "../texts/TextField.h"
-#include "../events/HistgramViewerEvent.h"
+#include "FlashConfig.h"
+#include "Shape.h"
+#include "Sprite.h"
+#include "TextField.h"
+#include "HistgramViewerEvent.h"
 
 namespace fl2d {
     
@@ -29,7 +29,7 @@ namespace fl2d {
         ofFloatColor _normalColor;
         ofFloatColor _overColor;
         ofFloatColor _activeColor;
-
+        
         TextField* _label;
         
         float _value;
@@ -38,40 +38,40 @@ namespace fl2d {
         float _weight;        
         ofPoint* _startPos;
         
-//        float _average;
+        //        float _average;
         
         ofPolyline _line;
         vector<float> _valueHistory;
-//        vector<float> _avelageHistroy;
+        //        vector<float> _avelageHistroy;
         float _valueScale = 0.5f;
-//        vector<float> _valueHistory;
-
+        //        vector<float> _valueHistory;
+        
     public:
         HistgramViewer(float width = 100, float height = 18);
         virtual ~HistgramViewer();
         
         TextField* label();
         void label(TextField* value);
-
+        
         inline float value() { return _value; }
         inline void value(float value, bool dispatch = true) {
-//            if(_value == value) return;
+            //            if(_value == value) return;
             
             _value = value;
             _valueHistory[_valueHistory.size() - 1] = _value;
             
-//            //------------------------------------------
-//            if(dispatch) {
-//                //イベント
-//                NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-//                //            event->_target = this;
-//                event->data<float>(_value);
-//                dispatchEvent(event);
-//            }
-//            //------------------------------------------
+            //            //------------------------------------------
+            //            if(dispatch) {
+            //                //イベント
+            //                NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
+            //                //            event->_target = this;
+            //                event->data<float>(_value);
+            //                dispatchEvent(event);
+            //            }
+            //            //------------------------------------------
         }
         
-//        inline float average() { return _average; }
+        //        inline float average() { return _average; }
         
         inline float weight() { return _weight; };
         inline void weight(float value) { _weight = value; }
@@ -82,7 +82,7 @@ namespace fl2d {
         virtual void _draw();
         
         virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
-
+        
         virtual void _over();
         virtual void _out();
         virtual void _press();

@@ -12,7 +12,7 @@ void FrameBorder2::_setup() {
     
     flBitmap* bitmap = new flBitmap(image);
     addChild(bitmap);
-
+    
     flGraphics* g;
     g = graphics();
     g->clear();

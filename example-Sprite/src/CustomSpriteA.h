@@ -4,18 +4,18 @@
 #include "ofxSelflash.h"
 
 class CustomSpriteA : public flSprite {
-    public:    
+public:    
     
-    private:
+private:
     
-    public:
-        CustomSpriteA();
-        virtual ~CustomSpriteA();
-
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
-        
-    private:    
+public:
+    CustomSpriteA();
+    virtual ~CustomSpriteA();
+    
+protected:
+    virtual void _setup();
+    virtual void _update();
+    virtual void _draw();
+    
+private:    
 };

@@ -4,18 +4,18 @@ namespace fl2d {
     
     string TextField::TEXT_FIELD_TYPE_DYNAMIC = "dynamic";
     string TextField::TEXT_FIELD_TYPE_INPUT = "input";
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField::TextField() {
         _typeID = FL_TYPE_TEXT_FIELD;
         
         name("TextField");
-
+        
         _labelNormalColor = FlashConfig::UI_LABEL_NORMAL_COLOR;
         _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
         _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
@@ -26,21 +26,21 @@ namespace fl2d {
         _overColor.setHex(FlashConfig::UI_OVER_COLOR);
         _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
         _deactiveColor.setHex(FlashConfig::UI_DEACTIVE_COLOR);
-//        _normalColor.setHex(0x333333);
-//        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
-//        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
-//        _textColor.setHex(0xffffff);
+        //        _normalColor.setHex(0x333333);
+        //        _overColor.setHex(FlashConfig::UI_OVER_COLOR);
+        //        _activeColor.setHex(FlashConfig::UI_ACTIVE_COLOR);
+        //        _textColor.setHex(0xffffff);
         
         _text = "";
         
         _type = TEXT_FIELD_TYPE_DYNAMIC;
         
-//        _targetWidth = 0 / 0.f;
-//        _targetHeight = 0 / 0.f;
+        //        _targetWidth = 0 / 0.f;
+        //        _targetHeight = 0 / 0.f;
         _targetWidth = numeric_limits<float>::quiet_NaN();
         _targetHeight = numeric_limits<float>::quiet_NaN();
         
-//        cout << isnan(_targetWidth) << endl;
+        //        cout << isnan(_targetWidth) << endl;
         
         _textWidth = 0;
         _textHeight = 0;
@@ -60,9 +60,9 @@ namespace fl2d {
         
         _activeLineWidth = 3;
         
-//        _enabledAntiAliasing = false;
+        //        _enabledAntiAliasing = false;
     }
-
+    
     //--------------------------------------------------------------
     //
     TextField::~TextField() {
@@ -87,13 +87,13 @@ namespace fl2d {
         
         _activeLineWidth = 0;
         
-//        _enabledAntiAliasing = false;
+        //        _enabledAntiAliasing = false;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     // TODO
     void TextField::update() {
@@ -114,15 +114,15 @@ namespace fl2d {
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         
-//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-//        if(_width != -9999.0) scaleX(_width / _realWidth);
-//        if(_height != -9999.0) scaleY(_height / _realHeight);
+        //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        //        if(_width != -9999.0) scaleX(_width / _realWidth);
+        //        if(_height != -9999.0) scaleY(_height / _realHeight);
         //--------------------------------------
         
         _update();
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::draw(bool applyMatrix) {
@@ -148,14 +148,14 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
+        //        bool bIdentity = true;
+        //        bIdentity = matrix().isIdentity();
+        //        bIdentity = false;
         
         if(applyMatrix){
-//            glPushMatrix();
+            //            glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+            //            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
@@ -166,7 +166,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-//            glPopMatrix();
+            //            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -180,7 +180,7 @@ namespace fl2d {
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_draw() {
@@ -193,17 +193,17 @@ namespace fl2d {
         if(_autoSize == TextFieldAutoSize::RIGHT) _tx = _realWidth - _textWidth;
         if(_autoSize == TextFieldAutoSize::CENTER) _tx = (_realWidth * 0.5) - (_textWidth * 0.5);
         
-//        ofTranslate(_tx, -_textHeight);
+        //        ofTranslate(_tx, -_textHeight);
         ofTranslate(_tx, Font::getMaxStringHeight());
         
-//        _font.drawStringAsShapes(_text, -bounds.width / 2, bounds.height / 2);
-//        _font.drawStringAsShapes(_text, 0, 0);
+        //        _font.drawStringAsShapes(_text, -bounds.width / 2, bounds.height / 2);
+        //        _font.drawStringAsShapes(_text, 0, 0);
         
         ofPushStyle();
         ofSetColor(_textColor, 255 * _compoundAlpha);
-//        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
+        //        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
         Font::drawString(_text, 1, -1);
-//        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
+        //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         
         ofPopMatrix();
@@ -219,11 +219,11 @@ namespace fl2d {
             ofDrawLine(0, -n, 0, n);
             
             ofNoFill();
-//            ofRect(0, 0, _textWidth, _textHeight);
+            //            ofRect(0, 0, _textWidth, _textHeight);
             ofDrawRectangle(0, 0, width(), height());
-//            ofRect(0, 0, _targetWidth, _targetHeight);
-//            ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
-        
+            //            ofRect(0, 0, _targetWidth, _targetHeight);
+            //            ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+            
             //ofSetHexColor(0x000000);
             //string t = ofToString(name()) + " x:" + ofToString(x()) + " y:" + ofToString(y());
             //ofDrawBitmapString(t, -50, -10);
@@ -232,27 +232,27 @@ namespace fl2d {
         }
         //---------------------------------
         
-//        ofSetColor(255, 255, 255, 255);
+        //        ofSetColor(255, 255, 255, 255);
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
     
-//    //--------------------------------------------------------------
-//    //
-//    const float TextField::width() {
-//        _rect->__expandToRect(*_graphics->__rect);
-//        return _rect->width();
-//    }
-//    void TextField::width(const float& value) { _rect->__expandTo(_rect->x() + value, 0); }
-//    //--------------------------------------------------------------
-//    //
-//    const float TextField::height() {
-//        _rect->__expandToRect(*_graphics->__rect);
-//        return _rect->height();
-//    }
-//    void TextField::height(const float& value) { _rect->__expandTo(0, _rect->y() + value); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    const float TextField::width() {
+    //        _rect->__expandToRect(*_graphics->__rect);
+    //        return _rect->width();
+    //    }
+    //    void TextField::width(const float& value) { _rect->__expandTo(_rect->x() + value, 0); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    const float TextField::height() {
+    //        _rect->__expandToRect(*_graphics->__rect);
+    //        return _rect->height();
+    //    }
+    //    void TextField::height(const float& value) { _rect->__expandTo(0, _rect->y() + value); }
     
     //--------------------------------------------------------------
     //
@@ -346,40 +346,40 @@ namespace fl2d {
         if(temp <= 0.0) temp = 0.0;
         
         _alpha = temp;
-//        _textColor.a = _alpha;
-//        _graphics->__alpha = _alpha;
+        //        _textColor.a = _alpha;
+        //        _graphics->__alpha = _alpha;
     }
-
+    
     //--------------------------------------------------------------
     //
     int TextField::textColor() { return _textColor.getHex(); }
     void TextField::textColor(int value) {
         _textColor.setHex(value);
-//        _textColor.a = _alpha;
+        //        _textColor.a = _alpha;
     }
     void TextField::textColor(ofFloatColor value) {
         _textColor.setHex(value.getHex());
-//        _textColor.a = _alpha;
+        //        _textColor.a = _alpha;
     }
-
+    
     //--------------------------------------------------------------
     //
     const string TextField::text() {
-//        string temp = "";
-//        int l = _texts.size();
-//        for(int i = 0; i < l; i++) {
-//            temp += _texts[i];
-//        }
-//        return temp;
+        //        string temp = "";
+        //        int l = _texts.size();
+        //        for(int i = 0; i < l; i++) {
+        //            temp += _texts[i];
+        //        }
+        //        return temp;
         
         return _text;
     }
     void TextField::text(const string& value, int color) {
         _text = value;
         
-        _numLine = StringUtil::getLength(_text, "\n") + 1;
+        _numLine = flstringutil::getLength(_text, "\n") + 1;
         
-		ofRectangle bounds = Font::getStringBoundingBox(_text, 0, 0);
+        ofRectangle bounds = Font::getStringBoundingBox(_text, 0, 0);
         _textWidth = bounds.width + 6;
         _textHeight = _numLine * Font::getMaxStringHeight() + 3;
         
@@ -415,11 +415,11 @@ namespace fl2d {
         }
         //---------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::appendText(const string& value) { _text += value; }
-
+    
     //--------------------------------------------------------------
     //
     const string& TextField::type() { return _type; }
@@ -429,16 +429,16 @@ namespace fl2d {
         if(_type == TEXT_FIELD_TYPE_DYNAMIC) {
             _removeListeners();
         } else
-        if(_type == TEXT_FIELD_TYPE_INPUT) {
-            _addListeners();
-        }
+            if(_type == TEXT_FIELD_TYPE_INPUT) {
+                _addListeners();
+            }
     }
     
     //--------------------------------------------------------------
     //
     string TextField::autoSize() { return _autoSize; }
     void TextField::autoSize(string value) { _autoSize = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool TextField::active() { return _isActive; }
@@ -504,7 +504,7 @@ namespace fl2d {
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_addListeners() {
@@ -515,10 +515,10 @@ namespace fl2d {
         
         _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
         
-//        addEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
+        //        addEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
         addEventListener(MouseEvent::MOUSE_DOWN, this, &TextField::_mouseEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_removeListeners() {
@@ -529,7 +529,7 @@ namespace fl2d {
         
         _graphics->clear();
         
-//        removeEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
+        //        removeEventListener(MouseEvent::MOUSE_UP, this, &TextField::_mouseEventHandler);
         removeEventListener(MouseEvent::MOUSE_DOWN, this, &TextField::_mouseEventHandler);
     }
     
@@ -540,7 +540,7 @@ namespace fl2d {
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {
@@ -565,24 +565,24 @@ namespace fl2d {
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_mouseEventHandler(Event& event) {
         if(debug()) cout << "[TextField]_mouseEventHandler(" + event.type() + ")" << endl;
         
-//        if(event.type() == MouseEvent::MOUSE_UP) {
-//            active(!active());
-//        }
+        //        if(event.type() == MouseEvent::MOUSE_UP) {
+        //            active(!active());
+        //        }
         if(event.type() == MouseEvent::MOUSE_DOWN) {
             active(!active());
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
-//        char str = (char)event.key;
+        //        char str = (char)event.key;
         
         //エンターキーなら区切り文字を
         if(event.key == OF_KEY_RETURN) {
@@ -618,7 +618,7 @@ namespace fl2d {
             text(text() + (char)event.key);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void TextField::_keyReleasedEventHandler(ofKeyEventArgs& event) {

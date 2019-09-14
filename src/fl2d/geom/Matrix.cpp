@@ -1,11 +1,11 @@
 #include "Matrix.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Matrix::Matrix() {
@@ -16,13 +16,13 @@ namespace fl2d {
     Matrix::Matrix(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty) {
         set(a, b, c, d, tx, ty);
     }
-
+    
     //--------------------------------------------------------------
     //
     Matrix::~Matrix() {
         
     }
-
+    
     //===============================================
     //
     //   http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/geom/Matrix.html
@@ -38,7 +38,7 @@ namespace fl2d {
     //	[  tx  ty  0   0  ]
     //
     //===============================================
-
+    
     //	void Matrix::set(const ofxMatrix4x4& mat) {
     //		ofxMatrix4x4::set(
     //			mat._mat[0][0], mat._mat[0][1], mat._mat[0][2], mat._mat[0][3],
@@ -47,14 +47,14 @@ namespace fl2d {
     //			mat._mat[3][0], mat._mat[3][1], mat._mat[3][2], mat._mat[3][3]
     //		);
     //	}
-
-
+    
+    
     //--------------------------------------------------------------
     //
     void Matrix::set(Matrix& matrix) {
         set(matrix.a(), matrix.b(), matrix.c(), matrix.d(), matrix.tx(), matrix.ty());
     }
-
+    
     //--------------------------------------------------------------
     //
     void Matrix::set(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty) {
@@ -65,8 +65,8 @@ namespace fl2d {
                          tx, ty, 0,  1
                          );
     }
-
-
+    
+    
     //--------------------------------------------------------------
     //イメージを拡大 / 縮小または回転するときに x 軸方向のピクセルの配置に影響を与える値です。
     float Matrix::a() const { return _mat[0][0]; }
@@ -96,8 +96,8 @@ namespace fl2d {
     //y 軸方向に各ポイントを平行移動する距離です。
     float Matrix::ty() const { return _mat[3][1]; }
     void Matrix::ty(const float& value) { _mat[3][1] = value; }
-
-
+    
+    
     //--------------------------------------------------------------
     //
     bool Matrix::isEqual(Matrix& matrix) {
@@ -110,7 +110,7 @@ namespace fl2d {
         
         return true;
     }
-
+    
     //--------------------------------------------------------------
     //Matrix オブジェクトで表現される図形変換を、指定されたポイントに適用した結果を返します。
     void Matrix::transformPoint(ofPoint& p) const {
@@ -134,7 +134,7 @@ namespace fl2d {
         p.x = t0;
         p.y = t1;
     }
-
+    
     //--------------------------------------------------------------
     //マトリックスを現在のマトリックスと連結して、2 つのマトリックスの図形効果を効果的に組み合わせます。
     void Matrix::concat(const Matrix& m) {
@@ -154,7 +154,7 @@ namespace fl2d {
         
         set(a, b, c, d, tx, ty);
     }
-
+    
     //--------------------------------------------------------------
     //元のマトリックスの逆の変換を実行します。
     Matrix& Matrix::invert() {
@@ -180,26 +180,26 @@ namespace fl2d {
         
         return *this;
     }
-
+    
     //--------------------------------------------------------------
     //
     Matrix& Matrix::clone() {
         Matrix* m = new Matrix();
         return *m;
     }
-
+    
     //--------------------------------------------------------------
     //
     const float Matrix::determinant() {
         return a() * d() - b() * c();
     }
-
+    
     //--------------------------------------------------------------
     //各行列プロパティを null 変換になる値に設定します。
     void Matrix::identity() {
         set(1.0, 0.0, 0.0, 1.0, 0.0, 0.0);
     }
-
+    
     //--------------------------------------------------------------
     //
     void Matrix::setScaleRotation(float sx, float sy, float angle) {
@@ -214,7 +214,7 @@ namespace fl2d {
         c(sy * -sin_angle);
         d(sy *  cos_angle);
     }
-
+    
     //--------------------------------------------------------------
     //
     const float Matrix::scaleX() {
@@ -233,7 +233,7 @@ namespace fl2d {
         a(value * cos(rot_x));
         b(value * sin(rot_x));
     }
-
+    
     
     //--------------------------------------------------------------
     //
@@ -253,7 +253,7 @@ namespace fl2d {
         c(value * sin(rot_y));
         d(value * cos(rot_y));
     }
-
+    
     //--------------------------------------------------------------
     //
     void Matrix::scale(float sx, float sy) {
@@ -262,7 +262,7 @@ namespace fl2d {
         
         setScaleRotation(sx, sy, rotation());
     }
-
+    
     //--------------------------------------------------------------
     //
     const float Matrix::rotation() {
@@ -285,10 +285,10 @@ namespace fl2d {
         c(scale_y * sin(rot_y - rot_x + angle) * -1);		// reverse sign.
         d(scale_y * cos(rot_y - rot_x + angle));
     }
-
+    
     //=============================================== GETTERS.
-
-
-
-
+    
+    
+    
+    
 }

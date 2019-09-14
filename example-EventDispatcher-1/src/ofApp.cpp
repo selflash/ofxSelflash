@@ -11,15 +11,15 @@ void ofApp::setup() {
     dispatcherA->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherA->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
-//    dispatcherA->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
-//    dispatcherA->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
-
+    //    dispatcherA->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
+    //    dispatcherA->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+    
     dispatcherB = new CustomDispatcher();
     dispatcherB->debug(true);
     dispatcherB->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherB->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
-
-//    dispatcherB->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+    
+    //    dispatcherB->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
     //アドレスを表示
     cout << "----------------------------" << endl;
@@ -65,8 +65,8 @@ void ofApp::eventHandler(flEvent& event) {
     flEventDispatcher* target = (flEventDispatcher*) event.target();
     flEventDispatcher* tarcurrentTargetget = (flEventDispatcher*) event.currentTarget();
     
-//    CustomEvent& customEvent = *(CustomEvent*) &event;
-
+    //    CustomEvent& customEvent = *(CustomEvent*) &event;
+    
     if(event.target() == dispatcherA) {
         if(event.type() == flEvent::INIT) cout << "A -> INIT" << endl;
         if(event.type() == CustomEvent::TEST1) cout << "A -> TEST1" << endl;
@@ -119,40 +119,40 @@ void ofApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg) {
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo) {
-
+    
 }

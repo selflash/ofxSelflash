@@ -8,21 +8,21 @@ namespace fl2d {
     class RadioButton;
     class RadioButtonEvent : public Event {
         friend class RadioButton;
-            
-        public:
-            static string CHANGE;
-            
-        protected:
-            
-        private:
-            
-        public:
-            RadioButtonEvent(string type);
-            virtual ~RadioButtonEvent();
-            
-        protected:
-            
-        private:
+        
+    public:
+        static string CHANGE;
+        
+    protected:
+        
+    private:
+        
+    public:
+        RadioButtonEvent(string type);
+        virtual ~RadioButtonEvent();
+        
+    protected:
+        
+    private:
         
     };
     

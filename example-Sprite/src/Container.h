@@ -7,20 +7,20 @@
 
 class Container : public flSprite {
     
-    public:
-        CustomSpriteA* spriteA;
-        CustomSpriteA* spriteB;
+public:
+    CustomSpriteA* spriteA;
+    CustomSpriteA* spriteB;
     
-    private:
+private:
     
-    public:
-        Container();
-        virtual ~Container();
-        
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
+public:
+    Container();
+    virtual ~Container();
     
-    private:
+protected:
+    virtual void _setup();
+    virtual void _update();
+    virtual void _draw();
+    
+private:
 };

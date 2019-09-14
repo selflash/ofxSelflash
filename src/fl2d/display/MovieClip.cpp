@@ -1,11 +1,11 @@
 #include "MovieClip.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     MovieClip::MovieClip(int maxFrameNum) {
@@ -27,7 +27,7 @@ namespace fl2d {
         
         ofAddListener(ofEvents().update, this, &MovieClip::_updateEventHandler);
     }
-
+    
     //--------------------------------------------------------------
     //
     MovieClip::~MovieClip() {
@@ -48,87 +48,87 @@ namespace fl2d {
         Event* event = new Event(Event::ENTER_FRAME);
         dispatchEvent(event);
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     /*
-    //--------------------------------------------------------------
-    //
-    void MovieClip::addFrameSequence(string dirPath, string fileName, int numOfDigits, string fileExtension, int numOfFiles) {
-        ofImage image;
-        char imagePath[255];
-        
-        for(int i = 0; i < numOfFiles; i++) {
-            string str;
-            str = "";
-            str += "%s%s%0";
-            str += ofToString(numOfDigits, 0);
-            str += "d.%s";
-            
-            sprintf(imagePath, str.c_str(), dirPath.c_str(), fileName.c_str(), i, fileExtension.c_str());
-            
-    printf("load image %s\n", imagePath);
-            image.loadImage(imagePath);
-            
-            addFrame(image);
-            image.clear();
-        }
-        
-        //width = _frames[0] -> getWidth();
-        //height = _frames[0] -> getHeight();
-    }
-
-    //--------------------------------------------------------------
-    //
-    void MovieClip::addFrame(ofImage& image) {
-        addFrame(image.getPixels(), image.width, image.height, image.type);
-    }
-
-    //--------------------------------------------------------------
-    //
-    void MovieClip::addFrame(unsigned char* pixels, int w, int h, int imageType) {
-        _frames.push_back(new ofTexture());
-        ofTexture* frame = _frames.back();
-        
-        GLint glDataType;
-        if(imageType == OF_IMAGE_GRAYSCALE) {
-            glDataType = GL_LUMINANCE;
-        }
-        else if(imageType == OF_IMAGE_COLOR) {
-            glDataType = GL_RGB;
-        }
-        else if(imageType == OF_IMAGE_COLOR_ALPHA) {
-            glDataType = GL_RGBA;
-        }
-        else {
-    ofLog( OF_LOG_WARNING, "MovieClip :: addFrame() - invalid imageType" );
-            return;
-        }
-        
-        _frame->allocate(w, h, glDataType);
-        _frame->loadData(pixels, w, h, glDataType);
-        
-        ++_framesTotal;
-    }
-    */
+     //--------------------------------------------------------------
+     //
+     void MovieClip::addFrameSequence(string dirPath, string fileName, int numOfDigits, string fileExtension, int numOfFiles) {
+     ofImage image;
+     char imagePath[255];
+     
+     for(int i = 0; i < numOfFiles; i++) {
+     string str;
+     str = "";
+     str += "%s%s%0";
+     str += ofToString(numOfDigits, 0);
+     str += "d.%s";
+     
+     sprintf(imagePath, str.c_str(), dirPath.c_str(), fileName.c_str(), i, fileExtension.c_str());
+     
+     printf("load image %s\n", imagePath);
+     image.loadImage(imagePath);
+     
+     addFrame(image);
+     image.clear();
+     }
+     
+     //width = _frames[0] -> getWidth();
+     //height = _frames[0] -> getHeight();
+     }
+     
+     //--------------------------------------------------------------
+     //
+     void MovieClip::addFrame(ofImage& image) {
+     addFrame(image.getPixels(), image.width, image.height, image.type);
+     }
+     
+     //--------------------------------------------------------------
+     //
+     void MovieClip::addFrame(unsigned char* pixels, int w, int h, int imageType) {
+     _frames.push_back(new ofTexture());
+     ofTexture* frame = _frames.back();
+     
+     GLint glDataType;
+     if(imageType == OF_IMAGE_GRAYSCALE) {
+     glDataType = GL_LUMINANCE;
+     }
+     else if(imageType == OF_IMAGE_COLOR) {
+     glDataType = GL_RGB;
+     }
+     else if(imageType == OF_IMAGE_COLOR_ALPHA) {
+     glDataType = GL_RGBA;
+     }
+     else {
+     ofLog( OF_LOG_WARNING, "MovieClip :: addFrame() - invalid imageType" );
+     return;
+     }
+     
+     _frame->allocate(w, h, glDataType);
+     _frame->loadData(pixels, w, h, glDataType);
+     
+     ++_framesTotal;
+     }
+     */
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::play() {
         _bPlay = true;
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::stop() {
         _bPlay = false;
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::gotoAndPlay(int frameNum) {
@@ -142,7 +142,7 @@ namespace fl2d {
         
         play();
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::gotoAndStop(int frameNum) {
@@ -156,7 +156,7 @@ namespace fl2d {
         
         stop();
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::nextFrame() {
@@ -171,18 +171,18 @@ namespace fl2d {
         if(_frameIndex < 0) _frameIndex = totalFrames() - 1;
         _frame = _frames[_frameIndex];
     }
-
+    
     //--------------------------------------------------------------
     //
     int MovieClip::totalFrames() { return _frames.size(); }
     //--------------------------------------------------------------
     //
     int MovieClip::currentFrame() { return _frameIndex + 1; }
-
+    
     //==============================================================
     // PROTECTED METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::updateOnFrame() {
@@ -192,11 +192,11 @@ namespace fl2d {
         
         _addFrameChildren();
     }
-
+    
     //==============================================================
     // PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::_setTotalFrames(int total) {
@@ -225,7 +225,7 @@ namespace fl2d {
         _frameIndex = 0;
         this->_frame = _frames[_frameIndex];
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::addFrameObject(int frameNum, DisplayObject* child) {
@@ -234,7 +234,7 @@ namespace fl2d {
         DisplayObjectContainer* frameContainer = _frames[frameNum - 1];
         frameContainer->addChild(child);
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::_addFrameChildren() {
@@ -248,11 +248,11 @@ namespace fl2d {
             child->level(this->level() + 1);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void MovieClip::_removeFrameChildren() {
         DisplayObjectContainer::removeAllChildren();
     }
-
+    
 }

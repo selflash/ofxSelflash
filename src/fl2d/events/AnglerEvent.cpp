@@ -1,4 +1,4 @@
-﻿#include "AnglerEvent.h"
+#include "AnglerEvent.h"
 
 namespace fl2d {
     

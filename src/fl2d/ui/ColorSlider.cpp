@@ -1,11 +1,11 @@
 #include "ColorSlider.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     ColorSlider::ColorSlider(float width, bool alpha) {
@@ -151,7 +151,7 @@ namespace fl2d {
         _labelOverColor = FlashConfig::UI_LABEL_OVER_COLOR;
         _labelActiveColor = FlashConfig::UI_LABEL_ACTIVE_COLOR;
         _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
-
+        
         _label = NULL;
         
         //------------------------------------------
@@ -380,7 +380,7 @@ namespace fl2d {
         _labelDeactiveColor = FlashConfig::UI_LABEL_DEACTIVE_COLOR;
         
         _label = NULL;
-
+        
         //------------------------------------------
         _hexText = new TextField();
         _hexText->x(0);
@@ -428,7 +428,7 @@ namespace fl2d {
         alphaSlider->roundEnabled(true);
         alphaSlider->addEventListener(SliderEvent::CHANGE, this, &ColorSlider::_eventHandler);
         addChild(alphaSlider);
-
+        
         //------------------------------------------
         //RED
         _label1Text = new TextField();
@@ -485,7 +485,7 @@ namespace fl2d {
         
         _hexText->text(ofToString(_hexValue));
     }
-
+    
     //--------------------------------------------------------------
     //
     ColorSlider::~ColorSlider() {
@@ -520,29 +520,29 @@ namespace fl2d {
         delete _label4Text;
         _label4Text = NULL;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void ColorSlider::_setup() {
         //cout << "[ColorSlider]setup()" << endl;
     }
-
+    
     //--------------------------------------------------------------
     //
     void ColorSlider::_update() {
-
+        
     }
-
+    
     //--------------------------------------------------------------
     //
     void ColorSlider::_draw(){
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
@@ -551,7 +551,7 @@ namespace fl2d {
     //
     TextField* ColorSlider::label() { return _label; }
     void ColorSlider::label(TextField* value) { _label = value; }
-
+    
     //--------------------------------------------------------------
     //
     void ColorSlider::textColor(int color) {
@@ -560,7 +560,7 @@ namespace fl2d {
         _label3Text->textColor(color);
         if(_label4Text != NULL) _label4Text->textColor(color);
     }
-
+    
     //--------------------------------------------------------------
     //
     ofFloatColor ColorSlider::colorValue() { return _colorValue; }
@@ -585,7 +585,7 @@ namespace fl2d {
         //------------------------------------------
         
         _hexText->text(ofToString(_hexValue));
-
+        
         if(dispatch) {
             ColorSliderEvent* colorSliderEvent = new ColorSliderEvent(ColorSliderEvent::CHANGE);
             colorSliderEvent->_target = this;
@@ -593,27 +593,27 @@ namespace fl2d {
             dispatchEvent(colorSliderEvent);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     int ColorSlider::hexValue() { return _hexValue; }
     void ColorSlider::hexValue(int value, bool dispatch) { }
-
+    
     //--------------------------------------------------------------
     //
     int ColorSlider::redValue() { return redSlider->value(); }
     void ColorSlider::redValue(int value, bool dispatch) { redSlider->value(value, dispatch); }
-
+    
     //--------------------------------------------------------------
     //
     int ColorSlider::greenValue() { return greenSlider->value(); }
     void ColorSlider::greenValue(int value, bool dispatch) { greenSlider->value(value, dispatch); }
-
+    
     //--------------------------------------------------------------
     //
     int ColorSlider::blueValue() { return blueSlider->value(); }
     void ColorSlider::blueValue(int value, bool dispatch) { blueSlider->value(value, dispatch); }
-
+    
     //--------------------------------------------------------------
     //
     int ColorSlider::alphaValue() {
@@ -623,11 +623,11 @@ namespace fl2d {
     void ColorSlider::alphaValue(int value, bool dispatch) {
         if(alphaSlider != NULL) alphaSlider->value(value, dispatch);
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
@@ -640,7 +640,7 @@ namespace fl2d {
         _colorValue.b = blueSlider->value() / 255.0;
         if(alphaSlider != NULL) _colorValue.a = alphaSlider->value() / 255.0;
         _hexValue = _colorValue.getHex();
-                
+        
         //------------------------------------------
         
         redSlider->barColor(_colorValue);
@@ -656,5 +656,5 @@ namespace fl2d {
         
         _hexText->text(ofToString(_hexValue));
     }
-
+    
 }

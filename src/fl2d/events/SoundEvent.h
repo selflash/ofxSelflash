@@ -25,9 +25,9 @@ namespace fl2d {
         
         static string ON_LEFT_BEAT;
         static string ON_RIGHT_BEAT;
-
+        
         static string COMPLETED;
-
+        
     private:
         
     public:

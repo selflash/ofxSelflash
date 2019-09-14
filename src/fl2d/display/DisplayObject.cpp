@@ -1,11 +1,11 @@
 #include "DisplayObject.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject::DisplayObject() {
@@ -21,12 +21,12 @@ namespace fl2d {
         
         _realWidth = 0.0;
         _realHeight = 0.0;
-//        _targetWidth = 0 / 0.f;
-//        _targetHeight = 0 / 0.f;
+        //        _targetWidth = 0 / 0.f;
+        //        _targetHeight = 0 / 0.f;
         _targetWidth = numeric_limits<float>::quiet_NaN();
         _targetHeight = numeric_limits<float>::quiet_NaN();
-//        _targetWidth = -9999.0;
-//        _targetHeight = -9999.0;
+        //        _targetWidth = -9999.0;
+        //        _targetHeight = -9999.0;
         
         _scaleZ = 1.0;
         
@@ -41,13 +41,13 @@ namespace fl2d {
         
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = -1;
-
-//        _matrix = NULL;
-//        _concatenatedMatrix = NULL;
-//        _concatenatedMatrixInv = NULL;
+        
+        //        _matrix = NULL;
+        //        _concatenatedMatrix = NULL;
+        //        _concatenatedMatrixInv = NULL;
         
         _rect = new Rectangle();
-//        _rectTransformed = NULL;
+        //        _rectTransformed = NULL;
         _pixelBounds = new Rectangle();
         
         _enabledSmoothing = false;
@@ -56,13 +56,13 @@ namespace fl2d {
         _mouseX = 0;
         _mouseY = 0;
     }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject::~DisplayObject() {
         _target = NULL;
         _name = "";
-
+        
         _stage = NULL;
         _parent = NULL;
         _mask = NULL;
@@ -88,9 +88,9 @@ namespace fl2d {
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = 0;
         
-//        _matrix = NULL;
-//        _concatenatedMatrix = NULL;
-//        _concatenatedMatrixInv = NULL;
+        //        _matrix = NULL;
+        //        _concatenatedMatrix = NULL;
+        //        _concatenatedMatrixInv = NULL;
         
         delete _rect;
         _rect = NULL;
@@ -104,17 +104,17 @@ namespace fl2d {
         _mouseX = 0;
         _mouseY = 0;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::setup() {
         _setup();
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::update() {
@@ -122,7 +122,7 @@ namespace fl2d {
         
         _updateRect();
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::draw(bool applyMatrix) {
@@ -149,14 +149,14 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-//        bool bIdentity = true;
-//        bIdentity = matrix().isIdentity();
-//        bIdentity = false;
+        //        bool bIdentity = true;
+        //        bIdentity = matrix().isIdentity();
+        //        bIdentity = false;
         
         if(applyMatrix){
-//            glPushMatrix();
+            //            glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+            //            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
@@ -166,7 +166,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-//            glPopMatrix();
+            //            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -180,34 +180,34 @@ namespace fl2d {
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
     };
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::_setup() {
         
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::_update() {
         
     }
-
+    
     //--------------------------------------------------------------
     //
     void DisplayObject::_draw() {
         
     }
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     string DisplayObject::name() { return _name; }
     void DisplayObject::name(string value) { _name = value; }
-
+    
     //--------------------------------------------------------------
     //
     DisplayObject* DisplayObject::stage() { return _stage; }
@@ -256,7 +256,7 @@ namespace fl2d {
             dispatchEvent(event);
         }
     }
-
+    
     //--------------------------------------------------------------
     // TODO
     void DisplayObject::mask(DisplayObject* value){ }
@@ -275,51 +275,51 @@ namespace fl2d {
     float DisplayObject::z() { return _z; }
     void DisplayObject::z(float value) { _z = value; }
     
-//    //--------------------------------------------------------------
-//    //
-//    float DisplayObject::width() {
-//        _updateRect();
-//        
-//        return _rect->width() * scaleX();
-//    }
-//    void DisplayObject::width(float value) {
-//        _rect->width(value);
-//    }
-//    //--------------------------------------------------------------
-//    //
-//    float DisplayObject::height() {
-//        _updateRect();
-//        
-//        return _rect->height() * scaleY();
-//    }
-//    void DisplayObject::height(float value) {
-//        _rect->height(value);
-//    }
-//    
-////    //--------------------------------------------------------------
-////    //
-////    float DisplayObject::width() {
-////        _updateRect();
-////        return _realWidth * scaleX();
-////    }
-////    void DisplayObject::width(float value) { _targetWidth = value; }
-////
-////    //--------------------------------------------------------------
-////    //
-////    float DisplayObject::height() {
-////        _updateRect();
-////        return _realHeight * scaleY();
-////    }
-////    void DisplayObject::height(float value) { _targetHeight = value; }
-//    
-//    //--------------------------------------------------------------
-//    //
-//    float DisplayObject::scaleX() { return _matrix.scaleX(); }
-//    void DisplayObject::scaleX(float value) { _matrix.scaleX(value); }
-//    //--------------------------------------------------------------
-//    //
-//    float DisplayObject::scaleY() { return _matrix.scaleY(); }
-//    void DisplayObject::scaleY(float value) { _matrix.scaleY(value); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float DisplayObject::width() {
+    //        _updateRect();
+    //        
+    //        return _rect->width() * scaleX();
+    //    }
+    //    void DisplayObject::width(float value) {
+    //        _rect->width(value);
+    //    }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float DisplayObject::height() {
+    //        _updateRect();
+    //        
+    //        return _rect->height() * scaleY();
+    //    }
+    //    void DisplayObject::height(float value) {
+    //        _rect->height(value);
+    //    }
+    //    
+    ////    //--------------------------------------------------------------
+    ////    //
+    ////    float DisplayObject::width() {
+    ////        _updateRect();
+    ////        return _realWidth * scaleX();
+    ////    }
+    ////    void DisplayObject::width(float value) { _targetWidth = value; }
+    ////
+    ////    //--------------------------------------------------------------
+    ////    //
+    ////    float DisplayObject::height() {
+    ////        _updateRect();
+    ////        return _realHeight * scaleY();
+    ////    }
+    ////    void DisplayObject::height(float value) { _targetHeight = value; }
+    //    
+    //    //--------------------------------------------------------------
+    //    //
+    //    float DisplayObject::scaleX() { return _matrix.scaleX(); }
+    //    void DisplayObject::scaleX(float value) { _matrix.scaleX(value); }
+    //    //--------------------------------------------------------------
+    //    //
+    //    float DisplayObject::scaleY() { return _matrix.scaleY(); }
+    //    void DisplayObject::scaleY(float value) { _matrix.scaleY(value); }
     
     
     
@@ -387,17 +387,17 @@ namespace fl2d {
     //
     float DisplayObject::rotationZ() { return _rotationZ; }
     void DisplayObject::rotationZ(float value) { _rotationZ = value; }
-
+    
     //--------------------------------------------------------------
     //
     float DisplayObject::alpha() { return _alpha; }
     void DisplayObject::alpha(float value) { _alpha = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObject::visible() { return _visible; }
     void DisplayObject::visible(bool value) { _visible = value; }
-
+    
     //--------------------------------------------------------------
     //
     int DisplayObject::blendMode() { return _blendMode; }
@@ -405,17 +405,17 @@ namespace fl2d {
         if(value < 0 || 13 < value) return;
         _blendMode = value;
     }
-
+    
     //--------------------------------------------------------------
     //
     int DisplayObject::level() { return _level; }
     void DisplayObject::level(int value) { _level = value; }
-
+    
     //--------------------------------------------------------------
     //
     const Matrix& DisplayObject::matrix() { return _matrix; }
     void DisplayObject::matrix(const Matrix& mat) { _matrix = mat; }
-
+    
     //--------------------------------------------------------------
     //
     const Matrix& DisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
@@ -430,14 +430,14 @@ namespace fl2d {
         rect.bottom(_rect->bottom() * scaleY());
         return rect;
     }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObject::hitTestObject(DisplayObject* obj) {
         // TODO - working if two rectangles of different world matrices make any contact.
         return false;
     }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
@@ -446,7 +446,7 @@ namespace fl2d {
         _concatenatedMatrixInv.transformPoint(p);
         return _rect->pointTest(p.x, p.y);
     }
-
+    
     //--------------------------------------------------------------
     //
     ofPoint DisplayObject::globalToLocal(const ofPoint& point) {
@@ -455,7 +455,7 @@ namespace fl2d {
         _concatenatedMatrixInv.transformPoint(p);
         return p;
     }
-
+    
     //--------------------------------------------------------------
     //
     ofPoint DisplayObject::globalToLocal3D(const ofPoint& point) {
@@ -463,7 +463,7 @@ namespace fl2d {
         _concatenatedMatrixInv.transformPoint(p);
         return p;
     }
-
+    
     //--------------------------------------------------------------
     //
     ofPoint DisplayObject::local3DToGlobal(const ofPoint& point) {
@@ -471,7 +471,7 @@ namespace fl2d {
         _concatenatedMatrix.transformPoint(p);
         return p;
     }
-
+    
     //--------------------------------------------------------------
     //
     ofPoint DisplayObject::localToGlobal(const ofPoint& point) {
@@ -518,17 +518,17 @@ namespace fl2d {
         _pixelBounds->__setNull();						// reset before enclosing new points.
         _pixelBounds->__encloseRect(points);
     }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObject::enabledSmoothing() { return _enabledSmoothing; }
     void DisplayObject::enabledSmoothing(bool value) { _enabledSmoothing = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool DisplayObject::enabledAntiAliasing() { return _enabledAntiAliasing; }
     void DisplayObject::enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
-
+    
     //--------------------------------------------------------------
     //
     int DisplayObject::mouseX() {
@@ -554,7 +554,7 @@ namespace fl2d {
             p.y = _stage->mouseY();
             
             _concatenatedMatrixInv.transformPoint(p);
-//            _mouseY = p.y - _rect->y();
+            //            _mouseY = p.y - _rect->y();
             _mouseY = p.y;
         } else {
             _mouseY = 0;
@@ -569,22 +569,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void DisplayObject::_updateRect() {
-////        _rect->__setZero();
-//        
-////        _rect->width(_targetWidth);
-////        _rect->height(_targetHeight);
-//        
-//        //--------------------------------------
-//        _realWidth = _rect->width();
-//        _realHeight = _rect->height();
-//        
-//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-//        //--------------------------------------
+        ////        _rect->__setZero();
+        //        
+        ////        _rect->width(_targetWidth);
+        ////        _rect->height(_targetHeight);
+        //        
+        //        //--------------------------------------
+        //        _realWidth = _rect->width();
+        //        _realHeight = _rect->height();
+        //        
+        //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        ////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+        ////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        //        //--------------------------------------
     }
-
+    
     //--------------------------------------------------------------
     //
     float DisplayObject::__compoundAlpha(){ return _compoundAlpha; }

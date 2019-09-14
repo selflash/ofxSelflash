@@ -1,11 +1,11 @@
 #include "Button.h"
 
 namespace fl2d {
-
+    
     //==============================================================
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     Button::Button(float width, float height) {
@@ -15,7 +15,7 @@ namespace fl2d {
         name("Button");
         
         buttonMode(true);
-
+        
         _uiWidth = width;
         _uiHeight = height;
         
@@ -70,7 +70,7 @@ namespace fl2d {
         
         _enabled = true;
     }
-
+    
     //--------------------------------------------------------------
     //
     Button::~Button() {
@@ -83,13 +83,13 @@ namespace fl2d {
         
         _labelTextNotSelected = "";
         _labelTextSelected = "";
-
+        
         delete _label;
         _label = NULL;
         
         _toggleEnabled = false;
         _selected = false;
-            
+        
         _pointerValue = NULL;
         _stringValue = "";
         _floatValue = 0.0;
@@ -97,15 +97,15 @@ namespace fl2d {
         
         _enabled = false;
     }
-
+    
     //==============================================================
     // SETUP / UPDATE / DRAW
     //==============================================================
-
+    
     //==============================================================
     // PUBLIC METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     TextField* Button::label() { return _label; }
@@ -131,12 +131,12 @@ namespace fl2d {
             _label->text(_labelTextNotSelected);
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     bool Button::toggleEnabled() { return _toggleEnabled; }
     void Button::toggleEnabled(bool value) { _toggleEnabled = value; }
-
+    
     //--------------------------------------------------------------
     //
     bool Button::selected() { return _selected; }
@@ -153,7 +153,7 @@ namespace fl2d {
             }
             
             Graphics* g;
-        
+            
             if(_selected) {
                 _label->text(_labelTextSelected);
                 if(isMouseOver()) {
@@ -201,22 +201,22 @@ namespace fl2d {
             //dispatchEvent(new ButtonEvent(RadioButtonEvent::CHANGE));
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void* Button::pointerValue() { return _pointerValue; }
     void Button::pointerValue(void* value) { _pointerValue = value; }
-
+    
     //--------------------------------------------------------------
     //
     string Button::stringValue() { return _stringValue; }
     void Button::stringValue(string value) { _stringValue = value; }
-
+    
     //--------------------------------------------------------------
     //
     float Button::floatValue() { return _floatValue; }
     void Button::floatValue(float value) { _floatValue = value; }
-
+    
     //--------------------------------------------------------------
     //
     int Button::intValue() { return _intValue; }
@@ -247,18 +247,18 @@ namespace fl2d {
         g->drawRect(0, 0, _uiWidth, _uiHeight);
         g->endFill();
     }
-
+    
     //==============================================================
     // PROTECTED / PRIVATE METHOD
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Button::_over() {
-    //    cout << "[Button]_over()" << endl;
-    //    cout << this->isMouseOver() << endl;
-    //    cout << this->isRollOver() << endl;
-    //    cout << this->isMouseDown() << endl;
+        //    cout << "[Button]_over()" << endl;
+        //    cout << this->isMouseOver() << endl;
+        //    cout << this->isRollOver() << endl;
+        //    cout << this->isMouseDown() << endl;
         
         if(isMouseDown()) return;
         
@@ -291,7 +291,7 @@ namespace fl2d {
         
         dispatchEvent(new ButtonEvent(ButtonEvent::ROLL_OVER));
     }
-
+    
     //--------------------------------------------------------------
     //
     void Button::_out() {
@@ -310,7 +310,7 @@ namespace fl2d {
             g->drawRect(0, 0, _uiWidth, _uiHeight);
             g->endFill();
             //------------------------------------------
-
+            
             dispatchEvent(new ButtonEvent(ButtonEvent::ROLL_OUT));
             return;
         }
@@ -326,7 +326,7 @@ namespace fl2d {
         
         dispatchEvent(new ButtonEvent(ButtonEvent::ROLL_OUT));
     }
-
+    
     //--------------------------------------------------------------
     //
     void Button::_press() {
@@ -341,9 +341,9 @@ namespace fl2d {
         g->drawRect(0, 0, _uiWidth, _uiHeight);
         g->endFill();
         //------------------------------------------
-
+        
         if(_toggleEnabled) _selected = !_selected;
-
+        
         dispatchEvent(new ButtonEvent(ButtonEvent::MOUSE_DOWN));
         
         if(_toggleEnabled) {
@@ -351,7 +351,7 @@ namespace fl2d {
             dispatchEvent(new ButtonEvent(ButtonEvent::CHANGE));
         }
     }
-
+    
     //--------------------------------------------------------------
     //
     void Button::_release() {
@@ -416,11 +416,11 @@ namespace fl2d {
         
         dispatchEvent(new ButtonEvent(ButtonEvent::MOUSE_UP));
     }
-
+    
     //==============================================================
     // EVENT HANDLER
     //==============================================================
-
+    
     //--------------------------------------------------------------
     //
     void Button::_mouseEventHandler(Event& event) {
@@ -444,9 +444,9 @@ namespace fl2d {
         if(event.type() == MouseEvent::MOUSE_UP) {
             removeEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
             if(stage()) stage()->removeEventListener(MouseEvent::MOUSE_UP, this, &Button::_mouseEventHandler);
-//            if(event.target() == stage()) _release();
+            //            if(event.target() == stage()) _release();
             _release();
         }
     }
-
+    
 }

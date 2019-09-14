@@ -16,40 +16,40 @@ namespace fl2d {
     class Keyboard {
         friend Stage;
         
-        public:
-            static bool isShiftKeyDown();
-            static void isShiftKeyDown(bool value);
-            static bool isShiftKeyChanged();
-            
-            static bool isSpaceKeyDown();
-            static void isSpaceKeyDown(bool value);
-            static bool isSpaceKeyChanged();
-            
-        protected:
-            
-        private:
-            static vector<int> _downKeyList;
-            
-            static bool _isShiftKeyDown;
-            static bool _isShiftKeyChanged;
-            
-            static bool _isSpaceKeyDown;
-            static bool _isSpaceKeyChanged;
-            
-        public:
-            static void setup();
-            static void update();
-            static void draw();
-            
-        protected:
-            
-        private:
-            Keyboard();
-            virtual ~Keyboard();
-            
-            static void __addDownKey(int value);
-            static void __removeDownKey(int value);
-            static bool __checkKeyIsDown(int value);
+    public:
+        static bool isShiftKeyDown();
+        static void isShiftKeyDown(bool value);
+        static bool isShiftKeyChanged();
+        
+        static bool isSpaceKeyDown();
+        static void isSpaceKeyDown(bool value);
+        static bool isSpaceKeyChanged();
+        
+    protected:
+        
+    private:
+        static vector<int> _downKeyList;
+        
+        static bool _isShiftKeyDown;
+        static bool _isShiftKeyChanged;
+        
+        static bool _isSpaceKeyDown;
+        static bool _isSpaceKeyChanged;
+        
+    public:
+        static void setup();
+        static void update();
+        static void draw();
+        
+    protected:
+        
+    private:
+        Keyboard();
+        virtual ~Keyboard();
+        
+        static void __addDownKey(int value);
+        static void __removeDownKey(int value);
+        static bool __checkKeyIsDown(int value);
     };
     
 }
