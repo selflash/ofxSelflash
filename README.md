@@ -1,7 +1,7 @@
 # ofxSelflash ver1.0.0
 =========
 
-Last update 2019.9.14
+Last update 2019.9.9
 
 Copyright (c) 2015 selflash
 
@@ -11,27 +11,27 @@ Description:
 --------
 
 ofxSelflash is an addon that allows you to write code like AS3 on openFrameworks.
-The operation has been confirmed on oepnFrameworks 0.10.1 on macOS Sierra and Windows10.
+The operation has been confirmed on oepnFrameworks 0.9.8 on macOS Sierra and Windows10.
 
-+ A "fl2d" package is classes in imitation of ActionScript3.0.  
-~+ A "fl3d" package is classes in imitation of PaperVision3D.~  
-~+ A "tween" package is classes in imitation of TweenMax.~  
++ A "fl2d" package is classes in imitation of ActionScript3.0.
+~+ A "fl3d" package is classes in imitation of PaperVision3D.~
+~+ A "tween" package is classes in imitation of TweenMax.~
 
 This addon is still in development.
 Following examples are unable to build.
 
-~+ example-3D-1~  
-~+ example-3D-2~  
-~+ example-3D-Deferred-1~  
-+ example-BasicController  
-~+ example-BlendMode~  
-+ example-MovieClip  
-~+ example-Tweener-1~  
-~+ example-Tweener-2~  
-~+ example-Tweener-3~  
-~+ example-Tweener-4~  
-~+ example-Tweener-5~  
-~+ example-Tweener-6~  
+~+ example-3D-1~
+~+ example-3D-2~
+~+ example-3D-Deferred-1~
++ example-BasicController
++ example-BlendMode
++ example-MovieClip
+~+ example-Tweener-1~
+~+ example-Tweener-2~
+~+ example-Tweener-3~
+~+ example-Tweener-4~
+~+ example-Tweener-5~
+~+ example-Tweener-6~
 
 example-DisplayObjectTree
 https://vimeo.com/117660748
@@ -40,43 +40,52 @@ https://vimeo.com/117660748
 ScreenShot
 --------
 
-~+ example-3D-1~  
-~+ example-3D-2~  
-~+ example-3D-Deferred-1~  
-+ example-BasicController  
-~+ example-BlendMode~  
-+ example-EventDispatcher-1  
-+ example-EventDispatcher-2  
-+ example-HitArea  
-![example-HitArea](example-HitArea/screenshot.png)  
-+ example-MovieClip  
-+ example-DisplayObjectTree  
-![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)  
-+ example-Sprite  
-![example-Sprite](example-Sprite/screenshot.png)  
-+ example-TextField  
-![example-TextField](example-TextField/screenshot.png)  
-~+ example-Tweener-1~  
-~+ example-Tweener-2~  
-~+ example-Tweener-3~  
-~+ example-Tweener-4~  
-~+ example-Tweener-5~  
-~+ example-Tweener-6~  
-+ example-UIComponents-1  
-![example-UIComponents-1](example-UIComponents-1/screenshot.png)  
-+ example-BasicController  
-![example-BasicController](example-BasicController/screenshot.png)  
-+ example-BasicDraggableObject  
-![example-BasicDraggableObject](example-BasicDraggableObject/screenshot.png)  
-+ example-ExtendsSprite  
-![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)  
++ example-3D-1
++ example-3D-2
++ example-3D-Deferred-1
++ example-BasicController
++ example-BlendMode
++ example-EventDispatcher-1
++ example-EventDispatcher-2
++ example-HitArea
+![example-HitArea](example-HitArea/screenshot.png)
++ example-MovieClip
++ example-DisplayObjectTree
+![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)
++ example-Sprite
+![example-Sprite](example-Sprite/screenshot.png)
++ example-TextField
+![example-TextField](example-TextField/screenshot.png)
++ example-Tweener-1
++ example-Tweener-2
++ example-Tweener-3
++ example-Tweener-4
++ example-Tweener-5
++ example-Tweener-6
++ example-UIComponents-1
+![example-UIComponents-1](example-UIComponents-1/screenshot.png)
++ example-BasicController
+![example-BasicController](example-BasicController/screenshot.png)
++ example-BasicDraggableObject
+![example-BasicDraggableObject](example-BasicDraggableObject/screenshot.png)
++ example-ExtendsSprite
+![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
 
 
 How to build
 --------
 
-Copy the fl-Folder in "ofxSelflash/bin/data" to "your project folder/bin/data".
+If you see the following error when you build.
 ![1-1](howtouse/1-1.png)
+
+Please change "C++ Source" to "Objective-C++ Source" of NativeWindow.cpp.
+![1-2](howtouse/1-2.png)
+
+Please also change Mouse.cpp in the same way.
+![1-3](howtouse/1-3.png)
+
+Please copy the fl-folder in "ofxSelflash/bin/data" to "your project folder/bin/data".
+![2-1](howtouse/2-1.png)
 
 
 Features:
@@ -123,11 +132,10 @@ Features:
 + events/ColorSliderEvent.h
 + events/ColorPickerEvent.h
 + events/PadEvent.h
-+ events/Joystick1Event.h
-+ events/Joystick2Event.h
++ events/Joystick1DEvent.h
++ events/Joystick2DEvent.h
 + events/ComboBoxEvent.h
 + events/ButtonEvent.h
-+ events/HistgramViewerEvent.h
 
 [fl2d.geom](https://github.com/selflash/ofxSelflash/wiki/geom)
 + geom/ColorTransform.h
@@ -148,7 +156,6 @@ Features:
 + ui/Mouse.h
 + ui/Keyboard.h
 + ui/Button.h
-+ ui/CheckBox.h
 + ui/RadioButton.h
 + ui/NumberDialer.h
 + ui/Slider.h
@@ -159,29 +166,28 @@ Features:
 + ui/CircleColorPicker.h
 + ui/Pad2D.h
 + ui/Pad3D.h
-+ ui/Joystick1.h
-+ ui/Joystick2.h
-+ ui/HistgramViewer.h  
-~+ ui/ScrollKit.h~  
++ ui/Joystick1D.h
++ ui/Joystick2D.h
++ ui/ScrollKit.h
 + ui/ComboBox.h"
 
-~[fl3d.primitive]~  
-~[fl3d.render]~  
-~[fl3d.camera]~  
-~[fl3d.light]~  
+[fl3d.primitive]   
+[fl3d.render]  
+[fl3d.camera]  
+[fl3d.light]  
 
-~[fltw]~  
-~+ CallBackFuncion.h~  
-~+ DelayedCallFunction.h~  
-~+ ofxSTweener.h~  
-~+ ofxSTweener2D.h~  
-~+ STween.h~  
-~+ STweenCore.h~  
-~+ STweener.h~  
-~+ STweeneSelector.h~  
+[fltw]
++ CallBackFuncion.h
++ DelayedCallFunction.h
++ ofxSTweener.h
++ ofxSTweener2D.h
++ STween.h
++ STweenCore.h
++ STweener.h
++ STweeneSelector.h
 
-~[fltw.fl2d]~  
-~[fltw.fl3d]~  
+[fltw.fl2d]  
+[fltw.fl3d]  
 
 
 
@@ -195,16 +201,16 @@ void ofApp::setup() {
     //Ready ofxSelflash
     ofxSelflash::setup();
     
-    //Get Stage Reference
+    //Get stage reference
     flStage* stage = ofxSelflash::stage();
     
-    //Create New Sprite
+    //Create new sprite
     flSprite* sprite = new flSprite();
     //Set position
     sprite->x(100);
     sprite->y(200);
     
-    //Draw Graphics
+    //Draw graphics
     flGraphics* g;
     g = sprite->graphics();
     g->clear();
@@ -213,7 +219,7 @@ void ofApp::setup() {
     g->drawRect(0, 0, 100, 100);
     g->endFill();
     
-    //Add Child to Stage
+    //Add to display-object-tree
     stage->addChild(sprite);
 }
 ```
@@ -228,7 +234,6 @@ Ver 1.0.0 - 2019.9.9
 + [Modified] Rename class name JoyStick2D to JoyStick2.
 + [Modified] Modified how to initialize RadioButton.
 + [Added] CheckBox class.
-+ [Added] HistgramViewer class.
 
 Ver 0.5.12 - 2018.1.18
 + [Fixed] A bug of drawing on GLSL4.1 has beed fixed
