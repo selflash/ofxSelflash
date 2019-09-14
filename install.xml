@@ -1,0 +1,26 @@
+<install>
+    <name>ofxSelflash</name>
+	<version>1.0.0</version>
+	<author>Tatsuya Yokoda</author>
+	<url></url>
+	
+    <add>	
+		<!-- 	=====================================================================	-->
+		<!--	========================== add per project using this addon =========	-->
+		<!-- 	=====================================================================	-->
+	
+	    <src>
+			<folder name="addons/ofxSelflash/src">
+				<file>../../../addons/ofxSelflash/src/ofxSelflash.h</file>
+				<file>../../../addons/ofxSelflash/src/fl2d/Flash2D.h</file>
+				<file>../../../addons/ofxSelflash/src/fl2d/Flash2D.cpp</file>
+				<file>../../../addons/ofxSelflash/src/fl2d/FlashConfig.h</file>
+				<file>../../../addons/ofxSelflash/src/fl2d/FlashConfig.cpp</file>
+			</folder>
+	    </src>
+	    <include>
+		    <path>../../../addons/ofxSelflash/src</path>
+	    </include>
+    </add>
+    
+</install>
