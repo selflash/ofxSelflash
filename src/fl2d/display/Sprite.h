@@ -24,7 +24,7 @@ namespace fl2d {
         
     private:
         ofPoint _draggablePoint;
-        Rectangle* _draggableArea;
+        flRectangle* _draggableArea;
         
         bool _buttonMode;
         DisplayObject* _dropTarget;
@@ -65,8 +65,8 @@ namespace fl2d {
         virtual void useHandCursor(bool value);
         virtual bool useHandCursor();
         
-        //void startDrag(bool lockCenter = false, Rectangle bounds = NULL);
-        virtual void startDrag(bool lockCenter = false, Rectangle* bounds = NULL);
+        //void startDrag(bool lockCenter = false, flRectangle bounds = NULL);
+        virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
         virtual void stopDrag();
         
     protected:

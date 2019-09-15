@@ -11,8 +11,8 @@
 #include "ofMain.h"
 
 #include "Object.h"
-#include "Rectangle.h"
-#include "Matrix.h"
+#include "flRectangle.h"
+#include "flMatrix.h"
 
 #define FL_COMMAND_BEGIN_FILL            0
 #define FL_COMMAND_BEGIN_GRADIENT_FILL   1
@@ -81,7 +81,7 @@ namespace fl2d {
         
         //Sprite
         //            float __alpha;
-        Rectangle* __rect;
+        flRectangle* __rect;
         
         float _compoundAlpha;
         
@@ -95,7 +95,7 @@ namespace fl2d {
         void beginFill(int color, float alpha = 1.0);
         void endFill();
         
-        //void beginGradientFill(string type, vector<int> colors, vector<float> alphas, vector<float> ratios, Matrix matrix = NULL, string spreadMethod = "pad", string interpolationMethod = "rgb", float focalPointRatio = 0);
+        //void beginGradientFill(string type, vector<int> colors, vector<float> alphas, vector<float> ratios, flMatrix matrix = NULL, string spreadMethod = "pad", string interpolationMethod = "rgb", float focalPointRatio = 0);
         //void curveTo(float controlX, float controlY, float anchorX, float anchorY);
         
         void drawCircle(float x, float y, float radius);
@@ -126,7 +126,7 @@ namespace fl2d {
         void _beginFill(int color, float alpha = 1.0);
         void _endFill();
         
-        //void beginGradientFill(string type, vector<int> colors, vector<float> alphas, vector<float> ratios, Matrix matrix = NULL, string spreadMethod = "pad", string interpolationMethod = "rgb", float focalPointRatio = 0);
+        //void beginGradientFill(string type, vector<int> colors, vector<float> alphas, vector<float> ratios, flMatrix matrix = NULL, string spreadMethod = "pad", string interpolationMethod = "rgb", float focalPointRatio = 0);
         //void curveTo(float controlX, float controlY, float anchorX, float anchorY);
         
         void _drawCircle(float x, float y, float radius);

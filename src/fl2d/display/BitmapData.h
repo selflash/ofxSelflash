@@ -30,7 +30,7 @@ namespace fl2d {
         int _width;
         int _height;
         
-        Rectangle _rect;
+        flRectangle _rect;
         
     public:
         BitmapData(int width, int height, bool transparent = true, int fillColor = 0xFFFFFF);
@@ -47,7 +47,7 @@ namespace fl2d {
         virtual float height();
         virtual void height(float value);
         
-        //void applyFilter(BitmapData* sourceBitmapData, Rectangle* sourceRect, ofPoint* destPoint, BitmapFilter filter);
+        //void applyFilter(BitmapData* sourceBitmapData, flRectangle* sourceRect, ofPoint* destPoint, BitmapFilter filter);
         
         BitmapData clone();
         
@@ -59,22 +59,22 @@ namespace fl2d {
         
         void dispose();
         
-        //void draw(IBitmapDrawable source, Matrix matrix = NULL, ColorTransform colorTransform = NULL, string blendMode = NULL, Rectangle* clipRect = NULL, bool smoothing = false);
+        //void draw(IBitmapDrawable source, flMatrix matrix = NULL, ColorTransform colorTransform = NULL, string blendMode = NULL, flRectangle* clipRect = NULL, bool smoothing = false);
         
         void draw(ofImage& source);
         
-        //            void fillRect(Rectangle rect, int color);
-        void fillRect(Rectangle rect, ofColor color);
+        //            void fillRect(flRectangle rect, int color);
+        void fillRect(flRectangle rect, ofColor color);
         void clear();
         
         void floodFill(int x, int y, int color);
         
-        //Rectangle* generateFilterRect(Rectangle* sourceRect, BitmapFilter filter);
+        //flRectangle* generateFilterRect(flRectangle* sourceRect, BitmapFilter filter);
         
         int getPixel(int x, int y);
         int getPixel32(int x, int y);
         
-        //ByteArray getPixels(Rectangle* rect);
+        //ByteArray getPixels(flRectangle* rect);
         
         void lock() { };
         void unlock() {

@@ -18,7 +18,7 @@ namespace fl2d {
         _fillEnabled = false;
         
         //        __alpha = 1.0;
-        __rect = new Rectangle();
+        __rect = new flRectangle();
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;

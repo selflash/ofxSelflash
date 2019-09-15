@@ -214,7 +214,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void BitmapData::fillRect(Rectangle rect, ofColor color) {
+    void BitmapData::fillRect(flRectangle rect, ofColor color) {
         ofPixels& pixels = _image->getPixels();
         
         float left = rect.left();

@@ -46,9 +46,9 @@ namespace fl2d {
         //        _concatenatedMatrix = NULL;
         //        _concatenatedMatrixInv = NULL;
         
-        _rect = new Rectangle();
+        _rect = new flRectangle();
         //        _rectTransformed = NULL;
-        _pixelBounds = new Rectangle();
+        _pixelBounds = new flRectangle();
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;
@@ -413,17 +413,17 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    const Matrix& DisplayObject::matrix() { return _matrix; }
-    void DisplayObject::matrix(const Matrix& mat) { _matrix = mat; }
+    const flMatrix& DisplayObject::matrix() { return _matrix; }
+    void DisplayObject::matrix(const flMatrix& mat) { _matrix = mat; }
     
     //--------------------------------------------------------------
     //
-    const Matrix& DisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
+    const flMatrix& DisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
     
     //--------------------------------------------------------------
     // TODO
-    Rectangle DisplayObject::getRect(DisplayObject* targetCoordinateSpace) {
-        Rectangle rect;
+    flRectangle DisplayObject::getRect(DisplayObject* targetCoordinateSpace) {
+        flRectangle rect;
         rect.left(_rect->left() * scaleX());
         rect.right(_rect->right() * scaleX());
         rect.top(_rect->top() * scaleY());
@@ -482,7 +482,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void DisplayObject::transform(const Matrix& mat) {
+    void DisplayObject::transform(const flMatrix& mat) {
         _concatenatedMatrix = mat;
         _concatenatedMatrixInv = mat;
         _concatenatedMatrixInv.invert();

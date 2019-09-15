@@ -1,19 +1,19 @@
-#include "Transform.h"
+#include "flTransform.h"
 
 namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    Transform::Transform() {
-        pixelBounds = new Rectangle();
+	flTransform::flTransform() {
+        pixelBounds = new flRectangle();
         
-        _pixelBounds = new Rectangle();
-        _rect = new Rectangle();
+        _pixelBounds = new flRectangle();
+        _rect = new flRectangle();
     }
     
     //--------------------------------------------------------------
     //
-    Transform::~Transform() {
+    flTransform::~flTransform() {
         pixelBounds = NULL;
         
         _pixelBounds = NULL;
@@ -22,7 +22,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Transform::update() {
+    void flTransform::update() {
         bDirtyColorTransform = !_colorTransform.isEqual(colorTransform);
         bDirtyMatrix         = !_matrix.isEqual(matrix);
         bDirtyMatrix3D       = !_matrix3D.isEqual(matrix3D);

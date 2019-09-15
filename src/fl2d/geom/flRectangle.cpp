@@ -1,4 +1,4 @@
-#include "Rectangle.h"
+#include "flRectangle.h"
 
 namespace fl2d {
     
@@ -8,13 +8,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    Rectangle::Rectangle() {
+    flRectangle::flRectangle() {
         
     }
     
     //--------------------------------------------------------------
     //左上隅が x パラメーターと y パラメーターで指定され、幅と高さが width パラメーター height パラメーターで指定された新しい Rectangle オブジェクトを作成します。
-    Rectangle::Rectangle(float x, float y, float width, float height) {
+    flRectangle::flRectangle(float x, float y, float width, float height) {
         _xMin = x;
         _yMin = y;
         
@@ -24,7 +24,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    Rectangle::~Rectangle() {
+    flRectangle::~flRectangle() {
         _xMin = 0.0;
         _yMin = 0.0;
         
@@ -40,91 +40,91 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //矩形の左上隅の x 座標です。
-    float Rectangle::x() const { return _xMin; }
-    void Rectangle::x(float value) {
+    float flRectangle::x() const { return _xMin; }
+    void flRectangle::x(float value) {
         if(_xMin != value) _isChanged = true;
         _xMin = value;
     }
     
     //--------------------------------------------------------------
     //矩形の左上隅の y 座標です。
-    float Rectangle::y() const{ return _yMin; }
-    void Rectangle::y(float value) {
+    float flRectangle::y() const{ return _yMin; }
+    void flRectangle::y(float value) {
         if(_yMin != value) _isChanged = true;
         _yMin = value;
     }
     
     //--------------------------------------------------------------
     //矩形の左上隅の x 座標です。
-    float Rectangle::left() const{ return _xMin; }
-    void Rectangle::left(float value) {
+    float flRectangle::left() const{ return _xMin; }
+    void flRectangle::left(float value) {
         if(_xMin != value) _isChanged = true;
         _xMin = value;
     }
     
     //--------------------------------------------------------------
     //x プロパティと width プロパティの合計です。
-    float Rectangle::right() const{ return _xMax; }
-    void Rectangle::right(float value) {
+    float flRectangle::right() const{ return _xMax; }
+    void flRectangle::right(float value) {
         if(_xMax != value) _isChanged = true;
         _xMax = value;
     }
     
     //--------------------------------------------------------------
     //矩形の左上隅の y 座標です。
-    float Rectangle::top() const{ return _yMin; }
-    void Rectangle::top(float value) {
+    float flRectangle::top() const{ return _yMin; }
+    void flRectangle::top(float value) {
         if(_yMin != value) _isChanged = true;
         _yMin = value;
     }
     
     //--------------------------------------------------------------
     //y プロパティと height プロパティの合計です。
-    float Rectangle::bottom() const{ return _yMax; }
-    void Rectangle::bottom(float value) {
+    float flRectangle::bottom() const{ return _yMax; }
+    void flRectangle::bottom(float value) {
         if(_yMax != value) _isChanged = true;
         _yMax = value;
     }
     
     //--------------------------------------------------------------
     //Rectangle オブジェクトの左上隅の位置で、そのポイントの x 座標と y 座標で決まります。
-    //    ofPoint& Rectangle::topLeft() const{ return _yMin; }
-    //    void Rectangle::topLeft(ofPoint& value) { _yMin = value; }
+    //    ofPoint& flRectangle::topLeft() const{ return _yMin; }
+    //    void flRectangle::topLeft(ofPoint& value) { _yMin = value; }
     
     //--------------------------------------------------------------
     //Rectangle オブジェクトの右下隅の位置で、right プロパティと bottom プロパティの値で決まります。
-    //    ofPoint& Rectangle::bottomRight() const{ return _yMin; }
-    //    void Rectangle::bottomRight(ofPoint& value) { _yMin = value; }
+    //    ofPoint& flRectangle::bottomRight() const{ return _yMin; }
+    //    void flRectangle::bottomRight(ofPoint& value) { _yMin = value; }
     
     //--------------------------------------------------------------
     //矩形の幅（ピクセル単位）です。
-    float Rectangle::width() { return _xMax - _xMin; }
-    void Rectangle::width(float value) {
+    float flRectangle::width() { return _xMax - _xMin; }
+    void flRectangle::width(float value) {
         if(_xMax != _xMin + value) _isChanged = true;
         _xMax = _xMin + value;
     }
     //--------------------------------------------------------------
     //
-    float Rectangle::height() { return _yMax - _yMin; }
-    void Rectangle::height(float value) {
+    float flRectangle::height() { return _yMax - _yMin; }
+    void flRectangle::height(float value) {
         if(_yMax != _yMin + value) _isChanged = true;
         _yMax = _yMin + value;
     }
     
     //--------------------------------------------------------------
     //
-    bool Rectangle::isNull() const {
+    bool flRectangle::isNull() const {
         return (isnan(_xMin) && isnan(_xMax) && isnan(_yMin) && isnan(_yMax));
     }
     //--------------------------------------------------------------
     //
-    bool Rectangle::isZero() const {
+    bool flRectangle::isZero() const {
         return (_xMin == 0.0 && _xMax == 0.0 && _yMin == 0.0 && _yMax == 0.0);
     }
     
     //--------------------------------------------------------------
     //
-    bool Rectangle::pointTest(float x, float y) {
+    bool flRectangle::pointTest(float x, float y) {
         if(isNull()) return false;
         
         if(_xMin < x && x < _xMax && _yMin < y && y < _yMax) return true;
@@ -136,7 +136,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    bool Rectangle::isChanged() {
+    bool flRectangle::isChanged() {
         bool b = _isChanged;
         _isChanged = false;
         return b;
@@ -148,13 +148,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    //    void Rectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = 0 / 0.f; }
-    void Rectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = numeric_limits<float>::quiet_NaN(); }
-    void Rectangle::__setZero() { _xMin = _yMin = _xMax = _yMax = 0.0; }
+    //    void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = 0 / 0.f; }
+    void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = numeric_limits<float>::quiet_NaN(); }
+    void flRectangle::__setZero() { _xMin = _yMin = _xMax = _yMax = 0.0; }
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandTo(float x, float y) {
+    void flRectangle::__expandTo(float x, float y) {
         //        if(isNull()) {
         //            _xMin = x;
         //            _yMin = y;
@@ -179,7 +179,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandToX(float x) {
+    void flRectangle::__expandToX(float x) {
         //        if(isNull()) {
         //            _xMin = x;
         //            _xMax = x;
@@ -198,7 +198,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandToY(float y) {
+    void flRectangle::__expandToY(float y) {
         //        if(isNull()) {
         //            _yMin = y;
         //            _yMax = y;
@@ -217,7 +217,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__encloseRect(const vector<ofPoint>& points) {
+    void flRectangle::__encloseRect(const vector<ofPoint>& points) {
         for(int i = 0; i < points.size(); i++){
             if(i == 0){
                 __setToPoint(points[0].x, points[0].y);
@@ -229,7 +229,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandToRect(const Rectangle& rect) {
+    void flRectangle::__expandToRect(const flRectangle& rect) {
         if(rect.isNull()) return;
         
         if(isNull()){
@@ -251,7 +251,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__setToPoint(float x, float y) {
+    void flRectangle::__setToPoint(float x, float y) {
         //        if(isNull()) {
         //            _xMin = x;
         //            _yMin = y;
@@ -274,7 +274,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandToPoint(float x, float y) {
+    void flRectangle::__expandToPoint(float x, float y) {
         if(isNull()) {
             __setToPoint(x, y);
         } else {
@@ -284,7 +284,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__expandToCircle(float x, float y, float radius) {
+    void flRectangle::__expandToCircle(float x, float y, float radius) {
         if(isNull()) {
             _isChanged = true;
             
@@ -309,7 +309,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__setToRect(float x1, float y1, float x2, float y2) {
+    void flRectangle::__setToRect(float x1, float y1, float x2, float y2) {
         //        if(isNull()) {
         //            _xMin = x1;
         //            _yMin = y1;
@@ -334,7 +334,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void Rectangle::__setToRect(const Rectangle& rect) {
+    void flRectangle::__setToRect(const flRectangle& rect) {
         //        if(isNull()) {
         //            _xMin = rect.left();
         //            _yMin = rect.top();

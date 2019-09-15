@@ -94,16 +94,16 @@ typedef fl2d::HistgramViewerEvent flHistgramViewerEvent;
 
 //flash.geom
 #include "ColorTransform.h"
-#include "Matrix.h"
+#include "flMatrix.h"
 //#include "Particle2D.h"
-#include "Rectangle.h"
-#include "Transform.h"
+#include "flRectangle.h"
+#include "flTransform.h"
 
 typedef fl2d::ColorTransform flColorTransform;
-typedef fl2d::Matrix flMatrix;
+//typedef fl2d::Matrix flMatrix;
 //typedef fl2d::Particle2D flParticle2D;
-typedef fl2d::Rectangle flRectangle;
-typedef fl2d::Transform flTransform;
+//typedef fl2d::flRectangle flRectangle;
+//typedef fl2d::Transform flTransform;
 
 //flash.texts
 #include "texts/Font.h"
@@ -264,9 +264,9 @@ public:
  -----------------------------------------
  【flash.geom】
  
- [flash.geom.Matrix]
+ [flash.geom.flMatrix]
  
- [flash.geom.Rectangle]
+ [flash.geom.flRectangle]
  
  [flash.geom.Transform]
  -----------------------------------------

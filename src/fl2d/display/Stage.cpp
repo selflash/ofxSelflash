@@ -393,7 +393,7 @@ namespace fl2d {
             
             //=========================================== MATRIX.
             // transform child matrix by world matrix.
-            Matrix worldMatrix;
+            flMatrix worldMatrix;
             worldMatrix = parent->concatenatedMatrix();
             worldMatrix.concat(child->matrix());
             child->transform(worldMatrix);

@@ -11,14 +11,14 @@
 
 #include "ofMain.h"
 #include "ColorTransform.h"
-#include "Matrix.h"
-#include "Rectangle.h"
+#include "flMatrix.h"
+#include "flRectangle.h"
 
 namespace fl2d {
     class Stage;
     class DisplayObject;
     
-    class Transform : public Object {
+    class flTransform : public Object {
     public:
         
         /**
@@ -37,14 +37,14 @@ namespace fl2d {
         ColorTransform colorTransform;
         // [read-only] A ColorTransform object representing the combined color transformations applied to the display object and all of its parent objects, back to the root level.
         ColorTransform concatenatedColorTransform;
-        // [read-only] A Matrix object representing the combined transformation matrixes of the display object and all of its parent objects, back to the root level.
-        Matrix concatenatedMatrix;
-        // A Matrix object containing values that alter the scaling, rotation, and translation of the display object.
-        Matrix matrix;
+        // [read-only] A flMatrix object representing the combined transformation matrixes of the display object and all of its parent objects, back to the root level.
+        flMatrix concatenatedMatrix;
+        // A flMatrix object containing values that alter the scaling, rotation, and translation of the display object.
+        flMatrix matrix;
         // Provides access to the Matrix3D object of a three-dimensional display object.
-        Matrix matrix3D;
+        flMatrix matrix3D;
         // [read-only] A Rectangle object that defines the bounding rectangle of the display object on the stage.
-        Rectangle* pixelBounds;
+        flRectangle* pixelBounds;
         
     protected:
         
@@ -55,17 +55,17 @@ namespace fl2d {
         
         ColorTransform  _colorTransform;
         ColorTransform  _concatenatedColorTransform;
-        Matrix          _concatenatedMatrix;
-        Matrix          _concatenatedMatrixInv;
-        Matrix          _matrix;
-        Matrix          _matrix3D;
-        Rectangle*      _pixelBounds;
-        Rectangle*      _rect;
+        flMatrix          _concatenatedMatrix;
+        flMatrix          _concatenatedMatrixInv;
+        flMatrix          _matrix;
+        flMatrix          _matrix3D;
+        flRectangle*      _pixelBounds;
+        flRectangle*      _rect;
         ofPoint         _rectTransformed[4];
         
     public:
-        Transform();
-        virtual ~Transform();
+		flTransform();
+        virtual ~flTransform();
         
     protected:
         void update();

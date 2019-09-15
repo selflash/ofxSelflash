@@ -7,8 +7,8 @@
  https://github.com/julapy/ofxFlashLite/blob/master/src/geom/ofxFlashMatrix.h
  
  ActionScript3.0 Reference
- flash.geom.Matrix
- http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/geom/Matrix.html
+ flash.geom.flMatrix
+ http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/geom/flMatrix.html
  
  */
 
@@ -19,7 +19,7 @@
 
 namespace fl2d {
     
-    class Matrix : public ofMatrix4x4 {
+    class flMatrix : public ofMatrix4x4 {
     public:
         
     protected:
@@ -27,11 +27,11 @@ namespace fl2d {
     private:
         
     public:
-        Matrix();
-        Matrix(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty);
-        virtual ~Matrix();
+        flMatrix();
+        flMatrix(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty);
+        virtual ~flMatrix();
         
-        void set(Matrix& matrix);
+        void set(flMatrix& matrix);
         void set(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty);
         
         float a() const;
@@ -52,11 +52,11 @@ namespace fl2d {
         float ty() const;
         void ty(const float& value);
         
-        bool isEqual(Matrix& matrix);
+        bool isEqual(flMatrix& matrix);
         
         //===============================================
-        static Matrix interpolate(Matrix& mat1, Matrix& mat2, const float& p) {
-            Matrix mat;
+        static flMatrix interpolate(flMatrix& mat1, flMatrix& mat2, const float& p) {
+            flMatrix mat;
             mat.a((mat2.a() - mat1.a()) * p + mat1.a());
             mat.b((mat2.b() - mat1.b()) * p + mat1.b());
             mat.c((mat2.c() - mat1.c()) * p + mat1.c());
@@ -69,9 +69,9 @@ namespace fl2d {
         
         void identity();
         void transformPoint(ofPoint& p) const;
-        void concat(const Matrix& m);
-        Matrix& invert();
-        Matrix& clone();
+        void concat(const flMatrix& m);
+        flMatrix& invert();
+        flMatrix& clone();
         
         //	void
         //	SWFMatrix::concatenate_translation(int xoffset, int yoffset)

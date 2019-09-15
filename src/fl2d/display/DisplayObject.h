@@ -12,8 +12,8 @@
 #pragma once
 
 #include "EventDispatcher.h"
-#include "Matrix.h"
-#include "Rectangle.h"
+#include "flMatrix.h"
+#include "flRectangle.h"
 
 #define	FL_BLEND_MODE_NORMAL		0
 #define	FL_BLEND_MODE_LAYER		    1
@@ -67,13 +67,13 @@ namespace fl2d {
         int	 _blendMode;
         int	_level;
         
-        Matrix _matrix;
-        Matrix _concatenatedMatrix;
-        Matrix _concatenatedMatrixInv;
+        flMatrix _matrix;
+        flMatrix _concatenatedMatrix;
+        flMatrix _concatenatedMatrixInv;
         
-        Rectangle* _rect;
+        flRectangle* _rect;
         ofPoint _rectTransformed[4];
-        Rectangle* _pixelBounds;
+        flRectangle* _pixelBounds;
         
         bool _enabledSmoothing;
         bool _enabledAntiAliasing;
@@ -152,12 +152,12 @@ namespace fl2d {
         virtual int level();
         virtual void level(int value);
         
-        virtual const Matrix& matrix();
-        virtual void matrix(const Matrix& mat);
+        virtual const flMatrix& matrix();
+        virtual void matrix(const flMatrix& mat);
         
-        virtual const Matrix& concatenatedMatrix();
+        virtual const flMatrix& concatenatedMatrix();
         
-        virtual Rectangle getRect(DisplayObject* targetCoordinateSpace);
+        virtual flRectangle getRect(DisplayObject* targetCoordinateSpace);
         
         virtual bool hitTestObject(DisplayObject* obj);
         
@@ -175,7 +175,7 @@ namespace fl2d {
         //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
         //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
         
-        virtual void transform(const Matrix& mat);
+        virtual void transform(const flMatrix& mat);
         
         virtual bool enabledSmoothing();
         virtual void enabledSmoothing(bool value);

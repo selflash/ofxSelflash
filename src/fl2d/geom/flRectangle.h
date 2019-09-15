@@ -7,7 +7,7 @@
  https://github.com/julapy/ofxFlash/blob/master/src/geom/ofxFlashRectangle.h
  
  ActionScript3.0 Reference
- fl.geom.Rectangle
+ fl.geom.flRectangle
  http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/geom/Rectangle.html
  
  */
@@ -19,7 +19,7 @@
 namespace fl2d {
     
     // forward decleration.
-    class Matrix;
+    class flMatrix;
     class DisplayObject;
     class DisplayObjectContainer;
     class Shape;
@@ -28,9 +28,9 @@ namespace fl2d {
     class Graphics;
     class TextField;
     
-    class Rectangle {
+    class flRectangle {
         //TODO
-        friend Matrix;
+        friend flMatrix;
         friend DisplayObject;
         friend DisplayObjectContainer;
         friend Shape;
@@ -52,9 +52,9 @@ namespace fl2d {
         bool _isChanged = false;
         
     public:
-        Rectangle();
-        Rectangle(float x, float y, float width, float height);
-        virtual ~Rectangle();
+        flRectangle();
+        flRectangle(float x, float y, float width, float height);
+        virtual ~flRectangle();
         
         float x() const;
         void x(float value);
@@ -104,11 +104,11 @@ namespace fl2d {
         void __expandToX(float x);
         void __expandToY(float y);
         void __expandToPoint(float x, float y);
-        void __expandToRect(const Rectangle& rect);
+        void __expandToRect(const flRectangle& rect);
         void __expandToCircle(float x, float y, float radius);
         
         void __setToPoint(float x, float y);
-        void __setToRect(const Rectangle& rect);
+        void __setToRect(const flRectangle& rect);
         void __setToRect(float x1, float y1, float x2, float y2);
         
         void __encloseRect(const vector<ofPoint>& points);

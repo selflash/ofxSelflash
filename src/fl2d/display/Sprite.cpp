@@ -308,7 +308,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //TODO
-    void Sprite::startDrag(bool lockCenter, Rectangle* bounds) {
+    void Sprite::startDrag(bool lockCenter, flRectangle* bounds) {
         _draggableArea = bounds;
         
         //TODO 実装がスマートじゃないなー・・
