@@ -37,7 +37,6 @@ example-BasicDraggableObject/example-BasicDraggableObject.xcodeproj
 example-BasicDraggableObject/Makefile
 example-BasicDraggableObject/openFrameworks-Info.plist
 example-BasicDraggableObject/Project.xcconfig
-example-CustomController-1
 example-DisplayObjectTree/example-DisplayObjectTree.xcodeproj
 example-DisplayObjectTree/Makefile
 example-DisplayObjectTree/openFrameworks-Info.plist
