@@ -956,3 +956,11 @@ example-DisplayObjectTree/obj/Win32/Release/NumberDialer.obj
 example-DisplayObjectTree/obj/Win32/Release/MovieClip.obj
 example-DisplayObjectTree/obj/Win32/Release/MouseEvent.obj
 example-DisplayObjectTree/obj/Win32/Release/Mouse.obj
+example-BasicDraggableObject
+example-DisplayObjectTree
+Info.plist
+PkgInfo
+icon-debug.icns
+example-BasicControllerDebug
+libfmodex.dylib
+example-UIComponents-1Debug
