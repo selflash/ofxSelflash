@@ -10,7 +10,9 @@ namespace fl2d {
     //
     void flFont::setup() {
         float fontSize = 10;
-        _font->load(flDefinition::_FONT_PATH, fontSize, true, true);
+		if (!_font->load(flDefinition::_FONT_PATH, fontSize, true, true)) {
+			ofLogError() << "Font has not loaded.";
+		};
         
         std::string text = "";
         text += "1234567890-^¥!#$%&'()0=~|'";
