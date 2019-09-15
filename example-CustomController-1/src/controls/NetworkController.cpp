@@ -1,4 +1,4 @@
-#include "NetworkController.h"
+﻿#include "NetworkController.h"
 
 
 //==============================================================
@@ -8,7 +8,7 @@
 //--------------------------------------------------------------
 //
 SocketController::SocketController() {
-    if(debug()) cout << "[SocketController]SocketController()" << endl;
+    cout << "[SocketController]SocketController()" << endl;
     _target = this;
     
     name("SocketController");
@@ -18,7 +18,7 @@ SocketController::SocketController() {
 //--------------------------------------------------------------
 //
 SocketController::~SocketController() {
-    if(debug()) cout << "[SocketController]~SocketController()" << endl;
+    cout << "[SocketController]~SocketController()" << endl;
     _target = NULL;
 }
 
@@ -29,7 +29,7 @@ SocketController::~SocketController() {
 //--------------------------------------------------------------
 //
 void SocketController::_setup() {
-    if(debug()) cout << "[SocketController]_setup()" << endl;
+    cout << "[SocketController]_setup()" << endl;
     
     //    flGraphics* g;
     //    g = graphics();
@@ -235,7 +235,7 @@ void SocketController::_setup() {
 //--------------------------------------------------------------
 //
 void SocketController::_update() {
-    //if(debug()) cout << "[SocketController]update()" << endl;
+    //cout << "[SocketController]update()" << endl;
     
     if(!_socket) return;
     _textField101->text(ofToString(_socket->isBinded() ? "true" : "false"));
@@ -253,7 +253,7 @@ void SocketController::_update() {
 //--------------------------------------------------------------
 //
 void SocketController::_draw() {
-    //if(debug()) cout << "[SocketController]draw()" << endl;
+    //cout << "[SocketController]draw()" << endl;
     
     //    ofDrawBitmapString(_status, 10, 20);
 }
@@ -299,99 +299,103 @@ void SocketController::_uiEventHandler(flEvent& event) {
             bool success = _socket->bind(ofToInt(_textField104->text()));
             _button002->enabled(success);
         }
-        if(button == _button002) _socket->connect(
-                                                  _textField105->text(),
-                                                  ofToInt(_textField106->text())
-                                                  );
-        if(button == _button003) {
+		else if (button == _button002) {
+			_socket->connect(
+				_textField105->text(),
+				ofToInt(_textField106->text())
+			);
+		}
+		else if(button == _button003) {
             _socket->close();
             _button002->enabled(false);
         }
         //        cout << _textField002->text() << endl;
-        if(button == _button011) _socket->sendMessage(_textField002->text());
+		else if (button == _button011) {
+			_socket->sendMessage(_textField002->text());
+		}
         //        if(button == _button012) _networkManager->sendMessageWithUDP(0, text200->text());
-    };
+    }
     
     //コンボボックス
-    if(event.type() == flComboBoxEvent::CHANGE) {
+	else if(event.type() == flComboBoxEvent::CHANGE) {
         flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
         cout << "-------------" << endl;
         cout << comboBox->name() << " :" << endl;
         cout << "selectedIndex : " << comboBox->selectedIndex() << endl;
         cout << "selectedValue : " << comboBox->selectedValue<string>() << endl;
-    };
+    }
     
     //ラジオボタン
-    if(event.type() == flRadioButtonEvent::CHANGE) {
+	else if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
     }
     
     //ナンバーダイアラー
-    if(event.type() == flNumberDialerEvent::CHANGE) {
+	else if(event.type() == flNumberDialerEvent::CHANGE) {
         flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
     }
     
     //2Dパッド
-    if(event.type() == flPadEvent::CHANGE) {
+	else if(event.type() == flPadEvent::CHANGE) {
         flPad2D* pad = (flPad2D*)(event.currentTarget());
     }
     
     //スライダー
-    if(event.type() == flSliderEvent::CHANGE) {
+	else if(event.type() == flSliderEvent::CHANGE) {
         flSlider* slider = (flSlider*)(event.currentTarget());
     }
     
     //レンジスライダー
-    if(event.type() == flRangeSliderEvent::CHANGE) {
+	else if(event.type() == flRangeSliderEvent::CHANGE) {
         flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
     }
     
     //カラースライダー
-    if(event.type() == flColorSliderEvent::CHANGE) {
+	else if(event.type() == flColorSliderEvent::CHANGE) {
         flColorSlider* slider = (flColorSlider*)(event.currentTarget());
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoyStick1Event::CHANGE) {
+	else if(event.type() == flJoyStick1Event::CHANGE) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::UP) {
+	else if(event.type() == flJoyStick1Event::UP) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::DOWN) {
+	else if(event.type() == flJoyStick1Event::DOWN) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::LEFT) {
+	else if(event.type() == flJoyStick1Event::LEFT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::RIGHT) {
+	else if(event.type() == flJoyStick1Event::RIGHT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoyStick2Event::CHANGE) {
+	else if(event.type() == flJoyStick2Event::CHANGE) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::UP) {
+	else if(event.type() == flJoyStick2Event::UP) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::DOWN) {
+	else if(event.type() == flJoyStick2Event::DOWN) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::LEFT) {
+	else if(event.type() == flJoyStick2Event::LEFT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::RIGHT) {
+	else if(event.type() == flJoyStick2Event::RIGHT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
@@ -404,7 +408,7 @@ void SocketController::_uiEventHandler(flEvent& event) {
 //--------------------------------------------------------------
 //
 NetworkController::NetworkController() {
-    if(debug()) cout << "[NetworkController]NetworkController()" << endl;
+    cout << "[NetworkController]NetworkController()" << endl;
     _target = this;
     
     name("NetworkController");
@@ -414,7 +418,7 @@ NetworkController::NetworkController() {
 //--------------------------------------------------------------
 //
 NetworkController::~NetworkController() {
-    if(debug()) cout << "[NetworkController]~NetworkController()" << endl;
+    cout << "[NetworkController]~NetworkController()" << endl;
     _target = NULL;
     
     _status = "";
@@ -430,7 +434,7 @@ NetworkController::~NetworkController() {
 //--------------------------------------------------------------
 //
 void NetworkController::_setup() {
-    if(debug()) cout << "[NetworkController]_setup()" << endl;
+    cout << "[NetworkController]_setup()" << endl;
     
     flBasicController::_setup();
     
@@ -504,7 +508,7 @@ void NetworkController::_setup() {
 //--------------------------------------------------------------
 //
 void NetworkController::_update() {
-    //if(debug()) cout << "[NetworkController]update()" << endl;
+    //cout << "[NetworkController]update()" << endl;
     
     if(_networkManager) {
         _status = "";
@@ -514,7 +518,7 @@ void NetworkController::_update() {
 //--------------------------------------------------------------
 //
 void NetworkController::_draw() {
-    //if(debug()) cout << "[NetworkController]draw()" << endl;
+    //cout << "[NetworkController]draw()" << endl;
     
     if(_isMinimize) return;
     //    ofDrawBitmapString(_status, 10, 20);
@@ -568,10 +572,10 @@ void NetworkController::_uiEventHandler(flEvent& event) {
         if(button == button602) _networkManager->sendMessageWithUDP(4, text600->text());
         if(button == button702) _networkManager->sendMessageWithUDP(5, text700->text());
         if(button == button802) _networkManager->sendMessageWithUDP(6, text800->text());
-    };
+    }
     
     //コンボボックス
-    if(event.type() == flComboBoxEvent::CHANGE) {
+	else if(event.type() == flComboBoxEvent::CHANGE) {
         flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
         cout << "-------------" << endl;
@@ -597,46 +601,46 @@ void NetworkController::_uiEventHandler(flEvent& event) {
             
             addChild(_currentSocketController);
         }
-    };
+    }
     
     //チェックボックス
-    if(event.type() == flCheckBoxEvent::CHANGE) {
+	else if(event.type() == flCheckBoxEvent::CHANGE) {
         flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
         flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
     }
 
     //ラジオボタン
-    if(event.type() == flRadioButtonEvent::CHANGE) {
+	else if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
     }
     
     //ナンバーダイアラー
-    if(event.type() == flNumberDialerEvent::CHANGE) {
+	else if(event.type() == flNumberDialerEvent::CHANGE) {
         flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
     }
     
     //2Dパッド
-    if(event.type() == flPadEvent::CHANGE) {
+	else if(event.type() == flPadEvent::CHANGE) {
         flPad2D* pad = (flPad2D*)(event.currentTarget());
     }
     
     //スライダー
-    if(event.type() == flSliderEvent::CHANGE) {
+	else if(event.type() == flSliderEvent::CHANGE) {
         flSlider* slider = (flSlider*)(event.currentTarget());
     }
     
     //レンジスライダー
-    if(event.type() == flRangeSliderEvent::CHANGE) {
+	else if(event.type() == flRangeSliderEvent::CHANGE) {
         flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
     }
     
     //カラースライダー
-    if(event.type() == flColorSliderEvent::CHANGE) {
+	else if(event.type() == flColorSliderEvent::CHANGE) {
         flColorSlider* slider = (flColorSlider*)(event.currentTarget());
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoyStick1Event::CHANGE) {
+	else if(event.type() == flJoyStick1Event::CHANGE) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
@@ -644,37 +648,37 @@ void NetworkController::_uiEventHandler(flEvent& event) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::DOWN) {
+	else if(event.type() == flJoyStick1Event::DOWN) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::LEFT) {
+	else if(event.type() == flJoyStick1Event::LEFT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::RIGHT) {
+	else if(event.type() == flJoyStick1Event::RIGHT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoyStick2Event::CHANGE) {
+	else if(event.type() == flJoyStick2Event::CHANGE) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::UP) {
+	else if(event.type() == flJoyStick2Event::UP) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::DOWN) {
+	else if(event.type() == flJoyStick2Event::DOWN) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::LEFT) {
+    else if(event.type() == flJoyStick2Event::LEFT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::RIGHT) {
+	else if(event.type() == flJoyStick2Event::RIGHT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }

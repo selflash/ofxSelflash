@@ -15,21 +15,21 @@ int NetworkManager::app1_Port() { return _app1_Port; }
 //--------------------------------------------------------------
 //アプリ1に接続を試みます
 bool NetworkManager::connectToApp1(string ip, int port, bool blocking) {
-    if(debug()) cout << "[NetworkManager]connectToApp1()" << endl;
+    cout << "[NetworkManager]connectToApp1()" << endl;
     //    return connectTCPSocket(ip, port, blocking);
     return true;
 }
 //--------------------------------------------------------------
 //アプリ1との切断
 bool NetworkManager::disconnectToApp1() {
-    if(debug()) cout << "[NetworkManager]disconnectToApp1()" << endl;
+    cout << "[NetworkManager]disconnectToApp1()" << endl;
     //    return closeTCPSocket();
     return true;
 }
 //--------------------------------------------------------------
 //アプリ1へメッセージ送信
 bool NetworkManager::sendMessageToApp1(const string& message) {
-    if(debug()) cout << "[NetworkManager]sendMessageToKinectApp()" << endl;
+    cout << "[NetworkManager]sendMessageToKinectApp()" << endl;
     if(!_connectedToApp1) return false;
     return sendMessageWithTCPServer(_app1ID, message);
 }
@@ -49,19 +49,19 @@ int NetworkManager::app2_Port() { return _app2_Port; }
 //--------------------------------------------------------------
 //アプリ2に接続を試みます
 bool NetworkManager::connectToApp2(string ip, int port, bool blocking) {
-    if(debug()) cout << "[NetworkManager]connectToApp2(" << ip << ", " << port << ")" << endl;
+    cout << "[NetworkManager]connectToApp2(" << ip << ", " << port << ")" << endl;
     return connect_TCP(ip, port, blocking);
 }
 //--------------------------------------------------------------
 //アプリ2との切断
 bool NetworkManager::disconnectToApp2() {
-    if(debug()) cout << "[NetworkManager]disconnectToApp2()" << endl;
+    cout << "[NetworkManager]disconnectToApp2()" << endl;
     return close_TCP();
 }
 //--------------------------------------------------------------
 //アプリ2へメッセージ送信
 bool NetworkManager::sendMessageToApp2(const string& message) {
-    if(debug()) cout << "[NetworkManager]sendMessageToApp2()" << endl;
+    cout << "[NetworkManager]sendMessageToApp2()" << endl;
     if(!_connectedToApp2) return false;
     return sendMessageWithTCPServer(_app2ID, message);
 }
@@ -81,19 +81,19 @@ int NetworkManager::app3_Port() { return _app3_Port; }
 //--------------------------------------------------------------
 //アプリ3に接続を試みます
 //bool NetworkManager::connectToApp3(string& ip, int& port, bool& blocking) {
-//    if(debug()) cout << "[NetworkManager]connectToApp3()" << endl;
+//    cout << "[NetworkManager]connectToApp3()" << endl;
 ////    return connectTCPSocket(ip, port, blocking);
 //}
 //--------------------------------------------------------------
 //アプリ3との切断
 //bool NetworkManager::disconnectToApp3() {
-//    if(debug()) cout << "[NetworkManager]disconnectToApp3()" << endl;
+//    cout << "[NetworkManager]disconnectToApp3()" << endl;
 ////    return closeTCPSocket();
 //}
 //--------------------------------------------------------------
 //アプリ3へメッセージ送信
 bool NetworkManager::sendMessageToApp3(const string& message) {
-    if(debug()) cout << "[NetworkManager]sendMessageToApp3()" << endl;
+    cout << "[NetworkManager]sendMessageToApp3()" << endl;
     if(!_connectedToApp3) return false;
     return sendMessageWithTCPServer(_app3ID, message);
 }
@@ -125,7 +125,7 @@ bool NetworkManager::sendMessageToApp3(const string& message) {
 //コンストラクタ
 NetworkManager::NetworkManager() {
     //    debug(true);
-    if(debug()) cout << "[NetworkManager]NetworkManager()" << endl;
+    cout << "[NetworkManager]NetworkManager()" << endl;
     _target = this;
     
     //--------------------------------------
@@ -178,7 +178,7 @@ NetworkManager::NetworkManager() {
 //--------------------------------------------------------------
 //デストラクタ
 NetworkManager::~NetworkManager() {
-    if(debug()) cout << "[NetworkManager]~NetworkManager()" << endl;
+    cout << "[NetworkManager]~NetworkManager()" << endl;
     _target = NULL;
     
     _removeListeners();
@@ -243,7 +243,7 @@ NetworkManager::~NetworkManager() {
 //--------------------------------------------------------------
 //初期化
 void NetworkManager::setup(int totalNum) {
-    if(debug()) cout << "[NetworkManager]setup(" << totalNum << ")" << endl;
+    cout << "[NetworkManager]setup(" << totalNum << ")" << endl;
     
     //    //--------------------------------------
     //    //サーバー
@@ -274,7 +274,7 @@ void NetworkManager::setup(int totalNum) {
 //--------------------------------------------------------------
 //更新
 void NetworkManager::update() {
-    //    if(debug()) cout << "[NetworkManager]update()" << endl;
+    //    cout << "[NetworkManager]update()" << endl;
     
     if(_enabledWithTCPServer) _updateServerSocket();
     if(_enabled_TCP) _updateTCPSocket();
@@ -287,7 +287,7 @@ void NetworkManager::update() {
 //--------------------------------------------------------------
 //
 void NetworkManager::close() {
-    if(debug()) cout << "[NetworkManager]close()" << endl;
+    cout << "[NetworkManager]close()" << endl;
     
     if(_enabledWithTCPServer) closeWithTCPServer();
     if(_enabled_TCP) close_TCP();
@@ -320,7 +320,7 @@ void NetworkManager::close() {
 //--------------------------------------------------------------
 //接続待ち
 void NetworkManager::listenWithTCPServer(int port) {
-    if(debug()) cout << "[NetworkManager]listenWithTCPServer()" << endl;
+    cout << "[NetworkManager]listenWithTCPServer()" << endl;
     
     _localPortWithTCPServer = port;
     _isListenWithTCPServer = _serverSocket->setup(_localPortWithTCPServer);
@@ -333,7 +333,7 @@ void NetworkManager::listenWithTCPServer(int port) {
 //--------------------------------------------------------------
 //メッセージ送信
 bool NetworkManager::sendMessageWithTCPServer(int clientID, const string& message) {
-    if(debug()) cout << "[NetworkManager]sendMessageWithTCPServer()" << endl;
+    cout << "[NetworkManager]sendMessageWithTCPServer()" << endl;
     _sendDataWithTCPServer = message;
     return _serverSocket->send(clientID, _sendDataWithTCPServer);
 }
@@ -341,7 +341,7 @@ bool NetworkManager::sendMessageWithTCPServer(int clientID, const string& messag
 //--------------------------------------------------------------
 //メッセージ送信
 bool NetworkManager::sendToAllWithTCPServer(const string& message) {
-    if(debug()) cout << "[NetworkManager]sendToAllWithTCPServer()" << endl;
+    cout << "[NetworkManager]sendToAllWithTCPServer()" << endl;
     
     int i; int l;
     l = _serverSocket->getLastID();
@@ -359,7 +359,7 @@ bool NetworkManager::sendToAllWithTCPServer(const string& message) {
 //--------------------------------------------------------------
 //切断
 bool NetworkManager::closeWithTCPServer() {
-    if(debug()) cout << "[NetworkManager]closeWithTCPServer()" << endl;
+    cout << "[NetworkManager]closeWithTCPServer()" << endl;
     
     for(int i = 0; i < _serverSocket->getLastID(); i++) {
         //if(server.isClientConnected(i)) {
@@ -419,7 +419,7 @@ const string& NetworkManager::receivedDataWithTCPServer() { return _receivedData
 //--------------------------------------------------------------
 //TCPソケットの接続を試みます
 bool NetworkManager::connect_TCP(string ip, int port, bool blocking) {
-    if(debug()) cout << "[NetworkManager]connect_TCP(" << ip << ", " << port << ", " << blocking << ")" << endl;
+    cout << "[NetworkManager]connect_TCP(" << ip << ", " << port << ", " << blocking << ")" << endl;
     _targetIp_TCP = ip == "" ? _targetIp_TCP : ip;
     _targetPort_TCP = port == -1 ? _targetPort_TCP : port;
     _blocking_TCP = blocking;
@@ -446,7 +446,7 @@ int NetworkManager::sendMessage_TCP(const string& message) {
 //--------------------------------------------------------------
 //TCPソケットを切断
 bool NetworkManager::close_TCP() {
-    if(debug()) cout << "[NetworkManager]close_TCP()" << endl;
+    cout << "[NetworkManager]close_TCP()" << endl;
     bool b = _tcpSocket->close();
     
     if(b) {
@@ -501,7 +501,7 @@ const string& NetworkManager::receivedData_TCP() { return _receivedData_TCP; }
 //--------------------------------------------------------------
 //バインド
 bool NetworkManager::bindWithUDP(int index, int port) {
-    if(debug()) cout << "[NetworkManager]bindWithUDP(" << index << ", " << port << ")" << endl;
+    cout << "[NetworkManager]bindWithUDP(" << index << ", " << port << ")" << endl;
     if(!_udpSockets[index]) return false;
     return _udpSockets[index]->bind(port);
 }
@@ -509,7 +509,7 @@ bool NetworkManager::bindWithUDP(int index, int port) {
 //--------------------------------------------------------------
 //リモートPCとの接続
 bool NetworkManager::connectWithUDP(int index, string ip, int port) {
-    if(debug()) cout << "[NetworkManager]connectWithUDP(" << index << ", " << ip << ", " << port << ")" << endl;
+    cout << "[NetworkManager]connectWithUDP(" << index << ", " << ip << ", " << port << ")" << endl;
     //_udpSocket->Connect("127.0.0.1", 9000);
     if(!_udpSockets[index]) return false;
     return _udpSockets[index]->connect(ip, port);
@@ -517,14 +517,14 @@ bool NetworkManager::connectWithUDP(int index, string ip, int port) {
 //--------------------------------------------------------------
 //UDPソケットでメッセージ送信
 int NetworkManager::sendMessageWithUDP(int index, string message) {
-    if(debug()) cout << "[NetworkManager]sendMessageWithUDP(" << index << ", " << message << ")" << endl;
+    cout << "[NetworkManager]sendMessageWithUDP(" << index << ", " << message << ")" << endl;
     if(!_udpSockets[index]) return 0;
     return _udpSockets[index]->sendMessage(message);
 }
 //--------------------------------------------------------------
 //UDPソケットを切断
 bool NetworkManager::closeWithUDP(int index) {
-    if(debug()) cout << "[NetworkManager]closeWithUDP(" << index << ")" << endl;
+    cout << "[NetworkManager]closeWithUDP(" << index << ")" << endl;
     if(!_udpSockets[index]) return false;
     return _udpSockets[index]->close();
 }
@@ -625,7 +625,7 @@ bool NetworkManager::closeAllUDP() {
 //--------------------------------------------------------------
 //
 void NetworkManager::_addListeners() {
-    if(debug()) cout << "[NetworkManager]_addListeners()" << endl;
+    cout << "[NetworkManager]_addListeners()" << endl;
     
     if(_usedListeners) return;
     _usedListeners = true;
@@ -636,7 +636,7 @@ void NetworkManager::_addListeners() {
 //--------------------------------------------------------------
 //
 void NetworkManager::_removeListeners() {
-    if(debug()) cout << "[NetworkManager]_remoteListeners()" << endl;
+    cout << "[NetworkManager]_remoteListeners()" << endl;
     
     if(!_usedListeners) return;
     _usedListeners = false;
@@ -651,7 +651,7 @@ void NetworkManager::_removeListeners() {
 //--------------------------------------------------------------
 //サーバーの更新
 void NetworkManager::_updateServerSocket() {
-    if(debug()) cout << "[NetworkManager]_updateServerSocket()" << endl;
+    cout << "[NetworkManager]_updateServerSocket()" << endl;
     
     int i; int l;
     l = _serverSocket->getLastID();

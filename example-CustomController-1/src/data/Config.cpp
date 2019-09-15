@@ -1,4 +1,4 @@
-#include "Config.h"
+﻿#include "Config.h"
 
 //--------------------------------------
 //コマンドライン引数
@@ -64,21 +64,21 @@ void Config::loadConfigXml() {
         Config::windowPosition.x = Config::configXml.getValue("application:window:position:x", 0.0);
         Config::windowPosition.y = Config::configXml.getValue("application:window:position:y", 0.0);
         
-        Config::inputFolderPath = Config::configXml.getValue("application:inputSettings:folderPath", "0");
+        //Config::inputFolderPath = Config::configXml.getValue("application:inputSettings:folderPath", "0");
 //        Config::outputFolderPath = Config::configXml.getValue("application:outputFolderPath", "0");
         
-        Config::configXml.pushTag("application");
-        Config::configXml.pushTag("outputSettings");
-        Config::configXml.pushTag("folderPathList");
-        int numTags = Config::configXml.getNumTags("app");
-        for(int i = 0; i < numTags; i++) {
-            string path = Config::configXml.getValue("app", "0", i);
-            Config::outputFolderPathList.push_back(path);
-        }
-        Config::uploaderFolderPath = Config::configXml.getValue("uploader", "0");
-        Config::configXml.popTag();
-        Config::configXml.popTag();
-        Config::configXml.popTag();
+        //Config::configXml.pushTag("application");
+        //Config::configXml.pushTag("outputSettings");
+        //Config::configXml.pushTag("folderPathList");
+        //int numTags = Config::configXml.getNumTags("app");
+        //for(int i = 0; i < numTags; i++) {
+        //    string path = Config::configXml.getValue("app", "0", i);
+        //    Config::outputFolderPathList.push_back(path);
+        //}
+        //Config::uploaderFolderPath = Config::configXml.getValue("uploader", "0");
+        //Config::configXml.popTag();
+        //Config::configXml.popTag();
+        //Config::configXml.popTag();
 
 //        float textureSize = Config::configXml.getAttribute("application:outputFolderPathList:uploader", "textureSize", 0.0);
 //        cout << "textureSize = " << textureSize << endl;
@@ -92,21 +92,21 @@ void Config::loadConfigXml() {
         Config::udp_local_port0 = Config::configXml.getValue("network:udp:local:port0", 0);
         //--------------------------------------
     } else {
-        cout << "** Error ** [Config]can't loaded config.xml" << endl;
+        cout << "** Error ** [Config]can't loaded config.xml";
     }
 }
 
 //--------------------------------------------------------------
 //
 void Config::save() {
-    ofLog(OF_LOG_VERBOSE) << "[Config]save()" << endl;
+    ofLog(OF_LOG_VERBOSE) << "[Config]save()";
     
     saveConfigXml();
 }
 //--------------------------------------------------------------
 //
 void Config::saveConfigXml() {
-    ofLog(OF_LOG_VERBOSE) << "[Config]saveConfigXml()" << endl;
+    //ofLog(OF_LOG_VERBOSE) << "[Config]saveConfigXml()";
     
     //config.xmlの保存
     if(configXml.saveFile(CONFIG_XML_PATH)) {

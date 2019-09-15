@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
@@ -9,7 +9,7 @@
 #include "NetworkController.h"
 #include "SubController1.h"
 #include "SubController2.h"
-#include "NativeWindow.h"
+//#include "NativeWindow.h"
 
 using namespace fl2d;
 

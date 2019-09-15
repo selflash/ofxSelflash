@@ -1,4 +1,4 @@
-//
+﻿//
 //  SubController1.cpp
 //  ofApp
 //
@@ -164,70 +164,70 @@ void SubController1::_uiEventHandler(flEvent& event) {
     }
     
     //コンボボックス
-    if(event.type() == flComboBoxEvent::CHANGE) {
+    else if(event.type() == flComboBoxEvent::CHANGE) {
         flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
         cout << "-------------" << endl;
         cout << comboBox->name() << " :" << endl;
         cout << "selectedIndex : " << comboBox->selectedIndex() << endl;
-    };
+    }
     
     //チェックボックス
-    if(event.type() == flCheckBoxEvent::CHANGE) {
+	else if(event.type() == flCheckBoxEvent::CHANGE) {
         flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
         flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
     }
 
     //ラジオボタン
-    if(event.type() == flRadioButtonEvent::CHANGE) {
+	else if(event.type() == flRadioButtonEvent::CHANGE) {
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
     }
     
     //ナンバーダイアラー
-    if(event.type() == flNumberDialerEvent::CHANGE) {
+	else if(event.type() == flNumberDialerEvent::CHANGE) {
         flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
         flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
     }
     
     //2Dパッド
-    if(event.type() == flPadEvent::CHANGE) {
+	else if(event.type() == flPadEvent::CHANGE) {
         flPadEvent& padEvent = *(flPadEvent*) &event;
         flPad2D* pad = (flPad2D*)(event.currentTarget());
     }
     
     //スライダー
-    if(event.type() == flSliderEvent::CHANGE) {
+	else if(event.type() == flSliderEvent::CHANGE) {
         flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
         flSlider* slider = (flSlider*)(event.currentTarget());
     }
     
     //Vec2スライダー
-    if(event.type() == flVec2SliderEvent::CHANGE) {
+	else if(event.type() == flVec2SliderEvent::CHANGE) {
         flVec2SliderEvent& sliderEvent = *(flVec2SliderEvent*) &event;
         flVec2Slider* slider = (flVec2Slider*)(event.currentTarget());
     }
     
     //Vec3スライダー
-    if(event.type() == flVec3SliderEvent::CHANGE) {
+	else if(event.type() == flVec3SliderEvent::CHANGE) {
         flVec3SliderEvent& sliderEvent = *(flVec3SliderEvent*) &event;
         flVec3Slider* slider = (flVec3Slider*)(event.currentTarget());
     }
     
     //レンジスライダー
-    if(event.type() == flRangeSliderEvent::CHANGE) {
+	else if(event.type() == flRangeSliderEvent::CHANGE) {
         flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
         flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
     }
     
     //カラースライダー
-    if(event.type() == flColorSliderEvent::CHANGE) {
+	else if(event.type() == flColorSliderEvent::CHANGE) {
         flColorSliderEvent& colorSliderEvent = *(flColorSliderEvent*) &event;
         flColorSlider* slider = (flColorSlider*)(event.currentTarget());
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoyStick1Event::CHANGE) {
+	else if(event.type() == flJoyStick1Event::CHANGE) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
@@ -235,37 +235,37 @@ void SubController1::_uiEventHandler(flEvent& event) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::DOWN) {
+	else if(event.type() == flJoyStick1Event::DOWN) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::LEFT) {
+	else if(event.type() == flJoyStick1Event::LEFT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick1Event::RIGHT) {
+	else if(event.type() == flJoyStick1Event::RIGHT) {
         flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoyStick2Event::CHANGE) {
+	else if(event.type() == flJoyStick2Event::CHANGE) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::UP) {
+	else if(event.type() == flJoyStick2Event::UP) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::DOWN) {
+	else if(event.type() == flJoyStick2Event::DOWN) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::LEFT) {
+	else if(event.type() == flJoyStick2Event::LEFT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoyStick2Event::RIGHT) {
+	else if(event.type() == flJoyStick2Event::RIGHT) {
         flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
         flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }

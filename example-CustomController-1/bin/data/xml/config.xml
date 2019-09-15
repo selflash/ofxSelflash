@@ -3,61 +3,51 @@
 <!--------------------------------------------------->
 <!-- アプリケーションの設定 -->
 <application>
-    <!-- アプリケーション名 -->
-    <name>Preview</name>
+    <!-- アプリの名前 -->
+    <name>MultiKinectCalibration</name>
     <!-- フレームレート -->
     <fps>30</fps>
-    <!-- ウィンドウの設定 -->
+    <!-- ウィンドウの位置 -->
     <window>
-        <!-- ウィンドウの位置 -->
-        <position>
-            <x>50</x>
-            <y>50</y>
-        </position>
+        <x>0</x>
+        <y>200</y>
     </window>
-    <!--  -->
-    <inputSettings>
-        <fbx>
-            <isDeffaultPoseT>true</isDeffaultPoseT>
-            <autoReload>false</autoReload>
-        </fbx>
-        <texture>
-            <autoReload>true</autoReload>
-        </texture>
-
-        <!-- <inputFolderPath>../../../16-SetupUV/bin/data/output</inputFolderPath> -->
-        <!-- <inputFolderPath>/Users/TatsuyaYokoda/Desktop/TestInputFolder</inputFolderPath> -->
-        <!-- <outputFolderPath>/Users/TatsuyaYokoda/Desktop/TestOutputFolder</outputFolderPath> -->
-        <folderPath>input</folderPath>        
-    </inputSettings>
-
-    <outputSettings>
-        <low>true</low>
-        <medium>true</medium>
-        <high>true</high>
-        <obj>true</obj>
-        <gltf>true</gltf>
-
-        <!-- <folderPath>output</folderPath> -->
-        <folderPathList>
-            <app low=1 medium=2 high=3 textureSize=2048 needBone=true useTempFolder=true>output_app1</app>
-            <app low=1 medium=2 high=3 textureSize=2048 needBone=true  useTempFolder=false>output_app2</app>
-            <app low=1 medium=2 high=3 textureSize=2048 needBone=false  useTempFolder=true>output_app3</app>
-            <uploader textureSize=2048 useTempFolder=false>output_uploader</uploader>
-        </folderPathList>        
-    </outputSettings>
+    <auto_alignment>false</auto_alignment>
+    <threshold>100</threshold>
 </application>
 
 <!-- ネットワークの設定 -->
 <network>
+    <auto_connect>true</auto_connect>
     <!-- UDP -->
     <udp>
         <!-- ローカル -->
         <local>
-            <!-- バッチ処理監視用 -->
-            <ip0>127.0.0.1</ip0>
-            <port0>11101</port0>
+            <!-- ScanPC0 --> <port0>10100</port0>
+            <!-- ScanPC1 --> <port1>10101</port1>
+            <!-- ScanPC2 --> <port2>10102</port2>
+            <!-- ScanPC3 --> <port3>10103</port3>
+            <!-- ScanPC4 --> <port4>10104</port4>
+            <!-- ScanPC5 --> <port5>10105</port5>
+            <!-- ScanPC6 --> <port6>10106</port6>
+            <!-- ScanPC7 --> <port7>10107</port7>
+            <!-- ScanPC8 --> <port8>10108</port8>
+            <!-- ScanPC9 --> <port9>10109</port9>
+            <!-- Common  --> <port99>20100</port99>
         </local>
+        <!-- リモート -->
+        <remote>
+            <!-- ScanPC0 --> <ip0>192.168.10.124</ip0> <port0>10100</port0>
+            <!-- ScanPC1 --> <ip1>192.168.10.126</ip1> <port1>10100</port1>
+            <!-- ScanPC2 --> <ip2>192.168.10.121</ip2> <port2>10100</port2>
+            <!-- ScanPC3 --> <ip3>192.168.10.119</ip3> <port3>10100</port3>
+            <!-- ScanPC4 --> <ip4>192.168.10.118</ip4> <port4>10100</port4>
+            <!-- ScanPC5 --> <ip5>192.168.10.117</ip5> <port5>10100</port5>
+            <!-- ScanPC6 --> <ip6>192.168.10.120</ip6> <port6>10100</port6>
+            <!-- ScanPC7 --> <ip7>192.168.10.125</ip7> <port7>10100</port7>
+            <!-- ScanPC8 --> <ip8>192.168.10.123</ip8> <port8>10100</port8>
+            <!-- ScanPC9 --> <ip9>192.168.10.122</ip9> <port9>10100</port9>
+        </remote>
     </udp>
 </network>
 <!--------------------------------------------------->

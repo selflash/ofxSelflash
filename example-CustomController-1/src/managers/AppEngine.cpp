@@ -1,4 +1,4 @@
-#include "AppEngine.h"
+﻿#include "AppEngine.h"
 
 bool AppEngine::_isSetuped = false;
 

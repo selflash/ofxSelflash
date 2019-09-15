@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
@@ -107,6 +107,6 @@ class AppEngine {
     
     private:
         AppEngine();
-        ~AppEngine();
+        //~AppEngine();
     
 };

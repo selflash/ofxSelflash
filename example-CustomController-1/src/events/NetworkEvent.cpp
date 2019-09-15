@@ -1,4 +1,4 @@
-#include "NetworkEvent.h"
+﻿#include "NetworkEvent.h"
 
 //--------------------------------------
 //接続
