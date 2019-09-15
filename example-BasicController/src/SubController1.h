@@ -2,11 +2,11 @@
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "BasicController.h"
+#include "flBasicController.h"
 
-using namespace fltemplate;
+using namespace fl2d;
 
-class SubController1 : public BasicController {
+class SubController1 : public flBasicController {
     
 public:
     

@@ -40,7 +40,7 @@ SubController1::~SubController1() {
 void SubController1::_setup() {
     cout << "[SubController1]_setup()" << endl;
     
-    BasicController::_setup();
+    flBasicController::_setup();
     
     _normalBackWidth = 540;
     _normalBackHeight = 243;
@@ -72,7 +72,7 @@ void SubController1::_setup() {
     textField->x(marginLeft + spacing * 0);
     textField->y(marginTop + lineSpacing * 0);
     textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     textField->mouseEnabled(false);
     addChild(textField);
     
@@ -84,13 +84,13 @@ void SubController1::_setup() {
     textField->autoSize(flTextFieldAutoSize::CENTER);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1001 = new flJoystick1(150);
+    joystick1001 = new flJoyStick1(150);
     joystick1001->label(textField);
     joystick1001->x(marginLeft + spacing * 0);
     joystick1001->y(marginTop + lineSpacing * 2);
-    joystick1001->type(flJoystick1::VERTICALLY);
+    joystick1001->type(flJoyStick1::VERTICALLY);
     //    joystick1001->enabled(false);
-    joystick1001->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1001);
     
     textField = new flTextField();
@@ -99,13 +99,13 @@ void SubController1::_setup() {
     textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1002 = new flJoystick1(150);
+    joystick1002 = new flJoyStick1(150);
     joystick1002->label(textField);
     joystick1002->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
     joystick1002->y(marginTop + lineSpacing * 3);
-    joystick1002->type(flJoystick1::HORIZONTALLY);
+    joystick1002->type(flJoyStick1::HORIZONTALLY);
     //    joystick1002->enabled(false);
-    joystick1002->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1002);
     
     textField = new flTextField();
@@ -114,13 +114,13 @@ void SubController1::_setup() {
     textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1003 = new flJoystick1(150);
+    joystick1003 = new flJoyStick1(150);
     joystick1003->label(textField);
     joystick1003->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
     joystick1003->y(marginTop + lineSpacing * 3);
-    joystick1003->type(flJoystick1::HORIZONTALLY);
+    joystick1003->type(flJoyStick1::HORIZONTALLY);
     //    joystick1003->enabled(false);
-    joystick1003->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1003->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1003);
     
     text001 = new flTextField();
@@ -157,7 +157,7 @@ void SubController1::_setup() {
     textField->x(marginLeft + spacing * 0);
     textField->y(marginTop + lineSpacing * 0);
     textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     textField->mouseEnabled(false);
     addChild(textField);
     
@@ -169,13 +169,13 @@ void SubController1::_setup() {
     textField->autoSize(flTextFieldAutoSize::CENTER);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1101 = new flJoystick1(150);
+    joystick1101 = new flJoyStick1(150);
     joystick1101->label(textField);
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 2);
-    joystick1101->type(flJoystick1::VERTICALLY);
+    joystick1101->type(flJoyStick1::VERTICALLY);
     //    joystick1101->enabled(false);
-    joystick1101->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1101);
     
     textField = new flTextField();
@@ -184,13 +184,13 @@ void SubController1::_setup() {
     textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1102 = new flJoystick1(150);
+    joystick1102 = new flJoyStick1(150);
     joystick1102->label(textField);
     joystick1102->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
     joystick1102->y(marginTop + lineSpacing * 3);
-    joystick1102->type(flJoystick1::HORIZONTALLY);
+    joystick1102->type(flJoyStick1::HORIZONTALLY);
     //    joystick1102->enabled(false);
-    joystick1102->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1102);
     
     textField = new flTextField();
@@ -199,13 +199,13 @@ void SubController1::_setup() {
     textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
-    joystick1103 = new flJoystick1(150);
+    joystick1103 = new flJoyStick1(150);
     joystick1103->label(textField);
     joystick1103->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
     joystick1103->y(marginTop + lineSpacing * 3);
-    joystick1103->type(flJoystick1::HORIZONTALLY);
+    joystick1103->type(flJoyStick1::HORIZONTALLY);
     //    joystick1103->enabled(false);
-    joystick1103->addEventListener(flJoystick1Event::CHANGE, this, &SubController1::_uiEventHandler);
+    joystick1103->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1103);
     
     text101 = new flTextField();
@@ -334,50 +334,50 @@ void SubController1::_uiEventHandler(flEvent& event) {
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoystick1Event::CHANGE) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::CHANGE) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
         
         flEvent* newEvent = new flEvent("uiEvent");
         newEvent->target(joystick);
         dispatchEvent(newEvent);
     }
-    if(event.type() == flJoystick1Event::UP) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::UP) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::DOWN) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::DOWN) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::LEFT) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::LEFT) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::RIGHT) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::RIGHT) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoystick2Event::CHANGE) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::CHANGE) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::UP) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::UP) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::DOWN) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::DOWN) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::LEFT) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::LEFT) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::RIGHT) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::RIGHT) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
 }

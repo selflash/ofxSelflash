@@ -10,15 +10,15 @@
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "BasicController.h"
+#include "flBasicController.h"
 
 #include "SubController1.h"
 #include "SubController2.h"
 #include "NativeWindow.h"
 
-using namespace fltemplate;
+using namespace fl2d;
 
-class MainController : public BasicController {
+class MainController : public flBasicController {
     
 public:
     
@@ -26,8 +26,8 @@ protected:
     
 private:
     //サブコントローラー
-    BasicController* _controller1 = NULL;
-    BasicController* _controller2 = NULL;
+    flBasicController* _controller1 = NULL;
+    flBasicController* _controller2 = NULL;
     
 public:
     MainController();
@@ -42,8 +42,8 @@ public:
     void toggleShowAll();
     
     //サブコントローラー
-    inline BasicController* controller1() { return _controller1; }
-    inline BasicController* controller2() { return _controller2; }
+    inline flBasicController* controller1() { return _controller1; }
+    inline flBasicController* controller2() { return _controller2; }
     
 protected:
     virtual void _setup();

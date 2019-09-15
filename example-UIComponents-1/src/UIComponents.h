@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxSelflash.h"
 
+using namespace fl2d;
+
 class UIComponents : public flSprite {
     
 public:
@@ -75,18 +77,18 @@ public:
     //--------------------------------------
     //--------------------------------------
     //ジョイスティック1D
-    flJoystick1* joystick1001;
-    flJoystick1* joystick1002;
-    flJoystick1* joystick1003;
-    flJoystick1* joystick1004;
-    flJoystick1* joystick1005;
-    flJoystick1* joystick1006;
-    flJoystick1* joystick1007;
+    flJoyStick1* joystick1001;
+    flJoyStick1* joystick1002;
+    flJoyStick1* joystick1003;
+    flJoyStick1* joystick1004;
+    flJoyStick1* joystick1005;
+    flJoyStick1* joystick1006;
+    flJoyStick1* joystick1007;
     
-    flJoystick1* joystick1101;
-    flJoystick1* joystick1102;
+    flJoyStick1* joystick1101;
+    flJoyStick1* joystick1102;
     //ジョイスティック2D
-    flJoystick2* joystick2001;
+    flJoyStick2* joystick2001;
     //--------------------------------------
     //--------------------------------------
     //ナンバーダイアラー

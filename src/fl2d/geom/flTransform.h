@@ -10,22 +10,22 @@
  */
 
 #include "ofMain.h"
-#include "ColorTransform.h"
+#include "flColorTransform.h"
 #include "flMatrix.h"
 #include "flRectangle.h"
 
 namespace fl2d {
-    class Stage;
-    class DisplayObject;
+    class flStage;
+    class flDisplayObject;
     
-    class flTransform : public Object {
+    class flTransform : public flObject {
     public:
         
         /**
          *  friends! http://www.cplusplus.com/doc/tutorial/inheritance/
          **/
-        friend Stage;
-        friend DisplayObject;
+        friend flStage;
+        friend flDisplayObject;
         
         /**
          *  Returns a Matrix3D object, which can transform the space of a specified display object in relation to the current display object's space.
@@ -34,9 +34,9 @@ namespace fl2d {
         //    ofxFlashMatrix getRelativeMatrix3D( ofxFlashDisplayObject relativeTo ) { return ofxFlashMatrix(); }
         
         // A ColorTransform object containing values that universally adjust the colors in the display object.
-        ColorTransform colorTransform;
+        flColorTransform colorTransform;
         // [read-only] A ColorTransform object representing the combined color transformations applied to the display object and all of its parent objects, back to the root level.
-        ColorTransform concatenatedColorTransform;
+        flColorTransform concatenatedColorTransform;
         // [read-only] A flMatrix object representing the combined transformation matrixes of the display object and all of its parent objects, back to the root level.
         flMatrix concatenatedMatrix;
         // A flMatrix object containing values that alter the scaling, rotation, and translation of the display object.
@@ -53,8 +53,8 @@ namespace fl2d {
         bool bDirtyMatrix;
         bool bDirtyMatrix3D;
         
-        ColorTransform  _colorTransform;
-        ColorTransform  _concatenatedColorTransform;
+        flColorTransform  _colorTransform;
+        flColorTransform  _concatenatedColorTransform;
         flMatrix          _concatenatedMatrix;
         flMatrix          _concatenatedMatrixInv;
         flMatrix          _matrix;

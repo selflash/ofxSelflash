@@ -20,23 +20,23 @@ namespace fl2d {
     
     // forward decleration.
     class flMatrix;
-    class DisplayObject;
-    class DisplayObjectContainer;
-    class Shape;
-    class Sprite;
-    class Bitmap;
-    class Graphics;
+    class flDisplayObject;
+    class flDisplayObjectContainer;
+    class flShape;
+    class flSprite;
+    class flBitmap;
+    class flGraphics;
     class TextField;
     
     class flRectangle {
         //TODO
         friend flMatrix;
-        friend DisplayObject;
-        friend DisplayObjectContainer;
-        friend Shape;
-        friend Sprite;
-        friend Bitmap;
-        friend Graphics;
+        friend flDisplayObject;
+        friend flDisplayObjectContainer;
+        friend flShape;
+        friend flSprite;
+        friend flBitmap;
+        friend flGraphics;
         friend TextField;
         
     public:

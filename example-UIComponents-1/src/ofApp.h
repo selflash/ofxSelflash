@@ -5,6 +5,8 @@
 #include "ofxSelflash.h"
 #include "UIComponents.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
     UIComponents* uiComponents;

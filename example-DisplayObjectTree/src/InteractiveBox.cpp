@@ -17,16 +17,16 @@ InteractiveBox::InteractiveBox(float graphicsWidth, float graphicsHeight, int ar
     _graphicsHeight = graphicsHeight;
     
     _lineColor = new ofFloatColor();
-    _lineColor->setHex(FlashConfig::UI_LINE_COLOR);
+    _lineColor->setHex(flDefinition::UI_LINE_COLOR);
     
     _normalColor = new ofFloatColor();
-    _normalColor->setHex(FlashConfig::UI_NORMAL_COLOR);
+    _normalColor->setHex(flDefinition::UI_NORMAL_COLOR);
     
     _overColor = new ofFloatColor();
-    _overColor->setHex(FlashConfig::UI_OVER_COLOR);
+    _overColor->setHex(flDefinition::UI_OVER_COLOR);
     
     _activeColor = new ofFloatColor();
-    _activeColor->setHex(FlashConfig::UI_ACTIVE_COLOR);
+    _activeColor->setHex(flDefinition::UI_ACTIVE_COLOR);
     
     _areaColor = new ofFloatColor();
     _areaColor->setHex(areaColor);

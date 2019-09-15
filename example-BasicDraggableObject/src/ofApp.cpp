@@ -20,7 +20,7 @@ void ofApp::setup() {
     
     //--------------------------------------
     //make a simple draggable object.
-    noFrameBorder = new BasicDraggableObject();
+    noFrameBorder = new flBasicDraggableObject();
     noFrameBorder->x(10);
     noFrameBorder->y(10);
     //    noFrameBorder->alpha(0.5);

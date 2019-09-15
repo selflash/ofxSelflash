@@ -3,16 +3,16 @@
 #include "ofMain.h"
 
 #include "ofxSelflash.h"
-#include "BasicDraggableObject.h"
+#include "flBasicDraggableObject.h"
 #include "FrameBorder1.h"
 #include "FrameBorder2.h"
 #include "FrameBorder3.h"
 
-using namespace fltemplate;
+using namespace fl2d;
 
 class ofApp : public ofBaseApp {
 public:
-    BasicDraggableObject* noFrameBorder;
+    flBasicDraggableObject* noFrameBorder;
     FrameBorder1* frameBorder1;
     FrameBorder2* frameBorder2;
     FrameBorder3* frameBorder3;

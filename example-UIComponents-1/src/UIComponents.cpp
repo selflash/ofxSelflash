@@ -63,7 +63,7 @@ void UIComponents::_setup() {
     label->text("Slider1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     slider001 = new flSlider(150);
@@ -77,7 +77,7 @@ void UIComponents::_setup() {
     label->text("Slider2 (Inverse)");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 2);
-    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     slider002 = new flSlider(150, 10.0, 0.0, 5);
@@ -92,7 +92,7 @@ void UIComponents::_setup() {
     label->text("Range Slider1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 4);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider001 = new flRangeSlider(150);
@@ -109,7 +109,7 @@ void UIComponents::_setup() {
     label->text("Range Slider2");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 6);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider002 = new flRangeSlider(150, -100, 1300, 300, 500);
@@ -130,7 +130,7 @@ void UIComponents::_setup() {
     label->text("Color Slider(RGBA)");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     colorSlider001 = new flColorSlider(150 - 15, true);
@@ -143,7 +143,7 @@ void UIComponents::_setup() {
     label->text("Color Slider(RGB)");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 1);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     colorSlider002 = new flColorSlider(150 - 15, false);
@@ -164,7 +164,7 @@ void UIComponents::_setup() {
     label->text("Vec2 Slider Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     vec2Slider001 = new flVec2Slider(150 - 15);
@@ -185,7 +185,7 @@ void UIComponents::_setup() {
     label->text("Vec3 Slider Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     vec3Slider001 = new flVec3Slider(150 - 15);
@@ -207,7 +207,7 @@ void UIComponents::_setup() {
     label->text("Text Field Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     text001 = new flTextField();
@@ -243,7 +243,7 @@ void UIComponents::_setup() {
     label->text("Color Picker Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     colorPicker001 = new flCircleColorPicker();
@@ -265,7 +265,7 @@ void UIComponents::_setup() {
     label->text("Button Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     button001 = new flButton(150);
@@ -321,7 +321,7 @@ void UIComponents::_setup() {
     label->text("Check Box Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     check001 = new flCheckBox();
@@ -359,7 +359,7 @@ void UIComponents::_setup() {
     label->text("Radio Button Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     radio001 = radioButtonGroup->createRadioButton();
@@ -404,7 +404,7 @@ void UIComponents::_setup() {
     label->text("Joystick1 Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     
@@ -413,49 +413,49 @@ void UIComponents::_setup() {
     spacing = 22;
     lineSpacing = 22;
     
-    joystick1001 = new flJoystick1(100);
+    joystick1001 = new flJoyStick1(100);
     joystick1001->label(label);
     joystick1001->x(marginLeft + spacing * 0);
     joystick1001->y(marginTop + lineSpacing * 1);
-    joystick1001->type(flJoystick1::HORIZONTALLY);
-    joystick1001->addEventListener(flJoystick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
+    joystick1001->type(flJoyStick1::HORIZONTALLY);
+    joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1001);
-    joystick1002 = new flJoystick1(100);
+    joystick1002 = new flJoyStick1(100);
     joystick1002->label(label);
     joystick1002->x(marginLeft + spacing * 1);
     joystick1002->y(marginTop + lineSpacing * 1);
-    joystick1002->type(flJoystick1::HORIZONTALLY);
-    joystick1002->addEventListener(flJoystick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
+    joystick1002->type(flJoyStick1::HORIZONTALLY);
+    joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1002);
-    joystick1003 = new flJoystick1(100);
+    joystick1003 = new flJoyStick1(100);
     joystick1003->label(label);
     joystick1003->x(marginLeft + spacing * 2);
     joystick1003->y(marginTop + lineSpacing * 1);
-    joystick1003->type(flJoystick1::HORIZONTALLY);
+    joystick1003->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1003);
-    joystick1004 = new flJoystick1(100);
+    joystick1004 = new flJoyStick1(100);
     joystick1004->label(label);
     joystick1004->x(marginLeft + spacing * 3);
     joystick1004->y(marginTop + lineSpacing * 1);
-    joystick1004->type(flJoystick1::HORIZONTALLY);
+    joystick1004->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1004);
-    joystick1005 = new flJoystick1(100);
+    joystick1005 = new flJoyStick1(100);
     joystick1005->label(label);
     joystick1005->x(marginLeft + spacing * 4);
     joystick1005->y(marginTop + lineSpacing * 1);
-    joystick1005->type(flJoystick1::HORIZONTALLY);
+    joystick1005->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1005);
-    joystick1006 = new flJoystick1(100);
+    joystick1006 = new flJoyStick1(100);
     joystick1006->label(label);
     joystick1006->x(marginLeft + spacing * 5);
     joystick1006->y(marginTop + lineSpacing * 1);
-    joystick1006->type(flJoystick1::HORIZONTALLY);
+    joystick1006->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1006);
-    joystick1007 = new flJoystick1(100);
+    joystick1007 = new flJoyStick1(100);
     joystick1007->label(label);
     joystick1007->x(marginLeft + spacing * 6);
     joystick1007->y(marginTop + lineSpacing * 1);
-    joystick1007->type(flJoystick1::HORIZONTALLY);
+    joystick1007->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1007);
     //cout << joystick1007->y() + joystick1007->height() << endl;
     
@@ -464,19 +464,19 @@ void UIComponents::_setup() {
     spacing = 22;
     lineSpacing = 22;
     
-    joystick1101 = new flJoystick1(150);
+    joystick1101 = new flJoyStick1(150);
     joystick1101->label(label);
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 0);
-    joystick1101->type(flJoystick1::VERTICALLY);
-    joystick1101->addEventListener(flJoystick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
+    joystick1101->type(flJoyStick1::VERTICALLY);
+    joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1101);
-    joystick1102 = new flJoystick1(150);
+    joystick1102 = new flJoyStick1(150);
     joystick1102->label(label);
     joystick1102->x(marginLeft + spacing * 0);
     joystick1102->y(marginTop + lineSpacing * 1);
-    joystick1102->type(flJoystick1::VERTICALLY);
-    joystick1102->addEventListener(flJoystick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
+    joystick1102->type(flJoyStick1::VERTICALLY);
+    joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1102);
     //    cout << joystick1102->y() + joystick1102->height() << endl;
     //--------------------------------------
@@ -492,10 +492,10 @@ void UIComponents::_setup() {
     label->text("Joystick2 Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    joystick2001 = new flJoystick2(100);
+    joystick2001 = new flJoyStick2(100);
     joystick2001->label(label);
     joystick2001->x(marginLeft + spacing * 0 + 25);
     joystick2001->y(marginTop + lineSpacing * 1);
@@ -514,7 +514,7 @@ void UIComponents::_setup() {
     label->text("Number Dialer Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     
@@ -522,7 +522,7 @@ void UIComponents::_setup() {
     label->text("Number Dialer 1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 1);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     dialer001 = new flNumberDialer(150);
@@ -536,7 +536,7 @@ void UIComponents::_setup() {
     label->text("Number Dialer 2");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 3);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     dialer002 = new flNumberDialer(150);
@@ -555,7 +555,7 @@ void UIComponents::_setup() {
     label->x(marginLeft + spacing * 0 + 40);
     label->y(marginTop + lineSpacing * 5 + 10);
     label->rotation(90);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     dialer003 = new flNumberDialer(100);
@@ -583,7 +583,7 @@ void UIComponents::_setup() {
     label->text("Combo Box Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     
@@ -591,7 +591,7 @@ void UIComponents::_setup() {
     label->text("Combo Box 1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 1);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     comboBox001 = new flComboBox();
@@ -616,7 +616,7 @@ void UIComponents::_setup() {
     label->text("Combo Box 2");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 3);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     comboBox002 = new flComboBox();
@@ -636,7 +636,7 @@ void UIComponents::_setup() {
     label->text("Combo Box 3");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 5);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     comboBox003 = new flComboBox();
@@ -663,7 +663,7 @@ void UIComponents::_setup() {
     //    label->text("Angler");
     //    label->x(marginLeft + spacing * 0 + 25);
     //    label->y(marginTop + lineSpacing * 6);
-    //    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    //    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     //    label->mouseEnabled(false);
     //    addChild(label);
     //    angler000 = new flAngler(100);
@@ -685,7 +685,7 @@ void UIComponents::_setup() {
     label->text("Pad2D Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     
@@ -721,7 +721,7 @@ void UIComponents::_setup() {
     label->text("Histgram Viewer Example");
     label->x(marginLeft + spacing * 0 - 12);
     label->y(marginTop + lineSpacing * 0);
-    label->textColor(FlashConfig::UI_LABEL_NORMAL_COLOR);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     
@@ -854,46 +854,46 @@ void UIComponents::_uiEventHandler(flEvent& event) {
     }
     
     //ジョイスティック1D
-    if(event.type() == flJoystick1Event::CHANGE) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::CHANGE) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::UP) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::UP) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::DOWN) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::DOWN) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::LEFT) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::LEFT) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
-    if(event.type() == flJoystick1Event::RIGHT) {
-        flJoystick1Event& joystickEvent = *(flJoystick1Event*) &event;
-        flJoystick1* joystick = (flJoystick1*)(event.currentTarget());
+    if(event.type() == flJoyStick1Event::RIGHT) {
+        flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
+        flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
     }
     
     //ジョイスティック2D
-    if(event.type() == flJoystick2Event::CHANGE) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::CHANGE) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::UP) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::UP) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::DOWN) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::DOWN) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::LEFT) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::LEFT) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
-    if(event.type() == flJoystick2Event::RIGHT) {
-        flJoystick2Event& joystickEvent = *(flJoystick2Event*) &event;
-        flJoystick2* joystick = (flJoystick2*)(event.currentTarget());
+    if(event.type() == flJoyStick2Event::RIGHT) {
+        flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
+        flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
     }
 }

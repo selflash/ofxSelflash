@@ -6,6 +6,8 @@
 #include "MainController.h"
 #include "TransformableNode.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
     MainController* mainController = NULL;

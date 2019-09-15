@@ -2,11 +2,11 @@
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "BasicDraggableObject.h"
+#include "flBasicDraggableObject.h"
 
-using namespace fltemplate;
+using namespace fl2d;
 
-class FrameBorder1 : public BasicDraggableObject {
+class FrameBorder1 : public flBasicDraggableObject {
 public:
     
 protected:

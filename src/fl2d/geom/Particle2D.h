@@ -1,10 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "EventDispatcher.h"
+#include "flEventDispatcher.h"
 
 namespace fl2d {
-    class Particle2D : public EventDispatcher {
+    class Particle2D : public flEventDispatcher {
     public:
         float radius;
         float theta1;
