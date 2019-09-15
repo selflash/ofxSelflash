@@ -25,6 +25,15 @@
 #include "flMouseEvent.h"
 
 namespace fl2d {
+    struct flSettings {
+        bool manualUpdate = false;
+        ofEventOrder updatePriority = OF_EVENT_ORDER_AFTER_APP;
+        bool manualDraw = true;
+        ofEventOrder drawPriority = OF_EVENT_ORDER_AFTER_APP;
+        ofEventOrder mousePriority = OF_EVENT_ORDER_BEFORE_APP;
+        ofEventOrder keyboardPriority = OF_EVENT_ORDER_BEFORE_APP;
+        ofEventOrder windowPriority = OF_EVENT_ORDER_BEFORE_APP;
+    };
     
     class flStage : public flDisplayObjectContainer {
     public:
@@ -32,6 +41,9 @@ namespace fl2d {
     protected:
         
     private:
+        bool _isSetuped = false;
+        flSettings _settings;
+        
         static flStage* _instance;
         flMovieClip* _root;
         
@@ -76,13 +88,13 @@ namespace fl2d {
         vector<flInteractiveObject*> _lineBottomUp;
         vector<flInteractiveObject*> _lineBottomUpPrev;
         
-        ofEventOrder _priority;
+//        ofEventOrder _priority;
         
     public:
         static flStage* instance();
         static void clear();
         
-        virtual void setup();
+        virtual void setup(flSettings settings = flSettings());
         virtual void update();
         virtual void draw();
         //            virtual void resize();
@@ -105,7 +117,7 @@ namespace fl2d {
         
         flDisplayObject* getMostHitDisplayObject(int x, int y);
         
-        void priority(ofEventOrder value);
+//        void priority(ofEventOrder value);
         
     protected:
         

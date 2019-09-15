@@ -1,13 +1,8 @@
 #pragma once
 
-// version 1.0.0
+// version 0.9.0
 
-//using namespace fl2d;
-
-
-
-
-
+//flash.utils
 #include "flmath.h"
 #include "flstringutil.h"
 
@@ -100,24 +95,17 @@ class ofxSelflash {
         static bool _isSetuped;
 
     public:
-        static inline bool autoUpdate() { return fl2d::flDefinition::AUTO_UPDATE; }
-        static inline void autoUpdate(bool value) { fl2d::flDefinition::AUTO_UPDATE = value; }
-
-        static inline ofEventOrder updatePriority() { return fl2d::flDefinition::UPDATE_PRIORITY; }
-        static inline void updatePriority(ofEventOrder value) { fl2d::flDefinition::UPDATE_PRIORITY = value; }
-
-        static inline bool autoDraw() { return fl2d::flDefinition::AUTO_DRAW; }
-        static inline void autoDraw(bool value) { fl2d::flDefinition::AUTO_DRAW = value; }
+//        static inline bool manualUpdate() { return fl2d::flDefinition::AUTO_UPDATE; }
+//        static inline ofEventOrder updatePriority() { return fl2d::flDefinition::UPDATE_PRIORITY; }
+//        static inline bool autoDraw() { return fl2d::flDefinition::AUTO_DRAW; }
+//        static inline ofEventOrder drawPriority() { return fl2d::flDefinition::DRAW_PRIORITY; }
     
-        static inline ofEventOrder drawPriority() { return fl2d::flDefinition::DRAW_PRIORITY; }
-        static inline void drawPriority(ofEventOrder value) { fl2d::flDefinition::DRAW_PRIORITY = value; }
-
-        static inline void setup(const bool& use3D = false) {
+        static inline void setup(fl2d::flSettings settings = fl2d::flSettings()) {
             if(_isSetuped) return;
             _isSetuped = true;
 
             fl2d::flFont::setup();
-            fl2d::flStage::instance();
+            fl2d::flStage::instance()->setup(settings);
         }
     
         static inline void clear() {

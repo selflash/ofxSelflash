@@ -19,18 +19,6 @@ namespace fl2d {
     
     //OF_EVENT_ORDER_BEFORE_APP, OF_EVENT_ORDER_APP, OF_EVENT_ORDER_AFTER_APP;
     
-    
-    ofEventOrder flDefinition::MOUSE_PRIORITY = OF_EVENT_ORDER_BEFORE_APP;
-    ofEventOrder flDefinition::KEYBOARD_PRIORITY = OF_EVENT_ORDER_BEFORE_APP;
-    
-    bool flDefinition::AUTO_UPDATE = true;
-    ofEventOrder flDefinition::UPDATE_PRIORITY = OF_EVENT_ORDER_AFTER_APP;
-    bool flDefinition::AUTO_DRAW = true;
-    ofEventOrder flDefinition::DRAW_PRIORITY = OF_EVENT_ORDER_AFTER_APP;
-    
-    ofEventOrder flDefinition::WINDOW_PRIORITY = OF_EVENT_ORDER_BEFORE_APP;
-    
-    
     //    ofEventOrder flDefinition::MOUSE_PRIORITY = OF_EVENT_ORDER_BEFORE_APP;
     //    ofEventOrder flDefinition::KEYBOARD_PRIORITY = OF_EVENT_ORDER_BEFORE_APP;
     //    

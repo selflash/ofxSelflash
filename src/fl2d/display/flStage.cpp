@@ -66,32 +66,6 @@ namespace fl2d {
         
         _currentMouseDownInteractiveObject = NULL;
         //------------------------------------
-        
-        //------------------------------------
-        //        _priority = OF_EVENT_ORDER_BEFORE_APP;
-        //        _priority = OF_EVENT_ORDER_APP;
-        //        _priority = OF_EVENT_ORDER_AFTER_APP;
-        
-        //ofAddListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler, _priority);
-        ofAddListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofAddListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofAddListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofAddListener(ofEvents().mouseScrolled, this, &flStage::_mouseScrolledEventHandler, flDefinition::KEYBOARD_PRIORITY);
-        
-        ofAddListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, flDefinition::KEYBOARD_PRIORITY);
-        ofAddListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, flDefinition::KEYBOARD_PRIORITY);
-        
-        ofAddListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, flDefinition::WINDOW_PRIORITY);
-        
-        if(flDefinition::AUTO_UPDATE) {
-            ofAddListener(ofEvents().update, this, &flStage::_updateEventHandler, flDefinition::UPDATE_PRIORITY);
-        }
-        if(flDefinition::AUTO_DRAW) {
-            ofAddListener(ofEvents().draw, this, &flStage::_drawEventHandler, flDefinition::DRAW_PRIORITY);
-        }
-        //------------------------------------
-        
-        flBlendMode::setup(_stageWidth, _stageHeight);
     }
     
     //--------------------------------------------------------------
@@ -141,27 +115,26 @@ namespace fl2d {
         
         //------------------------------------
         //ofAddListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler, _priority);
-        ofRemoveListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofRemoveListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofRemoveListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, flDefinition::MOUSE_PRIORITY);
-        ofRemoveListener(ofEvents().mouseScrolled, this, &flStage::_mouseScrolledEventHandler, flDefinition::KEYBOARD_PRIORITY);
+        ofRemoveListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, _settings.mousePriority);
+        ofRemoveListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, _settings.mousePriority);
+        ofRemoveListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, _settings.mousePriority);
+        ofRemoveListener(ofEvents().mouseScrolled, this, &flStage::_mouseScrolledEventHandler, _settings.mousePriority);
         
-        ofRemoveListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, flDefinition::KEYBOARD_PRIORITY);
-        ofRemoveListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, flDefinition::KEYBOARD_PRIORITY);
+        ofRemoveListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, _settings.keyboardPriority);
+        ofRemoveListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, _settings.keyboardPriority);
         
-        ofRemoveListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, flDefinition::WINDOW_PRIORITY);
+        ofRemoveListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, _settings.windowPriority);
         
-        if(flDefinition::AUTO_UPDATE) {
-            ofRemoveListener(ofEvents().update, this, &flStage::_updateEventHandler, flDefinition::UPDATE_PRIORITY);
+        if(!_settings.manualUpdate) {
+            ofRemoveListener(ofEvents().update, this, &flStage::_updateEventHandler, _settings.updatePriority);
         }
-        if(flDefinition::AUTO_DRAW) {
-            ofRemoveListener(ofEvents().draw, this, &flStage::_drawEventHandler, flDefinition::DRAW_PRIORITY);
+        if(!_settings.manualDraw) {
+            ofRemoveListener(ofEvents().draw, this, &flStage::_drawEventHandler, _settings.drawPriority);
         }
         
-        _priority = OF_EVENT_ORDER_BEFORE_APP;
+//        _priority = OF_EVENT_ORDER_BEFORE_APP;
         //------------------------------------
-        
-        
+
         flBlendMode::destroy();
     }
     
@@ -171,8 +144,38 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    void flStage::setup() {
+    void flStage::setup(flSettings settings) {
         if(debug()) cout << "[flStage]setup()" << endl;
+        if(_isSetuped) return;
+        _isSetuped = true;
+        
+        _settings = settings;
+        
+        //------------------------------------
+        //        _priority = OF_EVENT_ORDER_BEFORE_APP;
+        //        _priority = OF_EVENT_ORDER_APP;
+        //        _priority = OF_EVENT_ORDER_AFTER_APP;
+        
+        //ofAddListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler, _priority);
+        ofAddListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, _settings.mousePriority);
+        ofAddListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, _settings.mousePriority);
+        ofAddListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, _settings.mousePriority);
+        ofAddListener(ofEvents().mouseScrolled, this, &flStage::_mouseScrolledEventHandler, _settings.mousePriority);
+        
+        ofAddListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, _settings.keyboardPriority);
+        ofAddListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, _settings.keyboardPriority);
+        
+        ofAddListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, _settings.windowPriority);
+        
+        if(!_settings.manualUpdate) {
+            ofAddListener(ofEvents().update, this, &flStage::_updateEventHandler, _settings.updatePriority);
+        }
+        if(!_settings.manualDraw) {
+            ofAddListener(ofEvents().draw, this, &flStage::_drawEventHandler, _settings.drawPriority);
+        }
+        //------------------------------------
+        
+        flBlendMode::setup(_stageWidth, _stageHeight);
     }
     
     //--------------------------------------------------------------
@@ -330,40 +333,40 @@ namespace fl2d {
         return _getMostHitDisplayObject(this, children, x, y);
     }
     
-    //--------------------------------------------------------------
-    // TODO
-    void flStage::priority(ofEventOrder value) {
-        if(_priority == value) return;
-        _priority = value;
-        
-        //        //------------------------------------
-        //        //ofRemoveListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler);
-        //        ofRemoveListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler);
-        //        ofRemoveListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler);
-        //        ofRemoveListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler);
-        //
-        //        ofRemoveListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler);
-        //        ofRemoveListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler);
-        //
-        //        ofRemoveListener(ofEvents().update, this, &flStage::_updateEventHandler);
-        //        ofRemoveListener(ofEvents().draw, this, &flStage::_drawEventHandler);
-        //        ofRemoveListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler);
-        //        //------------------------------------
-        //
-        //        //------------------------------------
-        //        //ofAddListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler, _priority);
-        //        ofAddListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, _priority);
-        //        ofAddListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, _priority);
-        //        ofAddListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, _priority);
-        //
-        //        ofAddListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, _priority);
-        //        ofAddListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, _priority);
-        //
-        //        ofAddListener(ofEvents().update, this, &flStage::_updateEventHandler, _priority);
-        //        ofAddListener(ofEvents().draw, this, &flStage::_drawEventHandler, _priority);
-        //        ofAddListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, _priority);
-        //        //------------------------------------
-    }
+//    //--------------------------------------------------------------
+//    // TODO
+//    void flStage::priority(ofEventOrder value) {
+//        if(_priority == value) return;
+//        _priority = value;
+//
+//        //        //------------------------------------
+//        //        //ofRemoveListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler);
+//        //        ofRemoveListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler);
+//        //        ofRemoveListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler);
+//        //        ofRemoveListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler);
+//        //
+//        //        ofRemoveListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler);
+//        //        ofRemoveListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler);
+//        //
+//        //        ofRemoveListener(ofEvents().update, this, &flStage::_updateEventHandler);
+//        //        ofRemoveListener(ofEvents().draw, this, &flStage::_drawEventHandler);
+//        //        ofRemoveListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler);
+//        //        //------------------------------------
+//        //
+//        //        //------------------------------------
+//        //        //ofAddListener(ofEvents().mouseMoved, this, &flStage::_mouseMoveEventHandler, _priority);
+//        //        ofAddListener(ofEvents().mouseDragged, this, &flStage::_mouseDragEventHandler, _priority);
+//        //        ofAddListener(ofEvents().mousePressed, this, &flStage::_mouseDownEventHandler, _priority);
+//        //        ofAddListener(ofEvents().mouseReleased, this, &flStage::_mouseUpEventHandler, _priority);
+//        //
+//        //        ofAddListener(ofEvents().keyPressed, this, &flStage::_keyDownEventHandler, _priority);
+//        //        ofAddListener(ofEvents().keyReleased, this, &flStage::_keyUpEventHandler, _priority);
+//        //
+//        //        ofAddListener(ofEvents().update, this, &flStage::_updateEventHandler, _priority);
+//        //        ofAddListener(ofEvents().draw, this, &flStage::_drawEventHandler, _priority);
+//        //        ofAddListener(ofEvents().windowResized, this, &flStage::_resizeEventHandler, _priority);
+//        //        //------------------------------------
+//    }
     
     //==============================================================
     // PROTECTED / PRIVATE METHOD
