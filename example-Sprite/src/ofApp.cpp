@@ -6,8 +6,9 @@ void ofApp::setup() {
     ofDisableAntiAliasing();
     
     //--------------------------------------
-    //Ready ofxSelflash
-    ofxSelflash::setup();
+    flSettings settings;
+//    settings.manualDraw = false;
+    ofxSelflash::setup(settings);
     //--------------------------------------
     
     flStage* stage = ofxSelflash::stage();
@@ -25,7 +26,7 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    
+    ofxSelflash::draw();
 }
 
 //--------------------------------------------------------------

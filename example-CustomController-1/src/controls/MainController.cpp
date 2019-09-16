@@ -1,4 +1,4 @@
-﻿#include "MainController.h"
+#include "MainController.h"
 
 //==============================================================
 // CONSTRUCTOR / DESTRUCTOR
@@ -78,43 +78,43 @@ void MainController::_setup() {
 	flTextField* textField = NULL;
 
 	//--------------------------------------
-	marginLeft = 5;
-	marginTop = 22.5;
-	spacing = 205;
-	lineSpacing = 22.5;
-
-	button001 = new flButton(200);
-	button001->labelText("Full Screen");
-	button001->x(marginLeft + spacing * 0);
-	button001->y(marginTop + lineSpacing * 0);
-	button001->toggleEnabled(true);
-	button001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-	addChild(button001);
-
-	textField = new flTextField();
-	textField->text("Window Depth");
-	textField->x(marginLeft + spacing * 0);
-	textField->y(marginTop + lineSpacing * 1);
-	textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-	textField->mouseEnabled(false);
-	addChild(textField);
-	comboBox001 = new flComboBox(200);
-	comboBox001->label(textField);
-	comboBox001->x(marginLeft + spacing * 0);
-	comboBox001->y(marginTop + lineSpacing * 2);
-	comboBox001->addItem<string>("Default", "default");
-	comboBox001->addItem<string>("Always on Bottom", "alwaysOnBottom");
-	comboBox001->addItem<string>("Always on Top", "alwaysOnTop");
-	comboBox001->selectedIndex(0);
-	comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &MainController::_uiEventHandler);
-	addChild(comboBox001);
+//    marginLeft = 5;
+//    marginTop = 22.5;
+//    spacing = 205;
+//    lineSpacing = 22.5;
+//
+//    button001 = new flButton(200);
+//    button001->labelText("Full Screen");
+//    button001->x(marginLeft + spacing * 0);
+//    button001->y(marginTop + lineSpacing * 0);
+//    button001->toggleEnabled(true);
+//    button001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+//    addChild(button001);
+//
+//    textField = new flTextField();
+//    textField->text("Window Depth");
+//    textField->x(marginLeft + spacing * 0);
+//    textField->y(marginTop + lineSpacing * 1);
+//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    textField->mouseEnabled(false);
+//    addChild(textField);
+//    comboBox001 = new flComboBox(200);
+//    comboBox001->label(textField);
+//    comboBox001->x(marginLeft + spacing * 0);
+//    comboBox001->y(marginTop + lineSpacing * 2);
+//    comboBox001->addItem<string>("Default", "default");
+//    comboBox001->addItem<string>("Always on Bottom", "alwaysOnBottom");
+//    comboBox001->addItem<string>("Always on Top", "alwaysOnTop");
+//    comboBox001->selectedIndex(0);
+//    comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &MainController::_uiEventHandler);
+//    addChild(comboBox001);
 	//--------------------------------------
 
 	//--------------------------------------
 	marginLeft = 5;
-	marginTop = 22.5 * 4;
+	marginTop = 22;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->text("Background Color");
@@ -661,9 +661,9 @@ void MainController::_update() {
 void MainController::_draw() {
 	//cout << "[MainController]draw()" << endl;
 
-	if (_isMinimize) return;
+//    if (_isMinimize) return;
 
-	ofDrawBitmapString(_status, 10, 40);
+	ofDrawBitmapString(_status, 10, 20);
 }
 
 //==============================================================

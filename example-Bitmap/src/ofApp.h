@@ -4,20 +4,26 @@
 
 #include "ofxSelflash.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
+    ofImage image1;
     flBitmap* bitmap1;
     
-    ofImage image1;
     flBitmap* bitmap2;
     
+    ofTexture texture3;
     flBitmap* bitmap3;
     
-    ofTexture texture1;
     flBitmap* bitmap4;
     
     flBitmap* bitmap5;
-    
+
+    ofVideoGrabber vidGrabber;
+    ofTexture videoTexture;
+    flBitmap* bitmap6;
+
 private:
     
 public:

@@ -290,8 +290,7 @@ namespace fl2d {
         //    glBlendFunc(GL_ONE, GL_ZERO);
         //    glDisable(GL_BLEND);
         
-        if(false) _debugDraw(this, children);
-        
+//        if(true) _debugDraw(this, children);
     }
     
     //==============================================================

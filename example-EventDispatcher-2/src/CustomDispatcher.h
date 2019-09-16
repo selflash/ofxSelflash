@@ -3,6 +3,8 @@
 #include "ofxSelflash.h"
 #include "CustomEvent.h"
 
+using namespace fl2d;
+
 class CustomDispatcher : public flEventDispatcher {
 public:
     

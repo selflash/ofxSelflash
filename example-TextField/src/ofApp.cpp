@@ -6,10 +6,7 @@ void ofApp::setup(){
     ofDisableAntiAliasing();
     
     //--------------------------------------
-    //Ready ofxSelflash
-    ofxSelflash::autoUpdate(false);
-    ofxSelflash::autoDraw(false);
-    ofxSelflash::setup(false);
+    ofxSelflash::setup();
     //--------------------------------------
     
     flStage* stage = ofxSelflash::stage();
@@ -101,15 +98,11 @@ void ofApp::setup(){
     //---------------------------------
     
     isShowRect = true;
-    isTween = false;
+    isTween = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //----------------------------------
-    ofxSelflash::update();
-    //----------------------------------
-    
     if(!isTween) return;
     int frameNum = ofGetFrameNum();
     

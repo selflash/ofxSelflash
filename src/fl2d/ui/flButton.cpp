@@ -55,7 +55,7 @@ namespace fl2d {
         _label->autoSize(flTextFieldAutoSize::CENTER);
         _label->textColor(_labelNormalColor);
         _label->text("Button");
-        _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5);
+        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 1);
         _label->mouseEnabled(false);
         addChild(_label);
         //------------------------------------------

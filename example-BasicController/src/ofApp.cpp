@@ -15,10 +15,7 @@ void ofApp::setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //Ready ofxSelflash
-    ofxSelflash::autoUpdate(false);
-    ofxSelflash::autoDraw(false);
-    ofxSelflash::setup(false);
+    ofxSelflash::setup();
     ofxSelflash::stage()->addEventListener(flFocusEvent::FOCUS_IN, this, &ofApp::_eventHandler);
     ofxSelflash::stage()->addEventListener(flFocusEvent::FOCUS_OUT, this, &ofApp::_eventHandler);
     //--------------------------------------
@@ -43,7 +40,7 @@ void ofApp::setup() {
 //
 void ofApp::update() {
     //----------------------------------
-    ofxSelflash::update();
+//    ofxSelflash::update();
     //----------------------------------
 }
 

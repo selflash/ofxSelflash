@@ -359,6 +359,7 @@ namespace fl2d {
             ofFill();
             ofSetColor(_fillColor);
             ofDrawRectangle(x, y, width, height);
+            //ofDrawLine(x + width, y, x + width + 1, y);
         }
         
         if(_lineEnabled) {
@@ -366,6 +367,7 @@ namespace fl2d {
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
             ofDrawRectangle(x, y, width, height);
+            ofDrawLine(x + width, y, x + width + 1, y); //1ピクセルかけているのを埋める
             //ofLine(x - 1, y - 1, x, y);
             ofFill();
         }

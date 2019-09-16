@@ -10,7 +10,7 @@ int main() {
 //    settings.setGLVersion(4, 1);
 //    ofCreateWindow(settings);
 
-	ofSetupOpenGL(1024,768,OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(1024, 868, OF_WINDOW);			// <-------- setup the GL context
 
     cout << "Vendor     : " << glGetString(GL_VENDOR) << '\n';
     cout << "GPU        : " << glGetString(GL_RENDERER) << '\n';

@@ -5,6 +5,8 @@
 #include "ofxSelflash.h"
 #include "Container.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
     Container* container;

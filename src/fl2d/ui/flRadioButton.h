@@ -40,6 +40,9 @@ namespace fl2d {
         bool _enabled;
         
         bool _hitAreaAlpha = 0.0;
+        
+        int _shapeType = 1;
+
         flRadioButtonGroup* _groupOwner;
         
     public:        
@@ -58,6 +61,9 @@ namespace fl2d {
         
         inline void activeColor(ofFloatColor value) { _activeColor = value; };
         
+        inline int shapeType() { return _shapeType; };
+        inline void shapeType(int value) { _shapeType = value; };
+
     protected:
         virtual void _normal();
         virtual void _over();

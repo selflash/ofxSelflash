@@ -188,10 +188,20 @@ namespace fl2d {
         //---------------------------------
         ofPushMatrix();
         
-        if(_autoSize == flTextFieldAutoSize::NONE) _tx = 2;
-        if(_autoSize == flTextFieldAutoSize::LEFT) _tx = 2;
-        if(_autoSize == flTextFieldAutoSize::RIGHT) _tx = _realWidth - _textWidth;
-        if(_autoSize == flTextFieldAutoSize::CENTER) _tx = (_realWidth * 0.5) - (_textWidth * 0.5);
+        if(_autoSize == flTextFieldAutoSize::NONE) {
+            _tx = 2;
+        }
+        else if(_autoSize == flTextFieldAutoSize::LEFT) {
+            _tx = 2;
+        }
+        else if(_autoSize == flTextFieldAutoSize::RIGHT) {
+            _tx = _realWidth - _textWidth;
+            _tx = floor(_tx);
+        }
+        else if(_autoSize == flTextFieldAutoSize::CENTER) {
+            _tx = (_realWidth * 0.5) - (_textWidth * 0.5);
+            _tx = floor(_tx);
+        }
         
         //        ofTranslate(_tx, -_textHeight);
         ofTranslate(_tx, flFont::getMaxStringHeight());
@@ -202,7 +212,7 @@ namespace fl2d {
         ofPushStyle();
         ofSetColor(_textColor, 255 * _compoundAlpha);
         //        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
-        flFont::drawString(_text, 1, -1);
+        flFont::drawString(_text, 1, -2);
         //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         

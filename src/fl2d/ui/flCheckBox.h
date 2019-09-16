@@ -40,6 +40,8 @@ namespace fl2d {
         
         bool _hitAreaAlpha = 0.0;
         
+        int _shapeType = 0;
+        
     public:
         flCheckBox(float width = 100);
         virtual ~flCheckBox();
@@ -56,7 +58,10 @@ namespace fl2d {
         void enabled(bool value);
         
         inline void activeColor(ofFloatColor value) { _activeColor = value; };
-        
+
+        inline int shapeType() { return _shapeType; };
+        inline void shapeType(int value) { _shapeType = value; };
+
     protected:
         virtual void _normal();
         virtual void _over();

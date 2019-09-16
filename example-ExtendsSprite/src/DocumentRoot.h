@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxSelflash.h"
 
+using namespace fl2d;
+
 class DocumentRoot : public flSprite {
 public:
     float counter;

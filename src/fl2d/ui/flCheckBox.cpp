@@ -37,7 +37,7 @@ namespace fl2d {
         _label->autoSize(flTextFieldAutoSize::LEFT);
         _label->textColor(_labelNormalColor.getHex());
         _label->text("Check Box");
-        _label->y(_uiHeight * 0.5 - _label->textHeight() * 0.5 - 3);
+        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 1);
         //        _label->mouseEnabled(false);
         addChild(_label);
         //------------------------------------------
@@ -72,6 +72,8 @@ namespace fl2d {
         
         _enabled = false;
         _hitAreaAlpha = 0.0;
+        
+        _shapeType = 0;
     }
     
     //==============================================================
@@ -209,8 +211,11 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-        //        g->drawCircle(7, 8, 6);
-        g->drawRect(0, 0, 15, 15);
+        switch(_shapeType) {
+//            case 0: g->drawRect(0, 0, 18, 18); break;
+            case 0: g->drawRect(1, 3, 12, 12); break;
+            case 1: g->drawCircle(7, 8, 6); break;
+        }
         g->endFill();
     }
     
@@ -225,14 +230,20 @@ namespace fl2d {
         
         //外側
         g->lineStyle(1, outerColor.getHex());
-        //        g->drawCircle(7, 8, 6);
-        g->drawRect(0, 0, 15, 15);
+        switch(_shapeType) {
+//            case 0: g->drawRect(0, 0, 18, 18); break;
+            case 0: g->drawRect(1, 3, 12, 12); break;
+            case 1: g->drawCircle(7, 8, 6); break;
+        }
         g->endFill();
         
         //内側
         g->beginFill(innerColor.getHex());
-        //        g->drawCircle(7, 8, 3);
-        g->drawRect(3, 3, 8, 8);
+        switch(_shapeType) {
+//            case 0: g->drawRect(4, 3, 11, 11); break;
+            case 0: g->drawRect(3, 4, 9, 9); break;
+            case 1: g->drawCircle(7, 8, 3); break;
+        }
         g->endFill();
     }
     

@@ -7,6 +7,8 @@
 #include "CustomDispatcher.h"
 #include "CustomEvent.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
     flEventDispatcher* dispatcherA;

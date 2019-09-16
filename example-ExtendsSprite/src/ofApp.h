@@ -5,6 +5,8 @@
 #include "ofxSelflash.h"
 #include "DocumentRoot.h"
 
+using namespace fl2d;
+
 class ofApp : public ofBaseApp {
 public:
     DocumentRoot* documentRoot;

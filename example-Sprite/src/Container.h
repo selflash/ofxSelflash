@@ -5,6 +5,8 @@
 
 #include "CustomSpriteA.h"
 
+using namespace fl2d;
+
 class Container : public flSprite {
     
 public:

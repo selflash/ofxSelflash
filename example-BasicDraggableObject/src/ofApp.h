@@ -7,6 +7,7 @@
 #include "FrameBorder1.h"
 #include "FrameBorder2.h"
 #include "FrameBorder3.h"
+#include "FrameBorder4.h"
 
 using namespace fl2d;
 
@@ -16,7 +17,8 @@ public:
     FrameBorder1* frameBorder1;
     FrameBorder2* frameBorder2;
     FrameBorder3* frameBorder3;
-    
+    FrameBorder4* frameBorder4;
+
 protected:
     
 private:
