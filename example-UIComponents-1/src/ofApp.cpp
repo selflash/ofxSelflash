@@ -5,13 +5,12 @@
 void ofApp::setup() {
     ofBackground(0);
     ofSetWindowTitle("example-UIComponents-1");
-    ofDisableAntiAliasing();
-    
+    //ofDisableAntiAliasing();
+    ofSetFrameRate(60);
+    ofSetVerticalSync(true);
+
     //--------------------------------------
-    //Ready ofxSelflash
-    ofxSelflash::autoUpdate(false);
-    ofxSelflash::autoDraw(false);
-    ofxSelflash::setup(false);
+    ofxSelflash::setup();
     //--------------------------------------
     
     //--------------------------------------
@@ -119,9 +118,7 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 //
 void ofApp::update() {
-    //----------------------------------
-    ofxSelflash::update();
-    //----------------------------------
+    
 }
 
 //--------------------------------------------------------------

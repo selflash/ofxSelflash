@@ -11,8 +11,18 @@ int main() {
 //    settings.windowMode = OF_WINDOW;
 //    settings.setGLVersion(4, 1);
 //    ofCreateWindow(settings);
+  
+    ofGLFWWindowSettings settings;
+//    settings.setSize(1024,768);
+    settings.setSize(1280, 1024);
+    //settings.setGLVersion(2, 1); // GL2
     
-	ofSetupOpenGL(1024,768,OF_WINDOW);			// <-------- setup the GL context
+    //settings.setSize(1280 * 0.5 * 3, 720);
+//    settings.setGLVersion(3, 2); // GL3
+    //settings.setGLVersion(4, 1); // GL4
+    
+    ofCreateWindow(settings);
+//    ofSetupOpenGL(1024,768,OF_WINDOW);            // <-------- setup the GL context
 
     cout << "Vendor     : " << glGetString(GL_VENDOR) << '\n';
     cout << "GPU        : " << glGetString(GL_RENDERER) << '\n';
