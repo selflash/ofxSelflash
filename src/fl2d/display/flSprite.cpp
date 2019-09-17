@@ -341,11 +341,9 @@ namespace fl2d {
         _rect->__setToRect(*_graphics->__rect);
         
         int i; int l;
-        flDisplayObject* child;
-        
         l = children.size();
         for(i = 0; i < l; i++) {
-            child = children[i];
+            flDisplayObject* child = children[i];
             //                _rect->__expandToRect(*child->getRect(this));
             float cx = child->x();
             float cy = child->y();

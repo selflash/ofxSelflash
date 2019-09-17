@@ -38,8 +38,8 @@ void DeviceCameraViewer::_setup() {
     
     flBasicController::_setup();
     
-    _normalBackWidth = 380;
-    _normalBackHeight = 130 + 18;
+    _normalBackWidth = 800;
+    _normalBackHeight = 195;
     _minBackWidth = _normalBackWidth;
     _backWidth = _normalBackWidth;
     _backHeight = _normalBackHeight;
@@ -57,9 +57,71 @@ void DeviceCameraViewer::_setup() {
     flTextField* textField = NULL;
     //--------------------------------------
 
-//    _frameBorder1 = new FrameBorder4();
-//    _frameBorder1->setup();
-//    addChild(_frameBorder1);
+    
+    //--------------------------------------
+    {
+        int camWidth = 1280 * 0.2;
+        int camHeight = 720 * 0.2;
+        flGraphics* g;
+        
+        int borderWidth = 2;
+
+        //Color Image
+        _colorCameraViewer = new flShape();
+        _colorCameraViewer->setup();
+//    _videoTexture.allocate(camWidth, camHeight, GL_RGBA);
+        
+        g = _colorCameraViewer->graphics();
+        g->clear();
+        g->beginFill(0xffffff, 0.8);
+        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
+        g->beginFill(0x008888, 1.0);
+        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->endFill();
+        
+        _colorCameraViewer->x(5);
+        _colorCameraViewer->y(40);
+        addChild(_colorCameraViewer);
+        
+        //Depth Image
+        _depthCameraViewer = new flShape();
+        _depthCameraViewer->setup();
+        
+        g = _depthCameraViewer->graphics();
+        g->clear();
+        g->beginFill(0xffffff, 0.8);
+        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
+        g->beginFill(0x008888, 1.0);
+        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->endFill();
+        
+        _depthCameraViewer->x(5 + borderWidth + camWidth + borderWidth + 5);
+        _depthCameraViewer->y(40);
+        addChild(_depthCameraViewer);
+        
+        
+        //Ir Image
+        _irCameraViewer = new flShape();
+        _irCameraViewer->setup();
+        
+        g = _irCameraViewer->graphics();
+        g->clear();
+        g->beginFill(0xffffff, 0.8);
+        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
+        g->beginFill(0x008888, 1.0);
+        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->endFill();
+        
+        _irCameraViewer->x(5 + borderWidth + camWidth + borderWidth + 5 + borderWidth + camWidth + borderWidth + 5);
+        _irCameraViewer->y(40);
+        addChild(_irCameraViewer);
+        
+//        ofLog() << "hoge = " << 5 + borderWidth + camWidth + borderWidth + 5 + borderWidth + camWidth + borderWidth + 5;
+        
+//        ofLog() << "_irCameraViewer = " << _irCameraViewer->y() + _irCameraViewer->height();
+//        ofLog() << "_irCameraViewer.height = " << _irCameraViewer->height();
+        ofLog() << "_irCameraViewer = " << _irCameraViewer->y() + (camHeight * 0.2);
+    }
 }
 
 //--------------------------------------------------------------
@@ -74,6 +136,21 @@ void DeviceCameraViewer::_draw() {
     //cout << "[DeviceCameraViewer]draw()" << endl;
     
     if(_isMinimize) return;
+    
+    ofPushStyle();
+    ofSetColor(255, 255, 255, 255);
+    flFont::drawString("Color", 5, 35);
+    ofPopStyle();
+    
+    ofPushStyle();
+    ofSetColor(255, 255, 255, 255);
+    flFont::drawString("Depth", 174, 35);
+    ofPopStyle();
+    
+    ofPushStyle();
+    ofSetColor(255, 255, 255, 255);
+    flFont::drawString("Ir", 343, 35);
+    ofPopStyle();
 }
 
 //==============================================================

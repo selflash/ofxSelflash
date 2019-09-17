@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "ofxSelflash.h"
 #include "flBasicController.h"
-#include "FrameBorder4.h"
+#include "CameraViewer.h"
 
 using namespace fl2d;
 
@@ -23,7 +23,14 @@ class DeviceCameraViewer : public flBasicController {
         string _status;
         
     private:
-        FrameBorder4* _frameBorder1;
+        flShape* _colorCameraViewer = NULL;
+        flBitmap* _colorBitmap = NULL;
+
+        flShape* _depthCameraViewer = NULL;
+        flBitmap* _depthBitmap = NULL;
+
+        flShape* _irCameraViewer = NULL;
+        flBitmap* _irBitmap = NULL;
 //        FrameBorder4* frameBorder2;
 
     public:

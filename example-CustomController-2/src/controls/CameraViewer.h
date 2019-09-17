@@ -2,18 +2,17 @@
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "flBasicDraggableObject.h"
 
 using namespace fl2d;
 
-class FrameBorder4 : public flBasicDraggableObject {
+class CameraViewer : public flShape {
 public:
     
 protected:
     
 private:
-    ofVideoGrabber _vidGrabber;
-    ofTexture _videoTexture;
+//    ofVideoGrabber _vidGrabber;
+//    ofTexture _videoTexture;
 //    flBitmap* bitmap;
 public:
     

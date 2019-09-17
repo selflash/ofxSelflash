@@ -177,7 +177,7 @@ namespace fl2d {
         
         __rect->__expandTo(command->left, command->top);
         __rect->__expandTo(command->right, command->bottom);
-        
+                
         _commandList.push_back(command);
     }
     
