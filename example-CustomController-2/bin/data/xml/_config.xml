@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--------------------------------------------------->
+<!-- アプリケーションの設定 -->
+<application>
+    <!-- アプリケーション名 -->
+    <name>Preview</name>
+    <!-- フレームレート -->
+    <fps>30</fps>
+    <!-- ウィンドウの設定 -->
+    <window>
+        <!-- ウィンドウの位置 -->
+        <position>
+            <x>50</x>
+            <y>50</y>
+        </position>
+    </window>
+    <!--  -->
+    <inputSettings>
+        <fbx>
+            <isDeffaultPoseT>true</isDeffaultPoseT>
+            <autoReload>false</autoReload>
+        </fbx>
+        <texture>
+            <autoReload>true</autoReload>
+        </texture>
+
+        <!-- <inputFolderPath>../../../16-SetupUV/bin/data/output</inputFolderPath> -->
+        <!-- <inputFolderPath>/Users/TatsuyaYokoda/Desktop/TestInputFolder</inputFolderPath> -->
+        <!-- <outputFolderPath>/Users/TatsuyaYokoda/Desktop/TestOutputFolder</outputFolderPath> -->
+        <folderPath>input</folderPath>        
+    </inputSettings>
+
+    <outputSettings>
+        <low>true</low>
+        <medium>true</medium>
+        <high>true</high>
+        <obj>true</obj>
+        <gltf>true</gltf>
+
+        <!-- <folderPath>output</folderPath> -->
+        <folderPathList>
+            <app low=1 medium=2 high=3 textureSize=2048 needBone=true useTempFolder=true>output_app1</app>
+            <app low=1 medium=2 high=3 textureSize=2048 needBone=true  useTempFolder=false>output_app2</app>
+            <app low=1 medium=2 high=3 textureSize=2048 needBone=false  useTempFolder=true>output_app3</app>
+            <uploader textureSize=2048 useTempFolder=false>output_uploader</uploader>
+        </folderPathList>        
+    </outputSettings>
+</application>
+
+<!-- ネットワークの設定 -->
+<network>
+    <!-- UDP -->
+    <udp>
+        <!-- ローカル -->
+        <local>
+            <!-- バッチ処理監視用 -->
+            <ip0>127.0.0.1</ip0>
+            <port0>11101</port0>
+        </local>
+    </udp>
+</network>
+<!--------------------------------------------------->

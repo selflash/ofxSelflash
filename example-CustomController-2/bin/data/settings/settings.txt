@@ -1,0 +1,11 @@
+アプリの名前
+app_name=MultiKinectCalibration
+フレームレート
+fps=30
+ウィンドウの位置
+window_x=0
+window_y=200
+ネットワークの設定
+udp_local_port=10100
+udp_remote_ip=192.168.10.124
+udp_remote_port=10100

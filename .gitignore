@@ -963,3 +963,26 @@ icon-debug.icns
 example-BasicControllerDebug
 libfmodex.dylib
 example-UIComponents-1Debug
+Project.xcconfig
+openFrameworks-Info.plist
+Makefile
+example-CustomController-1Debug
+project.pbxproj
+contents.xcworkspacedata
+UserInterfaceState.xcuserstate
+example-CustomController-2/example-CustomController-2.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+example-CustomController-2/example-CustomController-2.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+example-EventDispatcher-1Debug
+example-ExtendsSpriteDebug
+example-CustomController-1/example-CustomController-1.xcodeproj/xcshareddata/xcschemes/example-CustomController-1 Debug.xcscheme
+example-CustomController-1/example-CustomController-1.xcodeproj/xcshareddata/xcschemes/example-CustomController-1 Release.xcscheme
+example-CustomController-1/example-CustomController-1.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+example-CustomController-1/example-CustomController-1.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+example-CustomController-2Debug
+example-HitAreaDebug
+example-CustomController-2/example-CustomController-2.xcodeproj/xcshareddata/xcschemes/example-CustomController-2 Debug.xcscheme
+example-CustomController-2/example-CustomController-2.xcodeproj/xcshareddata/xcschemes/example-CustomController-2 Release.xcscheme
+example-EventDispatcher-2Debug
+example-Font/example-Font.xcodeproj
+example-Sprite/bin/example-SpriteDebug.app
+example-TextFieldDebug

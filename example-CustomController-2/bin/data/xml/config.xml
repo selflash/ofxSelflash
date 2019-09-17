@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--------------------------------------------------->
+<!-- アプリケーションの設定 -->
+<application>
+    <!-- アプリの名前 -->
+    <name>MultiKinectCalibration</name>
+    <!-- フレームレート -->
+    <fps>30</fps>
+    <!-- ウィンドウの位置 -->
+    <window>
+        <x>0</x>
+        <y>200</y>
+    </window>
+    <auto_alignment>false</auto_alignment>
+    <threshold>100</threshold>
+</application>
+
+<!-- ネットワークの設定 -->
+<network>
+    <auto_connect>true</auto_connect>
+    <!-- UDP -->
+    <udp>
+        <!-- ローカル -->
+        <local>
+            <!-- ScanPC0 --> <port0>10100</port0>
+            <!-- ScanPC1 --> <port1>10101</port1>
+            <!-- ScanPC2 --> <port2>10102</port2>
+            <!-- ScanPC3 --> <port3>10103</port3>
+            <!-- ScanPC4 --> <port4>10104</port4>
+            <!-- ScanPC5 --> <port5>10105</port5>
+            <!-- ScanPC6 --> <port6>10106</port6>
+            <!-- ScanPC7 --> <port7>10107</port7>
+            <!-- ScanPC8 --> <port8>10108</port8>
+            <!-- ScanPC9 --> <port9>10109</port9>
+            <!-- Common  --> <port99>20100</port99>
+        </local>
+        <!-- リモート -->
+        <remote>
+            <!-- ScanPC0 --> <ip0>192.168.10.124</ip0> <port0>10100</port0>
+            <!-- ScanPC1 --> <ip1>192.168.10.126</ip1> <port1>10100</port1>
+            <!-- ScanPC2 --> <ip2>192.168.10.121</ip2> <port2>10100</port2>
+            <!-- ScanPC3 --> <ip3>192.168.10.119</ip3> <port3>10100</port3>
+            <!-- ScanPC4 --> <ip4>192.168.10.118</ip4> <port4>10100</port4>
+            <!-- ScanPC5 --> <ip5>192.168.10.117</ip5> <port5>10100</port5>
+            <!-- ScanPC6 --> <ip6>192.168.10.120</ip6> <port6>10100</port6>
+            <!-- ScanPC7 --> <ip7>192.168.10.125</ip7> <port7>10100</port7>
+            <!-- ScanPC8 --> <ip8>192.168.10.123</ip8> <port8>10100</port8>
+            <!-- ScanPC9 --> <ip9>192.168.10.122</ip9> <port9>10100</port9>
+        </remote>
+    </udp>
+</network>
+<!--------------------------------------------------->
