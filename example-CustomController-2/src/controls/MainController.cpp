@@ -253,7 +253,8 @@ void MainController::_setup() {
     button301->labelText("Settings");
     button301->x(marginLeft + spacing * 0);
     button301->y(marginTop + lineSpacing * 1);
-    button301->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+	button301->toggleEnabled(true);
+	button301->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button301);
     ofLog() << button301->y() + button301->height();
     //--------------------------------------

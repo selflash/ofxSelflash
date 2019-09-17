@@ -465,7 +465,7 @@ void NetworkController::_setup() {
     //----------------------------------------------------------
     marginLeft = 5;
     marginTop = 5;
-    spacing = 80 + 5;
+    spacing = 150 + 5;
     lineSpacing = 18 + 5;
     
     textField = new flTextField();
