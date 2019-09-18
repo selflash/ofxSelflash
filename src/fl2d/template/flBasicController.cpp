@@ -42,15 +42,15 @@ namespace fl2d {
         _isMinimize = false;
         
         //最小化ボタン
-        minimizeButton = new flButton(18, 13);
-        minimizeButton->labelText("-");
+        minimizeButton = new flButton(20, 13);
+        minimizeButton->labelText(" -");
         minimizeButton->toggleEnabled(true);
         minimizeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
         addChild(minimizeButton);
         
         //閉じるボタン
-        closeButton = new flButton(18, 13);
-        closeButton->labelText("x");
+        closeButton = new flButton(20, 13);
+        closeButton->labelText(" x");
         closeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
         addChild(closeButton);
         
@@ -102,6 +102,12 @@ namespace fl2d {
         _onTop = false;
         
         _dragEnabled = false;
+        
+        for(auto* radioButtonGroup : radioButtonGroups) {
+            delete radioButtonGroup;
+            radioButtonGroup = NULL;
+        }
+        radioButtonGroups.clear();
     }
     
     //==============================================================
@@ -117,11 +123,12 @@ namespace fl2d {
         
         _updateRect();
         
-        minimizeButton->x(width() - 53);
-        minimizeButton->y(5);
+        float w = width();
+        minimizeButton->x(w - (18 + 5 + 18 + 5 + 5));
+        minimizeButton->y(4);
         
-        closeButton->x(width() - 28);
-        closeButton->y(5);
+        closeButton->x(w - (18 + 5 + 5));
+        closeButton->y(4);
     }
     
     //==============================================================

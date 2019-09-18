@@ -51,9 +51,9 @@ void MainController::_setup() {
 
 	flBasicController::_setup();
 
-	_normalBackWidth = 420;
+	_normalBackWidth = 310 + 5;
 //    _normalBackHeight = 695;
-    _normalBackHeight = 258 + 5;
+    _normalBackHeight = 368 + 5;
 	_minBackWidth = _normalBackWidth;
 	_backWidth = _normalBackWidth;
 	_backHeight = _normalBackHeight;
@@ -76,7 +76,7 @@ void MainController::_setup() {
 
 	float marginLeft; float marginTop;
 	float spacing; float lineSpacing;
-	flTextField* textField = NULL;
+	flTextField* label = NULL;
 
 	//--------------------------------------
 //    marginLeft = 5;
@@ -92,15 +92,15 @@ void MainController::_setup() {
 //    button001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
 //    addChild(button001);
 //
-//    textField = new flTextField();
-//    textField->text("Window Depth");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 1);
-//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->text("Window Depth");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 1);
+//    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //    comboBox001 = new flComboBox(200);
-//    comboBox001->label(textField);
+//    comboBox001->label(label);
 //    comboBox001->x(marginLeft + spacing * 0);
 //    comboBox001->y(marginTop + lineSpacing * 2);
 //    comboBox001->addItem<string>("Default", "default");
@@ -117,15 +117,15 @@ void MainController::_setup() {
 	spacing = 205;
 	lineSpacing = 22;
 
-	textField = new flTextField();
-	textField->text("Background Color");
-	textField->x(marginLeft + spacing * 0);
-	textField->y(marginTop + lineSpacing * 0);
-	textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-	textField->mouseEnabled(false);
-	addChild(textField);
+	label = new flTextField();
+	label->text("Background Color");
+	label->x(marginLeft + spacing * 0);
+	label->y(marginTop + lineSpacing * 0);
+	label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+	label->mouseEnabled(false);
+	addChild(label);
 	colorSlider001 = new flColorSlider(185, false);
-	colorSlider001->label(textField);
+	colorSlider001->label(label);
 	//    colorSlider001->label()->width(200);
 	//    colorSlider001->label()->autoSize(flTextFieldAutoSize::CENTER);
 	colorSlider001->x(marginLeft + spacing * 0);
@@ -146,7 +146,7 @@ void MainController::_setup() {
     lineSpacing = 22;
     
     check101 = new flCheckBox();
-    check101->labelText("Device 1");
+    check101->labelText("Device1 (Master)");
     check101->x(marginLeft + spacing * 0);
     check101->y(marginTop + lineSpacing * 0);
     check101->selected(true);
@@ -154,7 +154,7 @@ void MainController::_setup() {
     addChild(check101);
     
     check102 = new flCheckBox();
-    check102->labelText("Device 2");
+    check102->labelText("Device2 (Slave)");
     check102->x(marginLeft + spacing * 0);
     check102->y(marginTop + lineSpacing * 1);
     check102->selected(true);
@@ -162,7 +162,7 @@ void MainController::_setup() {
     addChild(check102);
     
     check103 = new flCheckBox();
-    check103->labelText("Device 3");
+    check103->labelText("Device3 (Slave)");
     check103->x(marginLeft + spacing * 0);
     check103->y(marginTop + lineSpacing * 2);
     check103->selected(true);
@@ -170,17 +170,58 @@ void MainController::_setup() {
     addChild(check103);
     
     check104 = new flCheckBox();
-    check104->labelText("Device 4");
+    check104->labelText("Device4 (Slave)");
     check104->x(marginLeft + spacing * 0);
     check104->y(marginTop + lineSpacing * 3);
     check104->selected(true);
     check104->mouseEnabled(false);
     addChild(check104);
-//    ofLog() << check104->y() + check104->height();
+    
+    check105 = new flCheckBox();
+    check105->labelText("Device5 (Slave)");
+    check105->x(marginLeft + spacing * 0);
+    check105->y(marginTop + lineSpacing * 4);
+    check105->selected(true);
+    check105->mouseEnabled(false);
+    addChild(check105);
+    
+    check106 = new flCheckBox();
+    check106->labelText("Device6 (Slave)");
+    check106->x(marginLeft + spacing * 0);
+    check106->y(marginTop + lineSpacing * 5);
+    check106->selected(true);
+    check106->mouseEnabled(false);
+    addChild(check106);
+    
+    check107 = new flCheckBox();
+    check107->labelText("Device7 (Slave)");
+    check107->x(marginLeft + spacing * 0);
+    check107->y(marginTop + lineSpacing * 6);
+    check107->selected(true);
+    check107->mouseEnabled(false);
+    addChild(check107);
+    
+    check108 = new flCheckBox();
+    check108->labelText("Device8 (Slave)");
+    check108->x(marginLeft + spacing * 0);
+    check108->y(marginTop + lineSpacing * 7);
+    check108->selected(true);
+    check108->mouseEnabled(false);
+    addChild(check108);
+    
+    check109 = new flCheckBox();
+    check109->labelText("Device9 (Slave)");
+    check109->x(marginLeft + spacing * 0);
+    check109->y(marginTop + lineSpacing * 8);
+    check109->selected(true);
+    check109->mouseEnabled(false);
+    addChild(check109);
+
+//    ofLog() << "check109 : " << check109->y() + check109->height();
     //--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5 + 100;
+    marginLeft = 5 + 100 + 100 + 5;
     marginTop = 107;
     spacing = 205;
     lineSpacing = 22;
@@ -216,12 +257,53 @@ void MainController::_setup() {
     button104->toggleEnabled(true);
     button104->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button104);
-//    ofLog() << button104->y() + button104->height();
+    
+    button105 = new flButton(100);
+    button105->labelText("Settings");
+    button105->x(marginLeft + spacing * 0);
+    button105->y(marginTop + lineSpacing * 4);
+    button105->toggleEnabled(true);
+    button105->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button105);
+    
+    button106 = new flButton(100);
+    button106->labelText("Settings");
+    button106->x(marginLeft + spacing * 0);
+    button106->y(marginTop + lineSpacing * 5);
+    button106->toggleEnabled(true);
+    button106->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button106);
+    
+    button107 = new flButton(100);
+    button107->labelText("Settings");
+    button107->x(marginLeft + spacing * 0);
+    button107->y(marginTop + lineSpacing * 6);
+    button107->toggleEnabled(true);
+    button107->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button107);
+    
+    button108 = new flButton(100);
+    button108->labelText("Settings");
+    button108->x(marginLeft + spacing * 0);
+    button108->y(marginTop + lineSpacing * 7);
+    button108->toggleEnabled(true);
+    button108->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button108);
+    
+    button109 = new flButton(100);
+    button109->labelText("Settings");
+    button109->x(marginLeft + spacing * 0);
+    button109->y(marginTop + lineSpacing * 8);
+    button109->toggleEnabled(true);
+    button109->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button109);
+    ofLog() << "button109 x: " << button109->x() + button109->width();
+    ofLog() << "button109 y: " << button109->y() + button109->height();
     //--------------------------------------
     
     //--------------------------------------
     marginLeft = 5;
-    marginTop = 194;
+    marginTop = 304;
     spacing = 205;
     lineSpacing = 22;
     
@@ -231,12 +313,12 @@ void MainController::_setup() {
     button201->y(marginTop + lineSpacing * 0);
     button201->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button201);
-    ofLog() << button201->y() + button201->height();
+//    ofLog() << "button201 : " << button201->y() + button201->height();
     //--------------------------------------
     
     //--------------------------------------
     marginLeft = 5;
-    marginTop = 215;
+    marginTop = 325;
     spacing = 205;
     lineSpacing = 22;
     
@@ -256,7 +338,7 @@ void MainController::_setup() {
 	button301->toggleEnabled(true);
 	button301->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button301);
-    ofLog() << button301->y() + button301->height();
+//    ofLog() << "button301 : " << button301->y() + button301->height();
     //--------------------------------------
     
 	//--------------------------------------
@@ -265,15 +347,15 @@ void MainController::_setup() {
 //    spacing = 205;
 //    lineSpacing = 22.5;
 //
-//    textField = new flTextField();
-//    textField->text("Model");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->text("Model");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //    comboBox101 = new flComboBox(200);
-//    comboBox101->label(textField);
+//    comboBox101->label(label);
 //    comboBox101->x(marginLeft + spacing * 0);
 //    comboBox101->y(marginTop + lineSpacing * 1);
 //    //    addChild(comboBox101);
@@ -306,21 +388,21 @@ void MainController::_setup() {
 //    spacing = 205;
 //    lineSpacing = 21;
 //
-//    textField = new flTextField();
-//    textField->text("Camera Position");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->text("Camera Position");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //    joystick2001 = new flJoyStick2(55, 15);
-//    joystick2001->label(textField);
+//    joystick2001->label(label);
 //    joystick2001->x(marginLeft + spacing * 0);
 //    joystick2001->y(marginTop + lineSpacing * 1);
 //    joystick2001->addEventListener(flJoyStick2Event::CHANGE, this, &MainController::_uiEventHandler);
 //    addChild(joystick2001);
 //    joystick1001 = new flJoyStick1(55);
-//    joystick1001->label(textField);
+//    joystick1001->label(label);
 //    joystick1001->x(marginLeft + spacing * 0 + 70);
 //    joystick1001->y(marginTop + lineSpacing * 1);
 //    joystick1001->type(flJoyStick1::HORIZONTALLY);
@@ -371,15 +453,15 @@ void MainController::_setup() {
 //    spacing = 205;
 //    lineSpacing = 22.5;
 //
-//    textField = new flTextField();
-//    textField->text("Model Orientation");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->text("Model Orientation");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //    comboBox111 = new flComboBox(200);
-//    comboBox111->label(textField);
+//    comboBox111->label(label);
 //    comboBox111->x(marginLeft + spacing * 0);
 //    comboBox111->y(marginTop + lineSpacing * 1);
 //    comboBox111->addItem<string>("Front", "front");
@@ -398,15 +480,15 @@ void MainController::_setup() {
 //    spacing = 205;
 //    lineSpacing = 22.5;
 //
-//    textField = new flTextField();
-//    textField->text("Pose Type");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-//    textField->mouseEnabled(false);
-//    //    addChild(textField);
+//    label = new flTextField();
+//    label->text("Pose Type");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//    label->mouseEnabled(false);
+//    //    addChild(label);
 //    comboBox201 = new flComboBox(200);
-//    comboBox201->label(textField);
+//    comboBox201->label(label);
 //    comboBox201->x(marginLeft + spacing * 0);
 //    comboBox201->y(marginTop + lineSpacing * 1);
 //    comboBox201->addItem<string>("A Pose", "aPose");
@@ -509,15 +591,15 @@ void MainController::_setup() {
 //    spacing = 207.5;
 //    lineSpacing = 22.5;
 //
-//    textField = new flTextField();
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->text("Controllers");
-//    textField->width(200);
-//    textField->height(20);
-//    textField->autoSize(flTextFieldAutoSize::CENTER);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->text("Controllers");
+//    label->width(200);
+//    label->height(20);
+//    label->autoSize(flTextFieldAutoSize::CENTER);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //
 //    button301 = new flButton(200);
 //    button301->labelText("Network Controller");
@@ -548,15 +630,15 @@ void MainController::_setup() {
 //    spacing = 207.5;
 //    lineSpacing = 22.5;
 //
-//    textField = new flTextField();
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 0);
-//    textField->text("Output Settings");
-//    textField->width(200);
-//    textField->height(20);
-//    textField->autoSize(flTextFieldAutoSize::CENTER);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 0);
+//    label->text("Output Settings");
+//    label->width(200);
+//    label->height(20);
+//    label->autoSize(flTextFieldAutoSize::CENTER);
+//    label->mouseEnabled(false);
+//    addChild(label);
 //
 //    check351 = new flCheckBox();
 //    check351->labelText("Low");
@@ -778,14 +860,17 @@ void MainController::_setup() {
 	_controller2->addEventListener("uiEvent", this, &MainController::_uiEventHandler);
 	//--------------------------------------
     
-    
-    _deviceCameraViewer = new DeviceCameraViewer("Device Camera Viewer");
-    _deviceCameraViewer->setup();
-    _deviceCameraViewer->addEventListener(flEvent::CLOSE, this, &MainController::_uiEventHandler);
-    _deviceCameraViewer->addEventListener("uiEvent", this, &MainController::_uiEventHandler);
-    _deviceCameraViewer->x(ofGetWidth() - _deviceCameraViewer->width() - 1);
-    _deviceCameraViewer->y(1);
-//    ((flStage*)stage())->addChild(_deviceCameraViewer);
+    //--------------------------------------
+    for(int i = 0; i < 9; i++) {
+        flBasicController* deviceSettingsController = new DeviceSettingsController("Device" + ofToString(i + 1) + " Settings");
+        deviceSettingsController->setup();
+        deviceSettingsController->addEventListener(flEvent::CLOSE, this, &MainController::_uiEventHandler);
+        deviceSettingsController->addEventListener("uiEvent", this, &MainController::_uiEventHandler);
+    //    ((flStage*)stage())->addChild(_deviceCameraViewer);
+        deviceSettingsController->minimize();
+        _deviceSettingsControllers.push_back(deviceSettingsController);
+    }
+    //--------------------------------------
 }
 
 //--------------------------------------------------------------
@@ -885,11 +970,44 @@ void MainController::_uiEventHandler(flEvent& event) {
 	if (event.type() == flEvent::CLOSE) {
 		flBasicController* target = (flBasicController*)(event.currentTarget());
 
-        //コントローラー0
-        if (target == _deviceCameraViewer) {
+        //コントローラー
+        if (target == _deviceSettingsControllers[0]) {
             ((flStage*)stage())->removeChild(target);
             button101->selected(false, false);
         }
+        else if (target == _deviceSettingsControllers[1]) {
+            ((flStage*)stage())->removeChild(target);
+            button102->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[2]) {
+            ((flStage*)stage())->removeChild(target);
+            button103->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[3]) {
+            ((flStage*)stage())->removeChild(target);
+            button104->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[4]) {
+            ((flStage*)stage())->removeChild(target);
+            button105->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[5]) {
+            ((flStage*)stage())->removeChild(target);
+            button106->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[6]) {
+            ((flStage*)stage())->removeChild(target);
+            button107->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[7]) {
+            ((flStage*)stage())->removeChild(target);
+            button108->selected(false, false);
+        }
+        else if (target == _deviceSettingsControllers[8]) {
+            ((flStage*)stage())->removeChild(target);
+            button109->selected(false, false);
+        }
+
 
 		//コントローラー0
 		else if (target == _controller0) {
@@ -941,16 +1059,107 @@ void MainController::_uiEventHandler(flEvent& event) {
 		}
         
         else if (button == button101) {
+            flBasicController* controller = _deviceSettingsControllers[0];
             if (button->selected()) {
-                _deviceCameraViewer->x(x() + width());
-                _deviceCameraViewer->y(y());
-                ((flStage*)stage())->addChild(_deviceCameraViewer);
+                controller->x(x() + width());
+                controller->y(y() + 22 * 0);
+                ((flStage*)stage())->addChild(controller);
             }
             else {
-                ((flStage*)stage())->removeChild(_deviceCameraViewer);
+                ((flStage*)stage())->removeChild(controller);
             }
         }
-
+        else if (button == button102) {
+            flBasicController* controller = _deviceSettingsControllers[1];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 1);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button103) {
+            flBasicController* controller = _deviceSettingsControllers[2];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 2);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button104) {
+            flBasicController* controller = _deviceSettingsControllers[3];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 3);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button105) {
+            flBasicController* controller = _deviceSettingsControllers[4];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 4);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button106) {
+            flBasicController* controller = _deviceSettingsControllers[5];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 5);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button107) {
+            flBasicController* controller = _deviceSettingsControllers[6];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 6);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button108) {
+            flBasicController* controller = _deviceSettingsControllers[7];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 7);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        else if (button == button109) {
+            flBasicController* controller = _deviceSettingsControllers[8];
+            if (button->selected()) {
+                controller->x(x() + width());
+                controller->y(y() + 22 * 8);
+                ((flStage*)stage())->addChild(controller);
+            }
+            else {
+                ((flStage*)stage())->removeChild(controller);
+            }
+        }
+        
+        
+        
 		else if (button == button301) {
 			if (button->selected()) {
 				_controller0->x(ofGetWidth() - _controller0->width() - 1);

@@ -1,4 +1,4 @@
-﻿//
+//
 //  SubController1.cpp
 //  ofApp
 //
@@ -62,7 +62,7 @@ void SubController1::_setup() {
     
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;
-    flTextField* textField = NULL;
+    flTextField* label = NULL;
     //--------------------------------------
     
     //--------------------------------------
@@ -77,12 +77,12 @@ void SubController1::_setup() {
     check001->y(marginTop + lineSpacing * 0);
     addChild(check001);
     
-    textField = new flTextField();
-    textField->text("Index");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 1);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Index");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 1);
+    label->mouseEnabled(false);
+    addChild(label);
     
     text001 = new flTextField();
     text001->text("");
@@ -92,12 +92,12 @@ void SubController1::_setup() {
     text001->mouseEnabled(false);
     addChild(text001);
     
-    textField = new flTextField();
-    textField->text("Total");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 2);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Total");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 2);
+    label->mouseEnabled(false);
+    addChild(label);
     
     text002 = new flTextField();
     text002->text("");
@@ -107,12 +107,12 @@ void SubController1::_setup() {
     text002->mouseEnabled(false);
     addChild(text002);
     
-//    textField = new flTextField();
-//    textField->text("Hoge :");
-//    textField->x(marginLeft + spacing * 0);
-//    textField->y(marginTop + lineSpacing * 2);
-//    textField->mouseEnabled(false);
-//    addChild(textField);
+//    label = new flTextField();
+//    label->text("Hoge :");
+//    label->x(marginLeft + spacing * 0);
+//    label->y(marginTop + lineSpacing * 2);
+//    label->mouseEnabled(false);
+//    addChild(label);
     
     text003 = new flTextField();
     text003->text("");

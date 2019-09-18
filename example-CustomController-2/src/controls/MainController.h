@@ -7,7 +7,7 @@
 
 #include "Config.h"
 #include "NetworkController.h"
-#include "DeviceCameraViewer.h"
+#include "DeviceSettingsController.h"
 #include "SubController1.h"
 #include "SubController2.h"
 //#include "NativeWindow.h"
@@ -25,7 +25,8 @@ private:
     flBasicController* _controller0;
     flBasicController* _controller1;
     flBasicController* _controller2;
-    flBasicController* _deviceCameraViewer;
+    
+    vector<flBasicController*> _deviceSettingsControllers;
 
 public:
     MainController();

@@ -33,7 +33,7 @@ namespace fl2d {
         
         //------------------------------------------
         _label = new flTextField();
-        _label->x(20);
+        _label->x(15);
         _label->autoSize(flTextFieldAutoSize::LEFT);
         _label->textColor(_labelNormalColor.getHex());
         _label->text("Check Box");

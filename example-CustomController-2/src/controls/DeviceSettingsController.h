@@ -15,7 +15,7 @@
 
 using namespace fl2d;
 
-class DeviceCameraViewer : public flBasicController {
+class DeviceSettingsController : public flBasicController {
     
     public:
         
@@ -23,19 +23,25 @@ class DeviceCameraViewer : public flBasicController {
         string _status;
         
     private:
-        flShape* _colorCameraViewer = NULL;
+        flShape* _colorViewer = NULL;
         flBitmap* _colorBitmap = NULL;
 
-        flShape* _depthCameraViewer = NULL;
+        flShape* _depthViewer = NULL;
         flBitmap* _depthBitmap = NULL;
 
-        flShape* _irCameraViewer = NULL;
+        flShape* _irViewer = NULL;
         flBitmap* _irBitmap = NULL;
-//        FrameBorder4* frameBorder2;
 
+        flShape* _depthInColorViewer = NULL;
+        flBitmap* _depthInColorBitmap = NULL;
+    
+        flShape* _colorInDepthViewer = NULL;
+        flBitmap* _colorInDepthBitmap = NULL;
+
+    
     public:
-        DeviceCameraViewer(string title = "Sub Controller");
-        virtual ~DeviceCameraViewer();
+        DeviceSettingsController(string title = "Sub Controller");
+        virtual ~DeviceSettingsController();
         
         //virtual void setup();
         //virtual void update();

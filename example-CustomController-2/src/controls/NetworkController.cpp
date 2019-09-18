@@ -1,4 +1,4 @@
-﻿#include "NetworkController.h"
+#include "NetworkController.h"
 
 
 //==============================================================
@@ -465,7 +465,7 @@ void NetworkController::_setup() {
     //----------------------------------------------------------
     marginLeft = 5;
     marginTop = 5;
-    spacing = 150 + 5;
+    spacing = 120;
     lineSpacing = 18 + 5;
     
     textField = new flTextField();
@@ -540,7 +540,7 @@ void NetworkController::networkManager(NetworkManager* value) {
         socketController->setup();
         socketController->name("Socket " + ofToString(i));
         socketController->x(0);
-        socketController->y(0);
+        socketController->y(20);
         socketController->socket(_networkManager->udpSockets()[i]);
         _socketControllers.push_back(socketController);
         

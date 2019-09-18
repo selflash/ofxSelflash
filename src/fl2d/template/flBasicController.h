@@ -1194,6 +1194,7 @@ namespace fl2d {
         //--------------------------------------
         
         //--------------------------------------
+        vector<flRadioButtonGroup*> radioButtonGroups;
         //ラジオボタン(000)
         flRadioButton* radio000 = NULL; flRadioButton* radio001 = NULL; flRadioButton* radio002 = NULL;
         flRadioButton* radio003 = NULL; flRadioButton* radio004 = NULL; flRadioButton* radio005 = NULL;
