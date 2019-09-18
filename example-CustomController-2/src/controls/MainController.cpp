@@ -64,6 +64,13 @@ void MainController::_setup() {
 	g->lineStyle(1, 0xffffff);
 	g->beginFill(0x000000, 0.7);
 	g->drawRect(0, 0, _backWidth, _backHeight);
+    g->moveTo(0, 107);
+    g->lineTo(_backWidth, 107);
+    g->moveTo(0, 306 + 5);
+    g->lineTo(_backWidth, 306 + 5);
+    g->moveTo(0, 334 + 5);
+    g->lineTo(_backWidth, 334 + 5);
+
 //    g->moveTo(0, 220.5);
 //    g->lineTo(_backWidth, 220.5);
 //    g->moveTo(_backWidth * 0.5, 220.5);
@@ -136,12 +143,12 @@ void MainController::_setup() {
 	colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &MainController::_uiEventHandler);
 	addChild(colorSlider001);
 	ofBackground(colorSlider001->redValue(), colorSlider001->greenValue(), colorSlider001->blueValue());
-//    ofLog() << colorSlider001->y() + colorSlider001->height();
+//    ofLog() << "colorSlider001 y : " << colorSlider001->y() + colorSlider001->height();
 	//--------------------------------------
 
     //--------------------------------------
     marginLeft = 5;
-    marginTop = 107;
+    marginTop = 107 + 5;
     spacing = 205;
     lineSpacing = 22;
     
@@ -216,13 +223,12 @@ void MainController::_setup() {
     check109->selected(true);
     check109->mouseEnabled(false);
     addChild(check109);
-
-//    ofLog() << "check109 : " << check109->y() + check109->height();
+//    ofLog() << "check109 y : " << check109->y() + check109->height();
     //--------------------------------------
     
     //--------------------------------------
     marginLeft = 5 + 100 + 100 + 5;
-    marginTop = 107;
+    marginTop = 107 + 5;
     spacing = 205;
     lineSpacing = 22;
     
@@ -297,28 +303,13 @@ void MainController::_setup() {
     button109->toggleEnabled(true);
     button109->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button109);
-    ofLog() << "button109 x: " << button109->x() + button109->width();
-    ofLog() << "button109 y: " << button109->y() + button109->height();
+//    ofLog() << "button109 x: " << button109->x() + button109->width();
+//    ofLog() << "button109 y: " << button109->y() + button109->height();
     //--------------------------------------
     
     //--------------------------------------
     marginLeft = 5;
-    marginTop = 304;
-    spacing = 205;
-    lineSpacing = 22;
-    
-    button201 = new flButton(200);
-    button201->labelText("Start Calibration");
-    button201->x(marginLeft + spacing * 0);
-    button201->y(marginTop + lineSpacing * 0);
-    button201->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(button201);
-//    ofLog() << "button201 : " << button201->y() + button201->height();
-    //--------------------------------------
-    
-    //--------------------------------------
-    marginLeft = 5;
-    marginTop = 325;
+    marginTop = 306 + 5 + 5;
     spacing = 205;
     lineSpacing = 22;
     
@@ -330,15 +321,39 @@ void MainController::_setup() {
     check301->selected(true);
     check301->mouseEnabled(false);
     addChild(check301);
-    
-    button301 = new flButton(200);
+    ofLog() << "check301 y : " << check301->y() + check301->height();
+
+    button301 = new flButton(100);
     button301->labelText("Settings");
-    button301->x(marginLeft + spacing * 0);
-    button301->y(marginTop + lineSpacing * 1);
+    button301->x(marginLeft + spacing * 1);
+    button301->y(marginTop + lineSpacing * 0);
 	button301->toggleEnabled(true);
 	button301->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button301);
-//    ofLog() << "button301 : " << button301->y() + button301->height();
+    ofLog() << "button301 y : " << button301->y() + button301->height();
+    //--------------------------------------
+    
+    //--------------------------------------
+    marginLeft = 5;
+    marginTop = 334 + 5 + 5;
+    spacing = 205;
+    lineSpacing = 22;
+
+    button201 = new flButton(200);
+    button201->labelText("Start Calibration");
+    button201->x(marginLeft + spacing * 0);
+    button201->y(marginTop + lineSpacing * 0);
+    button201->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button201);
+//    ofLog() << "button201 y : " << button201->y() + button201->height();
+
+    button201 = new flButton(100);
+    button201->labelText("Settings");
+    button201->x(marginLeft + spacing * 1);
+    button201->y(marginTop + lineSpacing * 0);
+    button201->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(button201);
+//    ofLog() << "button201 y : " << button201->y() + button201->height();
     //--------------------------------------
     
 	//--------------------------------------
