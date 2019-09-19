@@ -29,12 +29,13 @@ namespace fl2d {
         
         ofFbo _fboImage;
         
-        float _imageWidth;
-        float _imageHeight;
+        float _imageWidth = 0;
+        float _imageHeight = 0;
         
     private:
         
     public:
+        flBitmap();
         flBitmap(flBitmapData* bitmapData, string pixelSnapping = "auto", bool smoothing = false);
         flBitmap(ofImage* image);
         flBitmap(ofImage image);
@@ -57,6 +58,14 @@ namespace fl2d {
         
         virtual float scaleY();
         virtual void scaleY(float value);
+        
+//        template <class T>
+//        virtual void data<T>(T* value);
+        virtual void data(ofTexture* value);
+
+//        template <class T>
+//        virtual void data<T>(T value);
+
         
     protected:
         virtual void _draw();

@@ -391,7 +391,7 @@ namespace fl2d {
         
         ofRectangle bounds = flFont::getStringBoundingBox(_text, 0, 0);
         _textWidth = bounds.width + 6;
-        _textHeight = _numLine * flFont::getMaxStringHeight() + 3;
+        _textHeight = _numLine * flFont::getMaxStringHeight() + 2;
         
         if(color != -1) textColor(color);
         

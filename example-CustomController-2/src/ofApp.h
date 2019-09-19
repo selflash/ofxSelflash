@@ -24,6 +24,9 @@ class ofApp : public ofBaseApp
     
 		MainController* mainController;
 		NetworkManager* networkManager;
+    
+        ofTexture sampleTex;
+
 	private:
 
 	public:

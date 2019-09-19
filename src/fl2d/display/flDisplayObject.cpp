@@ -9,6 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     flDisplayObject::flDisplayObject() {
+//        ofLog() << "[flDisplayObject]flDisplayObject()";
         _typeID = FL_TYPE_DISPLAY_OBJECT;
         _target = this;
         _name = "DisplayObject";

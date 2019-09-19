@@ -124,7 +124,7 @@ void MainView::_draw() {
 //--------------------------------------------------------------
 //
 void MainView::_eventHandler(flEvent& event) {
-    cout << "[DocumentRoot]_eventHandler(" + event.type() + ")";
+    cout << "[MainView]_eventHandler(" + event.type() + ")" << endl;
     
     if(event.type() == flEvent::ADDED_TO_STAGE) {
         removeEventListener(flEvent::ADDED_TO_STAGE, this, &MainView::_eventHandler);

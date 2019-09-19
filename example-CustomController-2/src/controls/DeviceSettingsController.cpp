@@ -61,7 +61,7 @@ void DeviceSettingsController::_setup() {
     marginLeft = 5;
     marginTop = 35 + 20 + 5;
     spacing = 150;
-    lineSpacing = 20;
+    lineSpacing = 22;
     //--------------------------------------
     {
         int camWidth = 1280 * 0.2;
@@ -71,9 +71,8 @@ void DeviceSettingsController::_setup() {
         int borderWidth = 2;
 
         //Color Image
-        _colorViewer = new flShape();
+        _colorViewer = new flSprite();
         _colorViewer->setup();
-//    _videoTexture.allocate(camWidth, camHeight, GL_RGBA);
         g = _colorViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
@@ -83,10 +82,18 @@ void DeviceSettingsController::_setup() {
         g->endFill();
         _colorViewer->x(5);
         _colorViewer->y(marginTop);
+        _colorViewer->mouseEnabled(false);
+        _colorViewer->mouseChildren(false);
         addChild(_colorViewer);
+        _colorBitmap = new flBitmap();
+        _colorBitmap->width(camWidth);
+        _colorBitmap->height(camHeight);
+        _colorBitmap->x(2);
+        _colorBitmap->y(2);
+        _colorViewer->addChild(_colorBitmap);
         
         //Depth Image
-        _depthViewer = new flShape();
+        _depthViewer = new flSprite();
         _depthViewer->setup();
         g = _depthViewer->graphics();
         g->clear();
@@ -97,10 +104,18 @@ void DeviceSettingsController::_setup() {
         g->endFill();
         _depthViewer->x(5 + borderWidth + camWidth + borderWidth + 5);
         _depthViewer->y(marginTop);
+        _depthViewer->mouseEnabled(false);
+        _depthViewer->mouseChildren(false);
         addChild(_depthViewer);
-        
+        _depthBitmap = new flBitmap();
+        _depthBitmap->width(camWidth);
+        _depthBitmap->height(camHeight);
+        _depthBitmap->x(2);
+        _depthBitmap->y(2);
+        _depthViewer->addChild(_depthBitmap);
+
         //Ir Image
-        _irViewer = new flShape();
+        _irViewer = new flSprite();
         _irViewer->setup();
         g = _irViewer->graphics();
         g->clear();
@@ -111,10 +126,18 @@ void DeviceSettingsController::_setup() {
         g->endFill();
         _irViewer->x(5 + borderWidth + camWidth + borderWidth + 5 + borderWidth + camWidth + borderWidth + 5);
         _irViewer->y(marginTop);
+        _irViewer->mouseEnabled(false);
+        _irViewer->mouseChildren(false);
         addChild(_irViewer);
-        
+        _irBitmap = new flBitmap();
+        _irBitmap->width(camWidth);
+        _irBitmap->height(camHeight);
+        _irBitmap->x(2);
+        _irBitmap->y(2);
+        _irViewer->addChild(_irBitmap);
+
         //Depth In Color Image
-        _depthInColorViewer = new flShape();
+        _depthInColorViewer = new flSprite();
         _depthInColorViewer->setup();
         //    _videoTexture.allocate(camWidth, camHeight, GL_RGBA);
         g = _depthInColorViewer->graphics();
@@ -126,10 +149,18 @@ void DeviceSettingsController::_setup() {
         g->endFill();
         _depthInColorViewer->x(5);
         _depthInColorViewer->y(marginTop + camHeight + 20 + 5);
+        _depthInColorViewer->mouseEnabled(false);
+        _depthInColorViewer->mouseChildren(false);
         addChild(_depthInColorViewer);
-        
+        _depthInColorBitmap = new flBitmap();
+        _depthInColorBitmap->width(camWidth);
+        _depthInColorBitmap->height(camHeight);
+        _depthInColorBitmap->x(2);
+        _depthInColorBitmap->y(2);
+        _depthInColorViewer->addChild(_depthInColorBitmap);
+
         //Color In Depth Image
-        _colorInDepthViewer = new flShape();
+        _colorInDepthViewer = new flSprite();
         _colorInDepthViewer->setup();
         g = _colorInDepthViewer->graphics();
         g->clear();
@@ -140,7 +171,16 @@ void DeviceSettingsController::_setup() {
         g->endFill();
         _colorInDepthViewer->x(5 + borderWidth + camWidth + borderWidth + 5);
         _colorInDepthViewer->y(marginTop + camHeight + 20 + 5);
+        _colorInDepthViewer->mouseEnabled(false);
+        _colorInDepthViewer->mouseChildren(false);
         addChild(_colorInDepthViewer);
+        _colorInDepthBitmap = new flBitmap();
+        _colorInDepthBitmap->width(camWidth);
+        _colorInDepthBitmap->height(camHeight);
+        _colorInDepthBitmap->x(2);
+        _colorInDepthBitmap->y(2);
+        _colorInDepthViewer->addChild(_colorInDepthBitmap);
+
         //ofLog() << "_colorInDepthViewer.x : " << _colorInDepthViewer->x();
         //ofLog() << "_colorInDepthViewer.y : " << _colorInDepthViewer->y() + _colorInDepthViewer->height();
     }

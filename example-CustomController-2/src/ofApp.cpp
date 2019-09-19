@@ -42,6 +42,11 @@ void ofApp::setup()
     
 //    controller.setup(model);
     viewController.setup();
+    
+    ofLoadImage(sampleTex, "selflash.jpeg");
+    mainController->deviceSettingsController(0)->_colorBitmap->data(&sampleTex);
+    
+//    if(!sampleTex.load("selflash.jpeg")) ofLog(OF_LOG_ERROR) << "image didn't load.";
 }
 
 //--------------------------------------------------------------

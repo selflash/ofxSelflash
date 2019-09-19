@@ -40,6 +40,8 @@ public:
     
     void toggleShowAll();
     
+    inline DeviceSettingsController* deviceSettingsController(int index) { return (DeviceSettingsController*)_deviceSettingsControllers[index]; }
+
     //サブコントローラー
     inline flBasicController* controller0() { return _controller0; }
     inline flBasicController* controller1() { return _controller1; }

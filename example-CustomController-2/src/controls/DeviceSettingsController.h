@@ -18,24 +18,24 @@ using namespace fl2d;
 class DeviceSettingsController : public flBasicController {
     
     public:
-        
+    flBitmap* _colorBitmap = NULL;
+
     protected:
         string _status;
-        
-    private:
-        flShape* _colorViewer = NULL;
-        flBitmap* _colorBitmap = NULL;
 
-        flShape* _depthViewer = NULL;
+    private:
+        flSprite* _colorViewer = NULL;
+
+        flSprite* _depthViewer = NULL;
         flBitmap* _depthBitmap = NULL;
 
-        flShape* _irViewer = NULL;
+        flSprite* _irViewer = NULL;
         flBitmap* _irBitmap = NULL;
 
-        flShape* _depthInColorViewer = NULL;
+        flSprite* _depthInColorViewer = NULL;
         flBitmap* _depthInColorBitmap = NULL;
     
-        flShape* _colorInDepthViewer = NULL;
+        flSprite* _colorInDepthViewer = NULL;
         flBitmap* _colorInDepthBitmap = NULL;
 
     

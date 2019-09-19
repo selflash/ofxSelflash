@@ -53,7 +53,7 @@ void MainController::_setup() {
 
 	_normalBackWidth = 310 + 5;
 //    _normalBackHeight = 695;
-    _normalBackHeight = 368 + 5;
+    _normalBackHeight = 455 + 5;
 	_minBackWidth = _normalBackWidth;
 	_backWidth = _normalBackWidth;
 	_backHeight = _normalBackHeight;
@@ -157,6 +157,7 @@ void MainController::_setup() {
     check101->x(marginLeft + spacing * 0);
     check101->y(marginTop + lineSpacing * 0);
     check101->selected(true);
+    check101->shapeType(1);
     check101->mouseEnabled(false);
     addChild(check101);
     
@@ -165,6 +166,7 @@ void MainController::_setup() {
     check102->x(marginLeft + spacing * 0);
     check102->y(marginTop + lineSpacing * 1);
     check102->selected(true);
+    check102->shapeType(1);
     check102->mouseEnabled(false);
     addChild(check102);
     
@@ -173,6 +175,7 @@ void MainController::_setup() {
     check103->x(marginLeft + spacing * 0);
     check103->y(marginTop + lineSpacing * 2);
     check103->selected(true);
+    check103->shapeType(1);
     check103->mouseEnabled(false);
     addChild(check103);
     
@@ -180,7 +183,8 @@ void MainController::_setup() {
     check104->labelText("Device4 (Slave)");
     check104->x(marginLeft + spacing * 0);
     check104->y(marginTop + lineSpacing * 3);
-    check104->selected(true);
+    check104->selected(false);
+    check104->shapeType(1);
     check104->mouseEnabled(false);
     addChild(check104);
     
@@ -188,7 +192,8 @@ void MainController::_setup() {
     check105->labelText("Device5 (Slave)");
     check105->x(marginLeft + spacing * 0);
     check105->y(marginTop + lineSpacing * 4);
-    check105->selected(true);
+    check105->selected(false);
+    check105->shapeType(1);
     check105->mouseEnabled(false);
     addChild(check105);
     
@@ -196,7 +201,8 @@ void MainController::_setup() {
     check106->labelText("Device6 (Slave)");
     check106->x(marginLeft + spacing * 0);
     check106->y(marginTop + lineSpacing * 5);
-    check106->selected(true);
+    check106->selected(false);
+    check106->shapeType(1);
     check106->mouseEnabled(false);
     addChild(check106);
     
@@ -204,7 +210,8 @@ void MainController::_setup() {
     check107->labelText("Device7 (Slave)");
     check107->x(marginLeft + spacing * 0);
     check107->y(marginTop + lineSpacing * 6);
-    check107->selected(true);
+    check107->selected(false);
+    check107->shapeType(1);
     check107->mouseEnabled(false);
     addChild(check107);
     
@@ -212,7 +219,8 @@ void MainController::_setup() {
     check108->labelText("Device8 (Slave)");
     check108->x(marginLeft + spacing * 0);
     check108->y(marginTop + lineSpacing * 7);
-    check108->selected(true);
+    check108->selected(false);
+    check108->shapeType(1);
     check108->mouseEnabled(false);
     addChild(check108);
     
@@ -220,7 +228,8 @@ void MainController::_setup() {
     check109->labelText("Device9 (Slave)");
     check109->x(marginLeft + spacing * 0);
     check109->y(marginTop + lineSpacing * 8);
-    check109->selected(true);
+    check109->selected(false);
+    check109->shapeType(1);
     check109->mouseEnabled(false);
     addChild(check109);
 //    ofLog() << "check109 y : " << check109->y() + check109->height();
@@ -321,7 +330,7 @@ void MainController::_setup() {
     check301->selected(true);
     check301->mouseEnabled(false);
     addChild(check301);
-    ofLog() << "check301 y : " << check301->y() + check301->height();
+//    ofLog() << "check301 y : " << check301->y() + check301->height();
 
     button301 = new flButton(100);
     button301->labelText("Settings");
@@ -330,7 +339,7 @@ void MainController::_setup() {
 	button301->toggleEnabled(true);
 	button301->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button301);
-    ofLog() << "button301 y : " << button301->y() + button301->height();
+//    ofLog() << "button301 y : " << button301->y() + button301->height();
     //--------------------------------------
     
     //--------------------------------------
@@ -354,6 +363,50 @@ void MainController::_setup() {
     button201->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
     addChild(button201);
 //    ofLog() << "button201 y : " << button201->y() + button201->height();
+    //--------------------------------------
+    
+    //--------------------------------------
+    marginLeft = 5;
+    marginTop = 364 + 5;
+    spacing = 205;
+    lineSpacing = 22;
+
+    label = new flTextField();
+    label->text("Cropping (X Y Z)");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    rangeSlider001 = new flRangeSlider(300);
+    rangeSlider001->x(marginLeft + spacing * 0);
+    rangeSlider001->y(marginTop + lineSpacing * 1);
+    rangeSlider001->min(-700);
+    rangeSlider001->max(700);
+    rangeSlider001->minValue(300);
+    rangeSlider001->maxValue(500);
+    rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(rangeSlider001);
+    rangeSlider001 = new flRangeSlider(300);
+    rangeSlider001->x(marginLeft + spacing * 0);
+    rangeSlider001->y(marginTop + lineSpacing * 2);
+    rangeSlider001->min(-50);
+    rangeSlider001->max(1000);
+    rangeSlider001->minValue(300);
+    rangeSlider001->maxValue(500);
+    rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(rangeSlider001);
+    rangeSlider001 = new flRangeSlider(300);
+    rangeSlider001->x(marginLeft + spacing * 0);
+    rangeSlider001->y(marginTop + lineSpacing * 3);
+    rangeSlider001->min(-700);
+    rangeSlider001->max(700);
+    rangeSlider001->minValue(300);
+    rangeSlider001->maxValue(500);
+    rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &MainController::_uiEventHandler);
+    addChild(rangeSlider001);
+    
+    ofLog() << "rangeSlider001 y : " << rangeSlider001->y() + rangeSlider001->height();
     //--------------------------------------
     
 	//--------------------------------------
@@ -860,7 +913,7 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	//ネットワークコントローラー
-	_controller0 = new NetworkController();
+	_controller0 = new NetworkController("Socket Controller");
 	_controller0->setup();
 	_controller0->addEventListener(flEvent::CLOSE, this, &MainController::_uiEventHandler);
 
@@ -1177,8 +1230,8 @@ void MainController::_uiEventHandler(flEvent& event) {
         
 		else if (button == button301) {
 			if (button->selected()) {
-				_controller0->x(ofGetWidth() - _controller0->width() - 1);
-				_controller0->y(1);
+				_controller0->x(x() + width());
+				_controller0->y(y());
 				((flStage*)stage())->addChild(_controller0);
 			}
 			else {
@@ -1187,8 +1240,8 @@ void MainController::_uiEventHandler(flEvent& event) {
 		}
 		else if (button == button311) {
 			if (button->selected()) {
-				_controller1->x(ofGetWidth() - _controller1->width() - 1);
-				_controller1->y(1);
+                _controller1->x(x() + width());
+                _controller1->y(y());
 				((flStage*)stage())->addChild(_controller1);
 			}
 			else {
@@ -1197,8 +1250,8 @@ void MainController::_uiEventHandler(flEvent& event) {
 		}
 		else if (button == button321) {
 			if (button->selected()) {
-				_controller2->x(ofGetWidth() - _controller2->width() - 1);
-				_controller2->y(1);
+                _controller2->x(x() + width());
+                _controller2->y(y());
 				((flStage*)stage())->addChild(_controller2);
 			}
 			else {

@@ -46,7 +46,7 @@ void SocketController::_setup() {
     marginLeft = 5;
     marginTop = 5;
     spacing = 100;
-    lineSpacing = 18 + 5;
+    lineSpacing = 22;
     flTextField* textField = NULL;
     
     _textField001 = new flTextField();
@@ -106,11 +106,11 @@ void SocketController::_setup() {
     textField->y(marginTop + lineSpacing * 10);
     textField->text("Received Data");
     addChild(textField);
-    
+
     marginLeft = 120;
     marginTop = 5;
     spacing = 100;
-    lineSpacing = 18 + 5;
+    lineSpacing = 22;
     
     _textField101 = new flTextField();
     _textField101->width(180);
@@ -185,7 +185,7 @@ void SocketController::_setup() {
     marginLeft = 5;
     marginTop = 260;
     spacing = 100 + 5;
-    lineSpacing = 18 + 5;
+    lineSpacing = 22;
     
     _button001 = new flButton(100);
     _button001->labelText("Bind");
@@ -193,7 +193,7 @@ void SocketController::_setup() {
     _button001->y(marginTop + lineSpacing * 0);
     _button001->addEventListener(flButtonEvent::MOUSE_DOWN, this, &SocketController::_uiEventHandler);
     addChild(_button001);
-    
+
     _button002 = new flButton(100);
     _button002->labelText("Connect");
     _button002->x(marginLeft + spacing * 1);
@@ -407,12 +407,16 @@ void SocketController::_uiEventHandler(flEvent& event) {
 
 //--------------------------------------------------------------
 //
-NetworkController::NetworkController() {
+NetworkController::NetworkController(string title) {
     cout << "[NetworkController]NetworkController()" << endl;
     _target = this;
     
     name("NetworkController");
     useHandCursor(true);
+    
+    titleTf->text("[" + title + "]");
+    
+    _status = "[Status]";
 }
 
 //--------------------------------------------------------------
@@ -456,7 +460,7 @@ void NetworkController::_setup() {
     g->drawRect(0, 0, _backWidth, _backHeight);
     g->endFill();
     
-    titleTf->text("");
+    //titleTf->text("");
     
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;
@@ -464,10 +468,10 @@ void NetworkController::_setup() {
     
     //----------------------------------------------------------
     marginLeft = 5;
-    marginTop = 5;
+    marginTop = 22 + 6;
     spacing = 120;
-    lineSpacing = 18 + 5;
-    
+    lineSpacing = 22;
+
     textField = new flTextField();
     textField->text("Socket List");
     textField->x(marginLeft + spacing * 0);
@@ -540,7 +544,7 @@ void NetworkController::networkManager(NetworkManager* value) {
         socketController->setup();
         socketController->name("Socket " + ofToString(i));
         socketController->x(0);
-        socketController->y(20);
+        socketController->y(22 + 22);
         socketController->socket(_networkManager->udpSockets()[i]);
         _socketControllers.push_back(socketController);
         

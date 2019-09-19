@@ -60,7 +60,26 @@ namespace fl2d {
         inline void activeColor(ofFloatColor value) { _activeColor = value; };
 
         inline int shapeType() { return _shapeType; };
-        inline void shapeType(int value) { _shapeType = value; };
+        inline void shapeType(int value) {
+            _shapeType = value;
+            if(_enabled) {
+                if(_selected) {
+                    _label->textColor(_labelActiveColor.getHex());
+                    _drawGraphics(_lineColor, _activeColor);
+                } else {
+                    _label->textColor(_labelNormalColor.getHex());
+                    _drawGraphics(_lineColor);
+                }
+            } else {
+                _label->textColor(_labelDeactiveColor.getHex());
+                
+                if(_selected) {
+                    _drawGraphics(_labelDeactiveColor, _activeColor);
+                } else {
+                    _drawGraphics(_labelDeactiveColor);
+                }
+            }
+        };
 
     protected:
         virtual void _normal();

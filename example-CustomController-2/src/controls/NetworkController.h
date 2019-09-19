@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
@@ -73,7 +73,7 @@ class SocketController : public flSprite {
         SocketController* _currentSocketController = NULL;
         
     public:
-        NetworkController();
+        NetworkController(string title = "Sub Controller");
         ~NetworkController();
         
         //virtual void setup();

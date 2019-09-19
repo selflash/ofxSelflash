@@ -7,6 +7,64 @@ namespace fl2d {
     // CONSTRUCTOR / DESTRUCTOR
     //==============================================================
     
+//    template <class T>
+//    virtual void flBitmap::data<T>(T* value) {
+//
+//    }
+    void flBitmap::data(ofTexture* value) {
+        if(_mode == 1) {
+            delete _bitmapData;
+            _bitmapData = NULL;
+        }
+        else if(_mode == 2) {
+            _image_ptr = NULL;
+        }
+        else if(_mode == 3) {
+            _image.clear();
+        }
+        else if(_mode == 5) {
+            _texture.clear();
+        }
+        
+        _mode = 4;
+        _texture_ptr = value;
+        
+        _imageWidth = _texture_ptr->getWidth();
+        _imageHeight = _texture_ptr->getHeight();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
+        
+        if(!isnan(_targetWidth)) {
+            scaleX(_targetWidth / _realWidth);
+        }
+        if(!isnan(_targetHeight)) {
+            scaleY(_targetHeight / _realHeight);
+        }
+    }
+
+    
+    //--------------------------------------------------------------
+    //
+    flBitmap::flBitmap() {
+        //        debug(true);
+        if(debug()) cout << "[flBitmap]flBitmap()" << endl;
+        
+        _typeID = FL_TYPE_BITMAP;
+        _target = this;
+        _mode = 0;
+        
+        name("flBitmap");
+        
+        _imageWidth = 0;
+        _imageHeight = 0;
+        _realWidth = 0;
+        _realHeight = 0;
+        
+        ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
+    }
+    
     //--------------------------------------------------------------
     //
     flBitmap::flBitmap(flBitmapData* bitmapData, string pixelSnapping, bool smoothing) {
@@ -15,7 +73,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 0;
+        _mode = 1;
         
         name("flBitmap");
         
@@ -42,7 +100,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 1;
+        _mode = 2;
         
         name("flBitmap");
         
@@ -68,7 +126,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 2;
+        _mode = 3;
         
         name("flBitmap");
         
@@ -95,7 +153,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 3;
+        _mode = 4;
         
         name("flBitmap");
         
@@ -121,7 +179,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 4;
+        _mode = 5;
         
         name("flBitmap");
         
@@ -148,7 +206,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 5;
+        _mode = 6;
         
         name("flBitmap");
         
@@ -244,12 +302,12 @@ namespace fl2d {
         //draw image
         //        cout << "_mode = " << _mode << endl;
         switch(_mode) {
-            case 0: _bitmapData->__draw(0, 0); break;
-            case 1: _image_ptr->draw(0, 0); break;
-            case 2: _image.draw(0, 0); break;
-            case 3: _texture_ptr->draw(0, 0); break;
-            case 4: _texture.draw(0, 0); break;
-            case 5: _fboImage.draw(0, 0); break;
+            case 1: _bitmapData->__draw(0, 0); break;
+            case 2: _image_ptr->draw(0, 0); break;
+            case 3: _image.draw(0, 0); break;
+            case 4: _texture_ptr->draw(0, 0); break;
+            case 5: _texture.draw(0, 0); break;
+            case 6: _fboImage.draw(0, 0); break;
         }
         //--------------------------------------
     }
@@ -317,12 +375,12 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     float flBitmap::height() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
         return _realHeight * scaleY();
     }
     void flBitmap::height(float value) {
         _targetHeight = value;
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------
@@ -332,13 +390,13 @@ namespace fl2d {
         return _matrix.scaleX();
     }
     void flBitmap::scaleX(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
+        _targetWidth = numeric_limits<float>::quiet_NaN();
         _matrix.scaleX(value);
     }
     //--------------------------------------------------------------
     //
     float flBitmap::scaleY() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
         return _matrix.scaleY();
     }
     void flBitmap::scaleY(float value) {
