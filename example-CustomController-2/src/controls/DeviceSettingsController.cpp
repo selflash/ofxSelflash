@@ -64,8 +64,10 @@ void DeviceSettingsController::_setup() {
     lineSpacing = 22;
     //--------------------------------------
     {
-        int camWidth = 1280 * 0.2;
-        int camHeight = 720 * 0.2;
+		int colorWidth = 1280 * 0.2; //256
+		int colorHeight = 720 * 0.2; //144
+		int depthWidth = 320 * ((float)144 / (float)288);
+		int depthHeight = 288 * ((float)144 / (float)288);
         flGraphics* g;
         
         int borderWidth = 2;
@@ -76,9 +78,9 @@ void DeviceSettingsController::_setup() {
         g = _colorViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
-        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
+        g->drawRect(0, 0, colorWidth + borderWidth * 2, colorHeight + borderWidth * 2);
         g->beginFill(0x008888, 1.0);
-        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->drawRect(borderWidth, borderWidth, colorWidth, colorHeight);
         g->endFill();
         _colorViewer->x(5);
         _colorViewer->y(marginTop);
@@ -86,8 +88,8 @@ void DeviceSettingsController::_setup() {
         _colorViewer->mouseChildren(false);
         addChild(_colorViewer);
         _colorBitmap = new flBitmap();
-        _colorBitmap->width(camWidth);
-        _colorBitmap->height(camHeight);
+        _colorBitmap->width(colorWidth);
+        _colorBitmap->height(colorHeight);
         _colorBitmap->x(2);
         _colorBitmap->y(2);
         _colorViewer->addChild(_colorBitmap);
@@ -98,18 +100,19 @@ void DeviceSettingsController::_setup() {
         g = _depthViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
-        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
-        g->beginFill(0x008888, 1.0);
-        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->drawRect(0, 0, depthWidth + borderWidth * 2, depthHeight + borderWidth * 2);
+        //g->beginFill(0x008888, 1.0);
+        //g->drawRect(borderWidth, borderWidth, depthWidth, depthHeight);
         g->endFill();
-        _depthViewer->x(5 + borderWidth + camWidth + borderWidth + 5);
+        _depthViewer->x(_colorViewer->x() + _colorViewer->width() + 5 + colorWidth * 0.5 - depthWidth * 0.5);
+		cout << "_depthViewer->x = " << _depthViewer->x() << endl;
         _depthViewer->y(marginTop);
         _depthViewer->mouseEnabled(false);
         _depthViewer->mouseChildren(false);
         addChild(_depthViewer);
         _depthBitmap = new flBitmap();
-        _depthBitmap->width(camWidth);
-        _depthBitmap->height(camHeight);
+        _depthBitmap->width(depthWidth);
+        _depthBitmap->height(depthHeight);
         _depthBitmap->x(2);
         _depthBitmap->y(2);
         _depthViewer->addChild(_depthBitmap);
@@ -120,18 +123,18 @@ void DeviceSettingsController::_setup() {
         g = _irViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
-        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
-        g->beginFill(0x008888, 1.0);
-        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->drawRect(0, 0, colorWidth + borderWidth * 2, colorHeight + borderWidth * 2);
+        g->beginFill(0x0, 1.0);
+        g->drawRect(borderWidth, borderWidth, colorWidth, colorHeight);
         g->endFill();
-        _irViewer->x(5 + borderWidth + camWidth + borderWidth + 5 + borderWidth + camWidth + borderWidth + 5);
+        _irViewer->x(5 + borderWidth + colorWidth + borderWidth + 5 + borderWidth + colorWidth + borderWidth + 5);
         _irViewer->y(marginTop);
         _irViewer->mouseEnabled(false);
         _irViewer->mouseChildren(false);
         addChild(_irViewer);
         _irBitmap = new flBitmap();
-        _irBitmap->width(camWidth);
-        _irBitmap->height(camHeight);
+        _irBitmap->width(colorWidth);
+        _irBitmap->height(colorHeight);
         _irBitmap->x(2);
         _irBitmap->y(2);
         _irViewer->addChild(_irBitmap);
@@ -139,22 +142,22 @@ void DeviceSettingsController::_setup() {
         //Depth In Color Image
         _depthInColorViewer = new flSprite();
         _depthInColorViewer->setup();
-        //    _videoTexture.allocate(camWidth, camHeight, GL_RGBA);
+        //    _videoTexture.allocate(colorWidth, colorHeight, GL_RGBA);
         g = _depthInColorViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
-        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
-        g->beginFill(0x008888, 1.0);
-        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->drawRect(0, 0, colorWidth + borderWidth * 2, colorHeight + borderWidth * 2);
+        g->beginFill(0x0, 1.0);
+        g->drawRect(borderWidth, borderWidth, colorWidth, colorHeight);
         g->endFill();
         _depthInColorViewer->x(5);
-        _depthInColorViewer->y(marginTop + camHeight + 20 + 5);
+        _depthInColorViewer->y(marginTop + colorHeight + 20 + 5);
         _depthInColorViewer->mouseEnabled(false);
         _depthInColorViewer->mouseChildren(false);
         addChild(_depthInColorViewer);
         _depthInColorBitmap = new flBitmap();
-        _depthInColorBitmap->width(camWidth);
-        _depthInColorBitmap->height(camHeight);
+        _depthInColorBitmap->width(colorWidth);
+        _depthInColorBitmap->height(colorHeight);
         _depthInColorBitmap->x(2);
         _depthInColorBitmap->y(2);
         _depthInColorViewer->addChild(_depthInColorBitmap);
@@ -165,18 +168,18 @@ void DeviceSettingsController::_setup() {
         g = _colorInDepthViewer->graphics();
         g->clear();
         g->beginFill(0xffffff, 0.8);
-        g->drawRect(0, 0, camWidth + borderWidth * 2, camHeight + borderWidth * 2);
-        g->beginFill(0x008888, 1.0);
-        g->drawRect(borderWidth, borderWidth, camWidth, camHeight);
+        g->drawRect(0, 0, depthWidth + borderWidth * 2, depthHeight + borderWidth * 2);
+        g->beginFill(0x0, 1.0);
+        g->drawRect(borderWidth, borderWidth, depthWidth, depthHeight);
         g->endFill();
-        _colorInDepthViewer->x(5 + borderWidth + camWidth + borderWidth + 5);
-        _colorInDepthViewer->y(marginTop + camHeight + 20 + 5);
+		_colorInDepthViewer->x(_depthInColorViewer->x() + _depthInColorViewer->width() + 5 + colorWidth * 0.5 - depthWidth * 0.5);
+        _colorInDepthViewer->y(marginTop + depthHeight + 20 + 5);
         _colorInDepthViewer->mouseEnabled(false);
         _colorInDepthViewer->mouseChildren(false);
         addChild(_colorInDepthViewer);
         _colorInDepthBitmap = new flBitmap();
-        _colorInDepthBitmap->width(camWidth);
-        _colorInDepthBitmap->height(camHeight);
+        _colorInDepthBitmap->width(depthWidth);
+        _colorInDepthBitmap->height(depthHeight);
         _colorInDepthBitmap->x(2);
         _colorInDepthBitmap->y(2);
         _colorInDepthViewer->addChild(_colorInDepthBitmap);
@@ -721,17 +724,17 @@ void DeviceSettingsController::_draw() {
     spacing = 150;
     lineSpacing = 20;
     
-//    int camWidth = 1280 * 0.2;
-//    int camHeight = 720 * 0.2;
+//    int colorWidth = 1280 * 0.2;
+//    int colorHeight = 720 * 0.2;
 
     ofPushStyle();
     ofSetColor(255, 255, 255, 255);
     flFont::drawString("Device S/N : ", 5, marginTop);
     flFont::drawString("Color", 5, marginTop + lineSpacing);
-    flFont::drawString("Depth", 270, marginTop + lineSpacing);
+    flFont::drawString("Depth", 318, marginTop + lineSpacing);
     flFont::drawString("IR", 535, marginTop + lineSpacing);
     flFont::drawString("Depth In Color", 5, marginTop + lineSpacing + 169);
-    flFont::drawString("Color In Depth", 270, marginTop + lineSpacing + 169);
+    flFont::drawString("Color In Depth", 318, marginTop + lineSpacing + 169);
     ofPopStyle();
 }
 

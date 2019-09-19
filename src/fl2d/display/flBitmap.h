@@ -29,6 +29,7 @@ namespace fl2d {
         
         ofFbo _fboImage;
         
+		bool _isAllocated = false;
         float _imageWidth = 0;
         float _imageHeight = 0;
         
@@ -68,6 +69,7 @@ namespace fl2d {
 
         
     protected:
+		virtual void _update();
         virtual void _draw();
         virtual void _updateRect();
         //virtual void updateOnFrame();

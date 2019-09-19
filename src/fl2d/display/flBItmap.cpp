@@ -28,20 +28,38 @@ namespace fl2d {
         
         _mode = 4;
         _texture_ptr = value;
+
+		_isAllocated = _texture_ptr->isAllocated();
+
+		if(_isAllocated) 
+		{
+			_imageWidth = _texture_ptr->getWidth();
+			_imageHeight = _texture_ptr->getHeight();
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+
+			cout << "_imageHeight = " << _imageHeight << endl;
+			cout << "_targetWidth = " << _targetWidth << endl;
+			cout << "isnan(_targetWidth) = " << isnan(_targetWidth) << endl;
+
+			if (!isnan(_targetWidth)) {
+				scaleX(_targetWidth / _realWidth);
+			}
+			if (!isnan(_targetHeight)) {
+				scaleY(_targetHeight / _realHeight);
+			}
+		}
+		else {
+			_imageWidth = 0;
+			_imageHeight = 0;
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+		}
         
-        _imageWidth = _texture_ptr->getWidth();
-        _imageHeight = _texture_ptr->getHeight();
-        _rect->width(_imageWidth);
-        _rect->height(_imageHeight);
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
-        
-        if(!isnan(_targetWidth)) {
-            scaleX(_targetWidth / _realWidth);
-        }
-        if(!isnan(_targetHeight)) {
-            scaleY(_targetHeight / _realHeight);
-        }
     }
 
     
@@ -295,6 +313,38 @@ namespace fl2d {
     //        if(preLighting == GL_TRUE) { ofEnableLighting(); } else { ofDisableLighting(); }
     //    }
     
+	void flBitmap::_update() {
+
+		if (!_isAllocated)
+		{
+			switch (_mode) {
+			case 1: break;
+			case 2: break;
+			case 3: break;
+			case 4: 
+				_isAllocated = _texture_ptr->isAllocated();
+				if (_isAllocated) {
+					_imageWidth = _texture_ptr->getWidth();
+					_imageHeight = _texture_ptr->getHeight();
+					_rect->width(_imageWidth);
+					_rect->height(_imageHeight);
+					_realWidth = _rect->width();
+					_realHeight = _rect->height();
+
+					if (!isnan(_targetWidth)) {
+						scaleX(_targetWidth / _realWidth);
+					}
+					if (!isnan(_targetHeight)) {
+						scaleY(_targetHeight / _realHeight);
+					}
+				}
+				break;
+			case 5: break;
+			case 6: break;
+			}
+		}
+	}
+
     //--------------------------------------------------------------
     //
     void flBitmap::_draw() {
