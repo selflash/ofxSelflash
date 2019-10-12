@@ -7,10 +7,11 @@ namespace fl2d {
     
     class flFont {
     public:
-        
+
     protected:
         
     private:
+
         static map<int, ofTrueTypeFont> _fonts;
         const static int _normalFontSize;
         static map<int, float> _maxStringWidth;
@@ -66,7 +67,7 @@ namespace fl2d {
     protected:
         
     private:
-        static ofTrueTypeFont _loadFont(string path, int fontSize);
+        static ofTrueTypeFont _loadFont(ofTrueTypeFont& font, string path, int fontSize);
     };
     
 }

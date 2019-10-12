@@ -333,7 +333,13 @@ namespace fl2d {
         flSlider* slider130 = NULL; flSlider* slider131 = NULL; flSlider* slider132 = NULL; flSlider* slider133 = NULL;
         flSlider* slider134 = NULL; flSlider* slider135 = NULL; flSlider* slider136 = NULL; flSlider* slider137 = NULL;
         flSlider* slider138 = NULL; flSlider* slider139 = NULL;
-        //スライダー(200)
+		flSlider* slider140 = NULL; flSlider* slider141 = NULL; flSlider* slider142 = NULL; flSlider* slider143 = NULL;
+		flSlider* slider144 = NULL; flSlider* slider145 = NULL; flSlider* slider146 = NULL; flSlider* slider147 = NULL;
+		flSlider* slider148 = NULL; flSlider* slider149 = NULL;
+		flSlider* slider150 = NULL; flSlider* slider151 = NULL; flSlider* slider152 = NULL; flSlider* slider153 = NULL;
+		flSlider* slider154 = NULL; flSlider* slider155 = NULL; flSlider* slider156 = NULL; flSlider* slider157 = NULL;
+		flSlider* slider158 = NULL; flSlider* slider159 = NULL;
+		//スライダー(200)
         flSlider* slider200 = NULL; flSlider* slider201 = NULL; flSlider* slider202 = NULL; flSlider* slider203 = NULL;
         flSlider* slider204 = NULL; flSlider* slider205 = NULL; flSlider* slider206 = NULL; flSlider* slider207 = NULL;
         flSlider* slider208 = NULL; flSlider* slider209 = NULL;
@@ -346,7 +352,13 @@ namespace fl2d {
         flSlider* slider230 = NULL; flSlider* slider231 = NULL; flSlider* slider232 = NULL; flSlider* slider233 = NULL;
         flSlider* slider234 = NULL; flSlider* slider235 = NULL; flSlider* slider236 = NULL; flSlider* slider237 = NULL;
         flSlider* slider238 = NULL; flSlider* slider239 = NULL;
-        //スライダー(300)
+		flSlider* slider240 = NULL; flSlider* slider241 = NULL; flSlider* slider242 = NULL; flSlider* slider243 = NULL;
+		flSlider* slider244 = NULL; flSlider* slider245 = NULL; flSlider* slider246 = NULL; flSlider* slider247 = NULL;
+		flSlider* slider248 = NULL; flSlider* slider249 = NULL;
+		flSlider* slider250 = NULL; flSlider* slider251 = NULL; flSlider* slider252 = NULL; flSlider* slider253 = NULL;
+		flSlider* slider254 = NULL; flSlider* slider255 = NULL; flSlider* slider256 = NULL; flSlider* slider257 = NULL;
+		flSlider* slider258 = NULL; flSlider* slider259 = NULL;
+		//スライダー(300)
         flSlider* slider300 = NULL; flSlider* slider301 = NULL; flSlider* slider302 = NULL; flSlider* slider303 = NULL;
         flSlider* slider304 = NULL; flSlider* slider305 = NULL; flSlider* slider306 = NULL; flSlider* slider307 = NULL;
         flSlider* slider308 = NULL; flSlider* slider309 = NULL;

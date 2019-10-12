@@ -5,11 +5,13 @@ namespace fl2d {
     const int flFont::_normalFontSize = 10;
     map<int, float> flFont::_maxStringWidth;
     map<int, float> flFont::_maxStringHeight;
-    
+
     //--------------------------------------------------------------
     //
     void flFont::setup() {
-        _fonts[_normalFontSize] = _loadFont(flDefinition::_FONT_PATH, _normalFontSize);
+		ofTrueTypeFont font;
+		_loadFont(font, flDefinition::_FONT_PATH, _normalFontSize);
+		_fonts[_normalFontSize] = font;
     }
     
     //--------------------------------------------------------------
@@ -24,13 +26,15 @@ namespace fl2d {
     //
     void flFont::loadFont(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
-            _fonts[fontSize] = _loadFont(flDefinition::_FONT_PATH, fontSize);
+			ofTrueTypeFont font;
+			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
+			_fonts[fontSize] = font;
         }
     }
     
     //--------------------------------------------------------------
     //
-    ofTrueTypeFont flFont::_loadFont(string path, int fontSize) {
+    ofTrueTypeFont flFont::_loadFont(ofTrueTypeFont& font, string path, int fontSize) {
         // Fonts
         //        ofTrueTypeFont::setGlobalDpi(72);
         
@@ -54,21 +58,21 @@ namespace fl2d {
         text += "qwertyuiop@[QWERTYUIOP`{";
         text += "asdfghjkl;:]ASDFGHJKL+*}";
         text += "zxcvbnm,./_ZXCVBNM<>?_";
-        text += "あいうえお";
-        text += "かきくけこ";
-        text += "さしすせそ";
-        text += "たちつてと";
-        text += "なにぬねの";
-        text += "はひふへほ";
-        text += "まみむめも";
-        text += "らりるれろ";
-        text += "やゆよ";
-        text += "わをん";
+        text += u8"あいうえお";
+        text += u8"かきくけこ";
+        text += u8"さしすせそ";
+        text += u8"たちつてと";
+        text += u8"なにぬねの";
+        text += u8"はひふへほ";
+        text += u8"まみむめも";
+        text += u8"らりるれろ";
+        text += u8"やゆよ";
+        text += u8"わをん";
         
         // 設定をロード
-        ofTrueTypeFont font;
+        //ofTrueTypeFont font;
         if(font.load(settings)){
-            //ofLog() << path << " has loaded.";
+            ofLog() << path << " has been loaded.";
 
             font.setLetterSpacing(1.2);//文字間 デフォルトは1.0 文字間をより開ける場合は1.0を超える値を指定する
             float maxStringWidth = font.stringWidth(text);
@@ -79,7 +83,7 @@ namespace fl2d {
             _maxStringWidth[fontSize] = maxStringWidth;
             _maxStringHeight[fontSize] = maxStringHeight;
         } else {
-            ofLog(OF_LOG_ERROR) << path << " has not loaded.";
+            ofLog(OF_LOG_ERROR) << path << " has not been loaded.";
         }
         
         return font;
@@ -107,7 +111,9 @@ namespace fl2d {
     void flFont::drawString(const std::string& text, int fontSize, float x, float y) {
         if(text == "") return;
         if (_fonts.find(fontSize) == _fonts.end()) {
-            _fonts[fontSize] = _loadFont(flDefinition::_FONT_PATH, fontSize);
+			ofTrueTypeFont font;
+			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
+			_fonts[fontSize] = font;
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         font.drawString(text, x, y);
@@ -152,7 +158,9 @@ namespace fl2d {
     void flFont::drawStringHighlight(const string& text, int fontSize, float x, float y, const ofColor& background, const ofColor& foreground) {
         if(text != "") {
             if (_fonts.find(fontSize) == _fonts.end()) {
-                _fonts[fontSize] = _loadFont(flDefinition::_FONT_PATH, fontSize);
+				ofTrueTypeFont font;
+				_loadFont(font, flDefinition::_FONT_PATH, fontSize);
+				_fonts[fontSize] = font;
             }
 
             const ofTrueTypeFont& font = _fonts[fontSize];
@@ -191,7 +199,9 @@ namespace fl2d {
     }
     ofRectangle flFont::getStringBoundingBox(const string& text, int fontSize, float x, float y) {
         if (_fonts.find(fontSize) == _fonts.end()) {
-            _fonts[fontSize] = _loadFont(flDefinition::_FONT_PATH, fontSize);
+			ofTrueTypeFont font;
+			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
+			_fonts[fontSize] = font;
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         return font.getStringBoundingBox(text, x, y);
