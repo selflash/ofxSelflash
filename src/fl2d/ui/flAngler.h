@@ -61,7 +61,7 @@ namespace fl2d {
         ofVec2f _outPosition;
         
     public:
-        flAngler(float areaDiameter = 50, float leverDiameter = 10);
+        flAngler(float areaDiameter = 36, float leverDiameter = 10);
         virtual ~flAngler();
         
         flTextField* label();
@@ -81,6 +81,8 @@ namespace fl2d {
         virtual void _areaOut();
         virtual void _areaPress();
         virtual void _areaRelease();
+        
+        virtual void drawArc(float angle, float innerRad = 18, float outerLRad = 36);
         
         virtual void _ballOver();
         virtual void _ballOut();

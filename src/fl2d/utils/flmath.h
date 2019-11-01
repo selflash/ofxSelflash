@@ -36,27 +36,26 @@ namespace flinternal {
         
         //--------------------------------------------------------------
         //
-        inline static float getAngle(float x, float y) {
-            auto getAtan = [](float x, float y)->float {
-                if(x > 0.0) {
+        inline static float getDeg(float x, float y) {
+            auto f = [](float x, float y)->float {
+                if(x >= 0.0) {
                     return atan(y / x);
                 } else {
                     return atan(y / x) + PI;
                 }
             };
             
-            float rot = getAtan(x, y) * 180.0 / PI;
-            if(rot > 180.0) { rot -= 360.0; }
-            if(rot < -180.0) { rot += 360.0; }
-            return rot;
+            float deg = f(x, y) * 180.0 / PI;
+            if(deg > 180.0) { deg -= 360.0; }
+            if(deg < -180.0) { deg += 360.0; }
+            return deg;
         }
         
         //--------------------------------------------------------------
         //
         inline static float getAngle(ofVec2f point) {
-            return getAngle(point.x, point.y);
+            return getDeg(point.x, point.y);
         }
-        
         
     private:
         flmath() { };

@@ -1,49 +1,90 @@
-//
-//  TransformableNode.h
-//  ofApp
-//
-//  Created by 横田達也 on 2016/12/15.
-//
-//
-
 #pragma once
 
 #include "ofMain.h"
 
 class TransformableNode {
 public:
+    bool flg = false;
     
 protected:
     
 private:
-    bool _enabled = false;
-    int _mouseID = false;
+    int _mouseID = 0;
+    ofRectangle _viewport = ofGetCurrentViewport();
     ofVec2f _mouse;
     ofVec2f _lastMouse;
     bool _isInArea = false;
+    string _mode = "";
+    float n = 260;
+    bool _isDragOn = false;
     
-    float _rotationX = 0.0;
-    float _rotationY = 0.0;
-    float _rotationZ = 0.0;
-    ofQuaternion _xRot, _yRot, _zRot;
-    ofQuaternion _qRot;
+    ofCamera* _camera = NULL;
     
-    ofNode _positionNode;
-    ofNode _rotationNode;
-    ofNode _scaleNode;
+    ofVec3f _anchorPoint;
+    
+    ofVec3f _position;
+    ofVec3f _rotation;
+    ofVec3f _scale = ofVec3f::one();
+    
+    ofQuaternion _tempRot;
+    ofMatrix4x4 _transformMatrix;
+    //        ofMatrix4x4 _transformMatrix1;
+    ofMatrix4x4 _transformMatrix2;
     
     int _dragMode = 0;
+    
+    bool _enabled = false;
+    bool _transrationEnabled = true;
+    //        bool _rotationEnabled = true;
+    bool _rotationXEnabled = true;
+    bool _rotationYEnabled = true;
+    bool _rotationZEnabled = true;
+    bool _scaleEnabled = true;
     
 public:
     TransformableNode();
     virtual ~TransformableNode();
     
-    void begin();
+    void begin(bool transration = true, bool rotation = true, bool scale = true);
     void end();
-    void draw();
+    
+    void draw(float circleScale = 1.0);
+    
+    ofRectangle& viewport() { return _viewport; }
+    void viewport(ofRectangle value) { _viewport = value; }
+    
+    ofCamera& camera() { return *_camera; }
+    void camera(ofCamera* value) { _camera = value; }
     
     bool enabled() { return _enabled; }
-    void enabled(bool value) { _enabled = value; }
+    void enabled(bool value) {
+        _enabled = value;
+        
+        if(_enabled == false) {
+            _isDragOn = false;
+            _isInArea = false;
+            
+            _mode = "";
+        }
+    }
+    
+    bool transrationEnabled() { return _transrationEnabled; }
+    void transrationEnabled(bool value) { _transrationEnabled = value; }
+    
+    bool rotationEnabled() { return (_rotationXEnabled && _rotationYEnabled && _rotationZEnabled); }
+    void rotationEnabled(bool value) { _rotationXEnabled = _rotationYEnabled = _rotationZEnabled = value; }
+    
+    bool rotationXEnabled() { return _rotationXEnabled; }
+    void rotationXEnabled(bool value) { _rotationXEnabled = value; }
+    
+    bool rotationYEnabled() { return _rotationYEnabled; }
+    void rotationYEnabled(bool value) { _rotationYEnabled = value; }
+    
+    bool rotationZEnabled() { return _rotationZEnabled; }
+    void rotationZEnabled(bool value) { _rotationZEnabled = value; }
+    
+    bool scaleEnabled() { return _scaleEnabled; }
+    void scaleEnabled(bool value) { _scaleEnabled = value; }
     
     int dragMode() { return _dragMode; }
     void dragMode(int value) { _dragMode = value; }
@@ -57,7 +98,10 @@ public:
     float z();
     void z(float value);
     
-    ofVec3f position() { return _positionNode.getPosition(); }
+    ofVec3f position() { return _position; }
+    ofVec3f rotation() { return _rotation; }
+    
+    //        void translate(float x, float y, ofCamera& camera);
     
     float scaleX();
     void scaleX(float value);
@@ -77,21 +121,20 @@ public:
     float rotationZ();
     void rotationZ(float value);
     
+    inline ofVec3f anchorPoint() { return _anchorPoint; }
+    inline void anchorPoint(ofVec3f value) { _anchorPoint = value; }
+    
+    void resetTransform();
     void resetRotation();
     
+    inline ofMatrix4x4 getTransformMatrix() { return _transformMatrix; }
+    inline void setTransformMatrix(ofMatrix4x4 value) { _transformMatrix = value; }
+    
     inline ofMatrix4x4 localToGlobalTransformMatrix() {
-        ofMatrix4x4 m1 = _positionNode.getLocalTransformMatrix();
-        ofMatrix4x4 m2 = _rotationNode.getLocalTransformMatrix();
-        ofMatrix4x4 m3 = _scaleNode.getLocalTransformMatrix();
-        
-        return m1 * m2 * m3;
+        return _transformMatrix;
     }
     inline ofMatrix4x4 globalToLocalTransformMatrix() {
-        ofMatrix4x4 m1 = ofMatrix4x4::getInverseOf(_positionNode.getLocalTransformMatrix());
-        ofMatrix4x4 m2 = ofMatrix4x4::getInverseOf(_rotationNode.getLocalTransformMatrix());
-        ofMatrix4x4 m3 = ofMatrix4x4::getInverseOf(_scaleNode.getLocalTransformMatrix());
-        
-        return m3 * m2 * m1;
+        return _transformMatrix.getInverse();
     }
     
     

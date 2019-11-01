@@ -170,13 +170,13 @@ namespace fl2d {
                     _outPosition.y = _center->y + (lever->y() - _center->y) * n;
                     
                     _flg = true;
-                    _zeroAngle = flmath::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                    _zeroAngle = flmath::getDeg(lever->x() - _center->x, lever->y() - _center->y);
                 }
             }
             
             if(_flg) {
                 //------------------------------------------
-                _value = flmath::getAngle(lever->x() - _center->x, lever->y() - _center->y);
+                _value = flmath::getDeg(lever->x() - _center->x, lever->y() - _center->y);
                 _value = _value - _zeroAngle;
                 if(_value > 180.0) { _value -= 360.0; }
                 if(_value < -180.0) { _value += 360.0; }
@@ -241,6 +241,9 @@ namespace fl2d {
             ofTranslate(-*_center);
             ofPopStyle();
         }
+        
+//        drawArc(sin(ofGetElapsedTimef()) * 179 + 180);
+        drawArc(_value);
     }
     
     //==============================================================
@@ -343,6 +346,35 @@ namespace fl2d {
     void flAngler::_areaRelease() {
         
     }
+    
+
+    //--------------------------------------------------------------
+    void flAngler::drawArc(float angle, float innerRad, float outerLRad) {
+        ofPath circle;
+        circle.setCircleResolution(100);
+        
+//        ofPushStyle();
+//        ofNoFill();
+//        circle.setFillHexColor(flDefinition::UI_LINE_COLOR);
+//        circle.arc(_center->x, _center->y, innerRad, innerRad, 0, angle);
+//        //close internal circle
+//        circle.close();
+//        //outside circle
+//        circle.arc(_center->x, _center->y, outerLRad, outerLRad, 0, angle);
+//        ofPopStyle();
+        
+        ofPushStyle();
+        circle.setFillHexColor(flDefinition::UI_ACTIVE_COLOR);
+        circle.arc(_center->x, _center->y, innerRad, innerRad, 0, angle);
+        //close internal circle
+        circle.close();
+        //outside circle
+        circle.arc(_center->x, _center->y, outerLRad, outerLRad, 0, angle);
+        ofPopStyle();
+        
+        circle.draw();
+    }
+
     
     //--------------------------------------------------------------
     //

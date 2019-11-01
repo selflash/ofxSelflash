@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "Controller.h"
 #include "boost/shared_ptr.hpp"
+#include "TransformableNode.h"
 
 using namespace boost;
 
@@ -26,6 +27,9 @@ class ofApp : public ofBaseApp
 		NetworkManager* networkManager;
     
         ofTexture sampleTex;
+    
+        ofCamera camera;
+        TransformableNode transformableNode;
 
 	private:
 

@@ -659,19 +659,24 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //    label = new flTextField();
-    //    label->text("Angler");
-    //    label->x(marginLeft + spacing * 0 + 25);
-    //    label->y(marginTop + lineSpacing * 6);
-    //    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    //    label->mouseEnabled(false);
-    //    addChild(label);
-    //    angler000 = new flAngler(100);
-    //    angler000->label(label);
-    //    angler000->x(marginLeft + spacing * 0 + 25);
-    //    angler000->y(marginTop + lineSpacing * 7);
-    ////    angler000->alpha(0.0);
-    //    addChild(angler000);
+    marginLeft = 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10;
+    marginTop = 250;
+    spacing = 150;
+    lineSpacing = 22;
+    
+    label = new flTextField();
+    label->text("Angler");
+    label->x(marginLeft + spacing * 0 + 25);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    angler000 = new flAngler(36 + 18 + 18);
+    angler000->label(label);
+    angler000->x(marginLeft + spacing * 0 + 25);
+    angler000->y(marginTop + lineSpacing * 1);
+//    angler000->alpha(0.0);
+    addChild(angler000);
     //--------------------------------------
     
     //--------------------------------------

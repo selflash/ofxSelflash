@@ -8,6 +8,8 @@ void ofApp::setup()
 	TIME_SAMPLE_SET_FRAMERATE(60.0f);
 #endif
 
+//    ofBackground(125);
+    ofSetBackgroundColor(125);
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 
@@ -47,6 +49,16 @@ void ofApp::setup()
     mainController->deviceSettingsController(0)->_colorBitmap->data(&sampleTex);
     
 //    if(!sampleTex.load("selflash.jpeg")) ofLog(OF_LOG_ERROR) << "image didn't load.";
+    
+    
+    camera.setPosition(0, 0, 500);
+    camera.setNearClip(0.01);
+//    camera.setFov(60.0);
+    camera.disableOrtho();
+    
+    transformableNode.enabled(true);
+//    transformableNode.viewport(_viewport);
+    transformableNode.scaleEnabled(false);
 }
 
 //--------------------------------------------------------------
@@ -64,8 +76,19 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	ofBackground(0);
+    camera.begin();
+    transformableNode.begin();
 
+    ofPushStyle();
+    ofNoFill();
+    ofDrawIcoSphere(0, 0, 100);
+    ofPopStyle();
+    
+    transformableNode.end();
+    transformableNode.draw(300);
+    camera.end();
+
+    
 	ofxSelflash::draw();
 }
 

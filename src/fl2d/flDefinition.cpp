@@ -1,7 +1,8 @@
 #include "flDefinition.h"
 
 namespace fl2d {
-    
+    //0x12b2d2
+    //0xbbdcde
     int flDefinition::UI_LABEL_NORMAL_COLOR = 0xffffff;
     int flDefinition::UI_LABEL_OVER_COLOR = 0x12b2d2;
     int flDefinition::UI_LABEL_ACTIVE_COLOR = 0x12b2d2;
