@@ -241,7 +241,11 @@ namespace fl2d {
         g->beginFill(innerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(4, 3, 11, 11); break;
-            case 0: g->drawRect(3, 4, 9, 9); break;
+#ifdef __APPLE__
+			case 0: g->drawRect(3, 4, 9, 9); break;
+#elif defined _WIN32
+			case 0: g->drawRect(3, 6, 7, 7); break;
+#endif		
             case 1: g->drawCircle(7, 8, 3); break;
         }
         g->endFill();
