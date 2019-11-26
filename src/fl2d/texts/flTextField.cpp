@@ -624,8 +624,23 @@ namespace fl2d {
             } else {
                 text("");
             }
+        } else if(
+                  event.key == OF_KEY_CONTROL ||
+                  event.key == OF_KEY_LEFT_CONTROL ||
+                  event.key == OF_KEY_RIGHT_CONTROL ||
+                  event.key == OF_KEY_COMMAND ||
+                  event.key == OF_KEY_LEFT_COMMAND ||
+                  event.key == OF_KEY_RIGHT_COMMAND ||
+                  event.key == OF_KEY_SHIFT ||
+                  event.key == OF_KEY_LEFT_SHIFT ||
+                  event.key == OF_KEY_RIGHT_SHIFT
+                  ) {
+
         } else {
-            text(text() + (char)event.key);
+            string txt = text();
+            ofUTF8Append(txt, event.codepoint);
+            text(txt);
+//            text(text() + (char)event.key);
         }
     }
     
