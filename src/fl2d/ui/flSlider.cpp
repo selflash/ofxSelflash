@@ -21,10 +21,12 @@ namespace fl2d {
         _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
         
         _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
+		_deactiveLineColor.setHex(flDefinition::UI_DEACTIVE_LINE_COLOR);
+		_normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
         _overColor.setHex(flDefinition::UI_OVER_COLOR);
         _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
+		_deactiveColor.setHex(flDefinition::UI_DEACTIVE_COLOR);
+
         _label = NULL;
         
         _min = min;
@@ -102,6 +104,8 @@ namespace fl2d {
         _draggablePoint = new ofPoint(0, 0);
         
         //        value(defaultValue, false);
+
+		_enabled = true;
     }
     
     //--------------------------------------------------------------
@@ -131,6 +135,8 @@ namespace fl2d {
         
         delete _draggablePoint;
         _draggablePoint = NULL;
+
+		_enabled = false;
     }
     
     //==============================================================
@@ -194,7 +200,17 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     flTextField* flSlider::label() { return _label; }
-    void flSlider::label(flTextField* value) { _label = value; }
+    void flSlider::label(flTextField* value) { 
+		_label = value; 
+		if (_label != NULL) {
+			if (_enabled) {
+				_label->textColor(_labelNormalColor);
+			}
+			else {
+				_label->textColor(_labelDeactiveColor);
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     //
@@ -289,7 +305,12 @@ namespace fl2d {
         //        _barWidth = (_min - _value) / (_range / _trackWidth);
         //        _barWidth = (_value - _min) / (_range / _trackWidth);
         //        _barWidth = _value / (_range / _trackWidth);
-        _drawBarGraphics(_lineColor, _activeColor);
+		if (_enabled) {
+			_drawBarGraphics(_lineColor, _activeColor);
+		}
+		else {
+			_drawBarGraphics(_deactiveLineColor, _deactiveColor);
+		}
         //------------------------------------------
         //------------------------------------------
         thumb->x(_barWidth - (_thumbWidth * 0.5));
@@ -359,6 +380,34 @@ namespace fl2d {
     //
     bool flSlider::roundEnabled() { return _roundEnabled; }
     void flSlider::roundEnabled(bool value) { _roundEnabled = value; }
+
+	//--------------------------------------------------------------
+//
+	bool flSlider::enabled() { return _enabled; }
+	void flSlider::enabled(bool value) {
+		_enabled = value;
+		mouseEnabled(_enabled);
+		mouseChildren(_enabled);
+
+		if (_label != NULL) {
+			if (_enabled) {
+				_label->textColor(_labelNormalColor);
+			}
+			else {
+				_label->textColor(_labelDeactiveColor);
+			}
+		}
+
+		//バー
+		if (_enabled) {
+			_drawTrackGraphics(_lineColor, _normalColor, 1);
+			_drawBarGraphics(_lineColor, _activeColor, 1);
+		}
+		else {
+			_drawTrackGraphics(_deactiveLineColor, _normalColor, 1);
+			_drawBarGraphics(_deactiveLineColor, _deactiveColor, 1);
+		}
+	}
     
     //==============================================================
     // PROTECTED / PRIVATE METHOD

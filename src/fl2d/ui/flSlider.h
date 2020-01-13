@@ -27,10 +27,12 @@ namespace fl2d {
         float _labelDeactiveColor;
         
         ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
+		ofFloatColor _deactiveLineColor;
+		ofFloatColor _normalColor;
         ofFloatColor _overColor;
         ofFloatColor _activeColor;
-        
+		ofFloatColor _deactiveColor;
+
         flTextField* _label;
         flTextField* _valueText;
         
@@ -46,6 +48,8 @@ namespace fl2d {
         float _value;
         
         bool _roundEnabled;
+
+		bool _enabled;
         
         ofPoint* _draggablePoint;
         
@@ -75,6 +79,9 @@ namespace fl2d {
         
         bool roundEnabled();
         void roundEnabled(bool value);
+
+		bool enabled();
+		void enabled(bool value);
         
     protected:
         virtual void _setup();
