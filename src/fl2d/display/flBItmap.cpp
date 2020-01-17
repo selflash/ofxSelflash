@@ -353,11 +353,11 @@ namespace fl2d {
         //        cout << "_mode = " << _mode << endl;
         switch(_mode) {
             case 1: _bitmapData->__draw(0, 0); break;
-            case 2: _image_ptr->draw(0, 0); break;
-            case 3: _image.draw(0, 0); break;
-            case 4: _texture_ptr->draw(0, 0); break;
-            case 5: _texture.draw(0, 0); break;
-            case 6: _fboImage.draw(0, 0); break;
+            case 2: if(_image_ptr->isAllocated()) _image_ptr->draw(0, 0); break;
+            case 3: if (_image.isAllocated()) _image.draw(0, 0); break;
+            case 4: if (_texture_ptr->isAllocated()) _texture_ptr->draw(0, 0); break;
+            case 5: if (_texture.isAllocated()) _texture.draw(0, 0); break;
+            case 6: if (_fboImage.isAllocated()) _fboImage.draw(0, 0); break;
         }
         //--------------------------------------
     }

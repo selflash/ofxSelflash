@@ -81,7 +81,7 @@ namespace fl2d {
     // TODO _image->getPixels()をしないでちゃんとpixelsを用意しておく
     void flBitmapData::draw(ofImage& source) {
         //        cout << "[flBitmapData]draw()" << endl;
-        
+		if (!source.isAllocated()) return;
         unsigned char * pixels2;
         //        pixels2 = source.getPixels(); //0.8.*
         pixels2 = source.getPixels().getData();
@@ -301,7 +301,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void flBitmapData::__draw(float x, float y) {
-        _image->draw(x, y);
+        if(_image->isAllocated()) _image->draw(x, y);
     }
     
 }
