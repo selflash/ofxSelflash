@@ -219,6 +219,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void flAngler::_draw() {
+//        drawArc(sin(ofGetElapsedTimef()) * 179 + 180);
+        drawArc(_value);
+
         if(lever->isMouseDown()) {
             GLboolean preLineSmooth = glIsEnabled(GL_LINE_SMOOTH);
             ofEnableSmoothing();
@@ -242,8 +245,6 @@ namespace fl2d {
             ofPopStyle();
         }
         
-//        drawArc(sin(ofGetElapsedTimef()) * 179 + 180);
-        drawArc(_value);
     }
     
     //==============================================================
