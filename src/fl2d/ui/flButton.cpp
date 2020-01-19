@@ -119,11 +119,11 @@ namespace fl2d {
             _labelTextSelected = value;
         }
         else if(state == "selected") {
-            _labelTextNotSelected = value;
+			_labelTextSelected = value;
         }
         else if(state == "notSelected") {
-            _labelTextSelected = value;
-        }
+			_labelTextNotSelected = value;
+		}
         
         if(_selected) {
             _label->text(_labelTextSelected);
@@ -228,23 +228,113 @@ namespace fl2d {
         _enabled = value;
         mouseEnabled(_enabled);
         
-        if(_enabled) {
-            _label->textColor(_labelNormalColor);
-        } else {
-            _label->textColor(_labelDeactiveColor);
-        }
-        
-        flGraphics* g;
-        g = graphics();
-        g->clear();
-        g->lineStyle(1, _lineColor.getHex());
-        if(_enabled) {
-            g->beginFill(_normalColor.getHex());
-        } else {
-            g->beginFill(_deactiveColor.getHex());
-        }
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        //if(_enabled) {
+        //    _label->textColor(_labelNormalColor);
+        //} else {
+        //    _label->textColor(_labelDeactiveColor);
+        //}
+        //
+        //flGraphics* g;
+        //g = graphics();
+        //g->clear();
+        //g->lineStyle(1, _lineColor.getHex());
+        //if(_enabled) {
+        //    g->beginFill(_normalColor.getHex());
+        //} else {
+        //    g->beginFill(_deactiveColor.getHex());
+        //}
+        //g->drawRect(0, 0, _uiWidth, _uiHeight);
+        //g->endFill();
+
+		flGraphics* g;
+		if (_enabled) {
+			if (_selected) {
+				_label->text(_labelTextSelected);
+				if (isMouseOver()) {
+					_label->textColor(_labelActiveColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _overColor.getHex());
+					g->beginFill(_activeColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+				else {
+					_label->textColor(_labelNormalColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _lineColor.getHex());
+					g->beginFill(_activeColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+			}
+			else {
+				_label->text(_labelTextNotSelected);
+				if (isMouseOver()) {
+					_label->textColor(_labelNormalColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _overColor.getHex());
+					g->beginFill(_normalColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+				else {
+					_label->textColor(_labelNormalColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _lineColor.getHex());
+					g->beginFill(_normalColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+			}
+		}
+		else {
+			if (_selected) {
+				_label->text(_labelTextSelected);
+				if (isMouseOver()) {
+					_label->textColor(_labelDeactiveColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _overColor.getHex());
+					g->beginFill(_deactiveColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+				else {
+					_label->textColor(_labelDeactiveColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _lineColor.getHex());
+					g->beginFill(_deactiveColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+			}
+			else {
+				_label->text(_labelTextNotSelected);
+				if (isMouseOver()) {
+					_label->textColor(_labelDeactiveColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _overColor.getHex());
+					g->beginFill(_deactiveColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+				else {
+					_label->textColor(_labelDeactiveColor);
+					g = graphics();
+					g->clear();
+					g->lineStyle(1, _lineColor.getHex());
+					g->beginFill(_deactiveColor.getHex());
+					g->drawRect(0, 0, _uiWidth, _uiHeight);
+					g->endFill();
+				}
+			}
+		}
     }
     
     //==============================================================
@@ -263,7 +353,7 @@ namespace fl2d {
         
         if(_selected) {
             //------------------------------------------
-            _label->textColor(_labelActiveColor);
+            //_label->textColor(_labelActiveColor);
             
             flGraphics* g;
             g = graphics();

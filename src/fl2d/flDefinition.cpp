@@ -17,8 +17,8 @@ namespace fl2d {
     int flDefinition::UI_NORMAL_COLOR = 0x555555;
     int flDefinition::UI_OVER_COLOR = 0x12b2d2;
     int flDefinition::UI_ACTIVE_COLOR = 0x12b2d2;
-    //int flDefinition::UI_DEACTIVE_COLOR = 0x333333;
-	int flDefinition::UI_DEACTIVE_COLOR = 0x5b2d2;
+    int flDefinition::UI_DEACTIVE_COLOR = 0x333333;
+	//int flDefinition::UI_DEACTIVE_COLOR = 0x5b2d2;
 
     //OF_EVENT_ORDER_BEFORE_APP, OF_EVENT_ORDER_APP, OF_EVENT_ORDER_AFTER_APP;
     
