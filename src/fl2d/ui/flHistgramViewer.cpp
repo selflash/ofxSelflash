@@ -20,22 +20,12 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = height;
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
         //------------------------------------------
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor.getHex());
-        g->beginFill(_normalColor.getHex());
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
         g->drawRect(0, 0, _uiWidth, _uiHeight);
         g->endFill();
         addEventListener(flMouseEvent::ROLL_OVER, this, &flHistgramViewer::_mouseEventHandler);
@@ -255,7 +245,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     void flHistgramViewer::_over() {
-        _drawTrackGraphics(_overColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //--------------------------------------------------------------
@@ -263,7 +253,7 @@ namespace fl2d {
     void flHistgramViewer::_out() {
         if(isMouseDown()) return;
         
-        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //--------------------------------------------------------------
@@ -273,9 +263,9 @@ namespace fl2d {
         _startPos->x = mouseX();
         _startPos->y = mouseY();
         
-        //        _valueText->textColor(_labelActiveColor);
+        //        _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
-        _drawTrackGraphics(_overColor, _activeColor, 1);
+        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -286,7 +276,7 @@ namespace fl2d {
             return;
         }
         
-        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //==============================================================

@@ -20,12 +20,6 @@ namespace fl2d {
         _width = width;
         _height = height;
         
-        _lineColor = flDefinition::UI_LINE_COLOR;
-        
-        _normalColor = flDefinition::UI_NORMAL_COLOR;
-        _overColor = flDefinition::UI_OVER_COLOR;
-        _activeColor = flDefinition::UI_ACTIVE_COLOR;
-        
         _ballRadius = 6;
         
         flGraphics* g;
@@ -33,11 +27,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(0, 0, _width, _height);
         
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(0, _height * 0.5);
         g->lineTo(_width, _height * 0.5);
         g->moveTo(_width * 0.5, 0);
@@ -58,8 +52,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         ball->x(_width * 0.5);
@@ -224,11 +218,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _overColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(0, 0, _width, _height);
         //横線・縦線
-        g->lineStyle(1, _overColor);
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
         g->moveTo(0, ball->y());
         g->lineTo(_width, ball->y());
         g->moveTo(ball->x(), 0);
@@ -239,8 +233,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _overColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------    
@@ -253,11 +247,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(0, 0, _width, _height);
         //横線・縦線
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(0, ball->y());
         g->lineTo(_width, ball->y());
         g->moveTo(ball->x(), 0);
@@ -274,11 +268,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _activeColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_ACTIVE_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(0, 0, _width, _height);
         //横線・縦線
-        g->lineStyle(1, _activeColor);
+        g->lineStyle(1, flDefinition::UI_ACTIVE_COLOR.getHex());
         g->moveTo(0, ball->y());
         g->lineTo(_width, ball->y());
         g->moveTo(ball->x(), 0);
@@ -298,12 +292,12 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(0, 0, _width, _height);
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         //横線・縦線
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(0, ball->y());
         g->lineTo(_width, ball->y());
         g->moveTo(ball->x(), 0);
@@ -321,8 +315,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_overColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_OVER_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
     }
@@ -343,8 +337,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------
@@ -364,8 +358,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_activeColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------
@@ -386,8 +380,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xFF0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------

@@ -39,12 +39,12 @@ namespace fl2d {
         //Stageから操作される
         bool __isMouseOver;
         bool __isRollOver;
-        //マウスが押されているか
-        bool __isMouseDown;
         //マウスを押したか
         bool __isMousePressed;
         //マウスを離したか
         bool __isMouseReleased;
+        //マウスが押されているか
+        bool __isMouseDown;
         //フォーカス
         bool __isFocus;
         
@@ -68,6 +68,8 @@ namespace fl2d {
         virtual bool isMouseOver();
         virtual bool isRollOver();
         virtual bool isMouseDown();
+//        virtual bool isMousePressed();
+//        virtual bool isMouseReleased();
         virtual bool isFocus();
         
         //            virtual void focusOut();

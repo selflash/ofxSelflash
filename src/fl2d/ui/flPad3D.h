@@ -25,11 +25,6 @@ namespace fl2d {
         float _width;
         float _height;
         
-        float _lineColor;
-        float _normalColor;
-        float _overColor;
-        float _activeColor;
-        
         float _ballRadius;
         
         float _xValue;

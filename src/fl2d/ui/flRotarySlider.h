@@ -17,21 +17,6 @@ namespace fl2d {
     protected:
         
     private:
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _normalLineColor;
-        ofFloatColor _overLineColor;
-        ofFloatColor _activeLineColor;
-        ofFloatColor _deactiveLineColor;
-        
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        ofFloatColor _deactiveColor;
-        
         flTextField* _label;
         
         //------------------------------------------

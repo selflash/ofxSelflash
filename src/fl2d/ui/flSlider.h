@@ -21,17 +21,11 @@ namespace fl2d {
     protected:
         
     private:
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-		ofFloatColor _deactiveLineColor;
-		ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-		ofFloatColor _deactiveColor;
+		ofColor _normalBarColor;
+        ofColor _overBarColor;
+        ofColor _activeBarColor;
+		ofColor _disableNormalBarColor;
+        ofColor _disableActiveBarColor;
 
         flTextField* _label;
         flTextField* _valueText;
@@ -48,7 +42,6 @@ namespace fl2d {
         float _value;
         
         bool _roundEnabled;
-
 		bool _enabled;
         
         ofPoint* _draggablePoint;
@@ -60,7 +53,7 @@ namespace fl2d {
         flTextField* label();
         void label(flTextField* value);
         
-        void textColor(int color);
+//        void textColor(int color);
         
         float min();
         void min(float value, bool dispatch = true);
@@ -88,18 +81,25 @@ namespace fl2d {
         virtual void _update();
         virtual void _draw();
         
-        virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
-        virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
-        
         virtual void _trackOver();
-        virtual void _trackOut();
-        virtual void _trackPress();
-        virtual void _trackRelease();
-        
         virtual void _thumbOver();
+        virtual void _trackOut();
         virtual void _thumbOut();
-        virtual void _thumbPress();
-        virtual void _thumbRelease();
+        virtual void _trackDown();
+        virtual void _thumbDown();
+        virtual void _up();
+        
+        virtual void _setNormalColor();
+        virtual void _setTrackOverColor();
+        virtual void _setThumbOverColor();
+        virtual void _setSelectedTrackOverColor();
+        virtual void _setSelectedThumbOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
+        
+        virtual void _drawTrackGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        virtual void _drawBarGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
         
     private:
         void _mouseEventHandler(flEvent& event);

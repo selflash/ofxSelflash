@@ -21,24 +21,13 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        ofFloatColor _labelNormalColor;
-        ofFloatColor _labelOverColor;
-        ofFloatColor _labelActiveColor;
-        ofFloatColor _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        ofFloatColor _deactiveColor;
-        
         flTextField* _label;
         
         bool _selected;
         
         bool _enabled;
         
-        bool _hitAreaAlpha = 0.0;
+        float _hitAreaAlpha = 0.0;
         
         int _shapeType = 0;
         
@@ -57,40 +46,48 @@ namespace fl2d {
         bool enabled();
         void enabled(bool value);
         
-        inline void activeColor(ofFloatColor value) { _activeColor = value; };
+//        inline void activeColor(ofFloatColor value) { _activeColor = value; };
 
         inline int shapeType() { return _shapeType; };
         inline void shapeType(int value) {
             _shapeType = value;
             if(_enabled) {
                 if(_selected) {
-                    _label->textColor(_labelActiveColor.getHex());
-                    _drawGraphics(_lineColor, _activeColor);
+                    _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+                    _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
                 } else {
-                    _label->textColor(_labelNormalColor.getHex());
-                    _drawGraphics(_lineColor);
+                    _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+                    _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR);
                 }
             } else {
-                _label->textColor(_labelDeactiveColor.getHex());
-                
                 if(_selected) {
-                    _drawGraphics(_labelDeactiveColor, _activeColor);
+                    _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+                    _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
                 } else {
-                    _drawGraphics(_labelDeactiveColor);
+                    _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+                    _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
                 }
             }
         };
 
     protected:
-        virtual void _normal();
         virtual void _over();
-        virtual void _press();
-        
-        virtual void _drawGraphics(const ofFloatColor& outerColor);
-        virtual void _drawGraphics(const ofFloatColor& outerColor, const ofFloatColor& innerColor);
+        virtual void _out();
+        virtual void _down();
+        virtual void _up();
+
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
+
+        virtual void _drawGraphics(const ofColor& outerColor);
+        virtual void _drawGraphics(const ofColor& outerColor, const ofFloatColor& innerColor);
         
     private:
-        
+
         void _mouseEventHandler(flEvent& event);
     };
     

@@ -20,16 +20,6 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        
         flTextField* _label;
         
         float _value;

@@ -14,109 +14,105 @@ namespace fl2d {
     class flRadioButton : public flSprite {
         friend class flRadioButtonGroup;
         
-    public:
+        public:
         
-    protected:
+        protected:
         
-    private:
-        float _uiWidth;
-        float _uiHeight;
+        private:
+            float _uiWidth;
+            float _uiHeight;
         
-        ofFloatColor _labelNormalColor;
-        ofFloatColor _labelOverColor;
-        ofFloatColor _labelActiveColor;
-        ofFloatColor _labelDeactiveColor;
+            flTextField* _label;
         
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        ofFloatColor _deactiveColor;
+            bool _selected;
         
-        flTextField* _label;
+            bool _enabled;
         
-        bool _selected;
+            float _hitAreaAlpha = 0.0;
         
-        bool _enabled;
-        
-        bool _hitAreaAlpha = 0.0;
-        
-        int _shapeType = 1;
+            int _shapeType = 1;
 
-        flRadioButtonGroup* _groupOwner;
+            flRadioButtonGroup* _groupOwner;
         
-    public:        
-        virtual ~flRadioButton();
+        public:
+            virtual ~flRadioButton();
         
-        flTextField* label();
+            flTextField* label();
         
-        string labelText();
-        void labelText(string value);
+            string labelText();
+            void labelText(string value);
         
-        bool selected();
-        void selected(bool value, bool dispatch = true);
+            bool selected();
+            void selected(bool value, bool dispatch = true);
         
-        bool enabled();
-        void enabled(bool value);
+            bool enabled();
+            void enabled(bool value);
         
-        inline void activeColor(ofFloatColor value) { _activeColor = value; };
+    //        inline void activeColor(ofFloatColor value) { _activeColor = value; };
         
-        inline int shapeType() { return _shapeType; };
-        inline void shapeType(int value) {
-            _shapeType = value;
-            if(_enabled) {
-                if(_selected) {
-                    _label->textColor(_labelActiveColor.getHex());
-                    _drawGraphics(_lineColor, _activeColor);
+            inline int shapeType() { return _shapeType; };
+            inline void shapeType(int value) {
+                _shapeType = value;
+                if(_enabled) {
+                    if(_selected) {
+                        _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+                        _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+                    } else {
+                        _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+                        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
+                    }
                 } else {
-                    _label->textColor(_labelNormalColor.getHex());
-                    _drawGraphics(_lineColor);
+                    if(_selected) {
+                        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+                        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+                    } else {
+                        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+                        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
+                    }
                 }
-            } else {
-                _label->textColor(_labelDeactiveColor.getHex());
-                
-                if(_selected) {
-                    _drawGraphics(_labelDeactiveColor, _activeColor);
-                } else {
-                    _drawGraphics(_labelDeactiveColor);
-                }
-            }
-        };
+            };
         
-    protected:
-        virtual void _normal();
-        virtual void _over();
-        virtual void _press();
+        protected:
+            virtual void _over();
+            virtual void _out();
+            virtual void _down();
+            virtual void _up();
         
-        virtual void _drawGraphics(const ofFloatColor& outerColor);
-        virtual void _drawGraphics(const ofFloatColor& outerColor, const ofFloatColor& innerColor);
+            virtual void _setNormalColor();
+            virtual void _setOverColor();
+            virtual void _setSelectedOverColor();
+            virtual void _setActiveColor();
+            virtual void _setDisableNormalColor();
+            virtual void _setDisableActiveColor();
+
+            virtual void _drawGraphics(const ofColor& outerColor);
+            virtual void _drawGraphics(const ofColor& outerColor, const ofColor& innerColor);
         
+        private:
+            flRadioButton(float width = 100);
         
-    private:
-        flRadioButton(float width = 100);
-        
-        void _setGroupOwner(flRadioButtonGroup* groupOwner);
-        
-        void _mouseEventHandler(flEvent& event);
+            void _setGroupOwner(flRadioButtonGroup* groupOwner);
+            void _mouseEventHandler(flEvent& event);
     };
     
     class flRadioButton;
     class flRadioButtonGroup : public flEventDispatcher {
         friend class flRadioButton;
-    public:
         
-    private:
-        vector<flRadioButton*> _radioButtonList;
+        public:
         
-    public:
-        flRadioButtonGroup();
-        virtual ~flRadioButtonGroup();
+        private:
+            vector<flRadioButton*> _radioButtonList;
         
-        flRadioButton* createRadioButton();
-		flRadioButton* removeRadioButton(flRadioButton* radioButton);
+        public:
+            flRadioButtonGroup();
+            virtual ~flRadioButtonGroup();
         
-    private:
-        void _notice(flRadioButton* radioButton);
-        void _uiEventHandler(flEvent& event);
+            flRadioButton* createRadioButton();
+            flRadioButton* removeRadioButton(flRadioButton* radioButton);
+        
+        private:
+            void _notice(flRadioButton* radioButton, string message);
+            void _uiEventHandler(flEvent& event);
     };
 }

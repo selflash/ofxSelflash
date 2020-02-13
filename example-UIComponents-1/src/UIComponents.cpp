@@ -5,7 +5,6 @@
 //==============================================================
 
 //--------------------------------------------------------------
-//
 UIComponents::UIComponents() {
     cout << "[UIComponents]UIComponents()" << endl;
     _target = this;
@@ -33,7 +32,6 @@ UIComponents::UIComponents() {
 }
 
 //--------------------------------------------------------------
-//
 UIComponents::~UIComponents() {
     cout << "[UIComponents]~UIComponents()" << endl;
 }
@@ -43,7 +41,6 @@ UIComponents::~UIComponents() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void UIComponents::_setup() {
     cout << "[UIComponents]_setup()" << endl;
     
@@ -137,6 +134,10 @@ void UIComponents::_setup() {
     colorSlider001->x(marginLeft + spacing * 0);
     colorSlider001->y(marginTop + lineSpacing * 0 + 22.5);
     colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    colorSlider001->redValue(156, false);
+    colorSlider001->greenValue(20, false);
+    colorSlider001->blueValue(210, false);
+    colorSlider001->alphaValue(200, false);
     addChild(colorSlider001);
     
     label = new flTextField();
@@ -150,6 +151,9 @@ void UIComponents::_setup() {
     colorSlider002->x(marginLeft + spacing * 0);
     colorSlider002->y(marginTop + lineSpacing * 1 + 22.5);
     colorSlider002->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    colorSlider002->redValue(230, false);
+    colorSlider002->greenValue(210, false);
+    colorSlider002->blueValue(50, false);
     addChild(colorSlider002);
     //--------------------------------------
     
@@ -171,6 +175,10 @@ void UIComponents::_setup() {
     vec2Slider001->x(marginLeft + spacing * 0);
     vec2Slider001->y(marginTop + lineSpacing * 1);
     vec2Slider001->addEventListener(flVec2SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    vec2Slider001->min(0.0);
+    vec2Slider001->max(200.0);
+    vec2Slider001->xValue(80.0, false);
+    vec2Slider001->yValue(180.0, false);
     addChild(vec2Slider001);
     //--------------------------------------
     
@@ -192,6 +200,11 @@ void UIComponents::_setup() {
     vec3Slider001->x(marginLeft + spacing * 0);
     vec3Slider001->y(marginTop + lineSpacing * 1);
     vec3Slider001->addEventListener(flVec3SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    vec3Slider001->min(0.0);
+    vec3Slider001->max(200.0);
+    vec3Slider001->xValue(110.0, false);
+    vec3Slider001->yValue(50.0, false);
+    vec3Slider001->zValue(190.0, false);
     addChild(vec3Slider001);
     //cout << vec3Slider001->y() + vec3Slider001->height() << endl;
     //--------------------------------------
@@ -290,21 +303,23 @@ void UIComponents::_setup() {
     button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button003);
     button004 = new flButton(150);
-    button004->labelText("Glay");
+    button004->labelText("Black");
     button004->x(marginLeft + spacing * 0);
     button004->y(marginTop + lineSpacing * 4);
     button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button004);
     button005 = new flButton(150);
-    button005->labelText("Black");
+    button005->labelText("Disable");
     button005->x(marginLeft + spacing * 0);
     button005->y(marginTop + lineSpacing * 5);
+    button005->enabled(false);
     button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button005);
     button006 = new flButton(150);
-    button006->labelText("Disable");
+    button006->labelText("Disable(Selected)");
     button006->x(marginLeft + spacing * 0);
     button006->y(marginTop + lineSpacing * 6);
+    button006->selected(true);
     button006->enabled(false);
     button006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button006);
@@ -741,7 +756,6 @@ void UIComponents::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void UIComponents::_update() {
     float elapsedTime = ofGetElapsedTimef();
     float n = sin(elapsedTime * 2) * 10;
@@ -750,7 +764,6 @@ void UIComponents::_update() {
 }
 
 //--------------------------------------------------------------
-//
 void UIComponents::_draw() {
     
 }
@@ -764,7 +777,6 @@ void UIComponents::_draw() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void UIComponents::_uiEventHandler(flEvent& event) {
     //cout << "[UIComponents]_controllerEventHandler(" << event.type() << ")" << endl;
     
@@ -798,7 +810,10 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         flButton* button = (flButton*)(event.currentTarget());
         
         if(button == button001);
-        if(button == button002) button006->enabled(button->selected());
+        if(button == button002) {
+            button003->enabled(!button->selected());
+            button004->enabled(!button->selected());
+        }
         if(button == button003);
         if(button == button004);
         if(button == button005);

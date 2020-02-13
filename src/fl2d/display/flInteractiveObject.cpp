@@ -3,11 +3,10 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flInteractiveObject::flInteractiveObject() {
         _typeID = FL_TYPE_INTERACTIVE_OBJECT;
         _target = this;
@@ -24,14 +23,13 @@ namespace fl2d {
         
         __isMouseOver = false;
         __isRollOver = false;
-        __isMouseDown = false;
         __isMousePressed = false;
         __isMouseReleased = false;
+        __isMouseDown = false;
         __isFocus = false;
     }
     
     //--------------------------------------------------------------
-    //
     flInteractiveObject::~flInteractiveObject() {
         _target = NULL;
         
@@ -45,28 +43,26 @@ namespace fl2d {
         
         __isMouseOver = false;
         __isRollOver = false;
-        __isMouseDown = false;
         __isMousePressed = false;
         __isMouseReleased = false;
+        __isMouseDown = false;
         __isFocus = false;
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Metohd
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flInteractiveObject::drop(ofDragInfo& info) {
         
     }
     
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::buttonMode() { return _buttonMode; }
     void flInteractiveObject::buttonMode(bool value) { _buttonMode = value; }
     
@@ -86,21 +82,19 @@ namespace fl2d {
     void flInteractiveObject::mouseUpOutside(bool value) { _mouseUpOutside = value; }
     
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::isMouseOver() { return __isMouseOver; }
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::isRollOver() { return __isRollOver; }
     //--------------------------------------------------------------
-    //
-    bool flInteractiveObject::isMouseDown() { return __isMouseDown; }
-    //    const bool& flInteractiveObject::isMouseDown() { return __isMousePressed; }
+//    bool flInteractiveObject::isMousePressed() { return __isMousePressed; }
+//    bool flInteractiveObject::isMouseReleased() { return __isMouseReleased; }
+
     //--------------------------------------------------------------
-    //
+    bool flInteractiveObject::isMouseDown() { return __isMouseDown; }
+    //--------------------------------------------------------------
     bool flInteractiveObject::isFocus() { return __isFocus; }
     
     //--------------------------------------------------------------
-    //
     //    void flInteractiveObject::focusOut() {
     //        __isFocus = false;
     //        FocusEvent* focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
@@ -109,7 +103,7 @@ namespace fl2d {
     //    }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     

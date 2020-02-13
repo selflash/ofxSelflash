@@ -19,7 +19,7 @@ namespace fl2d {
         //スライダサムまたはスライダトラックが押されたかどうかを示すストリングを取得します。
         void* _clickTarget;
         
-        ofFloatColor __color;
+        ofColor __color;
         
     private:
         
@@ -31,52 +31,52 @@ namespace fl2d {
         
         //----------------------------------
         //型を渡さなかったらintで処理される
-        virtual inline int redValue() { return __color.r * 255.0; }
+        virtual inline int redValue() { return __color.r; }
         template <class T>
         const T redValue() {
             if (typeid(T) == typeid(float)) {
-                return __color.r;
+                return __color.r / 255.0;
             } else {
-                return __color.r * 255.0;
+                return __color.r;
             }
         }
         //----------------------------------
         
         //----------------------------------
         //型を渡さなかったらintで処理される
-        virtual inline int greenValue() { return __color.g * 255.0; }
+        virtual inline int greenValue() { return __color.g; }
         template <class T>
         const T greenValue() {
             if (typeid(T) == typeid(float)) {
-                return __color.g;
+                return __color.g / 255.0;
             } else {
-                return __color.g * 255.0;
+                return __color.g;
             }
         }
         //----------------------------------
         
         //----------------------------------
         //型を渡さなかったらintで処理される
-        virtual inline int blueValue() { return __color.b * 255.0; }
+        virtual inline int blueValue() { return __color.b; }
         template <class T>
         const T blueValue() {
             if (typeid(T) == typeid(float)) {
-                return __color.b;
+                return __color.b / 255.0;
             } else {
-                return __color.b * 255.0;
+                return __color.b;
             }
         }
         //----------------------------------
         
         //----------------------------------
         //型を渡さなかったらintで処理される
-        virtual inline int alphaValue() { return __color.a * 255.0; }
+        virtual inline int alphaValue() { return __color.a; }
         template <class T>
         const T alphaValue() {
             if (typeid(T) == typeid(float)) {
-                return __color.a;
+                return __color.a / 255.0;
             } else {
-                return __color.a * 255.0;
+                return __color.a;
             }
         }
         //----------------------------------

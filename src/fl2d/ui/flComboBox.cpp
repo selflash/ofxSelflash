@@ -23,16 +23,6 @@ namespace fl2d {
         
         _selectedIndex = 0;
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
         //------------------------------------------
         //ラベル
         _label = NULL;
@@ -251,9 +241,9 @@ namespace fl2d {
         _topButton->enabled(_enabled);
         
         if(_enabled) {
-            if(_label != NULL) _label->textColor(_labelNormalColor);
+            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         } else {
-            if(_label != NULL) _label->textColor(_labelDeactiveColor);
+            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
             
             _topButton->selected(false);
             if(_buttonContainer->parent()) removeChild(_buttonContainer);

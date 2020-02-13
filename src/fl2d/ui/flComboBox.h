@@ -37,16 +37,6 @@ namespace fl2d {
         int _selectedIndex;
         //------------------------------------------
         
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        
         flTextField* _label;
         
         //------------------------------------------

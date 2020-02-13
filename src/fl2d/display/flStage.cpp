@@ -539,6 +539,7 @@ namespace fl2d {
                         //                        intObj->__isMouseDown = _bMouseDown;
                         //                            intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
                         intObj->__isMousePressed = false;
+                        intObj->__isMouseReleased = false;
                         //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
                         //_lineTopDown.push_back(intObj);
                         //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
@@ -583,6 +584,7 @@ namespace fl2d {
                                 //                                intObj->__isMouseDown = _bMouseDown;
                                 //                                    intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
                                 intObj->__isMousePressed = false;
+                                intObj->__isMouseReleased = false;
                                 //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
                                 //_lineTopDown.push_back(intObj);
                                 //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
@@ -1213,6 +1215,7 @@ namespace fl2d {
                 mouseEvent->__stageX = mouseX();
                 mouseEvent->__stageY = mouseY();
                 intObj = _lineBottomUp[i];
+                intObj->__isMouseDown = true;
                 intObj->__isMousePressed = true;
                 intObj->dispatchEvent(mouseEvent);
                 //------------------------------------
@@ -1305,7 +1308,9 @@ namespace fl2d {
                 mouseEvent->__stageY = mouseY();
                 intObj = _lineBottomUp[i];
                 //                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
-                intObj->__isMousePressed = true;
+                intObj->__isMouseDown = false;
+//                intObj->__isMousePressed = true;
+                intObj->__isMouseReleased = true;
                 intObj->dispatchEvent(mouseEvent);
                 //------------------------------------
                 
@@ -1333,7 +1338,7 @@ namespace fl2d {
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
         mouseEvent->__stageY = mouseY();
-        this->__isMouseDown = false;
+        __isMouseDown = false;
         dispatchEvent(mouseEvent);
         //------------------------------------
     }

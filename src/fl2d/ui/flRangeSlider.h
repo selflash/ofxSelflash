@@ -15,26 +15,16 @@ namespace fl2d {
         
     public:
         flSprite* track;
-        flSprite* nearThumb;
-        flSprite* farThumb;
+        flSprite* minThumb;
+        flSprite* maxThumb;
         flSprite* bar;
-        
         
     protected:
         
     private:
+        flTextField* _label;
         flTextField* _minValueText;
         flTextField* _maxValueText;
-        
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
         
         float _trackWidth;
         float _trackHeight;
@@ -42,7 +32,6 @@ namespace fl2d {
         
         float _thumbWidth;
         float _barWidth;
-        float _barAlpha;
         
         float _percent;
         float _min;
@@ -52,14 +41,18 @@ namespace fl2d {
         float _maxValue;
         
         bool _roundEnabled;
-        
+        bool _enabled;
+
         ofPoint* _draggablePoint;
         
     public:
         flRangeSlider(float trackWidth = 200, float min = 0, float max = 100, float minValue = 40, float maxValue = 60);
         virtual ~flRangeSlider();
         
-        void textColor(int color);
+        flTextField* label();
+        void label(flTextField* value);
+
+//        void textColor(int color);
         
         float min();
         void min(float value, bool dispatch = true);
@@ -75,28 +68,36 @@ namespace fl2d {
         
         float range();
         
-        int barColor();
-        void barColor(int value);
-        void barColor(int red, int green, int blue, int alpha);
-        void barColor(const ofColor& color);
-        void barColor(const ofFloatColor& color);
-        
         bool roundEnabled();
         void roundEnabled(bool value);
         
+        bool enabled();
+        void enabled(bool value);
+
     protected:
         virtual void _setup();
         virtual void _update();
         virtual void _draw();
+
+        virtual void _over();
+        virtual void _barOut();
+        virtual void _thumbOut();
+        virtual void _barDown();
+        virtual void _minThumbDown();
+        virtual void _maxThumbDown();
+        virtual void _up();
         
-        virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
-        virtual void _drawBarGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedBarOverColor();
+        virtual void _setSelectedThumbOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
         
-        void _over();
-        void _out();
-        void _press();
-        void _release();
-        
+        virtual void _drawTrackGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        virtual void _drawBarGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
     private:
         void _mouseEventHandler(flEvent& event);
         

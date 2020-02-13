@@ -18,16 +18,6 @@ namespace fl2d {
         flSlider* zSlider;
         
     protected:
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        
         flTextField* _label;
         flTextField* _label1Text;
         flTextField* _label2Text;
@@ -55,6 +45,20 @@ namespace fl2d {
         virtual void vec3Value(ofVec3f value, bool dispatch = true);
         
         //----------------------------------
+        inline virtual float min() { xSlider->min(); }
+        inline virtual void min(float value, bool dispatch = true) {
+            xSlider->min(value, dispatch);
+            ySlider->min(value, dispatch);
+            zSlider->min(value, dispatch);
+        }
+        
+        inline virtual float max() { xSlider->max(); }
+        inline virtual void max(float value, bool dispatch = true) {
+            xSlider->max(value, dispatch);
+            ySlider->max(value, dispatch);
+            zSlider->max(value, dispatch);
+        }
+        
         inline virtual float xValue() { return xSlider->value(); }
         inline virtual void xValue(float value, bool dispatch = true) { xSlider->value(value, dispatch); }
         

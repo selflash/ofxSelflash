@@ -19,23 +19,13 @@ namespace fl2d {
         
         _radius = _uiWidth * 0.5 - 2;
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
         buttonMode(true);
         
         flGraphics* g;
         g = graphics();
         g->enabledSmoothing(true);
         g->clear();
-        g->lineStyle(1, _lineColor.getHex());
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
@@ -188,7 +178,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, _overColor.getHex());
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
@@ -201,7 +191,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor.getHex());
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
@@ -212,7 +202,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, _activeColor.getHex());
+        g->lineStyle(1, flDefinition::UI_ACTIVE_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
@@ -238,7 +228,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor.getHex());
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }

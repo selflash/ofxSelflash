@@ -19,16 +19,6 @@ namespace fl2d {
         _target = this;
         name("flVec3Slider");
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
         _label = NULL;
         
         float height = 18 + 2;
@@ -63,7 +53,7 @@ namespace fl2d {
         _label1Text->y(height * 0 + 3);
         _label1Text->width(15);
         _label1Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label1Text->textColor(_labelNormalColor);
+        _label1Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _label1Text->text("X");
         _label1Text->mouseEnabled(false);
         addChild(_label1Text);
@@ -73,7 +63,7 @@ namespace fl2d {
         _label2Text->y(height * 1 + 3);
         _label2Text->width(15);
         _label2Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label2Text->textColor(_labelNormalColor);
+        _label2Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _label2Text->text("Y");
         _label2Text->mouseEnabled(false);
         addChild(_label2Text);
@@ -83,7 +73,7 @@ namespace fl2d {
         _label3Text->y(height * 2 + 3);
         _label3Text->width(15);
         _label3Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label3Text->textColor(_labelNormalColor);
+        _label3Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _label3Text->text("Z");
         _label3Text->mouseEnabled(false);
         addChild(_label3Text);

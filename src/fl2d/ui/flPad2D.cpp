@@ -27,16 +27,6 @@ namespace fl2d {
         _bottomValue = 1;
         _n = 0;
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor = flDefinition::UI_LINE_COLOR;
-        _normalColor = flDefinition::UI_NORMAL_COLOR;
-        _overColor = flDefinition::UI_OVER_COLOR;
-        _activeColor = flDefinition::UI_ACTIVE_COLOR;
-        
         _ballRadius = 6;
         
         flGraphics* g;
@@ -44,11 +34,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(_n, _n + _areaHeight * 0.5);
         g->lineTo(_n + _areaWidth, _n + _areaHeight * 0.5);
         g->moveTo(_n + _areaWidth * 0.5, _n);
@@ -77,8 +67,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         ball->x(_n + _areaWidth * 0.5);
@@ -101,7 +91,7 @@ namespace fl2d {
         _xRatioText->y(18 * 0);
         _xRatioText->width(_areaWidth);
         _xRatioText->autoSize(flTextFieldAutoSize::LEFT);
-        _xRatioText->textColor(_labelNormalColor);
+        _xRatioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_xRatioText);
         
         _yRatioText = new flTextField();
@@ -109,7 +99,7 @@ namespace fl2d {
         _yRatioText->y(18 * 1);
         _yRatioText->width(_areaWidth);
         _yRatioText->autoSize(flTextFieldAutoSize::LEFT);
-        _yRatioText->textColor(_labelNormalColor);
+        _yRatioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_yRatioText);
         
         _xValueText = new flTextField();
@@ -118,7 +108,7 @@ namespace fl2d {
         _xValueText->y(18 * 2);
         _xValueText->width(_areaWidth);
         _xValueText->autoSize(flTextFieldAutoSize::LEFT);
-        _xValueText->textColor(_labelNormalColor);
+        _xValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         //addChild(_xValueText);
         
         _yValueText = new flTextField();
@@ -126,7 +116,7 @@ namespace fl2d {
         _yValueText->y(18 * 3);
         _yValueText->width(_areaWidth);
         _yValueText->autoSize(flTextFieldAutoSize::LEFT);
-        _yValueText->textColor(_labelNormalColor);
+        _yValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         //addChild(_yValueText);
         
         _xRatio = ball->x() / _areaWidth;
@@ -163,16 +153,6 @@ namespace fl2d {
         _topValue = top;
         _bottomValue = bottom;
         _n = 20;
-
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-
-        _lineColor = flDefinition::UI_LINE_COLOR;
-        _normalColor = flDefinition::UI_NORMAL_COLOR;
-        _overColor = flDefinition::UI_OVER_COLOR;
-        _activeColor = flDefinition::UI_ACTIVE_COLOR;
         
         _ballRadius = 6;
         
@@ -181,11 +161,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(_n, _n + _areaHeight * 0.5);
         g->lineTo(_n + _areaWidth, _n + _areaHeight * 0.5);
         g->moveTo(_n + _areaWidth * 0.5, _n);
@@ -251,8 +231,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         ball->x(_n + _areaWidth * 0.5);
@@ -275,7 +255,7 @@ namespace fl2d {
         _xRatioText->y(_n * 1);
         _xRatioText->width(_areaWidth);
         _xRatioText->autoSize(flTextFieldAutoSize::LEFT);
-        _xRatioText->textColor(_labelNormalColor);
+        _xRatioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_xRatioText);
         
         _yRatioText = new flTextField();
@@ -283,7 +263,7 @@ namespace fl2d {
         _yRatioText->y(_n * 2);
         _yRatioText->width(_areaWidth);
         _yRatioText->autoSize(flTextFieldAutoSize::LEFT);
-        _yRatioText->textColor(_labelNormalColor);
+        _yRatioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_yRatioText);
         
         _xValueText = new flTextField();
@@ -292,7 +272,7 @@ namespace fl2d {
         _xValueText->y(_n * 3);
         _xValueText->width(_areaWidth);
         _xValueText->autoSize(flTextFieldAutoSize::LEFT);
-        _xValueText->textColor(_labelNormalColor);
+        _xValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_xValueText);
         
         _yValueText = new flTextField();
@@ -300,7 +280,7 @@ namespace fl2d {
         _yValueText->y(_n * 4);
         _yValueText->width(_areaWidth);
         _yValueText->autoSize(flTextFieldAutoSize::LEFT);
-        _yValueText->textColor(_labelNormalColor);
+        _yValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         addChild(_yValueText);
         
         _xRatio = ball->x() / _areaWidth;
@@ -573,11 +553,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _overColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         //横線・縦線
-        g->lineStyle(1, _overColor);
+        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
         g->moveTo(_n, ball->y());
         g->lineTo(_n + _areaWidth, ball->y());
         g->moveTo(ball->x(), _n);
@@ -591,8 +571,8 @@ namespace fl2d {
 //        g->clear();
 //        g->beginFill(0xff0000, 0);
 //        g->drawCircle(0, 0, _ballRadius * 2.5);
-//        g->lineStyle(1, _overColor);
-//        g->beginFill(_normalColor, 1);
+//        g->lineStyle(1, flDefinition::UI_OVER_COLOR.getHex());
+//        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
 //        g->drawCircle(0, 0, _ballRadius);
 //        g->endFill();
 //        //------------------------------------------    
@@ -605,11 +585,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         //横線・縦線
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(_n, ball->y());
         g->lineTo(_n + _areaWidth, ball->y());
         g->moveTo(ball->x(), _n);
@@ -626,11 +606,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _activeColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_ACTIVE_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         //横線・縦線
-        g->lineStyle(1, _activeColor);
+        g->lineStyle(1, flDefinition::UI_ACTIVE_COLOR.getHex());
         g->moveTo(_n, ball->y());
         g->lineTo(_n + _areaWidth, ball->y());
         g->moveTo(ball->x(), _n);
@@ -652,11 +632,11 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
         //横線・縦線
-        g->lineStyle(1, _lineColor);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
         g->moveTo(_n, ball->y());
         g->lineTo(_n + _areaWidth, ball->y());
         g->moveTo(ball->x(), _n);
@@ -674,8 +654,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_overColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_OVER_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
     }
@@ -696,8 +676,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------
@@ -717,8 +697,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_activeColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------
@@ -739,8 +719,8 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _ballRadius * 2.5);
-        g->lineStyle(1, _lineColor);
-        g->beginFill(_normalColor, 1);
+        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(0, 0, _ballRadius);
         g->endFill();
         //------------------------------------------

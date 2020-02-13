@@ -20,17 +20,6 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        ofFloatColor _deactiveColor;
-        
         flTextField* _label;
         string _labelTextNotSelected;
         string _labelTextSelected;
@@ -54,29 +43,33 @@ namespace fl2d {
         string labelText();
         void labelText(string value, string state = "default");
         
-        inline ofFloatColor backgroundNormalColor() { return _normalColor; }
-        inline void backgroundNormalColor(int color) {
-            _normalColor.setHex(color);
-            
-            if(_enabled) {
-                _label->textColor(0xffffff);
-            } else {
-                _label->textColor(0x999999);
-            }
-            
-            flGraphics* g;
-            g = graphics();
-            g->clear();
-            g->lineStyle(1, _lineColor.getHex());
-            if(_enabled) {
-                g->beginFill(_normalColor.getHex());
-            } else {
-                g->beginFill(_normalColor.getHex() * 0.5);
-            }
-            g->drawRect(0, 0, _uiWidth, _uiHeight);
-            g->endFill();
-        }
+//        inline ofFloatColor backgroundNormalColor() { return _normalColor; }
+//        inline void backgroundNormalColor(int color) {
+//            _normalColor.setHex(color);
+//            
+//            if(_enabled) {
+//                _label->textColor(0xffffff);
+//            } else {
+//                _label->textColor(0x999999);
+//            }
+//            
+//            flGraphics* g;
+//            g = graphics();
+//            g->clear();
+//            if(_enabled) {
+//                g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//                g->beginFill(_normalColor.getHex());
+//            } else {
+//                g->lineStyle(1, flDefinition::UI_LINE_DISABLE_NORMAL_COLOR.getHex());
+//                g->beginFill(_normalColor.getHex() * 0.5);
+//            }
+//            g->drawRect(0, 0, _uiWidth, _uiHeight);
+//            g->endFill();
+//        }
         
+        bool enabled();
+        void enabled(bool value);
+
         bool toggleEnabled();
         void toggleEnabled(bool value);
         
@@ -95,18 +88,18 @@ namespace fl2d {
         int intValue();
         void intValue(int value);
         
-        bool enabled();
-        void enabled(bool value);
-        
     protected:
-        //virtual void _setup();
-        //virtual void _update();
-        //virtual void _draw();
-        
         virtual void _over();
         virtual void _out();
-        virtual void _press();
-        virtual void _release();
+        virtual void _down();
+        virtual void _up();
+        
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
         
     private:
         void _mouseEventHandler(flEvent& event);

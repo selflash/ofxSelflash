@@ -26,16 +26,6 @@ namespace fl2d {
         float _areaHeight;
         float _n;
         
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        float _lineColor;
-        float _normalColor;
-        float _overColor;
-        float _activeColor;
-        
         flTextField* _label;
         flTextField* _xRatioText;
         flTextField* _yRatioText;

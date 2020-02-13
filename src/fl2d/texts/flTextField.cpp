@@ -16,21 +16,6 @@ namespace fl2d {
         
         name("flTextField");
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        _deactiveColor.setHex(flDefinition::UI_DEACTIVE_COLOR);
-        //        _normalColor.setHex(0x333333);
-        //        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        //        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        //        _textColor.setHex(0xffffff);
-        
         _text = "";
         
         _type = TEXT_FIELD_TYPE_DYNAMIC;
@@ -296,7 +281,7 @@ namespace fl2d {
                     _drawGraphics(0x000000, 0xffffff, 1);
                 }
             } else {
-                _drawGraphics(_deactiveColor.getHex(), 0xcccccc, 1);                
+                _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xcccccc, 1);
             }
         }
         //---------------------------------
@@ -334,7 +319,7 @@ namespace fl2d {
                     _drawGraphics(0x000000, 0xffffff, 1);
                 }
             } else {
-                _drawGraphics(_deactiveColor.getHex(), 0xcccccc, 1);
+                _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xcccccc, 1);
             }
         }
         //---------------------------------
@@ -362,13 +347,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //
-    int flTextField::textColor() { return _textColor.getHex(); }
+    ofColor flTextField::textColor() { return _textColor; }
     void flTextField::textColor(int value) {
         _textColor.setHex(value);
         //        _textColor.a = _alpha;
     }
-    void flTextField::textColor(ofFloatColor value) {
-        _textColor.setHex(value.getHex());
+    void flTextField::textColor(const ofColor& value) {
+        _textColor.set(value);
         //        _textColor.a = _alpha;
     }
     
@@ -417,9 +402,9 @@ namespace fl2d {
         if(_type == TEXT_FIELD_TYPE_INPUT) {
             if(_enabled) {
                 if(_isActive) {
-                    _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
+                    _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
                 } else {
-                    _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
+                    _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
                 }
             }
         }
@@ -458,14 +443,14 @@ namespace fl2d {
         
         if(_enabled) {
             if(_isActive) {
-                _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
+                _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
                 
                 ofAddListener(ofEvents().keyPressed, this, &flTextField::_keyPressedEventHandler);
                 ofAddListener(ofEvents().keyReleased, this, &flTextField::_keyReleasedEventHandler);
                 
                 addEventListener(flFocusEvent::FOCUS_OUT, this, &flTextField::_eventHandler);
             } else {
-                _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
+                _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
                 
                 ofRemoveListener(ofEvents().keyPressed, this, &flTextField::_keyPressedEventHandler);
                 ofRemoveListener(ofEvents().keyReleased, this, &flTextField::_keyReleasedEventHandler);
@@ -485,14 +470,14 @@ namespace fl2d {
         
         if(_enabled) {
             if(_isActive) {
-                _drawGraphics(_activeColor.getHex(), 0xffffff, _activeLineWidth);
+                _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
                 
                 ofAddListener(ofEvents().keyPressed, this, &flTextField::_keyPressedEventHandler);
                 ofAddListener(ofEvents().keyReleased, this, &flTextField::_keyReleasedEventHandler);
                 
                 addEventListener(flFocusEvent::FOCUS_OUT, this, &flTextField::_eventHandler);
             } else {
-                _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
+                _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
                 
                 ofRemoveListener(ofEvents().keyPressed, this, &flTextField::_keyPressedEventHandler);
                 ofRemoveListener(ofEvents().keyReleased, this, &flTextField::_keyReleasedEventHandler);
@@ -500,7 +485,7 @@ namespace fl2d {
                 removeEventListener(flFocusEvent::FOCUS_OUT, this, &flTextField::_eventHandler);
             }
         } else {
-            _drawGraphics(_deactiveColor.getHex(), 0xcccccc, 1);
+            _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xcccccc, 1);
             
             if(_isActive) {
                 ofRemoveListener(ofEvents().keyPressed, this, &flTextField::_keyPressedEventHandler);
@@ -523,7 +508,7 @@ namespace fl2d {
         
         mouseEnabled(true);
         
-        _drawGraphics(_normalColor.getHex(), 0xffffff, 1);
+        _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
         
         //        addEventListener(MouseEvent::MOUSE_UP, this, &flTextField::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flTextField::_mouseEventHandler);

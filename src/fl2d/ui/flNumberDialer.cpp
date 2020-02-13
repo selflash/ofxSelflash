@@ -20,23 +20,13 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = height;
         
-        _labelNormalColor = flDefinition::UI_LABEL_NORMAL_COLOR;
-        _labelOverColor = flDefinition::UI_LABEL_OVER_COLOR;
-        _labelActiveColor = flDefinition::UI_LABEL_ACTIVE_COLOR;
-        _labelDeactiveColor = flDefinition::UI_LABEL_DEACTIVE_COLOR;
-        
-        _lineColor.setHex(flDefinition::UI_LINE_COLOR);
-        _normalColor.setHex(flDefinition::UI_NORMAL_COLOR);
-        _overColor.setHex(flDefinition::UI_OVER_COLOR);
-        _activeColor.setHex(flDefinition::UI_ACTIVE_COLOR);
-        
         _dragVector = VERTICALLY;
         _type = HORIZONTALLY;
         
         //------------------------------------------
         track = new flSprite();
         track->buttonMode(true);
-        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         //横
         track->y(0);
         //縦
@@ -58,7 +48,7 @@ namespace fl2d {
         //        _valueText->x(15 -  _uiHeight * 0.5 + _valueText->textHeight() * 0.5);
         _valueText->width(_uiWidth);
         _valueText->autoSize(flTextFieldAutoSize::CENTER);
-        _valueText->textColor(_labelNormalColor);
+        _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _valueText->text("0");
         //横
         _valueText->y(_uiHeight * 0.5 - _valueText->textHeight() * 0.5 - 1);
@@ -339,9 +329,9 @@ namespace fl2d {
     void flNumberDialer::_over() {
         if(track->isMouseDown()) return;
         
-        _valueText->textColor(_labelNormalColor);
+        _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        _drawTrackGraphics(_overColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //--------------------------------------------------------------
@@ -349,7 +339,7 @@ namespace fl2d {
     void flNumberDialer::_out() {
         if(track->isMouseDown()) return;
         
-        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //--------------------------------------------------------------
@@ -361,7 +351,7 @@ namespace fl2d {
         
         //        _valueText->textColor(0x0);
         
-        _drawTrackGraphics(_overColor, _activeColor, 1);
+        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -372,9 +362,9 @@ namespace fl2d {
             return;
         }
         
-        _valueText->textColor(_labelNormalColor);
+        _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        _drawTrackGraphics(_lineColor, _normalColor, 1);
+        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
     }
     
     //==============================================================

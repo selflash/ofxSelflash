@@ -19,11 +19,6 @@ namespace fl2d {
         flSlider* alphaSlider;
         
     protected:
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
         flTextField* _label;
         flTextField* _label1Text;
         flTextField* _label2Text;
@@ -32,11 +27,10 @@ namespace fl2d {
         
         flTextField* _hexText;
         
-        ofFloatColor _colorValue;
+        ofColor _colorValue;
         int _hexValue;
         
     private:
-        
         
     public:
         flColorSlider(float width, bool alpha = true);
@@ -48,10 +42,10 @@ namespace fl2d {
         flTextField* label();
         void label(flTextField* value);
         
-        void textColor(int color);
+//        void textColor(int color);
         
-        virtual ofFloatColor colorValue();
-        virtual void colorValue(ofFloatColor& value, bool dispatch = true);
+        virtual ofColor colorValue();
+        virtual void colorValue(ofColor& value, bool dispatch = true);
         
         virtual int hexValue();
         virtual void hexValue(int value, bool dispatch = true);
@@ -148,8 +142,10 @@ namespace fl2d {
         virtual void _setup();
         virtual void _update();
         virtual void _draw();
-        
+
     private:
+        void _updateColor();
+
         void _eventHandler(flEvent& event);
         
     };

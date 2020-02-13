@@ -33,20 +33,9 @@ namespace fl2d {
     protected:
         
     private:
-        float _labelNormalColor;
-        float _labelOverColor;
-        float _labelActiveColor;
-        float _labelDeactiveColor;
-        
-        ofFloatColor _lineColor;
-        ofFloatColor _normalColor;
-        ofFloatColor _overColor;
-        ofFloatColor _activeColor;
-        ofFloatColor _deactiveColor;
-        
         flGraphics* _graphics;
         
-        ofFloatColor _textColor;
+        ofColor _textColor;
         vector<string> _texts;
         string _text;
         
@@ -123,9 +112,9 @@ namespace fl2d {
         virtual const string& type();
         virtual void type(const string& value);
         
-        int textColor();
+        ofColor textColor();
         void textColor(int value);
-        void textColor(ofFloatColor value);
+        void textColor(const ofColor& value);
         
         string autoSize();
         void autoSize(string value);

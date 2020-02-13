@@ -1,7 +1,6 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-//
 void ofApp::setup() {
     ofBackground(0);
     ofSetWindowTitle("example-UIComponents-1");
@@ -116,13 +115,11 @@ void ofApp::setup() {
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::update() {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::draw() {
     //--------------------------------------
     _count += _speed;
@@ -160,13 +157,12 @@ void ofApp::draw() {
 }
 
 //==============================================================
-// EVENT HANDLER
+// Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void ofApp::_uiComponentsEventHandler(flEvent& event) {
-    cout << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")" << endl;
+    ofLog() << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")";
     
     //    //------------------------------------------
     //    //イベントタイプ
@@ -191,8 +187,7 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         if(button == uiComponents->button001);
         if(button == uiComponents->button002);
         if(button == uiComponents->button003) ofBackground(255, 255, 255, 255);
-        if(button == uiComponents->button004) ofBackground(120, 120, 120, 255);
-        if(button == uiComponents->button005) ofBackground(0, 0, 0, 255);
+        if(button == uiComponents->button004) ofBackground(0, 0, 0, 255);
     };
     
     //マウスアップイベント
@@ -352,55 +347,59 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::keyPressed(int key) {
-    
+//    if(key == ('l')) {
+//        _enabled = !_enabled;
+//        int numChildren = uiComponents->numChildren();
+//        for(int i = 0; i < numChildren; i++) {
+//            flDisplayObject* displayObject = uiComponents->getChildAt(i);
+//
+//            ofLog() << "typeid(displayObject) = " << typeid(displayObject).name();
+//            ofLog() << "typeid(flButton) = " << typeid(flButton).name();
+//            if(typeid(displayObject) == typeid(flButton)) {
+//                ofLog() << "displayObject.name = " << displayObject->name();
+//                ((flButton*)displayObject)->enabled(_enabled);
+//            }
+//        }
+//    }
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::keyReleased(int key) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::mouseMoved(int x, int y ) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::mouseDragged(int x, int y, int button) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::mousePressed(int x, int y, int button) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::mouseReleased(int x, int y, int button) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::windowResized(int w, int h) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::gotMessage(ofMessage msg) {
     
 }
 
 //--------------------------------------------------------------
-//
 void ofApp::dragEvent(ofDragInfo dragInfo) {
     
 }
