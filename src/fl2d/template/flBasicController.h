@@ -831,7 +831,11 @@ namespace fl2d {
         flNumberDialer* dialer125 = NULL; flNumberDialer* dialer126 = NULL; flNumberDialer* dialer127 = NULL; flNumberDialer* dialer128 = NULL; flNumberDialer* dialer129 = NULL;
         flNumberDialer* dialer130 = NULL; flNumberDialer* dialer131 = NULL; flNumberDialer* dialer132 = NULL; flNumberDialer* dialer133 = NULL; flNumberDialer* dialer134 = NULL;
         flNumberDialer* dialer135 = NULL; flNumberDialer* dialer136 = NULL; flNumberDialer* dialer137 = NULL; flNumberDialer* dialer138 = NULL; flNumberDialer* dialer139 = NULL;
-        //ボタン(200)
+		flNumberDialer* dialer140 = NULL; flNumberDialer* dialer141 = NULL; flNumberDialer* dialer142 = NULL; flNumberDialer* dialer143 = NULL; flNumberDialer* dialer144 = NULL;
+		flNumberDialer* dialer145 = NULL; flNumberDialer* dialer146 = NULL; flNumberDialer* dialer147 = NULL; flNumberDialer* dialer148 = NULL; flNumberDialer* dialer149 = NULL;
+		flNumberDialer* dialer150 = NULL; flNumberDialer* dialer151 = NULL; flNumberDialer* dialer152 = NULL; flNumberDialer* dialer153 = NULL; flNumberDialer* dialer154 = NULL;
+		flNumberDialer* dialer155 = NULL; flNumberDialer* dialer156 = NULL; flNumberDialer* dialer157 = NULL; flNumberDialer* dialer158 = NULL; flNumberDialer* dialer159 = NULL;
+		//ボタン(200)
         flNumberDialer* dialer200 = NULL; flNumberDialer* dialer201 = NULL; flNumberDialer* dialer202 = NULL; flNumberDialer* dialer203 = NULL; flNumberDialer* dialer204 = NULL;
         flNumberDialer* dialer205 = NULL; flNumberDialer* dialer206 = NULL; flNumberDialer* dialer207 = NULL; flNumberDialer* dialer208 = NULL; flNumberDialer* dialer209 = NULL;
         flNumberDialer* dialer210 = NULL; flNumberDialer* dialer211 = NULL; flNumberDialer* dialer212 = NULL; flNumberDialer* dialer213 = NULL; flNumberDialer* dialer214 = NULL;
