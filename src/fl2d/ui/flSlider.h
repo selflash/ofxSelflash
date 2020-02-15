@@ -85,9 +85,9 @@ namespace fl2d {
         virtual void _thumbOver();
         virtual void _trackOut();
         virtual void _thumbOut();
-        virtual void _trackDown();
-        virtual void _thumbDown();
-        virtual void _up();
+        virtual void _trackPress();
+        virtual void _thumbPress();
+        virtual void _release();
         
         virtual void _setNormalColor();
         virtual void _setTrackOverColor();

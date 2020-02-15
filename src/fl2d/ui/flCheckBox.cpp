@@ -170,12 +170,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flCheckBox::_down() {
+    void flCheckBox::_press() {
         selected(!selected());
     }
     
     //--------------------------------------------------------------
-    void flCheckBox::_up() {
+    void flCheckBox::_release() {
         if(!_selected) {
             if(isMouseOver()) {
                 _setOverColor();
@@ -295,7 +295,7 @@ namespace fl2d {
             if(event.target() == this) _out();
         }
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _down();
+            if(event.target() == this) _press();
             addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             if(stage()) {
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
@@ -306,7 +306,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             }
-            _up();
+            _release();
         }
     }
     

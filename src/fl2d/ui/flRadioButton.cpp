@@ -24,6 +24,7 @@ namespace fl2d {
 
         //------------------------------------------
         _label = new flTextField();
+        _label->name("flRadioButton.label");
         _label->x(15);
         _label->autoSize(flTextFieldAutoSize::LEFT);
         _label->text("Radio Button");
@@ -163,12 +164,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_down() {
+    void flRadioButton::_press() {
         selected(!selected());
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_up() {
+    void flRadioButton::_release() {
         if(!_selected) {
             if(isMouseOver()) {
                 _setOverColor();
@@ -280,24 +281,34 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRadioButton::_mouseEventHandler(flEvent& event) {
-//        if(debug()) cout << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")" << endl;
+//        ofLog() << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
+        //Roll Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _over();
         }
+        
+        //Roll Out
         if(event.type() == flMouseEvent::MOUSE_OUT) {
             if(event.target() == this) _out();
         }
+        
+        //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _down();
-            addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
-            if(stage()) stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
+            if(event.target() == this) {
+                _press();
+                if(stage()) {
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
+                }
+            }
         }
+        
+        //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            removeEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
-            if(stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
-            //if(event.target() == this) _up();
-            _up();
+            if(stage()) {
+                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
+            }
+            _release();
         }
     }
     

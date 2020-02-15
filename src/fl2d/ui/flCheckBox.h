@@ -73,8 +73,8 @@ namespace fl2d {
     protected:
         virtual void _over();
         virtual void _out();
-        virtual void _down();
-        virtual void _up();
+        virtual void _press();
+        virtual void _release();
 
         virtual void _setNormalColor();
         virtual void _setOverColor();

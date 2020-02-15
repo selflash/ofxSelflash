@@ -192,13 +192,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flRangeSlider::_update() {
         if(bar->isMouseDown()) {
-            _barDown();
+            _barPress();
         }
         if(minThumb->isMouseDown()) {
-            _minThumbDown();
+            _minThumbPress();
         }
         if(maxThumb->isMouseDown()) {
-            _maxThumbDown();
+            _maxThumbPress();
         }
 
         //        cout << "[flRangeSlider]bar->width = " << bar->width() << endl;
@@ -506,7 +506,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_barDown() {
+    void flRangeSlider::_barPress() {
         //------------------------------------------
         //サムの位置の更新
         float temp1, temp2;
@@ -552,8 +552,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_minThumbDown() {
-//        ofLog() << "[flRangeSlider]_thumbDown()";
+    void flRangeSlider::_minThumbPress() {
+//        ofLog() << "[flRangeSlider]_thumbPress()";
 
         //------------------------------------------
         //サムの位置の更新
@@ -599,8 +599,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_maxThumbDown() {
-//        ofLog() << "[flRangeSlider]_maxThumbDown()";
+    void flRangeSlider::_maxThumbPress() {
+//        ofLog() << "[flRangeSlider]_maxThumbPress()";
 
         //------------------------------------------
         //サムの位置の更新
@@ -645,8 +645,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_up() {
-//        ofLog() << "[flRangeSlider]_thumbUp()";
+    void flRangeSlider::_release() {
+//        ofLog() << "[flRangeSlider]_release()";
         if(
            bar->isMouseOver() ||
            minThumb->isMouseOver() ||
@@ -838,16 +838,16 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == bar) {
                 _draggablePoint->x = mouseX() - (minThumb->x() + _thumbWidth);
-                _barDown();
+                _barPress();
             }
             if(event.target() == minThumb) {
                 _draggablePoint->x = mouseX() - (minThumb->x() + _thumbWidth);
 //                _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
-                _minThumbDown();
+                _minThumbPress();
             }
             else if(event.target() == maxThumb) {
                 _draggablePoint->x = mouseX() - maxThumb->x();
-                _maxThumbDown();
+                _maxThumbPress();
             }
 
             if(stage()) {
@@ -886,7 +886,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
             }
-            _up();
+            _release();
 
 //            if(event.currentTarget() == stage()) {
 //                _draggablePoint->x = 0;

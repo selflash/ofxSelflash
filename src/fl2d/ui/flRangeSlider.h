@@ -82,10 +82,10 @@ namespace fl2d {
         virtual void _over();
         virtual void _barOut();
         virtual void _thumbOut();
-        virtual void _barDown();
-        virtual void _minThumbDown();
-        virtual void _maxThumbDown();
-        virtual void _up();
+        virtual void _barPress();
+        virtual void _minThumbPress();
+        virtual void _maxThumbPress();
+        virtual void _release();
         
         virtual void _setNormalColor();
         virtual void _setOverColor();

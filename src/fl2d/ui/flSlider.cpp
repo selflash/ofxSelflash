@@ -50,7 +50,7 @@ namespace fl2d {
         //------------------------------------------
         //バーとつまみのコンテナ
         track = new flSprite();
-        track->name("track");
+        track->name("flSlider.track");
         track->x(0);
         track->y(0);
         track->buttonMode(true);
@@ -63,13 +63,13 @@ namespace fl2d {
         //------------------------------------------
         //バー
         bar = new flSprite();
-        bar->name("bar");
+        bar->name("flSlider.bar");
         bar->mouseEnabled(false);
         track->addChild(bar);
         
         //つまみ
         thumb = new flSprite();
-        thumb->name("thumb");
+        thumb->name("flSlider.thumb");
         g = thumb->graphics();
         g->clear();
         g->beginFill(_normalBarColor.getHex());
@@ -86,6 +86,7 @@ namespace fl2d {
         
         //------------------------------------------
         _valueText = new flTextField();
+        _valueText->name("flSlider.velueText");
         _valueText->x(0);
         _valueText->width(_trackWidth);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
@@ -488,7 +489,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_trackDown() {
+    void flSlider::_trackPress() {
         //------------------------------------------
         float temp = mouseX() - _draggablePoint->x;
         if(temp < 0) temp = 0;
@@ -529,16 +530,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_thumbDown() {
-        _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
-        
+    void flSlider::_thumbPress() {
         _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
         _drawBarGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, _activeBarColor, 1);
     }
     
     //--------------------------------------------------------------
-    void flSlider::_up() {
-        //ofLog() << "[flSlider]_trackUp()";
+    void flSlider::_release() {
+        //ofLog() << "[flSlider]_release()";
 
         if(track->isMouseOver()) {
 //            _valueText->visible(true);
@@ -664,7 +663,8 @@ namespace fl2d {
             
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
-                    _thumbDown();
+                    _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
+                    _thumbPress();
                     addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
@@ -672,7 +672,7 @@ namespace fl2d {
                 }
             } else {
                 if(event.target() == track) {
-                    _trackDown();
+                    _trackPress();
 //                    addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
@@ -687,7 +687,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
             }
-            _up();
+            _release();
         }
     }
     

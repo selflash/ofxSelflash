@@ -17,16 +17,16 @@ namespace fl2d {
         
     private:
         flTextField* _label;
+        flTextField* _valueText;
         
+        float _maxDistance = 0.0;
+
         //------------------------------------------
         float _xValue;
         float _yValue;
-        
         ofPoint* _center;
-        
         float _areaRadius;
         float _leverRadius;
-        
         ofPoint* _draggablePoint;
         //------------------------------------------
         
@@ -62,17 +62,22 @@ namespace fl2d {
         virtual void _update();
         virtual void _draw();
         
-        virtual void _areaOver();
-        virtual void _areaOut();
-        virtual void _areaPress();
-        virtual void _areaRelease();
+        virtual void _leverOver();
+        virtual void _leverOut();
+        virtual void _leverPress();
+        virtual void _leverRelease();
+        virtual void _leverMove();
         
-        virtual void _ballOver();
-        virtual void _ballOut();
-        virtual void _ballPress();
-        virtual void _ballRelease();
-        virtual void _ballMove();
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
         
+        virtual void _drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        virtual void _drawLeverGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
     private:
         void _mouseEventHandler(flEvent& event);
     };
