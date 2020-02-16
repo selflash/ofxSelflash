@@ -52,10 +52,7 @@ void ofApp::setup() {
     uiComponents->joystick1003->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1004->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1005->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1006->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1007->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    uiComponents->joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ジョイスティック2D
     uiComponents->joystick2001->addEventListener(flJoyStick2Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //ナンバーダイアラー

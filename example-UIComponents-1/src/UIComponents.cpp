@@ -425,7 +425,7 @@ void UIComponents::_setup() {
     
     //    marginLeft = 10 + 150 + 10 + 10;
     //    marginTop = 275;
-    spacing = 22;
+    spacing = 18 + 5 + 5;
     lineSpacing = 22;
     
     joystick1001 = new flJoyStick1(100);
@@ -460,20 +460,8 @@ void UIComponents::_setup() {
     joystick1005->y(marginTop + lineSpacing * 1);
     joystick1005->type(flJoyStick1::HORIZONTALLY);
     addChild(joystick1005);
-    joystick1006 = new flJoyStick1(100);
-    joystick1006->label(label);
-    joystick1006->x(marginLeft + spacing * 5);
-    joystick1006->y(marginTop + lineSpacing * 1);
-    joystick1006->type(flJoyStick1::HORIZONTALLY);
-    addChild(joystick1006);
-    joystick1007 = new flJoyStick1(100);
-    joystick1007->label(label);
-    joystick1007->x(marginLeft + spacing * 6);
-    joystick1007->y(marginTop + lineSpacing * 1);
-    joystick1007->type(flJoyStick1::HORIZONTALLY);
-    addChild(joystick1007);
-    //cout << joystick1007->y() + joystick1007->height() << endl;
-    
+    ofLog() << "joystick1005->y() : " << joystick1005->y() + joystick1005->height();
+
     marginLeft = 10 + 150 + 10 + 10;
     marginTop = 470;
     spacing = 22;
@@ -486,14 +474,7 @@ void UIComponents::_setup() {
     joystick1101->type(flJoyStick1::VERTICALLY);
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1101);
-    joystick1102 = new flJoyStick1(150);
-    joystick1102->label(label);
-    joystick1102->x(marginLeft + spacing * 0);
-    joystick1102->y(marginTop + lineSpacing * 1);
-    joystick1102->type(flJoyStick1::VERTICALLY);
-    joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
-    addChild(joystick1102);
-    //    cout << joystick1102->y() + joystick1102->height() << endl;
+    ofLog() << "joystick1101->y() : " << joystick1101->y() + joystick1101->height();
     //--------------------------------------
     
     //--------------------------------------

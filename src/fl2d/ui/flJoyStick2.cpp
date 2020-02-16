@@ -22,18 +22,13 @@ namespace fl2d {
         _leverRadius = leverDiameter * 0.5;
         _maxDistance = (_areaRadius - _leverRadius - 1);
         
-        _center = new ofPoint(_areaRadius, _areaRadius);
+        _center = ofPoint(_areaRadius, _areaRadius);
         
         flGraphics* g;
         
         //------------------------------------------
         g = graphics();
         g->enabledSmoothing(true);
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        g->drawCircle(_center->x, _center->y, _areaRadius);
-        g->endFill();
         //------------------------------------------
         
         //------------------------------------------
@@ -41,15 +36,8 @@ namespace fl2d {
         lever->name("flJoyStick2.lever");
         g = lever->graphics();
         g->enabledSmoothing(true);
-        g->clear();
-        g->beginFill(0xff0000, 0);
-        g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-        g->drawCircle(0, 0, _leverRadius);
-        g->endFill();
-        lever->x(_center->x);
-        lever->y(_center->y);
+        lever->x(_center.x);
+        lever->y(_center.y);
         lever->useHandCursor(true);
         lever->addEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
         lever->addEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
@@ -62,24 +50,20 @@ namespace fl2d {
         //------------------------------------------
         _valueText = new flTextField();
         _valueText->name("flJoyStick2.velueText");
-        _valueText->x(_center->x - 30);
-        _valueText->y(_center->y - 20);
+        _valueText->x(_center.x - 30);
+        _valueText->y(_center.y - 20);
         _valueText->width(areaDiameter);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
         _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
         _valueText->mouseEnabled(false);
-        //        _valueText->visible(false);
-//        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 1);
         addChild(_valueText);
         //------------------------------------------
         
-        _draggablePoint = new ofPoint(0, 0);
-
         //------------------------------------------
         _flgX = false;
         _flgY = false;
-        _targetX = _center->x;
-        _targetY = _center->y;
+        _targetX = _center.x;
+        _targetY = _center.y;
         //------------------------------------------
         
         _enabled = true;
@@ -97,9 +81,6 @@ namespace fl2d {
         _areaRadius = 0.0;
         _leverRadius = 0.0;
         
-        delete _center;
-        _center = NULL;
-        
         lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick2::_mouseEventHandler);
@@ -107,9 +88,6 @@ namespace fl2d {
         //        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
         delete lever;
         lever = NULL;
-        
-        delete _draggablePoint;
-        _draggablePoint = NULL;
         
         _flgX = false;
         _flgY = false;
@@ -136,17 +114,16 @@ namespace fl2d {
         
         if(lever->isMouseDown()) {
             //------------------------------------------
-            float tx = mouseX() - _draggablePoint->x;
-            float ty = mouseY() - _draggablePoint->y;
-            float shiftX = tx - _center->x;
-            float shiftY = ty - _center->y;
+            float tx = mouseX() - _draggablePoint.x;
+            float ty = mouseY() - _draggablePoint.y;
+            float shiftX = tx - _center.x;
+            float shiftY = ty - _center.y;
 
-            //Easing
-            float distance = _center->distance(ofPoint(tx, ty));
+            float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance) {
                 float n = _maxDistance / distance;
-                tx = _center->x + (shiftX * n);
-                ty = _center->y + (shiftY * n);
+                tx = _center.x + (shiftX * n);
+                ty = _center.y + (shiftY * n);
             }
 
             lever->x(tx);
@@ -157,8 +134,8 @@ namespace fl2d {
             //Update value.
             float preXValue = _xValue;
             float preYValue = _yValue;
-            _xValue = (lever->x() - _center->x) / _maxDistance;
-            _yValue = -1 * (lever->y() - _center->y) / _maxDistance;
+            _xValue = (lever->x() - _center.x) / _maxDistance;
+            _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
             if(_yValue == -0) _yValue = 0;
             if(preXValue != _xValue || preYValue != _yValue) {
                 _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
@@ -203,17 +180,16 @@ namespace fl2d {
             //------------------------------------------
             float tx = _targetX;
             float ty = _targetY;
-            if(!_flgX) tx = lever->x() + (_center->x - lever->x()) * 0.4f;
-            if(!_flgY) ty = lever->y() + (_center->y - lever->y()) * 0.4f;
-            float shiftX = tx - _center->x;
-            float shiftY = ty - _center->y;
+            if(!_flgX) tx = lever->x() + (_center.x - lever->x()) * 0.4f;
+            if(!_flgY) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
+            float shiftX = tx - _center.x;
+            float shiftY = ty - _center.y;
 
-            //Easing
-            float distance = _center->distance(ofPoint(tx, ty));
+            float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance){
                 float n = _maxDistance / distance;
-                tx = _center->x + (shiftX * n);
-                ty = _center->y + (shiftY * n);
+                tx = _center.x + (shiftX * n);
+                ty = _center.y + (shiftY * n);
             }
 
             lever->x(tx);
@@ -224,8 +200,8 @@ namespace fl2d {
             //Update value.
             float preXValue = _xValue;
             float preYValue = _yValue;
-            _xValue = (lever->x() - _center->x) / _maxDistance;
-            _yValue = -1 * (lever->y() - _center->y) / _maxDistance;
+            _xValue = (lever->x() - _center.x) / _maxDistance;
+            _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
             if(_yValue == -0) _yValue = 0;
             if(preXValue != _xValue || preYValue != _yValue) {
                 _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
@@ -273,37 +249,37 @@ namespace fl2d {
             }
             //------------------------------------------
         } else {
-            //------------------------------------------
-            float distanceX = _center->x - lever->x();
-            float distanceY = _center->y - lever->y();
+            //Easing
+            float distanceX = _center.x - lever->x();
+            float distanceY = _center.y - lever->y();
             if(
                -0.5f < distanceX && distanceX < 0.5f &&
                -0.5f < distanceY && distanceY < 0.5f
                ) {
-                lever->x(_center->x);
-                lever->y(_center->y);
+                lever->x(_center.x);
+                lever->y(_center.y);
                 
                 //------------------------------------------
                 //Update value.
                 float preXValue = _xValue;
                 float preYValue = _yValue;
-                _xValue = (lever->x() - _center->x) / _maxDistance;
-                _yValue = -1 * (lever->y() - _center->y) / _maxDistance;
+                _xValue = (lever->x() - _center.x) / _maxDistance;
+                _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
                 if(_yValue == -0) _yValue = 0;
                 if(preXValue != _xValue || preYValue != _yValue) {
                     _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
                 }
                 //------------------------------------------
             } else {
-                lever->x(lever->x() + (_center->x - lever->x()) * 0.4f);
-                lever->y(lever->y() + (_center->y - lever->y()) * 0.4f);
+                lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
+                lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
 
                 //------------------------------------------
                 //Update value.
                 float preXValue = _xValue;
                 float preYValue = _yValue;
-                _xValue = (lever->x() - _center->x) / _maxDistance;
-                _yValue = -1 * (lever->y() - _center->y) / _maxDistance;
+                _xValue = (lever->x() - _center.x) / _maxDistance;
+                _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
                 if(_yValue == -0) _yValue = 0;
                 if(preXValue != _xValue || preYValue != _yValue) {
                     _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
@@ -325,7 +301,6 @@ namespace fl2d {
                 dispatchEvent(event);
                 //------------------------------------------
             }
-            //------------------------------------------
         }
         
         _flgX = false;
@@ -399,7 +374,7 @@ namespace fl2d {
             g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         }
-        g->drawCircle(_center->x, _center->y, _areaRadius);
+        g->drawCircle(_center.x, _center.y, _areaRadius);
         g->endFill();
         //------------------------------------------
         
@@ -517,9 +492,9 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
-        g->drawCircle(_center->x, _center->y, _areaRadius);
+        g->drawCircle(_center.x, _center.y, _areaRadius);
         g->lineStyle(1, 0xffffff);
-        g->moveTo(_center->x, _center->y);
+        g->moveTo(_center.x, _center.y);
         g->lineTo(lever->x(), lever->y());
         g->endFill();
     }
@@ -557,8 +532,8 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == lever){
-                _draggablePoint->x = mouseX() - lever->x();
-                _draggablePoint->y = mouseY() - lever->y();
+                _draggablePoint.x = mouseX() - lever->x();
+                _draggablePoint.y = mouseY() - lever->y();
                 _leverPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick2::_mouseEventHandler);
@@ -568,8 +543,8 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            _draggablePoint->x = 0;
-            _draggablePoint->y = 0;
+            _draggablePoint.x = 0;
+            _draggablePoint.y = 0;
             _leverRelease();
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick2::_mouseEventHandler);

@@ -10,74 +10,89 @@
 namespace fl2d {
     
     class flJoyStick1 : public flSprite {
+        public:
+            //水平
+            static string HORIZONTALLY;
+            //垂直
+            static string VERTICALLY;
         
-    public:
-        //水平
-        static string HORIZONTALLY;
-        //垂直
-        static string VERTICALLY;
+            flSprite* lever;
         
-        flSprite* lever;
-    protected:
+        protected:
         
-    private:
-        flTextField* _label;
+        private:
+            flTextField* _label;
+            flTextField* _valueText;
+            string _type;
+
+            float _maxDistance;
+
+            //------------------------------------------
+            float _value;
+            ofPoint _center;
+            float _uiLength;
+            float _leverRadius;
+            ofPoint _draggablePoint;
+            //------------------------------------------
         
-        string _type;
+            //------------------------------------------
+            bool _flg;
+            float _targetValue;
+            //------------------------------------------
         
-        //------------------------------------------
-        float _value;
+            bool _enabled;
+
+        public:
+            flJoyStick1(float length = 100, float leverDiameter = 18);
+            virtual ~flJoyStick1();
         
-        ofPoint _center;
+            flTextField* label();
+            void label(flTextField* value);
         
-        float _uiLength;
-        float _leverRadius;
+            string type();
+            void type(string value);
         
-        ofPoint _draggablePoint;
-        //------------------------------------------
+            float value();
         
-        //------------------------------------------
-        bool _flg;
-        float _targetValue;
-        //------------------------------------------
+            void moveLever(float value = 1.0);
         
-        bool _enabled;
+            bool enabled();
+            void enabled(bool value);
         
-    public:
-        flJoyStick1(float length = 100, float leverDiameter = 14);
-        virtual ~flJoyStick1();
+        protected:
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
         
-        flTextField* label();
-        void label(flTextField* value);
+    //        virtual void _areaOver();
+    //        virtual void _areaOut();
+    //        virtual void _areaPress();
+    //        virtual void _areaRelease();
+    //
+    //        virtual void _ballOver();
+    //        virtual void _ballOut();
+    //        virtual void _ballPress();
+    //        virtual void _ballRelease();
+    //        virtual void _ballMove();
         
-        string type();
-        void type(string value);
+            virtual void _leverOver();
+            virtual void _leverOut();
+            virtual void _leverPress();
+            virtual void _leverRelease();
+            virtual void _leverMove();
         
-        float value();
+            virtual void _setNormalColor();
+            virtual void _setOverColor();
+            virtual void _setSelectedOverColor();
+            virtual void _setActiveColor();
+            virtual void _setDisableNormalColor();
+            virtual void _setDisableActiveColor();
         
-        void moveLever(float value = 1.0);
+            virtual void _drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+            virtual void _drawLeverGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
         
-        bool enabled();
-        void enabled(bool value);
-        
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
-        
-        virtual void _areaOver();
-        virtual void _areaOut();
-        virtual void _areaPress();
-        virtual void _areaRelease();
-        
-        virtual void _ballOver();
-        virtual void _ballOut();
-        virtual void _ballPress();
-        virtual void _ballRelease();
-        virtual void _ballMove();
-        
-    private:
-        void _mouseEventHandler(flEvent& event);
+        private:
+            void _mouseEventHandler(flEvent& event);
     };
     
 }
