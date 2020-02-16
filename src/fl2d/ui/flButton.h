@@ -21,6 +21,7 @@ namespace fl2d {
         float _uiHeight;
         
         flTextField* _label;
+        flTextField* _buttonLabel;
         string _labelTextNotSelected;
         string _labelTextSelected;
         
@@ -39,7 +40,8 @@ namespace fl2d {
         virtual ~flButton();
         
         flTextField* label();
-        
+        void label(flTextField* value);
+
         string labelText();
         void labelText(string value, string state = "default");
         
@@ -101,6 +103,8 @@ namespace fl2d {
         virtual void _setDisableNormalColor();
         virtual void _setDisableActiveColor();
         
+        virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
     private:
         void _mouseEventHandler(flEvent& event);
     };

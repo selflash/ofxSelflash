@@ -101,7 +101,7 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _minValueText->text(ofToString(_minValue));
         _minValueText->mouseEnabled(false);
-        _minValueText->y(_trackHeight * 0.5 - _minValueText->textHeight() * 0.5);
+        _minValueText->y(0);
         addChild(_minValueText);
         
         _maxValueText = new flTextField();
@@ -111,7 +111,7 @@ namespace fl2d {
         _maxValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _maxValueText->text(ofToString(_maxValue));
         _maxValueText->mouseEnabled(false);
-        _maxValueText->y(_trackHeight * 0.5 - _maxValueText->textHeight() * 0.5);
+        _maxValueText->y(0);
         addChild(_maxValueText);
         //------------------------------------------
         
@@ -882,7 +882,6 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-//            removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
             }

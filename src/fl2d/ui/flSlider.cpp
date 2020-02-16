@@ -93,7 +93,7 @@ namespace fl2d {
         _valueText->text(ofToString(_value));
         _valueText->mouseEnabled(false);
 //        _valueText->visible(false);
-        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 1);
+        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 0);
         addChild(_valueText);
         //------------------------------------------
         
@@ -148,39 +148,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_update() {
         if(thumb->isMouseDown()) {
-            //------------------------------------------
-            float temp = mouseX() - _draggablePoint->x;
-            if(temp < 0) temp = 0;
-            if(temp > _trackWidth) temp = _trackWidth;
-            _percent = temp / _trackWidth;
-            //------------------------------------------
-            //------------------------------------------
-            thumb->x(temp - _thumbWidth * 0.5);
-            //------------------------------------------
-            //------------------------------------------
-            if(_max > _min) {
-                _value = (_range * _percent) + _min;
-                if(_roundEnabled) _value = flmath::roundd((_range * _percent) + _min);
-            } else {
-                _value = _min - (_range * _percent);
-                if(_roundEnabled) _value = flmath::roundd(_min - (_range * _percent));
-            }
-            _valueText->text(ofToString(_value));
-            _barWidth = thumb->x() + _thumbWidth * 0.5;
-            //------------------------------------------
-            
-            //------------------------------------------
-            _setActiveColor();
-            //_drawBarGraphics(_overBarColor, _activeBarColor, 1);
-            //------------------------------------------
-
-            //------------------------------------------
-            //イベント
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
-            event->data<float>(_value);
-            dispatchEvent(event);
-            //------------------------------------------
+            _press();
         }
     }
     
@@ -450,10 +418,7 @@ namespace fl2d {
         if(track->isMouseDown()) return;
         if(thumb->isMouseDown()) return;
 
-//        _valueText->visible(true);
         _setTrackOverColor();
-        
-//        dispatchEvent(new flButtonEvent(flButtonEvent::ROLL_OVER));
     }
     
     //--------------------------------------------------------------
@@ -461,8 +426,6 @@ namespace fl2d {
         if(track->isMouseDown()) return;
         
         _setThumbOverColor();
-        
-//        dispatchEvent(new flButtonEvent(flButtonEvent::ROLL_OVER));
     }
 
     //--------------------------------------------------------------
@@ -470,7 +433,6 @@ namespace fl2d {
         if(track->isMouseDown()) return;
         if(thumb->isMouseDown()) return;
         
-//        _valueText->visible(false);
         _setNormalColor();
     }
     
@@ -480,59 +442,55 @@ namespace fl2d {
         if(thumb->isMouseDown()) return;
         
         if(track->isMouseOver()) {
-//            _valueText->visible(true);
             _setTrackOverColor();
         } else {
-//            _valueText->visible(false);
             _setNormalColor();
         }
     }
-    
+
     //--------------------------------------------------------------
-    void flSlider::_trackPress() {
+    void flSlider::_press() {
+        float preValue = _value;
+        
         //------------------------------------------
         float temp = mouseX() - _draggablePoint->x;
         if(temp < 0) temp = 0;
         if(temp > _trackWidth) temp = _trackWidth;
         _percent = temp / _trackWidth;
-
-        thumb->x(temp - _thumbWidth * 0.5);
-
-        //------------------------------------------
-//        _value = _range * _percent + _min;
-//        if(_roundEnabled) _value = MathUtil::roundd(_range * _percent + _min);
-        if(_max > _min) {
-            _value = (_range * _percent) + _min;
-            if(_roundEnabled) _value = flmath::roundd((_range * _percent) + _min);
-        } else {
-            _value = _min - (_range * _percent);
-            if(_roundEnabled) _value = flmath::roundd(_min - (_range * _percent));
-        }
-        _valueText->text(ofToString(_value));
-        //------------------------------------------
-
-        _barWidth = thumb->x() + _thumbWidth * 0.5;
-
-        //------------------------------------------
-//        _valueText->textColor(0x999999);
-//        _drawBarGraphics(_overBarColor, _activeBarColor, 1);
-        _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, _activeBarColor, 1);
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-        event->_target = this;
-        event->data<float>(_value);
-        dispatchEvent(event);
+        thumb->x(temp - _thumbWidth * 0.5);
         //------------------------------------------
-    }
-    
-    //--------------------------------------------------------------
-    void flSlider::_thumbPress() {
-        _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, _activeBarColor, 1);
+        
+        //------------------------------------------
+        if(_max > _min) {
+            _value = (_range * _percent) + _min;
+        } else {
+            _value = _min - (_range * _percent);
+        }
+        if(_roundEnabled) _value = flmath::roundd(_value);
+        
+        _barWidth = thumb->x() + _thumbWidth * 0.5;
+        //------------------------------------------
+        
+        //------------------------------------------
+        _setActiveColor();
+        //------------------------------------------
+        
+        //------------------------------------------
+        if(preValue != _value) {
+            _valueText->text(ofToString(_value, 2));
+            
+            //------------------------------------------
+            //イベント
+            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
+            event->_target = this;
+            event->data<float>(_value);
+            dispatchEvent(event);
+            //------------------------------------------
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -540,17 +498,15 @@ namespace fl2d {
         //ofLog() << "[flSlider]_release()";
 
         if(track->isMouseOver()) {
-//            _valueText->visible(true);
             _setTrackOverColor();
         } else {
-//            _valueText->visible(false);
             _setNormalColor();
         }
     }
 
     //--------------------------------------------------------------
     void flSlider::_setNormalColor() {
-//        _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 
@@ -560,6 +516,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_setTrackOverColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawTrackGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -568,6 +526,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_setThumbOverColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
 
         _drawTrackGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -588,6 +548,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_setActiveColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
 
         _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -610,9 +572,9 @@ namespace fl2d {
     void flSlider::_drawTrackGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
         flGraphics* g = track->graphics();
         g->clear();
-        g->beginFill(0xff0000, 0);
+        g->beginFill(0xff0000, 0.0);
 //        g->drawRect(-10, 0, _trackWidth + 20, _trackHeight);
-        g->drawRect(-5, 0, _trackWidth + 10, _trackHeight);
+        g->drawRect(-6, 0, _trackWidth + 12, _trackHeight);
         g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex());
         g->drawRect(0, 0, _trackWidth, _trackHeight);
@@ -664,16 +626,14 @@ namespace fl2d {
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
                     _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
-                    _thumbPress();
-                    addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
+                    _press();
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     }
                 }
             } else {
                 if(event.target() == track) {
-                    _trackPress();
-//                    addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
+                    _press();
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     }
@@ -683,7 +643,6 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-//            removeEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
             }

@@ -147,7 +147,8 @@ namespace fl2d {
         void _updateColor();
 
         void _eventHandler(flEvent& event);
-        
+        void _mouseEventHandler(flEvent& event);
+
     };
     
 }

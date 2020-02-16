@@ -26,15 +26,17 @@ namespace fl2d {
         _labelTextNotSelected = "";
         _labelTextSelected = "";
         
+        _label = NULL;
+        
         //------------------------------------------
-        _label = new flTextField();
-        _label->x(0);
-        _label->width(_uiWidth);
-        _label->autoSize(flTextFieldAutoSize::CENTER);
-        _label->text("Button");
-        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 1);
-        _label->mouseEnabled(false);
-        addChild(_label);
+        _buttonLabel = new flTextField();
+        _buttonLabel->x(0);
+        _buttonLabel->width(_uiWidth);
+        _buttonLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _buttonLabel->text("Button");
+        _buttonLabel->y(floor(_uiHeight * 0.5 - _buttonLabel->textHeight() * 0.5));
+        _buttonLabel->mouseEnabled(false);
+        addChild(_buttonLabel);
         //------------------------------------------
 
         _setNormalColor();
@@ -59,9 +61,8 @@ namespace fl2d {
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flButton::_mouseEventHandler);
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
         
-        
-        delete _label;
-        _label = NULL;
+        delete _buttonLabel;
+        _buttonLabel = NULL;
         
         _toggleEnabled = false;
         _enabled = false;
@@ -74,6 +75,8 @@ namespace fl2d {
         
         _labelTextNotSelected = "";
         _labelTextSelected = "";
+        
+        _label = NULL;
     }
     
     //==============================================================
@@ -86,9 +89,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flTextField* flButton::label() { return _label; }
-    
+    void flButton::label(flTextField* value) { _label = value; }
+
     //--------------------------------------------------------------
-    string flButton::labelText() { return _label->text(); }
+    string flButton::labelText() { return _buttonLabel->text(); }
     void flButton::labelText(string value, string state) {
         if(state == "default") {
             _labelTextNotSelected = value;
@@ -102,9 +106,9 @@ namespace fl2d {
 		}
         
         if(_selected) {
-            _label->text(_labelTextSelected);
+            _buttonLabel->text(_labelTextSelected);
         } else {
-            _label->text(_labelTextNotSelected);
+            _buttonLabel->text(_labelTextNotSelected);
         }
         
         _updateRect();
@@ -121,9 +125,9 @@ namespace fl2d {
         _selected = value;
 
         if(!_selected) {
-            _label->text(_labelTextNotSelected);
+            _buttonLabel->text(_labelTextNotSelected);
         } else {
-            _label->text(_labelTextSelected);
+            _buttonLabel->text(_labelTextSelected);
         }
         
         if(_enabled) {
@@ -179,9 +183,9 @@ namespace fl2d {
 		flGraphics* g;
 		if (_enabled) {
 			if (_selected) {
-				_label->text(_labelTextSelected);
+				_buttonLabel->text(_labelTextSelected);
 				if (isMouseOver()) {
-					_label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+					_buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
 					g = graphics();
 					g->clear();
 					g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
@@ -190,7 +194,7 @@ namespace fl2d {
 					g->endFill();
 				}
 				else {
-					_label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 					g = graphics();
 					g->clear();
 					g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
@@ -200,9 +204,9 @@ namespace fl2d {
 				}
 			}
 			else {
-				_label->text(_labelTextNotSelected);
+				_buttonLabel->text(_labelTextNotSelected);
 				if (isMouseOver()) {
-					_label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 					g = graphics();
 					g->clear();
 					g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
@@ -211,7 +215,7 @@ namespace fl2d {
 					g->endFill();
 				}
 				else {
-					_label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 					g = graphics();
 					g->clear();
 					g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
@@ -223,8 +227,8 @@ namespace fl2d {
 		}
 		else {
 			if (_selected) {
-				_label->text(_labelTextSelected);
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+				_buttonLabel->text(_labelTextSelected);
+                _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
                 g = graphics();
                 g->clear();
                 g->lineStyle(1, flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR.getHex());
@@ -234,8 +238,8 @@ namespace fl2d {
 			}
 			else
             {
-				_label->text(_labelTextNotSelected);
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+				_buttonLabel->text(_labelTextNotSelected);
+                _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
                 g = graphics();
                 g->clear();
                 g->lineStyle(1, flDefinition::UI_LINE_DISABLE_NORMAL_COLOR.getHex());
@@ -316,7 +320,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setNormalColor() {
-        _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        
+        _buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -328,7 +334,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setOverColor() {
-        _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+
+        _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -340,7 +348,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setSelectedOverColor() {
-        _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+
+        _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -352,7 +362,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setActiveColor() {
-        _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+
+        _buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -364,7 +376,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setDisableNormalColor() {
-        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+
+        _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -376,7 +390,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_setDisableActiveColor() {
-        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+
+        _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
         flGraphics* g = graphics();
         g->clear();
@@ -384,6 +400,11 @@ namespace fl2d {
         g->beginFill(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
         g->drawRect(0, 0, _uiWidth, _uiHeight);
         g->endFill();
+    }
+    
+    //--------------------------------------------------------------
+    void flButton::_drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
+        
     }
     
     //==============================================================

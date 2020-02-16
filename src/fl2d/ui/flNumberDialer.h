@@ -18,20 +18,20 @@ namespace fl2d {
         //垂直
         static string VERTICALLY;
         
-        flSprite* track;
-        
     protected:
         
     private:
+        flSprite* _track;
+
+        flTextField* _label;
+        flTextField* _valueText;
+
         float _uiWidth;
         float _uiHeight;
-        
-        flTextField* _label;
         
         string _type;
         string _dragVector;
         
-        flTextField* _valueText;
         float _value;
         float _tempValue;
         float _stepValue;
@@ -43,8 +43,10 @@ namespace fl2d {
         bool _roundEnabled;
         bool _invertEnabled;
         
-        ofPoint* _startPos;
+        ofPoint _startPos;
         
+        bool _enabled;
+
     public:
         flNumberDialer(float width = 100, float height = 18);
         virtual ~flNumberDialer();
@@ -79,17 +81,27 @@ namespace fl2d {
         bool invertEnabled();
         void invertEnabled(bool value);
         
+//        bool enabled();
+//        void enabled(bool value);
+
     protected:
-        //virtual void _setup();
+        virtual void _setup();
         virtual void _update();
-        //virtual void _draw();
-        
-        virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
-        
+        virtual void _draw();
+
         virtual void _over();
         virtual void _out();
         virtual void _press();
         virtual void _release();
+
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
+
+        virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
         
     private:
         void _mouseEventHandler(flEvent& event);

@@ -69,12 +69,12 @@ namespace fl2d {
         flTextField* label();
         void label(flTextField* value);
         
-        string itemLabelText(int index) {
+        inline string itemLabelText(int index) {
             if(index < 0 || index > _buttonList.size() - 1) return "";
             
             return _itemList[index]->getProperty<string>("label");
         }
-        void itemLabelText(string value, int index) {
+        inline void itemLabelText(string value, int index) {
             if(index < 0 || index > _buttonList.size() - 1) return;
             
             _buttonList[index]->labelText(value);
@@ -82,7 +82,7 @@ namespace fl2d {
         }
         
         template <class T>
-        void addItem(string label, const T& value) {
+        inline void addItem(string label, const T& value) {
             //--------------------------------------
             flButton* button = new flButton(_dropdownWidth);
             button->labelText(label);
@@ -136,7 +136,7 @@ namespace fl2d {
             }
         }
         
-        void removeItemByIndex(int index) {
+        inline void removeItemByIndex(int index) {
             //--------------------------------------
             //children()の箇所はリファクタリングとかで外に出したらダメ
             if(index < 0 || index > _buttonList.size() - 1) return;

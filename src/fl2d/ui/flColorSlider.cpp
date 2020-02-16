@@ -38,6 +38,7 @@ namespace fl2d {
         redSlider->value(255);
         redSlider->roundEnabled(true);
         redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
+        redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(redSlider);
         //緑
         greenSlider = new flSlider(width, 0, 255);
@@ -527,7 +528,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flTextField* flColorSlider::label() { return _label; }
-    void flColorSlider::label(flTextField* value) { _label = value; }
+    void flColorSlider::label(flTextField* value) {
+        _label = value;
+        redSlider->label(_label);
+        greenSlider->label(_label);
+        blueSlider->label(_label);
+        if(alphaSlider != NULL) alphaSlider->label(_label);
+    }
     
     //--------------------------------------------------------------
     //

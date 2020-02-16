@@ -114,15 +114,12 @@ namespace fl2d {
     //--------------------------------------------------------------
     //
     flTextField* flVec2Slider::label() { return _label; }
-    void flVec2Slider::label(flTextField* value) { _label = value; }
-    
-    //--------------------------------------------------------------
-    //
-    void flVec2Slider::textColor(int color) {
-        _label1Text->textColor(color);
-        _label2Text->textColor(color);
+    void flVec2Slider::label(flTextField* value) {
+        _label = value;
+        xSlider->label(_label);
+        ySlider->label(_label);
     }
-    
+
     //--------------------------------------------------------------
     //
     ofVec2f flVec2Slider::vec2Value() { return _vec2Value; }

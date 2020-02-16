@@ -62,10 +62,10 @@ namespace fl2d {
         
         //------------------------------------------
         _valueText = new flTextField();
-        _valueText->name("flJoyStick2.velueText");
+        _valueText->name("flJoyStick1.velueText");
         _valueText->x(2);
-        _valueText->y(-2);
-        _valueText->width(_uiLength - 2);
+        _valueText->y(0);
+        _valueText->width(_uiLength - 4);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
         _valueText->text(ofToString(_value, 2));
         _valueText->mouseEnabled(false);
@@ -125,13 +125,15 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick1::_setup() {
-        //ofLog() << "[SimpleSlider]setup()";
+        //ofLog() << "[flJoyStick1]_setup()";
     }
     
     //--------------------------------------------------------------
     void flJoyStick1::_update() {
-        //ofLog() << "isMouseDown" << lever->isMouseDown();
-        
+        //ofLog() << "[flJoyStick1]_update()";
+
+        float preValue = _value;
+
         if(lever->isMouseDown()) {
             //------------------------------------------
             //水平
@@ -149,11 +151,7 @@ namespace fl2d {
                 
                 //------------------------------------------
                 //Update value.
-                float preValue = _value;
                 _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                if(preValue != _value) {
-                    _valueText->text(ofToString(_value, 2));
-                }
                 //------------------------------------------
             }
             //垂直
@@ -171,46 +169,48 @@ namespace fl2d {
                 
                 //------------------------------------------
                 //Update value.
-                float preValue = _value;
                 _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                if(preValue != _value) {
-                    _valueText->text(ofToString(_value, 2));
-                }
                 //------------------------------------------
             }
             //------------------------------------------
             
             //------------------------------------------
-            flJoyStick1Event* event;
-            event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-            event->__value = _value;
-            dispatchEvent(event);
-            
-            //水平
-            if(_type == VERTICALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
-                    event->__value = _value;
-                    dispatchEvent(event);
+            if(preValue != _value) {
+                _valueText->text(ofToString(_value, 2));
+                
+                //------------------------------------------
+                flJoyStick1Event* event;
+                event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+                event->__value = _value;
+                dispatchEvent(event);
+                
+                //水平
+                if(_type == VERTICALLY) {
+                    if(_value > 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
+                    if(_value < 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::LEFT);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
                 }
-                if(_value < 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::LEFT);
-                    event->__value = _value;
-                    dispatchEvent(event);
+                //垂直
+                else if(_type == HORIZONTALLY) {
+                    if(_value > 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::UP);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
+                    if(_value <= 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::DOWN);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
                 }
-            }
-            //垂直
-            else if(_type == HORIZONTALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::UP);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
-                if(_value < 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::DOWN);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
+                //------------------------------------------
             }
             //------------------------------------------
         } else if(_flg) {
@@ -230,11 +230,7 @@ namespace fl2d {
                 
                 //------------------------------------------
                 //Update value.
-                float preValue = _value;
                 _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                if(preValue != _value) {
-                    _valueText->text(ofToString(_value, 2));
-                }
                 //------------------------------------------
             }
             //垂直
@@ -252,46 +248,48 @@ namespace fl2d {
                 
                 //------------------------------------------
                 //Update value.
-                float preValue = _value;
                 _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                if(preValue != _value) {
-                    _valueText->text(ofToString(_value, 2));
-                }
                 //------------------------------------------
             }
             //------------------------------------------
             
             //------------------------------------------
-            flJoyStick1Event* event;
-            event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-            event->__value = _value;
-            dispatchEvent(event);
-            
-            //水平
-            if(_type == VERTICALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
-                    event->__value = _value;
-                    dispatchEvent(event);
+            if(preValue != _value) {
+                _valueText->text(ofToString(_value, 2));
+                
+                //------------------------------------------
+                flJoyStick1Event* event;
+                event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+                event->__value = _value;
+                dispatchEvent(event);
+                
+                //水平
+                if(_type == VERTICALLY) {
+                    if(_value > 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
+                    if(_value < 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::LEFT);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
                 }
-                if(_value < 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::LEFT);
-                    event->__value = _value;
-                    dispatchEvent(event);
+                //垂直
+                else if(_type == HORIZONTALLY) {
+                    if(_value > 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::UP);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
+                    if(_value < 0) {
+                        event = new flJoyStick1Event(flJoyStick1Event::DOWN);
+                        event->__value = _value;
+                        dispatchEvent(event);
+                    }
                 }
-            }
-            //垂直
-            else if(_type == HORIZONTALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::UP);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
-                if(_value < 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::DOWN);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
+                //------------------------------------------
             }
             //------------------------------------------
         } else {
@@ -302,57 +300,43 @@ namespace fl2d {
                 float distanceX = _center.x - lever->x();
                 if(-0.5f < distanceX && distanceX < 0.5f) {
                     lever->x(_center.x);
-
-                    //------------------------------------------
-                    //Update value.
-                    float preValue = _value;
-                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                    if(preValue != _value) {
-                        _valueText->text(ofToString(_value, 2));
-                    }
-                    //------------------------------------------
+                    _value = 0.0;
                 } else {
                     lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
                     
                     //------------------------------------------
                     //Update value.
-                    float preValue = _value;
                     _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                    if(preValue != _value) {
-                        _valueText->text(ofToString(_value, 2));
-                    }
-                    //------------------------------------------
-                    
-                    //------------------------------------------
-                    flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-                    event->__value = _value;
-                    dispatchEvent(event);
                     //------------------------------------------
                 }
+                
             }
             //垂直
             else if(_type == HORIZONTALLY) {
                 float distanceY = _center.y - lever->y();
                 if(-0.5f < distanceY && distanceY < 0.5f) {
                     lever->y(_center.y);
+                    _value = 0.0;
                 } else {
                     lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
                     
                     //------------------------------------------
                     //Update value.
-                    float preValue = _value;
                     _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                    if(preValue != _value) {
-                        _valueText->text(ofToString(_value, 2));
-                    }
-                    //------------------------------------------
-                    
-                    //------------------------------------------
-                    flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-                    event->__value = _value;
-                    dispatchEvent(event);
                     //------------------------------------------
                 }
+            }
+            //------------------------------------------
+            
+            //------------------------------------------
+            if(preValue != _value) {
+                _valueText->text(ofToString(_value, 2));
+                
+                //------------------------------------------
+                flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+                event->__value = _value;
+                dispatchEvent(event);
+                //------------------------------------------
             }
             //------------------------------------------
         }
@@ -383,7 +367,7 @@ namespace fl2d {
             _center = ofPoint(_uiLength * 0.5, _leverRadius);
             
             _valueText->x(2);
-            _valueText->y(-2);
+            _valueText->y(0);
             _valueText->rotation(0);
         }
         //垂直
@@ -582,12 +566,10 @@ namespace fl2d {
         g->clear();
         g->lineStyle(1, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
-        if(_type == VERTICALLY) { //水平
-            g->drawRoundRect(0, 0, _uiLength, _leverRadius * 2, _leverRadius);
-        }
-        else if(_type == HORIZONTALLY) { //垂直
-            g->drawRoundRect(0, 0, _leverRadius * 2, _uiLength, _leverRadius);
-        }
+        //水平
+        if(_type == VERTICALLY) g->drawRoundRect(0, 0, _uiLength, _leverRadius * 2, _leverRadius);
+        //垂直
+        else if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, _leverRadius * 2, _uiLength, _leverRadius);
         g->endFill();
     }
     

@@ -6,11 +6,10 @@ namespace fl2d {
     string flTextField::TEXT_FIELD_TYPE_INPUT = "input";
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField::flTextField() {
         _typeID = FL_TYPE_TEXT_FIELD;
         
@@ -49,7 +48,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flTextField::~flTextField() {
         _text = "";
         
@@ -76,7 +74,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
@@ -109,7 +107,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
         
@@ -167,7 +164,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_draw() {
         
         //---------------------------------
@@ -197,7 +193,7 @@ namespace fl2d {
         ofPushStyle();
         ofSetColor(_textColor, 255 * _compoundAlpha);
         //        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
-        flFont::drawString(_text, 1, -2);
+        flFont::drawString(_text, 1, -4);
         //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         
@@ -208,13 +204,14 @@ namespace fl2d {
         //DEBUG
         if(false) {
             ofPushStyle();
-            ofSetHexColor(0xff0000);
-            float n = 5 / scaleX();
-            ofDrawLine(-n, 0, n, 0);
-            ofDrawLine(0, -n, 0, n);
+            ofSetColor(255, 0, 0);
+            
+//            float n = 5 / scaleX();
+//            ofDrawLine(-n, 0, n, 0);
+//            ofDrawLine(0, -n, 0, n);
+            ofDrawCircle(0, 0, 2);
             
             ofNoFill();
-            //            ofRect(0, 0, _textWidth, _textHeight);
             ofDrawRectangle(0, 0, width(), height());
             //            ofRect(0, 0, _targetWidth, _targetHeight);
             //            ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
@@ -231,7 +228,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //    //--------------------------------------------------------------
@@ -250,7 +247,6 @@ namespace fl2d {
     //    void flTextField::height(const float& value) { _rect->__expandTo(0, _rect->y() + value); }
     
     //--------------------------------------------------------------
-    //
     float flTextField::width() { return _realWidth * scaleX(); }
     void flTextField::width(float value) {
         _targetWidth = value;
@@ -288,7 +284,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flTextField::height() { return _realHeight * scaleY(); }
     void flTextField::height(float value) {
         _targetHeight = value;
@@ -326,14 +321,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flTextField::textWidth() { return _textWidth * scaleX(); }
     //--------------------------------------------------------------
-    //
     float flTextField::textHeight() { return _textHeight * scaleY(); }
     
     //--------------------------------------------------------------
-    //
     float flTextField::alpha() { return _alpha; }
     void flTextField::alpha(float value) {
         float temp = value;
@@ -346,7 +338,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofColor flTextField::textColor() { return _textColor; }
     void flTextField::textColor(int value) {
         _textColor.setHex(value);
@@ -358,7 +349,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     const string flTextField::text() {
         //        string temp = "";
         //        int l = _texts.size();
@@ -376,8 +366,9 @@ namespace fl2d {
         
         ofRectangle bounds = flFont::getStringBoundingBox(_text, 0, 0);
         _textWidth = bounds.width + 6;
-        _textHeight = _numLine * flFont::getMaxStringHeight() + 2;
-        
+//        _textHeight = _numLine * flFont::getMaxStringHeight() + 2;
+        _textHeight = _numLine * flFont::getMaxStringHeight() + 0;
+
         if(color != -1) textColor(color);
         
         
@@ -412,11 +403,9 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::appendText(const string& value) { _text += value; }
     
     //--------------------------------------------------------------
-    //
     const string& flTextField::type() { return _type; }
     void flTextField::type(const string& value) {
         _type = value;
@@ -430,12 +419,10 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     string flTextField::autoSize() { return _autoSize; }
     void flTextField::autoSize(string value) { _autoSize = value; }
     
     //--------------------------------------------------------------
-    //
     bool flTextField::active() { return _isActive; }
     void flTextField::active(bool value) {
         if(_isActive == value) return;
@@ -460,7 +447,6 @@ namespace fl2d {
         }
     }
     //--------------------------------------------------------------
-    //
     bool flTextField::enabled() { return _enabled; }
     void flTextField::enabled(bool value) {
         if(_enabled == value) return;
@@ -497,11 +483,10 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flTextField::_addListeners() {
         if(_addedListeners) return;
         _addedListeners = true;
@@ -515,7 +500,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_removeListeners() {
         if(!_addedListeners) return;
         _addedListeners = false;
@@ -530,14 +514,12 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     void flTextField::__compoundAlpha(float value){
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_drawGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness) {
         flGraphics* g = _graphics;
         //_graphics->clear();
@@ -547,7 +529,6 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flTextField::_drawGraphics(int lineColor, int fillColor, float thickness) {
         flGraphics* g = _graphics;
         g->clear();
@@ -558,11 +539,10 @@ namespace fl2d {
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flTextField::_mouseEventHandler(flEvent& event) {
         if(debug()) cout << "[flTextField]_mouseEventHandler(" + event.type() + ")" << endl;
         
@@ -575,7 +555,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
         //        char str = (char)event.key;
         
@@ -630,13 +609,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_keyReleasedEventHandler(ofKeyEventArgs& event) {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flTextField::_eventHandler(flEvent& event) {
         //cout << "[flTextField]_eventHandler(" << event.type() << ")" << endl;
         //cout << "[flTextField]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;

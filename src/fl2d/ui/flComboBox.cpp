@@ -7,13 +7,12 @@ namespace fl2d {
     string flComboBox::DROPDOWNLIST_DOWN = "down";
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flComboBox::flComboBox(float dropdownWidth) {
-        //cout << "[flComboBox]flComboBox()" << endl;
+        //ofLog() << "[flComboBox]flComboBox()";
         
         _target = this;
         name("flComboBox");
@@ -23,10 +22,7 @@ namespace fl2d {
         
         _selectedIndex = 0;
         
-        //------------------------------------------
-        //ラベル
         _label = NULL;
-        //------------------------------------------
         
         //------------------------------------------
         //ボタン
@@ -62,9 +58,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flComboBox::~flComboBox() {
-        //cout << "[flComboBox]~flComboBox()" << endl;
+        //ofLog() << "[flComboBox]~flComboBox()";
         
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
         
@@ -109,38 +104,44 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flComboBox::_setup() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flComboBox::_update() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flComboBox::_draw() {
         
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flComboBox::label() { return _label; }
-    void flComboBox::label(flTextField* value) { _label = value; }
+    void flComboBox::label(flTextField* value) {
+        _label = value;
+        
+        int i; int l;
+        l = _buttonList.size();
+        for(i = 0; i < l; i++) {
+            flButton* button = _buttonList[i];
+            button->label(_label);
+        }
+        
+        _topButton->label(_label);
+    }
     
     //--------------------------------------------------------------
-    //
     void flComboBox::removeAllItems() {
         if(_buttonContainer->parent()) removeChild(_buttonContainer);
         
@@ -157,8 +158,7 @@ namespace fl2d {
         _buttonList.clear();
         _itemList.clear();
         
-        flGraphics* g;
-        g = _buttonContainer->graphics();
+        flGraphics* g = _buttonContainer->graphics();
         g->clear();
         
         _topButton->labelText("");
@@ -166,8 +166,7 @@ namespace fl2d {
         _selectedItem = NULL;
     }
     
-    //    //--------------------------------------------------------------
-    //    //
+    //--------------------------------------------------------------
     int flComboBox::selectedIndex() { return _selectedIndex; }
     void flComboBox::selectedIndex(int value, bool dispatch) {
         _selectedIndex = value;
@@ -193,45 +192,38 @@ namespace fl2d {
         if(dispatch) {
             flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
             event->_target = this;
-            //            event->__label = _selectedLabel;
-            //            event->__pointerValue = _selectedData;
-            //            event->__stringValue = _selectedText;
-            //            event->__floatValue = _selectedValue;
+//            event->__label = _selectedLabel;
+//            event->__pointerValue = _selectedData;
+//            event->__stringValue = _selectedText;
+//            event->__floatValue = _selectedValue;
             dispatchEvent(event);
         }
         //------------------------------------------
     }
     
     //--------------------------------------------------------------
-    //
     string flComboBox::selectedLabel() { return _selectedItem->getProperty<string>("label"); }
     
     //--------------------------------------------------------------
-    //
     int flComboBox::numItems() { return _itemList.size(); }
     
     //--------------------------------------------------------------
-    //
     void* flComboBox::pointerValue() { return _pointerValue; }
     void flComboBox::pointerValue(void* value) { _pointerValue = value; }
     
     //--------------------------------------------------------------
-    //
     string flComboBox::stringValue() { return _stringValue; }
     void flComboBox::stringValue(string value) { _stringValue = value; }
     
     //--------------------------------------------------------------
-    //
     float flComboBox::floatValue() { return _floatValue; }
     void flComboBox::floatValue(float value) { _floatValue = value; }
     
     //--------------------------------------------------------------
-    //
     int flComboBox::intValue() { return _intValue; }
     void flComboBox::intValue(int value) { _intValue = value; }
     
     //--------------------------------------------------------------
-    //
     bool flComboBox::enabled() { return _enabled; }
     void flComboBox::enabled(bool value) {
         _enabled = value;
@@ -252,40 +244,36 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //==============================================================
-    // EVENT HANDLER
+    // Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flComboBox::_mouseEventHandler(flEvent& event) {
-        //    cout << "[flComboBox]_mouseEventHandler(" << event.type() << ")" << endl;
-        //    cout << "[flComboBox]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
-        //    cout << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
-        //    cout << "[flComboBox]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
+//        ofLog() << "[flComboBox]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
-        //ROLL OVER
+        //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             flButton* target = (flButton*) event.target();
-            
             _buttonContainer->addChild(target);
             target->alpha(1);
         }
         
-        //ROLL OUT
+        //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
             flButton* target = (flButton*) event.target();
-            
             if(target != _selectedItem) target->alpha(0.5);
         }
         
-        //MOUSE DOWN
+        //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             flButton* target = (flButton*) event.target();
-            
             if(target == _topButton) {
                 if(_topButton->selected()){
                     addChild(_buttonContainer);
@@ -342,20 +330,20 @@ namespace fl2d {
             }
         }
         
-        //MOUSE UP
+        //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
             
         }
     }
     
     //--------------------------------------------------------------
-    //
     void flComboBox::_eventHandler(flEvent& event) {
-        //        cout << "[flComboBox]_eventHandler(" << event.type() << ")" << endl;
-        //        cout << "[flComboBox]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
-        //        cout << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
-        //        cout << "[flComboBox]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
+//        ofLog() << "[flComboBox]_eventHandler(" << event.type() << ")";
+//        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+        //Focus Out
         if(event.type() == flFocusEvent::FOCUS_OUT) {
             if(event.target() == _topButton) {
                 _topButton->selected(false);

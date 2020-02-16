@@ -64,6 +64,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     slider001 = new flSlider(150);
+    slider001->label(label);
     slider001->x(marginLeft + spacing * 0);
     slider001->y(marginTop + lineSpacing * 1);
     slider001->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -78,6 +79,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     slider002 = new flSlider(150, 10.0, 0.0, 5);
+    slider002->label(label);
     slider002->value(1);
     slider002->x(marginLeft + spacing * 0);
     slider002->y(marginTop + lineSpacing * 3);
@@ -93,6 +95,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider001 = new flRangeSlider(150);
+    rangeSlider001->label(label);
     rangeSlider001->x(marginLeft + spacing * 0);
     rangeSlider001->y(marginTop + lineSpacing * 5);
     rangeSlider001->min(-100);
@@ -110,6 +113,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider002 = new flRangeSlider(150, -100, 1300, 300, 500);
+    rangeSlider002->label(label);
     rangeSlider002->x(marginLeft + spacing * 0);
     rangeSlider002->y(marginTop + lineSpacing * 7);
     rangeSlider002->addEventListener(flRangeSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -131,6 +135,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     colorSlider001 = new flColorSlider(150 - 15, true);
+    colorSlider001->label(label);
     colorSlider001->x(marginLeft + spacing * 0);
     colorSlider001->y(marginTop + lineSpacing * 0 + 22.5);
     colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -148,6 +153,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     colorSlider002 = new flColorSlider(150 - 15, false);
+    colorSlider002->label(label);
     colorSlider002->x(marginLeft + spacing * 0);
     colorSlider002->y(marginTop + lineSpacing * 1 + 22.5);
     colorSlider002->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -172,6 +178,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     vec2Slider001 = new flVec2Slider(150 - 15);
+    vec2Slider001->label(label);
     vec2Slider001->x(marginLeft + spacing * 0);
     vec2Slider001->y(marginTop + lineSpacing * 1);
     vec2Slider001->addEventListener(flVec2SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -197,6 +204,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     vec3Slider001 = new flVec3Slider(150 - 15);
+    vec3Slider001->label(label);
     vec3Slider001->x(marginLeft + spacing * 0);
     vec3Slider001->y(marginTop + lineSpacing * 1);
     vec3Slider001->addEventListener(flVec3SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -282,12 +290,14 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     button001 = new flButton(150);
+    button001->label(label);
     button001->labelText("Button");
     button001->x(marginLeft + spacing * 0);
     button001->y(marginTop + lineSpacing * 1);
     button001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button001);
     button002 = new flButton(150);
+    button002->label(label);
     button002->labelText("Lock", "selected");
     button002->labelText("Unlock", "notSelected");
     button002->toggleEnabled(true);
@@ -297,18 +307,21 @@ void UIComponents::_setup() {
     button002->addEventListener(flMouseEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(button002);
     button003 = new flButton(150);
+    button003->label(label);
     button003->labelText("White");
     button003->x(marginLeft + spacing * 0);
     button003->y(marginTop + lineSpacing * 3);
     button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button003);
     button004 = new flButton(150);
+    button004->label(label);
     button004->labelText("Black");
     button004->x(marginLeft + spacing * 0);
     button004->y(marginTop + lineSpacing * 4);
     button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button004);
     button005 = new flButton(150);
+    button005->label(label);
     button005->labelText("Disable");
     button005->x(marginLeft + spacing * 0);
     button005->y(marginTop + lineSpacing * 5);
@@ -316,6 +329,7 @@ void UIComponents::_setup() {
     button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button005);
     button006 = new flButton(150);
+    button006->label(label);
     button006->labelText("Disable(Selected)");
     button006->x(marginLeft + spacing * 0);
     button006->y(marginTop + lineSpacing * 6);
@@ -515,7 +529,7 @@ void UIComponents::_setup() {
     addChild(label);
     
     label = new flTextField();
-    label->text("Number Dialer 1");
+    label->text("Number Dialer1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 1);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -529,7 +543,7 @@ void UIComponents::_setup() {
     addChild(dialer001);
     
     label = new flTextField();
-    label->text("Number Dialer 2");
+    label->text("Number Dialer2");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 3);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -546,26 +560,48 @@ void UIComponents::_setup() {
     dialer002->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);
     
+    spacing = 18;
     label = new flTextField();
-    label->text("Number Dialer 3");
-    label->x(marginLeft + spacing * 0 + 40);
-    label->y(marginTop + lineSpacing * 5 + 10);
+    label->text("Number Dialer3");
+    label->x(marginLeft + spacing * 2 + 5);
+    label->y(marginTop + lineSpacing * 5);
     label->rotation(90);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    dialer003 = new flNumberDialer(100);
+    dialer003 = new flNumberDialer(130);
     dialer003->label(label);
     dialer003->type(flNumberDialer::VERTICALLY);
     dialer003->x(marginLeft + spacing * 0);
-    dialer003->y(marginTop + lineSpacing * 5 + 10);
+    dialer003->y(marginTop + lineSpacing * 5);
     dialer003->value(10.1);
     dialer003->stepValue(0.1);
     dialer003->min(-100);
     dialer003->max(100);
     dialer003->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer003);
-    //    cout << dialer003->y() + dialer003->width() << endl;
+    
+    label = new flTextField();
+    label->text("Number Dialer4");
+    label->x(marginLeft + spacing * 4 + 5 + 5 + 5);
+    label->y(marginTop + lineSpacing * 5);
+    label->rotation(90);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    dialer004 = new flNumberDialer(130);
+    dialer004->label(label);
+    dialer004->type(flNumberDialer::VERTICALLY);
+    dialer004->dragVector(flNumberDialer::HORIZONTALLY);
+    dialer004->x(marginLeft + spacing * 2 + 5 + 5);
+    dialer004->y(marginTop + lineSpacing * 5);
+    dialer004->value(10.1);
+    dialer004->stepValue(0.1);
+    dialer004->min(-100);
+    dialer004->max(100);
+    dialer004->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    addChild(dialer004);
+    ofLog() << "dialer004->y() : " << dialer004->y() + dialer004->width();
     //--------------------------------------
     
     //--------------------------------------

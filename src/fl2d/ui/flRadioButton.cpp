@@ -28,7 +28,7 @@ namespace fl2d {
         _label->x(15);
         _label->autoSize(flTextFieldAutoSize::LEFT);
         _label->text("Radio Button");
-        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 1);
+        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 0);
         addChild(_label);
         //------------------------------------------
         

@@ -3,11 +3,10 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flVec3Slider::flVec3Slider(
                            float width,
                            float xMin, float xMax, float defaultXValue,
@@ -85,7 +84,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flVec3Slider::~flVec3Slider() {
         //cout << "[flVec3Slider]~flVec3Slider()" << endl;
         
@@ -111,46 +109,38 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flVec3Slider::_setup() {
         //cout << "[flVec3Slider]setup()" << endl;
     }
     
     //--------------------------------------------------------------
-    //
     void flVec3Slider::_update() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flVec3Slider::_draw(){
         
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flVec3Slider::label() { return _label; }
-    void flVec3Slider::label(flTextField* value) { _label = value; }
-    
-    //--------------------------------------------------------------
-    //
-    void flVec3Slider::textColor(int color) {
-        _label1Text->textColor(color);
-        _label2Text->textColor(color);
-        _label3Text->textColor(color);
+    void flVec3Slider::label(flTextField* value) {
+        _label = value;
+        xSlider->label(_label);
+        ySlider->label(_label);
+        zSlider->label(_label);
     }
-    
+
     //--------------------------------------------------------------
-    //
     ofVec3f flVec3Slider::vec3Value() { return _vec3Value; }
     void flVec3Slider::vec3Value(ofVec3f value, bool dispatch) {
         _vec3Value = value;
@@ -175,23 +165,18 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //==============================================================
-    // EVENT HANDLER
+    // Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flVec3Slider::_eventHandler(flEvent& event) {
-        //        ofLog(OF_LOG_VERBOSE) << "[flVec3Slider]_eventHandler(" << event.type() << ")" << endl;
-        //        cout << "[flVec3Slider]_eventHandler(" << event.type() << ")" << endl;
-        
         _vec3Value.x = xSlider->value();
         _vec3Value.y = ySlider->value();
         _vec3Value.z = zSlider->value();
-        //------------------------------------------
         
         flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
         vec3SliderEvent->_target = this;

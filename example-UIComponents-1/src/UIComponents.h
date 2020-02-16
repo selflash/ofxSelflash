@@ -95,6 +95,7 @@ public:
     flNumberDialer* dialer001;
     flNumberDialer* dialer002;
     flNumberDialer* dialer003;
+    flNumberDialer* dialer004;
     //--------------------------------------
     //--------------------------------------
     //コンボボックス

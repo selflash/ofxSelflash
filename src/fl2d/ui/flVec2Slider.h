@@ -36,8 +36,6 @@ namespace fl2d {
         flTextField* label();
         void label(flTextField* value);
         
-        virtual void textColor(int color);
-        
         virtual ofVec2f vec2Value();
         virtual void vec2Value(ofVec2f value, bool dispatch = true);
         
