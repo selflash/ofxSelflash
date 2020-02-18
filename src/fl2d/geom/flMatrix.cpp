@@ -7,18 +7,15 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flMatrix::flMatrix() {
         set(1.0, 0.0, 0.0, 1.0, 0.0, 0.0);		// identity.    
     }
     //--------------------------------------------------------------
-    //
     flMatrix::flMatrix(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty) {
         set(a, b, c, d, tx, ty);
     }
     
     //--------------------------------------------------------------
-    //
     flMatrix::~flMatrix() {
         
     }
@@ -50,13 +47,11 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     void flMatrix::set(flMatrix& matrix) {
         set(matrix.a(), matrix.b(), matrix.c(), matrix.d(), matrix.tx(), matrix.ty());
     }
     
     //--------------------------------------------------------------
-    //
     void flMatrix::set(const float& a, const float& b, const float& c, const float& d, const float& tx, const float& ty) {
         ofMatrix4x4::set(
                          a,  b,  0,  0,
@@ -99,7 +94,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     bool flMatrix::isEqual(flMatrix& matrix) {
         if(a() != matrix.a()) return false;
         if(b() != matrix.b()) return false;
@@ -182,14 +176,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flMatrix& flMatrix::clone() {
         flMatrix* m = new flMatrix();
         return *m;
     }
     
     //--------------------------------------------------------------
-    //
     const float flMatrix::determinant() {
         return a() * d() - b() * c();
     }
@@ -201,7 +193,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMatrix::setScaleRotation(float sx, float sy, float angle) {
         if(sx == 0) sx = 0.00001;
         if(sy == 0) sy = 0.00001;
@@ -216,7 +207,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     const float flMatrix::scaleX() {
         float a_ = a();
         float b_ = b();
@@ -225,7 +215,6 @@ namespace fl2d {
         return s;
     }
     //--------------------------------------------------------------
-    //
     void flMatrix::scaleX(float value) {
         if(value == 0) value = 0.00001;
         
@@ -236,7 +225,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     const float flMatrix::scaleY() {
         float c_ = c();
         float d_ = d();
@@ -245,7 +233,6 @@ namespace fl2d {
         return s;
     }
     //--------------------------------------------------------------
-    //
     void flMatrix::scaleY(float value) {
         if(value == 0) value = 0.00001;
         
@@ -255,7 +242,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMatrix::scale(float sx, float sy) {
         if(sx == 0) sx = 0.00001;
         if(sy == 0) sy = 0.00001;
@@ -264,7 +250,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     const float flMatrix::rotation() {
         float a_ = a();
         float b_ = b();

@@ -7,7 +7,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flBasicDraggableObject::flBasicDraggableObject() {
         //    cout << "[flBasicDraggableObject]flBasicDraggableObject()" << endl;
         _target = this;
@@ -19,7 +18,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBasicDraggableObject::~flBasicDraggableObject() {
         //    cout << "[flBasicDraggableObject]~flBasicDraggableObject()" << endl;
         
@@ -31,21 +29,18 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     //void flBasicDraggableObject::_setup() {
     //    cout << "[flBasicDraggableObject]_setup()" << endl;
     //
     //}
     
     //--------------------------------------------------------------
-    //
     //void flBasicDraggableObject::_update() {
     ////    cout << width() << ", " << height() << endl;
     //    
     //}
     
     //--------------------------------------------------------------
-    //
     //void flBasicDraggableObject::_draw() {
     //    
     //}
@@ -58,9 +53,7 @@ namespace fl2d {
     // EVENT HANDLER
     //==============================================================
     
-    
     //--------------------------------------------------------------
-    //
     void flBasicDraggableObject::_mouseEventHandler(flEvent& event) {
         //    cout << "[flBasicDraggableObject]_mouseEventHandler(" << event.type() << ")" << endl;
         //    cout << "[PrentBox]this          = " << this << endl;

@@ -3,15 +3,13 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flShape::flShape() {
         _typeID = FL_TYPE_SHAPE;
-        //_target = this;
-        
+        //_target = this;        
         name("flShape");
         
         _graphics = new flGraphics();
@@ -20,7 +18,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flShape::~flShape() {
         //_target = NULL;
         
@@ -31,7 +28,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flShape::_updateEventHandler(ofEventArgs& args) {
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
@@ -42,7 +38,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flShape::update() {
         //--------------------------------------
         _rect->__setToRect(*_graphics->__rect);
@@ -62,7 +57,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flShape::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
         
@@ -136,7 +130,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flShape::_updateRect() {
         _rect->__setToRect(*_graphics->__rect);
         
@@ -150,7 +143,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flShape::__compoundAlpha(float value){
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);

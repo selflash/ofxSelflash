@@ -63,44 +63,43 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _redValueText = new flTextField();
-        _redValueText->x(width + 5);
-        _redValueText->y(height * 0);
-        _redValueText->width(15);
-        _redValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _redValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _redValueText->text("R");
-        _redValueText->mouseEnabled(false);
-        addChild(_redValueText);
-        //GREEN
-        _greenValueText = new flTextField();
-        _greenValueText->x(width + 5);
-        _greenValueText->y(height * 1);
-        _greenValueText->width(15);
-        _greenValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _greenValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _greenValueText->text("G");
-        _greenValueText->mouseEnabled(false);
-        addChild(_greenValueText);
-        _blueValueText = new flTextField();
-        _blueValueText->x(width + 5);
-        _blueValueText->y(height * 2);
-        _blueValueText->width(15);
-        _blueValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _blueValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _blueValueText->text("B");
-        _blueValueText->mouseEnabled(false);
-        addChild(_blueValueText);
+        _redLabel = new flTextField();
+        _redLabel->x(width + 5);
+        _redLabel->y(height * 0);
+        _redLabel->width(15);
+        _redLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _redLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _redLabel->text("R");
+        _redLabel->mouseEnabled(false);
+        addChild(_redLabel);
+        _greenLabel = new flTextField();
+        _greenLabel->x(width + 5);
+        _greenLabel->y(height * 1);
+        _greenLabel->width(15);
+        _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _greenLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _greenLabel->text("G");
+        _greenLabel->mouseEnabled(false);
+        addChild(_greenLabel);
+        _blueLabel = new flTextField();
+        _blueLabel->x(width + 5);
+        _blueLabel->y(height * 2);
+        _blueLabel->width(15);
+        _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _blueLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _blueLabel->text("B");
+        _blueLabel->mouseEnabled(false);
+        addChild(_blueLabel);
         if(alphaEnabled == true) {
-            _alphaValueText = new flTextField();
-            _alphaValueText->x(width + 5);
-            _alphaValueText->y(height * 3);
-            _alphaValueText->width(15);
-            _alphaValueText->autoSize(flTextFieldAutoSize::CENTER);
-            _alphaValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-            _alphaValueText->text("A");
-            _alphaValueText->mouseEnabled(false);
-            addChild(_alphaValueText);
+            _alphaLabel = new flTextField();
+            _alphaLabel->x(width + 5);
+            _alphaLabel->y(height * 3);
+            _alphaLabel->width(15);
+            _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);
+            _alphaLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+            _alphaLabel->text("A");
+            _alphaLabel->mouseEnabled(false);
+            addChild(_alphaLabel);
         }
         //------------------------------------------
         
@@ -170,34 +169,34 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _redValueText = new flTextField();
-        _redValueText->x(width + 5);
-        _redValueText->y(height * 0);
-        _redValueText->width(15);
-        _redValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _redValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _redValueText->text("R");
-        _redValueText->mouseEnabled(false);
-        addChild(_redValueText);
-        _greenValueText = new flTextField();
-        _greenValueText->x(width + 5);
-        _greenValueText->y(height * 1);
-        _greenValueText->width(15);
-        _greenValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _greenValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _greenValueText->text("G");
-        _greenValueText->mouseEnabled(false);
-        addChild(_greenValueText);
-        _blueValueText = new flTextField();
-        _blueValueText->x(width + 5);
-        _blueValueText->y(height * 2);
-        _blueValueText->width(15);
-        _blueValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _blueValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _blueValueText->text("B");
-        _blueValueText->mouseEnabled(false);
-        addChild(_blueValueText);
-        _alphaValueText = NULL;
+        _redLabel = new flTextField();
+        _redLabel->x(width + 5);
+        _redLabel->y(height * 0);
+        _redLabel->width(15);
+        _redLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _redLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _redLabel->text("R");
+        _redLabel->mouseEnabled(false);
+        addChild(_redLabel);
+        _greenLabel = new flTextField();
+        _greenLabel->x(width + 5);
+        _greenLabel->y(height * 1);
+        _greenLabel->width(15);
+        _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _greenLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _greenLabel->text("G");
+        _greenLabel->mouseEnabled(false);
+        addChild(_greenLabel);
+        _blueLabel = new flTextField();
+        _blueLabel->x(width + 5);
+        _blueLabel->y(height * 2);
+        _blueLabel->width(15);
+        _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _blueLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _blueLabel->text("B");
+        _blueLabel->mouseEnabled(false);
+        addChild(_blueLabel);
+        _alphaLabel = NULL;
         //------------------------------------------
         
         //------------------------------------------
@@ -269,42 +268,42 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        _redValueText = new flTextField();
-        _redValueText->x(width + 5);
-        _redValueText->y(height * 0);
-        _redValueText->width(15);
-        _redValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _redValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _redValueText->text("R");
-        _redValueText->mouseEnabled(false);
-        addChild(_redValueText);
-        _greenValueText = new flTextField();
-        _greenValueText->x(width + 5);
-        _greenValueText->y(height * 1);
-        _greenValueText->width(15);
-        _greenValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _greenValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _greenValueText->text("G");
-        _greenValueText->mouseEnabled(false);
-        addChild(_greenValueText);
-        _blueValueText = new flTextField();
-        _blueValueText->x(width + 5);
-        _blueValueText->y(height * 2);
-        _blueValueText->width(15);
-        _blueValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _blueValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _blueValueText->text("B");
-        _blueValueText->mouseEnabled(false);
-        addChild(_blueValueText);
-        _alphaValueText = new flTextField();
-        _alphaValueText->x(width + 5);
-        _alphaValueText->y(height * 3);
-        _alphaValueText->width(15);
-        _alphaValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _alphaValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _alphaValueText->text("A");
-        _alphaValueText->mouseEnabled(false);
-        addChild(_alphaValueText);
+        _redLabel = new flTextField();
+        _redLabel->x(width + 5);
+        _redLabel->y(height * 0);
+        _redLabel->width(15);
+        _redLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _redLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _redLabel->text("R");
+        _redLabel->mouseEnabled(false);
+        addChild(_redLabel);
+        _greenLabel = new flTextField();
+        _greenLabel->x(width + 5);
+        _greenLabel->y(height * 1);
+        _greenLabel->width(15);
+        _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _greenLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _greenLabel->text("G");
+        _greenLabel->mouseEnabled(false);
+        addChild(_greenLabel);
+        _blueLabel = new flTextField();
+        _blueLabel->x(width + 5);
+        _blueLabel->y(height * 2);
+        _blueLabel->width(15);
+        _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _blueLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _blueLabel->text("B");
+        _blueLabel->mouseEnabled(false);
+        addChild(_blueLabel);
+        _alphaLabel = new flTextField();
+        _alphaLabel->x(width + 5);
+        _alphaLabel->y(height * 3);
+        _alphaLabel->width(15);
+        _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _alphaLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _alphaLabel->text("A");
+        _alphaLabel->mouseEnabled(false);
+        addChild(_alphaLabel);
         //------------------------------------------
         
         //------------------------------------------
@@ -374,42 +373,42 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _redValueText = new flTextField();
-        _redValueText->x(width + 5);
-        _redValueText->y(height * 0);
-        _redValueText->width(15);
-        _redValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _redValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _redValueText->text("R");
-        _redValueText->mouseEnabled(false);
-        addChild(_redValueText);
-        _greenValueText = new flTextField();
-        _greenValueText->x(width + 5);
-        _greenValueText->y(height * 1);
-        _greenValueText->width(15);
-        _greenValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _greenValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _greenValueText->text("G");
-        _greenValueText->mouseEnabled(false);
-        addChild(_greenValueText);
-        _blueValueText = new flTextField();
-        _blueValueText->x(width + 5);
-        _blueValueText->y(height * 2);
-        _blueValueText->width(15);
-        _blueValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _blueValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _blueValueText->text("B");
-        _blueValueText->mouseEnabled(false);
-        addChild(_blueValueText);
-        _alphaValueText = new flTextField();
-        _alphaValueText->x(width + 5);
-        _alphaValueText->y(height * 3);
-        _alphaValueText->width(15);
-        _alphaValueText->autoSize(flTextFieldAutoSize::CENTER);
-        _alphaValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _alphaValueText->text("A");
-        _alphaValueText->mouseEnabled(false);
-        addChild(_alphaValueText);
+        _redLabel = new flTextField();
+        _redLabel->x(width + 5);
+        _redLabel->y(height * 0);
+        _redLabel->width(15);
+        _redLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _redLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _redLabel->text("R");
+        _redLabel->mouseEnabled(false);
+        addChild(_redLabel);
+        _greenLabel = new flTextField();
+        _greenLabel->x(width + 5);
+        _greenLabel->y(height * 1);
+        _greenLabel->width(15);
+        _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _greenLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _greenLabel->text("G");
+        _greenLabel->mouseEnabled(false);
+        addChild(_greenLabel);
+        _blueLabel = new flTextField();
+        _blueLabel->x(width + 5);
+        _blueLabel->y(height * 2);
+        _blueLabel->width(15);
+        _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _blueLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _blueLabel->text("B");
+        _blueLabel->mouseEnabled(false);
+        addChild(_blueLabel);
+        _alphaLabel = new flTextField();
+        _alphaLabel->x(width + 5);
+        _alphaLabel->y(height * 3);
+        _alphaLabel->width(15);
+        _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _alphaLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _alphaLabel->text("A");
+        _alphaLabel->mouseEnabled(false);
+        addChild(_alphaLabel);
         //------------------------------------------
         
         //------------------------------------------
@@ -451,17 +450,17 @@ namespace fl2d {
         delete _hexText;
         _hexText = NULL;
 
-        delete _redValueText;
-        _redValueText = NULL;
+        delete _redLabel;
+        _redLabel = NULL;
         
-        delete _greenValueText;
-        _greenValueText = NULL;
+        delete _greenLabel;
+        _greenLabel = NULL;
         
-        delete _blueValueText;
-        _blueValueText = NULL;
+        delete _blueLabel;
+        _blueLabel = NULL;
         
-        delete _alphaValueText;
-        _alphaValueText = NULL;
+        delete _alphaLabel;
+        _alphaLabel = NULL;
         
         if(_param != NULL) {
             _valueListener.unsubscribe();
@@ -485,7 +484,15 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_draw() {
-        
+//        //--------------------------------------
+//        float height = 18 + 2;
+//        ofPushStyle();
+//        ofSetColor(255, 255, 255);
+//        flFont::drawString("R", redSlider->width() + 5, height * 0);
+//        flFont::drawString("G", redSlider->width() + 5, height * 1);
+//        flFont::drawString("B", redSlider->width() + 5, height * 2);
+//        ofPopStyle();
+//        //--------------------------------------
     }
     
     //==============================================================

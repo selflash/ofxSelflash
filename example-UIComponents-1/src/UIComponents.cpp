@@ -1,12 +1,12 @@
 #include "UIComponents.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Destructor
 //==============================================================
 
 //--------------------------------------------------------------
 UIComponents::UIComponents() {
-    cout << "[UIComponents]UIComponents()" << endl;
+    ofLog() << "[UIComponents]UIComponents()";
     _target = this;
     name("UIComponents");
     
@@ -33,16 +33,16 @@ UIComponents::UIComponents() {
 
 //--------------------------------------------------------------
 UIComponents::~UIComponents() {
-    cout << "[UIComponents]~UIComponents()" << endl;
+    ofLog() << "[UIComponents]~UIComponents()";
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
 void UIComponents::_setup() {
-    cout << "[UIComponents]_setup()" << endl;
+    ofLog() << "[UIComponents]_setup()";
     
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;
@@ -65,6 +65,10 @@ void UIComponents::_setup() {
     addChild(label);
     slider001 = new flSlider(150);
     slider001->label(label);
+    slider001->min(1);
+    slider001->max(20);
+    slider001->value(1);
+    slider001->roundEnabled(true);
     slider001->x(marginLeft + spacing * 0);
     slider001->y(marginTop + lineSpacing * 1);
     slider001->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -774,7 +778,6 @@ void UIComponents::_setup() {
     hViewer001->y(marginTop + lineSpacing * 1);
     //    hViewer001->addEventListener(flHistgramViewerEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(hViewer001);
-    
     //--------------------------------------
 }
 
@@ -791,16 +794,19 @@ void UIComponents::_draw() {
 }
 
 //==============================================================
-// PRIVATE METHOD
+// Protected / Private Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Protected / Private Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 void UIComponents::_uiEventHandler(flEvent& event) {
-    //ofLog() << "[UIComponents]_controllerEventHandler(" << event.type() << ")" << endl;
+//    ofLog() << "[UIComponents]_uiEventHandler(" << event.type() << ")";
+//    ofLog() << "[UIComponents]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//    ofLog() << "[UIComponents]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//    ofLog() << "[UIComponents]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
     
     //ボタン(マウスダウン)
     if(event.type() == flMouseEvent::MOUSE_DOWN) {
@@ -813,7 +819,7 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         if(button == button003) ofBackground(255, 255, 255, 255);
         if(button == button004) ofBackground(120, 120, 120, 255);
         if(button == button005) ofBackground(0, 0, 0, 255);
-    };
+    }
     
     //マウスアップ
     if(event.type() == flMouseEvent::MOUSE_UP) {
@@ -825,7 +831,7 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         if(button == button003);
         if(button == button004);
         if(button == button005);
-    };
+    }
     
     //マウスチェンジ
     if(event.type() == flMouseEvent::CHANGE) {
@@ -840,13 +846,26 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         if(button == button003);
         if(button == button004);
         if(button == button005);
-    };
+    }
     
     //コンボボックス
     if(event.type() == flComboBoxEvent::CHANGE) {
         flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
-    };
+        cout << "-------------" << endl;
+        cout << comboBox->name() << " :" << endl;
+        cout << "selectedIndex : " << comboBox->selectedIndex() << endl;
+        
+        if(comboBox == comboBox001) {
+            cout << "selectedValue : " << comboBox->selectedValue<string>() << endl;
+        }
+        if(comboBox == comboBox002) {
+            cout << "selectedValue : " << comboBox->selectedValue<float>() << endl;
+        }
+        if(comboBox == comboBox003) {
+            cout << "selectedValue : " << comboBox->selectedValue<flComboBox*>()->name() << endl;
+        }
+    }
     
     //ラジオボタン
     if(event.type() == flRadioButtonEvent::CHANGE) {

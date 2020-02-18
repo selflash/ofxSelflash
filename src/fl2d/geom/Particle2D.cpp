@@ -3,7 +3,6 @@
 namespace fl2d {
     
     //--------------------------------------------------------------
-    //
     Particle2D::Particle2D() {
         //寿命
         _count = 0;
@@ -41,7 +40,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     Particle2D::~Particle2D() {
         //寿命
         _count = 0;
@@ -91,12 +89,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     const int& Particle2D::delay() { return _delay; }
     void Particle2D::delay(const int value) { _delay = value; }
     
     //--------------------------------------------------------------
-    //
     const int& Particle2D::life() { return _life; }
     void Particle2D::life(const int value) {
         _life = value;
@@ -217,14 +213,12 @@ namespace fl2d {
     void Particle2D::velDepth(const float value) { _sizeVel->z = value; };
     
     //--------------------------------------------------------------
-    //
     const ofVec3f& Particle2D::size(){ return *_size; }
     void Particle2D::size(const float width, const float height, const float depth){
         _size->set(width, height, depth);
         _startSize->set(width, height, depth);
     }
     //--------------------------------------------------------------
-    //
     void Particle2D::velSize(const float x, const float y, const float z){ _sizeVel->set(x, y, z); }
     
     //==============================================================
@@ -259,7 +253,6 @@ namespace fl2d {
     void Particle2D::velScaleZ(const float value) { _velScale->z = value; };
     
     //--------------------------------------------------------------
-    //
     const ofVec3f& Particle2D::scale() { return *_scale; }
     void Particle2D::scale(const float x, const float y, const float z) {
         _scale->set(x, y, z);
@@ -267,7 +260,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     const ofVec3f& Particle2D::velScale() { return *_velScale; }
     void Particle2D::velScale(const float x, const float y, const float z){
         _velScale->set(x, y, z);
@@ -296,7 +288,6 @@ namespace fl2d {
     void Particle2D::velBlue(const float value) { _velColor->b = value; }
     
     //--------------------------------------------------------------
-    //
     const ofFloatColor& Particle2D::color() { return *_color; }
     void Particle2D::color(const float r, const float g, const float b){
         _color->r = r;
@@ -311,7 +302,6 @@ namespace fl2d {
         _color = new ofFloatColor(value.r, value.g, value.b);
     }
     //--------------------------------------------------------------
-    //
     const ofFloatColor& Particle2D::startColor() { return *_startColor; }
     void Particle2D::startColor(const float r, const float g, const float b){
         _startColor->r = r;
@@ -322,7 +312,6 @@ namespace fl2d {
         _startColor = new ofFloatColor(value.r, value.g, value.b);
     }
     //--------------------------------------------------------------
-    //
     const ofFloatColor& Particle2D::velColor() { return *_color; }
     void Particle2D::velColor(const float r, const float g, const float b){
         _velColor->r = r;
@@ -338,7 +327,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void Particle2D::update() {
         if(_delay > _count) {
             _count ++;
@@ -372,7 +360,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void Particle2D::draw(){
         
     }
@@ -382,13 +369,11 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void Particle2D::clear(){
         
     }
     
     //--------------------------------------------------------------
-    //
     void Particle2D::reset(){
         //位置
         x(startX());

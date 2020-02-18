@@ -33,12 +33,14 @@ namespace fl2d {
         virtual void enabled(bool value);
         
         //------------------------------------------
-        virtual inline void bind(ofParameter<float>& param) {
+        virtual inline void bind(ofParameter<float>& param) { }
+        virtual inline void bind(ofParameter<int>& param) { }
+        virtual inline void bind(ofParameter<bool>& param) { }
 
-        }
-        virtual inline void unbind() {
-            
-        }
+        template <class T>
+        inline void bind(ofParameter<T>& param) { }
+        
+        virtual inline void unbind() { }
         //------------------------------------------
         
     protected:

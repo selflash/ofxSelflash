@@ -3,11 +3,10 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flGraphics::flGraphics() {
         _typeID = FL_TYPE_GRAPHICS;
         //_commandList = NULL;
@@ -29,7 +28,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flGraphics::~flGraphics() {
         _commandList.clear();
         
@@ -56,7 +54,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flGraphics::__draw() {
         //cout << _commandList.size() << endl;
         
@@ -105,7 +102,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flGraphics::lineStyle(float thickness, int color, float alpha) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_LINESTYLE;
@@ -117,7 +113,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::beginFill(int color, float alpha) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_BEGIN_FILL;
@@ -128,7 +123,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::endFill() {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_END_FILL;
@@ -137,7 +131,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::drawCircle(float x, float y, float radius) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_DRAW_CIRCLE;
@@ -160,7 +153,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::drawRect(float x, float y, float width, float height) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_DRAW_RECT;
@@ -182,7 +174,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::drawRoundRect(float x, float y, float width, float height, float radius) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_DRAW_ROUNDRECT;
@@ -205,7 +196,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::lineTo(float x, float y) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_LINE_TO;
@@ -218,7 +208,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::moveTo(float x, float y) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_MOVE_TO;
@@ -231,7 +220,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::clear() {
         //        DrawCommand* command = new DrawCommand();
         //        command->type = FL_COMMAND_CLEAR;
@@ -257,7 +245,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flGraphics::_lineStyle(float thickness, int color, float alpha) {
         
         _lineColor.r = (color >> 16) & 0xff;
@@ -275,7 +262,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::_beginFill(int color, float alpha) {
         //printf("[flGraphics]_beginFill(%i, %f)\n", color, alpha);
         
@@ -301,7 +287,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::_endFill() {
         //printf("[flGraphics]_endFill(%i, %f)\n", color, alpha);
         
@@ -328,7 +313,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flGraphics::_drawCircle(float x, float y, float radius) {
         ofPushStyle();
         
@@ -351,7 +335,6 @@ namespace fl2d {
         ofPopStyle();
     }
     //--------------------------------------------------------------
-    //
     void flGraphics::_drawRect(float x, float y, float width, float height) {
         ofPushStyle();
         
@@ -381,7 +364,6 @@ namespace fl2d {
         ofPopStyle();
     }
     //--------------------------------------------------------------
-    //
     void flGraphics::_drawRoundRect(float x, float y, float width, float height, float radius) {
         ofPushStyle();
         
@@ -402,7 +384,6 @@ namespace fl2d {
         ofPopStyle();
     }
     //--------------------------------------------------------------
-    //
     void flGraphics::_lineTo(float x, float y) {
         ofPushStyle();
         
@@ -424,7 +405,6 @@ namespace fl2d {
         ofPopStyle();
     }
     //--------------------------------------------------------------
-    //
     void flGraphics::_moveTo(float x, float y) {
         _moveToX = x;
         _moveToY = y;
@@ -448,7 +428,6 @@ namespace fl2d {
         }
     }
     //--------------------------------------------------------------
-    //
     void flGraphics::_clear(int index) {
         //cout << _commandList.size() << endl;
         //    _commandList.clear();
@@ -476,7 +455,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flGraphics::__compoundAlpha(){ return _compoundAlpha; }
     void flGraphics::__compoundAlpha(float value){ _compoundAlpha = value; }
     

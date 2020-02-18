@@ -3,16 +3,15 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flDisplayObject::flDisplayObject() {
 //        ofLog() << "[flDisplayObject]flDisplayObject()";
         _typeID = FL_TYPE_DISPLAY_OBJECT;
         _target = this;
-        _name = "DisplayObject";
+        name("flDisplayObject");
         
         _stage = NULL;
         _parent = NULL;
@@ -59,7 +58,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject::~flDisplayObject() {
         _target = NULL;
         _name = "";
@@ -111,13 +109,11 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::setup() {
         _setup();
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::update() {
         _update();
         
@@ -125,7 +121,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
         
@@ -183,19 +178,16 @@ namespace fl2d {
     };
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::_setup() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::_update() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::_draw() {
         
     }
@@ -205,12 +197,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     string flDisplayObject::name() { return _name; }
     void flDisplayObject::name(string value) { _name = value; }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObject::stage() { return _stage; }
     void flDisplayObject::stage(flDisplayObject* value) {
         //cout << "[flDisplayObject]stage(" << value << ")" << name() << endl;
@@ -234,7 +224,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObject::parent() { return _parent; }
     void flDisplayObject::parent(flDisplayObject* value) {
         //cout << "[flDisplayObject]parent(" << value << ")" << name() << endl;
@@ -264,15 +253,12 @@ namespace fl2d {
     flDisplayObject* flDisplayObject::mask() { return _mask; }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::x() { return _matrix.tx(); }
     void flDisplayObject::x(float value) { _matrix.tx(value); }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::y() { return _matrix.ty(); }
     void flDisplayObject::y(float value) { _matrix.ty(value); }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::z() { return _z; }
     void flDisplayObject::z(float value) { _z = value; }
     
@@ -325,7 +311,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::width() {
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         return _realWidth * scaleX();
@@ -336,7 +321,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::height() {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         return _realHeight * scaleY();
@@ -347,7 +331,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::scaleX() {
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         return _matrix.scaleX();
@@ -357,7 +340,6 @@ namespace fl2d {
         _matrix.scaleX(value);
     }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::scaleY() {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         return _matrix.scaleY();
@@ -368,39 +350,31 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::scaleZ() { return _scaleZ; }
     void flDisplayObject::scaleZ(float value) { _scaleZ = value; }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::rotation() { return _matrix.rotation() * RAD_TO_DEG; }
     void flDisplayObject::rotation(float value) { _matrix.rotate(value * DEG_TO_RAD); }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::rotationX() { return _rotationX; }
     void flDisplayObject::rotationX(float value) { _rotationX = value; }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::rotationY() { return _rotationY; }
     void flDisplayObject::rotationY(float value) { _rotationY = value; }
     //--------------------------------------------------------------
-    //
     float flDisplayObject::rotationZ() { return _rotationZ; }
     void flDisplayObject::rotationZ(float value) { _rotationZ = value; }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::alpha() { return _alpha; }
     void flDisplayObject::alpha(float value) { _alpha = value; }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObject::visible() { return _visible; }
     void flDisplayObject::visible(bool value) { _visible = value; }
     
     //--------------------------------------------------------------
-    //
     int flDisplayObject::blendMode() { return _blendMode; }
     void flDisplayObject::blendMode(int value) {
         if(value < 0 || 13 < value) return;
@@ -408,17 +382,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     int flDisplayObject::level() { return _level; }
     void flDisplayObject::level(int value) { _level = value; }
     
     //--------------------------------------------------------------
-    //
     const flMatrix& flDisplayObject::matrix() { return _matrix; }
     void flDisplayObject::matrix(const flMatrix& mat) { _matrix = mat; }
     
     //--------------------------------------------------------------
-    //
     const flMatrix& flDisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
     
     //--------------------------------------------------------------
@@ -433,14 +404,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObject::hitTestObject(flDisplayObject* obj) {
         // TODO - working if two rectangles of different world matrices make any contact.
         return false;
     }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
@@ -449,7 +418,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofPoint flDisplayObject::globalToLocal(const ofPoint& point) {
         ofPoint p = point;
         //グローバル座標からローカル座標に変換
@@ -458,7 +426,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofPoint flDisplayObject::globalToLocal3D(const ofPoint& point) {
         ofPoint p = point;
         _concatenatedMatrixInv.transformPoint(p);
@@ -466,7 +433,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofPoint flDisplayObject::local3DToGlobal(const ofPoint& point) {
         ofPoint p = point;
         _concatenatedMatrix.transformPoint(p);
@@ -474,7 +440,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofPoint flDisplayObject::localToGlobal(const ofPoint& point) {
         ofPoint p = point;
         _concatenatedMatrix.transformPoint(p);
@@ -482,7 +447,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::transform(const flMatrix& mat) {
         _concatenatedMatrix = mat;
         _concatenatedMatrixInv = mat;
@@ -521,17 +485,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObject::enabledSmoothing() { return _enabledSmoothing; }
     void flDisplayObject::enabledSmoothing(bool value) { _enabledSmoothing = value; }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObject::enabledAntiAliasing() { return _enabledAntiAliasing; }
     void flDisplayObject::enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
     
     //--------------------------------------------------------------
-    //
     int flDisplayObject::mouseX() {
         // if it has a reference to stage then it must have been added as a child to stage.
         if(_stage) {
@@ -547,7 +508,6 @@ namespace fl2d {
         return _mouseX;
     }
     //--------------------------------------------------------------
-    //
     int flDisplayObject::mouseY() {
         // if it has a reference to stage then it must have been added as a child to stage.
         if(_stage) {
@@ -568,7 +528,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flDisplayObject::_updateRect() {
         ////        _rect->__setZero();
         //        
@@ -587,7 +546,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flDisplayObject::__compoundAlpha(){ return _compoundAlpha; }
     void flDisplayObject::__compoundAlpha(float value){ _compoundAlpha = value; }
 }

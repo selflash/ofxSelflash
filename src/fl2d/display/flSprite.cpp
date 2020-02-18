@@ -3,11 +3,10 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flSprite::flSprite() {
         //        cout << "[Sprite]Sprite()" << endl;
         
@@ -31,7 +30,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flSprite::~flSprite() {
         //        cout << "[flSprite]~flSprite()" << endl;
         
@@ -54,7 +52,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flSprite::_updateEventHandler(ofEventArgs& args) {
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
@@ -73,7 +70,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flSprite::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
         
@@ -220,7 +216,6 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    //
     float flSprite::width() {
         _updateRect();
         if(_realWidth == 0.0) return 0.0;
@@ -232,7 +227,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flSprite::height() {
         _updateRect();
         if(_realHeight == 0.0) return 0.0;
@@ -244,14 +238,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flSprite::scaleX() { return _matrix.scaleX(); }
     void flSprite::scaleX(float value) {
         _targetHeight = numeric_limits<float>::quiet_NaN();
         _matrix.scaleX(value);
     }
     //--------------------------------------------------------------
-    //
     float flSprite::scaleY() { return _matrix.scaleY(); }
     void flSprite::scaleY(float value) {
         _targetHeight = numeric_limits<float>::quiet_NaN();
@@ -259,7 +251,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flSprite::useHandCursor() { return _useHandCursor; }
     void flSprite::useHandCursor(bool value) { _useHandCursor = value; }
     
@@ -272,7 +263,6 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    //
     flSprite* flSprite::hitArea() { return _hitArea; }
     void flSprite::hitArea(flSprite* value) {
         /*
@@ -293,7 +283,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flSprite::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
@@ -324,7 +313,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flSprite::stopDrag() {
         ofRemoveListener(ofEvents().mouseDragged, this, &flSprite::_mouseDragging);
         
@@ -336,7 +324,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flSprite::_updateRect() {
         _rect->__setToRect(*_graphics->__rect);
         
@@ -363,14 +350,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flSprite::__compoundAlpha(float value){
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);
     }
     
     //--------------------------------------------------------------
-    //
     void flSprite::_mouseDragging(int x, int y, int id) {
         if(!_mouseEnabled) return;
         

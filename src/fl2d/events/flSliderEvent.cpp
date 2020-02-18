@@ -8,13 +8,11 @@ namespace fl2d {
     string flSliderEvent::THUMB_RELEASE = "thumbRelease";
     
     //--------------------------------------------------------------
-    //
     flSliderEvent::flSliderEvent(string type):flEvent(type) {
         _clickTarget = NULL;
     }
     
     //--------------------------------------------------------------
-    //
     flSliderEvent::~flSliderEvent() {
         _clickTarget = NULL;
     }

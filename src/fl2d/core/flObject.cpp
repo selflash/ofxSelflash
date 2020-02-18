@@ -3,7 +3,6 @@
 namespace fl2d {
     
     //--------------------------------------------------------------
-    //
     flObject::flObject() {
         _typeID = FL_TYPE_OBJECT;
         _no = 0;
@@ -12,7 +11,6 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    //
     flObject::~flObject() {
         _typeID = 0;
         _no = 0;

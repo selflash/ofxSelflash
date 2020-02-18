@@ -3,15 +3,13 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flMovieClip::flMovieClip(int maxFrameNum) {
         _typeID = FL_TYPE_MOVIE_CLIP;
-        _target = this;
-        
+        _target = this;        
         name("flMovieClip");
         
         _setTotalFrames(maxFrameNum);
@@ -29,7 +27,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flMovieClip::~flMovieClip() {
         _target = NULL;
         
@@ -43,7 +40,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::_updateEventHandler(ofEventArgs& args) {
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
@@ -118,19 +114,16 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::play() {
         _bPlay = true;
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::stop() {
         _bPlay = false;
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::gotoAndPlay(int frameNum) {
         int index = frameNum - 1;
         
@@ -144,7 +137,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::gotoAndStop(int frameNum) {
         int index = frameNum - 1;
         
@@ -158,14 +150,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::nextFrame() {
         _frameIndex += frameRate;
         if(_frameIndex > totalFrames() - 1) _frameIndex = 0;
         _frame = _frames[_frameIndex];
     }
     //--------------------------------------------------------------
-    //
     void flMovieClip::prevFrame() {
         _frameIndex -= frameRate;
         if(_frameIndex < 0) _frameIndex = totalFrames() - 1;
@@ -173,10 +163,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     int flMovieClip::totalFrames() { return _frames.size(); }
     //--------------------------------------------------------------
-    //
     int flMovieClip::currentFrame() { return _frameIndex + 1; }
     
     //==============================================================
@@ -184,7 +172,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::updateOnFrame() {
         _removeFrameChildren();
         
@@ -198,7 +185,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::_setTotalFrames(int total) {
         int t1 = total;
         int t2 = _frames.size();
@@ -227,7 +213,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::addFrameObject(int frameNum, flDisplayObject* child) {
         if(totalFrames() < frameNum) throw "[flMovieClip]addFrameObject";
         
@@ -236,7 +221,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::_addFrameChildren() {
         for(int i = 0; i < _frame->children.size(); i++) {
             flDisplayObject *child;
@@ -250,7 +234,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMovieClip::_removeFrameChildren() {
         flDisplayObjectContainer::removeAllChildren();
     }

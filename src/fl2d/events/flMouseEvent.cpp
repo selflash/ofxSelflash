@@ -15,13 +15,11 @@ namespace fl2d {
     string flMouseEvent::MOUSE_SCROLLED = "mouseScrolled";
     
     //--------------------------------------------------------------
-    //
     flMouseEvent::flMouseEvent(string type):flEvent(type) {
         
     }
     
     //--------------------------------------------------------------
-    //
     flMouseEvent::~flMouseEvent() {
         
     }

@@ -7,7 +7,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flEventDispatcher::flEventDispatcher() {
         _typeID = FL_TYPE_EVENT_DISPATCHER;
         _target = this;
@@ -16,7 +15,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flEventDispatcher::~flEventDispatcher() {
         _target = NULL;
         
@@ -28,7 +26,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flEventDispatcher::dispatchEvent(flEvent* event) {
         event->currentTarget(_target);
         if(!event->target()) event->target(_target);

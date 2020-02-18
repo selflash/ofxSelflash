@@ -25,7 +25,6 @@ namespace fl2d {
     int flBlendMode::_height = 0;
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::enable(string value) {
         glPushAttrib(GL_ALL_ATTRIB_BITS);
         
@@ -103,7 +102,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::setup(int width, int height) {
         _base = new ofFbo();
         _base->allocate(width, height, GL_RGBA, ofFbo::maxSamples());
@@ -112,7 +110,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::draw(ofTexture& blendTgt, int blendMode, int x, int y) {
         _blendShader->begin();
         _blendShader->setUniformTexture("base", _base->getTexture(), 1);
@@ -126,7 +123,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::draw(ofTexture& blendTgt, int blendMode, int x, int y, int width, int height) {
         _blendShader->begin();
         _blendShader->setUniformTexture("base", _base->getTexture(), 1);
@@ -140,13 +136,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::resize(int width, int height) {
         _base->allocate(width, height, GL_RGBA, ofFbo::maxSamples());
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::begin() {
         ofPushStyle();
         ofPushMatrix();
@@ -156,7 +150,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::end() {
         _base->end();
         
@@ -165,7 +158,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     string flBlendMode::blendMode(int blendMode) {
         string blendName = "no such blend hiii";
         
@@ -202,7 +194,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     //    string flBlendMode::_getFragmentProgramGL3() {
     //        string fragmentProgram = "#version 150\n \
     //        \n \
@@ -496,7 +487,6 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    //
     //    string flBlendMode::_getFragmentProgramGL2() {
     //        string fragmentProgram = "#version 120\n \
     //        #extension GL_ARB_texture_rectangle : enable\n \
@@ -792,7 +782,6 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::_loadShader() {
         _blendShader = new ofShader();
         
@@ -812,7 +801,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBlendMode::destroy() {
         delete _base;
         _base = NULL;

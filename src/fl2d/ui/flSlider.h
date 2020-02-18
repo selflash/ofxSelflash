@@ -37,8 +37,9 @@ namespace fl2d {
         float _value;
         
         bool _roundEnabled;
-        
-        ofPoint* _draggablePoint;
+        int _digit;
+
+        ofPoint _draggablePoint;
         
     public:
         flSlider(float trackWidth = 200, float min = 0, float max = 100, float defaultValue = 0);
@@ -69,17 +70,20 @@ namespace fl2d {
         void roundEnabled(bool value);
         
         //------------------------------------------
-//        bool _changedValueByMyself = false;
-        ofParameter<float>* _param;
-//        ofEventListener _valueListener;
+        ofParameter<float>* _floatParam;
+        ofParameter<int>* _intParam;
         virtual inline void bind(ofParameter<float>& param) {
-            if(_param != NULL) {
+            if(_floatParam != NULL) {
                 _valueListener.unsubscribe();
-                _param = NULL;
+                _floatParam = NULL;
+            }
+            if(_intParam != NULL) {
+                _valueListener.unsubscribe();
+                _intParam = NULL;
             }
             
-            _param = &param;
-            _valueListener = _param->newListener([&](float& val) {
+            _floatParam = &param;
+            _valueListener = _floatParam->newListener([&](float& val) {
                 if(_changedValueByMyself) {
                     _changedValueByMyself = false;
                 } else {
@@ -87,14 +91,33 @@ namespace fl2d {
                 }
             });
 
-            value(_param->get());
-//            _changedValueByMyself = true;
-//            _param->set(_value);
-//            _valueText->text(ofToString(_value, 2));
+            value(_floatParam->get());
+        }
+        virtual inline void bind(ofParameter<int>& param) {
+            if(_floatParam != NULL) {
+                _valueListener.unsubscribe();
+                _floatParam = NULL;
+            }
+            if(_intParam != NULL) {
+                _valueListener.unsubscribe();
+                _intParam = NULL;
+            }
+            
+            _intParam = &param;
+            _valueListener = _intParam->newListener([&](int& val) {
+                if(_changedValueByMyself) {
+                    _changedValueByMyself = false;
+                } else {
+                    value(val);
+                }
+            });
+            
+            value(_intParam->get());
         }
         virtual inline void unbind() {
             _valueListener.unsubscribe();
-            _param = NULL;
+            _floatParam = NULL;
+            _intParam = NULL;
         }
         //------------------------------------------
         

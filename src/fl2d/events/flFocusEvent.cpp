@@ -8,13 +8,11 @@ namespace fl2d {
     string flFocusEvent::MOUSE_FOCUS_CHANGE = "mouseFocusChange";
     
     //--------------------------------------------------------------
-    //
     flFocusEvent::flFocusEvent(string type):flEvent(type) {
         
     }
     
     //--------------------------------------------------------------
-    //
     flFocusEvent::~flFocusEvent() {
         
     }

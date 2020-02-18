@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-
 #include "ofxSelflash.h"
 #include "UIComponents.h"
 #include "AppModel.h"
@@ -11,18 +10,14 @@ using namespace fl2d;
 
 class ofApp : public ofBaseApp {
     public:
+        AppModel appModel;
         UIComponents* uiComponents;
-    
+        Renderer* renderer;
+        ofEventListeners listeners;
+        bool enabled = true;
+
     private:
-        AppModel _appModel;
-        ofFloatColor _color;
-        bool _enabled = true;
-    
-        ofEventListeners _listeners;
-//        ofParameter<float> _param;
-    
-        Renderer* _renderer;
-    
+
     public:
         void setup();
         void update();

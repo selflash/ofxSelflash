@@ -45,6 +45,7 @@ void Renderer::_setup() {
 //    addChild(bitmap);
     
     bgColor = ofColor(0, 0, 0, 255);
+    lineWidth = 1;
 }
 
 //--------------------------------------------------------------
@@ -87,6 +88,7 @@ void Renderer::_draw() {
     
     ofPushStyle();
     ofNoFill();
+    ofSetLineWidth(lineWidth);
     ofDrawBox(0, 0, 0, 100, 100, 100);
     ofPopStyle();
     

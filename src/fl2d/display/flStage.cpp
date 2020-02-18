@@ -1447,7 +1447,8 @@ namespace fl2d {
         b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        
+        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
+
         return b;
     }
     
@@ -1459,7 +1460,8 @@ namespace fl2d {
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
-        
+        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
+
         return b;
     }
     
@@ -1469,7 +1471,8 @@ namespace fl2d {
         b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        
+        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
+
         return b;
     }
     
@@ -1478,7 +1481,8 @@ namespace fl2d {
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        
+        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
+
         return b;
     }
     

@@ -12,14 +12,12 @@ namespace fl2d {
     string flButtonEvent::CLICK = "buttonClick";
     
     //--------------------------------------------------------------
-    //
     flButtonEvent::flButtonEvent(string type):flEvent(type) {
         //        cout << "[ButtonEvent]ButtonEvent()" << endl;
         
     }
     
     //--------------------------------------------------------------
-    //
     flButtonEvent::~flButtonEvent() {
         
     }

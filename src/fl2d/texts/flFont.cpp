@@ -1,4 +1,4 @@
-﻿#include "flFont.h"
+#include "flFont.h"
 
 namespace fl2d {
     map<int, ofTrueTypeFont> flFont::_fonts;
@@ -7,7 +7,6 @@ namespace fl2d {
     map<int, float> flFont::_maxStringHeight;
 
     //--------------------------------------------------------------
-    //
     void flFont::setup() {
 		ofTrueTypeFont font;
 		_loadFont(font, flDefinition::_FONT_PATH, _normalFontSize);
@@ -15,7 +14,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flFont::clear() {
         _fonts.clear();
         _maxStringWidth.clear();
@@ -23,7 +21,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flFont::loadFont(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
 			ofTrueTypeFont font;
@@ -33,7 +30,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofTrueTypeFont flFont::_loadFont(ofTrueTypeFont& font, string path, int fontSize) {
         // Fonts
         //        ofTrueTypeFont::setGlobalDpi(72);
@@ -90,13 +86,11 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    //
 //    void flFont::registFont(ofTrueTypeFont font) {
 //        _normalFont = _normalFont;
 //    }
 
     //--------------------------------------------------------------
-    //
     void flFont::drawString(const std::string& text) {
         drawString(text, 0, 0);
     }
@@ -120,7 +114,6 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    //
     void flFont::drawStringHighlight(const string& text, const ofColor& background, const ofColor& foreground) {
         drawStringHighlight(text, 0, 0, background, foreground);
     }
@@ -186,7 +179,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     ofRectangle flFont::getStringBoundingBox(const string& text) {
         return getStringBoundingBox(text, 0.0, 0.0);
     }
@@ -208,7 +200,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flFont::getLineHeight(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
             return 0.0;
@@ -235,7 +226,6 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    //
     float flFont::getMaxStringWidth(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
             return 0.0;
@@ -244,7 +234,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flFont::getMaxStringHeight(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
             return 0.0;

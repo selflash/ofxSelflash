@@ -17,10 +17,10 @@ namespace fl2d {
         
     protected:
         flTextField* _hexText;
-        flTextField* _redValueText;
-        flTextField* _greenValueText;
-        flTextField* _blueValueText;
-        flTextField* _alphaValueText;
+        flTextField* _redLabel;
+        flTextField* _greenLabel;
+        flTextField* _blueLabel;
+        flTextField* _alphaLabel;
         
         ofColor _colorValue;
         int _hexValue;
@@ -132,9 +132,7 @@ namespace fl2d {
         //----------------------------------
         
         //------------------------------------------
-//        bool _changedValueByMyself = false;
         ofParameter<ofColor>* _param;
-//        ofEventListener _valueListener;
         virtual inline void bind(ofParameter<ofColor>& param) {
             if(_param != NULL) {
                 _valueListener.unsubscribe();
@@ -151,9 +149,6 @@ namespace fl2d {
             });
             
             hexValue(_param->get().getHex());
-//            _changedValueByMyself = true;
-//            _param->set(_value);
-//            _valueText->text(ofToString(_value, 2));
         }
         virtual inline void unbind() {
             _valueListener.unsubscribe();

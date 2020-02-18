@@ -21,6 +21,7 @@ namespace fl2d {
         _disableActiveBarColor.setHex(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
 
         _roundEnabled = false;
+        _digit = 2;
 
         _min = min;
         _max = max;
@@ -92,11 +93,10 @@ namespace fl2d {
         addChild(_valueText);
         //------------------------------------------
         
-        _draggablePoint = new ofPoint(0, 0);
-        
         _setNormalColor();
         
-        _param = NULL;
+        _floatParam = NULL;
+        _intParam = NULL;
     }
     
     //--------------------------------------------------------------
@@ -104,6 +104,7 @@ namespace fl2d {
         //ofLog() << "[flSlider]~flSlider()";
         
         _roundEnabled = false;
+        _digit = 0;
 
         track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
         track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
@@ -122,14 +123,10 @@ namespace fl2d {
         
         delete _valueText;
         _valueText = NULL;
-        
-        delete _draggablePoint;
-        _draggablePoint = NULL;
 
-        if(_param != NULL) {
-            _valueListener.unsubscribe();
-            _param = NULL;
-        };
+        _floatParam = NULL;
+        _intParam = NULL;
+        _valueListener.unsubscribe();
     }
     
     //==============================================================
@@ -325,7 +322,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flSlider::roundEnabled() { return _roundEnabled; }
-    void flSlider::roundEnabled(bool value) { _roundEnabled = value; }
+    void flSlider::roundEnabled(bool value) {
+        _roundEnabled = value;
+        if(_roundEnabled) {
+            _digit = 0;
+        } else {
+            _digit = 2;
+        }
+    }
 
 	//--------------------------------------------------------------
 	bool flSlider::enabled() { return _enabled; }
@@ -358,12 +362,16 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_changeValue(bool dispatch) {
-        if(_param != NULL) {
+        if(_floatParam != NULL) {
             _changedValueByMyself = true;
-            _param->set(_value);
+            _floatParam->set(_value);
         }
-        
-        _valueText->text(ofToString(_value, 2));
+        else if(_intParam != NULL) {
+            _changedValueByMyself = true;
+            _intParam->set(_value);
+        }
+
+        _valueText->text(ofToString(_value, _digit));
         
         //------------------------------------------
         //イベント
@@ -414,7 +422,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_press() {
         //------------------------------------------
-        float temp = mouseX() - _draggablePoint->x;
+        float temp = mouseX() - _draggablePoint.x;
         if(temp < 0) temp = 0;
         if(temp > _trackWidth) temp = _trackWidth;
         _percent = temp / _trackWidth;
@@ -563,7 +571,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
-                    _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
+                    _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;
                     _press();
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);

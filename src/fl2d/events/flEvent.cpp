@@ -34,7 +34,6 @@ namespace fl2d {
     //string flEvent::UNLOAD = "unload";
     
     //--------------------------------------------------------------
-    //
     flEvent::flEvent(string type) {
         //        cout << "[flEvent]flEvent1()" << endl;
         
@@ -45,7 +44,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flEvent::~flEvent() {
         _type = "";
         

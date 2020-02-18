@@ -8,7 +8,6 @@ namespace fl2d {
     string flRangeSliderEvent::THUMB_RELEASE = "thumbRelease";
     
     //--------------------------------------------------------------
-    //
     flRangeSliderEvent::flRangeSliderEvent(string type):flEvent(type) {
         _clickTarget = NULL;
         
@@ -18,7 +17,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flRangeSliderEvent::~flRangeSliderEvent() {
         _clickTarget = NULL;
         

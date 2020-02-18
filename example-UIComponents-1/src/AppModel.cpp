@@ -7,7 +7,8 @@ AppModel::AppModel() {
 
     speed = 0.1;
     bgColor = ofColor(125, 124, 125, 220);
-
+    lineWidth = 1;
+    
 //    isLoaded = false;
 //    isProcessing = false;
 //    isFinding = false;

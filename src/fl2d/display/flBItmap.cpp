@@ -4,7 +4,7 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
 //    template <class T>
@@ -61,10 +61,8 @@ namespace fl2d {
 		}
         
     }
-
     
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap() {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap()" << endl;
@@ -84,7 +82,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(flBitmapData* bitmapData, string pixelSnapping, bool smoothing) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(flBitmapData)" << endl;
@@ -111,7 +108,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(ofImage* image) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(ofImage ptr)" << endl;
@@ -137,7 +133,6 @@ namespace fl2d {
         ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(ofImage image) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(ofImage)" << endl;
@@ -164,7 +159,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(ofTexture* texture) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(ofTexture ptr)" << endl;
@@ -190,7 +184,6 @@ namespace fl2d {
         ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(ofTexture texture) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(ofTexture)" << endl;
@@ -217,7 +210,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmap::flBitmap(ofFbo fboImage) {
         //        debug(true);
         if(debug()) cout << "[flBitmap]flBitmap(ofFbo)" << endl;
@@ -244,7 +236,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmap::~flBitmap() {
         //        delete _bitmapData;
         
@@ -256,7 +247,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmap::_updateEventHandler(ofEventArgs& args) {
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
@@ -346,7 +336,6 @@ namespace fl2d {
 	}
 
     //--------------------------------------------------------------
-    //
     void flBitmap::_draw() {
         //--------------------------------------
         //draw image
@@ -375,13 +364,11 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     //const float flBitmap::width() {
     //_rect->__expandToRect(bitmapImage->__rect());
     //    return _rect->width();
     //}
     //--------------------------------------------------------------
-    //
     //const float flBitmap::height() {
     //_rect->__expandToRect(graphics->__rect());
     //    return _rect->height();
@@ -389,7 +376,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     //    float flBitmap::width() {
     //        _updateRect();
     //        
@@ -412,7 +398,6 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    //
     float flBitmap::width() {
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         return _realWidth * scaleX();
@@ -423,7 +408,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flBitmap::height() {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
         return _realHeight * scaleY();
@@ -434,7 +418,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     float flBitmap::scaleX() {
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         return _matrix.scaleX();
@@ -444,7 +427,6 @@ namespace fl2d {
         _matrix.scaleX(value);
     }
     //--------------------------------------------------------------
-    //
     float flBitmap::scaleY() {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
         return _matrix.scaleY();
@@ -460,7 +442,6 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     void flBitmap::_updateRect() {
         //        _rect->__setZero();
         //        _rect->width(_imageWidth);
@@ -478,13 +459,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     //void flBitmap::updateOnFrame() {
     
     //}
     
     //--------------------------------------------------------------
-    //
     //void flBitmap::drawOnFrame() {
     //_drawBitmap();
     //}

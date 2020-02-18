@@ -3,7 +3,6 @@
 namespace fl2d {
     
     //--------------------------------------------------------------
-    //
 	flTransform::flTransform() {
         pixelBounds = new flRectangle();
         
@@ -12,7 +11,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flTransform::~flTransform() {
         pixelBounds = NULL;
         
@@ -21,7 +19,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flTransform::update() {
         bDirtyColorTransform = !_colorTransform.isEqual(colorTransform);
         bDirtyMatrix         = !_matrix.isEqual(matrix);

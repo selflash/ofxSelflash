@@ -5,7 +5,6 @@ namespace fl2d {
     string flPadEvent::CHANGE = "pad2DChange";
     
     //--------------------------------------------------------------
-    //
     flPadEvent::flPadEvent(string type):flEvent(type) {
         __xRatio = 0.0;
         __yRatio = 0.0;
@@ -15,7 +14,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flPadEvent::~flPadEvent() {
         __xRatio = 0.0;
         __yRatio = 0.0;

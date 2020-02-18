@@ -49,6 +49,9 @@ using namespace std;
 #define FL_TYPE_RIBBON3D                   30
 #define FL_TYPE_MODEL_LOADER3D             31
 
+//UI Component
+#define FL_TYPE_UIBASE                     32
+
 namespace fl2d {
     
     class flObject {

@@ -19,6 +19,7 @@ class Renderer : public flBasicDraggableObject {
         float speed;
 
         ofColor bgColor;
+        int lineWidth;
     
     protected:
         

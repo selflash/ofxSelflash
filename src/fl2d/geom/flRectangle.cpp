@@ -7,7 +7,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flRectangle::flRectangle() {
         
     }
@@ -23,7 +22,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flRectangle::~flRectangle() {
         _xMin = 0.0;
         _yMin = 0.0;
@@ -104,7 +102,6 @@ namespace fl2d {
         _xMax = _xMin + value;
     }
     //--------------------------------------------------------------
-    //
     float flRectangle::height() { return _yMax - _yMin; }
     void flRectangle::height(float value) {
         if(_yMax != _yMin + value) _isChanged = true;
@@ -112,18 +109,15 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flRectangle::isNull() const {
         return (isnan(_xMin) && isnan(_xMax) && isnan(_yMin) && isnan(_yMax));
     }
     //--------------------------------------------------------------
-    //
     bool flRectangle::isZero() const {
         return (_xMin == 0.0 && _xMax == 0.0 && _yMin == 0.0 && _yMax == 0.0);
     }
     
     //--------------------------------------------------------------
-    //
     bool flRectangle::pointTest(float x, float y) {
         if(isNull()) return false;
         
@@ -135,7 +129,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flRectangle::isChanged() {
         bool b = _isChanged;
         _isChanged = false;
@@ -147,13 +140,11 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     //    void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = 0 / 0.f; }
     void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = numeric_limits<float>::quiet_NaN(); }
     void flRectangle::__setZero() { _xMin = _yMin = _xMax = _yMax = 0.0; }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandTo(float x, float y) {
         //        if(isNull()) {
         //            _xMin = x;
@@ -178,7 +169,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandToX(float x) {
         //        if(isNull()) {
         //            _xMin = x;
@@ -197,7 +187,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandToY(float y) {
         //        if(isNull()) {
         //            _yMin = y;
@@ -216,7 +205,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__encloseRect(const vector<ofPoint>& points) {
         for(int i = 0; i < points.size(); i++){
             if(i == 0){
@@ -228,7 +216,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandToRect(const flRectangle& rect) {
         if(rect.isNull()) return;
         
@@ -250,7 +237,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__setToPoint(float x, float y) {
         //        if(isNull()) {
         //            _xMin = x;
@@ -273,7 +259,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandToPoint(float x, float y) {
         if(isNull()) {
             __setToPoint(x, y);
@@ -283,7 +268,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__expandToCircle(float x, float y, float radius) {
         if(isNull()) {
             _isChanged = true;
@@ -308,7 +292,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__setToRect(float x1, float y1, float x2, float y2) {
         //        if(isNull()) {
         //            _xMin = x1;
@@ -333,7 +316,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRectangle::__setToRect(const flRectangle& rect) {
         //        if(isNull()) {
         //            _xMin = rect.left();

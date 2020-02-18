@@ -3,15 +3,13 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flDisplayObjectContainer::flDisplayObjectContainer() {
         _typeID = FL_TYPE_DISPLAY_OBJECT_CONTAINER;
-        _target = this;
-        
+        _target = this;        
         name("flDisplayObjectContainer");
         
         _mouseChildren = true;
@@ -19,7 +17,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObjectContainer::~flDisplayObjectContainer() {
         _target = NULL;
         
@@ -34,7 +31,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::update() {
         //    float tempLeft = _rect->left();
         //    float tempRight = _rect->right();
@@ -63,7 +59,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
         
@@ -131,16 +126,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObjectContainer::mouseChildren() { return _mouseChildren; }
     void flDisplayObjectContainer::mouseChildren(bool value) { _mouseChildren = value; }
     
     //--------------------------------------------------------------
-    //
     int flDisplayObjectContainer::numChildren() { return children.size(); }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObjectContainer::contains(flDisplayObject* child) {
         for(int i = 0; i < children.size(); i++) {
             if(children[i] == child) return true;
@@ -149,7 +141,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::stage() { return _stage; }
     void flDisplayObjectContainer::stage(flDisplayObject* value) {
         //cout << "[flDisplayObjectContainer]stage(" << value << ")" << name() << endl;
@@ -178,7 +169,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child) {
         //    cout << "[flDisplayObjectContainer]addChild((" << child->name() << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
@@ -197,7 +187,6 @@ namespace fl2d {
         return child;
     }
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child, int x, int y) {
         //    cout << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
@@ -219,7 +208,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::addChildAt(flDisplayObject* child, int index) {
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
         
@@ -238,7 +226,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
         //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
         
@@ -260,7 +247,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
         //children()の箇所はリファクタリングとかで外に出したらダメ
@@ -278,7 +264,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::removeAllChildren() {
         int i = 0;
         int t = children.size();
@@ -299,14 +284,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::getChildAt(int index) {
         if(index < 0 || index > children.size() - 1) return NULL;
         return children[index];
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flDisplayObjectContainer::getChildByName(string name) {
         for(int i = 0; i < children.size(); i++){
             if(children[i]->name() == name) return children[i];
@@ -316,7 +299,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     int flDisplayObjectContainer::getChildIndex(flDisplayObject* child) {
         for(int i = 0; i < children.size(); i++){
             if(children[i] == child) return i;
@@ -326,14 +308,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     vector<flDisplayObject*> flDisplayObjectContainer::getObjectsUnderPoint(ofPoint point) {
         // TODO Êú™ÂÆüË£Ö
         return children;
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::setChildIndex(flDisplayObject* child, int index) {
         if(index < 0 || index > children.size() - 1) return;
         
@@ -347,7 +327,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::swapChildren(flDisplayObject* child1, flDisplayObject* child2) {
         int index1 = getChildIndex(child1);
         int index2 = getChildIndex(child2);
@@ -370,7 +349,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::swapChildrenAt(int index1, int index2) {
         if(index1 == index2) return;
         
@@ -401,7 +379,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flDisplayObjectContainer::_updateRect() {
         //        _rect->__setNull();
         _rect->__setZero();
@@ -429,14 +406,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flDisplayObjectContainer::_hasChildren(flDisplayObject* displayObject) {
         bool b;
         b = false;
         b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        
+        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
+
         return b;
     }
     

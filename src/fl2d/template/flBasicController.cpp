@@ -3,13 +3,12 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flBasicController::flBasicController() {
-        //    cout << "[flBasicController]flBasicController()" << endl;
+        //    cout << "[flBasicController]flBasicController()";
         
         _target = this;
         name("flBasicController");
@@ -45,13 +44,13 @@ namespace fl2d {
         minimizeButton = new flButton(20, 13);
         minimizeButton->labelText(" -");
         minimizeButton->toggleEnabled(true);
-        minimizeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
+        minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_uiEventHandler);
         addChild(minimizeButton);
         
         //閉じるボタン
         closeButton = new flButton(20, 13);
         closeButton->labelText(" x");
-        closeButton->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
+        closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicController::_uiEventHandler);
         addChild(closeButton);
         
         _backWidth = 0;
@@ -69,9 +68,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBasicController::~flBasicController() {
-        //    cout << "[flBasicController]~flBasicController()" << endl;
+        //    cout << "[flBasicController]~flBasicController()";
         
         _target = NULL;
         
@@ -81,12 +79,12 @@ namespace fl2d {
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
         //最小化ボタン
-        minimizeButton->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
+        minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_uiEventHandler);
         delete minimizeButton;
         minimizeButton = NULL;
         
         //閉じるボタン
-        closeButton->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_buttonEventHandler);
+        closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_uiEventHandler);
         delete closeButton;
         closeButton = NULL;
         
@@ -111,11 +109,10 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flBasicController::setup() {
         //Sprite::setup();
         
@@ -132,11 +129,10 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC MEHTOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flBasicController::minimize() {
         if(_isMinimize) return;
         _isMinimize = true;
@@ -173,7 +169,6 @@ namespace fl2d {
         //----------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flBasicController::normalize() {
         if(!_isMinimize) return;
         _isMinimize = false;
@@ -211,85 +206,72 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBasicController::resize(float w, float h) {
         
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    //
-    void flBasicController::_mouseEventHandler(flEvent& event) {
-        /*
-         cout << "\n----------------------------------------------------------" << endl;
-         printf("[flBasicController]_mouseEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
-         cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
-         cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
-         cout << "----------------------------------------------------------\n" << endl;
-         */    
-        
-        //ボタン(ロールオーバー)
-        if(event.type() == flMouseEvent::ROLL_OVER) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+    void flBasicController::_uiEventHandler(flEvent& event) {
+//        ofLog() << "[flBasicController]_uiEventHandler(" << event.type() << ")";
+//        ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+
+        //ボタン
+        if(event.type() == flButtonEvent::ROLL_OVER) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-            
-            if(event.target() == this) {
-                
-            }
         }
-        //ボタン(ロールアウト)
-        if(event.type() == flMouseEvent::ROLL_OUT) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+        if(event.type() == flButtonEvent::ROLL_OUT) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-            
-            if(event.target() == this) {
-                
-            }
         }
-        //ボタン(マウスオーバー)
-        if(event.type() == flMouseEvent::MOUSE_OVER) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+        if(event.type() == flButtonEvent::MOUSE_OVER) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-            
-            if(event.target() == this) {
-                
-            }
         }
-        //ボタン(マウスアウト)
-        if(event.type() == flMouseEvent::MOUSE_OUT) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+        if(event.type() == flButtonEvent::MOUSE_OUT) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-            
-            if(event.target() == this) {
-                
-            }
         }
-        //ボタン(マウスダウン)
-        if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+        if(event.type() == flButtonEvent::MOUSE_DOWN) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
             
-            if(event.target() == this) {
-                if(_dragEnabled) {
-                    if(_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
-                    startDrag();
-                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
+            if(button == closeButton) dispatchEvent(new flEvent(flEvent::CLOSE));
+        }
+        if(event.type() == flButtonEvent::MOUSE_UP) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
+            flButton* button = (flButton*)(event.currentTarget());
+        }
+        if(event.type() == flButtonEvent::CHANGE) {
+            flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
+            flButton* button = (flButton*)(event.currentTarget());
+            
+            if(button == minimizeButton) {
+                if(minimizeButton->selected()) {
+                    minimize();
+                } else {
+                    normalize();
                 }
             }
         }
-        //ボタン(マウスアップ)
-        if(event.type() == flMouseEvent::MOUSE_UP) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-            flButton* button = (flButton*)(event.currentTarget());
+
+        //コンボボックス
+        if(event.type() == flComboBoxEvent::CHANGE) {
+            flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
+            flComboBox* comboBox = (flComboBox*)(event.currentTarget());
             
-            //if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
-            if(event.target() == stage()) {
-                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-                stopDrag();
-            }
+//            ofLog() << "-------------";
+//            ofLog() << comboBox->name() << " :";
+//            ofLog() << "selectedIndex : " << comboBox->selectedIndex();
+//            ofLog() << "selectedValue : " << comboBox->selectedValue<string>();
+//            ofLog() << "selectedValue : " << comboBox->selectedValue<float>();
+//            ofLog() << "selectedValue : " << comboBox->selectedValue<flComboBox*>()->name();
         }
         
         //チェックボックス
@@ -380,16 +362,64 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
-    void flBasicController::_buttonEventHandler(flEvent& event) {
-        if(event.type() == flMouseEvent::MOUSE_UP) {
-            if(event.target() == closeButton) dispatchEvent(new flEvent(flEvent::CLOSE));
-            if(event.target() == minimizeButton) {
-                if(minimizeButton->selected()) {
-                    minimize();
-                } else {
-                    normalize();
+    void flBasicController::_mouseEventHandler(flEvent& event) {
+        //Roll Over
+        if(event.type() == flMouseEvent::ROLL_OVER) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            if(event.target() == this) {
+                
+            }
+        }
+        
+        //Roll Out
+        if(event.type() == flMouseEvent::ROLL_OUT) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            if(event.target() == this) {
+                
+            }
+        }
+        
+        //Mouse Over
+        if(event.type() == flMouseEvent::MOUSE_OVER) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            if(event.target() == this) {
+                
+            }
+        }
+        
+        //Mouse Out
+        if(event.type() == flMouseEvent::MOUSE_OUT) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            if(event.target() == this) {
+                
+            }
+        }
+        
+        //Mouse Down
+        if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            if(event.target() == this) {
+                if(_dragEnabled) {
+                    if(_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
+                    startDrag();
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
                 }
+            }
+        }
+        
+        //Mouse Up
+        if(event.type() == flMouseEvent::MOUSE_UP) {
+            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+            
+            //if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
+            if(event.target() == stage()) {
+                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
+                stopDrag();
             }
         }
     }

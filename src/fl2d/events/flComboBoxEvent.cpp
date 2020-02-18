@@ -10,13 +10,11 @@ namespace fl2d {
     string flComboBoxEvent::SCROLL = "scroll";
     
     //--------------------------------------------------------------
-    //
     flComboBoxEvent::flComboBoxEvent(string type):flEvent(type) {
         __label = "";
     }
     
     //--------------------------------------------------------------
-    //
     flComboBoxEvent::~flComboBoxEvent() {
         __label = "";
     }

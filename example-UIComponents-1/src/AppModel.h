@@ -23,6 +23,8 @@ class AppModel {
 
         ofParameter<float> speed;
         ofParameter<ofColor> bgColor;
+        ofParameter<int> lineWidth;
+    
 
 //        ofParameter<int> viewMode;
 //        ofParameter<string> currentCameraPosition;

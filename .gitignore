@@ -1259,3 +1259,9 @@ example-UIComponents-1/.vs/example-UIComponents-1/v15/ipch/AutoPCH/c9ab05f444501
 example-UIComponents-1/.vs/example-UIComponents-1/v15/ipch/AutoPCH/48e82066503341ac/UICOMPONENTS.ipch
 example-UIComponents-1/.vs/example-UIComponents-1/v15/ipch/AutoPCH/9c8d4357ddd522a8/FLANGLER.ipch
 example-UIComponents-1/.vs/example-UIComponents-1/v15/ipch/AutoPCH/cda79f3e20e331b0/FLGRAPHICS.ipch
+IDEWorkspaceChecks.plist
+WorkspaceSettings.xcsettings
+example-Object Debug.xcscheme
+example-Object Release.xcscheme
+example-ObjectDebug
+.gitkeep

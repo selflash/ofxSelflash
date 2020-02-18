@@ -10,6 +10,7 @@ namespace fl2d {
     flUIBase::flUIBase() {
 //        ofLog() << "[flUIBase]flUIBase()";
         
+        _typeID = FL_TYPE_UIBASE;
         _target = this;
         name("flUIBase");
 

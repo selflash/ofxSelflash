@@ -3,11 +3,10 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flBitmapData::flBitmapData(int width, int height, bool transparent, int fillColor) {
         _typeID = FL_TYPE_BITMAPDATA;
         //        _target = this;
@@ -52,7 +51,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flBitmapData::~flBitmapData() {
         delete _pixels;
         _pixels = NULL;
@@ -161,7 +159,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::_draw() {
         //        cout << "[flBitmapData::_daraw()" << endl;
         //        ofPushStyle();
@@ -181,33 +178,27 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     float flBitmapData::width() { return _width; }
     void flBitmapData::width(float value) { _width = value; }
     //--------------------------------------------------------------
-    //
     float flBitmapData::height() { return _height; }
     void flBitmapData::height(float value) { _height = value; }
     
     //--------------------------------------------------------------
-    //
     int flBitmapData::getPixel(int x, int y) {
         return 0;
     }
     //--------------------------------------------------------------
-    //
     int flBitmapData::getPixel32(int x, int y) {
         return 0;
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::dispose() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::fillRect(flRectangle rect, ofColor color) {
         ofPixels& pixels = _image->getPixels();
         
@@ -228,7 +219,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::clear() {
         //        ofPixels& pixels = _image->getPixels();
         //        pixels.clear();
@@ -262,7 +252,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::setPixel(int x, int y, ofColor color) {
         //        cout << "[flBitmapData]setPixel(" << x << ", " << y << ")" << endl;
         // ピクセルデータを準備
@@ -299,7 +288,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flBitmapData::__draw(float x, float y) {
         if(_image->isAllocated()) _image->draw(x, y);
     }

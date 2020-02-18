@@ -9,8 +9,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flInteractiveObject::flInteractiveObject() {
         _typeID = FL_TYPE_INTERACTIVE_OBJECT;
-        _target = this;
-        
+        _target = this;        
         name("flInteractiveObject");
         
         _mouseEnabled = true;
@@ -67,17 +66,14 @@ namespace fl2d {
     void flInteractiveObject::buttonMode(bool value) { _buttonMode = value; }
     
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::mouseEnabled() { return _mouseEnabled; }
     void flInteractiveObject::mouseEnabled(bool value) { _mouseEnabled = value; }
     
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::doubleClickEnabled() { return _doubleClickEnabled; }
     void flInteractiveObject::doubleClickEnabled(bool value) { _doubleClickEnabled = value; }
     
     //--------------------------------------------------------------
-    //
     bool flInteractiveObject::mouseUpOutside() { return _mouseUpOutside; }
     void flInteractiveObject::mouseUpOutside(bool value) { _mouseUpOutside = value; }
     

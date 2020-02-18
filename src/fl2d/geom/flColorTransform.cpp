@@ -3,7 +3,6 @@
 namespace fl2d {
     
     //--------------------------------------------------------------
-    //
     flColorTransform::flColorTransform(
                                    float redMultiplier,
                                    float greenMultiplier,
@@ -27,7 +26,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flColorTransform::~flColorTransform() {
         //
     }
@@ -41,7 +39,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flColorTransform::set(const flColorTransform& second) {
         alphaMultiplier = second.alphaMultiplier;
         alphaOffset     = second.alphaOffset;
@@ -55,7 +52,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flColorTransform::isEqual(const flColorTransform& second) {
         if(alphaMultiplier != second.alphaMultiplier) return false;
         if(alphaOffset     != second.alphaOffset    ) return false;

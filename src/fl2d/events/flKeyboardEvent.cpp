@@ -9,13 +9,11 @@ namespace fl2d {
     
     
     //--------------------------------------------------------------
-    //
     flKeyboardEvent::flKeyboardEvent(string type):flEvent(type) {
         __keyCode = 0;
     }
     
     //--------------------------------------------------------------
-    //
     flKeyboardEvent::~flKeyboardEvent() {
         __keyCode = 0;
     }
