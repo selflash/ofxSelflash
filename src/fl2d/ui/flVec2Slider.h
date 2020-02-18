@@ -1,23 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flSlider.h"
 #include "flVec2SliderEvent.h"
 
 namespace fl2d {
     
-    class flVec2Slider : public flSprite {
+    class flVec2Slider : public flUIBase {
         
     public:
         flSlider* xSlider;
         flSlider* ySlider;
         
     protected:
-        flTextField* _label;
         flTextField* _label1Text;
         flTextField* _label2Text;
         
@@ -33,8 +29,8 @@ namespace fl2d {
                    );
         virtual ~flVec2Slider();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         virtual ofVec2f vec2Value();
         virtual void vec2Value(ofVec2f value, bool dispatch = true);

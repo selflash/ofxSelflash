@@ -63,14 +63,14 @@ void MainController::_setup() {
 	g->lineStyle(1, 0xffffff);
 	g->beginFill(0x000000, 0.7);
 	g->drawRect(0, 0, _backWidth, _backHeight);
-	g->moveTo(0, 220.5);
-	g->lineTo(_backWidth, 220.5);
-	g->moveTo(_backWidth * 0.5, 220.5);
+	g->moveTo(0, 220);
+	g->lineTo(_backWidth, 220);
+	g->moveTo(_backWidth * 0.5, 220);
 	g->lineTo(_backWidth * 0.5, _backHeight);
-	g->moveTo(0, 315.5 + 22.5);
-	g->lineTo(_backWidth * 0.5, 315.5 + 22.5);
-	g->moveTo(0, 455.5 + 22.5);
-	g->lineTo(_backWidth * 0.5, 455.5 + 22.5);
+	g->moveTo(0, 315 + 22);
+	g->lineTo(_backWidth * 0.5, 315 + 22);
+	g->moveTo(0, 455 + 22);
+	g->lineTo(_backWidth * 0.5, 455 + 22);
 	g->endFill();
 
 	float marginLeft; float marginTop;
@@ -79,9 +79,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 //    marginLeft = 5;
-//    marginTop = 22.5;
+//    marginTop = 22;
 //    spacing = 205;
-//    lineSpacing = 22.5;
+//    lineSpacing = 22;
 //
 //    button001 = new flButton(200);
 //    button001->labelText("Full Screen");
@@ -141,7 +141,7 @@ void MainController::_setup() {
 	marginLeft = 5;
 	marginTop = 175;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->text("Model");
@@ -159,9 +159,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 215;
-	marginTop = 22.5;
+	marginTop = 22;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	//   button101 = new flButton(95);
 	//   button101->label("Save");
@@ -180,9 +180,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 215;
-	marginTop = 22.5 * 4;
+	marginTop = 22 * 4;
 	spacing = 205;
-	lineSpacing = 21.5;
+	lineSpacing = 21;
 
 	textField = new flTextField();
 	textField->text("Camera Position");
@@ -191,7 +191,8 @@ void MainController::_setup() {
 	textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 	textField->mouseEnabled(false);
 	addChild(textField);
-	joystick2001 = new flJoyStick2(55, 15);
+//    joystick2001 = new flJoyStick2(55, 15);
+    joystick2001 = new flJoyStick2(55);
 	joystick2001->label(textField);
 	joystick2001->x(marginLeft + spacing * 0);
 	joystick2001->y(marginTop + lineSpacing * 1);
@@ -201,7 +202,7 @@ void MainController::_setup() {
 	joystick1001->label(textField);
 	joystick1001->x(marginLeft + spacing * 0 + 70);
 	joystick1001->y(marginTop + lineSpacing * 1);
-	joystick1001->type(flJoyStick1::HORIZONTALLY);
+	joystick1001->type(flJoyStick1::VERTICALLY);
 	joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &MainController::_uiEventHandler);
 	addChild(joystick1001);
 	text001 = new flTextField();
@@ -231,7 +232,7 @@ void MainController::_setup() {
 	marginLeft = 215;
 	marginTop = 175;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->text("Model Orientation");
@@ -256,9 +257,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 5;
-	marginTop = 225.5;
+	marginTop = 225;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->text("Pose Type");
@@ -322,9 +323,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 5;
-	marginTop = 320.5 + 22.5;
+	marginTop = 320 + 22;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	check220 = new flCheckBox();
 	check220->labelText("Fill Enabled");
@@ -367,9 +368,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 5;
-	marginTop = 460.5 + 22.5;
-	spacing = 207.5;
-	lineSpacing = 22.5;
+	marginTop = 460 + 22;
+	spacing = 207;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->x(marginLeft + spacing * 0);
@@ -406,9 +407,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 5;
-	marginTop = 528 + 22.5;
-	spacing = 207.5;
-	lineSpacing = 22.5;
+	marginTop = 528 + 22;
+	spacing = 207;
+	lineSpacing = 22;
 
 	textField = new flTextField();
 	textField->x(marginLeft + spacing * 0);
@@ -472,9 +473,9 @@ void MainController::_setup() {
 
 	//--------------------------------------
 	marginLeft = 215;
-	marginTop = 225.5;
+	marginTop = 225;
 	spacing = 205;
-	lineSpacing = 22.5;
+	lineSpacing = 22;
 
 	button401 = new flButton(200);
 	//    button401->labelText("Show Original Color");
@@ -688,14 +689,14 @@ void MainController::normalize() {
 	g->lineStyle(1, 0xffffff);
 	g->beginFill(0x000000, 0.7);
 	g->drawRect(0, 0, _backWidth, _backHeight);
-	g->moveTo(0, 220.5);
-	g->lineTo(_backWidth, 220.5);
-	g->moveTo(_backWidth * 0.5, 220.5);
+	g->moveTo(0, 220);
+	g->lineTo(_backWidth, 220);
+	g->moveTo(_backWidth * 0.5, 220);
 	g->lineTo(_backWidth * 0.5, _backHeight);
-	g->moveTo(0, 315.5 + 22.5);
-	g->lineTo(_backWidth * 0.5, 315.5 + 22.5);
-	g->moveTo(0, 455.5 + 22.5);
-	g->lineTo(_backWidth * 0.5, 455.5 + 22.5);
+	g->moveTo(0, 315 + 22);
+	g->lineTo(_backWidth * 0.5, 315 + 22);
+	g->moveTo(0, 455 + 22);
+	g->lineTo(_backWidth * 0.5, 455 + 22);
 	g->endFill();
 	//----------------------------------
 

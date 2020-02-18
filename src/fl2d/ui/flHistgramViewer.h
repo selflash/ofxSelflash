@@ -1,32 +1,28 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flHistgramViewerEvent.h"
 
 namespace fl2d {
     
-    class flHistgramViewer : public flSprite {
+    class flHistgramViewer : public flUIBase {
         
     public:
         
     protected:
         
     private:
+        flTextField* _valueText;
+
         float _uiWidth;
         float _uiHeight;
-        
-        flTextField* _label;
         
         float _value;
         float _tempValue;
         float _min;
         float _weight;        
-        ofPoint* _startPos;
+        ofPoint _startPos;
         
         //        float _average;
         
@@ -40,25 +36,31 @@ namespace fl2d {
         flHistgramViewer(float width = 100, float height = 18);
         virtual ~flHistgramViewer();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         inline float value() { return _value; }
         inline void value(float value, bool dispatch = true) {
-            //            if(_value == value) return;
-            
+//            if(_value == value) return;
+            float preValue = _value;
+
             _value = value;
             _valueHistory[_valueHistory.size() - 1] = _value;
             
-            //            //------------------------------------------
-            //            if(dispatch) {
-            //                //イベント
-            //                NumberDialerEvent* event = new NumberDialerEvent(NumberDialerEvent::CHANGE);
-            //                //            event->_target = this;
-            //                event->data<float>(_value);
-            //                dispatchEvent(event);
-            //            }
-            //            //------------------------------------------
+            //------------------------------------------
+            if(preValue != _value) {
+                _valueText->text(ofToString(_value, 2));
+
+                //------------------------------------------
+                if(dispatch) {
+                    //イベント
+                    flHistgramViewerEvent* event = new flHistgramViewerEvent(flHistgramViewerEvent::CHANGE);
+                    //            event->_target = this;
+                    event->__value = _value;
+                    dispatchEvent(event);
+                }
+                //------------------------------------------
+            }
         }
         
         //        inline float average() { return _average; }
@@ -67,19 +69,26 @@ namespace fl2d {
         inline void weight(float value) { _weight = value; }
         
     protected:
-        //virtual void _setup();
+        virtual void _setup();
         virtual void _update();
         virtual void _draw();
-        
-        virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor, float thickness = 1.0);
         
         virtual void _over();
         virtual void _out();
         virtual void _press();
         virtual void _release();
         
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
+        
+        virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

@@ -1,16 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flSlider.h"
 #include "flColorSliderEvent.h"
 
 namespace fl2d {
     
-    class flColorSlider : public flSprite {
+    class flColorSlider : public flUIBase {
         
     public:
         flSlider* redSlider;
@@ -19,13 +16,11 @@ namespace fl2d {
         flSlider* alphaSlider;
         
     protected:
-        flTextField* _label;
-        flTextField* _label1Text;
-        flTextField* _label2Text;
-        flTextField* _label3Text;
-        flTextField* _label4Text;
-        
         flTextField* _hexText;
+        flTextField* _redValueText;
+        flTextField* _greenValueText;
+        flTextField* _blueValueText;
+        flTextField* _alphaValueText;
         
         ofColor _colorValue;
         int _hexValue;
@@ -33,16 +28,14 @@ namespace fl2d {
     private:
         
     public:
-        flColorSlider(float width, bool alpha = true);
+        flColorSlider(float width, bool alphaEnabled = true);
         flColorSlider(int r, int g, int b);
         flColorSlider(int r, int g, int b, int a);
         flColorSlider(float width = 200, int r = 255, int g = 255, int b = 255, int a = 255);
         virtual ~flColorSlider();
         
-        flTextField* label();
-        void label(flTextField* value);
-        
-//        void textColor(int color);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         virtual ofColor colorValue();
         virtual void colorValue(ofColor& value, bool dispatch = true);
@@ -138,16 +131,47 @@ namespace fl2d {
         }
         //----------------------------------
         
+        //------------------------------------------
+//        bool _changedValueByMyself = false;
+        ofParameter<ofColor>* _param;
+//        ofEventListener _valueListener;
+        virtual inline void bind(ofParameter<ofColor>& param) {
+            if(_param != NULL) {
+                _valueListener.unsubscribe();
+                _param = NULL;
+            }
+            
+            _param = &param;
+            _valueListener = _param->newListener([&](ofColor& val) {
+                if(_changedValueByMyself) {
+                    _changedValueByMyself = false;
+                } else {
+                    colorValue(val);
+                }
+            });
+            
+            hexValue(_param->get().getHex());
+//            _changedValueByMyself = true;
+//            _param->set(_value);
+//            _valueText->text(ofToString(_value, 2));
+        }
+        virtual inline void unbind() {
+            _valueListener.unsubscribe();
+            _param = NULL;
+        }
+        //------------------------------------------
+        
     protected:
         virtual void _setup();
         virtual void _update();
         virtual void _draw();
 
+        virtual void _changeValue(bool dispatch = true);
+
     private:
         void _updateColor();
 
         void _eventHandler(flEvent& event);
-        void _mouseEventHandler(flEvent& event);
 
     };
     

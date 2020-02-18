@@ -7,19 +7,19 @@
 using namespace fl2d;
 
 class FrameBorder1 : public flBasicDraggableObject {
-public:
-    
-protected:
-    
-private:
-    
-public:
-    
-protected:
-//        virtual void _setup();
-    virtual void _update();
-//        virtual void _draw();
-    
-private:
-    
+    public:
+        
+    protected:
+        
+    private:
+        
+    public:
+        
+    protected:
+    //        virtual void _setup();
+        virtual void _update();
+    //        virtual void _draw();
+        
+    private:
+        
 };

@@ -3,13 +3,12 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flAngler::flAngler(float areaDiameter, float leverDiameter) {
-        //cout << "[Angler]Angler()" << endl;
+        //ofLog() << "[Angler]Angler()";
         
         _target = this;
         name("flAngler");
@@ -61,19 +60,11 @@ namespace fl2d {
         _targetX = _center->x;
         _targetY = _center->y;
         //------------------------------------------
-        
-        //------------------------------------------
-        //ラベル
-        _label = NULL;
-        //------------------------------------------
-        
-        _enabled = true;
     }
     
     //--------------------------------------------------------------
-    //
     flAngler::~flAngler() {
-        //cout << "[Angler]~Angler()" << endl;
+        //ofLog() << "[Angler]~Angler()";
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flAngler::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flAngler::_mouseEventHandler);
@@ -102,10 +93,6 @@ namespace fl2d {
         _flgY = false;
         _targetX = 0.0;
         _targetY = 0.0;
-        
-        _label = NULL;
-        
-        _enabled = false;
     }
     
     //==============================================================
@@ -113,15 +100,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flAngler::_setup() {
-        //cout << "[SimpleSlider]setup()" << endl;
+        //ofLog() << "[SimpleSlider]setup()";
     }
     
     //--------------------------------------------------------------
-    //
     void flAngler::_update() {
-        //cout << "isMouseDown" << lever->isMouseDown() << endl;
+        //ofLog() << "isMouseDown" << lever->isMouseDown();
         
         float distance = _center->distance(ofVec2f(lever->x(), lever->y()));
         
@@ -202,7 +187,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flAngler::_draw() {
 //        drawArc(sin(ofGetElapsedTimef()) * 179 + 180);
         drawArc(_value);
@@ -237,16 +221,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flAngler::label() { return _label; }
     void flAngler::label(flTextField* value) { _label = value; }
     
     //--------------------------------------------------------------
-    //
     float flAngler::value() { return _value; }
     
     //--------------------------------------------------------------
-    //
     bool flAngler::enabled() { return _enabled; }
     void flAngler::enabled(bool value) {
         _enabled = value;
@@ -297,7 +278,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flAngler::_areaOver() {
         //if(lever->isMouseDown()) return;
         
@@ -310,7 +290,6 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_areaOut() {
         //if(lever->isMouseDown()) return;
         
@@ -323,12 +302,10 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_areaPress() {
         
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_areaRelease() {
         
     }
@@ -363,7 +340,6 @@ namespace fl2d {
 
     
     //--------------------------------------------------------------
-    //
     void flAngler::_ballOver() {
         if(lever->isMouseDown()) return;
         
@@ -380,7 +356,6 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_ballOut() {
         if(lever->isMouseDown()) return;
         
@@ -400,11 +375,10 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_ballPress() {
         _draggablePoint->x = mouseX() - lever->x();
         _draggablePoint->y = mouseY() - lever->y();
-        //cout << _draggablePoint->x << " " << _draggablePoint->y << endl;
+        //ofLog() << _draggablePoint->x << " " << _draggablePoint->y;
         flGraphics* g;
         
         //------------------------------------------
@@ -428,7 +402,6 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flAngler::_ballRelease() {
         _draggablePoint->x = 0;
         _draggablePoint->y = 0;
@@ -463,8 +436,8 @@ namespace fl2d {
         g->endFill();
         //------------------------------------------
     }
+    
     //--------------------------------------------------------------
-    //
     void flAngler::_ballMove() {
         
     }
@@ -474,9 +447,8 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flAngler::_mouseEventHandler(flEvent& event) {
-        //cout << "[Angler]_mouseEventHandler(" << event.type() << endl;
+        //ofLog() << "[Angler]_mouseEventHandler(" << event.type();
         
         if(event.type() == flMouseEvent::ROLL_OVER) {
             //if(event.target() == this) _areaOver();

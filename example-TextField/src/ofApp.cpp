@@ -113,7 +113,7 @@ void ofApp::update(){
     //    textField001->width(w);
     //    textField001->height(h);
     
-    cout << (sin(frameNum * 0.05) + 1.0) / 2.0 << endl;
+    ofLog() << (sin(frameNum * 0.05) + 1.0) / 2.0;
     textField101->scaleX((sin(frameNum * 0.05) + 1.0) / 2.0);
     
     //    textField101->width(w);
@@ -129,7 +129,7 @@ void ofApp::update(){
     //    textField201->height(h);
     
     float a = (sin(frameNum * 0.03) + 1.0) * 0.5;
-    //cout << a << endl;
+    //ofLog() << a;
     textField203->alpha(a);
     //---------------------------------
     
@@ -264,7 +264,7 @@ void ofApp::keyReleased(int key){
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y){
     
 }
 

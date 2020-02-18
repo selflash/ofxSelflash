@@ -7,27 +7,27 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flHistgramViewer::flHistgramViewer(float width, float height) {
-        //cout << "[flHistgramViewer]flHistgramViewer()" << endl;
+        //ofLog() << "[flHistgramViewer]flHistgramViewer()";
         
         _target = this;
         name("flHistgramViewer");
         
-        //        buttonMode(true);
         useHandCursor(true);
         
         _uiWidth = width;
         _uiHeight = height;
         
         //------------------------------------------
+        _value = 0.0;
+        _tempValue = 1.0;
+        _min = 0.001;
+        _weight = 0.005;
+        //------------------------------------------
+        
         flGraphics* g;
-        g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        
+        //------------------------------------------
         addEventListener(flMouseEvent::ROLL_OVER, this, &flHistgramViewer::_mouseEventHandler);
         addEventListener(flMouseEvent::ROLL_OUT, this, &flHistgramViewer::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flHistgramViewer::_mouseEventHandler);
@@ -35,27 +35,27 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //ラベル
-        _label = NULL;
-        //------------------------------------------
-        
-        //------------------------------------------
-        _value = 1.0;
-        _tempValue = 1.0;
-        _min = 0.001;
-        _weight = 0.005;
-        _startPos = new ofPoint(0, 0);
+        _valueText = new flTextField();
+        _valueText->name("flHistgramViewer.velueText");
+        _valueText->x(2);
+        _valueText->y(0);
+        _valueText->width(_uiWidth - 4);
+        _valueText->autoSize(flTextFieldAutoSize::LEFT);
+        _valueText->text(ofToString(_value, 2));
+        _valueText->mouseEnabled(false);
+        addChild(_valueText);
         //------------------------------------------
         
         _valueHistory.resize((int)_uiWidth);
         //        _avelageHistroy.resize((int)_uiWidth);
         for(int i = 0; i < _valueHistory.size(); i++) _line.addVertex(0, 0);
+        
+        _setNormalColor();
     }
     
     //--------------------------------------------------------------
-    //
     flHistgramViewer::~flHistgramViewer() {
-        //cout << "[flHistgramViewer]~flHistgramViewer()" << endl;
+        //ofLog() << "[flHistgramViewer]~flHistgramViewer()";
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flHistgramViewer::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flHistgramViewer::_mouseEventHandler);
@@ -65,15 +65,14 @@ namespace fl2d {
         _uiWidth = 0.0;
         _uiHeight = 0.0;
         
-        _label = NULL;
+        removeChild(_valueText);
+        delete _valueText;
+        _valueText = NULL;
         
         _value = 0.0;
         _tempValue = 0.0;
         _min = 0.0;
         _weight = 0.0;
-        
-        delete _startPos;
-        _startPos = NULL;
         
         _valueHistory.clear();
     }
@@ -83,14 +82,20 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_update() {
+    void flHistgramViewer::_setup() {
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_update() {        
         if(isMouseDown()) {
-            _valueScale = _tempValue + ((mouseY() - _startPos->y) * _weight);
-            _valueScale = max(_valueScale, _min);
-            //            if(!isnan(_max)) if(_max <= _value) _value = _max;
-            //            if(_valueScale <= _min) _valueScale = _min;
-            ofLogNotice() << "_valueScale = " << _valueScale;
+            //            _valueScale = _tempValue + ((mouseY() - _startPos.y) * _weight);
+            //            _valueScale = max(_valueScale, _min);
+            //            //            if(!isnan(_max)) if(_max <= _value) _value = _max;
+            //            //            if(_valueScale <= _min) _valueScale = _min;
+            //            ofLogNotice() << "_valueScale = " << _valueScale;
+            
+            _press();
             
             //            if(_roundEnabled) {
             //                _valueText->text(ofToString(MathUtil::roundd(_value)));
@@ -131,16 +136,27 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flHistgramViewer::_draw() {
         ofPushStyle();
         
         float iy = _uiHeight * 0.5f;
         
-        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        ofColor lineColor;
+        if(isMouseDown()) {
+            lineColor = flDefinition::UI_LINE_ACTIVE_COLOR;
+        }
+        else if(isMouseOver()) {
+            lineColor = flDefinition::UI_LINE_OVER_COLOR;
+        } else {
+            lineColor = flDefinition::UI_LINE_NORMAL_COLOR;
+        }
+ 
+        //------------------------------------------
+        ofSetColor(lineColor, lineColor.a * _compoundAlpha);
         ofSetLineWidth(1);
         ofDrawLine(0, iy, _uiWidth, iy);
-        
+        //------------------------------------------
+
         //------------------------------------------
         {
             int l = _valueHistory.size();
@@ -159,7 +175,7 @@ namespace fl2d {
         ofEnableSmoothing();
         ofEnableAntiAliasing();
         
-        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        ofSetColor(lineColor, lineColor.a * _compoundAlpha);
         ofSetLineWidth(2);
         _line.draw();
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
@@ -191,14 +207,14 @@ namespace fl2d {
         //        //------------------------------------------
         
         //------------------------------------------
-        float textHeight = flFont::getMaxStringHeight();
-        ofPushMatrix();
-        ofTranslate(2, textHeight);
-        ofPushStyle();
-        //        ofSetColor(_textColor, 255 * _compoundAlpha);
-        flFont::drawString(ofToString(_value), 5, -1);
-        ofPopStyle();
-        ofPopMatrix();
+//        float textHeight = flFont::getMaxStringHeight();
+//        ofPushMatrix();
+//        ofTranslate(2, textHeight);
+//        ofPushStyle();
+//        //        ofSetColor(_textColor, 255 * _compoundAlpha);
+//        flFont::drawString(ofToString(_value), 5, -1);
+//        ofPopStyle();
+//        ofPopMatrix();
         
         //        ofPushMatrix();
         //        ofTranslate(2, textHeight * 2);
@@ -212,13 +228,11 @@ namespace fl2d {
         ofPopStyle();
     }
     
-    
     //==============================================================
     // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flHistgramViewer::label() { return _label; }
     void flHistgramViewer::label(flTextField* value) { _label = value; }
     
@@ -227,86 +241,137 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_drawTrackGraphics(
-                                            const ofFloatColor& lineColor,
-                                            const ofFloatColor& fillColor,
-                                            float thickness
-                                            ) {
-        flGraphics* g;
-        g = graphics();
+    void flHistgramViewer::_over() {
+        if(isMouseDown()) return;
+        
+        _setOverColor();
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_out() {
+        if(isMouseDown()) return;
+        
+        _setNormalColor();
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_press() {
+        _valueScale = _tempValue + ((mouseY() - _startPos.y) * _weight);
+        _valueScale = max(_valueScale, _min);
+        //            if(!isnan(_max)) if(_max <= _value) _value = _max;
+        //            if(_valueScale <= _min) _valueScale = _min;
+        //        ofLogNotice() << "_valueScale = " << _valueScale;
+        
+        _setActiveColor();
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_release() {
+        if(isMouseOver()) {
+            _setOverColor();
+        } else {
+            _setNormalColor();
+        }
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setNormalColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        
+        _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        
+        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setOverColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
+        _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
+        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR);
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setSelectedOverColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
+        _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
+        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setActiveColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+        
+        _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+        
+        _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setDisableNormalColor() {
+        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_setDisableActiveColor() {
+        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flHistgramViewer::_drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
+        flGraphics* g = graphics();
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
-        g->beginFill(fillColor.getHex());
+        g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawRect(0, 0, _uiWidth, _uiHeight);
         g->endFill();
     }
     
-    //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_over() {
-        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-    }
-    
-    //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_out() {
-        if(isMouseDown()) return;
-        
-        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-    }
-    
-    //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_press() {
-        _tempValue = _valueScale;
-        _startPos->x = mouseX();
-        _startPos->y = mouseY();
-        
-        //        _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-        
-        _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR, 1);
-    }
-    
-    //--------------------------------------------------------------
-    //
-    void flHistgramViewer::_release() {
-        if(isMouseOver()) {
-            _over();
-            return;
-        }
-        
-        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-    }
-    
     //==============================================================
-    // Event Handler
+    // Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flHistgramViewer::_mouseEventHandler(flEvent& event) {
-        //cout << "[flHistgramViewer]_mouseEventHandler(" << event.type() << ")" << endl;
-        //cout << "[flHistgramViewer]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
-        //cout << "[flHistgramViewer]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
-        //cout << "[flHistgramViewer]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
+        //        ofLog() << "[flHistgramViewer]_mouseEventHandler(" << event.type() << ")";
+        //        ofLog() << "[flHistgramViewer]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        //        ofLog() << "[flHistgramViewer]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        //        ofLog() << "[flHistgramViewer]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+        //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _over();
         }
+        
+        //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
             if(event.target() == this) _out();
         }
+        
+        //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _press();
-            addEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
-            if(stage()) stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
+            if(event.target() == this) {
+                _tempValue = _valueScale;
+                _startPos.x = mouseX();
+                _startPos.y = mouseY();
+                _press();
+                if(stage()) {
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
+                }
+            }
         }
+        
+        //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            removeEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
-            if(stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
-            //            if(event.target() == stage()) _release();
             _release();
+            if(stage()) {
+                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
+            }
         }
     }
     

@@ -2,11 +2,12 @@
 //static const double pi = std::acos(-1.0); // お手軽に π を得る。
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Destructor
 //==============================================================
 
 //--------------------------------------------------------------
 //
+//--------------------------------------------------------------
 DocumentRoot::DocumentRoot() {
     cout << "[DocumentRoot]DocumentRoot()" << endl;
     _target = this;
@@ -17,16 +18,18 @@ DocumentRoot::DocumentRoot() {
 
 //--------------------------------------------------------------
 //
+//--------------------------------------------------------------
 DocumentRoot::~DocumentRoot() {
     cout << "[DocumentRoot]~DocumentRoot()" << endl;
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
 //
+//--------------------------------------------------------------
 void DocumentRoot::_setup() {
     cout << "[DocumentRoot]_setup()" << endl;
     
@@ -58,7 +61,6 @@ void DocumentRoot::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_update() {
     //--------------------------------------
     if(!isMouseDown()){
@@ -103,7 +105,6 @@ void DocumentRoot::_update() {
 }
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_draw() {
     //-----------------------------------
     //copy from examples/graphics/graphicsExample
@@ -167,15 +168,18 @@ void DocumentRoot::_draw() {
 }
 
 //==============================================================
-// PRIVATE METHOD
+// Public Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Protected / Private Method
+//==============================================================
+
+//==============================================================
+// Private Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_eventHandler(flEvent& event) {
     cout << "[DocumentRoot]_eventHandler(" + event.type() + ")";
     
@@ -188,7 +192,6 @@ void DocumentRoot::_eventHandler(flEvent& event) {
 }
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_keyboardEventHandler(flEvent& event) {
     //    cout << "[DocumentRoot]_keyboardEventHandler(" + event.type() + ")";
     
@@ -216,7 +219,6 @@ void DocumentRoot::_keyboardEventHandler(flEvent& event) {
 }
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_moveEventHandler(flEvent& event) {
     //cout << "[DocumentRoot]_moveEventHandler(" << event.type() << ")" << endl;
     
@@ -224,7 +226,6 @@ void DocumentRoot::_moveEventHandler(flEvent& event) {
 }
 
 //--------------------------------------------------------------
-//
 void DocumentRoot::_mouseEventHandler(flEvent& event) {
     //    cout << "[DocumentRoot]_mouseEventHandler(" << event.type() << ")" << endl;
     //    cout << "[PrentBox]this          = " << this << endl;

@@ -18,7 +18,6 @@ namespace fl2d {
     ofImage* flMouse::_closeHandImage;
     
     //--------------------------------------------------------------
-    //
     void flMouse::setup() {
         //_handCursorImage = new ofImage();
         //ofDisableArbTex();
@@ -26,7 +25,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::draw(float x, float y) {
         //ofPushStyle();
         //ofEnableAlphaBlending();
@@ -36,22 +34,18 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flMouse::currentType() { return _currentType; }
     
     //--------------------------------------------------------------
-    //
     void flMouse::hide() {
         ofHideCursor();
     }
     //--------------------------------------------------------------
-    //
     void flMouse::show() {
         //ofShowCursor();
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::changeCursor(int type) {
         if(_currentType == type) return;
         
@@ -64,7 +58,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::showHandCursor() {
         //    [[NSCursor pointingHandCursor] set];
         //    [[NSCursor openHandCursor] set];
@@ -79,7 +72,6 @@ namespace fl2d {
     };
     
     //--------------------------------------------------------------
-    //
     void flMouse::hideHandCursor() {
         [[NSCursor arrowCursor] set];
     }
@@ -103,7 +95,6 @@ namespace fl2d {
     ofImage* flMouse::_closeHandImage;
     
     //--------------------------------------------------------------
-    //
     void flMouse::setup() {
         //_handCursorImage = new ofImage();
         //ofDisableArbTex();
@@ -111,7 +102,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::draw(float x, float y) {
         //ofPushStyle();
         //ofEnableAlphaBlending();
@@ -121,22 +111,18 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flMouse::currentType() { return _currentType; }
     
     //--------------------------------------------------------------
-    //
     void flMouse::hide() {
         ofHideCursor();
     }
     //--------------------------------------------------------------
-    //
     void flMouse::show() {
         //ofShowCursor();
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::changeCursor(int type) {
         if(_currentType == type) return;
         
@@ -149,13 +135,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flMouse::showHandCursor() {
         
     };
     
     //--------------------------------------------------------------
-    //
     void flMouse::hideHandCursor() {
         
     }

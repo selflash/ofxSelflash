@@ -9,17 +9,14 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flButton.h"
 #include "flFocusEvent.h"
 #include "flComboBoxEvent.h"
 
 namespace fl2d {
     
-    class flComboBox : public flSprite {
+    class flComboBox : public flUIBase {
         
     public:
         static string DROPDOWNLIST_UP;
@@ -36,8 +33,6 @@ namespace fl2d {
         //単一選択リストで選択されたアイテムのインデックスを取得または設定します。
         int _selectedIndex;
         //------------------------------------------
-        
-        flTextField* _label;
         
         //------------------------------------------
         flButton* _topButton;
@@ -60,14 +55,12 @@ namespace fl2d {
         float _floatValue;
         int _intValue;
         
-        bool _enabled;
-        
     public:
         flComboBox(float dropdownWidth = 150);
         virtual ~flComboBox();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         inline string itemLabelText(int index) {
             if(index < 0 || index > _buttonList.size() - 1) return "";
@@ -88,7 +81,7 @@ namespace fl2d {
             button->labelText(label);
             button->setProperty<int>("index", _buttonList.size());
             button->x(0);
-            button->alpha(0.5);
+            button->alpha(0.7);
             button->toggleEnabled(true);
             button->addEventListener(flMouseEvent::ROLL_OVER, this, &flComboBox::_mouseEventHandler);
             button->addEventListener(flMouseEvent::ROLL_OUT, this, &flComboBox::_mouseEventHandler);
@@ -235,10 +228,10 @@ namespace fl2d {
             }
         }
         
-        //            void removeItem(const string& label);
-        //            void removeItemAt(const int& index);
-        //            void replaceItemAt();
-        //            void sortItems();
+//            void removeItem(const string& label);
+//            void removeItemAt(const int& index);
+//            void replaceItemAt();
+//            void sortItems();
         void removeAllItems();
         
         //0から始まるインデックス番号
@@ -265,8 +258,8 @@ namespace fl2d {
         int intValue();
         void intValue(int value);
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
         
     protected:
         virtual void _setup();
@@ -274,7 +267,7 @@ namespace fl2d {
         virtual void _draw();
         
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
         void _eventHandler(flEvent& event);
     };
     

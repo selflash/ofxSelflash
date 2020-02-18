@@ -22,8 +22,6 @@ namespace fl2d {
         
         _selectedIndex = 0;
         
-        _label = NULL;
-        
         //------------------------------------------
         //ボタン
         _topButton = new flButton(_dropdownWidth);
@@ -53,8 +51,6 @@ namespace fl2d {
         _stringValue = "";
         _floatValue = 0.0;
         _intValue = 0;
-        
-        _enabled = true;
     }
     
     //--------------------------------------------------------------
@@ -67,11 +63,6 @@ namespace fl2d {
         _rowCount = 0;
         
         _selectedIndex = 0;
-        
-        //------------------------------------------
-        //ラベル
-        _label = NULL;
-        //------------------------------------------
         
         //------------------------------------------
         //ボタン
@@ -99,8 +90,6 @@ namespace fl2d {
         _stringValue = "";
         _floatValue = 0.0;
         _intValue = 0;
-        
-        _enabled = false;
     }
     
     //==============================================================
@@ -175,7 +164,7 @@ namespace fl2d {
         //------------------------------------------
         if(_selectedButton != NULL) {
             _selectedButton->selected(false);
-            _selectedButton->alpha(0.5);
+            _selectedButton->alpha(0.7);
         }
         _selectedButton = _buttonList[_selectedIndex];
         
@@ -268,7 +257,7 @@ namespace fl2d {
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
             flButton* target = (flButton*) event.target();
-            if(target != _selectedItem) target->alpha(0.5);
+            if(target != _selectedItem) target->alpha(0.7);
         }
         
         //Mouse Down
@@ -285,7 +274,7 @@ namespace fl2d {
                 //------------------------------------------
                 if(_selectedButton) {
                     _selectedButton->selected(false);
-                    _selectedButton->alpha(0.5);
+                    _selectedButton->alpha(0.7);
                 }
                 _selectedButton = target;
                 //------------------------------------------
@@ -313,13 +302,13 @@ namespace fl2d {
                 //                
                 //------------------------------------------
                 //イベント
-                //                cout << "DEBUG START ----- " << endl;
+                //                ofLog() << "DEBUG START ----- ";
                 //                flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
                 //                flComboBoxEvent<float> event(flComboBoxEvent::CHANGE, 0.1f);
                 
                 //                new flComboBoxEvent<float>(flComboBoxEvent::CHANGE, 0.1f);
                 flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
-                //                cout << "DEBUG END   ----- " << endl;
+                //                ofLog() << "DEBUG END   ----- ";
                 event->_target = this;
                 //                event->__label = _selectedLabel;
                 //                event->__pointerValue = _selectedData;

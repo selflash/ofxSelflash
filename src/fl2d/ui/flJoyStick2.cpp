@@ -7,19 +7,17 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flJoyStick2::flJoyStick2(float areaDiameter, float leverDiameter) {
+    flJoyStick2::flJoyStick2(float areaDiameter) {
         //ofLog() << "[flJoyStick2]flJoyStick2()";
         
         _target = this;
         name("flJoyStick2");
-        
+
         _xValue = 0.0;
         _yValue = 0.0;
         
-        _label = NULL;
-        
         _areaRadius = areaDiameter * 0.5;
-        _leverRadius = leverDiameter * 0.5;
+        _leverRadius = 14 * 0.5;
         _maxDistance = (_areaRadius - _leverRadius - 1);
         
         _center = ofPoint(_areaRadius, _areaRadius);
@@ -42,7 +40,7 @@ namespace fl2d {
         lever->addEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
         lever->addEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
         lever->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick2::_mouseEventHandler);
-        lever->addEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
+//        lever->addEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
 //        lever->addEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
         addChild(lever);
         //------------------------------------------
@@ -66,8 +64,6 @@ namespace fl2d {
         _targetY = _center.y;
         //------------------------------------------
         
-        _enabled = true;
-        
         _setNormalColor();
     }
     
@@ -84,8 +80,8 @@ namespace fl2d {
         lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick2::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
-        //        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
+//        lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
+//        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
         delete lever;
         lever = NULL;
         
@@ -93,10 +89,6 @@ namespace fl2d {
         _flgY = false;
         _targetX = 0.0;
         _targetY = 0.0;
-        
-        _label = NULL;
-        
-        _enabled = false;
     }
     
     //==============================================================
@@ -330,7 +322,7 @@ namespace fl2d {
     }
     //--------------------------------------------------------------
     void flJoyStick2::leverDown(float value) {
-        //cout << "[flJoyStick2]leverDown()" << endl;
+        //ofLog() << "[flJoyStick2]leverDown()";
         _targetY = lever->y() + _maxDistance * value;
         _flgY = true;
     }
@@ -549,16 +541,16 @@ namespace fl2d {
         }
         
         //Mouse Move
-        if(event.type() == flMouseEvent::MOUSE_MOVE) {
-            if(event.target() == lever) _leverMove();
-        }
+//        if(event.type() == flMouseEvent::MOUSE_MOVE) {
+//            if(event.target() == lever) _leverMove();
+//        }
         
         //Dragging
-        if(event.type() == flMouseEvent::DRAGGING) {
-            if(event.target() == lever){
-                
-            }
-        }    
+//        if(event.type() == flMouseEvent::DRAGGING) {
+//            if(event.target() == lever){
+//
+//            }
+//        }
     }
     
 }

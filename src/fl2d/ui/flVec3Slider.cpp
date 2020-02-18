@@ -13,12 +13,10 @@ namespace fl2d {
                            float yMin, float yMax, float defaultYValue,
                            float zMin, float zMax, float defaultZValue
                            ) {
-        //cout << "[flVec3Slider]flVec3Slider()" << endl;
-        
+        //ofLog() << "[flVec3Slider]flVec3Slider()";
+
         _target = this;
         name("flVec3Slider");
-        
-        _label = NULL;
         
         float height = 18 + 2;
         
@@ -85,9 +83,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flVec3Slider::~flVec3Slider() {
-        //cout << "[flVec3Slider]~flVec3Slider()" << endl;
-        
-        _label = NULL;
+        //ofLog() << "[flVec3Slider]~flVec3Slider()";
         
         delete xSlider;
         xSlider = NULL;
@@ -114,7 +110,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec3Slider::_setup() {
-        //cout << "[flVec3Slider]setup()" << endl;
+        //ofLog() << "[flVec3Slider]setup()";
     }
     
     //--------------------------------------------------------------

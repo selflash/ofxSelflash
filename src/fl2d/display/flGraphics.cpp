@@ -335,7 +335,7 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            ofSetCircleResolution(100);
+            ofSetCircleResolution(128);
             ofDrawCircle(x, y, radius);
         }
         
@@ -343,7 +343,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofSetCircleResolution(100);
+            ofSetCircleResolution(128);
             ofDrawCircle(x, y, radius);
             ofFill();
         }

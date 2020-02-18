@@ -12,7 +12,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flNumberDialer::flNumberDialer(float width, float height) {
-        //cout << "[flNumberDialer]flNumberDialer()" << endl;
+        //ofLog() << "[flNumberDialer]flNumberDialer()";
         
         _target = this;
         name("flNumberDialer");
@@ -63,7 +63,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flNumberDialer::~flNumberDialer() {
-        //cout << "[flNumberDialer]~flNumberDialer()" << endl;
+        //ofLog() << "[flNumberDialer]~flNumberDialer()";
 
 //        removeChild(_track);
         _track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumberDialer::_mouseEventHandler);

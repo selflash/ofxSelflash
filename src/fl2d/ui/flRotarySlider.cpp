@@ -3,13 +3,12 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
-    
+
     //--------------------------------------------------------------
-    //
     flRotarySlider::flRotarySlider(float areaDiameter, float leverDiameter) {
-        //cout << "[flRotarySlider]flRotarySlider()" << endl;
+        //ofLog() << "[flRotarySlider]flRotarySlider()";
         
         _target = this;
         name("flRotarySlider");
@@ -62,19 +61,11 @@ namespace fl2d {
         _targetX = _center->x;
         _targetY = _center->y;
         //------------------------------------------
-        
-        //------------------------------------------
-        //ラベル
-        _label = NULL;
-        //------------------------------------------
-        
-        _enabled = true;
     }
     
     //--------------------------------------------------------------
-    //
     flRotarySlider::~flRotarySlider() {
-        //cout << "[flRotarySlider]~flRotarySlider()" << endl;
+        //ofLog() << "[flRotarySlider]~flRotarySlider()";
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flRotarySlider::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flRotarySlider::_mouseEventHandler);
@@ -104,10 +95,6 @@ namespace fl2d {
         _flgY = false;
         _targetX = 0.0;
         _targetY = 0.0;
-        
-        _label = NULL;
-        
-        _enabled = false;
     }
     
     //==============================================================
@@ -115,15 +102,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_setup() {
-        //cout << "[SimpleSlider]setup()" << endl;
+        //ofLog() << "[SimpleSlider]setup()";
     }
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_update() {
-        //cout << "isMouseDown" << lever->isMouseDown() << endl;
+        //ofLog() << "isMouseDown" << lever->isMouseDown();
         
         if(lever->isMouseDown()) {
             //------------------------------------------
@@ -271,7 +256,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_draw() {
         
         
@@ -293,48 +277,40 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flRotarySlider::label() { return _label; }
     void flRotarySlider::label(flTextField* value) { _label = value; }
     
     //--------------------------------------------------------------
-    //
     float flRotarySlider::xValue() { return _xValue; }
     //--------------------------------------------------------------
-    //
     float flRotarySlider::yValue() { return _yValue; }
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::leverUp(float value) {
-        //cout << "[flRotarySlider]leverUp()" << endl;
+        //ofLog() << "[flRotarySlider]leverUp()";
         _targetY = lever->y() - (_areaRadius - _leverRadius - 2) * value;
         _flgY = true;
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::leverDown(float value) {
-        //cout << "[flRotarySlider]leverDown()" << endl;
+        //ofLog() << "[flRotarySlider]leverDown()";
         _targetY = lever->y() + (_areaRadius - _leverRadius - 2) * value;
         _flgY = true;
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::leverLeft(float value) {
-        //cout << "[flRotarySlider]leverLeft()" << endl;
+        //ofLog() << "[flRotarySlider]leverLeft()";
         _targetX = lever->x() - (_areaRadius - _leverRadius - 2) * value;
         _flgX = true;
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::leverRight(float value) {
-        //cout << "[flRotarySlider]leverRight()" << endl;
+        //ofLog() << "[flRotarySlider]leverRight()";
         _targetX = lever->x() + (_areaRadius - _leverRadius - 2) * value;
         _flgX = true;
     }
     
     //--------------------------------------------------------------
-    //
     bool flRotarySlider::enabled() { return _enabled; }
     void flRotarySlider::enabled(bool value) {
         _enabled = value;
@@ -385,7 +361,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_areaOver() {
         //if(lever->isMouseDown()) return;
         
@@ -398,7 +373,6 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_areaOut() {
         //if(lever->isMouseDown()) return;
         
@@ -411,18 +385,15 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_areaPress() {
         
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_areaRelease() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_ballOver() {
         if(lever->isMouseDown()) return;
         
@@ -439,7 +410,6 @@ namespace fl2d {
         g->endFill();
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_ballOut() {
         if(lever->isMouseDown()) return;
         
@@ -459,11 +429,10 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_ballPress() {
         _draggablePoint->x = mouseX() - lever->x();
         _draggablePoint->y = mouseY() - lever->y();
-        //cout << _draggablePoint->x << " " << _draggablePoint->y << endl;
+        //ofLog() << _draggablePoint->x << " " << _draggablePoint->y;
         flGraphics* g;
         
         //------------------------------------------
@@ -487,7 +456,6 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_ballRelease() {
         _draggablePoint->x = 0;
         _draggablePoint->y = 0;
@@ -523,7 +491,6 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_ballMove() {
         
     }
@@ -533,9 +500,8 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flRotarySlider::_mouseEventHandler(flEvent& event) {
-        //cout << "[flRotarySlider]_mouseEventHandler(" << event.type() << endl;
+        //ofLog() << "[flRotarySlider]_mouseEventHandler(" << event.type();
         
         if(event.type() == flMouseEvent::ROLL_OVER) {
             //if(event.target() == this) _areaOver();

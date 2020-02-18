@@ -8,8 +8,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     flSlider::flSlider(float trackWidth, float min, float max, float defaultValue) {
-        //cout << "[flSlider]flSlider()" << endl;
-        
+        //ofLog() << "[flSlider]flSlider()";
+
         //------------------------------------------
         _target = this;
         name("flSlider");
@@ -20,13 +20,10 @@ namespace fl2d {
 		_disableNormalBarColor.setHex(flDefinition::UI_DISABLE_NORMAL_COLOR.getHex());
         _disableActiveBarColor.setHex(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
 
-        _label = NULL;
         _roundEnabled = false;
-        _enabled = true;
 
         _min = min;
         _max = max;
-        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -37,7 +34,6 @@ namespace fl2d {
         _trackWidth = trackWidth;
         _trackHeight = 18;
         _thumbWidth = 20;
-        //        _barWidth = (_value -_min) / (_range / _trackWidth);
         if(_max > _min) {
             _barWidth = (_value -_min) / (_range / _trackWidth);
         } else {
@@ -92,26 +88,22 @@ namespace fl2d {
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
         _valueText->text(ofToString(_value));
         _valueText->mouseEnabled(false);
-//        _valueText->visible(false);
         _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 0);
         addChild(_valueText);
         //------------------------------------------
         
         _draggablePoint = new ofPoint(0, 0);
         
-        //        value(defaultValue, false);
-        
         _setNormalColor();
+        
+        _param = NULL;
     }
     
     //--------------------------------------------------------------
-    //
     flSlider::~flSlider() {
-        //cout << "[flSlider]~flSlider()" << endl;
+        //ofLog() << "[flSlider]~flSlider()";
         
-        _label = NULL;
         _roundEnabled = false;
-        _enabled = false;
 
         track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
         track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
@@ -134,6 +126,10 @@ namespace fl2d {
         delete _draggablePoint;
         _draggablePoint = NULL;
 
+        if(_param != NULL) {
+            _valueListener.unsubscribe();
+            _param = NULL;
+        };
     }
     
     //==============================================================
@@ -176,15 +172,9 @@ namespace fl2d {
 	}
     
     //--------------------------------------------------------------
-//    void flSlider::textColor(int color) {
-//        _valueText->textColor(color);
-//    }
-    
-    //--------------------------------------------------------------
     float flSlider::min() { return _min; }
     void flSlider::min(float value, bool dispatch) {
         _min = value;
-        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -192,26 +182,17 @@ namespace fl2d {
         }
         
         _percent = _barWidth / _trackWidth;
+        
+        float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
-        
-        _valueText->text(ofToString(_value));
-        
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
-            event->data<float>(_value);
-            dispatchEvent(event);
-        }
+        if(preValue != _value) _changeValue(dispatch);
         //------------------------------------------
     }
     //--------------------------------------------------------------
     float flSlider::max() { return _max; }
     void flSlider::max(float value, bool dispatch) {
         _max = value;
-        //        _range = _max - _min;
         if(_max > _min) {
             _range = _max - _min;
         } else {
@@ -219,32 +200,23 @@ namespace fl2d {
         }
         
         _percent = _barWidth / _trackWidth;
+        
+        float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
-        
-        _valueText->text(ofToString(_value));
-        
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
-            event->data<float>(_value);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+        if(preValue != _value) _changeValue(dispatch);
     }
     
     //--------------------------------------------------------------
     float flSlider::value() { return _value; }
     void flSlider::value(float value, bool dispatch) {
+        float preValue = _value;
         
         //------------------------------------------
+        //Update value.
         _value = value;
         
         if(_roundEnabled) _value = flmath::roundd(_value);
-        //        if(_value < _min) _value = _min;
-        //        if(_value > _max) _value = _max;
         if(_max > _min) {
             if(_value < _min) _value = _min;
             if(_value > _max) _value = _max;
@@ -252,8 +224,6 @@ namespace fl2d {
             if(_value > _min) _value = _min;
             if(_value < _max) _value = _max;
         }
-        
-        _valueText->text(ofToString(_value));
         //------------------------------------------
         
         //------------------------------------------
@@ -262,12 +232,6 @@ namespace fl2d {
         } else {
             _barWidth = (_min - _value) / (_range / _trackWidth);
         }
-        //        _barWidth = (_min - _value) / (_range / _trackWidth);
-        //        _barWidth = (_value - _min) / (_range / _trackWidth);
-        //        _barWidth = _value / (_range / _trackWidth);
-        //------------------------------------------
-        
-        //------------------------------------------
         thumb->x(_barWidth - (_thumbWidth * 0.5));
         //------------------------------------------
         
@@ -284,24 +248,14 @@ namespace fl2d {
         }
         //------------------------------------------
 
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
-            event->data<float>(_value);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+        if(preValue != _value) _changeValue(dispatch);
     }
     
     //--------------------------------------------------------------
     int flSlider::barColor() { return _activeBarColor.getHex(); }
     void flSlider::barColor(int value) {
         _activeBarColor.setHex(value);
-//        _normalBarColor = _activeBarColor;
         _overBarColor = _activeBarColor;
-//        _disableNormalBarColor = _activeBarColor;
         _disableActiveBarColor = _activeBarColor;
         
         if(track->isMouseDown() || thumb->isMouseDown()) {
@@ -319,9 +273,7 @@ namespace fl2d {
         _activeBarColor.g = green;
         _activeBarColor.b = blue;
         _activeBarColor.a = alpha;
-//        _normalBarColor = _activeBarColor;
         _overBarColor = _activeBarColor;
-//        _disableNormalBarColor = _activeBarColor;
         _disableActiveBarColor = _activeBarColor;
 
         if(track->isMouseDown() || thumb->isMouseDown()) {
@@ -339,9 +291,7 @@ namespace fl2d {
         _activeBarColor.g = color.g;
         _activeBarColor.b = color.b;
         _activeBarColor.a = color.a;
-//        _normalBarColor = _activeBarColor;
         _overBarColor = _activeBarColor;
-//        _disableNormalBarColor = _activeBarColor;
         _disableActiveBarColor = _activeBarColor;
 
         if(track->isMouseDown() || thumb->isMouseDown()) {
@@ -359,9 +309,7 @@ namespace fl2d {
         _activeBarColor.g = color.g;
         _activeBarColor.b = color.b;
         _activeBarColor.a = color.a;
-//        _normalBarColor = _activeBarColor;
         _overBarColor = _activeBarColor;
-//        _disableNormalBarColor = _activeBarColor;
         _disableActiveBarColor = _activeBarColor;
 
         if(track->isMouseDown() || thumb->isMouseDown()) {
@@ -398,20 +346,35 @@ namespace fl2d {
 		//バー
 		if (_enabled) {
             _setNormalColor();
-//            _drawTrackGraphics(_normalBarColor, _normalBarColor, 1);
-//            _drawBarGraphics(_normalBarColor, _activeBarColor, 1);
 		}
 		else {
             _setNormalColor();
-
-//            _drawTrackGraphics(_normalBarColor, _normalBarColor, 1);
-//            _drawBarGraphics(_normalBarColor, _disableNormalBarColor, 1);
 		}
 	}
 
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flSlider::_changeValue(bool dispatch) {
+        if(_param != NULL) {
+            _changedValueByMyself = true;
+            _param->set(_value);
+        }
+        
+        _valueText->text(ofToString(_value, 2));
+        
+        //------------------------------------------
+        //イベント
+        if(dispatch) {
+            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
+            event->_target = this;
+            event->data<float>(_value);
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
     
     //--------------------------------------------------------------
     void flSlider::_trackOver() {
@@ -450,8 +413,6 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_press() {
-        float preValue = _value;
-        
         //------------------------------------------
         float temp = mouseX() - _draggablePoint->x;
         if(temp < 0) temp = 0;
@@ -463,6 +424,8 @@ namespace fl2d {
         thumb->x(temp - _thumbWidth * 0.5);
         //------------------------------------------
         
+        float preValue = _value;
+
         //------------------------------------------
         if(_max > _min) {
             _value = (_range * _percent) + _min;
@@ -478,25 +441,11 @@ namespace fl2d {
         _setActiveColor();
         //------------------------------------------
         
-        //------------------------------------------
-        if(preValue != _value) {
-            _valueText->text(ofToString(_value, 2));
-            
-            //------------------------------------------
-            //イベント
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
-            event->data<float>(_value);
-            dispatchEvent(event);
-            //------------------------------------------
-        }
-        //------------------------------------------
+        if(preValue != _value) _changeValue();
     }
     
     //--------------------------------------------------------------
     void flSlider::_release() {
-        //ofLog() << "[flSlider]_release()";
-
         if(track->isMouseOver()) {
             _setTrackOverColor();
         } else {
@@ -536,13 +485,11 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_setSelectedTrackOverColor() {
-//        _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
     }
 
     //--------------------------------------------------------------
     void flSlider::_setSelectedThumbOverColor() {
-//        _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
     }
 
@@ -558,13 +505,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_setDisableNormalColor() {
-//        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
     }
     
     //--------------------------------------------------------------
     void flSlider::_setDisableActiveColor() {
-//        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
     }
     
@@ -616,13 +561,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-//            ofLog() << "isMousePressed() = " << isMousePressed();
-//            ofLog() << "bar->isMousePressed() = " << bar->isMousePressed();
-//            ofLog() << "track->isMousePressed() = " << track->isMousePressed();
-//            ofLog() << "thumb->isMousePressed() = " << thumb->isMousePressed();
-//
-//            ofLog() << "thumb->isMouseOver() = " << thumb->isMouseOver();
-            
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
                     _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;

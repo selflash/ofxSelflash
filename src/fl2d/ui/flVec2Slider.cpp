@@ -3,22 +3,19 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flVec2Slider::flVec2Slider(
                            float width,
                            float xMin, float xMax, float defaultXValue,
                            float yMin, float yMax, float defaultYValue
                            ) {
-        //cout << "[flVec2Slider]flVec2Slider()" << endl;
-        
+        //ofLog() << "[flVec2Slider]flVec2Slider()";
+
         _target = this;
         name("flVec2Slider");
-        
-        _label = NULL;
         
         float height = 18 + 2;
         
@@ -66,11 +63,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flVec2Slider::~flVec2Slider() {
-        //cout << "[flVec2Slider]~flVec2Slider()" << endl;
-        
-        _label = NULL;
+        //ofLog() << "[flVec2Slider]~flVec2Slider()";
         
         delete xSlider;
         xSlider = NULL;
@@ -90,19 +84,16 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flVec2Slider::_setup() {
-        //cout << "[flVec2Slider]setup()" << endl;
+        //ofLog() << "[flVec2Slider]setup()" << endl;
     }
     
     //--------------------------------------------------------------
-    //
     void flVec2Slider::_update() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flVec2Slider::_draw(){
         
     }
@@ -112,7 +103,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flVec2Slider::label() { return _label; }
     void flVec2Slider::label(flTextField* value) {
         _label = value;
@@ -121,7 +111,6 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    //
     ofVec2f flVec2Slider::vec2Value() { return _vec2Value; }
     void flVec2Slider::vec2Value(ofVec2f value, bool dispatch) {
         _vec2Value = value;
@@ -152,10 +141,9 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flVec2Slider::_eventHandler(flEvent& event) {
-        //        ofLog(OF_LOG_VERBOSE) << "[flVec2Slider]_eventHandler(" << event.type() << ")" << endl;
-        //        cout << "[flVec2Slider]_eventHandler(" << event.type() << ")" << endl;
+//        ofLog(OF_LOG_VERBOSE) << "[flVec2Slider]_eventHandler(" << event.type() << ")";
+//        ofLog() << "[flVec2Slider]_eventHandler(" << event.type() << ")";
         
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();

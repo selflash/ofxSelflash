@@ -13,9 +13,8 @@
 //==============================================================
 
 //--------------------------------------------------------------
-//
 SubController2::SubController2(string title) {
-    cout << "[SubController2]SubController2()" << endl;
+    ofLog() << "[SubController2]SubController2()";
     _target = this;
     
     name(title);
@@ -25,9 +24,8 @@ SubController2::SubController2(string title) {
 }
 
 //--------------------------------------------------------------
-//
 SubController2::~SubController2() {
-    cout << "[SubController2]~SubController2()" << endl;
+    ofLog() << "[SubController2]~SubController2()";
     _target = NULL;
 }
 
@@ -36,9 +34,8 @@ SubController2::~SubController2() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void SubController2::_setup() {
-    cout << "[SubController2]_setup()" << endl;
+    ofLog() << "[SubController2]_setup()";
     
     flBasicController::_setup();
     
@@ -112,15 +109,13 @@ void SubController2::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void SubController2::_update() {
-    //cout << "[SubController2]update()" << endl;
+    //ofLog() << "[SubController2]update()";
 }
 
 //--------------------------------------------------------------
-//
 void SubController2::_draw() {
-    //cout << "[SubController2]draw()" << endl;
+    //ofLog() << "[SubController2]draw()";
     
     if(_isMinimize) return;
     
@@ -137,9 +132,8 @@ void SubController2::_draw() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void SubController2::_uiEventHandler(flEvent& event) {
-    //    cout << "[SubController2]_uiEventHandler(" << event.type() << endl;
+    //    ofLog() << "[SubController2]_uiEventHandler(" << event.type();
     
     //ボタン(マウスダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {

@@ -5,7 +5,6 @@ namespace fl2d {
     flStage* flStage::_instance = NULL;
     
     //--------------------------------------------------------------
-    //
     flStage* flStage::instance() {
         if(!_instance) {
             _instance = new flStage();
@@ -21,14 +20,12 @@ namespace fl2d {
     }
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
-    
+
     //--------------------------------------------------------------
-    //
     flStage::flStage() {
-        //        debug(true);
-        if(debug()) cout << "[flStage]flStage()" << endl;
+        if(debug()) ofLog() << "[flStage]flStage()";
         
         _typeID = FL_TYPE_STAGE;
         _target = this;
@@ -69,9 +66,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flStage::~flStage() {
-        if(debug()) cout << "[flStage]~flStage()" << endl;
+        if(debug()) ofLog() << "[flStage]~flStage()";
         
         _target = NULL;
         name("");
@@ -139,13 +135,13 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flStage::setup(flSettings settings) {
-        if(debug()) cout << "[flStage]setup()" << endl;
+        if(debug()) ofLog() << "[flStage]setup()";
+        
         if(_isSetuped) return;
         _isSetuped = true;
         
@@ -179,7 +175,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::update() {
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
@@ -219,21 +214,21 @@ namespace fl2d {
         // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
             if(_topMostHitDisplayObjectPrev != _topMostHitDisplayObject) {
-                cout << "\n==========================================================" << endl;
-                cout << "[Address]" << endl;
-                cout << "topMostHitDisplayObject         = " << _topMostHitDisplayObject << endl;
-                cout << "topMostHitDisplayObjectPrev     = " << _topMostHitDisplayObjectPrev << endl;
-                cout << "----------------------------------------------------------" << endl;
-                cout << "----------------------------------------------------------" << endl;
-                cout << "[Name]" << endl;
-                if(_topMostHitDisplayObject) cout << "topMostHitDisplayObject         = " << _topMostHitDisplayObject->name().c_str() << endl;
-                if(_topMostHitDisplayObjectPrev) cout << "topMostHitDisplayObjectPrev     = " << _topMostHitDisplayObjectPrev->name().c_str() << endl;
-                cout << "==========================================================\n" << endl;
+                ofLog() << "\n==========================================================";
+                ofLog() << "[Address]";
+                ofLog() << "topMostHitDisplayObject         = " << _topMostHitDisplayObject;
+                ofLog() << "topMostHitDisplayObjectPrev     = " << _topMostHitDisplayObjectPrev;
+                ofLog() << "----------------------------------------------------------";
+                ofLog() << "----------------------------------------------------------";
+                ofLog() << "[Name]";
+                if(_topMostHitDisplayObject) ofLog() << "topMostHitDisplayObject         = " << _topMostHitDisplayObject->name().c_str();
+                if(_topMostHitDisplayObjectPrev) ofLog() << "topMostHitDisplayObjectPrev     = " << _topMostHitDisplayObjectPrev->name().c_str();
+                ofLog() << "==========================================================\n";
             }
-            cout << "==========================================================\n" << endl;
-            cout << "focus                           = " << _focus << endl;
-            if(_focus) cout << "focus                           = " << _focus->name().c_str() << endl;
-            cout << "==========================================================\n" << endl;
+            ofLog() << "==========================================================\n";
+            ofLog() << "focus                           = " << _focus;
+            if(_focus) ofLog() << "focus                           = " << _focus->name().c_str();
+            ofLog() << "==========================================================\n";
         }
         //------------------------------------
         
@@ -264,9 +259,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::draw() {
-        //cout << "[flStage]draw() << endl;
+        //ofLog() << "[flStage]draw();
         
         //    glEnable(GL_BLEND);
         //    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -298,37 +292,30 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     int flStage::stageWidth() { return _stageWidth; }
     int flStage::stageHeight() { return _stageHeight; }
     
     //--------------------------------------------------------------
-    //
     int flStage::mouseX() { return _mouseX; }
     int flStage::mouseY() { return _mouseY; }
     
     //--------------------------------------------------------------
-    //
     //    bool flStage::isMouseDown() { return _bMouseDown; };
     
     //--------------------------------------------------------------
-    //
     flInteractiveObject* flStage::focus() { return _focus; }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flStage::topMostHitDisplayObject() { return _topMostHitDisplayObject; }
     flDisplayObject* flStage::topMostHitDisplayObjectPrev() { return _topMostHitDisplayObjectPrev; }
     
     //--------------------------------------------------------------
-    //
     flInteractiveObject* flStage::topMostHitInteractiveObject() { return _topMostHitInteractiveObject; }
     flInteractiveObject* flStage::topMostHitInteractiveObjectPrev() { return _topMostHitInteractiveObjectPrev; }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flStage::getMostHitDisplayObject(int x, int y) {
-        cout << "[flStage]getMostHitDisplayObject(" << x << ", " << y << ")" << endl;
+        ofLog() << "[flStage]getMostHitDisplayObject(" << x << ", " << y << ")";
         return _getMostHitDisplayObject(this, children, x, y);
     }
     
@@ -368,13 +355,12 @@ namespace fl2d {
 //    }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flStage::_updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& children) {
-        //cout << "[flStage]_updateChildrenOne()" << endl;
+        //ofLog() << "[flStage]_updateChildrenOne()";
         
         // clear pixel bounds on every loop and recalculate.
         //parent->resetPixelBounds();
@@ -476,13 +462,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    // [ÂÆüË£Ö‰∏ä„ÅÆÊ≥®ÊÑè]
-    // „Éª_updateMouse()„ÅÆ‰∏≠„Åß„ÅØ_topMostHitDisplayObject„Å´‰ª£ÂÖ•„Åó„Å¶„ÅØ„ÅÑ„Åë„Å™„ÅÑ
-    //
     void flStage::_updateMouse() {
-        //cout << "[flStage]_updateMouse()" << endl;
+        //ofLog() << "[flStage]_updateMouse()";
         
-        //cout << "_isMouseChanged = " << _isMouseChanged << endl;
+        if(__isMouseDown) return;
+        //ofLog() << "_isMouseChanged = " << _isMouseChanged;
         
         //ÊúÄÂâçÈù¢„Åß„Éû„Ç¶„Çπ„Å®„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅåÂâçÂõû„Å®Â§â„Çè„Å£„Åü„Åã„Å©„ÅÜ„Åã
         bool bHitDisplayObjectChanged = false;
@@ -497,11 +481,11 @@ namespace fl2d {
             char frame[10];
             //sprintf(frame, "%05d", ofGetFrameNum());
             sprintf(frame, "%05llu", ofGetFrameNum());
-            cout << "" << endl;
-            cout << frame << " :: bHitDisplayObjectChanged = " << (bHitDisplayObjectChanged ? "true" : "false") << endl;
-            cout << frame << " :: bMousePressed = "	<< (__isMousePressed ? "true" : "false") << endl;
-            cout << frame << " :: bMouseReleased = " << (__isMouseReleased ? "true" : "false") << endl;
-            cout << frame << " :: bMouseChanged = " << (_isMouseChanged ? "true" : "false") << endl;
+            ofLog() << "";
+            ofLog() << frame << " :: bHitDisplayObjectChanged = " << (bHitDisplayObjectChanged ? "true" : "false");
+            ofLog() << frame << " :: bMousePressed = "	<< (__isMousePressed ? "true" : "false");
+            ofLog() << frame << " :: bMouseReleased = " << (__isMouseReleased ? "true" : "false");
+            ofLog() << frame << " :: bMouseChanged = " << (_isMouseChanged ? "true" : "false");
         }
         //------------------------------------
         
@@ -620,10 +604,10 @@ namespace fl2d {
         //------------------------------------
         // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
-            if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)cout << "\n==========================================================" << endl;
-            if(_topMostHitInteractiveObject) cout << "TopMostHitInteractiveObject     = " << _topMostHitInteractiveObject->name().c_str() << endl;
-            if(_topMostHitInteractiveObjectPrev) cout << "TopMostHitInteractiveObjectPrev = " << _topMostHitInteractiveObjectPrev->name().c_str() << endl;
-            if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)cout <<         "==========================================================\n" << endl;
+            if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)ofLog() << "\n==========================================================";
+            if(_topMostHitInteractiveObject) ofLog() << "TopMostHitInteractiveObject     = " << _topMostHitInteractiveObject->name().c_str();
+            if(_topMostHitInteractiveObjectPrev) ofLog() << "TopMostHitInteractiveObjectPrev = " << _topMostHitInteractiveObjectPrev->name().c_str();
+            if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)ofLog() <<         "==========================================================\n";
         }
         //------------------------------------
         
@@ -746,7 +730,7 @@ namespace fl2d {
         //        //------------------------------------
         //        //„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥„Ç§„Éô„É≥„Éà
         //        if(__isMousePressed) {
-        //            cout << "HOGE" << endl;
+        //            ofLog() << "HOGE";
         //            if(_topMostHitInteractiveObject) {
         //                //------------------------------------
         //                //„Éï„Ç©„Éº„Ç´„Çπ„ÅåÂ§â„Çè„Å£„Åü„Çâ
@@ -765,7 +749,7 @@ namespace fl2d {
         //    //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
         //                    } catch(const char* str ) {
         //                        // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
-        //                        cout << str << endl;
+        //                        ofLog() << str;
         //                    }
         //
         //                    //„Éï„Ç©„Éº„Ç´„Çπ
@@ -895,9 +879,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flDisplayObject* flStage::_getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y) {
-        //        cout << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")" << endl;
+        //        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
         flDisplayObject* mostHitDisplayObject;
         
         int i; int l;
@@ -973,14 +956,13 @@ namespace fl2d {
             }
         }
         
-        //        if(mostHitDisplayObject) cout << "[flStage]" << mostHitDisplayObject->name() << endl;
+        //        if(mostHitDisplayObject) ofLog() << "[flStage]" << mostHitDisplayObject->name();
         return mostHitDisplayObject;
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_mouseMove() {
-        //        if(debug()) cout << "[flStage]_mouseMove()" << endl;
+        //        if(debug()) ofLog() << "[flStage]_mouseMove()";
         
         if(_mouseID != 0) return;
         
@@ -1009,7 +991,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& children) {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
@@ -1059,16 +1040,15 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flStage::_updateEventHandler(ofEventArgs& event) {
         update();
         //        try {
         //            update();
         //        } catch(...) {
-        //            cout << "[flStage]update error" << endl;
+        //            ofLog() << "[flStage]update error";
         //
         //進行状況
-        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 10 << endl;
+        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 10;
         //            ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
         
         //            //警告
@@ -1089,20 +1069,19 @@ namespace fl2d {
         //        }
     }
     //--------------------------------------------------------------
-    //
     void flStage::_drawEventHandler(ofEventArgs& event) {
         draw();
         //        try {
         //            draw();
         //        } catch(...) {
-        //            cout << "[flStage]draw error" << endl;
+        //            ofLog() << "[flStage]draw error";
         //        }
     }
     
     //--------------------------------------------------------------
     // ‚Äª„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥ÊôÇ„Å´„ÅØ„Åì„Çå„Åå„Çà„Å∞„Çå„Å™„ÅÑ„Å£„ÅΩ„ÅÑ„Éª„Éª
     void flStage::_mouseMoveEventHandler(ofMouseEventArgs& event) {
-        if(debug()) cout << "[flStage]_mouseMoveEventHandler()" << endl;
+        if(debug()) ofLog() << "[flStage]_mouseMoveEventHandler()";
         
         if(_mouseID != 0) return;
         
@@ -1135,7 +1114,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_mouseDragEventHandler(ofMouseEventArgs& event) {
         if(_mouseID != 0) return;
         
@@ -1151,9 +1129,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_mouseDownEventHandler(ofMouseEventArgs& event) {
-        if(debug()) cout << "[flStage]_mouseDownEventHandler()" << endl;
+        if(debug()) ofLog() << "[flStage]_mouseDownEventHandler()";
         
         _mouseID = event.button;
         
@@ -1181,14 +1158,14 @@ namespace fl2d {
                     focusEvent->_target = _focus;
                     _focus->dispatchEvent(focusEvent);
                     if(true) {
-                        //                        cout << "focus out = " << _focus->name().c_str() << endl;
+                        //                        ofLog() << "focus out = " << _focus->name().c_str();
                     }
                     
                     // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
                     //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
                 } catch(const char* str ) {
                     // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
-                    cout << str << endl;
+                    ofLog() << str;
                 }
                 
                 //„Éï„Ç©„Éº„Ç´„Çπ
@@ -1200,7 +1177,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-                    //                    cout << "focus in = " << _focus->name().c_str() << endl;
+                    //                    ofLog() << "focus in = " << _focus->name().c_str();
                 }
             }
             //------------------------------------
@@ -1246,7 +1223,7 @@ namespace fl2d {
                 focusEvent->_target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
-                    //                    cout << "focus out = " << _focus->name().c_str() << endl;
+                    //                    ofLog() << "focus out = " << _focus->name().c_str();
                 }
                 
                 _focus = this;
@@ -1258,7 +1235,7 @@ namespace fl2d {
                 _focus->dispatchEvent(focusEvent);
                 
                 if(true) {
-                    //                    cout << "focus in = " << _focus->name().c_str() << endl;
+                    //                    ofLog() << "focus in = " << _focus->name().c_str();
                 }
             }
             //------------------------------------
@@ -1276,12 +1253,11 @@ namespace fl2d {
         dispatchEvent(mouseEvent);
         //------------------------------------
         
-        //        cout << "isFocus = " << isFocus() << endl;
-        //        cout << "flStage->focus = " << focus()->name() << endl;
+        //        ofLog() << "isFocus = " << isFocus();
+        //        ofLog() << "flStage->focus = " << focus()->name();
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_mouseUpEventHandler(ofMouseEventArgs& event) {
         if(_mouseID != 0) return;
         
@@ -1344,7 +1320,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
         //------------------------------------
         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_SCROLLED);
@@ -1360,9 +1335,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_keyDownEventHandler(ofKeyEventArgs& event) {
-        if(debug()) cout << "[flStage]_keyDownEventHandler()" << endl;
+        if(debug()) ofLog() << "[flStage]_keyDownEventHandler()";
         
         int key = event.key;
         //Space
@@ -1376,7 +1350,7 @@ namespace fl2d {
         //------------------------------------
         if(!flKeyboard::__checkKeyIsDown(key)) {
             //        if(_isKeyDown == false) {
-            if(debug()) cout << "[flStage]_keyDownEventHandler(KEY_PRESS)" << endl;
+            if(debug()) ofLog() << "[flStage]_keyDownEventHandler(KEY_PRESS)";
             keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_PRESS);
             keyboardEvent->__keyCode = key;
             dispatchEvent(keyboardEvent);
@@ -1406,9 +1380,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flStage::_keyUpEventHandler(ofKeyEventArgs& event) {
-        if(debug()) cout << "[flStage]_keyUpEventHandler()" << endl;
+        if(debug()) ofLog() << "[flStage]_keyUpEventHandler()";
         
         int key = event.key;
         //Space
@@ -1421,7 +1394,7 @@ namespace fl2d {
         //------------------------------------
         if(flKeyboard::__checkKeyIsDown(key)) {
             //        if(_isKeyDown) {
-            if(debug()) cout << "[flStage]_keyDownEventHandler(KEY_RELEASE)" << endl;
+            if(debug()) ofLog() << "[flStage]_keyDownEventHandler(KEY_RELEASE)";
             keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
             keyboardEvent->__keyCode = key;
             dispatchEvent(keyboardEvent);
@@ -1455,7 +1428,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flStage::_resizeEventHandler(ofResizeEventArgs& event) {
         _stageWidth = event.width;
         _stageHeight = event.height;
@@ -1468,7 +1440,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     bool flStage::_isInteractiveObject(flDisplayObject* displayObject) {
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
@@ -1481,7 +1452,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flStage::_isDisplayObject(flDisplayObject* displayObject) {
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_SHAPE);
@@ -1494,7 +1464,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flStage::_isDisplayObjectContainer(flDisplayObject* displayObject) {
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
@@ -1505,7 +1474,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     bool flStage::_isSprite(flDisplayObject* displayObject) {
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);

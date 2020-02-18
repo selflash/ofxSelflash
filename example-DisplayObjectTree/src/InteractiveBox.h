@@ -7,41 +7,48 @@ using namespace fl2d;
 
 class InteractiveBox:public flSprite {
     
-public:
+    public:
     
-protected:
+    protected:
     
-private:
-    flTextField* _titleTf;
+    private:
+        flTextField* _label;
     
-    ofFloatColor* _lineColor;
-    ofFloatColor* _normalColor;
-    ofFloatColor* _overColor;
-    ofFloatColor* _activeColor;
+        ofColor _areaColor;
+
+        float _graphicsWidth;
+        float _graphicsHeight;
+
+        bool _showHitArea;
+
+    public:
+        InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, ofColor areaColor = ofColor(255, 0, 0));
+        virtual ~InteractiveBox();
     
-    ofFloatColor* _areaColor;
+        void title(std::string value);
     
-    float _graphicsWidth;
-    float _graphicsHeight;
+    protected:
+        virtual void _setup();
+        virtual void _update();
+        virtual void _draw();
     
-public:
-    InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, int areaColor = 0xff0000);
-    virtual ~InteractiveBox();
+        void showHitArea(bool value) { _showHitArea = value; }
+        bool showHitArea() { return _showHitArea; }
+
+    private:
+        void _over();
+        void _out();
+        void _press();
+        void _release();
     
-    void title(std::string value);
-    
-protected:
-    virtual void _setup();
-    virtual void _update();
-    virtual void _draw();
-    
-    virtual void _drawTrackGraphics(const ofFloatColor& lineColor, const ofFloatColor& fillColor);
-    
-private:    
-    void _over();
-    void _out();
-    void _press();
-    void _release();
-    
-    void _mouseEventHandler(flEvent& event);
+        void _setNormalColor();
+        void _setOverColor();
+        void _setSelectedOverColor();
+        void _setActiveColor();
+        void _setDisableNormalColor();
+        void _setDisableActiveColor();
+
+        void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
+        void _mouseEventHandler(flEvent& event);
 };

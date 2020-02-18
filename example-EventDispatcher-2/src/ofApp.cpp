@@ -15,10 +15,10 @@ void ofApp::setup() {
     dispatcherB->addListeners();
     
     //アドレスを表示
-    cout << "----------------------------" << endl;
-    cout << "[dispathcerA] = " << dispatcherA << endl;
-    cout << "[dispathcerB] = " << dispatcherB << endl;
-    cout << "----------------------------";
+    ofLog() << "----------------------------";
+    ofLog() << "[dispathcerA] = " << dispatcherA;
+    ofLog() << "[dispathcerB] = " << dispatcherB;
+    ofLog() << "----------------------------";
     //---------------------------------------
 }
 
@@ -49,29 +49,29 @@ void ofApp::draw() {
 void ofApp::test1() {
     //---------------------------------------
     //removeEventListenerテスト
-    cout << "TEST 5 ---------------------" << endl;
-    cout << &ofApp::eventHandler << endl;
-    cout << (dispatcherA->hasEventListener(flEvent::INIT) ? "true" : "false") << endl;
+    ofLog() << "TEST 5 ---------------------";
+    ofLog() << &ofApp::eventHandler;
+    ofLog() << (dispatcherA->hasEventListener(flEvent::INIT) ? "true" : "false");
     
     dispatcherA->removeEventListeners(flEvent::INIT);
     
-    cout << dispatcherA->hasEventListener(flEvent::INIT) << endl;
-    cout << "----------------------------" << endl;
+    ofLog() << dispatcherA->hasEventListener(flEvent::INIT);
+    ofLog() << "----------------------------";
     //---------------------------------------
 }
 
 //--------------------------------------------------------------
-// EVENT HANDLER
+// Private Event Handler
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
 void ofApp::eventHandler(flEvent& event) {
-    cout << "[ofApp]eventHandler()" << endl;
+    ofLog() << "[ofApp]eventHandler()";
     
     //---------------------------------------
-    cout << "[event.type] = " << event.type() << endl;
-    cout << "[event.target] = " << event.target() << endl;
-    cout << "[event.currentTarget] = " << event.currentTarget() << endl;
+    ofLog() << "[event.type] = " << event.type();
+    ofLog() << "[event.target] = " << event.target();
+    ofLog() << "[event.currentTarget] = " << event.currentTarget();
     //---------------------------------------
     
     flEventDispatcher* target = (flEventDispatcher*) event.target();
@@ -81,8 +81,8 @@ void ofApp::eventHandler(flEvent& event) {
     //    CustomEvent& customEvent = *(CustomEvent*)& event;
     
     if(event.target() == dispatcherA) {
-        if(event.type() == flEvent::INIT) cout << "A -> INIT" << endl;
-        if(event.type() == CustomEvent::TEST1) cout << "A -> TEST1" << endl;
+        if(event.type() == flEvent::INIT) ofLog() << "A -> INIT";
+        if(event.type() == CustomEvent::TEST1) ofLog() << "A -> TEST1";
         
         //removeEventListenerテスト
         //        target->removeEventListeners(flEvent::INIT);
@@ -124,7 +124,7 @@ void ofApp::keyReleased(int key) {
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ) {
+void ofApp::mouseMoved(int x, int y) {
     
 }
 

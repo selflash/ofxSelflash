@@ -1,13 +1,12 @@
 #include "CustomSpriteA.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Destructor
 //==============================================================
 
 //--------------------------------------------------------------
-//
 CustomSpriteA::CustomSpriteA() {
-    cout << "[CustomSpriteA]CustomSpriteA()" << endl;
+    ofLog() << "[CustomSpriteA]CustomSpriteA()";
     
     _target = this;
     
@@ -26,44 +25,40 @@ CustomSpriteA::CustomSpriteA() {
 }
 
 //--------------------------------------------------------------
-//
 CustomSpriteA::~CustomSpriteA() {
-    cout << "[CustomSpriteA]~CustomSpriteA()" << endl;
+    ofLog() << "[CustomSpriteA]~CustomSpriteA()";
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void CustomSpriteA::_setup() {
-    //    cout << "[CustomSpriteA]_setup()" << endl;
+    //    ofLog() << "[CustomSpriteA]_setup()";
     
 }
 
 //--------------------------------------------------------------
-//
 void CustomSpriteA::_update() {
-    //    cout << "[CustomSpriteA]_update()" << endl;
+    //    ofLog() << "[CustomSpriteA]_update()";
     
 }
 
 //--------------------------------------------------------------
-//
 void CustomSpriteA::_draw() {
-    //    cout << "[CustomSpriteA]_draw()" << endl;
+    //    ofLog() << "[CustomSpriteA]_draw()";
     
 }
 
 //==============================================================
-// PUBLIC METHOD
+// Public Method
 //==============================================================
 
 //==============================================================
-// PRIVATE METHOD
+// Protected / Private Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Private Event Handler
 //==============================================================

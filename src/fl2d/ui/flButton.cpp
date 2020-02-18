@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flButton::flButton(float width, float height) {
-        //cout << "[flButton]flButton()" << endl;
+//        ofLog() << "[flButton]flButton()";
         
         _target = this;
         name("flButton");
@@ -20,13 +20,10 @@ namespace fl2d {
         _uiHeight = height;
         
         _toggleEnabled = false;
-        _enabled = true;
         _selected = false;
 
         _labelTextNotSelected = "";
         _labelTextSelected = "";
-        
-        _label = NULL;
         
         //------------------------------------------
         _buttonLabel = new flTextField();
@@ -54,7 +51,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flButton::~flButton() {
-        //cout << "[flButton]~flButton()" << endl;
+//        ofLog() << "[flButton]~flButton()";
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flButton::_mouseEventHandler);
@@ -65,7 +62,6 @@ namespace fl2d {
         _buttonLabel = NULL;
         
         _toggleEnabled = false;
-        _enabled = false;
         _selected = false;
         
         _pointerValue = NULL;
@@ -75,8 +71,6 @@ namespace fl2d {
         
         _labelTextNotSelected = "";
         _labelTextSelected = "";
-        
-        _label = NULL;
     }
     
     //==============================================================
@@ -180,74 +174,33 @@ namespace fl2d {
         _enabled = value;
         mouseEnabled(_enabled);
 
-		flGraphics* g;
-		if (_enabled) {
-			if (_selected) {
-				_buttonLabel->text(_labelTextSelected);
-				if (isMouseOver()) {
-					_buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-					g = graphics();
-					g->clear();
-					g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
-					g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex());
-					g->drawRect(0, 0, _uiWidth, _uiHeight);
-					g->endFill();
-				}
-				else {
-					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-					g = graphics();
-					g->clear();
-					g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-					g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex());
-					g->drawRect(0, 0, _uiWidth, _uiHeight);
-					g->endFill();
-				}
-			}
-			else {
-				_buttonLabel->text(_labelTextNotSelected);
-				if (isMouseOver()) {
-					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-					g = graphics();
-					g->clear();
-					g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
-					g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-					g->drawRect(0, 0, _uiWidth, _uiHeight);
-					g->endFill();
-				}
-				else {
-					_buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-					g = graphics();
-					g->clear();
-					g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-					g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-					g->drawRect(0, 0, _uiWidth, _uiHeight);
-					g->endFill();
-				}
-			}
-		}
-		else {
-			if (_selected) {
-				_buttonLabel->text(_labelTextSelected);
-                _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR.getHex());
-                g->beginFill(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
-			}
-			else
-            {
-				_buttonLabel->text(_labelTextNotSelected);
-                _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-                g = graphics();
-                g->clear();
-                g->lineStyle(1, flDefinition::UI_LINE_DISABLE_NORMAL_COLOR.getHex());
-                g->beginFill(flDefinition::UI_DISABLE_NORMAL_COLOR.getHex());
-                g->drawRect(0, 0, _uiWidth, _uiHeight);
-                g->endFill();
-			}
-		}
+        if(!_selected) {
+            _buttonLabel->text(_labelTextNotSelected);
+        } else {
+            _buttonLabel->text(_labelTextSelected);
+        }
+        
+        if(_enabled) {
+            if(_selected) {
+                if(isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setActiveColor();
+                }
+            } else {
+                if(isMouseOver()) {
+                    _setSelectedOverColor();
+                } else {
+                    _setNormalColor();
+                }
+            }
+        } else {
+            if(!_selected) {
+                _setDisableNormalColor();
+            } else {
+                _setDisableActiveColor();
+            }
+        }
     }
     
     //==============================================================
@@ -324,12 +277,7 @@ namespace fl2d {
         
         _buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-        g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -338,12 +286,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
-        g->beginFill(flDefinition::UI_OVER_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -352,12 +295,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
-        g->beginFill(flDefinition::UI_OVER_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -366,12 +304,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_ACTIVE_COLOR.getHex());
-        g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -380,12 +313,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_DISABLE_NORMAL_COLOR.getHex());
-        g->beginFill(flDefinition::UI_DISABLE_NORMAL_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -394,17 +322,17 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
-        flGraphics* g = graphics();
-        g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR.getHex());
-        g->beginFill(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
-        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        g->endFill();
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
     void flButton::_drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
-        
+        flGraphics* g = graphics();
+        g->clear();
+        g->lineStyle(thickness, lineColor.getHex());
+        g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
+        g->drawRect(0, 0, _uiWidth, _uiHeight);
+        g->endFill();
     }
     
     //==============================================================
@@ -414,17 +342,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flButton::_mouseEventHandler(flEvent& event) {
         if(!_enabled) return;
-        //cout << "[flButton]_mouseEventHandler(" << event.type() << ")" << endl;
-        //cout << "[flButton]this          = " << this << "," << ((DisplayObject*) this)->name() << endl;
-        //cout << "[flButton]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name() << endl;
-        //cout << "[flButton]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name() << endl;
+//        ofLog() << "[flButton]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flButton]this          = " << this << "," << ((DisplayObject*) this)->name();
+//        ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flButton]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name();
         
+        //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _over();
         }
+        
+        //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
             if(event.target() == this) _out();
         }
+        
+        //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) _press();
             addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
@@ -432,6 +365,8 @@ namespace fl2d {
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             }
         }
+        
+        //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
             removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             if(stage()) {

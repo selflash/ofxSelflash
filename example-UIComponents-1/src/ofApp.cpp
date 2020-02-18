@@ -16,59 +16,67 @@ void ofApp::setup() {
     //UIコンポーネント
     uiComponents = new UIComponents();
     uiComponents->setup();
-    //    uiComponents->alpha(0.2);
-    ofxSelflash::stage()->addChild(uiComponents);
-    //--------------------------------------
-    
-    //--------------------------------------
-    //スライダー
     uiComponents->slider001->addEventListener(flSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->slider002->addEventListener(flSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //レンジスライダー
     uiComponents->rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->rangeSlider002->addEventListener(flRangeSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //カラースラーダー
     uiComponents->colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //ボタン
     uiComponents->button001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button002->addEventListener(flEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &ofApp::_uiComponentsEventHandler);
-    //ラジオボタン
     //uiComponents->radio001->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio002->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->radio003->addEventListener(flRadioButtonEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //2Dパッド
     uiComponents->pad001->addEventListener(flPadEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->pad002->addEventListener(flPadEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //カラーピッカー
     uiComponents->colorPicker001->addEventListener(flColorPickerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    
-    //ジョイスティック1D
     uiComponents->joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1003->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1004->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1005->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //ジョイスティック2D
     uiComponents->joystick2001->addEventListener(flJoyStick2Event::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //ナンバーダイアラー
     uiComponents->dialer001->addEventListener(flNumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //    uiComponents->dialer002->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     //    uiComponents->dialer003->addEventListener(NumberDialerEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
-    //コンボボックス
     uiComponents->comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->comboBox002->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
     uiComponents->comboBox003->addEventListener(flComboBoxEvent::CHANGE, this, &ofApp::_uiComponentsEventHandler);
+    ofxSelflash::stage()->addChild(uiComponents);
     //--------------------------------------
     
+    //--------------------------------------
+    //
+    _renderer = new Renderer();
+    _renderer->setup();
+    _renderer->x(550);
+    _renderer->y(300);
+    //    frameBorder1->alpha(0.5);
+    ofxSelflash::stage()->addChild(_renderer);
+    //--------------------------------------
     
-    _count = 0.0;
-    _speed = 0.1;
-    
+    //--------------------------------------
+    //Bind
+    _renderer->speed = _appModel.speed;
+    uiComponents->slider002->bind(_appModel.speed);
+    _listeners.push(_appModel.speed.newListener([&](float& value) {
+        _renderer->speed = value;
+    }));
+    //--------------------------------------
+
+    //--------------------------------------
+    //Bind
+    _renderer->bgColor = _appModel.bgColor;
+    uiComponents->colorSlider001->bind(_appModel.bgColor);
+    _listeners.push(_appModel.bgColor.newListener([&](ofColor& value) {
+        _renderer->bgColor = value;
+    }));
+    //--------------------------------------
+
     
 //    flObject* object = new flObject();
 //    float x = 100.5;
@@ -118,27 +126,27 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    //--------------------------------------
-    _count += _speed;
-    
-    ofPushMatrix();
-    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
-    
-    ofPushMatrix();
-    ofTranslate(_position);
-    
-    ofRotateX(_count);
-    ofRotateY(_count * 0.75);
-    
-    ofPushStyle();
-    ofNoFill();
-    ofDrawBox(0, 0, 0, 200, 200, 200);
-    ofPopStyle();
-    
-    ofPopMatrix();
-    
-    ofPopMatrix();
-    //--------------------------------------
+//    //--------------------------------------
+//    _count += _speed;
+//
+//    ofPushMatrix();
+//    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
+//
+//    ofPushMatrix();
+//    ofTranslate(_position);
+//
+//    ofRotateX(_count);
+//    ofRotateY(_count * 0.75);
+//
+//    ofPushStyle();
+//    ofNoFill();
+//    ofDrawBox(0, 0, 0, 200, 200, 200);
+//    ofPopStyle();
+//
+//    ofPopMatrix();
+//
+//    ofPopMatrix();
+//    //--------------------------------------
     
     //----------------------------------
     ofxSelflash::draw();
@@ -154,26 +162,20 @@ void ofApp::draw() {
 }
 
 //==============================================================
-// Event Handler
+// Private Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 void ofApp::_uiComponentsEventHandler(flEvent& event) {
     ofLog() << "[ofApp]_uiComponentsEventHandler(" << event.type() << ")";
-    
-    //    //------------------------------------------
-    //    //イベントタイプ
-    //    cout << "event.type          = " << event.type() << endl;
-    //    //カレントターゲット
-    //    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-    //    //イベントターゲット
-    //    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
-    //    //------------------------------------------
-    
+//    ofLog() << "[ofApp]this          = " << this << "," << ((flDisplayObject*) this)->name();
+    ofLog() << "[ofApp]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+    ofLog() << "[ofApp]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+   
     //マウスダウンイベント
     if(event.type() == flEvent::CHANGE) {
+        flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
-        
     }
     
     //マウスダウンイベント
@@ -244,14 +246,20 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
         flSlider* slider = (flSlider*)(event.currentTarget());
         
-        if(slider == uiComponents->slider001);
-        if(slider == uiComponents->slider002) _speed = slider->value();
+//        if(slider == uiComponents->slider001) {
+//            slider->value();
+//        };
     }
     
     //レンジスライダー
     if(event.type() == flRangeSliderEvent::CHANGE) {
         flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
         flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
+        
+//        if(slider == uiComponents->rangeSlider001) {
+//            slider->minValue();
+//            slider->maxValue();
+//        };
     }
     
     //カラースライダー
@@ -298,7 +306,7 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
         flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
         
         if(joystick == uiComponents->joystick1001) {
-            _position.x = _position.x + joystick->value();
+//            _position.x = _position.x + joystick->value();
             
             uiComponents->joystick1002->moveLever(joystick->value());
         }
@@ -345,6 +353,18 @@ void ofApp::_uiComponentsEventHandler(flEvent& event) {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
+    if(key == 'c') {
+//        _appModel.speed = 0.5;
+        _appModel.bgColor = ofColor(255, 124, 30);
+    }
+
+    if(key == 'z') {
+//        ofLog() << "_appMode.speed = " << _appModel.speed;
+//        ofLog() << "_speed = " << _speed;
+//        ofLog() << "uiComponents->slider002->value() = " << uiComponents->slider002->value();
+    }
+
+    
 //    if(key == ('l')) {
 //        _enabled = !_enabled;
 //        int numChildren = uiComponents->numChildren();
@@ -367,7 +387,7 @@ void ofApp::keyReleased(int key) {
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ) {
+void ofApp::mouseMoved(int x, int y) {
     
 }
 

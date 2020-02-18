@@ -1,10 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flAnglerEvent.h"
 #include "flmath.h"
 
@@ -12,15 +9,14 @@ using namespace flinternal;
 
 namespace fl2d {
     
-    class flAngler : public flSprite {
+    class flAngler : public flUIBase {
         
     public:
         flSprite* lever;
+        
     protected:
         
     private:
-        flTextField* _label;
-        
         //------------------------------------------
         float _value;
         
@@ -39,8 +35,6 @@ namespace fl2d {
         float _targetY;
         //------------------------------------------
         
-        bool _enabled;
-        
         float _zeroAngle = 0.0;
         bool _flg = false;
         ofVec2f _outPosition;
@@ -49,13 +43,13 @@ namespace fl2d {
         flAngler(float areaDiameter = 36, float leverDiameter = 10);
         virtual ~flAngler();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         float value();
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
         
     protected:
         virtual void _setup();
@@ -67,16 +61,16 @@ namespace fl2d {
         virtual void _areaPress();
         virtual void _areaRelease();
         
-        virtual void drawArc(float angle, float innerRad = 18, float outerLRad = 36);
-        
         virtual void _ballOver();
         virtual void _ballOut();
         virtual void _ballPress();
         virtual void _ballRelease();
         virtual void _ballMove();
         
+        virtual void drawArc(float angle, float innerRad = 18, float outerLRad = 36);
+        
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

@@ -9,13 +9,11 @@ namespace fl2d {
     string flJoyStick1Event::RIGHT = "joystick1Right";
     
     //--------------------------------------------------------------
-    //
     flJoyStick1Event::flJoyStick1Event(string type):flEvent(type) {
         __value = 0.0;
     }
     
     //--------------------------------------------------------------
-    //
     flJoyStick1Event::~flJoyStick1Event() {
         __value = 0.0;
     }

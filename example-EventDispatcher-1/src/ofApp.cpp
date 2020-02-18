@@ -11,21 +11,21 @@ void ofApp::setup() {
     dispatcherA->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherA->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
-    //    dispatcherA->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
-    //    dispatcherA->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+//    dispatcherA->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
+//    dispatcherA->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
     dispatcherB = new CustomDispatcher();
     dispatcherB->debug(true);
     dispatcherB->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
     dispatcherB->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
-    //    dispatcherB->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
+//    dispatcherB->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
     //アドレスを表示
-    cout << "----------------------------" << endl;
-    cout << "[dispathcerA] = " << dispatcherA << endl;
-    cout << "[dispathcerB] = " << dispatcherB << endl;
-    cout << "----------------------------" << endl;
+    ofLog() << "----------------------------";
+    ofLog() << "[dispathcerA] = " << dispatcherA;
+    ofLog() << "[dispathcerB] = " << dispatcherB;
+    ofLog() << "----------------------------";
     //---------------------------------------
 }
 
@@ -55,12 +55,12 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::eventHandler(flEvent& event) {
-    cout << "[ofApp]eventHandler(" << event.type() << ")" << endl;
+    ofLog() << "[ofApp]eventHandler(" << event.type() << ")";
     
     //---------------------------------------
-    cout << "[event.type] = " << event.type() << endl;
-    cout << "[event.target] = " << event.target() << endl;
-    cout << "[event.currentTarget] = " << event.currentTarget() << endl;
+    ofLog() << "[event.type] = " << event.type();
+    ofLog() << "[event.target] = " << event.target();
+    ofLog() << "[event.currentTarget] = " << event.currentTarget();
     //---------------------------------------
     flEventDispatcher* target = (flEventDispatcher*) event.target();
     flEventDispatcher* tarcurrentTargetget = (flEventDispatcher*) event.currentTarget();
@@ -68,52 +68,52 @@ void ofApp::eventHandler(flEvent& event) {
     //    CustomEvent& customEvent = *(CustomEvent*) &event;
     
     if(event.target() == dispatcherA) {
-        if(event.type() == flEvent::INIT) cout << "A -> INIT" << endl;
-        if(event.type() == CustomEvent::TEST1) cout << "A -> TEST1" << endl;
+        if(event.type() == flEvent::INIT) ofLog() << "A -> INIT";
+        if(event.type() == CustomEvent::TEST1) ofLog() << "A -> TEST1";
     }
     
     if(event.target() == dispatcherB) {
-        if(event.type() == flEvent::INIT) cout << "B -> INIT" << endl;
-        if(event.type() == CustomEvent::TEST1) cout << "B -> TEST1" << endl;
+        if(event.type() == flEvent::INIT) ofLog() << "B -> INIT";
+        if(event.type() == CustomEvent::TEST1) ofLog() << "B -> TEST1";
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     if(key == '1') {
-        cout << "TEST 1 ---------------------" << endl;
+        ofLog() << "TEST 1 ---------------------";
         dispatcherA->dispatchEvent(new flEvent(flEvent::INIT));
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
     
     if(key == '2') {
-        cout << "TEST 2 ---------------------" << endl;
+        ofLog() << "TEST 2 ---------------------";
         dispatcherA->dispatchEvent(new CustomEvent(CustomEvent::TEST1));
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
     
     if(key == '3') {
-        cout << "TEST 3 ---------------------" << endl;
+        ofLog() << "TEST 3 ---------------------";
         dispatcherB->dispatchEvent(new flEvent(flEvent::INIT));
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
     
     if(key == '4') {
-        cout << "TEST 4 ---------------------" << endl;
+        ofLog() << "TEST 4 ---------------------";
         dispatcherB->dispatchEvent(new CustomEvent(CustomEvent::TEST1));
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
     
     if(key == '5') {
-        cout << "TEST 5 ---------------------" << endl;
+        ofLog() << "TEST 5 ---------------------";
         dispatcherB->dispatchTest1();
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
     
     if(key == '6') {
-        cout << "TEST 6 ---------------------" << endl;
+        ofLog() << "TEST 6 ---------------------";
         dispatcherB->dispatchTest2();
-        cout << "----------------------------" << endl;
+        ofLog() << "----------------------------";
     }
 }
 

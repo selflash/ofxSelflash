@@ -3,13 +3,12 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flCircleColorPicker::flCircleColorPicker(float width, float height) {
-        //cout << "[flCircleColorPicker]flCircleColorPicker()" << endl;
+        //ofLog() << "[flCircleColorPicker]flCircleColorPicker()";
         
         _target = this;
         name("flCircleColorPicker");
@@ -46,17 +45,11 @@ namespace fl2d {
         
         _selectedPixel = new ofColor(255, 255, 255);
         //------------------------------------------
-        
-        //------------------------------------------
-        //ラベル
-        _label = NULL;
-        //------------------------------------------
     }
     
     //--------------------------------------------------------------
-    //
     flCircleColorPicker::~flCircleColorPicker() {
-        //cout << "[flCircleColorPicker]~flCircleColorPicker()" << endl;
+        //ofLog() << "[flCircleColorPicker]~flCircleColorPicker()";
         
         _uiWidth = 0.0;
         _uiHeight = 0.0;
@@ -77,8 +70,6 @@ namespace fl2d {
         
         delete _selectedPixel;
         _selectedPixel = NULL;
-        
-        _label = NULL;
     }
     
     //==============================================================
@@ -86,19 +77,16 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_setup() {
-        //cout << "[SimpleSlider]setup()" << endl;
+        //ofLog() << "[SimpleSlider]setup()";
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_update() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_draw() {
         //        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _colorWheelImage->draw(0, 0, _uiWidth, _uiHeight);
@@ -109,12 +97,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     flTextField* flCircleColorPicker::label() { return _label; }
     void flCircleColorPicker::label(flTextField* value) { _label = value; }
     
     //--------------------------------------------------------------
-    //
     const ofColor& flCircleColorPicker::getPixel(int x, int y) {
         ofPoint point = localToGlobal(ofPoint(x, y));
         
@@ -134,17 +120,13 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::red() { return _selectedPixel->r; }
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::green() { return _selectedPixel->g; }
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::blue() { return _selectedPixel->b; }
     
     //--------------------------------------------------------------
-    //
     string flCircleColorPicker::hexCode() {
         _selectedPixel->a = 0;
         
@@ -157,13 +139,10 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::hue() { return _selectedPixel->getHue(); }
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::saturation() { return _selectedPixel->getSaturation(); }
     //--------------------------------------------------------------
-    //
     int flCircleColorPicker::brightness() { return _selectedPixel->getBrightness(); }
     
     //==============================================================
@@ -171,7 +150,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_over() {
         if(isMouseDown()) return;
         
@@ -184,7 +162,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_out() {
         if(isMouseDown()) return;
         
@@ -197,7 +174,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_press() {
         flGraphics* g;
         g = graphics();
@@ -208,17 +184,16 @@ namespace fl2d {
         
         getPixel(mouseX(), mouseY());
         
-        //    cout << "Red: " << red() << endl;
-        //    cout << "Green: " << green() << endl;
-        //    cout << "Blue: " << blue() << endl;
-        //    cout << "Hue: " << hue() << endl;
-        //    cout << "Saturation: " << saturation() << endl;
-        //    cout << "Brightness: " << brightness() << endl;
-        //    cout << "Hexcode: " << hexCode() << endl;
+        //    ofLog() << "Red: " << red();
+        //    ofLog() << "Green: " << green();
+        //    ofLog() << "Blue: " << blue();
+        //    ofLog() << "Hue: " << hue();
+        //    ofLog() << "Saturation: " << saturation();
+        //    ofLog() << "Brightness: " << brightness();
+        //    ofLog() << "Hexcode: " << hexCode();
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_release() {
         if(isMouseOver()) {
             _over();
@@ -234,7 +209,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_move() {
         getPixel(mouseX(), mouseY());
     }
@@ -244,10 +218,9 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //
     void flCircleColorPicker::_mouseEventHandler(flEvent& event) {
-        //cout << "[flCircleColorPicker]_mouseEventHandler(" << event.type() << endl;
-        //cout << "isMouseDown" << isMouseDown() << endl;
+        //ofLog() << "[flCircleColorPicker]_mouseEventHandler(" << event.type();
+        //ofLog() << "isMouseDown" << isMouseDown();
         
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _over();

@@ -20,7 +20,7 @@ void ofApp::setup() {
     //タイトル
     textField000 = new flTextField();
     textField000->textColor(0x000000);
-    textField000->text("[Stage Info]");
+    textField000->text("[Info]");
     textField000->x(10);
     textField000->y(20);
     //    textField000->width(100);
@@ -141,7 +141,7 @@ void ofApp::keyReleased(int key) {
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ) {
+void ofApp::mouseMoved(int x, int y) {
     
 }
 

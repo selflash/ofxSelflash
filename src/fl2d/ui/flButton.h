@@ -1,16 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flButtonEvent.h"
 
 namespace fl2d {
     
-    class flButton : public flSprite {
+    class flButton : public flUIBase {
         
     public:
         
@@ -20,7 +16,6 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        flTextField* _label;
         flTextField* _buttonLabel;
         string _labelTextNotSelected;
         string _labelTextSelected;
@@ -33,14 +28,12 @@ namespace fl2d {
         float _floatValue;
         int _intValue;
         
-        bool _enabled;
-        
     public:
         flButton(float width = 100, float height = 18);
         virtual ~flButton();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
 
         string labelText();
         void labelText(string value, string state = "default");
@@ -69,8 +62,8 @@ namespace fl2d {
 //            g->endFill();
 //        }
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
 
         bool toggleEnabled();
         void toggleEnabled(bool value);
@@ -106,7 +99,7 @@ namespace fl2d {
         virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
 
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

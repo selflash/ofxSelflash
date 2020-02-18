@@ -4,6 +4,8 @@
 
 #include "ofxSelflash.h"
 #include "UIComponents.h"
+#include "AppModel.h"
+#include "Renderer.h"
 
 using namespace fl2d;
 
@@ -12,12 +14,14 @@ class ofApp : public ofBaseApp {
         UIComponents* uiComponents;
     
     private:
-        float _count;
-        float _speed;
+        AppModel _appModel;
         ofFloatColor _color;
-    
-        ofVec3f _position;
         bool _enabled = true;
+    
+        ofEventListeners _listeners;
+//        ofParameter<float> _param;
+    
+        Renderer* _renderer;
     
     public:
         void setup();

@@ -17,7 +17,6 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = 18;
         
-        _enabled = true;
         _selected = false;
         
         //------------------------------------------
@@ -47,7 +46,6 @@ namespace fl2d {
         delete _label;
         _label = NULL;
         
-        _enabled = false;
         _selected = false;
         _hitAreaAlpha = 0.0;
         
@@ -64,7 +62,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flTextField* flCheckBox::label() { return _label; }
-    
+    void flCheckBox::label(flTextField* value) {
+        _label = value;
+    }
+
     //--------------------------------------------------------------
     string flCheckBox::labelText() { return _label->text(); }
     void flCheckBox::labelText(string value) {
@@ -241,9 +242,17 @@ namespace fl2d {
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
-            case 0: g->drawRect(1, 3, 12, 12); break;
-            case 1: g->drawCircle(7, 8, 6); break;
+            case 0:
+                g->enabledSmoothing(false);
+                g->drawRect(1, 3, 12, 12);
+                break;
+            case 1:
+                g->enabledSmoothing(true);
+                g->drawCircle(7, 9, 7);
+                break;
         }
+//        g->drawRect(1, 3, 12, 12);
+//        g->drawCircle(8, 9, 7);
         g->endFill();
     }
     
@@ -261,8 +270,14 @@ namespace fl2d {
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
-            case 0: g->drawRect(1, 3, 12, 12); break;
-            case 1: g->drawCircle(7, 8, 6); break;
+            case 0:
+                g->enabledSmoothing(false);
+                g->drawRect(1, 3, 12, 12);
+                break;
+            case 1:
+                g->enabledSmoothing(true);
+                g->drawCircle(7, 9, 7);
+                break;
         }
         g->endFill();
         
@@ -275,7 +290,7 @@ namespace fl2d {
 #elif defined _WIN32
 			case 0: g->drawRect(3, 6, 7, 7); break;
 #endif		
-            case 1: g->drawCircle(7, 8, 3); break;
+            case 1: g->drawCircle(7, 9, 4); break;
         }
         g->endFill();
     }
@@ -286,14 +301,19 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_mouseEventHandler(flEvent& event) {
-//        if(debug()) cout << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")" << endl;
+//        if(debug()) ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
+        //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _over();
         }
+        
+        //Mouse Out
         if(event.type() == flMouseEvent::MOUSE_OUT) {
             if(event.target() == this) _out();
         }
+        
+        //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) _press();
             addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
@@ -301,6 +321,8 @@ namespace fl2d {
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             }
         }
+        
+        //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
             removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             if(stage()) {

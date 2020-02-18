@@ -1,17 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flmath.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flRangeSliderEvent.h"
+#include "flmath.h"
 
 namespace fl2d {
     
-    class flRangeSlider : public flSprite {
+    class flRangeSlider : public flUIBase {
         
     public:
         flSprite* track;
@@ -22,7 +18,6 @@ namespace fl2d {
     protected:
         
     private:
-        flTextField* _label;
         flTextField* _minValueText;
         flTextField* _maxValueText;
         
@@ -41,7 +36,6 @@ namespace fl2d {
         float _maxValue;
         
         bool _roundEnabled;
-        bool _enabled;
 
         ofPoint* _draggablePoint;
         
@@ -49,8 +43,8 @@ namespace fl2d {
         flRangeSlider(float trackWidth = 200, float min = 0, float max = 100, float minValue = 40, float maxValue = 60);
         virtual ~flRangeSlider();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
 
 //        void textColor(int color);
         
@@ -71,8 +65,8 @@ namespace fl2d {
         bool roundEnabled();
         void roundEnabled(bool value);
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
 
     protected:
         virtual void _setup();
@@ -99,7 +93,7 @@ namespace fl2d {
         virtual void _drawBarGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
 
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
         
     };
 }

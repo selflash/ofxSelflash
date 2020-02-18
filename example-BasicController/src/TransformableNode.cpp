@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------
 TransformableNode::TransformableNode() {
-    cout << "[TransformableNode]TransformableNode()" << endl;
+    ofLog() << "[TransformableNode]TransformableNode()";
     
     _enabled = false;
     _mouseID = 0;
@@ -33,7 +33,7 @@ TransformableNode::TransformableNode() {
 
 //--------------------------------------------------------------
 TransformableNode::~TransformableNode() {
-    cout << "[TransformableNode]~TransformableNode()" << endl;
+    ofLog() << "[TransformableNode]~TransformableNode()";
     
     _enabled = false;
     _mouseID = 0;
@@ -244,18 +244,16 @@ void TransformableNode::scaleZ(float value) {
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
-//
 void TransformableNode::_mouseMoveEventHandler(ofMouseEventArgs& event) {
-    //    cout << "[TransformableNode]_mouseMoveEventHandler() << endl";
+    //    ofLog() << "[TransformableNode]_mouseMoveEventHandler()";
     if(_mouseID != 0) return;
     if(!_enabled) return;
     
 }
 
 //--------------------------------------------------------------
-//
 void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
-    //    cout << "[TransformableNode]_mouseDragEventHandler() << endl";
+    //    ofLog() << "[TransformableNode]_mouseDragEventHandler()";
     if(_mouseID != 0) return;
     if(!_enabled) return;
     
@@ -279,8 +277,8 @@ void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
         float n = 225;
         
         if(distance < n || _isInArea) {
-            //            cout << "spinX = " << spinX << endl;
-            //            cout << "spinY = " << spinY << endl;
+            //            ofLog() << "spinX = " << spinX;
+            //            ofLog() << "spinY = " << spinY;
             //X軸
             rotationX(rotationX() + spinY);
             //Y軸
@@ -303,9 +301,8 @@ void TransformableNode::_mouseDragEventHandler(ofMouseEventArgs& event) {
 }
 
 //--------------------------------------------------------------
-//
 void TransformableNode::_mouseDownEventHandler(ofMouseEventArgs& event) {
-    //    cout << "[TransformableNode]_mouseDownEventHandler()" << endl;
+    //    ofLog() << "[TransformableNode]_mouseDownEventHandler()";
     if(!_enabled) return;
     _mouseID = event.button;
     
@@ -321,18 +318,16 @@ void TransformableNode::_mouseDownEventHandler(ofMouseEventArgs& event) {
 }
 
 //--------------------------------------------------------------
-//
 void TransformableNode::_mouseUpEventHandler(ofMouseEventArgs& event) {
-    //    cout << "[TransformableNode]_mouseUpEventHandler()";
+    //    ofLog() << "[TransformableNode]_mouseUpEventHandler()";
     if(!_enabled) return;
     
     _isInArea = false;
 }
 
 //--------------------------------------------------------------
-//
 void TransformableNode::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
-    //    cout << "[TransformableNode]_mouseScrolledEventHandler() << endl";
+    //    ofLog() << "[TransformableNode]_mouseScrolledEventHandler()";
     if(!_enabled) return;
     
     float scrollY = event.scrollY * 0.1;

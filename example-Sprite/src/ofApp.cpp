@@ -31,7 +31,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::_enterFrameEventHandler(flEvent& event) {
-    cout << "[ofApp]_enterFrameEventHandler("<< event.type() << ")" << endl;
+    ofLog() << "[ofApp]_enterFrameEventHandler("<< event.type() << ")";
     
 }
 

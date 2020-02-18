@@ -1,16 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
-
+#include "flUIBase.h"
 #include "flColorPickerEvent.h"
 
 namespace fl2d {
     
-    class flCircleColorPicker : public flSprite {
+    class flCircleColorPicker : public flUIBase {
         
     public:
         
@@ -19,8 +15,6 @@ namespace fl2d {
     private:
         float _uiWidth;
         float _uiHeight;
-        
-        flTextField* _label;
         
         ofImage* _pixelCaptureImage;
         ofImage* _colorWheelImage;
@@ -32,8 +26,8 @@ namespace fl2d {
         flCircleColorPicker(float width = 100, float height = 100);
         virtual ~flCircleColorPicker();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         const ofColor& getPixel(int x, int y);
         
@@ -58,7 +52,7 @@ namespace fl2d {
         virtual void _move();
         
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

@@ -2,8 +2,11 @@
 
 namespace fl2d {
     
+    //==============================================================
+    // Constructor / Destructor
+    //==============================================================
+
     //--------------------------------------------------------------
-    //
     flScrollKit::flScrollKit() {
         
         //base = NULL;
@@ -42,7 +45,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flScrollKit::~flScrollKit() {
         
     }
@@ -54,19 +56,17 @@ namespace fl2d {
         _body = value;
         //_body->alpha(0.1);
         
-        //cout << "[PARENT] = " << _body->parent() << endl;
+        //ofLog() << "[PARENT] = " << _body->parent();
         if(_body->parent()) ((flDisplayObjectContainer*)_body->parent())->removeChild(_body);
     }
     
     
     //--------------------------------------------------------------
-    //
     void flScrollKit::_setup() {
         
     }
     
     //--------------------------------------------------------------
-    //
     void flScrollKit::_update() {
         viewport.x = x() - _body->x();
         viewport.width = 500 + _body->x();
@@ -77,7 +77,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flScrollKit::_draw() {
         
         //--
@@ -131,18 +130,17 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flScrollKit::_moveEventHandler(flEvent &event) {
         /*
-         cout << "\n----------------------------------------------------------" << endl;
+         ofLog() << "\n----------------------------------------------------------";
          printf("[flScrollKit]_moveEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
-         cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
-         cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
-         cout << "----------------------------------------------------------\n" << endl;
+         ofLog() << "target = " << ((DisplayObject*)event.target())->name().c_str();
+         ofLog() << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str();
+         ofLog() << "----------------------------------------------------------\n";
          */    
-        //cout << $this->mouseY() << endl;
+        //ofLog() << $this->mouseY();
         
-        //cout << "HOGE" << endl;
+        //ofLog() << "HOGE";
         
         //float ty = $this->mouseY() - $this->_disy;
         //if(ty > 0) ty = 0;
@@ -156,15 +154,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     void flScrollKit::_mouseEventHandler(flEvent& event) {
         /*
-         cout << "\n----------------------------------------------------------" << endl;
+         ofLog() << "\n----------------------------------------------------------";
          printf("[flScrollKit]_mouseEventHandler(%s) %s\n", ofToString(event.type()).c_str(), name().c_str());
-         cout << "target = " << ((DisplayObject*)event.target())->name().c_str() << endl;
-         cout << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str() << endl;
-         cout << "stage = " << ((DisplayObject*)event.target())->stage()->name().c_str() << endl;
-         cout << "----------------------------------------------------------\n" << endl;
+         ofLog() << "target = " << ((DisplayObject*)event.target())->name().c_str();
+         ofLog() << "currnetTarget = " << ((DisplayObject*)event.currentTarget())->name().c_str();
+         ofLog() << "stage = " << ((DisplayObject*)event.target())->stage()->name().c_str();
+         ofLog() << "----------------------------------------------------------\n";
          */    
         
         if(event.type() == flMouseEvent::ROLL_OVER) {

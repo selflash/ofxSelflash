@@ -1,13 +1,12 @@
 #include "Container.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Destructor
 //==============================================================
 
 //--------------------------------------------------------------
-//
 Container::Container() {
-    cout << "[Container]Container()" << endl;
+    ofLog() << "[Container]Container()";
     _target = this;
     name("Container");
     
@@ -16,9 +15,8 @@ Container::Container() {
 }
 
 //--------------------------------------------------------------
-//
 Container::~Container() {
-    cout << "[Container]~Container()" << endl;
+    ofLog() << "[Container]~Container()";
     
     delete spriteA;
     spriteA = NULL;
@@ -28,13 +26,12 @@ Container::~Container() {
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void Container::_setup() {
-    cout << "[Container]_setup()" << endl;
+    ofLog() << "[Container]_setup()";
     
     spriteA = new CustomSpriteA();
     spriteA->x(300);
@@ -48,9 +45,8 @@ void Container::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void Container::_update() {
-    //    cout << "[Container]_update()" << endl;
+    //    ofLog() << "[Container]_update()";
     
     int frameNum = ofGetFrameNum();
     float w = sin(frameNum * 0.05) * 50 + 200;
@@ -66,9 +62,8 @@ void Container::_update() {
 }
 
 //--------------------------------------------------------------
-//
 void Container::_draw() {
-    //    cout << "[Container]_draw()" << endl;
+    //    ofLog() << "[Container]_draw()";
     
     //---------------------------------
     string info;
@@ -95,9 +90,13 @@ void Container::_draw() {
 }
 
 //==============================================================
-// PRIVATE METHOD
+// Public Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Protected / Private Method
+//==============================================================
+
+//==============================================================
+// Private Event Handler
 //==============================================================

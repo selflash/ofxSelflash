@@ -1,17 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flmath.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flSliderEvent.h"
+#include "flmath.h"
 
 namespace fl2d {
     
-    class flSlider : public flSprite {
+    class flSlider : public flUIBase {
         
     public:
         flSprite* track;
@@ -27,7 +23,6 @@ namespace fl2d {
 		ofColor _disableNormalBarColor;
         ofColor _disableActiveBarColor;
 
-        flTextField* _label;
         flTextField* _valueText;
         
         float _trackWidth;
@@ -42,7 +37,6 @@ namespace fl2d {
         float _value;
         
         bool _roundEnabled;
-		bool _enabled;
         
         ofPoint* _draggablePoint;
         
@@ -50,11 +44,12 @@ namespace fl2d {
         flSlider(float trackWidth = 200, float min = 0, float max = 100, float defaultValue = 0);
         virtual ~flSlider();
         
-        flTextField* label();
-        void label(flTextField* value);
-        
-//        void textColor(int color);
-        
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
+
+        virtual bool enabled();
+        virtual void enabled(bool value);
+
         float min();
         void min(float value, bool dispatch = true);
         
@@ -72,15 +67,44 @@ namespace fl2d {
         
         bool roundEnabled();
         void roundEnabled(bool value);
+        
+        //------------------------------------------
+//        bool _changedValueByMyself = false;
+        ofParameter<float>* _param;
+//        ofEventListener _valueListener;
+        virtual inline void bind(ofParameter<float>& param) {
+            if(_param != NULL) {
+                _valueListener.unsubscribe();
+                _param = NULL;
+            }
+            
+            _param = &param;
+            _valueListener = _param->newListener([&](float& val) {
+                if(_changedValueByMyself) {
+                    _changedValueByMyself = false;
+                } else {
+                    value(val);
+                }
+            });
 
-		bool enabled();
-		void enabled(bool value);
+            value(_param->get());
+//            _changedValueByMyself = true;
+//            _param->set(_value);
+//            _valueText->text(ofToString(_value, 2));
+        }
+        virtual inline void unbind() {
+            _valueListener.unsubscribe();
+            _param = NULL;
+        }
+        //------------------------------------------
         
     protected:
         virtual void _setup();
         virtual void _update();
         virtual void _draw();
-        
+
+        virtual void _changeValue(bool dispatch = true);
+
         virtual void _trackOver();
         virtual void _thumbOver();
         virtual void _trackOut();
@@ -101,6 +125,6 @@ namespace fl2d {
         virtual void _drawBarGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
         
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
 }

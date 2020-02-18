@@ -17,10 +17,14 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = 18;
         
-        _enabled = true;
         _selected = false;
         
         _groupOwner = NULL;
+        
+        flGraphics* g;
+        
+//        g = graphics();
+//        g->enabledSmoothing(true);
 
         //------------------------------------------
         _label = new flTextField();
@@ -71,6 +75,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     flTextField* flRadioButton::label() { return _label; }
     
+    //--------------------------------------------------------------
+    void flRadioButton::label(flTextField* value) { _label = value; }
+
     //--------------------------------------------------------------
     string flRadioButton::labelText() { return _label->text(); }
     void flRadioButton::labelText(string value) {
@@ -235,8 +242,15 @@ namespace fl2d {
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
-            case 0: g->drawRect(1, 3, 12, 12); break;
-            case 1: g->drawCircle(7, 8, 6); break;
+            case 0:
+                g->enabledSmoothing(false);
+                g->drawRect(1, 3, 12, 12);
+                break;
+//            case 1: g->drawCircle(7, 8, 6); break;
+            case 1:
+                g->enabledSmoothing(true);
+                g->drawCircle(7, 9, 7);
+                break;
         }
         g->endFill();
     }
@@ -255,8 +269,15 @@ namespace fl2d {
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
-            case 0: g->drawRect(1, 3, 12, 12); break;
-            case 1: g->drawCircle(7, 8, 6); break;
+            case 0:
+                g->enabledSmoothing(false);
+                g->drawRect(1, 3, 12, 12);
+                break;
+//            case 1: g->drawCircle(7, 8, 6); break;
+            case 1:
+                g->enabledSmoothing(true);
+                g->drawCircle(7, 9, 7);
+                break;
         }
         g->endFill();
         
@@ -265,7 +286,8 @@ namespace fl2d {
         switch(_shapeType) {
                 //            case 0: g->drawRect(4, 3, 11, 11); break;
             case 0: g->drawRect(3, 4, 9, 9); break;
-            case 1: g->drawCircle(7, 8, 3); break;
+//            case 1: g->drawCircle(7, 8, 3); break;
+            case 1: g->drawCircle(7, 9, 4); break;
         }
         g->endFill();
     }
@@ -313,7 +335,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
+    // Constructor / Destructor
     //--------------------------------------------------------------
     
     //--------------------------------------------------------------
@@ -338,7 +360,7 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     flRadioButton* flRadioButtonGroup::createRadioButton() {
-        //cout << "[flRadioButtonGroup]createRadioButton()" << endl;
+        //ofLog() << "[flRadioButtonGroup]createRadioButton()";
         flRadioButton* radioButton = new flRadioButton();
         radioButton->_setGroupOwner(this);
         radioButton->addEventListener(flRadioButtonEvent::CHANGE, this, &flRadioButtonGroup::_uiEventHandler);
@@ -360,7 +382,7 @@ namespace fl2d {
         
         it = _radioButtonList.begin();
         while (it != _radioButtonList.end()) {
-            cout << *it << endl;
+            ofLog() << *it << endl;
             ++it;
         }
         
@@ -377,7 +399,7 @@ namespace fl2d {
             removeRadioButton(radioButton);
         }
         
-//        cout << "_radioButtonList.size = " << _radioButtonList.size() << endl;
+//        ofLog() << "_radioButtonList.size = " << _radioButtonList.size();
     }
 
     //==============================================================
@@ -386,7 +408,7 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flRadioButtonGroup::_uiEventHandler(flEvent& event) {
-        //cout << "[flRadioButtonGroup]_uiEventHandler()" << endl;
+        //ofLog() << "[flRadioButtonGroup]_uiEventHandler()";
         flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
         flRadioButton* radio = (flRadioButton*)(event.currentTarget());
         

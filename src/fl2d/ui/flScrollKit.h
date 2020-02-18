@@ -1,14 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 
 namespace fl2d {
     
-    class flScrollKit : public flSprite {
+    class flScrollKit : public flUIBase {
         
     public:
         flShape* base;
@@ -38,7 +35,7 @@ namespace fl2d {
         virtual void _draw();
         
     private:        
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
         void _moveEventHandler(flEvent& event);
     };
     

@@ -1,38 +1,31 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flPadEvent.h"
 #include "flNumberDialer.h"
 #include "flNumberDialerEvent.h"
 
 namespace fl2d {
     
-    class flPad2D : public flSprite {
+    class flPad2D : public flUIBase {
         
     public:
-        flSprite* ball;
+        flSprite* lever;
         
     protected:
         
     private:
+        flTextField* _ratioText;
+        flTextField* _valueText;
+
         float _width;
         float _height;
         float _areaWidth;
         float _areaHeight;
         float _n;
         
-        flTextField* _label;
-        flTextField* _xRatioText;
-        flTextField* _yRatioText;
-        flTextField* _xValueText;
-        flTextField* _yValueText;
-        
-        float _ballRadius;
+        float _leverRadius;
         
         float _xRatio;
         float _yRatio;
@@ -46,7 +39,7 @@ namespace fl2d {
         float _rangeWidth;
         float _rangeHeight;
         
-        ofPoint* _draggablePoint;
+        ofPoint _draggablePoint;
         
         flNumberDialer* _dialer01;
         flNumberDialer* _dialer02;
@@ -58,8 +51,8 @@ namespace fl2d {
         flPad2D(float width, float height, float left, float right, float top, float bottom);
         virtual ~flPad2D();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         float xRatio();
         void xRatio(float value, bool dispatch = true);
@@ -91,14 +84,24 @@ namespace fl2d {
         virtual void _areaPress();
         virtual void _areaRelease();
         
-        virtual void _ballOver();
-        virtual void _ballOut();
-        virtual void _ballPress();
-        virtual void _ballRelease();
-        virtual void _ballMove();
+        virtual void _leverOver();
+        virtual void _leverOut();
+        virtual void _leverPress();
+        virtual void _leverRelease();
+        virtual void _leverMove();
+        
+        virtual void _setNormalColor();
+        virtual void _setOverColor();
+        virtual void _setSelectedOverColor();
+        virtual void _setActiveColor();
+        virtual void _setDisableNormalColor();
+        virtual void _setDisableActiveColor();
+        
+        virtual void _drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        virtual void _drawLeverGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
         
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
         void _uiEventHandler(flEvent& event);
     };
 }

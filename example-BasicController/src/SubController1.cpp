@@ -13,9 +13,8 @@
 //==============================================================
 
 //--------------------------------------------------------------
-//
 SubController1::SubController1(string title) {
-    cout << "[SubController1]SubController1()" << endl;
+    ofLog() << "[SubController1]SubController1()";
     _target = this;
     
     name(title);
@@ -25,9 +24,8 @@ SubController1::SubController1(string title) {
 }
 
 //--------------------------------------------------------------
-//
 SubController1::~SubController1() {
-    cout << "[SubController1]~SubController1()" << endl;
+    ofLog() << "[SubController1]~SubController1()";
     _target = NULL;
 }
 
@@ -36,9 +34,8 @@ SubController1::~SubController1() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void SubController1::_setup() {
-    cout << "[SubController1]_setup()" << endl;
+    ofLog() << "[SubController1]_setup()";
     
     flBasicController::_setup();
     
@@ -65,7 +62,7 @@ void SubController1::_setup() {
     marginLeft = 5;
     marginTop = 20;
     spacing = 155;
-    lineSpacing = 22.5;
+    lineSpacing = 22;
     
     textField = new flTextField();
     textField->text("Rotation");
@@ -95,8 +92,8 @@ void SubController1::_setup() {
     
     textField = new flTextField();
     textField->text("X");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22.5);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
+    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
+    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
     joystick1002 = new flJoyStick1(150);
@@ -110,8 +107,8 @@ void SubController1::_setup() {
     
     textField = new flTextField();
     textField->text("Z");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22.5);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
+    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
+    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
     joystick1003 = new flJoyStick1(150);
@@ -150,7 +147,7 @@ void SubController1::_setup() {
     marginLeft = 5 + 150 + 5 + 100 + 5;
     marginTop = 20;
     spacing = 155;
-    lineSpacing = 22.5;
+    lineSpacing = 22;
     
     textField = new flTextField();
     textField->text("Position");
@@ -173,37 +170,37 @@ void SubController1::_setup() {
     joystick1101->label(textField);
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 2);
-    joystick1101->type(flJoyStick1::VERTICALLY);
+    joystick1101->type(flJoyStick1::HORIZONTALLY);
     //    joystick1101->enabled(false);
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1101);
     
     textField = new flTextField();
     textField->text("Y");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22.5);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
+    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
+    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
     joystick1102 = new flJoyStick1(150);
     joystick1102->label(textField);
     joystick1102->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
     joystick1102->y(marginTop + lineSpacing * 3);
-    joystick1102->type(flJoyStick1::HORIZONTALLY);
+    joystick1102->type(flJoyStick1::VERTICALLY);
     //    joystick1102->enabled(false);
     joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1102);
     
     textField = new flTextField();
     textField->text("Z");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22.5);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22.5 * 0.5);
+    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
+    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
     textField->mouseEnabled(false);
     addChild(textField);
     joystick1103 = new flJoyStick1(150);
     joystick1103->label(textField);
     joystick1103->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
     joystick1103->y(marginTop + lineSpacing * 3);
-    joystick1103->type(flJoyStick1::HORIZONTALLY);
+    joystick1103->type(flJoyStick1::VERTICALLY);
     //    joystick1103->enabled(false);
     joystick1103->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
     addChild(joystick1103);
@@ -233,15 +230,13 @@ void SubController1::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void SubController1::_update() {
-    //cout << "[SubController1]update()" << endl;
+    //ofLog() << "[SubController1]update()";
 }
 
 //--------------------------------------------------------------
-//
 void SubController1::_draw() {
-    //cout << "[SubController1]draw()" << endl;
+    //ofLog() << "[SubController1]draw()";
     
     if(_isMinimize) return;
     
@@ -258,9 +253,8 @@ void SubController1::_draw() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void SubController1::_uiEventHandler(flEvent& event) {
-    //    cout << "[SubController1]_uiEventHandler(" << event.type() << endl;
+    //    ofLog() << "[SubController1]_uiEventHandler(" << event.type();
     
     //ボタン(マウスダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {

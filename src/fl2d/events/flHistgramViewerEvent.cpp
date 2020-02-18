@@ -5,16 +5,13 @@ namespace fl2d {
     string flHistgramViewerEvent::CHANGE = "histgramViewerEventChange";
     
     //--------------------------------------------------------------
-    //
     flHistgramViewerEvent::flHistgramViewerEvent(string type):flEvent(type) {
-        //        cout << "[HistgramViewerEvent]ButtonEvent()" << endl;
-        
+        __value = 0.0;
     }
     
     //--------------------------------------------------------------
-    //
     flHistgramViewerEvent::~flHistgramViewerEvent() {
-        
+        __value = 0.0;
     }
     
 }

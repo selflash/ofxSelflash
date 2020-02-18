@@ -1,17 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flEvent.h"
 #include "flCheckBoxEvent.h"
 
 namespace fl2d {
     
-    class flCheckBox : public flSprite {
+    class flCheckBox : public flUIBase {
         
     public:
         
@@ -21,11 +17,7 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        flTextField* _label;
-        
         bool _selected;
-        
-        bool _enabled;
         
         float _hitAreaAlpha = 0.0;
         
@@ -35,16 +27,17 @@ namespace fl2d {
         flCheckBox(float width = 100);
         virtual ~flCheckBox();
         
-        flTextField* label();
-        
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
+
         string labelText();
         void labelText(string value);
         
         bool selected();
         void selected(bool value, bool dispatch = true);
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
         
 //        inline void activeColor(ofFloatColor value) { _activeColor = value; };
 
@@ -87,8 +80,7 @@ namespace fl2d {
         virtual void _drawGraphics(const ofColor& outerColor, const ofFloatColor& innerColor);
         
     private:
-
-        void _mouseEventHandler(flEvent& event);
+        inline void _mouseEventHandler(flEvent& event);
     };
     
 }

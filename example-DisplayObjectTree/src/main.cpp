@@ -10,7 +10,7 @@ int main() {
 //    settings.setGLVersion(4, 1);
 //    ofCreateWindow(settings);
 
-	ofSetupOpenGL(1760, 810, OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(1700, 830, OF_WINDOW);			// <-------- setup the GL context
 
 //    ofGLWindowSettings settings;
 //    settings.width = 1760;

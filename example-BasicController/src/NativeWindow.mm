@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToDefault() {
     NSWindow *window = [NSApp mainWindow];
     
@@ -21,7 +20,6 @@ void NativeWindow::orderToDefault() {
 }
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToBack() {
     NSWindow *window = [NSApp mainWindow];
     
@@ -33,7 +31,6 @@ void NativeWindow::orderToBack() {
 }
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToFront() {
     NSWindow *window = [NSApp mainWindow];
     
@@ -51,19 +48,16 @@ void NativeWindow::orderToFront() {
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToDefault() {
     
 }
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToBack() {
 
 }
 
 //--------------------------------------------------------------
-//
 void NativeWindow::orderToFront() {
 
 }

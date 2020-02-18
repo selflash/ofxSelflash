@@ -61,6 +61,7 @@
 #include "flTextFieldAutoSize.h"
 
 //flash.ui
+#include "flUIBase.h"
 #include "flMouse.h"
 #include "flKeyboard.h"
 #include "flButton.h"
@@ -76,7 +77,7 @@
 #include "flAngler.h"
 #include "flCircleColorPicker.h"
 #include "flPad2D.h"
-#include "flPad3D.h"
+//#include "flPad3D.h"
 #include "flJoyStick2.h"
 #include "flJoyStick1.h"
 #include "flScrollKit.h"

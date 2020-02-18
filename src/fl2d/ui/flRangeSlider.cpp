@@ -8,7 +8,7 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     flRangeSlider::flRangeSlider(float trackWidth, float min, float max, float minValue, float maxValue) {
-        //cout << "[flRangeSlider]flRangeSlider()" << endl;
+        //ofLog() << "[flRangeSlider]flRangeSlider()";
         
         //DEBUGG用
         _trackAlpha = 1.0;
@@ -17,9 +17,7 @@ namespace fl2d {
         _target = this;
         name("flRangeSlider");
         
-        _label = NULL;
         _roundEnabled = false;
-        _enabled = true;
 
         _min = min;
         _max = max;
@@ -124,16 +122,13 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //
     flRangeSlider::~flRangeSlider() {
-        //cout << "[flRangeSlider]~flRangeSlider()" << endl;
+        //ofLog() << "[flRangeSlider]~flRangeSlider()";
         
         //DEBUGG用
         _trackAlpha = 0.0;
         
-        _label = NULL;
         _roundEnabled = false;
-        _enabled = false;
 
         _min = 0.0;
         _max = 0.0;
@@ -186,7 +181,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_setup() {
-        //cout << "[flRangeSlider]setup()" << endl;
+        //ofLog() << "[flRangeSlider]setup()";
     }
     
     //--------------------------------------------------------------
@@ -201,7 +196,7 @@ namespace fl2d {
             _maxThumbPress();
         }
 
-        //        cout << "[flRangeSlider]bar->width = " << bar->width() << endl;
+        //        ofLog() << "[flRangeSlider]bar->width = " << bar->width();
     }
     
     //--------------------------------------------------------------

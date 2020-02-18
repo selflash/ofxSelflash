@@ -337,6 +337,8 @@ void UIComponents::_setup() {
     button006->enabled(false);
     button006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button006);
+    
+//    ofLog() << "button006->height() : " << button006->height();
     //    cout << button006->y() + button006->height() << endl;
     //--------------------------------------
     
@@ -394,6 +396,7 @@ void UIComponents::_setup() {
     radio001 = radioButtonGroup->createRadioButton();
     radio001->labelText("Radio Button 1");
     radio001->x(marginLeft + spacing * 0);
+//    radio001->y(marginTop + lineSpacing * 1 - 87);
     radio001->y(marginTop + lineSpacing * 1);
     radio001->selected(true);
     //radio001->enabled(false);
@@ -446,33 +449,33 @@ void UIComponents::_setup() {
     joystick1001->label(label);
     joystick1001->x(marginLeft + spacing * 0);
     joystick1001->y(marginTop + lineSpacing * 1);
-    joystick1001->type(flJoyStick1::HORIZONTALLY);
+    joystick1001->type(flJoyStick1::VERTICALLY);
     joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1001);
     joystick1002 = new flJoyStick1(100);
     joystick1002->label(label);
     joystick1002->x(marginLeft + spacing * 1);
     joystick1002->y(marginTop + lineSpacing * 1);
-    joystick1002->type(flJoyStick1::HORIZONTALLY);
-    joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
+    joystick1002->type(flJoyStick1::VERTICALLY);
+//    joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1002);
     joystick1003 = new flJoyStick1(100);
     joystick1003->label(label);
     joystick1003->x(marginLeft + spacing * 2);
     joystick1003->y(marginTop + lineSpacing * 1);
-    joystick1003->type(flJoyStick1::HORIZONTALLY);
+    joystick1003->type(flJoyStick1::VERTICALLY);
     addChild(joystick1003);
     joystick1004 = new flJoyStick1(100);
     joystick1004->label(label);
     joystick1004->x(marginLeft + spacing * 3);
     joystick1004->y(marginTop + lineSpacing * 1);
-    joystick1004->type(flJoyStick1::HORIZONTALLY);
+    joystick1004->type(flJoyStick1::VERTICALLY);
     addChild(joystick1004);
     joystick1005 = new flJoyStick1(100);
     joystick1005->label(label);
     joystick1005->x(marginLeft + spacing * 4);
     joystick1005->y(marginTop + lineSpacing * 1);
-    joystick1005->type(flJoyStick1::HORIZONTALLY);
+    joystick1005->type(flJoyStick1::VERTICALLY);
     addChild(joystick1005);
     ofLog() << "joystick1005->y() : " << joystick1005->y() + joystick1005->height();
 
@@ -485,9 +488,10 @@ void UIComponents::_setup() {
     joystick1101->label(label);
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 0);
-    joystick1101->type(flJoyStick1::VERTICALLY);
+    joystick1101->type(flJoyStick1::HORIZONTALLY);
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1101);
+//    ofLog() << "joystick1101->height() : " << joystick1101->height();
     ofLog() << "joystick1101->y() : " << joystick1101->y() + joystick1101->height();
     //--------------------------------------
     
@@ -505,7 +509,7 @@ void UIComponents::_setup() {
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    joystick2001 = new flJoyStick2(100);
+    joystick2001 = new flJoyStick2(80);
     joystick2001->label(label);
     joystick2001->x(marginLeft + spacing * 0 + 25);
     joystick2001->y(marginTop + lineSpacing * 1);
@@ -702,13 +706,13 @@ void UIComponents::_setup() {
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
-    addChild(label);
+    //addChild(label);
     angler000 = new flAngler(36 + 18 + 18);
     angler000->label(label);
     angler000->x(marginLeft + spacing * 0 + 25);
     angler000->y(marginTop + lineSpacing * 1);
 //    angler000->alpha(0.0);
-    addChild(angler000);
+    //addChild(angler000);
     //--------------------------------------
     
     //--------------------------------------
@@ -726,20 +730,21 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     
-    marginLeft = 10 + 150 + 10 + 10 + 150 + 10;
+    marginLeft = 10 + 150 + 10 + 10 + 150 + 10 + 10;
     marginTop = 403 + 22;
     spacing = 170;
     lineSpacing = 130;
     
     //    pad001 = new flPad2D(160, 160, -500, 500, -500, 500);
-    pad001 = new flPad2D(110, 110);
-    pad001->x(marginLeft + spacing * 0 + (170 / 2 - 110 / 2));
+    pad001 = new flPad2D(150 - (18 * 2), 150 - (18 * 2));
+    pad001->label(label);
+    pad001->x(marginLeft + spacing * 0 + 18);
     pad001->y(marginTop + lineSpacing * 0);
     pad001->addEventListener(flPadEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(pad001);
     
     pad002 = new flPad2D(150, 150, 0, 1000, 0, 1000);
-    pad002->x(marginLeft + spacing * 0 + (170 / 2 - 150 / 2));
+    pad002->x(marginLeft + spacing * 0);
     pad002->y(marginTop + lineSpacing * 1);
     pad002->addEventListener(flPadEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(pad002);
@@ -748,7 +753,7 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //2Dパッド
+    //
     marginLeft = 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10;
     marginTop = 10;
     spacing = 150;
@@ -763,6 +768,7 @@ void UIComponents::_setup() {
     addChild(label);
     
     hViewer001 = new flHistgramViewer(150, 150);
+    hViewer001->label(label);
     //    hViewer001->labelText("Histgram 1");
     hViewer001->x(marginLeft + spacing * 0);
     hViewer001->y(marginTop + lineSpacing * 1);
@@ -776,7 +782,6 @@ void UIComponents::_setup() {
 void UIComponents::_update() {
     float elapsedTime = ofGetElapsedTimef();
     float n = sin(elapsedTime * 2) * 10;
-    //ofLogNotice() << n;
     hViewer001->value(n);
 }
 
@@ -795,7 +800,7 @@ void UIComponents::_draw() {
 
 //--------------------------------------------------------------
 void UIComponents::_uiEventHandler(flEvent& event) {
-    //cout << "[UIComponents]_controllerEventHandler(" << event.type() << ")" << endl;
+    //ofLog() << "[UIComponents]_controllerEventHandler(" << event.type() << ")" << endl;
     
     //ボタン(マウスダウン)
     if(event.type() == flMouseEvent::MOUSE_DOWN) {
@@ -821,6 +826,7 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         if(button == button004);
         if(button == button005);
     };
+    
     //マウスチェンジ
     if(event.type() == flMouseEvent::CHANGE) {
         flMouseEvent& mouseEvent = *(flMouseEvent*) &event;

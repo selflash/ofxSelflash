@@ -1,22 +1,18 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flJoyStick2Event.h"
 
 namespace fl2d {
     
-    class flJoyStick2 : public flSprite {
+    class flJoyStick2 : public flUIBase {
         public:
             flSprite* lever;
         
         protected:
         
         private:
-            flTextField* _label;
             flTextField* _valueText;
         
             float _maxDistance;
@@ -37,14 +33,12 @@ namespace fl2d {
             float _targetY;
             //------------------------------------------
         
-            bool _enabled;
-        
         public:
-            flJoyStick2(float areaDiameter = 50, float leverDiameter = 18);
+            flJoyStick2(float areaDiameter = 50);
             virtual ~flJoyStick2();
         
-            flTextField* label();
-            void label(flTextField* value);
+            virtual flTextField* label();
+            virtual void label(flTextField* value);
         
             float xValue();
             float yValue();
@@ -54,8 +48,8 @@ namespace fl2d {
             void leverLeft(float value = 1.0);
             void leverRight(float value = 1.0);
         
-            bool enabled();
-            void enabled(bool value);
+            virtual bool enabled();
+            virtual void enabled(bool value);
         
         protected:
             virtual void _setup();
@@ -79,7 +73,7 @@ namespace fl2d {
             virtual void _drawLeverGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
 
         private:
-            void _mouseEventHandler(flEvent& event);
+            virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

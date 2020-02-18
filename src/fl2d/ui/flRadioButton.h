@@ -1,17 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flShape.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flEvent.h"
 #include "flRadioButtonEvent.h"
 
 namespace fl2d {
     class flRadioButtonGroup;
-    class flRadioButton : public flSprite {
+    class flRadioButton : public flUIBase {
         friend class flRadioButtonGroup;
         
         public:
@@ -21,8 +17,6 @@ namespace fl2d {
         private:
             float _uiWidth;
             float _uiHeight;
-        
-            flTextField* _label;
         
             bool _selected;
         
@@ -37,8 +31,9 @@ namespace fl2d {
         public:
             virtual ~flRadioButton();
         
-            flTextField* label();
-        
+            virtual flTextField* label();
+            virtual void label(flTextField* value);
+
             string labelText();
             void labelText(string value);
         
@@ -92,7 +87,7 @@ namespace fl2d {
             flRadioButton(float width = 100);
         
             void _setGroupOwner(flRadioButtonGroup* groupOwner);
-            void _mouseEventHandler(flEvent& event);
+            virtual void _mouseEventHandler(flEvent& event);
     };
     
     class flRadioButton;

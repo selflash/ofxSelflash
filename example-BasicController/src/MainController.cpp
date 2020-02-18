@@ -13,9 +13,8 @@
 //==============================================================
 
 //--------------------------------------------------------------
-//
 MainController::MainController() {
-    cout << "[MainController]MainController()" << endl;
+    ofLog() << "[MainController]MainController()";
     _target = this;
     
     name("MainController");
@@ -23,9 +22,8 @@ MainController::MainController() {
 }
 
 //--------------------------------------------------------------
-//
 MainController::~MainController() {
-    cout << "[MainController]~MainController()" << endl;
+    ofLog() << "[MainController]~MainController()";
     _target = NULL;
     
     //サブコントローラー
@@ -41,9 +39,8 @@ MainController::~MainController() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void MainController::_setup() {
-    cout << "[MainController]_setup()" << endl;
+    ofLog() << "[MainController]_setup()";
     
     flBasicController::_setup();
     
@@ -159,16 +156,14 @@ void MainController::_setup() {
 }
 
 //--------------------------------------------------------------
-//
 void MainController::_update() {
-    //cout << "[MainController]update()" << endl;
+    //ofLog() << "[MainController]update()";
     
 }
 
 //--------------------------------------------------------------
-//
 void MainController::_draw() {
-    //cout << "[MainController]draw()" << endl;
+    //ofLog() << "[MainController]draw()";
     
     if(_isMinimize) return;
     
@@ -183,7 +178,6 @@ void MainController::_draw() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void MainController::normalize() {
     if(!_isMinimize) return;
     _isMinimize = false;
@@ -215,7 +209,6 @@ void MainController::normalize() {
 }
 
 //--------------------------------------------------------------
-//
 void MainController::toggleShowAll() {
     visible(!visible());
     
@@ -228,9 +221,8 @@ void MainController::toggleShowAll() {
 //==============================================================
 
 //--------------------------------------------------------------
-//
 void MainController::_uiEventHandler(flEvent& event) {
-    //    cout << "[MainController]_uiEventHandler(" << event.type() << endl;
+    //    ofLog() << "[MainController]_uiEventHandler(" << event.type();
     
     if(event.type() == flEvent::CLOSE) {
         flBasicController* target = (flBasicController*)(event.currentTarget());
@@ -295,9 +287,9 @@ void MainController::_uiEventHandler(flEvent& event) {
     if(event.type() == flComboBoxEvent::CHANGE) {
         flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
         flComboBox* comboBox = (flComboBox*)(event.currentTarget());
-        cout << "-------------" << endl;
-        cout << comboBox->name() << " :" << endl;
-        cout << "selectedIndex : " << comboBox->selectedIndex() << endl;
+        ofLog() << "-------------";
+        ofLog() << comboBox->name() << " :";
+        ofLog() << "selectedIndex : " << comboBox->selectedIndex();
         
         //        if(comboBox == comboBox001) {
         //            if(comboBox->selectedValue<string>() == "develop") {

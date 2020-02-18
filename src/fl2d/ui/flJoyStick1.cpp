@@ -11,7 +11,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flJoyStick1::flJoyStick1(float length, float leverDiameter) {
+    flJoyStick1::flJoyStick1(float length) {
         //ofLog() << "[flJoyStick1]flJoyStick1()";
 
         _target = this;
@@ -19,22 +19,20 @@ namespace fl2d {
         
         _value = 0.0;
         
-        _label = NULL;
-        
         _uiLength = length;
-        _leverRadius = leverDiameter * 0.5;
+        _leverRadius = 14 * 0.5;
         _maxDistance = (_uiLength * 0.5 - _leverRadius);
         
         _type = HORIZONTALLY;
 //        _type = VERTICALLY;
         
         //水平
-        if(_type == VERTICALLY) {
-            _center = ofPoint(_uiLength * 0.5, _leverRadius);
+        if(_type == HORIZONTALLY) {
+            _center = ofPoint(_uiLength * 0.5, _leverRadius + 2);
         }
         //垂直
-        else if(_type == HORIZONTALLY) {
-            _center = ofPoint(_leverRadius, _uiLength * 0.5);
+        else if(_type == VERTICALLY) {
+            _center = ofPoint(_leverRadius + 2, _uiLength * 0.5);
         }
         
         flGraphics* g;
@@ -76,16 +74,14 @@ namespace fl2d {
         _flg = false;
         
         //水平
-        if(_type == VERTICALLY) {
+        if(_type == HORIZONTALLY) {
             _targetValue = _center.x;
         }
         //垂直
-        else if(_type == HORIZONTALLY) {
+        else if(_type == VERTICALLY) {
             _targetValue = _center.y;
         }
         //------------------------------------------
-        
-        _enabled = true;
         
         _setNormalColor();
     }
@@ -114,9 +110,9 @@ namespace fl2d {
         _flg = false;
         _targetValue = 0.0;
         
-        _label = NULL;
-        
-        _enabled = false;
+        removeChild(_valueText);
+        delete _valueText;
+        _valueText = NULL;
     }
     
     //==============================================================
@@ -137,7 +133,7 @@ namespace fl2d {
         if(lever->isMouseDown()) {
             //------------------------------------------
             //水平
-            if(_type == VERTICALLY) {
+            if(_type == HORIZONTALLY) {
                 //------------------------------------------
                 float tx = mouseX() - _draggablePoint.x;
                 float shiftX = tx - _center.x;
@@ -155,7 +151,7 @@ namespace fl2d {
                 //------------------------------------------
             }
             //垂直
-            else if(_type == HORIZONTALLY) {
+            else if(_type == VERTICALLY) {
                 //------------------------------------------
                 float ty = mouseY() - _draggablePoint.y;
                 float shiftY = ty - _center.y;
@@ -175,7 +171,8 @@ namespace fl2d {
             //------------------------------------------
             
             //------------------------------------------
-            if(preValue != _value) {
+//            if(preValue != _value) {
+            if(true) {
                 _valueText->text(ofToString(_value, 2));
                 
                 //------------------------------------------
@@ -185,7 +182,7 @@ namespace fl2d {
                 dispatchEvent(event);
                 
                 //水平
-                if(_type == VERTICALLY) {
+                if(_type == HORIZONTALLY) {
                     if(_value > 0) {
                         event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
                         event->__value = _value;
@@ -198,7 +195,7 @@ namespace fl2d {
                     }
                 }
                 //垂直
-                else if(_type == HORIZONTALLY) {
+                else if(_type == VERTICALLY) {
                     if(_value > 0) {
                         event = new flJoyStick1Event(flJoyStick1Event::UP);
                         event->__value = _value;
@@ -216,9 +213,9 @@ namespace fl2d {
         } else if(_flg) {
             //------------------------------------------
             //水平
-            if(_type == VERTICALLY) {
+            if(_type == HORIZONTALLY) {
                 float tx = _targetValue;
-                if(!_flg) tx = lever->x() + (_center.x - lever->x()) * 0.4f;
+//                if(!_flg) tx = lever->x() + (_center.x - lever->x()) * 0.4f;
                 float shiftX = tx - _center.y;
                 
                 float distance = _center.distance(ofPoint(tx, _center.y));
@@ -234,11 +231,11 @@ namespace fl2d {
                 //------------------------------------------
             }
             //垂直
-            else if(_type == HORIZONTALLY) {
+            else if(_type == VERTICALLY) {
                 float ty = _targetValue;
-                if(!_flg) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
+//                if(!_flg) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
                 float shiftY = ty - _center.y;
-                
+
                 float distance = _center.distance(ofPoint(_center.x, ty));
                 if(_maxDistance < distance){
                     float n = _maxDistance / distance;
@@ -254,7 +251,8 @@ namespace fl2d {
             //------------------------------------------
             
             //------------------------------------------
-            if(preValue != _value) {
+//            if(preValue != _value) {
+            if(true) {
                 _valueText->text(ofToString(_value, 2));
                 
                 //------------------------------------------
@@ -264,7 +262,7 @@ namespace fl2d {
                 dispatchEvent(event);
                 
                 //水平
-                if(_type == VERTICALLY) {
+                if(_type == HORIZONTALLY) {
                     if(_value > 0) {
                         event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
                         event->__value = _value;
@@ -277,7 +275,7 @@ namespace fl2d {
                     }
                 }
                 //垂直
-                else if(_type == HORIZONTALLY) {
+                else if(_type == VERTICALLY) {
                     if(_value > 0) {
                         event = new flJoyStick1Event(flJoyStick1Event::UP);
                         event->__value = _value;
@@ -296,7 +294,7 @@ namespace fl2d {
             //Easing
             //------------------------------------------
             //水平
-            if(_type == VERTICALLY) {
+            if(_type == HORIZONTALLY) {
                 float distanceX = _center.x - lever->x();
                 if(-0.5f < distanceX && distanceX < 0.5f) {
                     lever->x(_center.x);
@@ -312,7 +310,7 @@ namespace fl2d {
                 
             }
             //垂直
-            else if(_type == HORIZONTALLY) {
+            else if(_type == VERTICALLY) {
                 float distanceY = _center.y - lever->y();
                 if(-0.5f < distanceY && distanceY < 0.5f) {
                     lever->y(_center.y);
@@ -329,15 +327,16 @@ namespace fl2d {
             //------------------------------------------
             
             //------------------------------------------
-            if(preValue != _value) {
-                _valueText->text(ofToString(_value, 2));
-                
-                //------------------------------------------
-                flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-                event->__value = _value;
-                dispatchEvent(event);
-                //------------------------------------------
-            }
+//            if(preValue != _value) {
+//            if(true) {
+//                _valueText->text(ofToString(_value, 2));
+//
+//                //------------------------------------------
+//                flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+//                event->__value = _value;
+//                dispatchEvent(event);
+//                //------------------------------------------
+//            }
             //------------------------------------------
         }
         
@@ -363,17 +362,17 @@ namespace fl2d {
         _type = value;
         
         //水平
-        if(_type == VERTICALLY) {
-            _center = ofPoint(_uiLength * 0.5, _leverRadius);
-            
+        if(_type == HORIZONTALLY) {
+            _center = ofPoint(_uiLength * 0.5, _leverRadius + 2);
+
             _valueText->x(2);
             _valueText->y(0);
             _valueText->rotation(0);
         }
         //垂直
-        else if(_type == HORIZONTALLY) {
-            _center = ofPoint(_leverRadius, _uiLength * 0.5);
-            
+        else if(_type == VERTICALLY) {
+            _center = ofPoint(_leverRadius + 2, _uiLength * 0.5);
+
             _valueText->x(_valueText->textHeight() - 0);
             _valueText->y(2);
             _valueText->rotation(90);
@@ -394,13 +393,18 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick1::moveLever(float value) {
-        //cout << "[flJoyStick1D]moveLever()" << endl;
-        if(_type == VERTICALLY) {
-            _targetValue = lever->x() - _maxDistance * value;
-        } else
-            if(_type == HORIZONTALLY) {
-                _targetValue = lever->y() - _maxDistance * value;
-            }
+//        ofLog() << "[flJoyStick1]moveLever(" << value << ")";
+        
+        //水平
+        if(_type == HORIZONTALLY) {
+//            _targetValue = lever->x() - _maxDistance * value;
+            _targetValue = _center.x - _maxDistance * value;
+        }
+        //垂直
+        else if(_type == VERTICALLY) {
+//            _targetValue = lever->y() - _maxDistance * value;
+            _targetValue = _center.y - _maxDistance * value;
+        }
         
         _flg = true;
     }
@@ -430,25 +434,13 @@ namespace fl2d {
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         }
         //水平
-        if(_type == VERTICALLY) {
-            g->drawRoundRect(
-                             0,
-                             0,
-                             _uiLength,
-                             _leverRadius * 2,
-                             _leverRadius
-                             );
-        } else
-            //垂直
-            if(_type == HORIZONTALLY) {
-                g->drawRoundRect(
-                                 0,
-                                 0,
-                                 _leverRadius * 2,
-                                 _uiLength,
-                                 _leverRadius
-                                 );
-            }
+        if(_type == HORIZONTALLY) {
+            g->drawRoundRect(0, 0, _uiLength, _leverRadius * 2, _leverRadius);
+        }
+        //垂直
+        else if(_type == VERTICALLY) {
+            g->drawRoundRect(0, 0, _leverRadius * 2, _uiLength, _leverRadius);
+        }
         g->endFill();
         //------------------------------------------
         
@@ -564,12 +556,16 @@ namespace fl2d {
     void flJoyStick1::_drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
         flGraphics* g = graphics();
         g->clear();
-        g->lineStyle(1, lineColor.getHex());
+        g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
+//        //水平
+//        if(_type == VERTICALLY) g->drawRoundRect(0, 0, _uiLength, (_leverRadius + 2) * 2, _leverRadius + 2);
+//        //垂直
+//        else if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, (_leverRadius + 2) * 2, _uiLength, _leverRadius + 2);
         //水平
-        if(_type == VERTICALLY) g->drawRoundRect(0, 0, _uiLength, _leverRadius * 2, _leverRadius);
+        if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, _uiLength, 18, _leverRadius + 2);
         //垂直
-        else if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, _leverRadius * 2, _uiLength, _leverRadius);
+        else if(_type == VERTICALLY) g->drawRoundRect(0, 0, 18, _uiLength, _leverRadius + 2);
         g->endFill();
     }
     
@@ -579,7 +575,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, lineColor.getHex());
+        g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();

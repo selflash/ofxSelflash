@@ -1,24 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flRotarySliderEvent.h"
 #include "flmath.h"
 
 namespace fl2d {
     
-    class flRotarySlider : public flSprite {
+    class flRotarySlider : public flUIBase {
         
     public:
         flSprite* lever;
     protected:
         
     private:
-        flTextField* _label;
-        
         //------------------------------------------
         float _xValue;
         float _yValue;
@@ -38,14 +33,12 @@ namespace fl2d {
         float _targetY;
         //------------------------------------------
         
-        bool _enabled;
-        
     public:
         flRotarySlider(float areaDiameter = 50, float leverDiameter = 10);
         virtual ~flRotarySlider();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual flTextField* label();
+        virtual void label(flTextField* value);
         
         float xValue();
         float yValue();
@@ -55,8 +48,8 @@ namespace fl2d {
         void leverLeft(float value = 1.0);
         void leverRight(float value = 1.0);
         
-        bool enabled();
-        void enabled(bool value);
+        virtual bool enabled();
+        virtual void enabled(bool value);
         
     protected:
         virtual void _setup();
@@ -75,7 +68,7 @@ namespace fl2d {
         virtual void _ballMove();
         
     private:
-        void _mouseEventHandler(flEvent& event);
+        virtual void _mouseEventHandler(flEvent& event);
     };
     
 }
