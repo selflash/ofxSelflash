@@ -16,72 +16,79 @@
 
 namespace fl2d {
     
+    class flStage;
     class flSprite : public flDisplayObjectContainer {
-    public:
+        friend flStage;
         
-    protected:
-        flGraphics* _graphics;
+        public:
         
-    private:
-        ofPoint _draggablePoint;
-        flRectangle* _draggableArea;
+        protected:
+            flGraphics* _graphics;
         
-        bool _buttonMode;
-        flDisplayObject* _dropTarget;
-        bool _useHandCursor;        
+            flSprite* __client = NULL;
         
-    public:
-        flSprite();
-        virtual ~flSprite();
+            bool _showHitArea = false;
         
-        virtual void update();
-        virtual void draw(bool applyMatrix = true);
+        private:
+            ofPoint _draggablePoint;
+            flRectangle* _draggableArea = NULL;
         
-        virtual float width();
-        virtual void width(float value);
+            bool _buttonMode;
+            flDisplayObject* _dropTarget = NULL;
+            bool _useHandCursor;
         
-        virtual float height();
-        virtual void height(float value);
+            flSprite* _hitArea = NULL;
+
+        public:
+            flSprite();
+            virtual ~flSprite();
         
-        virtual float scaleX();
-        virtual void scaleX(float value);
+            virtual void update();
+            virtual void draw(bool applyMatrix = true);
         
-        virtual float scaleY();
-        virtual void scaleY(float value);
+            virtual float width();
+            virtual void width(float value);
         
-        //            virtual float alpha();
-        //            virtual void alpha(float value);
+            virtual float height();
+            virtual void height(float value);
         
-        virtual inline flGraphics* graphics() { return _graphics; }
+            virtual float scaleX();
+            virtual void scaleX(float value);
         
-        //TODO
-        flSprite* client;
-        flSprite* _hitArea;
-        flSprite* hitArea();
-        void hitArea(flSprite* value);
+            virtual float scaleY();
+            virtual void scaleY(float value);
         
-        virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
+            //            virtual float alpha();
+            //            virtual void alpha(float value);
         
-        virtual void useHandCursor(bool value);
-        virtual bool useHandCursor();
+            virtual inline flGraphics* graphics() { return _graphics; }
         
-        //void startDrag(bool lockCenter = false, flRectangle bounds = NULL);
-        virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
-        virtual void stopDrag();
+            //TODO
+            virtual flSprite* hitArea();
+            virtual void hitArea(flSprite* value);
         
-    protected:
-        //virtual void updateOnFrame(){};
-        virtual void _updateRect();
+            virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
         
-    private:
-        void _updateEventHandler(ofEventArgs& args);
+            virtual void useHandCursor(bool value);
+            virtual bool useHandCursor();
         
-        virtual void __compoundAlpha(float value);
+            //void startDrag(bool lockCenter = false, flRectangle bounds = NULL);
+            virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
+            virtual void stopDrag();
         
-        void _mouseDragging(int x, int y, int id);
-        void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
+        protected:
+            //virtual void updateOnFrame(){};
+            virtual void _updateRect();
         
-        // TODO :: soundTransform
+        private:
+            void _updateEventHandler(ofEventArgs& args);
+        
+            virtual void __compoundAlpha(float value);
+        
+            void _mouseDragging(int x, int y, int id);
+            void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
+        
+            // TODO :: soundTransform
     };
     
 }

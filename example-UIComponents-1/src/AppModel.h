@@ -20,15 +20,13 @@ class AppModel {
 //        bool isLoaded;
 //        bool isProcessing;
 //        bool isFinding;
-
-        ofParameter<ofColor> bgColor;
-        ofParameter<ofColor> lineColor;
-        ofParameter<int> lineWidth;
-        ofParameter<float> speed;
-
-
-//        ofParameter<int> viewMode;
-//        ofParameter<string> currentCameraPosition;
+    
+        ofParameter<ofColor> bgColor = ofColor(125, 124, 125, 220);
+        ofParameter<ofColor> lineColor = ofColor(255, 124, 255, 255);
+        ofParameter<int> lineWidth = 5;
+        ofParameter<float> speed = 0.1;
+        ofParameter<bool> fillEnabled = false;
+        ofParameter<bool> wireframeEnabled = false;
 
     protected:
         

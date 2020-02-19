@@ -36,127 +36,127 @@ namespace fl2d {
     };
     
     class flStage : public flDisplayObjectContainer {
-    public:
+        public:
         
-    protected:
+        protected:
         
-    private:
-        bool _isSetuped = false;
-        flSettings _settings;
+        private:
+            bool _isSetuped = false;
+            flSettings _settings;
         
-        static flStage* _instance;
-        flMovieClip* _root;
+            static flStage* _instance;
+            flMovieClip* _root;
         
-        int _stageWidth;
-        int _stageHeight;
+            int _stageWidth;
+            int _stageHeight;
         
-        bool _isTouchMode;
+            bool _isTouchMode;
         
-        int	_mouseX;
-        int	_mouseY;
+            int	_mouseX;
+            int	_mouseY;
         
-        //0 is left click.　2 is right click.
-        int _mouseID;
-        //Did click except left click.
-        bool _isMouseChanged;
+            //0 is left click.　2 is right click.
+            int _mouseID;
+            //Did click except left click.
+            bool _isMouseChanged;
         
-        //キーボードキーを押されているか
-        //bool _isKeyDown;
-        //キーボードキーを押したか
-        //bool _isKeyPressed;
-        //キーボードキーを離したか
-        //bool _isKeyReleased;
+            //キーボードキーを押されているか
+            //bool _isKeyDown;
+            //キーボードキーを押したか
+            //bool _isKeyPressed;
+            //キーボードキーを離したか
+            //bool _isKeyReleased;
         
-        //Interactive objcet that is focused.
-        flInteractiveObject* _focus;
+            //Interactive objcet that is focused.
+            flInteractiveObject* _focus;
         
-        //最前面でマウスにヒットしているDisplayObject
-        flDisplayObject* _topMostHitDisplayObject;
-        flDisplayObject* _topMostHitDisplayObjectPrev;
+            //最前面でマウスにヒットしているDisplayObject
+            flDisplayObject* _topMostHitDisplayObject;
+            flDisplayObject* _topMostHitDisplayObjectPrev;
         
-        //最前面でマウスにヒットしているInteractiveObject
-        flInteractiveObject* _topMostHitInteractiveObject;
-        flInteractiveObject* _topMostHitInteractiveObjectPrev;
+            //最前面でマウスにヒットしているInteractiveObject
+            flInteractiveObject* _topMostHitInteractiveObject;
+            flInteractiveObject* _topMostHitInteractiveObjectPrev;
         
-        //マウスダウン中のInteractiveObject
-        flInteractiveObject* _currentMouseDownInteractiveObject;
+            //マウスダウン中のInteractiveObject
+            flInteractiveObject* _currentMouseDownInteractiveObject;
         
-        //Stageからマウスヒットオブジェクトまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
-        vector<flInteractiveObject*> _lineTopDown;
-        vector<flInteractiveObject*> _lineTopDownPrev;
-        //マウスヒットオブジェクトからStageまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
-        vector<flInteractiveObject*> _lineBottomUp;
-        vector<flInteractiveObject*> _lineBottomUpPrev;
+            //Stageからマウスヒットオブジェクトまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
+            vector<flInteractiveObject*> _lineTopDown;
+            vector<flInteractiveObject*> _lineTopDownPrev;
+            //マウスヒットオブジェクトからStageまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
+            vector<flInteractiveObject*> _lineBottomUp;
+            vector<flInteractiveObject*> _lineBottomUpPrev;
         
-//        ofEventOrder _priority;
+    //        ofEventOrder _priority;
         
-    public:
-        static flStage* instance();
-        static void clear();
+        public:
+            static flStage* instance();
+            static void clear();
         
-        virtual void setup(flSettings settings = flSettings());
-        virtual void update();
-        virtual void draw();
-//        virtual void resize();
+            virtual void setup(flSettings settings = flSettings());
+            virtual void update();
+            virtual void draw();
+    //        virtual void resize();
         
-        int stageWidth();
-        int stageHeight();
+            int stageWidth();
+            int stageHeight();
         
-        virtual int mouseX();
-        virtual int mouseY();
+            virtual int mouseX();
+            virtual int mouseY();
         
-//        virtual bool isMouseDown();
+    //        virtual bool isMouseDown();
         
-        flInteractiveObject* focus();
+            flInteractiveObject* focus();
         
-        flDisplayObject* topMostHitDisplayObject();
-        flDisplayObject* topMostHitDisplayObjectPrev();
+            flDisplayObject* topMostHitDisplayObject();
+            flDisplayObject* topMostHitDisplayObjectPrev();
         
-        flInteractiveObject* topMostHitInteractiveObject();
-        flInteractiveObject* topMostHitInteractiveObjectPrev();
+            flInteractiveObject* topMostHitInteractiveObject();
+            flInteractiveObject* topMostHitInteractiveObjectPrev();
         
-        flDisplayObject* getMostHitDisplayObject(int x, int y);
+            flDisplayObject* getMostHitDisplayObject(int x, int y);
         
-//        void priority(ofEventOrder value);
+    //        void priority(ofEventOrder value);
         
-    protected:
+        protected:
         
-    private:
-        flStage();
-        virtual ~flStage();
+        private:
+            flStage();
+            virtual ~flStage();
         
-        //update
-        void _updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& children);
-        void _updateMouse();
-        //void _updateMouseInteraction();
-        void _updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& children);
-        //draw
-        void _drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            //update
+            void _updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _updateMouse();
+            //void _updateMouseInteraction();
+            void _updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            //draw
+            void _drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& children);
         
-        void _mouseMove();
+            void _mouseMove();
         
-        flDisplayObject* _getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y);
+            flDisplayObject* _getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y);
         
-        void _debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& children);
         
-        void _updateEventHandler(ofEventArgs& event);
-        void _drawEventHandler(ofEventArgs& event);
+            void _updateEventHandler(ofEventArgs& event);
+            void _drawEventHandler(ofEventArgs& event);
         
-        void _mouseMoveEventHandler(ofMouseEventArgs& event);
-        void _mouseDragEventHandler(ofMouseEventArgs& event);
-        void _mouseDownEventHandler(ofMouseEventArgs& event);
-        void _mouseUpEventHandler(ofMouseEventArgs& event);
-        void _mouseScrolledEventHandler(ofMouseEventArgs& event);
-//        void _mouseScrolledEventHandler(int x, int y, float scrollX, float scrollY);
-        void _resizeEventHandler(ofResizeEventArgs& event);
+            void _mouseMoveEventHandler(ofMouseEventArgs& event);
+            void _mouseDragEventHandler(ofMouseEventArgs& event);
+            void _mouseDownEventHandler(ofMouseEventArgs& event);
+            void _mouseUpEventHandler(ofMouseEventArgs& event);
+            void _mouseScrolledEventHandler(ofMouseEventArgs& event);
+    //        void _mouseScrolledEventHandler(int x, int y, float scrollX, float scrollY);
+            void _resizeEventHandler(ofResizeEventArgs& event);
         
-        void _keyDownEventHandler(ofKeyEventArgs& event);
-        void _keyUpEventHandler(ofKeyEventArgs& event);
+            void _keyDownEventHandler(ofKeyEventArgs& event);
+            void _keyUpEventHandler(ofKeyEventArgs& event);
         
-        bool _isInteractiveObject(flDisplayObject* displayObject);
-        bool _isDisplayObject(flDisplayObject* displayObject);
-        bool _isDisplayObjectContainer(flDisplayObject* displayObject);
-        bool _isSprite(flDisplayObject* displayObject);
+            bool _isInteractiveObject(flDisplayObject* displayObject);
+            bool _isDisplayObject(flDisplayObject* displayObject);
+            bool _isDisplayObjectContainer(flDisplayObject* displayObject);
+            bool _isSprite(flDisplayObject* displayObject);
     };
     
 }

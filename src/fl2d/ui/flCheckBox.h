@@ -8,76 +8,105 @@ namespace fl2d {
     
     class flCheckBox : public flUIBase {
         
-    public:
+        public:
         
-    protected:
+        protected:
         
-    private:
-        float _uiWidth;
-        float _uiHeight;
-        
-        bool _selected = false;
-        float _hitAreaAlpha = 0.0;        
-        int _shapeType = 0;
-        
-    public:
-        flCheckBox(float width = 100);
-        virtual ~flCheckBox();
-        
-        virtual flTextField* label();
-        virtual void label(flTextField* value);
+        private:
+            float _uiWidth = 0.0;
+            float _uiHeight = 0.0;
 
-        string labelText();
-        void labelText(string value);
-        
-        bool selected();
-        void selected(bool value, bool dispatch = true);
-        
-        virtual bool enabled();
-        virtual void enabled(bool value);
-        
-//        inline void activeColor(ofFloatColor value) { _activeColor = value; };
+            float _hitAreaAlpha = 0.0;
+            int _shapeType = 0;
+            bool _selected = false;
 
-        inline int shapeType() { return _shapeType; };
-        inline void shapeType(int value) {
-            _shapeType = value;
-            if(_enabled) {
-                if(_selected) {
-                    _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-                    _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        public:
+            flCheckBox(float width = 100);
+            virtual ~flCheckBox();
+        
+            virtual void label(flTextField* value);
+            virtual void enabled(bool value);
+
+            string labelText();
+            void labelText(string value);
+        
+            bool selected();
+            void selected(bool value, bool dispatch = true);
+        
+            inline int shapeType() { return _shapeType; };
+            inline void shapeType(int value) {
+                _shapeType = value;
+                
+                if(_enabled) {
+                    if(_selected) {
+                        if(isMouseOver()) {
+                            _setOverColor();
+                        } else {
+                            _setActiveColor();
+                        }
+                    } else {
+                        if(isMouseOver()) {
+                            _setSelectedOverColor();
+                        } else {
+                            _setNormalColor();
+                        }
+                    }
                 } else {
-                    _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-                    _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR);
-                }
-            } else {
-                if(_selected) {
-                    _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-                    _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-                } else {
-                    _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-                    _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
+                    if(!_selected) {
+                        _setDisableNormalColor();
+                    } else {
+                        _setDisableActiveColor();
+                    }
                 }
             }
-        };
-
-    protected:
-        virtual void _over();
-        virtual void _out();
-        virtual void _press();
-        virtual void _release();
-
-        virtual void _setNormalColor();
-        virtual void _setOverColor();
-        virtual void _setSelectedOverColor();
-        virtual void _setActiveColor();
-        virtual void _setDisableNormalColor();
-        virtual void _setDisableActiveColor();
-
-        virtual void _drawGraphics(const ofColor& outerColor);
-        virtual void _drawGraphics(const ofColor& outerColor, const ofFloatColor& innerColor);
         
-    private:
-        inline void _mouseEventHandler(flEvent& event);
+            //------------------------------------------
+            ofParameter<bool>* _boolParam = NULL;
+            virtual inline void bind(ofParameter<bool>& param) {
+                _listeners.unsubscribeAll();
+                _boolParam = NULL;
+                
+                _boolParam = &param;
+                _listeners.push(_boolParam->newListener([&](bool& val) {
+                    if(_changedValueByMyself) {
+                        _changedValueByMyself = false;
+                    } else {
+                        selected(val);
+                    }
+                }));
+                
+                selected(_boolParam->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _boolParam = NULL;
+            }
+            //------------------------------------------
+
+        protected:
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
+
+            virtual void _changeValue(bool dispatch = true);
+
+            virtual void _over();
+            virtual void _out();
+            virtual void _press();
+            virtual void _release();
+
+            virtual void _setNormalColor();
+            virtual void _setOverColor();
+            virtual void _setSelectedOverColor();
+            virtual void _setActiveColor();
+            virtual void _setDisableNormalColor();
+            virtual void _setDisableActiveColor();
+
+            virtual void _drawGraphics(const ofColor& outerColor);
+            virtual void _drawGraphics(const ofColor& outerColor, const ofFloatColor& innerColor);
+        
+        private:
+            virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

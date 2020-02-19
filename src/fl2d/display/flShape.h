@@ -15,32 +15,32 @@
 
 namespace fl2d {
     class flShape : public flDisplayObject {
-    public:
-        
-    protected:
-        flGraphics* _graphics;
-        
-    private:
-        
-    public:
-        flShape();
-        virtual ~flShape();
-        
-        virtual void update();
-        virtual void draw(bool applyMatrix = true);
-        
-        //            virtual float alpha();
-        //            virtual void alpha(float value);
-        
-        virtual inline flGraphics* graphics() { return _graphics; }
-        
-    protected:
-        //            virtual void updateOnFrame(){};
-        virtual void _updateRect();
-        virtual void __compoundAlpha(float value);
-        
-    private:
-        void _updateEventHandler(ofEventArgs& args);
-        
+        public:
+            
+        protected:
+            flGraphics* _graphics;
+            
+        private:
+            
+        public:
+            flShape();
+            virtual ~flShape();
+            
+            virtual void update();
+            virtual void draw(bool applyMatrix = true);
+            
+            //            virtual float alpha();
+            //            virtual void alpha(float value);
+            
+            virtual inline flGraphics* graphics() { return _graphics; }
+            
+        protected:
+            //            virtual void updateOnFrame(){};
+            virtual void _updateRect();
+            virtual void __compoundAlpha(float value);
+            
+        private:
+            void _updateEventHandler(ofEventArgs& args);
+            
     };
 }

@@ -360,7 +360,7 @@ void UIComponents::_setup() {
     label->mouseEnabled(false);
     addChild(label);
     check001 = new flCheckBox();
-    check001->labelText("Check Box 1");
+    check001->labelText("Fill Enabled");
     check001->x(marginLeft + spacing * 0);
     check001->y(marginTop + lineSpacing * 1);
     check001->selected(true);
@@ -368,7 +368,7 @@ void UIComponents::_setup() {
     check001->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(check001);
     check002 = new flCheckBox();
-    check002->labelText("Check Box 2");
+    check002->labelText("Wireframe Enabled");
     check002->x(marginLeft + spacing * 0);
     check002->y(marginTop + lineSpacing * 2);
     check002->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);

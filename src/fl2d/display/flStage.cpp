@@ -370,28 +370,28 @@ namespace fl2d {
             child = children[i];
             
             //------------------------------------
-            //Dispatch enter-frame-event
-            //            if(_isDisplayObject(child)) {
-            //                flEvent* event = new flEvent(flEvent::ENTER_FRAME);
-            //                child->dispatchEvent(event);
-            //            }
+            //Dispatch enterframe event.
+//            if(_isDisplayObject(child)) {
+//                flEvent* event = new flEvent(flEvent::ENTER_FRAME);
+//                child->dispatchEvent(event);
+//            }
             //------------------------------------
             
             if(!child->visible()) continue;
             
-            //=========================================== MATRIX.
-            // transform child matrix by world matrix.
+            //=========================================== Matrix.
+            //transform child matrix by world matrix.
             flMatrix worldMatrix;
             worldMatrix = parent->concatenatedMatrix();
             worldMatrix.concat(child->matrix());
             child->transform(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
-            //            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
-            //child->updateOnFrame();
+//            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
+//            child->updateOnFrame();
             
             //------------------------------------ topMostHitDisplayObject
-            //„Éû„Ç¶„Çπ„Å´ÊúÄ„ÇÇÊúÄÂâçÈù¢„Åß„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+            
             //------------------------------------ mouseEnabled
             if(_isInteractiveObject(child)) {
                 flInteractiveObject* intObj = (flInteractiveObject*)child;
@@ -407,32 +407,27 @@ namespace fl2d {
                         } else {
                             
                         }
-                        
                     } else {
                         if(child->hitTestPoint(_mouseX, _mouseY, true)) {
                             _topMostHitDisplayObject = child;
                         }
                     }
                     //------------------------------------ hitArea
-                    
                 } else {
-                    
                     //------------------------------------ hitArea
                     if(_isSprite(child)) {
-                        flSprite* sprite = (flSprite*) child;
-                        if(sprite->client) {
+                        flSprite* sprite = (flSprite*)child;
+                        if(sprite->__client) {
                             if(child->hitTestPoint(_mouseX, _mouseY, true)) {
                                 _topMostHitDisplayObject = child;
                             }
                         } else {
                             
                         }
-                        
                     } else {
                         
                     }
                     //------------------------------------ hitArea
-                    
                 }
             } else {
                 if(child->hitTestPoint(_mouseX, _mouseY, true)) {
@@ -440,6 +435,7 @@ namespace fl2d {
                 }
             }
             //------------------------------------ mouseEnabled
+            
             //------------------------------------ topMostHitDisplayObject
             
             //ÂÜçÂ∏∞ÂëºÂá∫„Åó
@@ -476,12 +472,10 @@ namespace fl2d {
         if(!bHitDisplayObjectChanged && !__isMousePressed && !__isMouseReleased) return;
         
         //------------------------------------
-        // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
             char frame[10];
             //sprintf(frame, "%05d", ofGetFrameNum());
             sprintf(frame, "%05llu", ofGetFrameNum());
-            ofLog() << "";
             ofLog() << frame << " :: bHitDisplayObjectChanged = " << (bHitDisplayObjectChanged ? "true" : "false");
             ofLog() << frame << " :: bMousePressed = "	<< (__isMousePressed ? "true" : "false");
             ofLog() << frame << " :: bMouseReleased = " << (__isMouseReleased ? "true" : "false");
@@ -558,9 +552,9 @@ namespace fl2d {
                          */
                         if(_isSprite(intObj)) {
                             flSprite* sprite = (flSprite*) intObj;
-                            if(sprite->client) {
-                                dispObj = sprite->client;
-                                //sprite->client->dispatchEvent(mouseEvent);
+                            if(sprite->__client) {
+                                dispObj = sprite->__client;
+                                //sprite->__client->dispatchEvent(mouseEvent);
                                 //goto pushListEnd;
                                 
                                 intObj = (flInteractiveObject*)dispObj;
@@ -603,7 +597,6 @@ namespace fl2d {
         //pushListEnd:
         
         //------------------------------------
-        // „Éá„Éê„ÉÉ„Ç∞Áî®
         if(false) {
             if(_topMostHitInteractiveObject || _topMostHitInteractiveObjectPrev)ofLog() << "\n==========================================================";
             if(_topMostHitInteractiveObject) ofLog() << "TopMostHitInteractiveObject     = " << _topMostHitInteractiveObject->name().c_str();
@@ -826,7 +819,7 @@ namespace fl2d {
             flDisplayObject* child;
             child = children[i];
             
-            //            if(!child->visible()) continue;
+//            if(!child->visible()) continue;
             
             child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
             
@@ -881,7 +874,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flStage::_getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y) {
-        //        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
+//        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
         flDisplayObject* mostHitDisplayObject;
         
         int i; int l;
@@ -893,7 +886,6 @@ namespace fl2d {
             if(!child->visible()) continue;
             
             //------------------------------------ topMostHitDisplayObject
-            //ÂºïÊï∞(x, y)„Å´ÊúÄ„ÇÇÊúÄÂâçÈù¢„Åß„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
             //------------------------------------ mouseEnabled
             if(_isInteractiveObject(child)) {
                 flInteractiveObject* intObj = (flInteractiveObject*)child;
@@ -919,7 +911,7 @@ namespace fl2d {
                     //------------------------------------ hitArea
                     if(_isSprite(child)) {
                         flSprite* sprite = (flSprite*) child;
-                        if(sprite->client) {
+                        if(sprite->__client) {
                             if(child->hitTestPoint(x, y, true)) {
                                 mostHitDisplayObject = child;
                             }
@@ -940,11 +932,9 @@ namespace fl2d {
             //------------------------------------ mouseEnabled
             //------------------------------------ topMostHitDisplayObject
             
-            //ÂÜçÂ∏∞ÂëºÂá∫„Åó
+            //------------------------------------
             if(_hasChildren(child)) {
-                flDisplayObjectContainer* container;
-                container = (flDisplayObjectContainer*)child;
-                
+                flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
                 //------------------------------------ mouseChildren
                 if(container->mouseChildren()) {
                     if(container->children.size() > 0) {
@@ -955,9 +945,10 @@ namespace fl2d {
                 }
                 //------------------------------------ mouseChildren
             }
+            //------------------------------------
         }
         
-        //        if(mostHitDisplayObject) ofLog() << "[flStage]" << mostHitDisplayObject->name();
+//        if(mostHitDisplayObject) ofLog() << "[flStage]" << mostHitDisplayObject->name();
         return mostHitDisplayObject;
     }
     

@@ -51,6 +51,18 @@ void ofApp::setup() {
         renderer->speed = value;
     }));
     uiComponents->slider002->bind(appModel.speed);
+
+    renderer->fillEnabled = appModel.fillEnabled;
+    listeners.push(appModel.fillEnabled.newListener([&](bool& value) {
+        renderer->fillEnabled = value;
+    }));
+    uiComponents->check001->bind(appModel.fillEnabled);
+    
+    renderer->wireframeEnabled = appModel.wireframeEnabled;
+    listeners.push(appModel.wireframeEnabled.newListener([&](bool& value) {
+        renderer->wireframeEnabled = value;
+    }));
+    uiComponents->check002->bind(appModel.wireframeEnabled);
     //--------------------------------------
 }
 
@@ -68,6 +80,9 @@ void ofApp::update() {
             ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255,
             255
         );
+        appModel.fillEnabled = sin(elapsedTime * 1.4) < 0 ? false : true;
+        appModel.wireframeEnabled = sin(elapsedTime * 1.8) < 0 ? false : true;
+        
 //        appModel.bgColor.g = ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255.0;
 //        appModel.bgColor.b = ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255.0;
 //        appModel.lineColor = ofColor(124, 30, 124, 200);

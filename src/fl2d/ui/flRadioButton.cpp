@@ -17,14 +17,10 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = 18;
         
-        _selected = false;
-        
-        _groupOwner = NULL;
-        
-        flGraphics* g;
-        
-//        g = graphics();
-//        g->enabledSmoothing(true);
+        addEventListener(flMouseEvent::MOUSE_OVER, this, &flRadioButton::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_OUT, this, &flRadioButton::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRadioButton::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
 
         //------------------------------------------
         _label = new flTextField();
@@ -35,13 +31,10 @@ namespace fl2d {
         _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 0);
         addChild(_label);
         //------------------------------------------
-        
-        _setNormalColor();
 
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flRadioButton::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flRadioButton::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRadioButton::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
+        _groupOwner = NULL;
+
+        _setNormalColor();
     }
     
     //--------------------------------------------------------------
@@ -54,10 +47,6 @@ namespace fl2d {
         delete _label;
         _label = NULL;
         
-        _enabled = false;
-        _hitAreaAlpha = 0.0;
-        _shapeType = 0;
-        
         if(_groupOwner != NULL) {
             _groupOwner->_notice(this, "remove");
         }
@@ -67,6 +56,28 @@ namespace fl2d {
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flRadioButton::_setup() {
+        //ofLog() << "[flRadioButton]setup()";
+    }
+    
+    //--------------------------------------------------------------
+    void flRadioButton::_update() {
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flRadioButton::_draw() {
+        //        if(_flg) {
+        //            _flg = false;
+        //            if(isMouseOver()) {
+        //                _setOverColor();
+        //            } else {
+        //                _setNormalColor();
+        //            }
+        //        }
+    }
     
     //==============================================================
     // Public Method
@@ -84,6 +95,34 @@ namespace fl2d {
         }
     }
 
+    //--------------------------------------------------------------
+    void flRadioButton::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        
+        if(_enabled) {
+            if(_selected) {
+                if(isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setActiveColor();
+                }
+            } else {
+                if(isMouseOver()) {
+                    _setSelectedOverColor();
+                } else {
+                    _setNormalColor();
+                }
+            }
+        } else {
+            if(!_selected) {
+                _setDisableNormalColor();
+            } else {
+                _setDisableActiveColor();
+            }
+        }
+    }
+    
     //--------------------------------------------------------------
     string flRadioButton::labelText() { return _label->text(); }
     void flRadioButton::labelText(string value) {
@@ -119,40 +158,35 @@ namespace fl2d {
             }
         }
         
+        //------------------------------------------
         if(dispatch) {
-            dispatchEvent(new flEvent(flEvent::CHANGE));
-            dispatchEvent(new flRadioButtonEvent(flRadioButtonEvent::CHANGE));
+//            dispatchEvent(new flEvent(flEvent::CHANGE));
+            flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
         }
-    }
-    
-    //--------------------------------------------------------------
-    bool flRadioButton::enabled() { return _enabled; }
-    void flRadioButton::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-        
-        if(_enabled) {
-            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-            
-            if(_selected) {
-                _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
-            } else {
-                _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            }
-        } else {
-            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-            
-            if(_selected) {
-                _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-            } else {
-                _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
-            }
-        }
+        //------------------------------------------
     }
     
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flRadioButton::_changeValue(bool dispatch) {
+//        if(_boolParam != NULL) {
+//            _changedValueByMyself = true;
+//            //            _boolParam->set(_value);
+//        }
+        
+        //------------------------------------------
+        if(dispatch) {
+            flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
     
     //--------------------------------------------------------------
     void flRadioButton::_over() {
@@ -311,12 +345,12 @@ namespace fl2d {
     void flRadioButton::_mouseEventHandler(flEvent& event) {
 //        ofLog() << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
-        //Roll Over
+        //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _over();
         }
         
-        //Roll Out
+        //Mouse Out
         if(event.type() == flMouseEvent::MOUSE_OUT) {
             if(event.target() == this) _out();
         }

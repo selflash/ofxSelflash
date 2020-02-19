@@ -18,52 +18,52 @@ namespace fl2d {
     
     class flDisplayObjectContainer : public flInteractiveObject {
         
-    public:
-        vector<flDisplayObject*> children;
+        public:
+            vector<flDisplayObject*> children;
         
-    protected:
+        protected:
         
-    private:
-        bool _mouseChildren;
-        //bool _tabChildren;
+        private:
+            bool _mouseChildren;
+            //bool _tabChildren;
         
-    public:
-        virtual void update();
-        virtual void draw(bool applyMatrix = true);
+        public:
+            virtual void update();
+            virtual void draw(bool applyMatrix = true);
         
-        bool mouseChildren();
-        void mouseChildren(bool value);
-        int numChildren();
-        virtual bool contains(flDisplayObject* child);
+            bool mouseChildren();
+            void mouseChildren(bool value);
+            int numChildren();
+            virtual bool contains(flDisplayObject* child);
         
-        virtual flDisplayObject* stage();
-        virtual void stage(flDisplayObject* value);
+            virtual flDisplayObject* stage();
+            virtual void stage(flDisplayObject* value);
         
-        virtual flDisplayObject* addChild(flDisplayObject* child);
-        virtual flDisplayObject* addChild(flDisplayObject* child, int x, int y);
-        virtual flDisplayObject* addChildAt(flDisplayObject* child, int index);
-        virtual flDisplayObject* removeChild(flDisplayObject* child);
-        virtual flDisplayObject* removeChildAt(int index);
-        virtual void removeAllChildren();
+            virtual flDisplayObject* addChild(flDisplayObject* child);
+            virtual flDisplayObject* addChild(flDisplayObject* child, int x, int y);
+            virtual flDisplayObject* addChildAt(flDisplayObject* child, int index);
+            virtual flDisplayObject* removeChild(flDisplayObject* child);
+            virtual flDisplayObject* removeChildAt(int index);
+            virtual void removeAllChildren();
         
-        virtual flDisplayObject* getChildAt(int index);
-        virtual flDisplayObject* getChildByName(string name);
-        virtual int getChildIndex(flDisplayObject* child);
-        virtual vector<flDisplayObject*> getObjectsUnderPoint(ofPoint point);
+            virtual flDisplayObject* getChildAt(int index);
+            virtual flDisplayObject* getChildByName(string name);
+            virtual int getChildIndex(flDisplayObject* child);
+            virtual vector<flDisplayObject*> getObjectsUnderPoint(ofPoint point);
         
-        virtual void setChildIndex(flDisplayObject* child, int index);
-        virtual void swapChildren(flDisplayObject* child1, flDisplayObject* child2);
-        virtual void swapChildrenAt(int index1, int index2);
+            virtual void setChildIndex(flDisplayObject* child, int index);
+            virtual void swapChildren(flDisplayObject* child1, flDisplayObject* child2);
+            virtual void swapChildrenAt(int index1, int index2);
         
-    protected:
-        flDisplayObjectContainer();
-        virtual ~flDisplayObjectContainer();
+        protected:
+            flDisplayObjectContainer();
+            virtual ~flDisplayObjectContainer();
         
-        virtual void _updateRect();
+            virtual void _updateRect();
         
-        bool _hasChildren(flDisplayObject* displayObject);
+            bool _hasChildren(flDisplayObject* displayObject);
         
-    private:
+        private:
     };
     
 }

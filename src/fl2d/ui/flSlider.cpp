@@ -405,6 +405,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_press() {
+        float preValue = _value;
+
         //------------------------------------------
         float temp = mouseX() - _draggablePoint.x;
         if(temp < 0) temp = 0;
@@ -416,8 +418,6 @@ namespace fl2d {
         thumb->x(temp - _thumbWidth * 0.5);
         //------------------------------------------
         
-        float preValue = _value;
-
         //------------------------------------------
         if(_max > _min) {
             _value = (_range * _percent) + _min;

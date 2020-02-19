@@ -32,6 +32,8 @@ namespace fl2d {
         //------------------------------------------
         
         _setNormalColor();
+        
+//        _showHitArea = true;
     }
     
     //--------------------------------------------------------------
@@ -49,12 +51,33 @@ namespace fl2d {
     // Setup / Update / Draw
     //==============================================================
     
+    //--------------------------------------------------------------
+    void flCheckBox::_setup() {
+        //ofLog() << "[flCheckBox]setup()";
+    }
+    
+    //--------------------------------------------------------------
+    void flCheckBox::_update() {
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flCheckBox::_draw() {
+//        if(_flg) {
+//            _flg = false;
+//            if(isMouseOver()) {
+//                _setOverColor();
+//            } else {
+//                _setNormalColor();
+//            }
+//        }
+    }
+    
     //==============================================================
     // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flCheckBox::label() { return _label; }
     void flCheckBox::label(flTextField* value) {
         _label = value;
         if (_label == NULL) return;
@@ -66,6 +89,34 @@ namespace fl2d {
         }
     }
 
+    //--------------------------------------------------------------
+    void flCheckBox::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        
+        if(_enabled) {
+            if(_selected) {
+                if(isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setActiveColor();
+                }
+            } else {
+                if(isMouseOver()) {
+                    _setSelectedOverColor();
+                } else {
+                    _setNormalColor();
+                }
+            }
+        } else {
+            if(!_selected) {
+                _setDisableNormalColor();
+            } else {
+                _setDisableActiveColor();
+            }
+        }
+    }
+    
     //--------------------------------------------------------------
     string flCheckBox::labelText() { return _label->text(); }
     void flCheckBox::labelText(string value) {
@@ -101,52 +152,28 @@ namespace fl2d {
             }
         }
         
-        if(dispatch) {
-            dispatchEvent(new flEvent(flEvent::CHANGE));
-            dispatchEvent(new flCheckBoxEvent(flCheckBoxEvent::CHANGE));
-        }
-    }
-    
-    //--------------------------------------------------------------
-    bool flCheckBox::enabled() { return _enabled; }
-    void flCheckBox::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-        
-        if(_enabled) {
-            if(_selected) {
-                _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-                _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-            } else {
-                _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-                _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
-            }
-        } else {
-            if(_selected) {
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-                _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-            } else {
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-                _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
-            }
-        }
-        
-        //        flGraphics* g;
-        //        g = graphics();
-        //        g->clear();
-        //        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-        //        if(_enabled) {
-        //            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-        //        } else {
-        //            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
-        //        }
-        //        g->drawRect(0, 0, _uiWidth, _uiHeight);
-        //        g->endFill();
+        _changeValue(dispatch);
     }
     
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flCheckBox::_changeValue(bool dispatch) {
+        if(_boolParam != NULL) {
+            _changedValueByMyself = true;
+            _boolParam->set(_selected);
+        }
+        
+        //------------------------------------------
+        if(dispatch) {
+            flCheckBoxEvent* event = new flCheckBoxEvent(flCheckBoxEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
     
     //--------------------------------------------------------------
     void flCheckBox::_over() {
@@ -301,7 +328,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_mouseEventHandler(flEvent& event) {
-//        if(debug()) ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
+//        ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
@@ -315,16 +342,18 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _press();
-            addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
-            if(stage()) {
-                stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
+            if(event.target() == this) {
+                _press();
+//                addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
+                if(stage()) {
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
+                }
             }
         }
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
+//            removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
             }

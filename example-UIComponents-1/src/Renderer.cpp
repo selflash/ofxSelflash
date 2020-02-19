@@ -15,11 +15,6 @@ void Renderer::_setup() {
 
     viewPort.set(0, 0, camWidth, camHeight);
 
-    _count = 0;
-    speed = 0.5;
-    
-    objPos.set(0, 0, -100);
-
 //    _vidGrabber.setDeviceID(0);
 //    _vidGrabber.setDesiredFrameRate(60);
 //    _vidGrabber.initGrabber(camWidth, camHeight);
@@ -43,10 +38,6 @@ void Renderer::_setup() {
 //    flBitmap* bitmap = new flBitmap(_videoTexture);
 //    //    bitmap->alpha(0.5);
 //    addChild(bitmap);
-    
-    bgColor = ofColor(0, 0, 0, 255);
-    lineColor = ofColor(255, 255, 255, 255);
-    lineWidth = 1;
 }
 
 //--------------------------------------------------------------
@@ -87,13 +78,39 @@ void Renderer::_draw() {
     ofRotateX(_count);
     ofRotateY(_count * 0.75);
     
+    //--------------------------------------
     ofPushStyle();
     ofSetColor(lineColor);
-    ofNoFill();
+    if(fillEnabled) {
+        ofFill();
+    } else {
+        ofNoFill();
+    }
     ofSetLineWidth(lineWidth);
     ofDrawBox(0, 0, 0, 100, 100, 100);
     ofPopStyle();
-    
+    //--------------------------------------
+
+    //--------------------------------------
+    if(wireframeEnabled) {
+        //--------------------------------------
+        glPushAttrib(GL_ALL_ATTRIB_BITS);
+        ofEnableAlphaBlending();
+        glEnable(GL_DEPTH_TEST);
+        
+        ofPushStyle();
+        ofSetColor(0);
+        ofNoFill();
+        
+        ofSetLineWidth(1);
+        ofDrawBox(0, 0, 0, 100, 100, 100);
+        ofPopStyle();
+        
+        glPopAttrib();
+        //--------------------------------------
+    }
+    //--------------------------------------
+
     ofPopMatrix();
     
     ofPopMatrix();

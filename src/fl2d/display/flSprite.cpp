@@ -15,7 +15,7 @@ namespace fl2d {
         
         name("flSprite");
         
-        client = NULL;
+        __client = NULL;
         
         _graphics = new flGraphics();
         
@@ -35,7 +35,7 @@ namespace fl2d {
         
         _target = NULL;
         
-        client = NULL;
+        __client = NULL;
         
         delete _graphics;
         _graphics = NULL;
@@ -58,7 +58,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
@@ -98,9 +98,9 @@ namespace fl2d {
         //        bIdentity = false;
         //        if(!bIdentity){
         if(applyMatrix){
-            //            glPushMatrix();
+//            glPushMatrix();
             ofPushMatrix();
-            //            glMultMatrixf(matrix().getPtr());
+//            glMultMatrixf(matrix().getPtr());
             ofMultMatrix(matrix().getPtr());
         }
         
@@ -135,16 +135,24 @@ namespace fl2d {
         
         //--------------------------------------
         //ヒットエリアの表示
-        //    ofNoFill();
-        //    ofSetLineWidth(1);
-        //    ofSetColor(255, 0, 0, 100);
-        //    ofRect(x(), y(), width(), height());
-        //    ofRect(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+        if(_showHitArea) {
+            ofPushMatrix();
+            ofMultMatrix(matrix().getPtr());
+
+            ofNoFill();
+            ofSetLineWidth(1);
+            ofSetColor(255, 0, 0, 100);
+//            ofDrawRectangle(x(), y(), width(), height());
+            ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+//            ofDrawRectangle(_rect->left(), _rect->top(), _rect->width(), _rect->height());
+            
+            ofPopMatrix();
+        }
         //--------------------------------------
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //    //--------------------------------------------------------------
@@ -271,13 +279,15 @@ namespace fl2d {
          ・hitAreaに設定するflSpriteのmouseEnabledはfalseしないといけない
          ・hitAreaに設定するflSpriteを他のhitAreaにする事はできない
          ・もっとも上にaddChildされたflSpriteが優先される
+         
+         ・must be addedChild.
          */
         
         if(value == NULL) {
-            value->client = NULL;
+            value->__client = NULL;
             _hitArea = NULL;
         } else {
-            value->client = this;
+            value->__client = this;
             _hitArea = value;
         }
     }
@@ -286,6 +296,7 @@ namespace fl2d {
     bool flSprite::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
+        //transform to local from global.
         _concatenatedMatrixInv.transformPoint(p);
         
         if(shapeFlag) {
@@ -301,13 +312,12 @@ namespace fl2d {
         _draggableArea = bounds;
         
         //TODO 実装がスマートじゃないなー・・
+        //it's not cool...
         //ofPoint* p = new ofPoint(stage()->mouseX(), stage()->mouseY());
         ofPoint* p = new ofPoint(ofGetMouseX(), ofGetMouseY());
         _draggablePoint = parent()->globalToLocal(*p);
         _draggablePoint.x -= x();
         _draggablePoint.y -= y();
-        
-        //cout << "x = " << p->x << " y = " << p->y << endl;
         
         ofAddListener(ofEvents().mouseDragged, this, &flSprite::_mouseDragging);
     }
@@ -320,7 +330,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -350,7 +360,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSprite::__compoundAlpha(float value){
+    void flSprite::__compoundAlpha(float value) {
         _compoundAlpha = value;
         _graphics->__compoundAlpha(_compoundAlpha);
     }

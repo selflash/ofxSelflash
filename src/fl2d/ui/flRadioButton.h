@@ -8,30 +8,25 @@
 namespace fl2d {
     class flRadioButtonGroup;
     class flRadioButton : public flUIBase {
-        friend class flRadioButtonGroup;
+        friend flRadioButtonGroup;
         
         public:
         
         protected:
         
         private:
-            float _uiWidth;
-            float _uiHeight;
-        
-            bool _selected;
-        
-            bool _enabled;
+            float _uiWidth = 0.0;
+            float _uiHeight = 0.0;
         
             float _hitAreaAlpha = 0.0;
-        
             int _shapeType = 1;
+            bool _selected = false;
 
-            flRadioButtonGroup* _groupOwner;
+            flRadioButtonGroup* _groupOwner = NULL;
         
         public:
-            virtual ~flRadioButton();
-        
             virtual void label(flTextField* value);
+            virtual void enabled(bool value);
 
             string labelText();
             void labelText(string value);
@@ -39,34 +34,43 @@ namespace fl2d {
             bool selected();
             void selected(bool value, bool dispatch = true);
         
-            bool enabled();
-            void enabled(bool value);
-        
-    //        inline void activeColor(ofFloatColor value) { _activeColor = value; };
-        
             inline int shapeType() { return _shapeType; };
             inline void shapeType(int value) {
                 _shapeType = value;
+                
                 if(_enabled) {
                     if(_selected) {
-                        _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-                        _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+                        if(isMouseOver()) {
+                            _setOverColor();
+                        } else {
+                            _setActiveColor();
+                        }
                     } else {
-                        _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-                        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
+                        if(isMouseOver()) {
+                            _setSelectedOverColor();
+                        } else {
+                            _setNormalColor();
+                        }
                     }
                 } else {
-                    if(_selected) {
-                        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-                        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+                    if(!_selected) {
+                        _setDisableNormalColor();
                     } else {
-                        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-                        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
+                        _setDisableActiveColor();
                     }
                 }
             };
         
         protected:
+            flRadioButton(float width = 100);
+            virtual ~flRadioButton();
+
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
+
+            virtual void _changeValue(bool dispatch = true);
+
             virtual void _over();
             virtual void _out();
             virtual void _press();
@@ -83,15 +87,13 @@ namespace fl2d {
             virtual void _drawGraphics(const ofColor& outerColor, const ofColor& innerColor);
         
         private:
-            flRadioButton(float width = 100);
-        
             void _setGroupOwner(flRadioButtonGroup* groupOwner);
             virtual void _mouseEventHandler(flEvent& event);
     };
     
     class flRadioButton;
     class flRadioButtonGroup : public flEventDispatcher {
-        friend class flRadioButton;
+        friend flRadioButton;
         
         public:
         

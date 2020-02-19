@@ -108,7 +108,7 @@ void InteractiveBox::_draw() {
     
     ofPushStyle();
     //    ofSetColor(0x000000);
-    ofSetColor(0xffffff);
+    ofSetColor(255);
     //    ofDrawBitmapString(text, 10, 50);
     flFont::drawString(text, 9, 10, 20);
     ofPopStyle();
