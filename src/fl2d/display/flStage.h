@@ -55,9 +55,9 @@ namespace fl2d {
         int	_mouseX;
         int	_mouseY;
         
-        //0 = 左クリック　2 = 右クリック
+        //0 is left click.　2 is right click.
         int _mouseID;
-        //左クリック以外をしたか
+        //Did click except left click.
         bool _isMouseChanged;
         
         //キーボードキーを押されているか
@@ -67,7 +67,7 @@ namespace fl2d {
         //キーボードキーを離したか
         //bool _isKeyReleased;
         
-        //キーボードフォーカスを持つインタラクティブオブジェクト
+        //Interactive objcet that is focused.
         flInteractiveObject* _focus;
         
         //最前面でマウスにヒットしているDisplayObject
@@ -97,7 +97,7 @@ namespace fl2d {
         virtual void setup(flSettings settings = flSettings());
         virtual void update();
         virtual void draw();
-        //            virtual void resize();
+//        virtual void resize();
         
         int stageWidth();
         int stageHeight();
@@ -105,7 +105,7 @@ namespace fl2d {
         virtual int mouseX();
         virtual int mouseY();
         
-        //            virtual bool isMouseDown();
+//        virtual bool isMouseDown();
         
         flInteractiveObject* focus();
         
@@ -147,7 +147,7 @@ namespace fl2d {
         void _mouseDownEventHandler(ofMouseEventArgs& event);
         void _mouseUpEventHandler(ofMouseEventArgs& event);
         void _mouseScrolledEventHandler(ofMouseEventArgs& event);
-        //            void _mouseScrolledEventHandler(int x, int y, float scrollX, float scrollY);
+//        void _mouseScrolledEventHandler(int x, int y, float scrollX, float scrollY);
         void _resizeEventHandler(ofResizeEventArgs& event);
         
         void _keyDownEventHandler(ofKeyEventArgs& event);

@@ -16,14 +16,12 @@ namespace fl2d {
         
         _target = this;
         name("flNumberDialer");
-        
-        _label = NULL;
 
         _uiWidth = width;
         _uiHeight = height;
         
-        _dragVector = VERTICALLY;
-        _type = HORIZONTALLY;
+        _dragDirection = VERTICALLY;
+        _direction = HORIZONTALLY;
         
         //------------------------------------------
         _track = new flSprite();
@@ -47,7 +45,7 @@ namespace fl2d {
         //------------------------------------------
         _value = 0.0;
         _tempValue = 0.0;
-        _stepValue = 1.0;
+        _stepSize = 1.0;
         _min = numeric_limits<float>::quiet_NaN();
         _max = numeric_limits<float>::quiet_NaN();
         
@@ -58,14 +56,13 @@ namespace fl2d {
         _startPos = ofPoint(0, 0);
         //------------------------------------------
         
-        type(HORIZONTALLY);
+        direction(HORIZONTALLY);
     }
     
     //--------------------------------------------------------------
     flNumberDialer::~flNumberDialer() {
         //ofLog() << "[flNumberDialer]~flNumberDialer()";
 
-//        removeChild(_track);
         _track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumberDialer::_mouseEventHandler);
         _track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flNumberDialer::_mouseEventHandler);
         _track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumberDialer::_mouseEventHandler);
@@ -74,20 +71,18 @@ namespace fl2d {
         
         _value = 0.0;
         _tempValue = 0.0;
-        _stepValue = 0.0;
+        _stepSize = 0.0;
         _min = 0.0;
         _max = 0.0;
         
         _uiWidth = 0.0;
         _uiHeight = 0.0;
         
-        _dragVector = "";
-        _type = "";
+        _dragDirection = "";
+        _direction = "";
         
         delete _valueText;
         _valueText = NULL;
-
-        _label = NULL;
         
         _weight = 0.0;
         _roundEnabled = false;
@@ -112,19 +107,19 @@ namespace fl2d {
             
             //------------------------------------------
             //水平
-            if(_dragVector == VERTICALLY) {
+            if(_dragDirection == VERTICALLY) {
                 if(!_invertEnabled) {
-                    _value = _tempValue + ((mouseY() - _startPos.y) * _weight) * -_stepValue;
+                    _value = _tempValue + ((mouseY() - _startPos.y) * _weight) * -_stepSize;
                 } else {
-                    _value = _tempValue - ((mouseY() - _startPos.y) * _weight) * -_stepValue;
+                    _value = _tempValue - ((mouseY() - _startPos.y) * _weight) * -_stepSize;
                 }
             }
             //垂直
-            else if(_dragVector == HORIZONTALLY) {
+            else if(_dragDirection == HORIZONTALLY) {
                 if(!_invertEnabled) {
-                    _value = _tempValue + ((mouseX() - _startPos.x) * _weight) * _stepValue;
+                    _value = _tempValue + ((mouseX() - _startPos.x) * _weight) * _stepSize;
                 } else {
-                    _value = _tempValue - ((mouseX() - _startPos.x) * _weight) * _stepValue;
+                    _value = _tempValue - ((mouseX() - _startPos.x) * _weight) * _stepSize;
                 }
             }
             
@@ -158,16 +153,24 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flNumberDialer::label() { return _label; }
-    void flNumberDialer::label(flTextField* value) { _label = value; }
+    void flNumberDialer::label(flTextField* value) {
+        _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
+    }
     
     //--------------------------------------------------------------
-    string flNumberDialer::type() { return _type; }
-    void flNumberDialer::type(string value) {
-        _type = value;
+    string flNumberDialer::direction() { return _direction; }
+    void flNumberDialer::direction(string value) {
+        _direction = value;
         
         //水平
-        if(_type == HORIZONTALLY) {
+        if(_direction == HORIZONTALLY) {
 //            _track->x(0);
 //            _track->y(0);
 
@@ -177,7 +180,7 @@ namespace fl2d {
             _valueText->rotation(0);
         }
         //垂直
-        else if(_type == VERTICALLY) {
+        else if(_direction == VERTICALLY) {
 //            _track->x(_uiHeight);
 //            _track->y(0);
 
@@ -221,8 +224,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flNumberDialer::stepValue() { return _stepValue; }
-    void flNumberDialer::stepValue(float value, bool dispatch) { _stepValue = value; }
+    float flNumberDialer::stepSize() { return _stepSize; }
+    void flNumberDialer::stepSize(float value, bool dispatch) { _stepSize = value; }
     
     //--------------------------------------------------------------
     float flNumberDialer::min() { return _min; }
@@ -367,9 +370,9 @@ namespace fl2d {
         g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         //水平
-        if(_type == HORIZONTALLY) g->drawRect(0, 0, _uiWidth, _uiHeight);
+        if(_direction == HORIZONTALLY) g->drawRect(0, 0, _uiWidth, _uiHeight);
         //垂直
-        else if(_type == VERTICALLY) g->drawRect(0, 0, _uiHeight, _uiWidth);
+        else if(_direction == VERTICALLY) g->drawRect(0, 0, _uiHeight, _uiWidth);
         g->endFill();
     }
     

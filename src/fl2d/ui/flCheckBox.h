@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "flUIBase.h"
-#include "flEvent.h"
 #include "flCheckBoxEvent.h"
 
 namespace fl2d {
@@ -17,10 +16,8 @@ namespace fl2d {
         float _uiWidth;
         float _uiHeight;
         
-        bool _selected;
-        
-        float _hitAreaAlpha = 0.0;
-        
+        bool _selected = false;
+        float _hitAreaAlpha = 0.0;        
         int _shapeType = 0;
         
     public:

@@ -103,11 +103,18 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flVec2Slider::label() { return _label; }
     void flVec2Slider::label(flTextField* value) {
         _label = value;
         xSlider->label(_label);
         ySlider->label(_label);
+        
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
     }
 
     //--------------------------------------------------------------

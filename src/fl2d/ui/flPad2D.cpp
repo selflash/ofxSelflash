@@ -134,10 +134,10 @@ namespace fl2d {
         _dialer01->name("flPad2D.leftDialer");
         _dialer01->x(0);
         _dialer01->y(_n);
-        _dialer01->type(flNumberDialer::VERTICALLY);
+        _dialer01->direction(flNumberDialer::VERTICALLY);
         _dialer01->max(_rightValue, false);
         _dialer01->value(_leftValue);
-        _dialer01->dragVector(flNumberDialer::HORIZONTALLY);
+        _dialer01->dragDirection(flNumberDialer::HORIZONTALLY);
         _dialer01->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
         addChild(_dialer01);
         //上
@@ -145,7 +145,7 @@ namespace fl2d {
         _dialer02->name("flPad2D.topDialer");
         _dialer02->x(_n);
         _dialer02->y(0);
-        _dialer02->stepValue(-1);
+        _dialer02->stepSize(-1);
         _dialer02->max(_bottomValue, false);
         _dialer02->value(_topValue);
         _dialer02->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
@@ -155,8 +155,8 @@ namespace fl2d {
         _dialer03->name("flPad2D.rightDialer");
         _dialer03->x(_n + _areaWidth);
         _dialer03->y(_n);
-        _dialer03->type(flNumberDialer::VERTICALLY);
-        _dialer03->dragVector(flNumberDialer::HORIZONTALLY);
+        _dialer03->direction(flNumberDialer::VERTICALLY);
+        _dialer03->dragDirection(flNumberDialer::HORIZONTALLY);
         _dialer03->min(_leftValue, false);
         _dialer03->value(_rightValue);
         _dialer03->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
@@ -166,7 +166,7 @@ namespace fl2d {
         _dialer04->name("flPad2D.bottomDialer");
         _dialer04->x(_n);
         _dialer04->y(_n + _areaHeight);
-        _dialer04->stepValue(-1);
+        _dialer04->stepSize(-1);
         _dialer04->min(_topValue, false);
         _dialer04->value(_bottomValue);
         _dialer04->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
@@ -297,13 +297,15 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    flTextField* flPad2D::label() { return _label; }
     void flPad2D::label(flTextField* value) {
         _label = value;
-//        if(_dialer01 != NULL) _dialer01->label(_label);
-//        if(_dialer02 != NULL) _dialer02->label(_label);
-//        if(_dialer03 != NULL) _dialer03->label(_label);
-//        if(_dialer04 != NULL) _dialer04->label(_label);
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
     }
     
     //--------------------------------------------------------------

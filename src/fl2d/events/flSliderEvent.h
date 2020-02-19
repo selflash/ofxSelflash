@@ -20,30 +20,30 @@ namespace fl2d {
         friend class flRangeSlider;
         friend class flSimpleSlider;
         
-    public:
-        static string CHANGE;
-        static string THUMB_DRAG;
-        static string THUMB_PRESS;
-        static string THUMB_RELEASE;
+        public:
+            static string CHANGE;
+            static string THUMB_DRAG;
+            static string THUMB_PRESS;
+            static string THUMB_RELEASE;
         
-    protected:
-        //スライダサムまたはスライダトラックが押されたかどうかを示すストリングを取得します。
-        void* _clickTarget;
+        protected:
+            //スライダサムまたはスライダトラックが押されたかどうかを示すストリングを取得します。
+            void* _clickTarget;
         
-    private:
+        private:
         
-    public:
-        flSliderEvent(string type);
-        virtual ~flSliderEvent();
+        public:
+            flSliderEvent(string type);
+            virtual ~flSliderEvent();
         
-        template <class T>
-        T data() { return getProperty<T>("data"); }
+            template <class T>
+            T data() { return getProperty<T>("data"); }
         
-    protected:
+        protected:
         
-    private:
-        template <class T>
-        void data(T value) { setProperty<T>("data", value); }
+        private:
+            template <class T>
+            void data(T value) { setProperty<T>("data", value); }
         
     };
     

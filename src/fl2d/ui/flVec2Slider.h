@@ -29,7 +29,6 @@ namespace fl2d {
                    );
         virtual ~flVec2Slider();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
         
         virtual ofVec2f vec2Value();

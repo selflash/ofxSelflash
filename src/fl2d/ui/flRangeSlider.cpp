@@ -209,16 +209,14 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flRangeSlider::label() { return _label; }
     void flRangeSlider::label(flTextField* value) {
         _label = value;
-        if (_label != NULL) {
-            if (_enabled) {
-                _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-            }
-            else {
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-            }
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         }
     }
     

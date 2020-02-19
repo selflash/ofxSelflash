@@ -37,7 +37,6 @@ namespace fl2d {
         flRotarySlider(float areaDiameter = 50, float leverDiameter = 10);
         virtual ~flRotarySlider();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
         
         float xValue();

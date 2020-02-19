@@ -37,7 +37,6 @@ namespace fl2d {
             flJoyStick2(float areaDiameter = 50);
             virtual ~flJoyStick2();
         
-            virtual flTextField* label();
             virtual void label(flTextField* value);
         
             float xValue();

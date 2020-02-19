@@ -36,7 +36,6 @@ namespace fl2d {
         flHistgramViewer(float width = 100, float height = 18);
         virtual ~flHistgramViewer();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
         
         inline float value() { return _value; }

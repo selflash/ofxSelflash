@@ -19,12 +19,13 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = height;
         
-        _toggleEnabled = false;
-        _selected = false;
+        //------------------------------------------
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flButton::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flButton::_mouseEventHandler);
+        //addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+        //------------------------------------------
 
-        _labelTextNotSelected = "";
-        _labelTextSelected = "";
-        
         //------------------------------------------
         _buttonLabel = new flTextField();
         _buttonLabel->x(0);
@@ -37,16 +38,6 @@ namespace fl2d {
         //------------------------------------------
 
         _setNormalColor();
-
-        _pointerValue = NULL;
-        _stringValue = "";
-        _floatValue = 0.0;
-        _intValue = 0;
-        
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flButton::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flButton::_mouseEventHandler);
-        //addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
     }
     
     //--------------------------------------------------------------
@@ -61,30 +52,87 @@ namespace fl2d {
         delete _buttonLabel;
         _buttonLabel = NULL;
         
-        _toggleEnabled = false;
-        _selected = false;
-        
         _pointerValue = NULL;
-        _stringValue = "";
-        _floatValue = 0.0;
-        _intValue = 0;
         
-        _labelTextNotSelected = "";
-        _labelTextSelected = "";
+        _boolParam = NULL;
     }
     
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
     
+    //--------------------------------------------------------------
+    void flButton::_setup() {
+        //ofLog() << "[flButton]setup()";
+    }
+    
+    //--------------------------------------------------------------
+    void flButton::_update() {
+        
+    }
+    
+    //--------------------------------------------------------------
+    void flButton::_draw() {
+        if(_flg) {
+            _flg = false;
+            if(isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
+            }
+        }
+    }
+    
     //==============================================================
     // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flButton::label() { return _label; }
-    void flButton::label(flTextField* value) { _label = value; }
+    void flButton::label(flTextField* value) {
+        _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
+    }
 
+    //--------------------------------------------------------------
+    void flButton::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        
+        if(!_selected) {
+            _buttonLabel->text(_labelTextNotSelected);
+        } else {
+            _buttonLabel->text(_labelTextSelected);
+        }
+        
+        if(_enabled) {
+            if(_selected) {
+                if(isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setActiveColor();
+                }
+            } else {
+                if(isMouseOver()) {
+                    _setSelectedOverColor();
+                } else {
+                    _setNormalColor();
+                }
+            }
+        } else {
+            if(!_selected) {
+                _setDisableNormalColor();
+            } else {
+                _setDisableActiveColor();
+            }
+        }
+    }
+    
     //--------------------------------------------------------------
     string flButton::labelText() { return _buttonLabel->text(); }
     void flButton::labelText(string value, string state) {
@@ -146,10 +194,14 @@ namespace fl2d {
             }
         }
         
+        //------------------------------------------
         if(dispatch) {
-            dispatchEvent(new flEvent(flEvent::CHANGE));
-            dispatchEvent(new flButtonEvent(flButtonEvent::CHANGE));
+//            dispatchEvent(new flEvent(flEvent::CHANGE));
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
         }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -169,43 +221,50 @@ namespace fl2d {
     void flButton::intValue(int value) { _intValue = value; }
     
     //--------------------------------------------------------------
-    bool flButton::enabled() { return _enabled; }
-    void flButton::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-
-        if(!_selected) {
-            _buttonLabel->text(_labelTextNotSelected);
+    void flButton::press(bool dispatch) {
+        ofLog() << "[flButton]press()";
+        if(_toggleEnabled) {
+            selected(!selected());
         } else {
-            _buttonLabel->text(_labelTextSelected);
+            _setActiveColor();
+            _flg = true;
         }
         
-        if(_enabled) {
-            if(_selected) {
-                if(isMouseOver()) {
-                    _setOverColor();
-                } else {
-                    _setActiveColor();
-                }
-            } else {
-                if(isMouseOver()) {
-                    _setSelectedOverColor();
-                } else {
-                    _setNormalColor();
-                }
-            }
-        } else {
-            if(!_selected) {
-                _setDisableNormalColor();
-            } else {
-                _setDisableActiveColor();
+        //------------------------------------------
+        if(dispatch) {
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
+            event->_target = this;
+            dispatchEvent(event);
+            
+            if(_toggleEnabled) {
+                flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
+                event->_target = this;
+                dispatchEvent(event);
             }
         }
+        //------------------------------------------
     }
     
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flButton::_changeValue(bool dispatch) {
+        if(_boolParam != NULL) {
+            _changedValueByMyself = true;
+//            _boolParam->set(_value);
+        }
+        
+        //------------------------------------------
+        //イベント
+        if(dispatch) {
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
     
     //--------------------------------------------------------------
     void flButton::_over() {
@@ -217,7 +276,11 @@ namespace fl2d {
             _setSelectedOverColor();
         }
         
-        dispatchEvent(new flButtonEvent(flButtonEvent::ROLL_OVER));
+        //------------------------------------------
+        flButtonEvent* event = new flButtonEvent(flButtonEvent::ROLL_OVER);
+        event->_target = this;
+        dispatchEvent(event);
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -230,7 +293,11 @@ namespace fl2d {
             _setActiveColor();
         }
         
-        dispatchEvent(new flButtonEvent(flButtonEvent::ROLL_OUT));
+        //------------------------------------------
+        flButtonEvent* event = new flButtonEvent(flButtonEvent::ROLL_OUT);
+        event->_target = this;
+        dispatchEvent(event);
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -241,12 +308,17 @@ namespace fl2d {
             _setActiveColor();
         }
         
-        dispatchEvent(new flButtonEvent(flButtonEvent::MOUSE_DOWN));
+        //------------------------------------------
+        flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
+        event->_target = this;
+        dispatchEvent(event);
         
         if(_toggleEnabled) {
-            dispatchEvent(new flEvent(flEvent::CHANGE));
-            dispatchEvent(new flButtonEvent(flButtonEvent::CHANGE));
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
+            event->_target = this;
+            dispatchEvent(event);
         }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -254,20 +326,33 @@ namespace fl2d {
         if(!_selected) {
             if(isMouseOver()) {
                 _setOverColor();
-                dispatchEvent(new flButtonEvent(flButtonEvent::MOUSE_UP));
-                dispatchEvent(new flButtonEvent(flButtonEvent::CLICK));
             } else {
                 _setNormalColor();
-                dispatchEvent(new flButtonEvent(flButtonEvent::MOUSE_UP));
             }
+            
+            //------------------------------------------
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_UP);
+            event->_target = this;
+            dispatchEvent(event);
+            
+            if(isMouseOver()) {
+                flButtonEvent* event = new flButtonEvent(flButtonEvent::CLICK);
+                event->_target = this;
+                dispatchEvent(event);
+            }
+            //------------------------------------------
         } else {
             if(isMouseOver()) {
                 _setSelectedOverColor();
-                dispatchEvent(new flButtonEvent(flButtonEvent::MOUSE_UP));
             } else {
                 _setActiveColor();
-                dispatchEvent(new flButtonEvent(flButtonEvent::MOUSE_UP));
             }
+            
+            //------------------------------------------
+            flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_UP);
+            event->_target = this;
+            dispatchEvent(event);
+            //------------------------------------------
         }
     }
     
@@ -360,7 +445,7 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) _press();
-            addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+//            addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             if(stage()) {
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             }
@@ -368,7 +453,7 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+//            removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             }

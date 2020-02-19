@@ -73,10 +73,16 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    flTextField* flRadioButton::label() { return _label; }
-    
-    //--------------------------------------------------------------
-    void flRadioButton::label(flTextField* value) { _label = value; }
+    void flRadioButton::label(flTextField* value) {
+        _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
+    }
 
     //--------------------------------------------------------------
     string flRadioButton::labelText() { return _label->text(); }

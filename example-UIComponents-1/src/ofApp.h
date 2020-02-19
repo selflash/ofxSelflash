@@ -15,6 +15,8 @@ class ofApp : public ofBaseApp {
         Renderer* renderer;
         ofEventListeners listeners;
         bool enabled = true;
+    
+        bool animationEnabled = false;
 
     private:
 

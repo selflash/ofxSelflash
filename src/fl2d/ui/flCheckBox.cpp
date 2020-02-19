@@ -17,8 +17,11 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = 18;
         
-        _selected = false;
-        
+        addEventListener(flMouseEvent::MOUSE_OVER, this, &flCheckBox::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_OUT, this, &flCheckBox::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flCheckBox::_mouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
+
         //------------------------------------------
         _label = new flTextField();
         _label->x(15);
@@ -29,11 +32,6 @@ namespace fl2d {
         //------------------------------------------
         
         _setNormalColor();
-
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flCheckBox::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flCheckBox::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flCheckBox::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
     }
     
     //--------------------------------------------------------------
@@ -45,11 +43,6 @@ namespace fl2d {
         
         delete _label;
         _label = NULL;
-        
-        _selected = false;
-        _hitAreaAlpha = 0.0;
-        
-        _shapeType = 0;
     }
     
     //==============================================================
@@ -64,6 +57,13 @@ namespace fl2d {
     flTextField* flCheckBox::label() { return _label; }
     void flCheckBox::label(flTextField* value) {
         _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
     }
 
     //--------------------------------------------------------------

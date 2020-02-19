@@ -18,14 +18,14 @@ namespace fl2d {
         
     private:
         //------------------------------------------
-        float _value;
+        float _value = 0.0;
         
-        ofPoint* _center;
+        ofPoint* _center = NULL;
         
         float _areaRadius;
         float _leverRadius;
         
-        ofPoint* _draggablePoint;
+        ofPoint* _draggablePoint = NULL;
         //------------------------------------------
         
         //------------------------------------------

@@ -42,7 +42,6 @@ namespace fl2d {
             flJoyStick1(float length = 100);
             virtual ~flJoyStick1();
         
-            virtual flTextField* label();
             virtual void label(flTextField* value);
         
             string type();

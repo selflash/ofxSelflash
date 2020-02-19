@@ -8,98 +8,108 @@ namespace fl2d {
     
     class flButton : public flUIBase {
         
-    public:
+        public:
         
-    protected:
+        protected:
         
-    private:
-        float _uiWidth;
-        float _uiHeight;
+        private:
+            float _uiWidth = 0.0;
+            float _uiHeight = 0.0;
         
-        flTextField* _buttonLabel;
-        string _labelTextNotSelected;
-        string _labelTextSelected;
+            flTextField* _buttonLabel = NULL;
+            string _labelTextNotSelected = "";
+            string _labelTextSelected = "";
         
-        bool _toggleEnabled;
-        bool _selected;
+            bool _toggleEnabled = false;
+            bool _selected = false;
         
-        void* _pointerValue;
-        string _stringValue;
-        float _floatValue;
-        int _intValue;
+            void* _pointerValue = NULL;
+            string _stringValue = "";
+            float _floatValue = 0.0;
+            int _intValue = 0;
         
-    public:
-        flButton(float width = 100, float height = 18);
-        virtual ~flButton();
-        
-        virtual flTextField* label();
-        virtual void label(flTextField* value);
+            bool _flg = false;
 
-        string labelText();
-        void labelText(string value, string state = "default");
+        public:
+            flButton(float width = 100, float height = 18);
+            virtual ~flButton();
         
-//        inline ofFloatColor backgroundNormalColor() { return _normalColor; }
-//        inline void backgroundNormalColor(int color) {
-//            _normalColor.setHex(color);
-//            
-//            if(_enabled) {
-//                _label->textColor(0xffffff);
-//            } else {
-//                _label->textColor(0x999999);
-//            }
-//            
-//            flGraphics* g;
-//            g = graphics();
-//            g->clear();
-//            if(_enabled) {
-//                g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-//                g->beginFill(_normalColor.getHex());
-//            } else {
-//                g->lineStyle(1, flDefinition::UI_LINE_DISABLE_NORMAL_COLOR.getHex());
-//                g->beginFill(_normalColor.getHex() * 0.5);
-//            }
-//            g->drawRect(0, 0, _uiWidth, _uiHeight);
-//            g->endFill();
-//        }
+            virtual void label(flTextField* value);
         
-        virtual bool enabled();
-        virtual void enabled(bool value);
+            virtual void enabled(bool value);
 
-        bool toggleEnabled();
-        void toggleEnabled(bool value);
-        
-        bool selected();
-        void selected(bool value, bool dispatch = true);
-        
-        void* pointerValue();
-        void pointerValue(void* value);
-        
-        string stringValue();
-        void stringValue(string value);
-        
-        float floatValue();
-        void floatValue(float value);
-        
-        int intValue();
-        void intValue(int value);
-        
-    protected:
-        virtual void _over();
-        virtual void _out();
-        virtual void _press();
-        virtual void _release();
-        
-        virtual void _setNormalColor();
-        virtual void _setOverColor();
-        virtual void _setSelectedOverColor();
-        virtual void _setActiveColor();
-        virtual void _setDisableNormalColor();
-        virtual void _setDisableActiveColor();
-        
-        virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+            string labelText();
+            void labelText(string value, string state = "default");
 
-    private:
-        virtual void _mouseEventHandler(flEvent& event);
+            bool toggleEnabled();
+            void toggleEnabled(bool value);
+        
+            bool selected();
+            void selected(bool value, bool dispatch = true);
+        
+            void* pointerValue();
+            void pointerValue(void* value);
+        
+            string stringValue();
+            void stringValue(string value);
+        
+            float floatValue();
+            void floatValue(float value);
+        
+            int intValue();
+            void intValue(int value);
+        
+            void press(bool dispatch = true);
+        
+            //------------------------------------------
+            ofParameter<bool>* _boolParam = NULL;
+            virtual inline void bind(ofParameter<bool>& param) {
+                _listeners.unsubscribeAll();
+                _boolParam = NULL;
+                
+                _boolParam = &param;
+                _listeners.push(_boolParam->newListener([&](bool& val) {
+                    if(_changedValueByMyself) {
+                        _changedValueByMyself = false;
+                    } else {
+                        if(val == true) {
+                            _press();
+                        }
+//                        value(val);
+                    }
+                }));
+                
+//                value(_floatParam->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _boolParam = NULL;
+            }
+            //------------------------------------------
+        
+        protected:
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
+        
+            virtual void _changeValue(bool dispatch = true);
+
+            virtual void _over();
+            virtual void _out();
+            virtual void _press();
+            virtual void _release();
+        
+            virtual void _setNormalColor();
+            virtual void _setOverColor();
+            virtual void _setSelectedOverColor();
+            virtual void _setActiveColor();
+            virtual void _setDisableNormalColor();
+            virtual void _setDisableActiveColor();
+        
+            virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+
+        private:
+            virtual void _mouseEventHandler(flEvent& event);
     };
     
 }

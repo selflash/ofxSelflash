@@ -7,30 +7,31 @@ namespace fl2d {
     
     class flButton;
     class flButtonEvent : public flEvent {
-    public:
-        static string CHANGE;
-        static string MOUSE_OVER;
-        static string MOUSE_OUT;
-        static string ROLL_OVER;
-        static string ROLL_OUT;
-        static string MOUSE_DOWN;
-        static string MOUSE_UP;
-        static string CLICK;
+        friend class flButton;
+
+        public:
+            static string CHANGE;
+            static string MOUSE_OVER;
+            static string MOUSE_OUT;
+            static string ROLL_OVER;
+            static string ROLL_OUT;
+            static string MOUSE_DOWN;
+            static string MOUSE_UP;
+            static string CLICK;
         
-    protected:
+        protected:
         
-    private:
+        private:
         
-    public:
-        flButtonEvent(string type);
-        virtual ~flButtonEvent();
+        public:
+            flButtonEvent(string type);
+            virtual ~flButtonEvent();
         
-        //            ButtonEvent* clone();
+//            ButtonEvent* clone();
         
-    protected:
+        protected:
         
-    private:
-        
+        private:        
     };
     
 }

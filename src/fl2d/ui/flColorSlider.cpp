@@ -462,10 +462,7 @@ namespace fl2d {
         delete _alphaLabel;
         _alphaLabel = NULL;
         
-        if(_param != NULL) {
-            _valueListener.unsubscribe();
-            _param = NULL;
-        };
+        _param = NULL;
     }
     
     //==============================================================
@@ -500,13 +497,24 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flColorSlider::label() { return _label; }
     void flColorSlider::label(flTextField* value) {
         _label = value;
         redSlider->label(_label);
         greenSlider->label(_label);
         blueSlider->label(_label);
         if(alphaSlider != NULL) alphaSlider->label(_label);
+    }
+    
+    //--------------------------------------------------------------
+    void flColorSlider::enabled(bool value) {
+        _enabled = value;
+        mouseChildren(_enabled);
+        
+//        mouseEnabled(_enabled);
+        redSlider->enabled(_enabled);
+        greenSlider->enabled(_enabled);
+        blueSlider->enabled(_enabled);
+        if(alphaSlider != NULL) alphaSlider->enabled(_enabled);
     }
     
     //--------------------------------------------------------------

@@ -19,8 +19,7 @@ namespace fl2d {
 
         //------------------------------------------
         bool _changedValueByMyself = false;
-//        ofParameter<float>* _param;
-        ofEventListener _valueListener;
+        ofEventListeners _listeners;
         //------------------------------------------
 
     private:
@@ -33,14 +32,12 @@ namespace fl2d {
         virtual void enabled(bool value);
         
         //------------------------------------------
-        virtual inline void bind(ofParameter<float>& param) { }
-        virtual inline void bind(ofParameter<int>& param) { }
-        virtual inline void bind(ofParameter<bool>& param) { }
-
+        virtual inline void bind(ofParameter<float>& param);
+        virtual inline void bind(ofParameter<int>& param);
+        virtual inline void bind(ofParameter<bool>& param);
         template <class T>
-        inline void bind(ofParameter<T>& param) { }
-        
-        virtual inline void unbind() { }
+        inline void bind(ofParameter<T>& param);
+        virtual inline void unbind();
         //------------------------------------------
         
     protected:

@@ -298,7 +298,7 @@ void UIComponents::_setup() {
     button001->labelText("Button");
     button001->x(marginLeft + spacing * 0);
     button001->y(marginTop + lineSpacing * 1);
-    button001->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button001->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button001);
     button002 = new flButton(150);
     button002->label(label);
@@ -307,22 +307,22 @@ void UIComponents::_setup() {
     button002->toggleEnabled(true);
     button002->x(marginLeft + spacing * 0);
     button002->y(marginTop + lineSpacing * 2);
-    button002->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
-    button002->addEventListener(flMouseEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    button002->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button002->addEventListener(flButtonEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(button002);
     button003 = new flButton(150);
     button003->label(label);
     button003->labelText("White");
     button003->x(marginLeft + spacing * 0);
     button003->y(marginTop + lineSpacing * 3);
-    button003->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button003->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button003);
     button004 = new flButton(150);
     button004->label(label);
     button004->labelText("Black");
     button004->x(marginLeft + spacing * 0);
     button004->y(marginTop + lineSpacing * 4);
-    button004->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button004->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button004);
     button005 = new flButton(150);
     button005->label(label);
@@ -330,7 +330,7 @@ void UIComponents::_setup() {
     button005->x(marginLeft + spacing * 0);
     button005->y(marginTop + lineSpacing * 5);
     button005->enabled(false);
-    button005->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button005->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button005);
     button006 = new flButton(150);
     button006->label(label);
@@ -339,7 +339,7 @@ void UIComponents::_setup() {
     button006->y(marginTop + lineSpacing * 6);
     button006->selected(true);
     button006->enabled(false);
-    button006->addEventListener(flMouseEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
+    button006->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button006);
     
 //    ofLog() << "button006->height() : " << button006->height();
@@ -559,11 +559,11 @@ void UIComponents::_setup() {
     addChild(label);
     dialer002 = new flNumberDialer(150);
     dialer002->label(label);
-    dialer002->dragVector(flNumberDialer::HORIZONTALLY);
+    dialer002->dragDirection(flNumberDialer::HORIZONTALLY);
     dialer002->x(marginLeft + spacing * 0);
     dialer002->y(marginTop + lineSpacing * 4);
     dialer002->value(-500);
-    dialer002->stepValue(10);
+    dialer002->stepSize(10);
     dialer002->max(100);
     dialer002->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);
@@ -579,11 +579,11 @@ void UIComponents::_setup() {
     addChild(label);
     dialer003 = new flNumberDialer(130);
     dialer003->label(label);
-    dialer003->type(flNumberDialer::VERTICALLY);
+    dialer003->direction(flNumberDialer::VERTICALLY);
     dialer003->x(marginLeft + spacing * 0);
     dialer003->y(marginTop + lineSpacing * 5);
     dialer003->value(10.1);
-    dialer003->stepValue(0.1);
+    dialer003->stepSize(0.1);
     dialer003->min(-100);
     dialer003->max(100);
     dialer003->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -599,12 +599,12 @@ void UIComponents::_setup() {
     addChild(label);
     dialer004 = new flNumberDialer(130);
     dialer004->label(label);
-    dialer004->type(flNumberDialer::VERTICALLY);
-    dialer004->dragVector(flNumberDialer::HORIZONTALLY);
+    dialer004->direction(flNumberDialer::VERTICALLY);
+    dialer004->dragDirection(flNumberDialer::HORIZONTALLY);
     dialer004->x(marginLeft + spacing * 2 + 5 + 5);
     dialer004->y(marginTop + lineSpacing * 5);
     dialer004->value(10.1);
-    dialer004->stepValue(0.1);
+    dialer004->stepSize(0.1);
     dialer004->min(-100);
     dialer004->max(100);
     dialer004->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
@@ -808,11 +808,11 @@ void UIComponents::_uiEventHandler(flEvent& event) {
 //    ofLog() << "[UIComponents]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //    ofLog() << "[UIComponents]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
     
-    //ボタン(マウスダウン)
-    if(event.type() == flMouseEvent::MOUSE_DOWN) {
-        flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+    //ボタン
+    if(event.type() == flButtonEvent::MOUSE_DOWN) {
+        flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
-        
+
         //メインコントローラー
         if(button == button001);
         if(button == button002);
@@ -820,24 +820,20 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         if(button == button004) ofBackground(120, 120, 120, 255);
         if(button == button005) ofBackground(0, 0, 0, 255);
     }
-    
-    //マウスアップ
-    if(event.type() == flMouseEvent::MOUSE_UP) {
-        flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+    if(event.type() == flButtonEvent::MOUSE_UP) {
+        flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
-        
+
         if(button == button001);
         if(button == button002);
         if(button == button003);
         if(button == button004);
         if(button == button005);
     }
-    
-    //マウスチェンジ
-    if(event.type() == flMouseEvent::CHANGE) {
-        flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+    if(event.type() == flButtonEvent::CHANGE) {
+        flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
         flButton* button = (flButton*)(event.currentTarget());
-        
+
         if(button == button001);
         if(button == button002) {
             button003->enabled(!button->selected());

@@ -21,10 +21,11 @@ class AppModel {
 //        bool isProcessing;
 //        bool isFinding;
 
-        ofParameter<float> speed;
         ofParameter<ofColor> bgColor;
+        ofParameter<ofColor> lineColor;
         ofParameter<int> lineWidth;
-    
+        ofParameter<float> speed;
+
 
 //        ofParameter<int> viewMode;
 //        ofParameter<string> currentCameraPosition;

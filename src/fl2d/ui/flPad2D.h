@@ -51,7 +51,6 @@ namespace fl2d {
         flPad2D(float width, float height, float left, float right, float top, float bottom);
         virtual ~flPad2D();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
         
         float xRatio();

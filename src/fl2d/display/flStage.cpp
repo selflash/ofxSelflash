@@ -565,8 +565,9 @@ namespace fl2d {
                                 
                                 intObj = (flInteractiveObject*)dispObj;
                                 //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
-                                //                                intObj->__isMouseDown = _bMouseDown;
-                                //                                    intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+//                                intObj->__isMouseDown = _bMouseDown;
+//                                intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+//                                intObj->__isMouseDown = false;
                                 intObj->__isMousePressed = false;
                                 intObj->__isMouseReleased = false;
                                 //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
@@ -1036,7 +1037,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private EventHandler
     //==============================================================
     
     //--------------------------------------------------------------
@@ -1079,7 +1080,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    // ‚Äª„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥ÊôÇ„Å´„ÅØ„Åì„Çå„Åå„Çà„Å∞„Çå„Å™„ÅÑ„Å£„ÅΩ„ÅÑ„Éª„Éª
     void flStage::_mouseMoveEventHandler(ofMouseEventArgs& event) {
         if(debug()) ofLog() << "[flStage]_mouseMoveEventHandler()";
         
@@ -1163,7 +1163,7 @@ namespace fl2d {
                     
                     // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
                     //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
-                } catch(const char* str ) {
+                } catch(const char* str) {
                     // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
                     ofLog() << str;
                 }
@@ -1301,7 +1301,7 @@ namespace fl2d {
         //------------------------------------
         
         if(_currentMouseDownInteractiveObject) {
-            //            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+//            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
             _currentMouseDownInteractiveObject->__isMouseDown = false;
             _currentMouseDownInteractiveObject = NULL;
         }

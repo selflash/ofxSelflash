@@ -45,6 +45,7 @@ void Renderer::_setup() {
 //    addChild(bitmap);
     
     bgColor = ofColor(0, 0, 0, 255);
+    lineColor = ofColor(255, 255, 255, 255);
     lineWidth = 1;
 }
 
@@ -87,6 +88,7 @@ void Renderer::_draw() {
     ofRotateY(_count * 0.75);
     
     ofPushStyle();
+    ofSetColor(lineColor);
     ofNoFill();
     ofSetLineWidth(lineWidth);
     ofDrawBox(0, 0, 0, 100, 100, 100);

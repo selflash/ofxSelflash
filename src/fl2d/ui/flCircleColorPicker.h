@@ -26,7 +26,6 @@ namespace fl2d {
         flCircleColorPicker(float width = 100, float height = 100);
         virtual ~flCircleColorPicker();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
         
         const ofColor& getPixel(int x, int y);

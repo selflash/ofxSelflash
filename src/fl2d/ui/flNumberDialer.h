@@ -1,16 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "flmath.h"
-#include "flDefinition.h"
-#include "flSprite.h"
-#include "flTextField.h"
+#include "flUIBase.h"
 #include "flNumberDialerEvent.h"
+#include "flmath.h"
 
 namespace fl2d {
     
-    class flNumberDialer : public flSprite {
+    class flNumberDialer : public flUIBase {
         
     public:
         //水平
@@ -23,18 +20,19 @@ namespace fl2d {
     private:
         flSprite* _track;
 
-        flTextField* _label;
         flTextField* _valueText;
 
         float _uiWidth;
         float _uiHeight;
         
-        string _type;
-        string _dragVector;
+        //direction of the slider.
+        string _direction;
+        string _dragDirection;
         
         float _value;
         float _tempValue;
-        float _stepValue;
+        //Gets or sets a nonzero number that describes the unit of change between values.
+        float _stepSize;
         
         float _max;
         float _min;
@@ -44,27 +42,25 @@ namespace fl2d {
         bool _invertEnabled;
         
         ofPoint _startPos;
-        
-        bool _enabled;
 
     public:
         flNumberDialer(float width = 100, float height = 18);
         virtual ~flNumberDialer();
         
-        flTextField* label();
-        void label(flTextField* value);
+        virtual void label(flTextField* value);
+//        virtual void enabled(bool value);
+
+        string direction();
+        virtual void direction(string value);
         
-        string type();
-        void type(string value);
-        
-        inline string dragVector() { return _dragVector; }
-        inline void dragVector(string value) { _dragVector = value; }
+        inline string dragDirection() { return _dragDirection; }
+        inline void dragDirection(string value) { _dragDirection = value; }
         
         float value();
         void value(float value, bool dispatch = true);
         
-        float stepValue();
-        void stepValue(float value, bool dispatch = true);
+        float stepSize();
+        void stepSize(float value, bool dispatch = true);
         
         float min();
         void min(float value, bool dispatch = true);
@@ -80,9 +76,6 @@ namespace fl2d {
         
         bool invertEnabled();
         void invertEnabled(bool value);
-        
-//        bool enabled();
-//        void enabled(bool value);
 
     protected:
         virtual void _setup();

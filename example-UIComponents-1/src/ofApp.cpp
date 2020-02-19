@@ -28,29 +28,51 @@ void ofApp::setup() {
     
     //--------------------------------------
     //Bind
-    renderer->lineWidth = appModel.lineWidth;
-    uiComponents->slider001->bind(appModel.lineWidth);
-    listeners.push(appModel.lineWidth.newListener([&](int& value) {
-        renderer->lineWidth = value;
-    }));
-
-    renderer->speed = appModel.speed;
-    uiComponents->slider002->bind(appModel.speed);
-    listeners.push(appModel.speed.newListener([&](float& value) {
-        renderer->speed = value;
-    }));
-    
     renderer->bgColor = appModel.bgColor;
-    uiComponents->colorSlider001->bind(appModel.bgColor);
     listeners.push(appModel.bgColor.newListener([&](ofColor& value) {
         renderer->bgColor = value;
     }));
+    uiComponents->colorSlider001->bind(appModel.bgColor);
+
+    renderer->lineColor = appModel.lineColor;
+    listeners.push(appModel.lineColor.newListener([&](ofColor& value) {
+        renderer->lineColor = value;
+    }));
+    uiComponents->colorSlider002->bind(appModel.lineColor);
+
+    renderer->lineWidth = appModel.lineWidth;
+    listeners.push(appModel.lineWidth.newListener([&](int& value) {
+        renderer->lineWidth = value;
+    }));
+    uiComponents->slider001->bind(appModel.lineWidth);
+
+    renderer->speed = appModel.speed;
+    listeners.push(appModel.speed.newListener([&](float& value) {
+        renderer->speed = value;
+    }));
+    uiComponents->slider002->bind(appModel.speed);
     //--------------------------------------
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-    
+    if(animationEnabled) {
+        float elapsedTime = ofGetElapsedTimef();
+        float n = ((sin(elapsedTime) + 1.0) / 2.0);
+//        ofLog() << "n = " << n;
+        appModel.lineWidth = ((sin(elapsedTime) + 1.0) / 2.0) * 20;
+        appModel.speed = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 10.0;
+        appModel.lineColor = ofColor(
+            ((sin(elapsedTime * 0.58) + 1.0) / 2.0) * 255,
+            ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255,
+            ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255,
+            255
+        );
+//        appModel.bgColor.g = ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255.0;
+//        appModel.bgColor.b = ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255.0;
+//        appModel.lineColor = ofColor(124, 30, 124, 200);
+
+    }
 }
 
 //--------------------------------------------------------------
@@ -74,10 +96,16 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-    if(key == 'c') {
-        appModel.lineWidth = 15;
-        appModel.speed = 0.5;
-        appModel.bgColor = ofColor(255, 124, 30, 200);
+    if(key == 'a') {
+        animationEnabled = !animationEnabled;
+//        appModel.lineWidth = 15;
+//        appModel.speed = 0.5;
+//        appModel.bgColor = ofColor(255, 124, 30, 200);
+//        appModel.lineColor = ofColor(124, 30, 124, 200);
+    }
+    
+    if(key == 's') {
+        uiComponents->button003->press();
     }
     
     if(key == ('l')) {

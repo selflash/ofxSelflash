@@ -97,8 +97,16 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flCircleColorPicker::label() { return _label; }
-    void flCircleColorPicker::label(flTextField* value) { _label = value; }
+    void flCircleColorPicker::label(flTextField* value) {
+        _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
+    }
     
     //--------------------------------------------------------------
     const ofColor& flCircleColorPicker::getPixel(int x, int y) {

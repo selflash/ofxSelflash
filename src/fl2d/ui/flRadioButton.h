@@ -31,7 +31,6 @@ namespace fl2d {
         public:
             virtual ~flRadioButton();
         
-            virtual flTextField* label();
             virtual void label(flTextField* value);
 
             string labelText();

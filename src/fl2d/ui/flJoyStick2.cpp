@@ -306,8 +306,16 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flJoyStick2::label() { return _label; }
-    void flJoyStick2::label(flTextField* value) { _label = value; }
+    void flJoyStick2::label(flTextField* value) {
+        _label = value;
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
+    }
     
     //--------------------------------------------------------------
     float flJoyStick2::xValue() { return _xValue; }

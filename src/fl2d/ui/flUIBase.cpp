@@ -24,6 +24,8 @@ namespace fl2d {
         
         _label = NULL;
         _enabled = false;
+        
+        _listeners.unsubscribeAll();
     }
     
     //==============================================================
@@ -45,6 +47,17 @@ namespace fl2d {
         mouseEnabled(_enabled);
     }
     
+    //--------------------------------------------------------------
+    void flUIBase::bind(ofParameter<float>& param) { }
+    void flUIBase::bind(ofParameter<int>& param) { }
+    void flUIBase::bind(ofParameter<bool>& param) { }
+    
+    template <class T>
+    void flUIBase::bind(ofParameter<T>& param) { }
+    
+    inline void flUIBase::unbind() { }
+
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
@@ -55,11 +68,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flUIBase::_mouseEventHandler(flEvent& event) {
-        if(!_enabled) return;
-//ofLog() << "[flUIBase]_mouseEventHandler(" << event.type() << ")";
-//ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
-//ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-//ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+//        ofLog() << "[flUIBase]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {

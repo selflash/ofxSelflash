@@ -128,6 +128,14 @@ namespace fl2d {
         }
         
         _topButton->label(_label);
+        
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
     }
     
     //--------------------------------------------------------------

@@ -43,7 +43,6 @@ namespace fl2d {
         flRangeSlider(float trackWidth = 200, float min = 0, float max = 100, float minValue = 40, float maxValue = 60);
         virtual ~flRangeSlider();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
 
 //        void textColor(int color);

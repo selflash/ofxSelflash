@@ -27,8 +27,7 @@ namespace fl2d {
         void body(flDisplayObject* value);
         
         void drawViewportOutline(const ofRectangle & viewport);
-        
-        
+                
     protected:
         virtual void _setup();
         virtual void _update();

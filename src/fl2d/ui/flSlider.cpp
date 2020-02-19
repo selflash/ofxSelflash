@@ -13,16 +13,8 @@ namespace fl2d {
         //------------------------------------------
         _target = this;
         name("flSlider");
-        
-		_normalBarColor.setHex(flDefinition::UI_NORMAL_COLOR.getHex());
-        _overBarColor.setHex(flDefinition::UI_OVER_COLOR.getHex());
-        _activeBarColor.setHex(flDefinition::UI_ACTIVE_COLOR.getHex());
-		_disableNormalBarColor.setHex(flDefinition::UI_DISABLE_NORMAL_COLOR.getHex());
-        _disableActiveBarColor.setHex(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
 
-        _roundEnabled = false;
-        _digit = 2;
-
+        //------------------------------------------
         _min = min;
         _max = max;
         if(_max > _min) {
@@ -31,6 +23,14 @@ namespace fl2d {
             _range = _min - _max;
         }
         _value = defaultValue;
+        //------------------------------------------
+
+        //------------------------------------------
+        _normalBarColor.setHex(flDefinition::UI_NORMAL_COLOR.getHex());
+        _overBarColor.setHex(flDefinition::UI_OVER_COLOR.getHex());
+        _activeBarColor.setHex(flDefinition::UI_ACTIVE_COLOR.getHex());
+        _disableNormalBarColor.setHex(flDefinition::UI_DISABLE_NORMAL_COLOR.getHex());
+        _disableActiveBarColor.setHex(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
         
         _trackWidth = trackWidth;
         _trackHeight = 18;
@@ -42,10 +42,11 @@ namespace fl2d {
         }
         //------------------------------------------
         
+        _percent = _barWidth / _trackWidth;
+
         flGraphics* g;
         
         //------------------------------------------
-        //バーとつまみのコンテナ
         track = new flSprite();
         track->name("flSlider.track");
         track->x(0);
@@ -56,15 +57,14 @@ namespace fl2d {
         track->addEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
         track->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
         addChild(track);
-        
         //------------------------------------------
-        //バー
+
+        //------------------------------------------
         bar = new flSprite();
         bar->name("flSlider.bar");
         bar->mouseEnabled(false);
         track->addChild(bar);
         
-        //つまみ
         thumb = new flSprite();
         thumb->name("flSlider.thumb");
         g = thumb->graphics();
@@ -80,7 +80,8 @@ namespace fl2d {
         thumb->addEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
         thumb->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
         track->addChild(thumb);
-        
+        //------------------------------------------
+
         //------------------------------------------
         _valueText = new flTextField();
         _valueText->name("flSlider.velueText");
@@ -94,18 +95,13 @@ namespace fl2d {
         //------------------------------------------
         
         _setNormalColor();
-        
-        _floatParam = NULL;
-        _intParam = NULL;
     }
     
     //--------------------------------------------------------------
     flSlider::~flSlider() {
         //ofLog() << "[flSlider]~flSlider()";
         
-        _roundEnabled = false;
-        _digit = 0;
-
+        //------------------------------------------
         track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
         track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
         track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
@@ -123,10 +119,12 @@ namespace fl2d {
         
         delete _valueText;
         _valueText = NULL;
+        //------------------------------------------
 
+        //------------------------------------------
         _floatParam = NULL;
         _intParam = NULL;
-        _valueListener.unsubscribe();
+        //------------------------------------------
     }
     
     //==============================================================
@@ -135,7 +133,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_setup() {
-        //cout << "[flSlider]setup()" << endl;
+        //ofLog() << "[flSlider]setup()" << endl;
     }
     
     //--------------------------------------------------------------
@@ -155,18 +153,40 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    flTextField* flSlider::label() { return _label; }
-    void flSlider::label(flTextField* value) { 
+    void flSlider::label(flTextField* value) {
 		_label = value; 
-		if (_label != NULL) {
-			if (_enabled) {
-				_label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-			}
-			else {
-				_label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-			}
-		}
+        if (_label == NULL) return;
+        
+        if (_enabled) {
+            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        }
 	}
+    
+    //--------------------------------------------------------------
+    void flSlider::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if (_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+    }
+    
+    //--------------------------------------------------------------
+    bool flSlider::roundEnabled() { return _roundEnabled; }
+    void flSlider::roundEnabled(bool value) {
+        _roundEnabled = value;
+        if(_roundEnabled) {
+            _digit = 0;
+        } else {
+            _digit = 2;
+        }
+    }
     
     //--------------------------------------------------------------
     float flSlider::min() { return _min; }
@@ -319,42 +339,6 @@ namespace fl2d {
             _setNormalColor();
         }
     }
-    
-    //--------------------------------------------------------------
-    bool flSlider::roundEnabled() { return _roundEnabled; }
-    void flSlider::roundEnabled(bool value) {
-        _roundEnabled = value;
-        if(_roundEnabled) {
-            _digit = 0;
-        } else {
-            _digit = 2;
-        }
-    }
-
-	//--------------------------------------------------------------
-	bool flSlider::enabled() { return _enabled; }
-	void flSlider::enabled(bool value) {
-		_enabled = value;
-		mouseEnabled(_enabled);
-		mouseChildren(_enabled);
-
-		if (_label != NULL) {
-			if (_enabled) {
-				_label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-			}
-			else {
-				_label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-			}
-		}
-
-		//バー
-		if (_enabled) {
-            _setNormalColor();
-		}
-		else {
-            _setNormalColor();
-		}
-	}
 
     //==============================================================
     // Protected / Private Method
@@ -513,12 +497,22 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_setDisableNormalColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        
+        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, _disableActiveBarColor, 1);
     }
     
     //--------------------------------------------------------------
     void flSlider::_setDisableActiveColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        
+        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, _disableActiveBarColor, 1);
     }
     
     //--------------------------------------------------------------
