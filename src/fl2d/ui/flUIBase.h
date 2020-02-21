@@ -18,7 +18,8 @@ namespace fl2d {
         bool _enabled = true;
 
         //------------------------------------------
-        bool _changedValueByMyself = false;
+        bool _bChangedByMyself = false;
+        bool _bChangedByOfParm = false;
         ofEventListeners _listeners;
         //------------------------------------------
 

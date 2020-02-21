@@ -34,14 +34,22 @@ void ofApp::setup() {
     }));
     uiComponents->colorSlider001->bind(appModel.bgColor);
 
-    renderer->cameraPos.x = appModel.cameraPosXY->x;
-    renderer->cameraPos.y = appModel.cameraPosXY->y;
-    listeners.push(appModel.cameraPosXY.newListener([&](vec2& value) {
+//    renderer->cameraPos.x = appModel.cameraPosVelXY->x;
+//    renderer->cameraPos.y = appModel.cameraPosVelXY->y;
+    listeners.push(appModel.cameraPosVelXY.newListener([&](vec2& value) {
+//        ofLog() << "value.x = " << value.x;
+//        ofLog() << "value.y = " << value.y;
         renderer->cameraPos.x += value.x * 1;
         renderer->cameraPos.y += value.y * 1;
     }));
-    uiComponents->joystick2001->bind(appModel.cameraPosXY);
+    uiComponents->joystick2001->bind(appModel.cameraPosVelXY);
     
+//    renderer->cameraPos.z = appModel.cameraPosVelZ;
+    listeners.push(appModel.cameraPosVelZ.newListener([&](float& value) {
+        renderer->cameraPos.z += value * 1;
+    }));
+    uiComponents->joystick1001->bind(appModel.cameraPosVelZ);
+
     renderer->lineColor = appModel.lineColor;
     listeners.push(appModel.lineColor.newListener([&](ofColor& value) {
         renderer->lineColor = value;
@@ -132,12 +140,41 @@ void ofApp::update() {
         appModel.fillEnabled = sin(elapsedTime * 1.4) < 0 ? false : true;
         appModel.wireframeEnabled = sin(elapsedTime * 1.8) < 0 ? false : true;
         
-        uiComponents->joystick2001->moveLever(sin(elapsedTime * 1.7), sin(elapsedTime * 1.5));
-        
+        appModel.cameraPosVelXY = vec2(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
+        appModel.cameraPosVelZ = sin(elapsedTime * 3.0);
+
+//        appModel.cameraPosXY = { sin(elapsedTime * 1.7), sin(elapsedTime * 1.5) };
+//        appModel.cameraPosXY.y = sin(elapsedTime * 1.5);
+//        uiComponents->joystick2001->moveLever(sin(elapsedTime * 1.7), sin(elapsedTime * 1.5));
+
 //        appModel.bgColor.g = ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255.0;
 //        appModel.bgColor.b = ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255.0;
 //        appModel.lineColor = ofColor(124, 30, 124, 200);
 
+    }
+    
+    if(animation2Enabled) {
+        float elapsedTime = ofGetElapsedTimef();
+        float n = ((sin(elapsedTime) + 1.0) / 2.0);
+        //        ofLog() << "n = " << n;
+
+
+        uiComponents->slider001->value(((sin(elapsedTime) + 1.0) / 2.0) * 20);
+        uiComponents->colorSlider002->colorValue(ofColor(
+                                                         ((sin(elapsedTime * 0.58) + 1.0) / 2.0) * 255,
+                                                         ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255,
+                                                         ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255,
+                                                         255
+                                                         ));
+
+
+        uiComponents->joystick2001->moveLever(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
+        uiComponents->joystick1001->moveLever(sin(elapsedTime * 3.0));
+
+        //        appModel.bgColor.g = ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255.0;
+        //        appModel.bgColor.b = ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255.0;
+        //        appModel.lineColor = ofColor(124, 30, 124, 200);
+        
     }
 }
 
@@ -180,12 +217,11 @@ void ofApp::drawGrid() {
 void ofApp::keyPressed(int key) {
     if(key == 'a') {
         animationEnabled = !animationEnabled;
-//        appModel.lineWidth = 15;
-//        appModel.speed = 0.5;
-//        appModel.bgColor = ofColor(255, 124, 30, 200);
-//        appModel.lineColor = ofColor(124, 30, 124, 200);
     }
-    
+    if(key == 'A') {
+        animation2Enabled = !animation2Enabled;
+    }
+
     if(key == 's') {
         uiComponents->button003->press();
     }

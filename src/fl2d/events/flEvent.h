@@ -13,70 +13,73 @@
 
 namespace fl2d {
     
+    class flEventDispatcher;
     class flEvent : public flObject {
-    public:
-        static string ADDED;
-        static string ADDED_TO_STAGE;
+        friend flEventDispatcher;
+
+        public:
+            static string ADDED;
+            static string ADDED_TO_STAGE;
         
-        static string REMOVED;
-        static string REMOVED_FROM_STAGE;
+            static string REMOVED;
+            static string REMOVED_FROM_STAGE;
         
-        //static string ACTIVATE;
-        //static string DEACTIVATE;
-        //static string CANCEL;
-        static string CHANGE;
-        static string CLOSE;
-        static string COMPLETE;
-        //static string CONNECT;
-        static string ENTER_FRAME;
-        static string EXIT_FRAME;
-        //static string FULLSCREEN;
-        //static string ID3;
-        static string INIT;
-        //static string MOUSE_LEAVE;
-        //static string OPEN;
-        //static string RENDER;
-        //static string RESIZE;
-        //static string SCROLL;
-        //static string SELECT;
-        //static string SOUND_COMPLETE;
-        //static string TAB_CHILDREN_CHANEG;
-        //static string TAB_ENABLED_CHANGE;
-        //static string TAB_INDEX_CHANGE;
-        //static string UNLOAD;
+            //static string ACTIVATE;
+            //static string DEACTIVATE;
+            //static string CANCEL;
+            static string CHANGE;
+            static string CLOSE;
+            static string COMPLETE;
+            //static string CONNECT;
+            static string ENTER_FRAME;
+            static string EXIT_FRAME;
+            //static string FULLSCREEN;
+            //static string ID3;
+            static string INIT;
+            //static string MOUSE_LEAVE;
+            //static string OPEN;
+            //static string RENDER;
+            //static string RESIZE;
+            //static string SCROLL;
+            //static string SELECT;
+            //static string SOUND_COMPLETE;
+            //static string TAB_CHILDREN_CHANEG;
+            //static string TAB_ENABLED_CHANGE;
+            //static string TAB_INDEX_CHANGE;
+            //static string UNLOAD;
         
-    protected:
-        string _type;
+        protected:
+            string _type;
         
-        void* _currentTarget;
-        void* _target;
+            void* __currentTarget;
+            void* __target;
         
-    private:
+        private:
         
-    public:
-        flEvent(string type);
-        virtual ~flEvent();
+        public:
+            flEvent(string type);
+            virtual ~flEvent();
         
-        virtual inline flEvent* clone() { return new flEvent(_type); }
+            virtual inline flEvent* clone() { return new flEvent(_type); }
         
-        virtual inline string type() { return _type; }
+            virtual inline string type() { return _type; }
         
-        //            virtual const string& data();
+            //            virtual const string& data();
         
-        virtual inline void* currentTarget() { return _currentTarget; }
-        virtual inline void currentTarget(void* value) { _currentTarget = value; }
+            virtual inline void* currentTarget() { return __currentTarget; }
+    //        virtual inline void currentTarget(void* value) { _currentTarget = value; }
         
-        virtual inline void* target() { return _target; }
-        virtual inline void target(void* value) { _target = value; }
+            virtual inline void* target() { return __target; }
+    //        virtual inline void target(void* value) { _target = value; }
         
-        template <class T>
-        T data() { return getProperty<T>("data"); }
+            template <class T>
+            T data() { return getProperty<T>("data"); }
         
-    protected:
+        protected:
         
-    private:
-        template <class T>
-        void data(T value) { setProperty<T>("data", value); }
+        private:
+            template <class T>
+            void data(T value) { setProperty<T>("data", value); }
         
     };
     

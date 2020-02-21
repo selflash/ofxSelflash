@@ -13,62 +13,81 @@ namespace fl2d {
             //垂直
             static string VERTICALLY;
         
-            flSprite* lever;
+            flSprite* lever = NULL;
         
         protected:
         
         private:
-            flTextField* _valueText;
-            string _type;
+            flTextField* _valueText = NULL;
+            string _type = HORIZONTALLY;
 
-            float _maxDistance;
+            float _uiLength = 0.0;
+            float _uiWidth = 0.0;
+            float _uiHeight = 0.0;
 
             //------------------------------------------
-            float _value;
+            float _leverRadius = 0.0;
+            float _maxDistance = 0.0;
             ofPoint _center;
-            float _uiLength;
-            float _leverRadius;
             ofPoint _draggablePoint;
+            bool _flg = false;
+            float _targetValue = 0.0;
             //------------------------------------------
-        
+
             //------------------------------------------
-            bool _flg;
-            float _targetValue;
+            float _value = 0.0;
             //------------------------------------------
-        
-            bool _enabled;
 
         public:
             flJoyStick1(float length = 100);
             virtual ~flJoyStick1();
         
             virtual void label(flTextField* value);
-        
+            virtual void enabled(bool value);
+
             string type();
             void type(string value);
         
             float value();
         
+            //-1.0 ~ 1.0
             void moveLever(float value = 1.0);
         
-            virtual bool enabled();
-            virtual void enabled(bool value);
+            //------------------------------------------
+            ofParameter<float>* _floatParam = NULL;
+            virtual inline void bind(ofParameter<float>& param) {
+                _listeners.unsubscribeAll();
+                _floatParam = NULL;
+                
+                _floatParam = &param;
+                _listeners.push(_floatParam->newListener([&](float& val) {
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
+                    } else {
+                        _bChangedByOfParm = true;
+                        moveLever(_floatParam->get());
+                    }
+                }));
+                
+//                moveLever(_floatParam->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _floatParam = NULL;
+            }
+            //------------------------------------------
         
         protected:
             virtual void _setup();
             virtual void _update();
             virtual void _draw();
         
-    //        virtual void _areaOver();
-    //        virtual void _areaOut();
-    //        virtual void _areaPress();
-    //        virtual void _areaRelease();
-    //
-    //        virtual void _ballOver();
-    //        virtual void _ballOut();
-    //        virtual void _ballPress();
-    //        virtual void _ballRelease();
-    //        virtual void _ballMove();
+            virtual void _changeValue(bool dispatch = true);
+
+//            virtual void _areaOver();
+//            virtual void _areaOut();
+//            virtual void _areaPress();
+//            virtual void _areaRelease();
         
             virtual void _leverOver();
             virtual void _leverOut();

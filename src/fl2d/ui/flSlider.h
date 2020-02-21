@@ -77,13 +77,15 @@ namespace fl2d {
                 
                 _floatParam = &param;
                 _listeners.push(_floatParam->newListener([&](float& val) {
-                    if(_changedValueByMyself) {
-                        _changedValueByMyself = false;
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
                     } else {
+                        _bChangedByOfParm = true;
                         value(val);
                     }
                 }));
 
+                _bChangedByOfParm = true;
                 value(_floatParam->get());
             }
             virtual inline void bind(ofParameter<int>& param) {
@@ -93,13 +95,15 @@ namespace fl2d {
 
                 _intParam = &param;
                 _listeners.push(_intParam->newListener([&](int& val) {
-                    if(_changedValueByMyself) {
-                        _changedValueByMyself = false;
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
                     } else {
+                        _bChangedByOfParm = true;
                         value(val);
                     }
                 }));
                 
+                _bChangedByOfParm = true;
                 value(_intParam->get());
             }
             virtual inline void unbind() {

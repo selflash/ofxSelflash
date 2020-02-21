@@ -133,7 +133,6 @@ namespace fl2d {
         
         if(dispatch) {
             flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
-            vec2SliderEvent->_target = this;
             vec2SliderEvent->__vec2f = _vec2Value;
             dispatchEvent(vec2SliderEvent);
         }
@@ -157,7 +156,6 @@ namespace fl2d {
         //------------------------------------------
         
         flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
-        vec2SliderEvent->_target = this;
         vec2SliderEvent->__vec2f = _vec2Value;
         dispatchEvent(vec2SliderEvent);
     }

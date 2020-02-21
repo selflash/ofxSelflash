@@ -42,6 +42,7 @@ namespace fl2d {
             float xValue();
             float yValue();
         
+            //-1.0 ~ 1.0
             void leverUp(float value = 1.0);
             void leverDown(float value = 1.0);
             void leverLeft(float value = 1.0);
@@ -57,14 +58,15 @@ namespace fl2d {
                 
                 _vec2Param = &param;
                 _listeners.push(_vec2Param->newListener([&](vec2& val) {
-                    if(_changedValueByMyself) {
-                        _changedValueByMyself = false;
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
                     } else {
+                        _bChangedByOfParm = true;
                         moveLever(_vec2Param->get());
                     }
                 }));
                 
-                moveLever(_vec2Param->get());
+//                moveLever(_vec2Param->get());
             }
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();

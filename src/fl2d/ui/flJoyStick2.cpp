@@ -101,9 +101,6 @@ namespace fl2d {
                 _targetY = lever->y() + dy * 0.4;
             }
             //------------------------------------------
-            
-//            float preXValue = _xValue;
-//            float preYValue = _yValue;
 
             //------------------------------------------
             float tx = _targetX;
@@ -126,9 +123,11 @@ namespace fl2d {
 
             //------------------------------------------
             //Update value.
-            _xValue = (lever->x() - _center.x) / _maxDistance;
-            _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
-            if(_yValue == -0) _yValue = 0;
+            if(_flgX || _flgY) {
+                _xValue = (lever->x() - _center.x) / _maxDistance;
+                _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
+                if(_yValue == -0) _yValue = 0;
+            }
             //------------------------------------------
 
             //------------------------------------------
@@ -138,10 +137,16 @@ namespace fl2d {
                 _setNormalColor();
             }
             //------------------------------------------
-
+            
             //------------------------------------------
-//            if(preXValue != _xValue || preYValue != _yValue) _changeValue(true);
-            _changeValue(true);
+            _changeValue((_flgX || _flgY));
+            
+            if(!_bChangedByOfParm) {
+                if(_vec2Param != NULL) {
+                    _bChangedByMyself = true;
+                    _vec2Param->set(vec2(_xValue, _yValue));
+                }
+            }
             //------------------------------------------
         }
         
@@ -149,6 +154,9 @@ namespace fl2d {
         _flgY = false;
         _targetX = _center.x;
         _targetY = _center.y;
+        _xValue = 0.0;
+        _yValue = 0.0;
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -258,6 +266,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flJoyStick2::moveLever(vec2 value) {
         //ofLog() << "[flJoyStick2]moveLever()";
+        
         _targetX = _center.x - (_maxDistance * value.x);
         _targetY = _center.y - (_maxDistance * value.y);
         _flgX = true;
@@ -270,56 +279,41 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick2::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(_vec2Param != NULL) {
-            _changedValueByMyself = true;
-            _vec2Param->set(vec2(_xValue, _yValue));
-        }
-        //------------------------------------------
-
         _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
 
         //------------------------------------------
-        //イベント
         if(dispatch) {
-            //------------------------------------------
             flJoyStick2Event* event;
             
             event = new flJoyStick2Event(flJoyStick2Event::CHANGE);
-            event->_target = this;
             event->__xValue = _xValue;
             event->__yValue = _yValue;
             dispatchEvent(event);
             
             if(_xValue > 0) {
                 event = new flJoyStick2Event(flJoyStick2Event::RIGHT);
-                event->_target = this;
                 event->__xValue = _xValue;
                 event->__yValue = _yValue;
                 dispatchEvent(event);
             }
             if(_xValue < 0) {
                 event = new flJoyStick2Event(flJoyStick2Event::LEFT);
-                event->_target = this;
                 event->__xValue = _xValue;
                 event->__yValue = _yValue;
                 dispatchEvent(event);
             }
             if(_yValue > 0) {
                 event = new flJoyStick2Event(flJoyStick2Event::UP);
-                event->_target = this;
                 event->__xValue = _xValue;
                 event->__yValue = _yValue;
                 dispatchEvent(event);
             }
             if(_yValue < 0) {
                 event = new flJoyStick2Event(flJoyStick2Event::DOWN);
-                event->_target = this;
                 event->__xValue = _xValue;
                 event->__yValue = _yValue;
                 dispatchEvent(event);
             }
-            //------------------------------------------
         }
         //------------------------------------------
     }
@@ -340,9 +334,6 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick2::_leverPress() {
-//        float preXValue = _xValue;
-//        float preYValue = _yValue;
-
         //------------------------------------------
         float tx = _targetX;
         float ty = _targetY;
@@ -359,6 +350,7 @@ namespace fl2d {
         }
         //------------------------------------------
 
+        //------------------------------------------
         lever->x(tx);
         lever->y(ty);
         //------------------------------------------
@@ -373,10 +365,14 @@ namespace fl2d {
         //------------------------------------------
         _setActiveColor();
         //------------------------------------------
-
+        
         //------------------------------------------
-//        if(preXValue != _xValue || preYValue != _yValue) _changeValue(true);
         _changeValue(true);
+        
+        if(_vec2Param != NULL) {
+            _bChangedByMyself = true;
+            _vec2Param->set(vec2(_xValue, _yValue));
+        }
         //------------------------------------------
     }
     
@@ -514,12 +510,12 @@ namespace fl2d {
             }
         }
         
-        //Mouse Move
+//        //Mouse Move
 //        if(event.type() == flMouseEvent::MOUSE_MOVE) {
 //            if(event.target() == lever) _leverMove();
 //        }
-        
-        //Dragging
+//
+//        //Dragging
 //        if(event.type() == flMouseEvent::DRAGGING) {
 //            if(event.target() == lever){
 //

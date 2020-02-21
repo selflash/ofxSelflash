@@ -162,7 +162,6 @@ namespace fl2d {
         if(dispatch) {
 //            dispatchEvent(new flEvent(flEvent::CHANGE));
             flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------
@@ -182,7 +181,6 @@ namespace fl2d {
         //------------------------------------------
         if(dispatch) {
             flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------

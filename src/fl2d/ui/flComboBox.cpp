@@ -188,7 +188,6 @@ namespace fl2d {
         //イベント
         if(dispatch) {
             flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
-            event->_target = this;
 //            event->__label = _selectedLabel;
 //            event->__pointerValue = _selectedData;
 //            event->__stringValue = _selectedText;
@@ -317,7 +316,6 @@ namespace fl2d {
                 //                new flComboBoxEvent<float>(flComboBoxEvent::CHANGE, 0.1f);
                 flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
                 //                ofLog() << "DEBUG END   ----- ";
-                event->_target = this;
                 //                event->__label = _selectedLabel;
                 //                event->__pointerValue = _selectedData;
                 //                event->__stringValue = _selectedText;

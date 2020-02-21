@@ -116,8 +116,6 @@ namespace fl2d {
         //------------------------------------------
 
         _updateColor();
-        
-        _param = NULL;
     }
     
     //--------------------------------------------------------------
@@ -209,8 +207,6 @@ namespace fl2d {
         //------------------------------------------
 
         _updateColor();
-        
-        _param = NULL;
     }
     
     //--------------------------------------------------------------
@@ -316,8 +312,6 @@ namespace fl2d {
         //------------------------------------------
 
         _updateColor();
-        
-        _param = NULL;
     }
     
     //--------------------------------------------------------------
@@ -421,8 +415,6 @@ namespace fl2d {
         //------------------------------------------
 
         _updateColor();
-        
-        _param = NULL;
     }
     
     //--------------------------------------------------------------
@@ -462,7 +454,7 @@ namespace fl2d {
         delete _alphaLabel;
         _alphaLabel = NULL;
         
-        _param = NULL;
+        _colorParam = NULL;
     }
     
     //==============================================================
@@ -476,7 +468,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_update() {
-        
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -519,9 +511,39 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     ofColor flColorSlider::colorValue() { return _colorValue; }
-    void flColorSlider::colorValue(ofColor& value, bool dispatch) {
+//    void flColorSlider::colorValue(ofColor& value, bool dispatch) {
+//        ofColor preValue = _colorValue;
+//
+//        //------------------------------------------
+//        //Update value.
+//        _colorValue = value;
+//        _hexValue = _colorValue.getHex();
+//        
+//        redSlider->value(_colorValue.r, false);
+//        greenSlider->value(_colorValue.g, false);
+//        blueSlider->value(_colorValue.b, false);
+//        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
+//        //------------------------------------------
+//
+//        //------------------------------------------
+//        //Update color.
+//        _updateColor();
+//        //------------------------------------------
+//        
+//        //------------------------------------------
+//        if(preValue != _colorValue) _changeValue();
+//        
+//        if(!_bChangedByOfParm) {
+//            if(_colorParam != NULL) {
+//                _bChangedByMyself = true;
+//                _colorParam->set(_colorValue);
+//            }
+//        }
+//        //------------------------------------------
+//    }
+    void flColorSlider::colorValue(ofColor value, bool dispatch) {
         ofColor preValue = _colorValue;
-
+        
         //------------------------------------------
         //Update value.
         _colorValue = value;
@@ -532,13 +554,22 @@ namespace fl2d {
         blueSlider->value(_colorValue.b, false);
         if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
         //------------------------------------------
-
+        
         //------------------------------------------
         //Update color.
         _updateColor();
         //------------------------------------------
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
+        
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -562,7 +593,16 @@ namespace fl2d {
         _updateColor();
         //------------------------------------------
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
+        
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -586,7 +626,16 @@ namespace fl2d {
         _updateColor();
         //------------------------------------------
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
+        
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -610,7 +659,16 @@ namespace fl2d {
         _updateColor();
         //------------------------------------------
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
+        
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -634,7 +692,16 @@ namespace fl2d {
         _updateColor();
         //------------------------------------------
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
+        
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -657,8 +724,17 @@ namespace fl2d {
         //Update color.
         _updateColor();
         //------------------------------------------
+
+        //------------------------------------------
+        if(preValue != _colorValue) _changeValue();
         
-        if(preValue != _colorValue) _changeValue(dispatch);
+        if(!_bChangedByOfParm) {
+            if(_colorParam != NULL) {
+                _bChangedByMyself = true;
+                _colorParam->set(_colorValue);
+            }
+        }
+        //------------------------------------------
     }
     
     //==============================================================
@@ -667,17 +743,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_changeValue(bool dispatch) {
-        if(_param != NULL) {
-            _changedValueByMyself = true;
-            _param->set(_colorValue);
-        }
-        
         _hexText->text(ofToString(_hexValue, 2));
         
         //------------------------------------------
         if(dispatch) {
             flColorSliderEvent* colorSliderEvent = new flColorSliderEvent(flColorSliderEvent::CHANGE);
-            colorSliderEvent->_target = this;
             colorSliderEvent->__color = _colorValue;
             dispatchEvent(colorSliderEvent);
         }
@@ -714,7 +784,14 @@ namespace fl2d {
         _updateColor();
         //------------------------------------------
         
+        //------------------------------------------
         if(preValue != _colorValue) _changeValue();
+        
+        if(_colorParam != NULL) {
+            _bChangedByMyself = true;
+            _colorParam->set(_colorValue);
+        }
+        //------------------------------------------
     }
     
 }

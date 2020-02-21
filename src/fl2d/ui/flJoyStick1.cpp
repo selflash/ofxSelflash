@@ -17,22 +17,27 @@ namespace fl2d {
         _target = this;
         name("flJoyStick1");
         
-        _value = 0.0;
-        
-        _uiLength = length;
         _leverRadius = 14 * 0.5;
-        _maxDistance = (_uiLength * 0.5 - _leverRadius);
-        
-        _type = HORIZONTALLY;
-//        _type = VERTICALLY;
-        
+
+        _uiLength = length;
+        _maxDistance = (_uiLength * 0.5 - _leverRadius) - 2;
+
         //水平
         if(_type == HORIZONTALLY) {
-            _center = ofPoint(_uiLength * 0.5, _leverRadius + 2);
+            _uiWidth = _uiLength;
+            _uiHeight = 18;
+
+            _center = ofPoint(_uiWidth * 0.5, _leverRadius + (18 * 0.5 - _leverRadius));
+            _targetValue = _center.x;
+            
         }
         //垂直
         else if(_type == VERTICALLY) {
-            _center = ofPoint(_leverRadius + 2, _uiLength * 0.5);
+            _uiWidth = 18;
+            _uiHeight = _uiLength;
+
+            _center = ofPoint(_leverRadius + (18 * 0.5 - _leverRadius), _uiWidth * 0.5);
+            _targetValue = _center.y;
         }
         
         flGraphics* g;
@@ -53,7 +58,7 @@ namespace fl2d {
         lever->addEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick1::_mouseEventHandler);
         lever->addEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick1::_mouseEventHandler);
         lever->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick1::_mouseEventHandler);
-        lever->addEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick1::_mouseEventHandler);
+//        lever->addEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick1::_mouseEventHandler);
 //        lever->addEventListener(flMouseEvent::DRAGGING, this, &flJoyStick1::_mouseEventHandler);
         addChild(lever);
         //------------------------------------------
@@ -70,19 +75,6 @@ namespace fl2d {
         addChild(_valueText);
         //------------------------------------------
         
-        //------------------------------------------
-        _flg = false;
-        
-        //水平
-        if(_type == HORIZONTALLY) {
-            _targetValue = _center.x;
-        }
-        //垂直
-        else if(_type == VERTICALLY) {
-            _targetValue = _center.y;
-        }
-        //------------------------------------------
-        
         _setNormalColor();
     }
     
@@ -90,29 +82,18 @@ namespace fl2d {
     flJoyStick1::~flJoyStick1() {
         //ofLog() << "[flJoyStick1D]~flJoyStick1D()";
         
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick1::_mouseEventHandler);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick1::_mouseEventHandler);
-        
         lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick1::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick1::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick1::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick1::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick1::_mouseEventHandler);
-        
-        _value = 0.0;
-        
-        _uiLength = 0.0;
-        _leverRadius = 0.0;
-        
+//        lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick1::_mouseEventHandler);
+//        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick1::_mouseEventHandler);
         delete lever;
         lever = NULL;
         
-        _flg = false;
-        _targetValue = 0.0;
-        
-        removeChild(_valueText);
         delete _valueText;
         _valueText = NULL;
+        
+        _floatParam = NULL;
     }
     
     //==============================================================
@@ -128,219 +109,108 @@ namespace fl2d {
     void flJoyStick1::_update() {
         //ofLog() << "[flJoyStick1]_update()";
 
-        float preValue = _value;
-
         if(lever->isMouseDown()) {
-            //------------------------------------------
-            //水平
             if(_type == HORIZONTALLY) {
-                //------------------------------------------
-                float tx = mouseX() - _draggablePoint.x;
-                float shiftX = tx - _center.x;
-                
-                float distance = _center.distance(ofPoint(tx, _center.y));
-                if(_maxDistance < distance) {
-                    float n = _maxDistance / distance;
-                    tx = _center.x + (shiftX * n);
-                }
-                lever->x(tx);
-                
-                //------------------------------------------
-                //Update value.
-                _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                //------------------------------------------
+                _targetValue = mouseX() - _draggablePoint.x;
             }
-            //垂直
             else if(_type == VERTICALLY) {
-                //------------------------------------------
-                float ty = mouseY() - _draggablePoint.y;
-                float shiftY = ty - _center.y;
-                
-                float distance = _center.distance(ofPoint(_center.x, ty));
-                if(_maxDistance < distance){
-                    float n = _maxDistance / distance;
-                    ty = _center.y + (shiftY * n);
-                }
-                lever->y(ty);
-                
-                //------------------------------------------
-                //Update value.
-                _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                //------------------------------------------
+                _targetValue = mouseY() - _draggablePoint.y;
             }
-            //------------------------------------------
-            
-            //------------------------------------------
-//            if(preValue != _value) {
-            if(true) {
-                _valueText->text(ofToString(_value, 2));
-                
-                //------------------------------------------
-                flJoyStick1Event* event;
-                event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-                event->__value = _value;
-                dispatchEvent(event);
-                
-                //水平
-                if(_type == HORIZONTALLY) {
-                    if(_value > 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                    if(_value < 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::LEFT);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                }
-                //垂直
-                else if(_type == VERTICALLY) {
-                    if(_value > 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::UP);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                    if(_value <= 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::DOWN);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                }
-                //------------------------------------------
-            }
-            //------------------------------------------
-        } else if(_flg) {
-            //------------------------------------------
-            //水平
-            if(_type == HORIZONTALLY) {
-                float tx = _targetValue;
-//                if(!_flg) tx = lever->x() + (_center.x - lever->x()) * 0.4f;
-                float shiftX = tx - _center.y;
-                
-                float distance = _center.distance(ofPoint(tx, _center.y));
-                if(_maxDistance < distance){
-                    float n = _maxDistance / distance;
-                    tx = _center.x + (shiftX * n);
-                }
-                lever->x(tx);
-                
-                //------------------------------------------
-                //Update value.
-                _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                //------------------------------------------
-            }
-            //垂直
-            else if(_type == VERTICALLY) {
-                float ty = _targetValue;
-//                if(!_flg) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
-                float shiftY = ty - _center.y;
-
-                float distance = _center.distance(ofPoint(_center.x, ty));
-                if(_maxDistance < distance){
-                    float n = _maxDistance / distance;
-                    ty = _center.y + (shiftY * n);
-                }
-                lever->y(ty);
-                
-                //------------------------------------------
-                //Update value.
-                _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                //------------------------------------------
-            }
-            //------------------------------------------
-            
-            //------------------------------------------
-//            if(preValue != _value) {
-            if(true) {
-                _valueText->text(ofToString(_value, 2));
-                
-                //------------------------------------------
-                flJoyStick1Event* event;
-                event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-                event->__value = _value;
-                dispatchEvent(event);
-                
-                //水平
-                if(_type == HORIZONTALLY) {
-                    if(_value > 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                    if(_value < 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::LEFT);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                }
-                //垂直
-                else if(_type == VERTICALLY) {
-                    if(_value > 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::UP);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                    if(_value < 0) {
-                        event = new flJoyStick1Event(flJoyStick1Event::DOWN);
-                        event->__value = _value;
-                        dispatchEvent(event);
-                    }
-                }
-                //------------------------------------------
-            }
-            //------------------------------------------
+            _leverPress();
         } else {
-            //Easing
-            //------------------------------------------
-            //水平
             if(_type == HORIZONTALLY) {
-                float distanceX = _center.x - lever->x();
-                if(-0.5f < distanceX && distanceX < 0.5f) {
-                    lever->x(_center.x);
-                    _value = 0.0;
-                } else {
-                    lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
-                    
-                    //------------------------------------------
-                    //Update value.
-                    _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
-                    //------------------------------------------
+                //------------------------------------------
+                //Easing
+                float dx = _targetValue - lever->x();
+                if(dx < -0.5 || 0.5 < dx) {
+                    _targetValue = lever->x() + dx * 0.4;
                 }
+                //------------------------------------------
                 
-            }
-            //垂直
-            else if(_type == VERTICALLY) {
-                float distanceY = _center.y - lever->y();
-                if(-0.5f < distanceY && distanceY < 0.5f) {
-                    lever->y(_center.y);
-                    _value = 0.0;
-                } else {
-                    lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
-                    
-                    //------------------------------------------
-                    //Update value.
-                    _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
-                    //------------------------------------------
+                //------------------------------------------
+                float tx = _targetValue;
+                float ty = _center.y;
+
+                //------------------------------------------
+                //範囲内に収める
+                float distance = _center.distance(ofPoint(tx, ty));
+                if(_maxDistance < distance){
+                    float d = tx - _center.x;
+                    float ratio = _maxDistance / distance;
+                    tx = _center.x + (d * ratio);
                 }
+                //------------------------------------------
+                
+                lever->x(tx);
+                
+                //------------------------------------------
+                //Update value.
+//                _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
+                _value = (lever->x() - _center.x) / _maxDistance;
+                //------------------------------------------
+            }
+            else if(_type == VERTICALLY) {
+                //------------------------------------------
+                //Easing
+                float dy = _targetValue - lever->y();
+                if(dy < -0.5 || 0.5 < dy) {
+                    _targetValue = lever->y() + dy * 0.4;
+                }
+                //------------------------------------------
+                
+                //------------------------------------------
+                float tx = _center.x;
+                float ty = _targetValue;
+                
+                //------------------------------------------
+                //範囲内に収める
+                float distance = _center.distance(ofPoint(tx, ty));
+                if(_maxDistance < distance){
+                    float d = ty - _center.y;
+                    float ratio = _maxDistance / distance;
+                    ty = _center.y + (d * ratio);
+                }
+                //------------------------------------------
+                
+                lever->y(ty);
+                
+                //------------------------------------------
+                //Update value.
+//                _value = (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
+                _value = -1 * (lever->y() - _center.y) / _maxDistance;
+                if(_value == -0) _value = 0;
+                //------------------------------------------
+            }
+            
+            //------------------------------------------
+            if(lever->isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
             }
             //------------------------------------------
             
             //------------------------------------------
-//            if(preValue != _value) {
-//            if(true) {
-//                _valueText->text(ofToString(_value, 2));
-//
-//                //------------------------------------------
-//                flJoyStick1Event* event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-//                event->__value = _value;
-//                dispatchEvent(event);
-//                //------------------------------------------
-//            }
+            _changeValue(_flg);
+            
+            if(!_bChangedByOfParm) {
+                if(_floatParam != NULL) {
+                    _bChangedByMyself = true;
+                    _floatParam->set(_value);
+                }
+            }
             //------------------------------------------
         }
-        
+
         _flg = false;
+        if(_type == HORIZONTALLY) {
+            _targetValue = _center.x;
+        }
+        else if(_type == VERTICALLY) {
+            _targetValue = _center.y;
+        }
+        _value = 0.0f;
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -365,22 +235,61 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
+    void flJoyStick1::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if(_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+        //------------------------------------------
+    }
+    
+    //--------------------------------------------------------------
     string flJoyStick1::type() { return _type; }
     void flJoyStick1::type(string value) {
+        if(_type == value) return;
+        
+        string currentType = _type;
         _type = value;
         
+//        //水平
+//        if(_type == HORIZONTALLY) {
+//            _center = ofPoint(_uiLength * 0.5, _leverRadius + 1);
+//
+//        }
+//        //垂直
+//        else if(_type == VERTICALLY) {
+//            _center = ofPoint(_leverRadius + 1, _uiLength * 0.5);
+//
+//        }
+        
+        
+        float currentWidth = _uiWidth;
+        float currentHeight = _uiHeight;
+        ofPoint currentCenter = _center;
+
+        _uiWidth = currentHeight;
+        _uiHeight = currentWidth;
+
+        _center.x = currentCenter.y;
+        _center.y = currentCenter.x;
+
         //水平
         if(_type == HORIZONTALLY) {
-            _center = ofPoint(_uiLength * 0.5, _leverRadius + 2);
-
+            _targetValue = _center.x;
+            
             _valueText->x(2);
             _valueText->y(0);
             _valueText->rotation(0);
         }
         //垂直
         else if(_type == VERTICALLY) {
-            _center = ofPoint(_leverRadius + 2, _uiLength * 0.5);
-
+            _targetValue = _center.y;
+            
             _valueText->x(_valueText->textHeight() - 0);
             _valueText->y(2);
             _valueText->rotation(90);
@@ -389,10 +298,13 @@ namespace fl2d {
         lever->x(_center.x);
         lever->y(_center.y);
         
-        if(lever->isMouseOver()) {
-            _leverOver();
+        if(lever->isMouseDown()) {
+            _setActiveColor();
+        }
+        else if(lever->isMouseOver()) {
+            _setOverColor();
         } else {
-            _leverOut();
+            _setNormalColor();
         }
     }
     
@@ -406,74 +318,64 @@ namespace fl2d {
         //水平
         if(_type == HORIZONTALLY) {
 //            _targetValue = lever->x() - _maxDistance * value;
-            _targetValue = _center.x - _maxDistance * value;
+//            _targetValue = _center.x - _maxDistance * value;
+            _targetValue = _center.x - (_maxDistance * value);
         }
         //垂直
         else if(_type == VERTICALLY) {
 //            _targetValue = lever->y() - _maxDistance * value;
-            _targetValue = _center.y - _maxDistance * value;
+//            _targetValue = _center.y - _maxDistance * value;
+            _targetValue = _center.y - (_maxDistance * value);
         }
         
         _flg = true;
     }
     
-    //--------------------------------------------------------------
-    bool flJoyStick1::enabled() { return _enabled; }
-    void flJoyStick1::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-        mouseChildren(_enabled);
-        
-        if(_enabled) {
-            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        } else {
-            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        }
-        
-        flGraphics* g;
-        //------------------------------------------
-        g = graphics();
-        g->clear();
-        if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        }
-        //水平
-        if(_type == HORIZONTALLY) {
-            g->drawRoundRect(0, 0, _uiLength, _leverRadius * 2, _leverRadius);
-        }
-        //垂直
-        else if(_type == VERTICALLY) {
-            g->drawRoundRect(0, 0, _leverRadius * 2, _uiLength, _leverRadius);
-        }
-        g->endFill();
-        //------------------------------------------
-        
-        //------------------------------------------
-        g = lever->graphics();
-        g->clear();
-        
-        g->beginFill(0xff0000, 0);
-        g->drawCircle(0, 0, _leverRadius * 1.8);
-        if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        }
-        g->drawCircle(0, 0, _leverRadius);
-        g->endFill();
-        //------------------------------------------
-    }
-    
     //==============================================================
     // Protected / Private Method
     //==============================================================
-
+    
+    //--------------------------------------------------------------
+    void flJoyStick1::_changeValue(bool dispatch) {
+        _valueText->text(ofToString(_value, 2));
+        
+        //------------------------------------------
+        if(dispatch) {
+            flJoyStick1Event* event;
+            event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+            event->__value = _value;
+            dispatchEvent(event);
+            
+            //水平
+            if(_type == HORIZONTALLY) {
+                if(_value > 0) {
+                    event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
+                    event->__value = _value;
+                    dispatchEvent(event);
+                }
+                if(_value < 0) {
+                    event = new flJoyStick1Event(flJoyStick1Event::LEFT);
+                    event->__value = _value;
+                    dispatchEvent(event);
+                }
+            }
+            //垂直
+            else if(_type == VERTICALLY) {
+                if(_value > 0) {
+                    event = new flJoyStick1Event(flJoyStick1Event::UP);
+                    event->__value = _value;
+                    dispatchEvent(event);
+                }
+                if(_value <= 0) {
+                    event = new flJoyStick1Event(flJoyStick1Event::DOWN);
+                    event->__value = _value;
+                    dispatchEvent(event);
+                }
+            }
+        }
+        //------------------------------------------
+    }
+    
     //--------------------------------------------------------------
     void flJoyStick1::_leverOver() {
         if(lever->isMouseDown()) return;
@@ -490,7 +392,74 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick1::_leverPress() {
+        //------------------------------------------
+        float tx = _targetValue;
+        float ty = _targetValue;
+
+        //------------------------------------------
+        //水平
+        if(_type == HORIZONTALLY) {
+            //------------------------------------------
+            tx = mouseX() - _draggablePoint.x;
+            ty = _center.y;
+            
+            //------------------------------------------
+            //範囲内に収める
+            float distance = _center.distance(ofPoint(tx, ty));
+            if(_maxDistance < distance) {
+                float shiftX = tx - _center.x;
+                float n = _maxDistance / distance;
+                tx = _center.x + (shiftX * n);
+            }
+            //------------------------------------------
+            
+            lever->x(tx);
+            
+            //------------------------------------------
+            //Update value.
+//            _value = (lever->x() - _center.x) / (_uiLength * 0.5 - _leverRadius);
+            _value = (lever->x() - _center.x) / _maxDistance;
+            //------------------------------------------
+        }
+        //垂直
+        else if(_type == VERTICALLY) {
+            //------------------------------------------
+            tx = _center.x;
+            ty = mouseY() - _draggablePoint.y;
+            
+            //------------------------------------------
+            //範囲内に収める
+            float distance = _center.distance(ofPoint(tx, ty));
+            if(_maxDistance < distance){
+                float shiftY = ty - _center.y;
+                float n = _maxDistance / distance;
+                ty = _center.y + (shiftY * n);
+            }
+            //------------------------------------------
+            
+            lever->y(ty);
+            
+            //------------------------------------------
+            //Update value.
+//            _value = -1 * (lever->y() - _center.y) / (_uiLength * 0.5 - _leverRadius);
+            _value = -1 * (lever->y() - _center.y) / _maxDistance;
+            if(_value == -0) _value = 0;
+            //------------------------------------------
+        }
+        //------------------------------------------
+        
+        //------------------------------------------
         _setActiveColor();
+        //------------------------------------------
+
+        //------------------------------------------
+        _changeValue(true);
+        
+        if(_floatParam != NULL) {
+            _bChangedByMyself = true;
+            _floatParam->set(_value);
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -566,14 +535,7 @@ namespace fl2d {
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
-//        //水平
-//        if(_type == VERTICALLY) g->drawRoundRect(0, 0, _uiLength, (_leverRadius + 2) * 2, _leverRadius + 2);
-//        //垂直
-//        else if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, (_leverRadius + 2) * 2, _uiLength, _leverRadius + 2);
-        //水平
-        if(_type == HORIZONTALLY) g->drawRoundRect(0, 0, _uiLength, 18, _leverRadius + 2);
-        //垂直
-        else if(_type == VERTICALLY) g->drawRoundRect(0, 0, 18, _uiLength, _leverRadius + 2);
+        g->drawRoundRect(0, 0, _uiWidth, _uiHeight, _leverRadius + 2);
         g->endFill();
     }
     
@@ -612,6 +574,12 @@ namespace fl2d {
             if(event.target() == lever){
                 _draggablePoint.x = mouseX() - lever->x();
                 _draggablePoint.y = mouseY() - lever->y();
+                if(_type == HORIZONTALLY) {
+                    _targetValue = mouseX() - _draggablePoint.x;
+                }
+                else if(_type == VERTICALLY) {
+                    _targetValue = mouseY() - _draggablePoint.y;
+                }
                 _leverPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick1::_mouseEventHandler);
@@ -629,17 +597,17 @@ namespace fl2d {
             }
         }
         
-        //Mouse Move
-        if(event.type() == flMouseEvent::MOUSE_MOVE) {
-            if(event.target() == lever) _leverMove();
-        }
-        
-        //Dragging
-        if(event.type() == flMouseEvent::DRAGGING) {
-            if(event.target() == lever){
-                
-            }
-        }    
+//        //Mouse Move
+//        if(event.type() == flMouseEvent::MOUSE_MOVE) {
+//            if(event.target() == lever) _leverMove();
+//        }
+//
+//        //Dragging
+//        if(event.type() == flMouseEvent::DRAGGING) {
+//            if(event.target() == lever){
+//
+//            }
+//        }
     }
     
 }

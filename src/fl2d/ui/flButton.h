@@ -69,8 +69,8 @@ namespace fl2d {
                 
                 _boolParam = &param;
                 _listeners.push(_boolParam->newListener([&](bool& val) {
-                    if(_changedValueByMyself) {
-                        _changedValueByMyself = false;
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
                     } else {
                         if(val == true) {
                             _press();

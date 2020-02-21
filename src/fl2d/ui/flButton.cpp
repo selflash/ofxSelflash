@@ -68,7 +68,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_update() {
-        
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -198,7 +198,6 @@ namespace fl2d {
         if(dispatch) {
 //            dispatchEvent(new flEvent(flEvent::CHANGE));
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------
@@ -233,12 +232,10 @@ namespace fl2d {
         //------------------------------------------
         if(dispatch) {
             flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
-            event->_target = this;
             dispatchEvent(event);
             
             if(_toggleEnabled) {
                 flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-                event->_target = this;
                 dispatchEvent(event);
             }
         }
@@ -251,16 +248,17 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_changeValue(bool dispatch) {
+        //------------------------------------------
         if(_boolParam != NULL) {
-            _changedValueByMyself = true;
+            _bChangedByMyself = true;
 //            _boolParam->set(_value);
         }
-        
+        //------------------------------------------
+
         //------------------------------------------
         //イベント
         if(dispatch) {
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------
@@ -278,7 +276,6 @@ namespace fl2d {
         
         //------------------------------------------
         flButtonEvent* event = new flButtonEvent(flButtonEvent::ROLL_OVER);
-        event->_target = this;
         dispatchEvent(event);
         //------------------------------------------
     }
@@ -295,7 +292,6 @@ namespace fl2d {
         
         //------------------------------------------
         flButtonEvent* event = new flButtonEvent(flButtonEvent::ROLL_OUT);
-        event->_target = this;
         dispatchEvent(event);
         //------------------------------------------
     }
@@ -310,12 +306,10 @@ namespace fl2d {
         
         //------------------------------------------
         flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
-        event->_target = this;
         dispatchEvent(event);
         
         if(_toggleEnabled) {
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------
@@ -332,12 +326,10 @@ namespace fl2d {
             
             //------------------------------------------
             flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_UP);
-            event->_target = this;
             dispatchEvent(event);
             
             if(isMouseOver()) {
                 flButtonEvent* event = new flButtonEvent(flButtonEvent::CLICK);
-                event->_target = this;
                 dispatchEvent(event);
             }
             //------------------------------------------
@@ -350,7 +342,6 @@ namespace fl2d {
             
             //------------------------------------------
             flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_UP);
-            event->_target = this;
             dispatchEvent(event);
             //------------------------------------------
         }

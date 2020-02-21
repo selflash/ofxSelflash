@@ -150,7 +150,7 @@ namespace fl2d {
             _stage = value;
             
             flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-            event->target(_target);
+//            event->target(_target);
             dispatchEvent(event);
         }
         //Êó¢„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å¶value„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÅÑ„Å™„ÅÑÊôÇ
@@ -158,7 +158,7 @@ namespace fl2d {
             _stage = value;
             
             flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-            event->target(_target);
+//            event->target(_target);
             dispatchEvent(event);
         }
         

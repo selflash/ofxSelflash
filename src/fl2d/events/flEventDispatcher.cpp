@@ -3,7 +3,7 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+    // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
@@ -22,13 +22,13 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
     void flEventDispatcher::dispatchEvent(flEvent* event) {
-        event->currentTarget(_target);
-        if(!event->target()) event->target(_target);
+        event->__currentTarget = _target;
+        if(event->__target == NULL) event->__target = _target;
         
         ofNotifyEvent(_handlers[event->type()], *event);
         
@@ -36,7 +36,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
 }

@@ -18,6 +18,7 @@ class ofApp : public ofBaseApp {
         bool enabled = true;
     
         bool animationEnabled = false;
+        bool animation2Enabled = false;
 
     private:
         ofPath _guideLinePath;

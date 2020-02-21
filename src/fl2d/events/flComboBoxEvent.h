@@ -34,8 +34,8 @@ namespace fl2d {
             
             setProperty<T>("data", data);
             
-            _currentTarget = NULL;
-            _target = NULL;
+            __currentTarget = NULL;
+            __target = NULL;
         }
         
         virtual ~flComboBoxEvent();

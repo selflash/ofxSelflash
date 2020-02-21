@@ -624,7 +624,7 @@ namespace fl2d {
                     if(!check) {
                         //------------------------------------
                         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::ROLL_OUT);
-                        mouseEvent->_target = intObj;
+                        mouseEvent->__target = intObj;
                         intObj->__isRollOver = false;
                         intObj->__isMouseOver = false;
                         intObj->dispatchEvent(mouseEvent);
@@ -657,7 +657,7 @@ namespace fl2d {
                     if(!check) {
                         //------------------------------------
                         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::ROLL_OVER);
-                        mouseEvent->_target = intObj;
+                        mouseEvent->__target = intObj;
                         intObj->__isRollOver = true;
                         intObj->__isMouseOver = true;
                         intObj->dispatchEvent(mouseEvent);
@@ -682,7 +682,7 @@ namespace fl2d {
                 for(int i = 0; i < _lineBottomUpPrev.size(); i++) {
                     //------------------------------------
                     flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_OUT);
-                    mouseEvent->_target = _topMostHitInteractiveObjectPrev;
+                    mouseEvent->__target = _topMostHitInteractiveObjectPrev;
                     intObj = _lineBottomUpPrev[i];
                     intObj->__isMouseOver = false;
                     intObj->dispatchEvent(mouseEvent);
@@ -704,7 +704,7 @@ namespace fl2d {
                 for(int i = 0; i < _lineBottomUp.size(); i++ ) {
                     //------------------------------------
                     flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_OVER);
-                    mouseEvent->_target = _topMostHitInteractiveObject;
+                    mouseEvent->__target = _topMostHitInteractiveObject;
                     intObj = _lineBottomUp[i];
                     intObj->__isMouseOver = true;
                     intObj->dispatchEvent(mouseEvent);
@@ -736,7 +736,7 @@ namespace fl2d {
         //                        //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
         //                        _focus->__isFocus = false;
         //                        focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
-        //                        focusEvent->_target = _focus;
+        //                        focusEvent->__target = _focus;
         //                        _focus->dispatchEvent(focusEvent);
         //
         //                        // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
@@ -752,7 +752,7 @@ namespace fl2d {
         //                    //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
         //                    _focus->__isFocus = true;
         //                    focusEvent = new FocusEvent(FocusEvent::FOCUS_IN);
-        //                    focusEvent->_target = _focus;
+        //                    focusEvent->__target = _focus;
         //                    _focus->dispatchEvent(focusEvent);
         //                }
         //                //------------------------------------
@@ -760,7 +760,7 @@ namespace fl2d {
         //                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
         //                    //------------------------------------
         //                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_DOWN);
-        //                    mouseEvent->_target = _topMostHitInteractiveObject;
+        //                    mouseEvent->__target = _topMostHitInteractiveObject;
         //                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
         //                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
         //                    mouseEvent->__stageX = mouseX();
@@ -787,7 +787,7 @@ namespace fl2d {
         //                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
         //                    //------------------------------------
         //                    MouseEvent* mouseEvent = new MouseEvent(MouseEvent::MOUSE_UP);
-        //                    mouseEvent->_target = _topMostHitInteractiveObject;
+        //                    mouseEvent->__target = _topMostHitInteractiveObject;
         //                    mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
         //                    mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
         //                    mouseEvent->__stageX = mouseX();
@@ -961,7 +961,7 @@ namespace fl2d {
         flMouseEvent* mouseEvent;
         //----------------------------------------------------------
         mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_MOVE);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
@@ -972,7 +972,7 @@ namespace fl2d {
         //----------------------------------------------------------
         if(_topMostHitInteractiveObject) {
             mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_MOVE);
-            mouseEvent->_target = _topMostHitInteractiveObject;
+            mouseEvent->__target = _topMostHitInteractiveObject;
             mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
             mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
             mouseEvent->__stageX = mouseX();
@@ -1084,7 +1084,7 @@ namespace fl2d {
         flMouseEvent* mouseEvent;
         //------------------------------------
         mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_MOVE);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
@@ -1094,7 +1094,7 @@ namespace fl2d {
         //------------------------------------
         if(_topMostHitInteractiveObject) {
             mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_MOVE);
-            mouseEvent->_target = _topMostHitInteractiveObject;
+            mouseEvent->__target = _topMostHitInteractiveObject;
             mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
             mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
             mouseEvent->__stageX = mouseX();
@@ -1110,7 +1110,7 @@ namespace fl2d {
         
         //------------------------------------
         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::DRAGGING);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
@@ -1146,7 +1146,7 @@ namespace fl2d {
                     //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
                     _focus->__isFocus = false;
                     focusEvent = new flFocusEvent(flFocusEvent::FOCUS_OUT);
-                    focusEvent->_target = _focus;
+                    focusEvent->__target = _focus;
                     _focus->dispatchEvent(focusEvent);
                     if(true) {
                         //                        ofLog() << "focus out = " << _focus->name().c_str();
@@ -1165,7 +1165,7 @@ namespace fl2d {
                 //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
                 _focus->__isFocus = true;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_IN);
-                focusEvent->_target = _focus;
+                focusEvent->__target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
                     //                    ofLog() << "focus in = " << _focus->name().c_str();
@@ -1177,7 +1177,7 @@ namespace fl2d {
             for(int i = 0; i < _lineBottomUp.size(); i++ ) {
                 //------------------------------------
                 flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_DOWN);
-                mouseEvent->_target = _topMostHitInteractiveObject;
+                mouseEvent->__target = _topMostHitInteractiveObject;
                 mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
                 mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
                 mouseEvent->__stageX = mouseX();
@@ -1211,7 +1211,7 @@ namespace fl2d {
                 //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
                 _focus->__isFocus = false;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_OUT);
-                focusEvent->_target = _focus;
+                focusEvent->__target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 if(true) {
                     //                    ofLog() << "focus out = " << _focus->name().c_str();
@@ -1222,7 +1222,7 @@ namespace fl2d {
                 //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
                 _focus->__isFocus = true;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_IN);
-                focusEvent->_target = _focus;
+                focusEvent->__target = _focus;
                 _focus->dispatchEvent(focusEvent);
                 
                 if(true) {
@@ -1235,7 +1235,7 @@ namespace fl2d {
         
         //------------------------------------
         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_DOWN);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
@@ -1268,7 +1268,7 @@ namespace fl2d {
             for(int i = 0; i < _lineBottomUp.size(); i++ ) {
                 //------------------------------------
                 flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_UP);
-                mouseEvent->_target = _topMostHitInteractiveObject;
+                mouseEvent->__target = _topMostHitInteractiveObject;
                 mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
                 mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
                 mouseEvent->__stageX = mouseX();
@@ -1300,7 +1300,7 @@ namespace fl2d {
         
         //------------------------------------
         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_UP);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();
@@ -1314,7 +1314,7 @@ namespace fl2d {
     void flStage::_mouseScrolledEventHandler(ofMouseEventArgs& event) {
         //------------------------------------
         flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_SCROLLED);
-        mouseEvent->_target = this;
+        mouseEvent->__target = this;
         mouseEvent->__localX = mouseX();
         mouseEvent->__localY = mouseY();
         mouseEvent->__stageX = mouseX();

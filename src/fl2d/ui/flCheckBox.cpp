@@ -45,6 +45,8 @@ namespace fl2d {
         
         delete _label;
         _label = NULL;
+        
+        _boolParam = NULL;
     }
     
     //==============================================================
@@ -58,7 +60,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_update() {
-        
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -152,7 +154,16 @@ namespace fl2d {
             }
         }
         
+        //------------------------------------------
         _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm) {
+            if(_boolParam != NULL) {
+                _bChangedByMyself = true;
+                _boolParam->set(_selected);
+            }
+        }
+        //------------------------------------------
     }
     
     //==============================================================
@@ -161,15 +172,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_changeValue(bool dispatch) {
-        if(_boolParam != NULL) {
-            _changedValueByMyself = true;
-            _boolParam->set(_selected);
-        }
-        
         //------------------------------------------
         if(dispatch) {
             flCheckBoxEvent* event = new flCheckBoxEvent(flCheckBoxEvent::CHANGE);
-            event->_target = this;
             dispatchEvent(event);
         }
         //------------------------------------------
@@ -200,6 +205,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flCheckBox::_press() {
         selected(!selected());
+        
+        //------------------------------------------
+        if(_boolParam != NULL) {
+            _bChangedByMyself = true;
+            _boolParam->set(_selected);
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------

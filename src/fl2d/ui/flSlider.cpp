@@ -141,6 +141,8 @@ namespace fl2d {
         if(thumb->isMouseDown()) {
             _press();
         }
+        
+        _bChangedByOfParm = false;
     }
     
     //--------------------------------------------------------------
@@ -203,7 +205,20 @@ namespace fl2d {
         float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
+        
+        //------------------------------------------
         if(preValue != _value) _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm) {
+            if(_floatParam != NULL) {
+                _bChangedByMyself = true;
+                _floatParam->set(_value);
+            }
+            else if(_intParam != NULL) {
+                _bChangedByMyself = true;
+                _intParam->set(_value);
+            }
+        }
         //------------------------------------------
     }
     //--------------------------------------------------------------
@@ -221,7 +236,21 @@ namespace fl2d {
         float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
+        
+        //------------------------------------------
         if(preValue != _value) _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm) {
+            if(_floatParam != NULL) {
+                _bChangedByMyself = true;
+                _floatParam->set(_value);
+            }
+            else if(_intParam != NULL) {
+                _bChangedByMyself = true;
+                _intParam->set(_value);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -265,7 +294,20 @@ namespace fl2d {
         }
         //------------------------------------------
 
+        //------------------------------------------
         if(preValue != _value) _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm) {
+            if(_floatParam != NULL) {
+                _bChangedByMyself = true;
+                _floatParam->set(_value);
+            }
+            else if(_intParam != NULL) {
+                _bChangedByMyself = true;
+                _intParam->set(_value);
+            }
+        }
+        //------------------------------------------        
     }
     
     //--------------------------------------------------------------
@@ -346,24 +388,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(_floatParam != NULL) {
-            _changedValueByMyself = true;
-            _floatParam->set(_value);
-        }
-        else if(_intParam != NULL) {
-            _changedValueByMyself = true;
-            _intParam->set(_value);
-        }
-        //------------------------------------------
-
         _valueText->text(ofToString(_value, _digit));
         
         //------------------------------------------
         //イベント
         if(dispatch) {
             flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->_target = this;
             event->data<float>(_value);
             dispatchEvent(event);
         }
@@ -435,7 +465,18 @@ namespace fl2d {
         _setActiveColor();
         //------------------------------------------
         
+        //------------------------------------------
         if(preValue != _value) _changeValue(true);
+
+        if(_floatParam != NULL) {
+            _bChangedByMyself = true;
+            _floatParam->set(_value);
+        }
+        else if(_intParam != NULL) {
+            _bChangedByMyself = true;
+            _intParam->set(_value);
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------

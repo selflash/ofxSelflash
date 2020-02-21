@@ -210,7 +210,8 @@ namespace fl2d {
             _stage = value;
             
             flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-            event->target(_target);
+//            event->target(_target);
+//            event->_target = _target;
             dispatchEvent(event);
         }
         //既にステージへの参照がもっていてvalueにステージへの参照が入っていない時
@@ -218,7 +219,7 @@ namespace fl2d {
             _stage = value;
             
             flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-            event->target(_target);
+//            event->target(_target);
             dispatchEvent(event);
         }
     }
@@ -234,7 +235,7 @@ namespace fl2d {
             _compoundAlpha = _parent->__compoundAlpha() * _alpha;
             
             flEvent* event = new flEvent(flEvent::ADDED);
-            event->target(_target);
+//            event->target(_target);
             dispatchEvent(event);
         }
         //既に親への参照がもっていてvalueに親への参照が入っていない時
@@ -242,7 +243,7 @@ namespace fl2d {
             _parent = value;
             
             flEvent* event = new flEvent(flEvent::REMOVED);
-            event->target(_target);
+//            event->target(_target);
             dispatchEvent(event);
         }
     }

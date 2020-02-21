@@ -39,16 +39,16 @@ namespace fl2d {
         
         _type = type;
         
-        _currentTarget = NULL;
-        _target = NULL;
+        __currentTarget = NULL;
+        __target = NULL;
     }
     
     //--------------------------------------------------------------
     flEvent::~flEvent() {
         _type = "";
         
-        _currentTarget = NULL;
-        _target = NULL;
+        __currentTarget = NULL;
+        __target = NULL;
     }
     
 }

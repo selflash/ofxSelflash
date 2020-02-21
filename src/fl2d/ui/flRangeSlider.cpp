@@ -261,7 +261,6 @@ namespace fl2d {
         //イベント
         if(dispatch) {
             flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->_target = this;
             event->__minValue = _minValue;
             event->__maxValue = _maxValue;
             event->__range = _range;
@@ -303,7 +302,6 @@ namespace fl2d {
         //イベント
         if(dispatch) {
             flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->_target = this;
             event->__minValue = _minValue;
             event->__maxValue = _maxValue;
             event->__range = _range;
@@ -356,7 +354,6 @@ namespace fl2d {
         //イベント
         if(dispatch) {
             flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->_target = this;
             event->__minValue = _minValue;
             event->__maxValue = _maxValue;
             event->__range = _range;
@@ -409,7 +406,6 @@ namespace fl2d {
         //イベント
         if(dispatch) {
             flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->_target = this;
             event->__minValue = _minValue;
             event->__maxValue = _maxValue;
             event->__range = _range;
@@ -536,7 +532,6 @@ namespace fl2d {
         //------------------------------------------
         //イベント
         flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->_target = this;
         event->__minValue = _minValue;
         event->__maxValue = _maxValue;
         event->__range = _range;
@@ -583,7 +578,6 @@ namespace fl2d {
         //------------------------------------------
         //イベント
         flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->_target = this;
         event->__minValue = _minValue;
         event->__maxValue = _maxValue;
         event->__range = _range;
@@ -629,7 +623,6 @@ namespace fl2d {
         //------------------------------------------
         //イベント
         flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->_target = this;
         event->__minValue = _minValue;
         event->__maxValue = _maxValue;
         event->__range = _range;

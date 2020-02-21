@@ -38,8 +38,9 @@ namespace fl2d {
             virtual void enabled(bool value);
 
             virtual ofColor colorValue();
-            virtual void colorValue(ofColor& value, bool dispatch = true);
-        
+//            virtual void colorValue(ofColor& value, bool dispatch = true);
+            virtual void colorValue(ofColor value, bool dispatch = true);
+
             virtual int hexValue();
             virtual void hexValue(int value, bool dispatch = true);
         
@@ -132,25 +133,26 @@ namespace fl2d {
             //----------------------------------
         
             //----------------------------------
-            ofParameter<ofColor>* _param;
+            ofParameter<ofColor>* _colorParam = NULL;
             virtual inline void bind(ofParameter<ofColor>& param) {
                 _listeners.unsubscribeAll();
-                _param = NULL;
+                _colorParam = NULL;
                 
-                _param = &param;
-                _listeners.push(_param->newListener([&](ofColor& val) {
-                    if(_changedValueByMyself) {
-                        _changedValueByMyself = false;
+                _colorParam = &param;
+                _listeners.push(_colorParam->newListener([&](ofColor& val) {
+                    if(_bChangedByMyself) {
+                        _bChangedByMyself = false;
                     } else {
+                        _bChangedByOfParm = true;
                         colorValue(val);
                     }
                 }));
                 
-                hexValue(_param->get().getHex());
+                hexValue(_colorParam->get().getHex());
             }
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();
-                _param = NULL;
+                _colorParam = NULL;
             }
             //----------------------------------
 

@@ -135,7 +135,6 @@ namespace fl2d {
                 _valueText->text(ofToString(_value, 2));
 
                 flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
-//                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -215,7 +214,6 @@ namespace fl2d {
             if(dispatch) {
                 //イベント
                 flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
-                //            event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -241,7 +239,6 @@ namespace fl2d {
             if(dispatch) {
                 //イベント
                 flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
-//                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -263,7 +260,6 @@ namespace fl2d {
             if(dispatch) {
                 //イベント
                 flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
-//                event->_target = this;
                 event->data<float>(_value);
                 dispatchEvent(event);
             }

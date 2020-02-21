@@ -22,72 +22,71 @@ namespace fl2d {
     
     class flEventDispatcher : public flObject {
         
-    public:
+        public:
         
-    protected:
-        void* _target { NULL };
-        map<string, ofEvent<flEvent> > _handlers;
+        protected:
+            void* _target = NULL;
+            map<string, ofEvent<flEvent> > _handlers;
         
-    private:
-        bool _debugEnabled;
+        private:
+            bool _debugEnabled;
         
-    public:
-        flEventDispatcher();
-        virtual ~flEventDispatcher();
+        public:
+            flEventDispatcher();
+            virtual ~flEventDispatcher();
         
-        //--------------------------------------------------------------
-        //
-        template <typename ArgumentsType, class ListenerClass>
-        inline void addEventListener(
-                                     string eventName,
-                                     ListenerClass* listener,
-                                     void(ListenerClass::*listenerMethod)(ArgumentsType&),
-                                     int priority = OF_EVENT_ORDER_AFTER_APP
-                                     ) {
-            _handlers[eventName].remove(listener, listenerMethod, priority);
-            _handlers[eventName].add(listener, listenerMethod, priority);
-        }
+            //--------------------------------------------------------------
+            //
+            template <typename ArgumentsType, class ListenerClass>
+            inline void addEventListener(
+                                         string eventName,
+                                         ListenerClass* listener,
+                                         void(ListenerClass::*listenerMethod)(ArgumentsType&),
+                                         int priority = OF_EVENT_ORDER_AFTER_APP
+                                         ) {
+                _handlers[eventName].remove(listener, listenerMethod, priority);
+                _handlers[eventName].add(listener, listenerMethod, priority);
+            }
         
-        //--------------------------------------------------------------
-        //
-        template <typename ArgumentsType, class ListenerClass>
-        inline void removeEventListener(
-                                        string eventName,
-                                        ListenerClass* listener,
-                                        void(ListenerClass::*listenerMethod)(ArgumentsType&),
-                                        int priority = OF_EVENT_ORDER_AFTER_APP
-                                        ) {
-            _handlers[eventName].remove(listener, listenerMethod, priority);
-        }
+            //--------------------------------------------------------------
+            //
+            template <typename ArgumentsType, class ListenerClass>
+            inline void removeEventListener(
+                                            string eventName,
+                                            ListenerClass* listener,
+                                            void(ListenerClass::*listenerMethod)(ArgumentsType&),
+                                            int priority = OF_EVENT_ORDER_AFTER_APP
+                                            ) {
+                _handlers[eventName].remove(listener, listenerMethod, priority);
+            }
         
-        //--------------------------------------------------------------
-        //
-        inline void removeEventListeners(string eventName) {
-            _handlers.erase(eventName);
-        }
+            //--------------------------------------------------------------
+            //
+            inline void removeEventListeners(string eventName) {
+                _handlers.erase(eventName);
+            }
         
-        //--------------------------------------------------------------
-        //
-        inline void removeAllEventListeners() { _handlers.clear(); }
+            //--------------------------------------------------------------
+            //
+            inline void removeAllEventListeners() { _handlers.clear(); }
         
-        //--------------------------------------------------------------
-        //
-        inline bool hasEventListener(string type) {
-            //if(_debugEnabled) cout << "[flEventDispatcher]hasEventListener(" + type + ")" << endl;
-            //if(_handlers.size() == 0) return false;
-            bool check = bool(_handlers.find(type) != _handlers.end());
-            //if(_debugEnabled) cou・＿・t << "check = " << check << endl;
-            return check;
-        }
+            //--------------------------------------------------------------
+            //
+            inline bool hasEventListener(string type) {
+                //if(_debugEnabled) cout << "[flEventDispatcher]hasEventListener(" + type + ")" << endl;
+                //if(_handlers.size() == 0) return false;
+                bool check = bool(_handlers.find(type) != _handlers.end());
+                //if(_debugEnabled) cou・＿・t << "check = " << check << endl;
+                return check;
+            }
         
+            void dispatchEvent(flEvent* event);
         
-        void dispatchEvent(flEvent* event);
+        protected:
+            //            flEventDispatcher();
+            //            ~flEventDispatcher();
         
-    protected:
-        //            flEventDispatcher();
-        //            ~flEventDispatcher();
-        
-    private:
+        private:
         
     };
     
