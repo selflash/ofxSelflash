@@ -14,7 +14,8 @@ int main() {
   
     ofGLFWWindowSettings settings;
 //    settings.setSize(1024,768);
-    settings.setSize(1280, 1024);
+//    settings.setSize(1280, 1024);
+    settings.setSize(170 * 8, 170 * 5);
     settings.stencilBits = 8;
     
     //settings.setGLVersion(2, 1); // GL2

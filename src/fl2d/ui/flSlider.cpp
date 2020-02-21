@@ -346,6 +346,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_changeValue(bool dispatch) {
+        //------------------------------------------
         if(_floatParam != NULL) {
             _changedValueByMyself = true;
             _floatParam->set(_value);
@@ -354,6 +355,7 @@ namespace fl2d {
             _changedValueByMyself = true;
             _intParam->set(_value);
         }
+        //------------------------------------------
 
         _valueText->text(ofToString(_value, _digit));
         
@@ -433,7 +435,7 @@ namespace fl2d {
         _setActiveColor();
         //------------------------------------------
         
-        if(preValue != _value) _changeValue();
+        if(preValue != _value) _changeValue(true);
     }
     
     //--------------------------------------------------------------

@@ -10,9 +10,9 @@ namespace fl2d {
     class flSlider : public flUIBase {
         
         public:
-            flSprite* track;
-            flSprite* thumb;
-            flSprite* bar;
+            flSprite* track = NULL;
+            flSprite* thumb = NULL;
+            flSprite* bar = NULL;
         
         protected:
         

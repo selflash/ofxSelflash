@@ -13,15 +13,13 @@ namespace fl2d {
         _target = this;
         name("flJoyStick2");
 
-        _xValue = 0.0;
-        _yValue = 0.0;
-        
         _areaRadius = areaDiameter * 0.5;
         _leverRadius = 14 * 0.5;
         _maxDistance = (_areaRadius - _leverRadius - 1);
-        
         _center = ofPoint(_areaRadius, _areaRadius);
-        
+        _targetX = _center.x;
+        _targetY = _center.y;
+
         flGraphics* g;
         
         //------------------------------------------
@@ -57,25 +55,12 @@ namespace fl2d {
         addChild(_valueText);
         //------------------------------------------
         
-        //------------------------------------------
-        _flgX = false;
-        _flgY = false;
-        _targetX = _center.x;
-        _targetY = _center.y;
-        //------------------------------------------
-        
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
     flJoyStick2::~flJoyStick2() {
         //ofLog() << "[flJoyStick2]~flJoyStick2()";
-        
-        _xValue = 0.0;
-        _yValue = 0.0;
-        
-        _areaRadius = 0.0;
-        _leverRadius = 0.0;
         
         lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
@@ -85,10 +70,8 @@ namespace fl2d {
         delete lever;
         lever = NULL;
         
-        _flgX = false;
-        _flgY = false;
-        _targetX = 0.0;
-        _targetY = 0.0;
+        delete _valueText;
+        _valueText = NULL;
     }
     
     //==============================================================
@@ -104,94 +87,43 @@ namespace fl2d {
     void flJoyStick2::_update() {
         //ofLog() << "isMouseDown" << lever->isMouseDown();
         
-        float preXValue = _xValue;
-        float preYValue = _yValue;
-
         if(lever->isMouseDown()) {
+            _targetX = mouseX() - _draggablePoint.x;
+            _targetY = mouseY() - _draggablePoint.y;
+            _leverPress();
+        } else {
             //------------------------------------------
-            float tx = mouseX() - _draggablePoint.x;
-            float ty = mouseY() - _draggablePoint.y;
-            float shiftX = tx - _center.x;
-            float shiftY = ty - _center.y;
-
-            float distance = _center.distance(ofPoint(tx, ty));
-            if(_maxDistance < distance) {
-                float n = _maxDistance / distance;
-                tx = _center.x + (shiftX * n);
-                ty = _center.y + (shiftY * n);
-            }
-
-            lever->x(tx);
-            lever->y(ty);
-            //------------------------------------------
-            
-            //------------------------------------------
-            //Update value.
-            _xValue = (lever->x() - _center.x) / _maxDistance;
-            _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
-            if(_yValue == -0) _yValue = 0;
-            //------------------------------------------
-            
-            _setActiveColor();
-            
-            //------------------------------------------
-            if(preXValue != _xValue || preYValue != _yValue) {
-                _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
-                
-                //------------------------------------------
-                flJoyStick2Event* event;
-                event = new flJoyStick2Event(flJoyStick2Event::CHANGE);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-                
-                if(_xValue > 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::RIGHT);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_xValue < 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::LEFT);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_yValue > 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::UP);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_yValue < 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::DOWN);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                //------------------------------------------
+            //Easing
+            float dx = _targetX - lever->x();
+            float dy = _targetY - lever->y();
+            if(dx < -0.5 || 0.5 < dx  || dy < -0.5 || 0.5 < dy) {
+                _targetX = lever->x() + dx * 0.4;
+                _targetY = lever->y() + dy * 0.4;
             }
             //------------------------------------------
-        } else if(_flgX || _flgY) {
+            
+//            float preXValue = _xValue;
+//            float preYValue = _yValue;
+
             //------------------------------------------
             float tx = _targetX;
             float ty = _targetY;
-            if(!_flgX) tx = lever->x() + (_center.x - lever->x()) * 0.4f;
-            if(!_flgY) ty = lever->y() + (_center.y - lever->y()) * 0.4f;
-            float shiftX = tx - _center.x;
-            float shiftY = ty - _center.y;
-
+            
+            //------------------------------------------
+            //範囲内に収める
             float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance){
-                float n = _maxDistance / distance;
-                tx = _center.x + (shiftX * n);
-                ty = _center.y + (shiftY * n);
+                float dx = tx - _center.x;
+                float dy = ty - _center.y;
+                float ratio = _maxDistance / distance;
+                tx = _center.x + (dx * ratio);
+                ty = _center.y + (dy * ratio);
             }
+            //------------------------------------------
 
             lever->x(tx);
             lever->y(ty);
-            //------------------------------------------
-            
+
             //------------------------------------------
             //Update value.
             _xValue = (lever->x() - _center.x) / _maxDistance;
@@ -208,92 +140,15 @@ namespace fl2d {
             //------------------------------------------
 
             //------------------------------------------
-            if(preXValue != _xValue || preYValue != _yValue) {
-                _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
-                
-                //------------------------------------------
-                flJoyStick2Event* event;
-                event = new flJoyStick2Event(flJoyStick2Event::CHANGE);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-                
-                if(_flgX && _xValue > 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::RIGHT);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_flgX && _xValue < 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::LEFT);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_flgY && _yValue > 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::UP);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                if(_flgY && _yValue < 0) {
-                    event = new flJoyStick2Event(flJoyStick2Event::DOWN);
-                    event->__xValue = _xValue;
-                    event->__yValue = _yValue;
-                    dispatchEvent(event);
-                }
-                //------------------------------------------
-            }
-            //------------------------------------------
-        } else {
-            //Easing
-            float distanceX = _center.x - lever->x();
-            float distanceY = _center.y - lever->y();
-            if(
-               -0.5f < distanceX && distanceX < 0.5f &&
-               -0.5f < distanceY && distanceY < 0.5f
-               ) {
-                lever->x(_center.x);
-                lever->y(_center.y);
-                
-                _xValue = 0;
-                _yValue = 0;
-            } else {
-                lever->x(lever->x() + (_center.x - lever->x()) * 0.4f);
-                lever->y(lever->y() + (_center.y - lever->y()) * 0.4f);
-
-                //------------------------------------------
-                //Update value.
-                _xValue = (lever->x() - _center.x) / _maxDistance;
-                _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
-                if(_yValue == -0) _yValue = 0;
-                //------------------------------------------
-
-                //------------------------------------------
-                if(lever->isMouseOver()) {
-                    _setOverColor();
-                } else {
-                    _setNormalColor();
-                }
-                //------------------------------------------
-            }
-            
-            //------------------------------------------
-            if(preXValue != _xValue || preYValue != _yValue) {
-                _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
-                
-                //------------------------------------------
-                flJoyStick2Event* event = new flJoyStick2Event(flJoyStick2Event::CHANGE);
-                event->__xValue = _xValue;
-                event->__yValue = _yValue;
-                dispatchEvent(event);
-                //------------------------------------------
-            }
+//            if(preXValue != _xValue || preYValue != _yValue) _changeValue(true);
+            _changeValue(true);
             //------------------------------------------
         }
         
         _flgX = false;
         _flgY = false;
+        _targetX = _center.x;
+        _targetY = _center.y;
     }
     
     //--------------------------------------------------------------
@@ -318,37 +173,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flJoyStick2::xValue() { return _xValue; }
-    //--------------------------------------------------------------
-    float flJoyStick2::yValue() { return _yValue; }
-    
-    //--------------------------------------------------------------
-    void flJoyStick2::leverUp(float value) {
-        //ofLog() << "[flJoyStick2]leverUp()";
-        _targetY = lever->y() - _maxDistance * value;
-        _flgY = true;
-    }
-    //--------------------------------------------------------------
-    void flJoyStick2::leverDown(float value) {
-        //ofLog() << "[flJoyStick2]leverDown()";
-        _targetY = lever->y() + _maxDistance * value;
-        _flgY = true;
-    }
-    //--------------------------------------------------------------
-    void flJoyStick2::leverLeft(float value) {
-        //ofLog() << "[flJoyStick2]leverLeft()";
-        _targetX = lever->x() - _maxDistance * value;
-        _flgX = true;
-    }
-    //--------------------------------------------------------------
-    void flJoyStick2::leverRight(float value) {
-        //ofLog() << "[flJoyStick2]leverRight()";
-        _targetX = lever->x() + _maxDistance * value;
-        _flgX = true;
-    }
-    
-    //--------------------------------------------------------------
-    bool flJoyStick2::enabled() { return _enabled; }
     void flJoyStick2::enabled(bool value) {
         _enabled = value;
         mouseEnabled(_enabled);
@@ -393,10 +217,113 @@ namespace fl2d {
         //------------------------------------------
     }
     
+    //--------------------------------------------------------------
+    float flJoyStick2::xValue() { return _xValue; }
+    //--------------------------------------------------------------
+    float flJoyStick2::yValue() { return _yValue; }
+    
+    //--------------------------------------------------------------
+    void flJoyStick2::leverUp(float value) {
+        //ofLog() << "[flJoyStick2]leverUp()";
+        _targetY = lever->y() - _maxDistance * value;
+        _flgY = true;
+    }
+    //--------------------------------------------------------------
+    void flJoyStick2::leverDown(float value) {
+        //ofLog() << "[flJoyStick2]leverDown()";
+        _targetY = lever->y() + _maxDistance * value;
+        _flgY = true;
+    }
+    //--------------------------------------------------------------
+    void flJoyStick2::leverLeft(float value) {
+        //ofLog() << "[flJoyStick2]leverLeft()";
+        _targetX = lever->x() - _maxDistance * value;
+        _flgX = true;
+    }
+    //--------------------------------------------------------------
+    void flJoyStick2::leverRight(float value) {
+        //ofLog() << "[flJoyStick2]leverRight()";
+        _targetX = lever->x() + _maxDistance * value;
+        _flgX = true;
+    }
+    
+    //--------------------------------------------------------------
+    void flJoyStick2::moveLever(float x, float y) {
+        //ofLog() << "[flJoyStick2]moveLever()";
+        _targetX = _center.x - (_maxDistance * x);
+        _targetY = _center.y - (_maxDistance * y);
+        _flgX = true;
+        _flgY = true;
+    }
+    //--------------------------------------------------------------
+    void flJoyStick2::moveLever(vec2 value) {
+        //ofLog() << "[flJoyStick2]moveLever()";
+        _targetX = _center.x - (_maxDistance * value.x);
+        _targetY = _center.y - (_maxDistance * value.y);
+        _flgX = true;
+        _flgY = true;
+    }
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flJoyStick2::_changeValue(bool dispatch) {
+        //------------------------------------------
+        if(_vec2Param != NULL) {
+            _changedValueByMyself = true;
+            _vec2Param->set(vec2(_xValue, _yValue));
+        }
+        //------------------------------------------
 
+        _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
+
+        //------------------------------------------
+        //イベント
+        if(dispatch) {
+            //------------------------------------------
+            flJoyStick2Event* event;
+            
+            event = new flJoyStick2Event(flJoyStick2Event::CHANGE);
+            event->_target = this;
+            event->__xValue = _xValue;
+            event->__yValue = _yValue;
+            dispatchEvent(event);
+            
+            if(_xValue > 0) {
+                event = new flJoyStick2Event(flJoyStick2Event::RIGHT);
+                event->_target = this;
+                event->__xValue = _xValue;
+                event->__yValue = _yValue;
+                dispatchEvent(event);
+            }
+            if(_xValue < 0) {
+                event = new flJoyStick2Event(flJoyStick2Event::LEFT);
+                event->_target = this;
+                event->__xValue = _xValue;
+                event->__yValue = _yValue;
+                dispatchEvent(event);
+            }
+            if(_yValue > 0) {
+                event = new flJoyStick2Event(flJoyStick2Event::UP);
+                event->_target = this;
+                event->__xValue = _xValue;
+                event->__yValue = _yValue;
+                dispatchEvent(event);
+            }
+            if(_yValue < 0) {
+                event = new flJoyStick2Event(flJoyStick2Event::DOWN);
+                event->_target = this;
+                event->__xValue = _xValue;
+                event->__yValue = _yValue;
+                dispatchEvent(event);
+            }
+            //------------------------------------------
+        }
+        //------------------------------------------
+    }
+    
     //--------------------------------------------------------------
     void flJoyStick2::_leverOver() {
         if(lever->isMouseDown()) return;
@@ -413,7 +340,44 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick2::_leverPress() {
+//        float preXValue = _xValue;
+//        float preYValue = _yValue;
+
+        //------------------------------------------
+        float tx = _targetX;
+        float ty = _targetY;
+        
+        //------------------------------------------
+        //範囲内に収める
+        float distance = _center.distance(ofPoint(tx, ty));
+        if(_maxDistance < distance) {
+            float shiftX = tx - _center.x;
+            float shiftY = ty - _center.y;
+            float n = _maxDistance / distance;
+            tx = _center.x + (shiftX * n);
+            ty = _center.y + (shiftY * n);
+        }
+        //------------------------------------------
+
+        lever->x(tx);
+        lever->y(ty);
+        //------------------------------------------
+        
+        //------------------------------------------
+        //Update value.
+        _xValue = (lever->x() - _center.x) / _maxDistance;
+        _yValue = -1 * (lever->y() - _center.y) / _maxDistance;
+        if(_yValue == -0) _yValue = 0;
+        //------------------------------------------
+        
+        //------------------------------------------
         _setActiveColor();
+        //------------------------------------------
+
+        //------------------------------------------
+//        if(preXValue != _xValue || preYValue != _yValue) _changeValue(true);
+        _changeValue(true);
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -490,7 +454,7 @@ namespace fl2d {
         g->lineStyle(1, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawCircle(_center.x, _center.y, _areaRadius);
-        g->lineStyle(1, 0xffffff);
+        g->lineStyle(thickness, 0xffffff);
         g->moveTo(_center.x, _center.y);
         g->lineTo(lever->x(), lever->y());
         g->endFill();
@@ -502,7 +466,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, lineColor.getHex());
+        g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
@@ -531,6 +495,8 @@ namespace fl2d {
             if(event.target() == lever){
                 _draggablePoint.x = mouseX() - lever->x();
                 _draggablePoint.y = mouseY() - lever->y();
+                _targetX = mouseX();
+                _targetY = mouseY();
                 _leverPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick2::_mouseEventHandler);

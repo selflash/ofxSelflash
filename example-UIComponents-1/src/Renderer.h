@@ -5,6 +5,7 @@
 #include "flBasicDraggableObject.h"
 
 using namespace fl2d;
+using namespace glm;
 
 class Renderer : public flBasicDraggableObject {
     public:

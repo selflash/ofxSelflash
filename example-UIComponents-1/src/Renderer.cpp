@@ -6,12 +6,9 @@
 
 //--------------------------------------------------------------
 void Renderer::_setup() {
-    camWidth = 320 * 2;
-    camHeight = 240 * 2;
-
     camera.setAutoDistance(false);
     camera.disableMouseInput();
-    camera.setPosition(ofVec3f(0, 0, 100));
+    camera.setPosition(cameraPos);
 
     viewPort.set(0, 0, camWidth, camHeight);
 
@@ -29,9 +26,9 @@ void Renderer::_setup() {
 //    g->drawRect(-1, -1, camWidth + 2, camHeight + 2);
     g->lineStyle(1, 0xffffff);
     g->moveTo(-1, -1);
-    g->lineTo(camWidth + 2, -1);
-    g->lineTo(camWidth + 2, camHeight + 2);
-    g->lineTo(-1, camHeight + 2);
+    g->lineTo(camWidth, -1);
+    g->lineTo(camWidth, camHeight);
+    g->lineTo(-1, camHeight);
     g->lineTo(-1, -1);
     g->endFill();
 
@@ -50,6 +47,8 @@ void Renderer::_update() {
     
     viewPort.x = x();
     viewPort.y = y();
+    
+    camera.setPosition(cameraPos);
 }
 
 //--------------------------------------------------------------

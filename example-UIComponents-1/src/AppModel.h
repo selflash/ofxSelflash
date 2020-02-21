@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 
+using namespace glm;
+
 enum AppStatus {
     APPSTATUS_NONE = 0,
     APPSTATUS_NOT_FOUND_CONFIGXML,
@@ -22,6 +24,9 @@ class AppModel {
 //        bool isFinding;
     
         ofParameter<ofColor> bgColor = ofColor(125, 124, 125, 220);
+    
+        ofParameter<vec2> cameraPosXY = vec2(0, 0);
+    
         ofParameter<ofColor> lineColor = ofColor(255, 124, 255, 255);
         ofParameter<int> lineWidth = 5;
         ofParameter<float> speed = 0.1;

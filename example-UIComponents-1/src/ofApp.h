@@ -7,6 +7,7 @@
 #include "Renderer.h"
 
 using namespace fl2d;
+using namespace glm;
 
 class ofApp : public ofBaseApp {
     public:
@@ -19,11 +20,14 @@ class ofApp : public ofBaseApp {
         bool animationEnabled = false;
 
     private:
+        ofPath _guideLinePath;
+        ofPath _guideLinePath2;
 
     public:
         void setup();
         void update();
         void draw();
+        void drawGrid();
     
         void keyPressed(int key);
         void keyReleased(int key);

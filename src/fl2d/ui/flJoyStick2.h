@@ -4,33 +4,32 @@
 #include "flUIBase.h"
 #include "flJoyStick2Event.h"
 
+using namespace glm;
+
 namespace fl2d {
     
     class flJoyStick2 : public flUIBase {
         public:
-            flSprite* lever;
+            flSprite* lever = NULL;
         
         protected:
         
         private:
-            flTextField* _valueText;
+            flTextField* _valueText = NULL;
         
-            float _maxDistance;
+            float _areaRadius = 0.0;
+            float _leverRadius = 0.0;
+            float _maxDistance = 0.0;
+            ofPoint _center;
+            ofPoint _draggablePoint;
+            bool _flgX = false;
+            bool _flgY = false;
+            float _targetX = 0.0;
+            float _targetY = 0.0;
 
             //------------------------------------------
-            float _xValue;
-            float _yValue;
-            ofPoint _center;
-            float _areaRadius;
-            float _leverRadius;
-            ofPoint _draggablePoint;
-            //------------------------------------------
-        
-            //------------------------------------------
-            bool _flgX;
-            bool _flgY;
-            float _targetX;
-            float _targetY;
+            float _xValue = 0.0;
+            float _yValue = 0.0;
             //------------------------------------------
         
         public:
@@ -38,7 +37,8 @@ namespace fl2d {
             virtual ~flJoyStick2();
         
             virtual void label(flTextField* value);
-        
+            virtual void enabled(bool value);
+
             float xValue();
             float yValue();
         
@@ -46,15 +46,39 @@ namespace fl2d {
             void leverDown(float value = 1.0);
             void leverLeft(float value = 1.0);
             void leverRight(float value = 1.0);
-        
-            virtual bool enabled();
-            virtual void enabled(bool value);
+            void moveLever(float x, float y);
+            void moveLever(vec2 value);
+
+            //------------------------------------------
+            ofParameter<vec2>* _vec2Param = NULL;
+            virtual inline void bind(ofParameter<vec2>& param) {
+                _listeners.unsubscribeAll();
+                _vec2Param = NULL;
+                
+                _vec2Param = &param;
+                _listeners.push(_vec2Param->newListener([&](vec2& val) {
+                    if(_changedValueByMyself) {
+                        _changedValueByMyself = false;
+                    } else {
+                        moveLever(_vec2Param->get());
+                    }
+                }));
+                
+                moveLever(_vec2Param->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _vec2Param = NULL;
+            }
+            //------------------------------------------
         
         protected:
             virtual void _setup();
             virtual void _update();
             virtual void _draw();
         
+            virtual void _changeValue(bool dispatch = true);
+
             virtual void _leverOver();
             virtual void _leverOut();
             virtual void _leverPress();

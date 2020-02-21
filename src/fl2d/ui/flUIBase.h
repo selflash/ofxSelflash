@@ -14,8 +14,8 @@ namespace fl2d {
     public:
         
     protected:
-        flTextField* _label;
-        bool _enabled;
+        flTextField* _label = NULL;
+        bool _enabled = true;
 
         //------------------------------------------
         bool _changedValueByMyself = false;

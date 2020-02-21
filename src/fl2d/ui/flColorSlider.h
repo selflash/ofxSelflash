@@ -23,7 +23,7 @@ namespace fl2d {
             flTextField* _alphaLabel = NULL;
         
             ofColor _colorValue;
-            int _hexValue;
+            int _hexValue = 0xffffff;
         
         private:
         

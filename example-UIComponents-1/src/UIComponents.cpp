@@ -12,23 +12,23 @@ UIComponents::UIComponents() {
     
     //useHandCursor(true);
     
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff, 0.5);
-    g->beginFill(0xffffff, 0.1);
-    g->drawRect(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
-    g->moveTo(10 + 150 + 10, 0);
-    g->lineTo(10 + 150 + 10, ofGetHeight());
-    g->moveTo(10 + 150 + 10 + 10 + 150 + 10, 0);
-    g->lineTo(10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
-    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
-    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
-    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
-    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
-    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
-    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
-    g->endFill();
+//    flGraphics* g;
+//    g = graphics();
+//    g->clear();
+//    g->lineStyle(1, 0xffffff, 0.5);
+//    g->beginFill(0xffffff, 0.1);
+//    g->drawRect(0, 0, ofGetScreenWidth(), ofGetScreenHeight());
+//    g->moveTo(10 + 150 + 10, 0);
+//    g->lineTo(10 + 150 + 10, ofGetHeight());
+//    g->moveTo(10 + 150 + 10 + 10 + 150 + 10, 0);
+//    g->lineTo(10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
+//    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
+//    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
+//    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
+//    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
+//    g->moveTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, 0);
+//    g->lineTo(10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10 + 10 + 150 + 10, ofGetHeight());
+//    g->endFill();
 }
 
 //--------------------------------------------------------------
