@@ -279,7 +279,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick2::_changeValue(bool dispatch) {
-        _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
+        _valueText->text("x:" + ofToString(_xValue, _digit) + "\r\ny:" + ofToString(_yValue, _digit));
 
         //------------------------------------------
         if(dispatch) {

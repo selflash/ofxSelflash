@@ -33,8 +33,6 @@ namespace fl2d {
         _disableActiveBarColor.setHex(flDefinition::UI_DISABLE_ACTIVE_COLOR.getHex());
         
         _trackWidth = trackWidth;
-        _trackHeight = 18;
-        _thumbWidth = 20;
         if(_max > _min) {
             _barWidth = (_value -_min) / (_range / _trackWidth);
         } else {
@@ -64,7 +62,9 @@ namespace fl2d {
         bar->name("flSlider.bar");
         bar->mouseEnabled(false);
         track->addChild(bar);
-        
+        //------------------------------------------
+
+        //------------------------------------------
         thumb = new flSprite();
         thumb->name("flSlider.thumb");
         g = thumb->graphics();
@@ -491,7 +491,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 
         _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, _normalBarColor, 1);
@@ -501,7 +500,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setTrackOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawTrackGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -511,7 +509,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setThumbOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
 
         _drawTrackGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -531,7 +528,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
 
         _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -541,7 +537,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setDisableNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
         _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
@@ -551,7 +546,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_setDisableActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
         _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);

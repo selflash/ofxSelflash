@@ -10,56 +10,66 @@ namespace fl2d {
     flRangeSlider::flRangeSlider(float trackWidth, float min, float max, float minValue, float maxValue) {
         //ofLog() << "[flRangeSlider]flRangeSlider()";
         
-        //DEBUGG用
-        _trackAlpha = 1.0;
-        
         //------------------------------------------
         _target = this;
         name("flRangeSlider");
         
-        _roundEnabled = false;
-
+        //------------------------------------------
         _min = min;
         _max = max;
+        if(_max > _min) {
+            _range = _max - _min;
+        } else {
+            _range = _min - _max;
+        }
+
         _minValue = minValue;
         _maxValue = maxValue;
         if(_roundEnabled) {
             _minValue = flmath::roundd(_minValue);
             _maxValue = flmath::roundd(_maxValue);
         }    
-        _range = _maxValue - _minValue;
+        //------------------------------------------
+        
         //------------------------------------------
         _trackWidth = trackWidth;
-        _trackHeight = 18;
-        _thumbWidth = 10;
-        
-        _percent = (_max - _min) / _trackWidth;    
+//        if(_max > _min) {
+//            _barWidth = (_value -_min) / (_range / _trackWidth);
+//        } else {
+//            _barWidth = (_min - _value) / (_range / _trackWidth);
+//        }
+//        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
+
+        _percent = (_max - _min) / _trackWidth;    
         
         flGraphics* g;
         
         //------------------------------------------
-        //バーとつまみのコンテナ
         track = new flSprite();
-        track->name("track");
+        track->name("flRangeSlider.track");
         track->x(0);
         track->y(0);
         track->mouseEnabled(false);
+//        track->addEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
+//        track->addEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
+//        track->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
         addChild(track);
-        
         //------------------------------------------
-        //バー
+
+        //------------------------------------------
         bar = new flSprite();
-        bar->name("bar");
+        bar->name("flRangeSlider.bar");
         bar->useHandCursor(true);
         bar->addEventListener(flMouseEvent::ROLL_OVER, this, &flRangeSlider::_mouseEventHandler);
         bar->addEventListener(flMouseEvent::ROLL_OUT, this, &flRangeSlider::_mouseEventHandler);
         bar->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
         track->addChild(bar);
-        
-        //つまみ
+        //------------------------------------------
+
+        //------------------------------------------
         minThumb = new flSprite();
-        minThumb->name("minThumb");
+        minThumb->name("flRangeSlider.minThumb");
         g = minThumb->graphics();
         g->clear();
         g->beginFill(0xff0000);
@@ -73,10 +83,11 @@ namespace fl2d {
         minThumb->addEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
         minThumb->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
         track->addChild(minThumb);
-        
-        //つまみ
+        //------------------------------------------
+
+        //------------------------------------------
         maxThumb = new flSprite();
-        maxThumb->name("maxThumb");
+        maxThumb->name("flRangeSlider.maxThumb");
         g = maxThumb->graphics();
         g->clear();
         g->beginFill(0x00ff00);
@@ -90,9 +101,13 @@ namespace fl2d {
         maxThumb->addEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
         maxThumb->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
         track->addChild(maxThumb);
-        
+        //------------------------------------------
+
+        bar->x(minThumb->x() + _thumbWidth);
+
         //------------------------------------------
         _minValueText = new flTextField();
+        _minValueText->name("flRangeSlider.minValueText");
         _minValueText->x(0);
         _minValueText->width(_trackWidth);
         _minValueText->autoSize(flTextFieldAutoSize::LEFT);
@@ -103,6 +118,7 @@ namespace fl2d {
         addChild(_minValueText);
         
         _maxValueText = new flTextField();
+        _maxValueText->name("flRangeSlider.maxValueText");
         _maxValueText->x(0);
         _maxValueText->width(_trackWidth);
         _maxValueText->autoSize(flTextFieldAutoSize::RIGHT);
@@ -113,34 +129,14 @@ namespace fl2d {
         addChild(_maxValueText);
         //------------------------------------------
         
-        _draggablePoint = new ofPoint(0, 0);
-        
-        //バーのグラフィックス
-        bar->x(minThumb->x() + _thumbWidth);
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
     flRangeSlider::~flRangeSlider() {
         //ofLog() << "[flRangeSlider]~flRangeSlider()";
-        
-        //DEBUGG用
-        _trackAlpha = 0.0;
-        
-        _roundEnabled = false;
-
-        _min = 0.0;
-        _max = 0.0;
-        _minValue = 0.0;
-        _maxValue = 0.0;
-        _range = 0.0;
-        
-        _trackWidth = 0.0;
-        _trackHeight = 0.0;
-        _thumbWidth = 0.0;
-        
-        _percent = 0.0;
         
         delete track;
         track = NULL;
@@ -163,16 +159,11 @@ namespace fl2d {
         delete maxThumb;
         maxThumb = NULL;
         
-        _barWidth = 0.0;
-        
         delete _minValueText;
         _minValueText = NULL;
         
         delete _maxValueText;
         _maxValueText = NULL;
-        
-        delete _draggablePoint;
-        _draggablePoint = NULL;
     }
     
     //==============================================================
@@ -221,10 +212,17 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-//    void flRangeSlider::textColor(int color) {
-//        _minValueText->textColor(color);
-//        _maxValueText->textColor(color);
-//    }
+    void flRangeSlider::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if (_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+    }
     
     //--------------------------------------------------------------
     float flRangeSlider::min() { return _min; }
@@ -420,40 +418,28 @@ namespace fl2d {
     //--------------------------------------------------------------
     bool flRangeSlider::roundEnabled() { return _roundEnabled; }
     void flRangeSlider::roundEnabled(bool value) { _roundEnabled = value; }
-    
-    //--------------------------------------------------------------
-    bool flRangeSlider::enabled() { return _enabled; }
-    void flRangeSlider::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-        mouseChildren(_enabled);
-        
-        if (_label != NULL) {
-            if (_enabled) {
-                _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-            }
-            else {
-                _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-            }
-        }
-        
-        //バー
-        if (_enabled) {
-            _setNormalColor();
-            //            _drawTrackGraphics(_normalBarColor, _normalBarColor, 1);
-            //            _drawBarGraphics(_normalBarColor, _activeBarColor, 1);
-        }
-        else {
-            _setNormalColor();
-            
-            //            _drawTrackGraphics(_normalBarColor, _normalBarColor, 1);
-            //            _drawBarGraphics(_normalBarColor, _disableNormalBarColor, 1);
-        }
-    }
-    
+
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flRangeSlider::_changeValue(bool dispatch) {
+        _minValueText->text(ofToString(_minValue, _digit));
+        _maxValueText->text(ofToString(_maxValue, _digit));
+
+        //------------------------------------------
+        //イベント
+        if(dispatch) {
+            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
+            event->__minValue = _minValue;
+            event->__maxValue = _maxValue;
+            event->__range = _range;
+            dispatchEvent(event);
+
+        }
+        //------------------------------------------
+    }
     
     //--------------------------------------------------------------
     void flRangeSlider::_over() {
@@ -461,10 +447,7 @@ namespace fl2d {
         if(minThumb->isMouseDown()) return;
         if(maxThumb->isMouseDown()) return;
 
-        //        _valueText->visible(true);
         _setOverColor();
-        
-        //        dispatchEvent(new flButtonEvent(flButtonEvent::ROLL_OVER));
     }
     
     //--------------------------------------------------------------
@@ -484,28 +467,18 @@ namespace fl2d {
         if(maxThumb->isMouseDown()) return;
 
         _setNormalColor();
-
-//        if(track->isMouseOver()) {
-//            //            _valueText->visible(true);
-//            _setBarOverColor();
-//        } else {
-//            //            _valueText->visible(false);
-//            _setNormalColor();
-//        }
     }
     
     //--------------------------------------------------------------
     void flRangeSlider::_barPress() {
         //------------------------------------------
-        //サムの位置の更新
-        float temp1, temp2;
-        temp1 = mouseX() - _draggablePoint->x;
+        float temp1 = mouseX() - _draggablePoint.x;
         if(temp1 < 0) {
             temp1 = 0;
         } else if(temp1 > _trackWidth - _barWidth) {
             temp1 = _trackWidth - _barWidth;
         }
-        temp2 = temp1 + _barWidth;
+        float temp2 = temp1 + _barWidth;
         minThumb->x(temp1 - _thumbWidth);
         maxThumb->x(temp2);
         //------------------------------------------
@@ -519,23 +492,19 @@ namespace fl2d {
             _maxValue = flmath::roundd(_maxValue);
         }
         _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
         //------------------------------------------
 
         //------------------------------------------
         //表示の更新
         bar->x(minThumb->x() + _thumbWidth);
+        //------------------------------------------
+
+        //------------------------------------------
         _setActiveColor();
         //------------------------------------------
 
         //------------------------------------------
-        //イベント
-        flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->__minValue = _minValue;
-        event->__maxValue = _maxValue;
-        event->__range = _range;
-        dispatchEvent(event);
+        _changeValue(true);
         //------------------------------------------
     }
     
@@ -543,20 +512,23 @@ namespace fl2d {
     void flRangeSlider::_minThumbPress() {
 //        ofLog() << "[flRangeSlider]_thumbPress()";
 
+        float preValue = _minValue;
+
         //------------------------------------------
         //サムの位置の更新
-        float temp;
-        temp = mouseX() - _draggablePoint->x;
+        float temp = mouseX() - _draggablePoint.x;
         if(temp < 0) {
             temp = 0;
         } else if(temp > maxThumb->x() - 1) {
             temp = maxThumb->x() - 1;
         }
+        //------------------------------------------
+
+        //------------------------------------------
         minThumb->x(temp - _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //値の更新
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
@@ -565,23 +537,18 @@ namespace fl2d {
             _maxValue = flmath::roundd(_maxValue);
         }
         _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
         //------------------------------------------
 
         //------------------------------------------
-        //表示の更新
         bar->x(minThumb->x() + _thumbWidth);
+        //------------------------------------------
+
+        //------------------------------------------
         _setActiveColor();
         //------------------------------------------
 
         //------------------------------------------
-        //イベント
-        flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->__minValue = _minValue;
-        event->__maxValue = _maxValue;
-        event->__range = _range;
-        dispatchEvent(event);
+        if(preValue != _minValue) _changeValue(true);
         //------------------------------------------
     }
     
@@ -589,20 +556,23 @@ namespace fl2d {
     void flRangeSlider::_maxThumbPress() {
 //        ofLog() << "[flRangeSlider]_maxThumbPress()";
 
+        float preValue = _maxValue;
+
         //------------------------------------------
         //サムの位置の更新
-        float temp;
-        temp = mouseX() - _draggablePoint->x;
+        float temp = mouseX() - _draggablePoint.x;
         if(temp < minThumb->x() + _thumbWidth + 1) {
             temp = minThumb->x() + _thumbWidth + 1;
         } else if(temp > _trackWidth) {
             temp = _trackWidth;
         }
+        //------------------------------------------
+        
+        //------------------------------------------
         maxThumb->x(temp);
         //------------------------------------------
         
         //------------------------------------------
-        //値の更新
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
@@ -611,22 +581,14 @@ namespace fl2d {
             _maxValue = flmath::roundd(_maxValue);
         }
         _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
         //------------------------------------------
         
         //------------------------------------------
-        //表示の更新
         _setActiveColor();
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-        event->__minValue = _minValue;
-        event->__maxValue = _maxValue;
-        event->__range = _range;
-        dispatchEvent(event);
+        if(preValue != _maxValue) _changeValue(true);
         //------------------------------------------
     }
     
@@ -646,7 +608,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_setNormalColor() {
-//        _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _minValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 
@@ -656,6 +618,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_setOverColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _minValueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
 
@@ -677,6 +640,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_setActiveColor() {
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _minValueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
 
@@ -686,14 +650,22 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _minValueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _maxValueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+
+        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flRangeSlider::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _minValueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _maxValueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+
+        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -786,7 +758,7 @@ namespace fl2d {
 //    }
     
     //==============================================================
-    // Event Handler
+    // Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
@@ -823,16 +795,16 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == bar) {
-                _draggablePoint->x = mouseX() - (minThumb->x() + _thumbWidth);
+                _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
                 _barPress();
             }
             if(event.target() == minThumb) {
-                _draggablePoint->x = mouseX() - (minThumb->x() + _thumbWidth);
-//                _draggablePoint->x = mouseX() - thumb->x() - _thumbWidth * 0.5;
+                _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
+//                _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;
                 _minThumbPress();
             }
             else if(event.target() == maxThumb) {
-                _draggablePoint->x = mouseX() - maxThumb->x();
+                _draggablePoint.x = mouseX() - maxThumb->x();
                 _maxThumbPress();
             }
 
@@ -842,7 +814,7 @@ namespace fl2d {
 
             
 //            if(event.target() == maxThumb) {
-//                _draggablePoint->x = mouseX() - maxThumb->x();
+//                _draggablePoint.x = mouseX() - maxThumb->x();
 //                _press();
 //            }
 //            stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
@@ -874,8 +846,8 @@ namespace fl2d {
             _release();
 
 //            if(event.currentTarget() == stage()) {
-//                _draggablePoint->x = 0;
-//                _draggablePoint->y = 0;
+//                _draggablePoint.x = 0;
+//                _draggablePoint.y = 0;
 //
 //                _release();
 //                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);

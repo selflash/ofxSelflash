@@ -18,7 +18,6 @@ namespace fl2d {
         
         private:
             bool _roundEnabled = false;
-            int _digit = 2;
 
             ofColor _normalBarColor;
             ofColor _overBarColor;
@@ -28,18 +27,19 @@ namespace fl2d {
         
             float _trackWidth = 150;
             float _trackHeight = 18;
-            float _thumbWidth = 20;
+            float _thumbWidth = 10;
             float _barWidth = 50;
         
-            float _min = 0;
-            float _max = 100;
-            float _range = 100;
-            float _value = 50;
+            float _min = 0.0;
+            float _max = 100.0;
+            float _range = 100.0;
+            float _value = 50.0;
             float _percent = 0.5;
 
             flTextField* _valueText = NULL;
+            int _digit = 2;
 
-            ofPoint _draggablePoint = ofPoint(0, 0);
+            ofPoint _draggablePoint;
         
         public:
             flSlider(float trackWidth = 200, float min = 0, float max = 100, float defaultValue = 0);

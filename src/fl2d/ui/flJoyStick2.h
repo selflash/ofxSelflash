@@ -16,7 +16,8 @@ namespace fl2d {
         
         private:
             flTextField* _valueText = NULL;
-        
+            int _digit = 2;
+
             float _areaRadius = 0.0;
             float _leverRadius = 0.0;
             float _maxDistance = 0.0;
@@ -27,10 +28,8 @@ namespace fl2d {
             float _targetX = 0.0;
             float _targetY = 0.0;
 
-            //------------------------------------------
             float _xValue = 0.0;
             float _yValue = 0.0;
-            //------------------------------------------
         
         public:
             flJoyStick2(float areaDiameter = 50);

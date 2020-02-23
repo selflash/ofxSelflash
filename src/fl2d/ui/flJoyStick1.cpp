@@ -70,7 +70,7 @@ namespace fl2d {
         _valueText->y(0);
         _valueText->width(_uiLength - 4);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
-        _valueText->text(ofToString(_value, 2));
+        _valueText->text(ofToString(_value, _digit));
         _valueText->mouseEnabled(false);
         addChild(_valueText);
         //------------------------------------------
@@ -337,7 +337,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick1::_changeValue(bool dispatch) {
-        _valueText->text(ofToString(_value, 2));
+        _valueText->text(ofToString(_value, _digit));
         
         //------------------------------------------
         if(dispatch) {

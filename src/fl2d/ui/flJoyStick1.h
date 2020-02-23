@@ -18,25 +18,23 @@ namespace fl2d {
         protected:
         
         private:
-            flTextField* _valueText = NULL;
             string _type = HORIZONTALLY;
+
+            flTextField* _valueText = NULL;
+            int _digit = 2;
 
             float _uiLength = 0.0;
             float _uiWidth = 0.0;
             float _uiHeight = 0.0;
 
-            //------------------------------------------
             float _leverRadius = 0.0;
             float _maxDistance = 0.0;
             ofPoint _center;
             ofPoint _draggablePoint;
             bool _flg = false;
             float _targetValue = 0.0;
-            //------------------------------------------
 
-            //------------------------------------------
             float _value = 0.0;
-            //------------------------------------------
 
         public:
             flJoyStick1(float length = 100);
