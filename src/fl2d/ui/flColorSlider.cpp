@@ -468,7 +468,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_update() {
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -563,9 +563,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -596,9 +596,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -629,9 +629,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -662,9 +662,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -695,9 +695,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -728,9 +728,9 @@ namespace fl2d {
         //------------------------------------------
         if(preValue != _colorValue) _changeValue();
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_colorParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _colorParam->set(_colorValue);
             }
         }
@@ -788,7 +788,7 @@ namespace fl2d {
         if(preValue != _colorValue) _changeValue();
         
         if(_colorParam != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
             _colorParam->set(_colorValue);
         }
         //------------------------------------------

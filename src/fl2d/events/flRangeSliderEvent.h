@@ -18,11 +18,11 @@ namespace fl2d {
     protected:        
         float __minValue;
         float __maxValue;
-        float __range;
+//        float __range;
         
     private:
         //スライダサムまたはスライダトラックが押されたかどうかを示すストリングを取得します。
-        void* _clickTarget;
+//        void* _clickTarget;
         
     public:
         flRangeSliderEvent(string type);
@@ -30,7 +30,7 @@ namespace fl2d {
         
         virtual inline float minValue() { return __minValue; }
         virtual inline float maxValue() { return __maxValue; }
-        virtual inline float range() { return __range; }
+//        virtual inline float range() { return __range; }
         
     protected:
         

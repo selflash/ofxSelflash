@@ -140,14 +140,15 @@ namespace fl2d {
                 
                 _colorParam = &param;
                 _listeners.push(_colorParam->newListener([&](ofColor& val) {
-                    if(_bChangedByMyself) {
-                        _bChangedByMyself = false;
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
                     } else {
-                        _bChangedByOfParm = true;
+                        _bChangedByOfParm["value"] = true;
                         colorValue(val);
                     }
                 }));
                 
+                _bChangedByOfParm["value"] = true;
                 hexValue(_colorParam->get().getHex());
             }
             virtual inline void unbind() {

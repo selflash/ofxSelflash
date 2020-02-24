@@ -59,10 +59,10 @@ namespace fl2d {
                 
                 _floatParam = &param;
                 _listeners.push(_floatParam->newListener([&](float& val) {
-                    if(_bChangedByMyself) {
-                        _bChangedByMyself = false;
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
                     } else {
-                        _bChangedByOfParm = true;
+                        _bChangedByOfParm["value"] = true;
                         moveLever(_floatParam->get());
                     }
                 }));

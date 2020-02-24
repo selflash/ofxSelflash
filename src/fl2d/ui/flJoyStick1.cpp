@@ -183,19 +183,23 @@ namespace fl2d {
             }
             
             //------------------------------------------
-            if(lever->isMouseOver()) {
-                _setOverColor();
+            if (_enabled) {
+                if(lever->isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setNormalColor();
+                }
             } else {
-                _setNormalColor();
+                _setDisableNormalColor();
             }
             //------------------------------------------
             
             //------------------------------------------
             _changeValue(_flg);
             
-            if(!_bChangedByOfParm) {
+            if(!_bChangedByOfParm["value"]) {
                 if(_floatParam != NULL) {
-                    _bChangedByMyself = true;
+                    _bChangedByMyself["value"] = true;
                     _floatParam->set(_value);
                 }
             }
@@ -210,7 +214,7 @@ namespace fl2d {
             _targetValue = _center.y;
         }
         _value = 0.0f;
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -456,7 +460,7 @@ namespace fl2d {
         _changeValue(true);
         
         if(_floatParam != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
             _floatParam->set(_value);
         }
         //------------------------------------------
@@ -519,14 +523,20 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick1::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flJoyStick1::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------

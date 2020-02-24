@@ -164,6 +164,19 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
+    void flNumberDialer::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if (_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+    }
+    
+    //--------------------------------------------------------------
     string flNumberDialer::direction() { return _direction; }
     void flNumberDialer::direction(string value) {
         _direction = value;
@@ -314,7 +327,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flNumberDialer::_setNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -323,7 +335,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flNumberDialer::_setOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
@@ -332,7 +343,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flNumberDialer::_setSelectedOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR, 1);
@@ -341,7 +351,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flNumberDialer::_setActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-        
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
@@ -349,14 +358,18 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flNumberDialer::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flNumberDialer::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------

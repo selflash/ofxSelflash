@@ -142,15 +142,22 @@ namespace fl2d {
         float iy = _uiHeight * 0.5f;
         
         ofColor lineColor;
-        if(isMouseDown()) {
-            lineColor = flDefinition::UI_LINE_ACTIVE_COLOR;
-        }
-        else if(isMouseOver()) {
-            lineColor = flDefinition::UI_LINE_OVER_COLOR;
+        
+        //------------------------------------------
+        if(_enabled) {
+            if(isMouseDown()) {
+                lineColor = flDefinition::UI_LINE_ACTIVE_COLOR;
+            }
+            else if(isMouseOver()) {
+                lineColor = flDefinition::UI_LINE_OVER_COLOR;
+            } else {
+                lineColor = flDefinition::UI_LINE_NORMAL_COLOR;
+            }
         } else {
-            lineColor = flDefinition::UI_LINE_NORMAL_COLOR;
+            lineColor = flDefinition::UI_LINE_DISABLE_NORMAL_COLOR;
         }
- 
+        //------------------------------------------
+
         //------------------------------------------
         ofSetColor(lineColor, lineColor.a * _compoundAlpha);
         ofSetLineWidth(1);
@@ -244,6 +251,19 @@ namespace fl2d {
         }
     }
     
+    //--------------------------------------------------------------
+    void flHistgramViewer::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if (_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+    }
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
@@ -320,14 +340,18 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flHistgramViewer::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flHistgramViewer::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------

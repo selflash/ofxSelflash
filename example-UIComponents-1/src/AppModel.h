@@ -37,6 +37,9 @@ class AppModel {
         ofParameter<bool> fillEnabled = false;
         ofParameter<bool> wireframeEnabled = false;
 
+        ofParameter<float> left = 0.0;
+        ofParameter<float> right = 0.0;
+
     protected:
         
     private:

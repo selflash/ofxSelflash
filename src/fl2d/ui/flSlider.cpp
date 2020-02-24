@@ -142,7 +142,7 @@ namespace fl2d {
             _press();
         }
         
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -207,16 +207,18 @@ namespace fl2d {
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
         
         //------------------------------------------
-        if(preValue != _value) _changeValue(dispatch);
+        if(preValue != _value) {
+            _changeValue(dispatch);
         
-        if(!_bChangedByOfParm) {
-            if(_floatParam != NULL) {
-                _bChangedByMyself = true;
-                _floatParam->set(_value);
-            }
-            else if(_intParam != NULL) {
-                _bChangedByMyself = true;
-                _intParam->set(_value);
+            if(!_bChangedByOfParm["value"]) {
+                if(_floatParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _floatParam->set(_value);
+                }
+                else if(_intParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _intParam->set(_value);
+                }
             }
         }
         //------------------------------------------
@@ -238,16 +240,18 @@ namespace fl2d {
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
         
         //------------------------------------------
-        if(preValue != _value) _changeValue(dispatch);
+        if(preValue != _value) {
+            _changeValue(dispatch);
         
-        if(!_bChangedByOfParm) {
-            if(_floatParam != NULL) {
-                _bChangedByMyself = true;
-                _floatParam->set(_value);
-            }
-            else if(_intParam != NULL) {
-                _bChangedByMyself = true;
-                _intParam->set(_value);
+            if(!_bChangedByOfParm["value"]) {
+                if(_floatParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _floatParam->set(_value);
+                }
+                else if(_intParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _intParam->set(_value);
+                }
             }
         }
         //------------------------------------------
@@ -295,16 +299,18 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        if(preValue != _value) _changeValue(dispatch);
+        if(preValue != _value) {
+            _changeValue(dispatch);
         
-        if(!_bChangedByOfParm) {
-            if(_floatParam != NULL) {
-                _bChangedByMyself = true;
-                _floatParam->set(_value);
-            }
-            else if(_intParam != NULL) {
-                _bChangedByMyself = true;
-                _intParam->set(_value);
+            if(!_bChangedByOfParm["value"]) {
+                if(_floatParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _floatParam->set(_value);
+                }
+                else if(_intParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _intParam->set(_value);
+                }
             }
         }
         //------------------------------------------        
@@ -469,11 +475,11 @@ namespace fl2d {
         if(preValue != _value) _changeValue(true);
 
         if(_floatParam != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
             _floatParam->set(_value);
         }
         else if(_intParam != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
             _intParam->set(_value);
         }
         //------------------------------------------

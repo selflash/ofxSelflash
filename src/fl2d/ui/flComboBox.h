@@ -59,9 +59,9 @@ namespace fl2d {
         flComboBox(float dropdownWidth = 150);
         virtual ~flComboBox();
         
-        virtual flTextField* label();
         virtual void label(flTextField* value);
-        
+        virtual void enabled(bool value);
+
         inline string itemLabelText(int index) {
             if(index < 0 || index > _buttonList.size() - 1) return "";
             
@@ -257,9 +257,6 @@ namespace fl2d {
         
         int intValue();
         void intValue(int value);
-        
-        virtual bool enabled();
-        virtual void enabled(bool value);
         
     protected:
         virtual void _setup();

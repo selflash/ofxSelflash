@@ -68,6 +68,18 @@ void ofApp::setup() {
     }));
     uiComponents->slider002->bind(appModel.speed);
 
+    renderer->left = appModel.left;
+    listeners.push(appModel.left.newListener([&](float& value) {
+        renderer->left = value;
+    }));
+    uiComponents->rangeSlider001->bindMin(appModel.left);
+    
+    renderer->right = appModel.right;
+    listeners.push(appModel.right.newListener([&](float& value) {
+        renderer->right = value;
+    }));
+    uiComponents->rangeSlider001->bindMax(appModel.right);
+    
     renderer->fillEnabled = appModel.fillEnabled;
     listeners.push(appModel.fillEnabled.newListener([&](bool& value) {
         renderer->fillEnabled = value;
@@ -140,6 +152,9 @@ void ofApp::update() {
         appModel.fillEnabled = sin(elapsedTime * 1.4) < 0 ? false : true;
         appModel.wireframeEnabled = sin(elapsedTime * 1.8) < 0 ? false : true;
         
+        appModel.left = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * -50.0;
+        appModel.right = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 50.0;
+
         appModel.cameraPosVelXY = vec2(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         appModel.cameraPosVelZ = sin(elapsedTime * 3.0);
 
@@ -158,8 +173,14 @@ void ofApp::update() {
         float n = ((sin(elapsedTime) + 1.0) / 2.0);
         //        ofLog() << "n = " << n;
 
+//        rangeSlider001->min(-100);
+//        rangeSlider001->max(1300);
+        
+        uiComponents->rangeSlider001->minValue(((sin(elapsedTime) + 1.0) / 2.0) * -50);
+        uiComponents->rangeSlider001->maxValue(((sin(elapsedTime) + 1.0) / 2.0) * 50);
 
         uiComponents->slider001->value(((sin(elapsedTime) + 1.0) / 2.0) * 20);
+        uiComponents->slider002->value(((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 10.0);
         uiComponents->colorSlider002->colorValue(ofColor(
                                                          ((sin(elapsedTime * 0.58) + 1.0) / 2.0) * 255,
                                                          ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255,
@@ -167,6 +188,8 @@ void ofApp::update() {
                                                          255
                                                          ));
 
+        uiComponents->check001->selected(sin(elapsedTime * 1.4) < 0 ? false : true);
+        uiComponents->check002->selected(sin(elapsedTime * 1.8) < 0 ? false : true);
 
         uiComponents->joystick2001->moveLever(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         uiComponents->joystick1001->moveLever(sin(elapsedTime * 3.0));

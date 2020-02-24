@@ -33,7 +33,8 @@ namespace fl2d {
         virtual ~flVec3Slider();
         
         virtual void label(flTextField* value);
-        
+        virtual void enabled(bool value);
+
         virtual ofVec3f vec3Value();
         virtual void vec3Value(ofVec3f value, bool dispatch = true);
         

@@ -188,6 +188,12 @@ namespace fl2d {
         }
 
         //        ofLog() << "[flRangeSlider]bar->width = " << bar->width();
+        
+//        ofLog() << "_min = " << _min;
+//        ofLog() << "_max = " << _max;
+//        ofLog() << "_minValue = " << _minValue;
+//        ofLog() << "_maxValue = " << _maxValue;
+//        ofLog() << "_range = " << _range;
     }
     
     //--------------------------------------------------------------
@@ -227,83 +233,93 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flRangeSlider::min() { return _min; }
     void flRangeSlider::min(float value, bool dispatch) {
+        //------------------------------------------
+        //Update value.
         _min = value;
         if(_roundEnabled) _min = flmath::roundd(_min);
         if(_max < _min) _max = _min;
         if(_maxValue < _min) _maxValue = _min;
-        
-        //------------------------------------------
-        //値の更新
+        _range = _maxValue - _minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
+        
         //------------------------------------------
-        //サムの位置の更新
         minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
         maxThumb->x((_maxValue - _min) / _percent);
-        //------------------------------------------
-        //------------------------------------------
-        //値の更新
-        _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
+        bar->x(minThumb->x() + _thumbWidth);
+
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //表示の更新
-        bar->x(minThumb->x() + _thumbWidth);
-        _drawBarGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
+        //Update color.
+        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+            _setActiveColor();
+        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+            _setOverColor();
+        } else {
+            _setNormalColor();
+        }
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->__minValue = _minValue;
-            event->__maxValue = _maxValue;
-            event->__range = _range;
-            dispatchEvent(event);
+        _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm["minValue"]) {
+            if(_floatMinParam != NULL) {
+                _bChangedByMyself["minValue"] = true;
+                _floatMinParam->set(_minValue);
+            }
+            else if(_intMinParam != NULL) {
+                _bChangedByMyself["minValue"] = true;
+                _intMinParam->set(_minValue);
+            }
         }
         //------------------------------------------
     }
     //--------------------------------------------------------------
     float flRangeSlider::max() { return _max; }
     void flRangeSlider::max(float value, bool dispatch) {
+        //------------------------------------------
+        //Update value.
         _max = value;
         if(_roundEnabled) _max = flmath::roundd(_max);
         if(_min > _max) _min = _max;
         if(_minValue > _max) _minValue = _max;
-        
-        //------------------------------------------
-        //値の更新
+        _range = _maxValue - _minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
+        
         //------------------------------------------
-        //サムの位置の更新
         minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
         maxThumb->x((_maxValue - _min) / _percent);
-        //------------------------------------------
-        //------------------------------------------
-        //値の更新
-        _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
+        
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //表示の更新
-        _drawBarGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
+        //Update color.
+        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+            _setActiveColor();
+        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+            _setOverColor();
+        } else {
+            _setNormalColor();
+        }
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->__minValue = _minValue;
-            event->__maxValue = _maxValue;
-            event->__range = _range;
-            dispatchEvent(event);
+        _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm["maxValue"]) {
+            if(_floatMaxParam != NULL) {
+                _bChangedByMyself["maxValue"] = true;
+                _floatMaxParam->set(_maxValue);
+            }
+            else if(_intMaxParam != NULL) {
+                _bChangedByMyself["maxValue"] = true;
+                _intMaxParam->set(_maxValue);
+            }
         }
         //------------------------------------------
     }
@@ -311,34 +327,29 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flRangeSlider::minValue() { return _minValue; }
     void flRangeSlider::minValue(float value, bool dispatch) {
+        float preValue = _minValue;
+
+        //------------------------------------------
+        //Update value.
         _minValue = value;
         if(_minValue < _min) _min = _minValue;
         if(_roundEnabled) _minValue = flmath::roundd(_minValue);
         if(_minValue > _max) _max = _minValue;
         if(_minValue > _maxValue) _maxValue = _minValue;
-        
-        //------------------------------------------
-        //値の更新
+        _range = _maxValue - _minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
         
         //------------------------------------------
-        //サムの位置の更新
         minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
-        maxThumb->x((_maxValue - _min) / _percent);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //値の更新
-        _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
+//        maxThumb->x((_maxValue - _min) / _percent);
+        bar->x(minThumb->x() + _thumbWidth);
+
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //表示の更新
-        bar->x(minThumb->x() + _thumbWidth);
+        //Update color.
         if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
             _setActiveColor();
         } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
@@ -349,13 +360,19 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->__minValue = _minValue;
-            event->__maxValue = _maxValue;
-            event->__range = _range;
-            dispatchEvent(event);
+        if(preValue != _minValue) {
+            _changeValue(dispatch);
+        
+            if(!_bChangedByOfParm["minValue"]) {
+                if(_floatMinParam != NULL) {
+                    _bChangedByMyself["minValue"] = true;
+                    _floatMinParam->set(_minValue);
+                }
+                else if(_intMinParam != NULL) {
+                    _bChangedByMyself["minValue"] = true;
+                    _intMinParam->set(_minValue);
+                }
+            }
         }
         //------------------------------------------
     }
@@ -363,34 +380,29 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flRangeSlider::maxValue() { return _maxValue; }
     void flRangeSlider::maxValue(float value, bool dispatch) {
+        float preValue = _maxValue;
+
+        //------------------------------------------
+        //Update value.
         _maxValue = value;
         if(_maxValue > _max) _max = _maxValue;
         if(_roundEnabled) _maxValue = flmath::roundd(_maxValue);
         if(_maxValue < _min) _min = _maxValue;
         if(_maxValue < _minValue) _minValue = _maxValue;
-        
-        //------------------------------------------
-        //値の更新
+        _range = _maxValue - _minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
         
         //------------------------------------------
-        //サムの位置の更新
-        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+//        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
         maxThumb->x((_maxValue - _min) / _percent);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //値の更新
-        _range = _maxValue - _minValue;
-        _minValueText->text(ofToString(_minValue));
-        _maxValueText->text(ofToString(_maxValue));
+//        bar->x(minThumb->x() + _thumbWidth);
+
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //表示の更新
-        bar->x(minThumb->x() + _thumbWidth);
+        //Update color.
         if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
             _setActiveColor();
         } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
@@ -401,13 +413,19 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->__minValue = _minValue;
-            event->__maxValue = _maxValue;
-            event->__range = _range;
-            dispatchEvent(event);
+        if(preValue != _maxValue) {
+            _changeValue(dispatch);
+        
+            if(!_bChangedByOfParm["maxValue"]) {
+                if(_floatMaxParam != NULL) {
+                    _bChangedByMyself["maxValue"] = true;
+                    _floatMaxParam->set(_maxValue);
+                }
+                else if(_intMaxParam != NULL) {
+                    _bChangedByMyself["maxValue"] = true;
+                    _intMaxParam->set(_maxValue);
+                }
+            }
         }
         //------------------------------------------
     }
@@ -434,7 +452,7 @@ namespace fl2d {
             flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
             event->__minValue = _minValue;
             event->__maxValue = _maxValue;
-            event->__range = _range;
+//            event->__range = _range;
             dispatchEvent(event);
 
         }
@@ -481,10 +499,11 @@ namespace fl2d {
         float temp2 = temp1 + _barWidth;
         minThumb->x(temp1 - _thumbWidth);
         maxThumb->x(temp2);
+        bar->x(minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        //値の更新
+        //Update value.
         _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
@@ -495,16 +514,29 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        //表示の更新
-        bar->x(minThumb->x() + _thumbWidth);
-        //------------------------------------------
-
-        //------------------------------------------
         _setActiveColor();
         //------------------------------------------
 
         //------------------------------------------
         _changeValue(true);
+
+        if(_floatMinParam != NULL) {
+            _bChangedByMyself["minValue"] = true;
+            _floatMinParam->set(_minValue);
+        }
+        else if(_intMinParam != NULL) {
+            _bChangedByMyself["minValue"] = true;
+            _intMinParam->set(_minValue);
+        }
+
+        if(_floatMaxParam != NULL) {
+            _bChangedByMyself["maxValue"] = true;
+            _floatMaxParam->set(_maxValue);
+        }
+        else if(_intMaxParam != NULL) {
+            _bChangedByMyself["maxValue"] = true;
+            _intMaxParam->set(_maxValue);
+        }
         //------------------------------------------
     }
     
@@ -515,7 +547,6 @@ namespace fl2d {
         float preValue = _minValue;
 
         //------------------------------------------
-        //サムの位置の更新
         float temp = mouseX() - _draggablePoint.x;
         if(temp < 0) {
             temp = 0;
@@ -526,10 +557,13 @@ namespace fl2d {
 
         //------------------------------------------
         minThumb->x(temp - _thumbWidth);
+        bar->x(minThumb->x() + _thumbWidth);
+        
+        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        //Update value.
         _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
@@ -540,15 +574,20 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        bar->x(minThumb->x() + _thumbWidth);
-        //------------------------------------------
-
-        //------------------------------------------
         _setActiveColor();
         //------------------------------------------
 
         //------------------------------------------
         if(preValue != _minValue) _changeValue(true);
+        
+        if(_floatMinParam != NULL) {
+            _bChangedByMyself["minValue"] = true;
+            _floatMinParam->set(_minValue);
+        }
+        else if(_intMinParam != NULL) {
+            _bChangedByMyself["minValue"] = true;
+            _intMinParam->set(_minValue);
+        }
         //------------------------------------------
     }
     
@@ -559,7 +598,6 @@ namespace fl2d {
         float preValue = _maxValue;
 
         //------------------------------------------
-        //サムの位置の更新
         float temp = mouseX() - _draggablePoint.x;
         if(temp < minThumb->x() + _thumbWidth + 1) {
             temp = minThumb->x() + _thumbWidth + 1;
@@ -570,10 +608,11 @@ namespace fl2d {
         
         //------------------------------------------
         maxThumb->x(temp);
+        
+        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         //------------------------------------------
         
         //------------------------------------------
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
         _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
@@ -589,6 +628,15 @@ namespace fl2d {
         
         //------------------------------------------
         if(preValue != _maxValue) _changeValue(true);
+        
+        if(_floatMaxParam != NULL) {
+            _bChangedByMyself["maxValue"] = true;
+            _floatMaxParam->set(_maxValue);
+        }
+        else if(_intMaxParam != NULL) {
+            _bChangedByMyself["maxValue"] = true;
+            _intMaxParam->set(_maxValue);
+        }
         //------------------------------------------
     }
     
@@ -673,7 +721,7 @@ namespace fl2d {
         flGraphics* g = track->graphics();
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
-        //            g->beginFill(0xff0000, _barAlpha);
+//            g->beginFill(0xff0000, _barAlpha);
         g->beginFill(fillColor.getHex(), _trackAlpha);
         g->drawRect(0, 0, _trackWidth, _trackHeight);
         g->endFill();
@@ -684,7 +732,7 @@ namespace fl2d {
         flGraphics* g = bar->graphics();
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
-        //            g->beginFill(0xff0000, _barAlpha);
+//            g->beginFill(0xff0000, _barAlpha);
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
 //        g->drawRect(minThumb->x() + _thumbWidth, 0, _barWidth, _trackHeight);
         g->drawRect(0, 0, _barWidth, _trackHeight);

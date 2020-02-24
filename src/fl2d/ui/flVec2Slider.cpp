@@ -116,7 +116,17 @@ namespace fl2d {
             _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         }
     }
-
+    
+    //--------------------------------------------------------------
+    void flVec2Slider::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        xSlider->enabled(_enabled);
+        ySlider->enabled(_enabled);
+    }
+    
     //--------------------------------------------------------------
     ofVec2f flVec2Slider::vec2Value() { return _vec2Value; }
     void flVec2Slider::vec2Value(ofVec2f value, bool dispatch) {

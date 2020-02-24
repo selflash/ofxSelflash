@@ -83,8 +83,8 @@ namespace fl2d {
             virtual void _setDisableNormalColor();
             virtual void _setDisableActiveColor();
 
-            virtual void _drawGraphics(const ofColor& outerColor);
-            virtual void _drawGraphics(const ofColor& outerColor, const ofColor& innerColor);
+            virtual void _drawGraphics(const ofColor& outerColor, float thickness = 1.0);
+            virtual void _drawGraphics(const ofColor& outerColor, const ofColor& innerColor, float thickness = 1.0);
         
         private:
             void _setGroupOwner(flRadioButtonGroup* groupOwner);

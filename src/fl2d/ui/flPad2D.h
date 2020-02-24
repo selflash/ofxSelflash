@@ -16,8 +16,8 @@ namespace fl2d {
     protected:
         
     private:
-        flTextField* _ratioText;
-        flTextField* _valueText;
+        flTextField* _ratioText = NULL;
+        flTextField* _valueText = NULL;
 
         float _width;
         float _height;
@@ -41,10 +41,10 @@ namespace fl2d {
         
         ofPoint _draggablePoint;
         
-        flNumberDialer* _dialer01;
-        flNumberDialer* _dialer02;
-        flNumberDialer* _dialer03;
-        flNumberDialer* _dialer04;
+        flNumberDialer* _dialer01 = NULL;
+        flNumberDialer* _dialer02 = NULL;
+        flNumberDialer* _dialer03 = NULL;
+        flNumberDialer* _dialer04 = NULL;
         
     public:
         flPad2D(float width = 100, float height = 100);
@@ -52,6 +52,7 @@ namespace fl2d {
         virtual ~flPad2D();
         
         virtual void label(flTextField* value);
+        virtual void enabled(bool value);
         
         float xRatio();
         void xRatio(float value, bool dispatch = true);

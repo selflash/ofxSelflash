@@ -60,7 +60,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_update() {
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -157,9 +157,9 @@ namespace fl2d {
         //------------------------------------------
         _changeValue(dispatch);
         
-        if(!_bChangedByOfParm) {
+        if(!_bChangedByOfParm["value"]) {
             if(_boolParam != NULL) {
-                _bChangedByMyself = true;
+                _bChangedByMyself["value"] = true;
                 _boolParam->set(_selected);
             }
         }
@@ -207,9 +207,11 @@ namespace fl2d {
         selected(!selected());
         
         //------------------------------------------
-        if(_boolParam != NULL) {
-            _bChangedByMyself = true;
-            _boolParam->set(_selected);
+        if(!_bChangedByOfParm["value"]) {
+            if(_boolParam != NULL) {
+                _bChangedByMyself["value"] = true;
+                _boolParam->set(_selected);
+            }
         }
         //------------------------------------------
     }

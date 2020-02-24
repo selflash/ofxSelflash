@@ -116,7 +116,6 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flTextField* flComboBox::label() { return _label; }
     void flComboBox::label(flTextField* value) {
         _label = value;
         
@@ -137,6 +136,39 @@ namespace fl2d {
             _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         }
     }
+    
+    //--------------------------------------------------------------
+    void flComboBox::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        _topButton->enabled(_enabled);
+        
+        if(_enabled) {
+            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        } else {
+            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+            
+            _topButton->selected(false);
+            if(_buttonContainer->parent()) removeChild(_buttonContainer);
+            //            if(_topButton->isFocus()) { _topButton->focusOut(); }
+        }
+    }
+    
+    //--------------------------------------------------------------
+//    void flComboBox::enabled(bool value) {
+//        _enabled = value;
+//        mouseEnabled(_enabled);
+//        mouseChildren(_enabled);
+//        
+//        int i; int l;
+//        l = _buttonList.size();
+//        for(i = 0; i < l; i++) {
+//            flButton* button = _buttonList[i];
+//            button->enabled(_enabled);
+//        }
+//    }
     
     //--------------------------------------------------------------
     void flComboBox::removeAllItems() {
@@ -218,26 +250,6 @@ namespace fl2d {
     //--------------------------------------------------------------
     int flComboBox::intValue() { return _intValue; }
     void flComboBox::intValue(int value) { _intValue = value; }
-    
-    //--------------------------------------------------------------
-    bool flComboBox::enabled() { return _enabled; }
-    void flComboBox::enabled(bool value) {
-        _enabled = value;
-        mouseEnabled(_enabled);
-        mouseChildren(_enabled);
-        
-        _topButton->enabled(_enabled);
-        
-        if(_enabled) {
-            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        } else {
-            if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-            
-            _topButton->selected(false);
-            if(_buttonContainer->parent()) removeChild(_buttonContainer);
-            //            if(_topButton->isFocus()) { _topButton->focusOut(); }
-        }
-    }
     
     //==============================================================
     // Protected / Private Method

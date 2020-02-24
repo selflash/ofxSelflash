@@ -9,20 +9,20 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flRangeSliderEvent::flRangeSliderEvent(string type):flEvent(type) {
-        _clickTarget = NULL;
+//        _clickTarget = NULL;
         
-        __minValue = 0.0f;
-        __maxValue = 0.0f;
-        __range = 0.0f;
+        __minValue = 0.0;
+        __maxValue = 0.0;
+//        __range = 0.0f;
     }
     
     //--------------------------------------------------------------
     flRangeSliderEvent::~flRangeSliderEvent() {
-        _clickTarget = NULL;
+//        _clickTarget = NULL;
         
-        __minValue = 0.0f;
-        __maxValue = 0.0f;
-        __range = 0.0f;
+        __minValue = 0.0;
+        __maxValue = 0.0;
+//        __range = 0.0;
     }
     
 }

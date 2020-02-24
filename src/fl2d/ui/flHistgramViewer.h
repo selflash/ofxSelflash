@@ -37,7 +37,8 @@ namespace fl2d {
         virtual ~flHistgramViewer();
         
         virtual void label(flTextField* value);
-        
+        virtual void enabled(bool value);
+
         inline float value() { return _value; }
         inline void value(float value, bool dispatch = true) {
 //            if(_value == value) return;

@@ -57,10 +57,10 @@ namespace fl2d {
                 
                 _vec2Param = &param;
                 _listeners.push(_vec2Param->newListener([&](vec2& val) {
-                    if(_bChangedByMyself) {
-                        _bChangedByMyself = false;
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
                     } else {
-                        _bChangedByOfParm = true;
+                        _bChangedByOfParm["value"] = true;
                         moveLever(_vec2Param->get());
                     }
                 }));

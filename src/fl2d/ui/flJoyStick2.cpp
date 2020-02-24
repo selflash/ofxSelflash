@@ -131,19 +131,23 @@ namespace fl2d {
             //------------------------------------------
 
             //------------------------------------------
-            if(lever->isMouseOver()) {
-                _setOverColor();
+            if (_enabled) {
+                if(lever->isMouseOver()) {
+                    _setOverColor();
+                } else {
+                    _setNormalColor();
+                }
             } else {
-                _setNormalColor();
+                _setDisableNormalColor();
             }
             //------------------------------------------
             
             //------------------------------------------
             _changeValue((_flgX || _flgY));
             
-            if(!_bChangedByOfParm) {
+            if(!_bChangedByOfParm["value"]) {
                 if(_vec2Param != NULL) {
-                    _bChangedByMyself = true;
+                    _bChangedByMyself["value"] = true;
                     _vec2Param->set(vec2(_xValue, _yValue));
                 }
             }
@@ -156,7 +160,7 @@ namespace fl2d {
         _targetY = _center.y;
         _xValue = 0.0;
         _yValue = 0.0;
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -186,43 +190,11 @@ namespace fl2d {
         mouseEnabled(_enabled);
         mouseChildren(_enabled);
         
-        if(_enabled) {
-            _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        if (_enabled) {
+            _setNormalColor();
         } else {
-            _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+            _setDisableNormalColor();
         }
-        
-        flGraphics* g;
-        //------------------------------------------
-        g = graphics();
-        g->clear();
-        if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        }
-        g->drawCircle(_center.x, _center.y, _areaRadius);
-        g->endFill();
-        //------------------------------------------
-        
-        //------------------------------------------
-        g = lever->graphics();
-        g->clear();
-        
-        g->beginFill(0xff0000, 0);
-        g->drawCircle(0, 0, _leverRadius * 1.8);
-        if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
-            g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-        }
-        g->drawCircle(0, 0, _leverRadius);
-        g->endFill();
-        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -370,7 +342,7 @@ namespace fl2d {
         _changeValue(true);
         
         if(_vec2Param != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
             _vec2Param->set(vec2(_xValue, _yValue));
         }
         //------------------------------------------
@@ -431,23 +403,30 @@ namespace fl2d {
         _drawLeverGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
+    
     //--------------------------------------------------------------
     void flJoyStick2::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flJoyStick2::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flJoyStick2::_drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
         flGraphics* g = graphics();
         g->clear();
-        g->lineStyle(1, lineColor.getHex());
+        g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawCircle(_center.x, _center.y, _areaRadius);
         g->lineStyle(thickness, 0xffffff);

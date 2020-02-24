@@ -18,8 +18,10 @@ namespace fl2d {
         bool _enabled = true;
 
         //------------------------------------------
-        bool _bChangedByMyself = false;
-        bool _bChangedByOfParm = false;
+        map<string, bool> _bChangedByMyself;
+        map<string, bool> _bChangedByOfParm;
+//        bool _bChangedByMyself = false;
+//        bool _bChangedByOfParm = false;
         ofEventListeners _listeners;
         //------------------------------------------
 
@@ -33,12 +35,12 @@ namespace fl2d {
         virtual void enabled(bool value);
         
         //------------------------------------------
-        virtual inline void bind(ofParameter<float>& param);
-        virtual inline void bind(ofParameter<int>& param);
-        virtual inline void bind(ofParameter<bool>& param);
-        template <class T>
-        inline void bind(ofParameter<T>& param);
-        virtual inline void unbind();
+//        virtual inline void bind(ofParameter<float>& param);
+//        virtual inline void bind(ofParameter<int>& param);
+//        virtual inline void bind(ofParameter<bool>& param);
+//        template <class T>
+//        virtual void bind(ofParameter<T>& param);
+//        virtual inline void unbind();
         //------------------------------------------
         
     protected:

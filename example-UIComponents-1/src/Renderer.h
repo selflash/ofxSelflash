@@ -24,7 +24,10 @@ class Renderer : public flBasicDraggableObject {
         int lineWidth = 1;
         bool fillEnabled = false;
         bool wireframeEnabled = false;
-    
+
+        float left = -50;
+        float right = 50;
+
     protected:
         
     private:

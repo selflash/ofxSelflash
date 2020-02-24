@@ -48,7 +48,7 @@ namespace fl2d {
         virtual ~flNumberDialer();
         
         virtual void label(flTextField* value);
-//        virtual void enabled(bool value);
+        virtual void enabled(bool value);
 
         string direction();
         virtual void direction(string value);

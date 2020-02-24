@@ -102,10 +102,10 @@ void UIComponents::_setup() {
     rangeSlider001->label(label);
     rangeSlider001->x(marginLeft + spacing * 0);
     rangeSlider001->y(marginTop + lineSpacing * 5);
-    rangeSlider001->min(-100);
-    rangeSlider001->max(1300);
-    rangeSlider001->minValue(300);
-    rangeSlider001->maxValue(500);
+    rangeSlider001->min(-50);
+    rangeSlider001->max(50);
+    rangeSlider001->minValue(-50);
+    rangeSlider001->maxValue(50);
     rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(rangeSlider001);
     

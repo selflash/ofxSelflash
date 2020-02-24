@@ -26,6 +26,9 @@ namespace fl2d {
         _enabled = false;
         
         _listeners.unsubscribeAll();
+        
+        _bChangedByMyself.clear();
+        _bChangedByOfParm.clear();
     }
     
     //==============================================================
@@ -48,15 +51,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flUIBase::bind(ofParameter<float>& param) { }
-    void flUIBase::bind(ofParameter<int>& param) { }
-    void flUIBase::bind(ofParameter<bool>& param) { }
-    
-    template <class T>
-    void flUIBase::bind(ofParameter<T>& param) { }
-    
-    inline void flUIBase::unbind() { }
-
+//    void flUIBase::bind(ofParameter<float>& param) { }
+//    void flUIBase::bind(ofParameter<int>& param) { }
+//    void flUIBase::bind(ofParameter<bool>& param) { }
+//
+//    template <class T>
+//    void flUIBase::bind(ofParameter<T>& param) { }
+//
+//    inline void flUIBase::unbind() { }
     
     //==============================================================
     // Protected / Private Method

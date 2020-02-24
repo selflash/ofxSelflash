@@ -68,15 +68,15 @@ namespace fl2d {
                 
                 _boolParam = &param;
                 _listeners.push(_boolParam->newListener([&](bool& val) {
-                    if(_bChangedByMyself) {
-                        _bChangedByMyself = false;
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
                     } else {
-                        _bChangedByOfParm = true;
+                        _bChangedByOfParm["value"] = true;
                         selected(val);
                     }
                 }));
                 
-                _bChangedByOfParm = true;
+                _bChangedByOfParm["value"] = true;
                 selected(_boolParam->get());
             }
             virtual inline void unbind() {

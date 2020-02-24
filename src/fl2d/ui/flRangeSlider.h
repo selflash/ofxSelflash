@@ -65,6 +65,102 @@ namespace fl2d {
         
             float range();
 
+            //------------------------------------------
+            ofParameter<float>* _floatMinParam = NULL;
+            ofParameter<int>* _intMinParam = NULL;
+            virtual inline void bindMin(ofParameter<float>& param) {
+                _listeners.unsubscribeAll();
+                _floatMinParam = NULL;
+                _intMinParam = NULL;
+                _bChangedByMyself["minValue"] = false;
+                _bChangedByOfParm["minValue"] = false;
+
+                _floatMinParam = &param;
+                _listeners.push(_floatMinParam->newListener([&](float& val) {
+                    if(_bChangedByMyself["minValue"]) {
+                        _bChangedByMyself["minValue"] = false;
+                    } else {
+                        _bChangedByOfParm["minValue"] = true;
+                        minValue(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["minValue"] = true;
+                minValue(_floatMinParam->get());
+            }
+            virtual inline void bindMin(ofParameter<int>& param) {
+                _listeners.unsubscribeAll();
+                _floatMinParam = NULL;
+                _intMinParam = NULL;
+                _bChangedByMyself["minValue"] = false;
+                _bChangedByOfParm["minValue"] = false;
+
+                _intMinParam = &param;
+                _listeners.push(_intMinParam->newListener([&](int& val) {
+                    if(_bChangedByMyself["minValue"]) {
+                        _bChangedByMyself["minValue"] = false;
+                    } else {
+                        _bChangedByOfParm["minValue"] = true;
+                        minValue(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["minValue"] = true;
+                minValue(_intMinParam->get());
+            }
+        
+            ofParameter<float>* _floatMaxParam = NULL;
+            ofParameter<int>* _intMaxParam = NULL;
+            virtual inline void bindMax(ofParameter<float>& param) {
+                _listeners.unsubscribeAll();
+                _floatMaxParam = NULL;
+                _intMaxParam = NULL;
+                _bChangedByMyself["maxValue"] = false;
+                _bChangedByOfParm["maxValue"] = false;
+
+                _floatMaxParam = &param;
+                _listeners.push(_floatMaxParam->newListener([&](float& val) {
+                    if(_bChangedByMyself["maxValue"]) {
+                        _bChangedByMyself["maxValue"] = false;
+                    } else {
+                        _bChangedByOfParm["maxValue"] = true;
+                        maxValue(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["maxValue"] = true;
+                maxValue(_floatMaxParam->get());
+            }
+            virtual inline void bindMax(ofParameter<int>& param) {
+                _listeners.unsubscribeAll();
+                _floatMaxParam = NULL;
+                _intMaxParam = NULL;
+                _bChangedByMyself["maxValue"] = false;
+                _bChangedByOfParm["maxValue"] = false;
+
+                _intMaxParam = &param;
+                _listeners.push(_intMaxParam->newListener([&](int& val) {
+                    if(_bChangedByMyself["maxValue"]) {
+                        _bChangedByMyself["maxValue"] = false;
+                    } else {
+                        _bChangedByOfParm["maxValue"] = true;
+                        maxValue(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["maxValue"] = true;
+                maxValue(_intMaxParam->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _floatMinParam = NULL;
+                _intMinParam = NULL;
+                
+                _floatMaxParam = NULL;
+                _intMaxParam = NULL;
+            }
+            //------------------------------------------
+        
         protected:
             virtual void _setup();
             virtual void _update();

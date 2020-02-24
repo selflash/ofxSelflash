@@ -68,7 +68,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::_update() {
-        _bChangedByOfParm = false;
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -250,7 +250,7 @@ namespace fl2d {
     void flButton::_changeValue(bool dispatch) {
         //------------------------------------------
         if(_boolParam != NULL) {
-            _bChangedByMyself = true;
+            _bChangedByMyself["value"] = true;
 //            _boolParam->set(_value);
         }
         //------------------------------------------

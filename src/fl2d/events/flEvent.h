@@ -51,6 +51,7 @@ namespace fl2d {
         protected:
             string _type;
         
+            //イベントリスナーを登録した EventDispatcher と必ず一致するのは currentTarget
             void* __currentTarget;
             void* __target;
         

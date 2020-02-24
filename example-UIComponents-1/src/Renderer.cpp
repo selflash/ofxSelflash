@@ -86,7 +86,7 @@ void Renderer::_draw() {
         ofNoFill();
     }
     ofSetLineWidth(2);
-    ofDrawBox(0, 0, 0, 100, 100, 100);
+    ofDrawBox(0, 0, 0, right - left, 100, 100);
     ofPopStyle();
     //--------------------------------------
 
@@ -102,7 +102,7 @@ void Renderer::_draw() {
         ofNoFill();
         
         ofSetLineWidth(lineWidth);
-        ofDrawBox(0, 0, 0, 100, 100, 100);
+        ofDrawBox(0, 0, 0, right - left, 100, 100);
         ofPopStyle();
         
         glPopAttrib();

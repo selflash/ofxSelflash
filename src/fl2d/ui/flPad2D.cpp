@@ -309,6 +309,24 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
+    void flPad2D::enabled(bool value) {
+        _enabled = value;
+        mouseEnabled(_enabled);
+        mouseChildren(_enabled);
+        
+        if(_dialer01 != NULL) _dialer01->enabled(_enabled);
+        if(_dialer02 != NULL) _dialer02->enabled(_enabled);
+        if(_dialer03 != NULL) _dialer03->enabled(_enabled);
+        if(_dialer04 != NULL) _dialer04->enabled(_enabled);
+
+        if (_enabled) {
+            _setNormalColor();
+        } else {
+            _setDisableNormalColor();
+        }
+    }
+    
+    //--------------------------------------------------------------
     float flPad2D::xRatio() { return _xRatio; }
     void flPad2D::xRatio(float value, bool dispatch) {
         float temp = value;
@@ -608,14 +626,22 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flPad2D::_setDisableNormalColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
     void flPad2D::_setDisableActiveColor() {
-        //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        
+        if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+
+        _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------

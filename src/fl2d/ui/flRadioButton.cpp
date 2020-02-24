@@ -94,7 +94,7 @@ namespace fl2d {
             _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         }
     }
-
+    
     //--------------------------------------------------------------
     void flRadioButton::enabled(bool value) {
         _enabled = value;
@@ -233,12 +233,14 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flRadioButton::_setNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+        
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex());
     }
     
@@ -246,28 +248,33 @@ namespace fl2d {
     void flRadioButton::_setSelectedOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
+        
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setActiveColor() {
         _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR_2);
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setDisableNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+        
         _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setDisableActiveColor() {
-        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+//        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+        _label->textColor(flDefinition::UI_DISABLE_ACTIVE_COLOR);
+
+        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_drawGraphics(const ofColor& outerColor) {
+    void flRadioButton::_drawGraphics(const ofColor& outerColor, float thickness) {
         flGraphics* g = graphics();
         g->clear();
         
@@ -277,7 +284,7 @@ namespace fl2d {
         g->endFill();
         
         //外側
-        g->lineStyle(1, outerColor.getHex());
+        g->lineStyle(thickness, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
@@ -294,7 +301,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_drawGraphics(const ofColor& outerColor, const ofColor& innerColor) {
+    void flRadioButton::_drawGraphics(const ofColor& outerColor, const ofColor& innerColor, float thickness) {
         flGraphics* g = graphics();
         g->clear();
         
@@ -304,7 +311,7 @@ namespace fl2d {
         g->endFill();
         
         //外側
-        g->lineStyle(1, outerColor.getHex());
+        g->lineStyle(thickness, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
