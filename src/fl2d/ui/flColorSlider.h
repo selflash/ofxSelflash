@@ -134,6 +134,7 @@ namespace fl2d {
         
             //----------------------------------
             ofParameter<ofColor>* _colorParam = NULL;
+            ofEventListeners _listeners;
             virtual inline void bind(ofParameter<ofColor>& param) {
                 _listeners.unsubscribeAll();
                 _colorParam = NULL;

@@ -25,7 +25,7 @@ namespace fl2d {
         _label = NULL;
         _enabled = false;
         
-        _listeners.unsubscribeAll();
+//        _listeners.unsubscribeAll();
         
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();

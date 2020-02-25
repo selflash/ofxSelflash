@@ -1,7 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxSelflash.h"
+#include "flBasicDraggableObject.h"
 
+using namespace fl2d;
 using namespace glm;
 
 enum AppStatus {
@@ -15,7 +18,7 @@ enum AppStatus {
     APPSTATUS_FINDING
 };
 
-class AppModel {
+class AppModel : public flBasicDraggableObject {
     public:
         ofParameter<AppStatus> status;
     
@@ -47,13 +50,11 @@ class AppModel {
     
     public:
         AppModel();
-
-//        string getStatusToString();
-
-        void setup();
-        void update();
     
     protected:
-        
+        virtual void _setup();
+        virtual void _update();
+        virtual void _draw();
+    
     private:
 };

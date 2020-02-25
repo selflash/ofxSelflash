@@ -1,7 +1,19 @@
 #include "Renderer.h"
 
+//--------------------------------------------------------------
+Renderer::Renderer() {
+    _target = this;
+    name("Renderer");
+
+}
+
+//--------------------------------------------------------------
+Renderer::~Renderer() {
+    
+}
+
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
@@ -49,6 +61,8 @@ void Renderer::_update() {
     viewPort.y = y();
     
     camera.setPosition(cameraPos);
+    
+    _width = right - left;
 }
 
 //--------------------------------------------------------------
@@ -86,7 +100,7 @@ void Renderer::_draw() {
         ofNoFill();
     }
     ofSetLineWidth(2);
-    ofDrawBox(0, 0, 0, right - left, 100, 100);
+    ofDrawBox(left + _width * 0.5, 0, 0, _width, 100, 100);
     ofPopStyle();
     //--------------------------------------
 
@@ -102,7 +116,7 @@ void Renderer::_draw() {
         ofNoFill();
         
         ofSetLineWidth(lineWidth);
-        ofDrawBox(0, 0, 0, right - left, 100, 100);
+        ofDrawBox(left + _width * 0.5, 0, 0, _width, 100, 100);
         ofPopStyle();
         
         glPopAttrib();

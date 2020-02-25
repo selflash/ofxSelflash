@@ -51,6 +51,7 @@ namespace fl2d {
 
             //------------------------------------------
             ofParameter<vec2>* _vec2Param = NULL;
+            ofEventListeners _listeners;
             virtual inline void bind(ofParameter<vec2>& param) {
                 _listeners.unsubscribeAll();
                 _vec2Param = NULL;

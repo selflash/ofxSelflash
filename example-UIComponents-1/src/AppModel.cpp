@@ -1,29 +1,85 @@
 #include "AppModel.h"
 
 //--------------------------------------------------------------
-//
 AppModel::AppModel() {
+    _target = this;
+    name("AppModel");
+    
     status = APPSTATUS_NOT_LOADED;
 
-    
 //    isLoaded = false;
 //    isProcessing = false;
 //    isFinding = false;
 
 //    viewMode = 0;
 //    currentCameraPosition.set("front");
+    
+    int camWidth = 320 * 1;
+    int camHeight = 240 * 2;
+
+    flGraphics* g;
+    g = graphics();
+    g->clear();
+    g->beginFill(0x000000, 0.5);
+    g->drawRect(0, 0, camWidth, camHeight);
+    g->lineStyle(1, 0xffffff);
+    g->moveTo(-1, -1);
+    g->lineTo(camWidth + 1, -1);
+    g->lineTo(camWidth + 1, camHeight + 1);
+    g->lineTo(-1, camHeight + 1);
+    g->lineTo(-1, -1);
+    g->endFill();
 }
 
 //--------------------------------------------------------------
-//
-void AppModel::setup() {
+void AppModel::_setup() {
 //    ofLog() << "[AppModel]setup()";
 
 }
 
 //--------------------------------------------------------------
-void AppModel::update() {
+void AppModel::_update() {
     
+}
+
+//--------------------------------------------------------------
+void AppModel::_draw() {
+    {
+        //--------------------------------------
+        string text = "";
+        text += name() + "\n";
+        text += "X = " + ofToString(x()) + "\n";
+        text += "Y = " + ofToString(y()) + "\n";
+        //    text += "width = " + ofToString(width()) + "\n";
+        //    text += "height = " + ofToString(height()) + "\n";
+        //    text += "scaleX = " + ofToString(scaleX()) + "\n";
+        //    text += "scaleY = " + ofToString(scaleY()) + "\n";
+        
+        ofPushStyle();
+        ofSetColor(255, 255, 255);
+        flFont::drawString(text, 9, 10, 20);
+        ofPopStyle();
+        //--------------------------------------
+    }
+    
+    {
+        //--------------------------------------
+        string text = "";
+        text += "Line Width = " + ofToString(lineWidth) + "\n";
+        text += "Speed = " + ofToString(speed) + "\n";
+        text += "Left = " + ofToString(left) + "\n";
+        text += "Right = " + ofToString(right) + "\n";
+        //    text += "width = " + ofToString(width()) + "\n";
+        //    text += "height = " + ofToString(height()) + "\n";
+        //    text += "scaleX = " + ofToString(scaleX()) + "\n";
+        //    text += "scaleY = " + ofToString(scaleY()) + "\n";
+        
+        ofPushStyle();
+        ofSetColor(255, 255, 255);
+        flFont::drawString(text, 9, 10, 120);
+        ofPopStyle();
+        //--------------------------------------
+    }
 }
 
 //--------------------------------------------------------------

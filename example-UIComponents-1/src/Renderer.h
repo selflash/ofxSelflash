@@ -32,6 +32,7 @@ class Renderer : public flBasicDraggableObject {
         
     private:
         float _count = 0;
+        float _width = 100;
 
 //        ofVideoGrabber _vidGrabber;
 //        ofTexture _videoTexture;
@@ -39,7 +40,9 @@ class Renderer : public flBasicDraggableObject {
     
 
     public:
-        
+        Renderer();
+        ~Renderer();
+    
     protected:
         virtual void _setup();
         virtual void _update();

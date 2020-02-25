@@ -22,7 +22,7 @@ namespace fl2d {
         map<string, bool> _bChangedByOfParm;
 //        bool _bChangedByMyself = false;
 //        bool _bChangedByOfParm = false;
-        ofEventListeners _listeners;
+//        ofEventListeners _listeners;
         //------------------------------------------
 
     private:

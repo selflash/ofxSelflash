@@ -68,18 +68,22 @@ namespace fl2d {
             //------------------------------------------
             ofParameter<float>* _floatMinParam = NULL;
             ofParameter<int>* _intMinParam = NULL;
+            ofEventListeners _minListeners;
             virtual inline void bindMin(ofParameter<float>& param) {
-                _listeners.unsubscribeAll();
+                _minListeners.unsubscribeAll();
                 _floatMinParam = NULL;
                 _intMinParam = NULL;
                 _bChangedByMyself["minValue"] = false;
                 _bChangedByOfParm["minValue"] = false;
 
                 _floatMinParam = &param;
-                _listeners.push(_floatMinParam->newListener([&](float& val) {
+                _minListeners.push(_floatMinParam->newListener([&](float& val) {
+                    ofLog() << "change min 1";
                     if(_bChangedByMyself["minValue"]) {
+                        ofLog() << "change min 2";
                         _bChangedByMyself["minValue"] = false;
                     } else {
+                        ofLog() << "change min 3";
                         _bChangedByOfParm["minValue"] = true;
                         minValue(val);
                     }
@@ -89,14 +93,14 @@ namespace fl2d {
                 minValue(_floatMinParam->get());
             }
             virtual inline void bindMin(ofParameter<int>& param) {
-                _listeners.unsubscribeAll();
+                _minListeners.unsubscribeAll();
                 _floatMinParam = NULL;
                 _intMinParam = NULL;
                 _bChangedByMyself["minValue"] = false;
                 _bChangedByOfParm["minValue"] = false;
 
                 _intMinParam = &param;
-                _listeners.push(_intMinParam->newListener([&](int& val) {
+                _minListeners.push(_intMinParam->newListener([&](int& val) {
                     if(_bChangedByMyself["minValue"]) {
                         _bChangedByMyself["minValue"] = false;
                     } else {
@@ -111,15 +115,16 @@ namespace fl2d {
         
             ofParameter<float>* _floatMaxParam = NULL;
             ofParameter<int>* _intMaxParam = NULL;
+            ofEventListeners _maxListeners;
             virtual inline void bindMax(ofParameter<float>& param) {
-                _listeners.unsubscribeAll();
+                _maxListeners.unsubscribeAll();
                 _floatMaxParam = NULL;
                 _intMaxParam = NULL;
                 _bChangedByMyself["maxValue"] = false;
                 _bChangedByOfParm["maxValue"] = false;
 
                 _floatMaxParam = &param;
-                _listeners.push(_floatMaxParam->newListener([&](float& val) {
+                _maxListeners.push(_floatMaxParam->newListener([&](float& val) {
                     if(_bChangedByMyself["maxValue"]) {
                         _bChangedByMyself["maxValue"] = false;
                     } else {
@@ -132,14 +137,14 @@ namespace fl2d {
                 maxValue(_floatMaxParam->get());
             }
             virtual inline void bindMax(ofParameter<int>& param) {
-                _listeners.unsubscribeAll();
+                _maxListeners.unsubscribeAll();
                 _floatMaxParam = NULL;
                 _intMaxParam = NULL;
                 _bChangedByMyself["maxValue"] = false;
                 _bChangedByOfParm["maxValue"] = false;
 
                 _intMaxParam = &param;
-                _listeners.push(_intMaxParam->newListener([&](int& val) {
+                _maxListeners.push(_intMaxParam->newListener([&](int& val) {
                     if(_bChangedByMyself["maxValue"]) {
                         _bChangedByMyself["maxValue"] = false;
                     } else {
@@ -152,10 +157,10 @@ namespace fl2d {
                 maxValue(_intMaxParam->get());
             }
             virtual inline void unbind() {
-                _listeners.unsubscribeAll();
+                _minListeners.unsubscribeAll();
+                _maxListeners.unsubscribeAll();
                 _floatMinParam = NULL;
                 _intMinParam = NULL;
-                
                 _floatMaxParam = NULL;
                 _intMaxParam = NULL;
             }

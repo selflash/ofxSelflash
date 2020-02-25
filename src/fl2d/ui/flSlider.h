@@ -70,6 +70,7 @@ namespace fl2d {
             //------------------------------------------
             ofParameter<float>* _floatParam = NULL;
             ofParameter<int>* _intParam = NULL;
+            ofEventListeners _listeners;
             virtual inline void bind(ofParameter<float>& param) {
                 _listeners.unsubscribeAll();
                 _floatParam = NULL;

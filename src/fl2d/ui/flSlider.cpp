@@ -124,6 +124,7 @@ namespace fl2d {
         //------------------------------------------
         _floatParam = NULL;
         _intParam = NULL;
+        _listeners.unsubscribeAll();
         //------------------------------------------
     }
     
@@ -207,6 +208,22 @@ namespace fl2d {
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
         
         //------------------------------------------
+        if(_enabled) {
+            if(track->isMouseDown() || thumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(track->isMouseOver()) {
+                _setTrackOverColor();
+            } else if(thumb->isMouseOver()) {
+                _setThumbOverColor();
+            } else {
+                _setNormalColor();
+            }
+        } else {
+            _setDisableNormalColor();
+        }
+        //------------------------------------------
+        
+        //------------------------------------------
         if(preValue != _value) {
             _changeValue(dispatch);
         
@@ -238,7 +255,23 @@ namespace fl2d {
         float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
-        
+
+        //------------------------------------------
+        if(_enabled) {
+            if(track->isMouseDown() || thumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(track->isMouseOver()) {
+                _setTrackOverColor();
+            } else if(thumb->isMouseOver()) {
+                _setThumbOverColor();
+            } else {
+                _setNormalColor();
+            }
+        } else {
+            _setDisableNormalColor();
+        }
+        //------------------------------------------
+
         //------------------------------------------
         if(preValue != _value) {
             _changeValue(dispatch);
@@ -287,14 +320,18 @@ namespace fl2d {
         
         //------------------------------------------
         //Update color.
-        if(track->isMouseDown() || thumb->isMouseDown()) {
-            _setActiveColor();
-        } else if(track->isMouseOver()) {
-            _setTrackOverColor();
-        } else if(thumb->isMouseOver()) {
-            _setThumbOverColor();
+        if(_enabled) {
+            if(track->isMouseDown() || thumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(track->isMouseOver()) {
+                _setTrackOverColor();
+            } else if(thumb->isMouseOver()) {
+                _setThumbOverColor();
+            } else {
+                _setNormalColor();
+            }
         } else {
-            _setNormalColor();
+            _setDisableNormalColor();
         }
         //------------------------------------------
 

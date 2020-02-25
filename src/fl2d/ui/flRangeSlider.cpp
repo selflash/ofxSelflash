@@ -164,6 +164,9 @@ namespace fl2d {
         
         delete _maxValueText;
         _maxValueText = NULL;
+        
+        _minListeners.unsubscribeAll();
+        _maxListeners.unsubscribeAll();
     }
     
     //==============================================================
@@ -194,6 +197,9 @@ namespace fl2d {
 //        ofLog() << "_minValue = " << _minValue;
 //        ofLog() << "_maxValue = " << _maxValue;
 //        ofLog() << "_range = " << _range;
+        
+        _bChangedByOfParm["minValue"] = false;
+        _bChangedByOfParm["maxValue"] = false;
     }
     
     //--------------------------------------------------------------
@@ -253,12 +259,16 @@ namespace fl2d {
         
         //------------------------------------------
         //Update color.
-        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
-            _setActiveColor();
-        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
-            _setOverColor();
+        if(_enabled) {
+            if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
+            }
         } else {
-            _setNormalColor();
+            _setDisableNormalColor();
         }
         //------------------------------------------
         
@@ -299,12 +309,16 @@ namespace fl2d {
         
         //------------------------------------------
         //Update color.
-        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
-            _setActiveColor();
-        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
-            _setOverColor();
+        if(_enabled) {
+            if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
+            }
         } else {
-            _setNormalColor();
+            _setDisableNormalColor();
         }
         //------------------------------------------
         
@@ -350,12 +364,16 @@ namespace fl2d {
         
         //------------------------------------------
         //Update color.
-        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
-            _setActiveColor();
-        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
-            _setOverColor();
+        if(_enabled) {
+            if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
+            }
         } else {
-            _setNormalColor();
+            _setDisableNormalColor();
         }
         //------------------------------------------
         
@@ -403,12 +421,16 @@ namespace fl2d {
         
         //------------------------------------------
         //Update color.
-        if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
-            _setActiveColor();
-        } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
-            _setOverColor();
+        if(_enabled) {
+            if(bar->isMouseDown() || minThumb->isMouseDown() || maxThumb->isMouseDown()) {
+                _setActiveColor();
+            } else if(bar->isMouseOver() || minThumb->isMouseOver() || maxThumb->isMouseOver()) {
+                _setOverColor();
+            } else {
+                _setNormalColor();
+            }
         } else {
-            _setNormalColor();
+            _setDisableNormalColor();
         }
         //------------------------------------------
         

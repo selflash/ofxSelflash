@@ -19,6 +19,14 @@ void ofApp::setup() {
     //--------------------------------------
     
     //--------------------------------------
+//    renderer = new Renderer();
+    appModel.setup();
+    appModel.x(980);
+    appModel.y(40);
+    ofxSelflash::stage()->addChild(&appModel);
+    //--------------------------------------
+    
+    //--------------------------------------
     renderer = new Renderer();
     renderer->setup();
     renderer->x(550);
@@ -141,6 +149,7 @@ void ofApp::update() {
         float elapsedTime = ofGetElapsedTimef();
         float n = ((sin(elapsedTime) + 1.0) / 2.0);
 //        ofLog() << "n = " << n;
+        
         appModel.lineWidth = ((sin(elapsedTime) + 1.0) / 2.0) * 20;
         appModel.speed = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 10.0;
         appModel.lineColor = ofColor(
@@ -152,8 +161,8 @@ void ofApp::update() {
         appModel.fillEnabled = sin(elapsedTime * 1.4) < 0 ? false : true;
         appModel.wireframeEnabled = sin(elapsedTime * 1.8) < 0 ? false : true;
         
-        appModel.left = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * -50.0;
-        appModel.right = ((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 50.0;
+        appModel.left = ((sin(elapsedTime * 1.58) + 1.0) / 2.0) * -50.0;
+        appModel.right = ((sin(elapsedTime * 1.75) + 1.0) / 2.0) * 50.0;
 
         appModel.cameraPosVelXY = vec2(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         appModel.cameraPosVelZ = sin(elapsedTime * 3.0);
@@ -173,11 +182,8 @@ void ofApp::update() {
         float n = ((sin(elapsedTime) + 1.0) / 2.0);
         //        ofLog() << "n = " << n;
 
-//        rangeSlider001->min(-100);
-//        rangeSlider001->max(1300);
-        
-        uiComponents->rangeSlider001->minValue(((sin(elapsedTime) + 1.0) / 2.0) * -50);
-        uiComponents->rangeSlider001->maxValue(((sin(elapsedTime) + 1.0) / 2.0) * 50);
+        uiComponents->rangeSlider001->minValue(((sin(elapsedTime * 1.58) + 1.0) / 2.0) * -50);
+        uiComponents->rangeSlider001->maxValue(((sin(elapsedTime * 1.75) + 1.0) / 2.0) * 50);
 
         uiComponents->slider001->value(((sin(elapsedTime) + 1.0) / 2.0) * 20);
         uiComponents->slider002->value(((sin(elapsedTime * 1.7) + 1.0) / 2.0) * 10.0);
@@ -193,11 +199,6 @@ void ofApp::update() {
 
         uiComponents->joystick2001->moveLever(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         uiComponents->joystick1001->moveLever(sin(elapsedTime * 3.0));
-
-        //        appModel.bgColor.g = ((sin(elapsedTime * 0.75) + 1.0) / 2.0) * 255.0;
-        //        appModel.bgColor.b = ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255.0;
-        //        appModel.lineColor = ofColor(124, 30, 124, 200);
-        
     }
 }
 

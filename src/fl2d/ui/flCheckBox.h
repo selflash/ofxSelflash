@@ -62,6 +62,7 @@ namespace fl2d {
         
             //------------------------------------------
             ofParameter<bool>* _boolParam = NULL;
+            ofEventListeners _listeners;
             virtual inline void bind(ofParameter<bool>& param) {
                 _listeners.unsubscribeAll();
                 _boolParam = NULL;
