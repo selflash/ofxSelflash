@@ -16,7 +16,7 @@ class Renderer : public flBasicDraggableObject {
         ofRectangle viewPort;
         ofVec3f cameraPos = ofVec3f(0, 0, 100);
 
-        ofVec3f objPos = ofVec3f(0, 0, -100);
+        vec3 objPos = vec3(0, 0, -100);
         float speed = 0.5;
 
         ofColor bgColor = ofColor(0, 0, 0, 255);

@@ -19,17 +19,17 @@ namespace fl2d {
         
         float height = 18 + 2;
         
-        _vec2Value.x = defaultXValue;
-        _vec2Value.y = defaultYValue;
+        _value.x = defaultXValue;
+        _value.y = defaultYValue;
         
         //------------------------------------------
-        xSlider = new flSlider(width, xMin, xMax, _vec2Value.x);
+        xSlider = new flSlider(width, xMin, xMax, _value.x);
         xSlider->name("flVec2Slider.xSlider");
         xSlider->x(0);
         xSlider->y(height * 0);
         xSlider->addEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
         addChild(xSlider);
-        ySlider = new flSlider(width, yMin, yMax, _vec2Value.y);
+        ySlider = new flSlider(width, yMin, yMax, _value.y);
         ySlider->name("flVec2Slider.ySlider");
         ySlider->x(0);
         ySlider->y(height * 1);
@@ -77,6 +77,11 @@ namespace fl2d {
         
         delete _yLabel;
         _yLabel = NULL;
+        
+        //------------------------------------------
+        _vec2Param = NULL;
+        _listeners.unsubscribeAll();
+        //------------------------------------------
     }
     
     //==============================================================
@@ -128,17 +133,6 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    ofVec2f flVec2Slider::vec2Value() {
-        _vec2Value.x = xSlider->value();
-        _vec2Value.y = ySlider->value();
-        return _vec2Value;
-    }
-    void flVec2Slider::vec2Value(ofVec2f value, bool dispatch) {
-        xSlider->value(_vec2Value.x, false);
-        ySlider->value(_vec2Value.y, false);
-    }
-    
-    //--------------------------------------------------------------
     float flVec2Slider::min() { xSlider->min(); }
     void flVec2Slider::min(float value, bool dispatch) {
         xSlider->min(value, dispatch);
@@ -150,6 +144,17 @@ namespace fl2d {
     void flVec2Slider::max(float value, bool dispatch) {
         xSlider->max(value, dispatch);
         ySlider->max(value, dispatch);
+    }
+    
+    //--------------------------------------------------------------
+    vec2 flVec2Slider::value() {
+        _value.x = xSlider->value();
+        _value.y = ySlider->value();
+        return _value;
+    }
+    void flVec2Slider::value(vec2 value, bool dispatch) {
+        xSlider->value(value.x, dispatch);
+        ySlider->value(value.y, dispatch);
     }
     
     //--------------------------------------------------------------
@@ -168,6 +173,17 @@ namespace fl2d {
     // Protected / Private Method
     //==============================================================
     
+    //--------------------------------------------------------------
+    void flVec2Slider::_changeValue(bool dispatch) {
+        //------------------------------------------
+        if(dispatch) {
+            flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
+            vec2SliderEvent->__value = _value;
+            dispatchEvent(vec2SliderEvent);
+        }
+        //------------------------------------------
+    }
+    
     //==============================================================
     // Protected / Private Event Handler
     //==============================================================
@@ -176,13 +192,20 @@ namespace fl2d {
     void flVec2Slider::_eventHandler(flEvent& event) {
 //        ofLog() << "[flVec2Slider]_eventHandler(" << event.type() << ")";
         
-        _vec2Value.x = xSlider->value();
-        _vec2Value.y = ySlider->value();
+        _value.x = xSlider->value();
+        _value.y = ySlider->value();
         
         //------------------------------------------
-        flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
-        vec2SliderEvent->__vec2f = _vec2Value;
-        dispatchEvent(vec2SliderEvent);
+        _changeValue();
+        //------------------------------------------
+        
+        //------------------------------------------
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
+        }
         //------------------------------------------
     }
     

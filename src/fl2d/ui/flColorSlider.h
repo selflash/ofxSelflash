@@ -138,7 +138,9 @@ namespace fl2d {
             virtual inline void bind(ofParameter<ofColor>& param) {
                 _listeners.unsubscribeAll();
                 _colorParam = NULL;
-                
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+
                 _colorParam = &param;
                 _listeners.push(_colorParam->newListener([&](ofColor& val) {
                     if(_bChangedByMyself["value"]) {

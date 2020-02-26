@@ -75,7 +75,9 @@ namespace fl2d {
                 _listeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
-                
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+
                 _floatParam = &param;
                 _listeners.push(_floatParam->newListener([&](float& val) {
                     if(_bChangedByMyself["value"]) {
@@ -93,6 +95,8 @@ namespace fl2d {
                 _listeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
 
                 _intParam = &param;
                 _listeners.push(_intParam->newListener([&](int& val) {

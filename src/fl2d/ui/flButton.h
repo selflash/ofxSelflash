@@ -67,7 +67,9 @@ namespace fl2d {
             virtual inline void bind(ofParameter<bool>& param) {
                 _listeners.unsubscribeAll();
                 _boolParam = NULL;
-                
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+
                 _boolParam = &param;
                 _listeners.push(_boolParam->newListener([&](bool& val) {
                     if(_bChangedByMyself["value"]) {

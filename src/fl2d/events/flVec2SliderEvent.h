@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "flEvent.h"
 
+using namespace glm;
+
 namespace fl2d {
     
     class flVec2Slider;
@@ -19,7 +21,7 @@ namespace fl2d {
         //スライダサムまたはスライダトラックが押されたかどうかを示すストリングを取得します。
         void* _clickTarget;
         
-        ofVec2f __vec2f;
+        vec2 __value;
         
     private:
         
@@ -28,8 +30,9 @@ namespace fl2d {
         virtual ~flVec2SliderEvent();
         
         //----------------------------------
-        inline virtual float xValue() { return __vec2f.x; }
-        inline virtual float yValue() { return __vec2f.y; }
+        inline virtual vec2 value() { return __value; }
+        inline virtual float xValue() { return __value.x; }
+        inline virtual float yValue() { return __value.y; }
         //----------------------------------
         
     protected:

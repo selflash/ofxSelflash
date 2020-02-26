@@ -22,7 +22,6 @@ namespace fl2d {
         redSlider->value(255);
         redSlider->roundEnabled(true);
         redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
-        redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(redSlider);
         greenSlider = new flSlider(width, 0, 255);
         greenSlider->x(0);
@@ -514,230 +513,49 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     ofColor flColorSlider::colorValue() { return _colorValue; }
-//    void flColorSlider::colorValue(ofColor& value, bool dispatch) {
-//        ofColor preValue = _colorValue;
-//
-//        //------------------------------------------
-//        //Update value.
-//        _colorValue = value;
-//        _hexValue = _colorValue.getHex();
-//        
-//        redSlider->value(_colorValue.r, false);
-//        greenSlider->value(_colorValue.g, false);
-//        blueSlider->value(_colorValue.b, false);
-//        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-//        //------------------------------------------
-//
-//        //------------------------------------------
-//        //Update color.
-//        _updateColor();
-//        //------------------------------------------
-//        
-//        //------------------------------------------
-//        if(preValue != _colorValue) _changeValue();
-//        
-//        if(!_bChangedByOfParm) {
-//            if(_colorParam != NULL) {
-//                _bChangedByMyself = true;
-//                _colorParam->set(_colorValue);
-//            }
-//        }
-//        //------------------------------------------
-//    }
     void flColorSlider::colorValue(ofColor value, bool dispatch) {
-        ofColor preValue = _colorValue;
-        
-        //------------------------------------------
-        //Update value.
-        _colorValue = value;
-        _hexValue = _colorValue.getHex();
-        
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
-        
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+//        ofLog() << "[flColorSlider]colorValue()";
+
+        redSlider->value(value.r, dispatch);
+        greenSlider->value(value.g, dispatch);
+        blueSlider->value(value.b, dispatch);
+        if(alphaSlider != NULL) alphaSlider->value(value.a, dispatch);
     }
     
     //--------------------------------------------------------------
     int flColorSlider::hexValue() { return _hexValue; }
     void flColorSlider::hexValue(int value, bool dispatch) {
-        ofColor preValue = _colorValue;
-
-        //------------------------------------------
-        //Update value.
-        _hexValue = value;
-        _colorValue.setHex(_hexValue);
-
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
+        ofColor tempValue = _colorValue;
+        tempValue.setHex(value);
         
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+        redSlider->value(tempValue.r, dispatch);
+        greenSlider->value(tempValue.g, dispatch);
+        blueSlider->value(tempValue.b, dispatch);
+        if(alphaSlider != NULL) alphaSlider->value(tempValue.a, dispatch);
     }
     
     //--------------------------------------------------------------
     int flColorSlider::redValue() { return _colorValue.r; }
     void flColorSlider::redValue(int value, bool dispatch) {
-        ofColor preValue = _colorValue;
-
-        //------------------------------------------
-        //Update value.
-        _colorValue.r = value;
-        _hexValue = _colorValue.getHex();
-        
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
-        
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+        redSlider->value(value, dispatch);
     }
     
     //--------------------------------------------------------------
     int flColorSlider::greenValue() { return _colorValue.g; }
     void flColorSlider::greenValue(int value, bool dispatch) {
-        ofColor preValue = _colorValue;
-        
-        //------------------------------------------
-        //Update value.
-        _colorValue.g = value;
-        _hexValue = _colorValue.getHex();
-        
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
-        
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+        greenSlider->value(value, dispatch);
     }
     
     //--------------------------------------------------------------
     int flColorSlider::blueValue() { return _colorValue.b; }
     void flColorSlider::blueValue(int value, bool dispatch) {
-        ofColor preValue = _colorValue;
-        
-        //------------------------------------------
-        //Update value.
-        _colorValue.b = value;
-        _hexValue = _colorValue.getHex();
-        
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
-        
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+        blueSlider->value(value, dispatch);
     }
     
     //--------------------------------------------------------------
     int flColorSlider::alphaValue() { _colorValue.a; }
     void flColorSlider::alphaValue(int value, bool dispatch) {
-        ofColor preValue = _colorValue;
-        
-        //------------------------------------------
-        //Update value.
-        _colorValue.a = value;
-        _hexValue = _colorValue.getHex();
-        
-        redSlider->value(_colorValue.r, false);
-        greenSlider->value(_colorValue.g, false);
-        blueSlider->value(_colorValue.b, false);
-        if(alphaSlider != NULL) alphaSlider->value(_colorValue.a, false);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update color.
-        _updateColor();
-        //------------------------------------------
-
-        //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_colorParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _colorParam->set(_colorValue);
-            }
-        }
-        //------------------------------------------
+        if(alphaSlider != NULL) alphaSlider->value(value, dispatch);
     }
     
     //==============================================================
@@ -759,6 +577,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_updateColor() {
+//        ofLog() << "[flColorSlider]_updateColor()";
         redSlider->barColor(_colorValue);
         greenSlider->barColor(_colorValue);
         blueSlider->barColor(_colorValue);
@@ -771,6 +590,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_eventHandler(flEvent& event) {
+//        ofLog() << "[flColorSlider]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flColorSlider]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flColorSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flColorSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+
         ofColor preValue = _colorValue;
         
         //------------------------------------------
@@ -788,11 +612,15 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(preValue != _colorValue) _changeValue();
+        if(preValue != _colorValue) {
+            _changeValue();
         
-        if(_colorParam != NULL) {
-            _bChangedByMyself["value"] = true;
-            _colorParam->set(_colorValue);
+            if(!_bChangedByOfParm["value"]) {
+                if(_colorParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _colorParam->set(_colorValue);
+                }
+            }
         }
         //------------------------------------------
     }

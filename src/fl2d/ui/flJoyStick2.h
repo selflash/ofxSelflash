@@ -55,7 +55,9 @@ namespace fl2d {
             virtual inline void bind(ofParameter<vec2>& param) {
                 _listeners.unsubscribeAll();
                 _vec2Param = NULL;
-                
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+
                 _vec2Param = &param;
                 _listeners.push(_vec2Param->newListener([&](vec2& val) {
                     if(_bChangedByMyself["value"]) {

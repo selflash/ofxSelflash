@@ -76,9 +76,9 @@ namespace fl2d {
         addChild(_label3Text);
         //------------------------------------------
         
-        _vec3Value.x = xSlider->value();
-        _vec3Value.y = ySlider->value();
-        _vec3Value.z = zSlider->value();
+        _value.x = xSlider->value();
+        _value.y = ySlider->value();
+        _value.z = zSlider->value();
     }
     
     //--------------------------------------------------------------
@@ -102,6 +102,11 @@ namespace fl2d {
         
         delete _label3Text;
         _label3Text = NULL;
+        
+        //------------------------------------------
+        _vec3Param = NULL;
+        _listeners.unsubscribeAll();
+        //------------------------------------------
     }
     
     //==============================================================
@@ -115,7 +120,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec3Slider::_update() {
-        
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -154,32 +159,62 @@ namespace fl2d {
         zSlider->enabled(_enabled);
     }
     
+    //----------------------------------
+    float flVec3Slider::min() { xSlider->min(); }
+    void flVec3Slider::min(float value, bool dispatch) {
+        xSlider->min(value, dispatch);
+        ySlider->min(value, dispatch);
+        zSlider->min(value, dispatch);
+    }
+    
+    //----------------------------------
+    float flVec3Slider::max() { xSlider->max(); }
+    void flVec3Slider::max(float value, bool dispatch) {
+        xSlider->max(value, dispatch);
+        ySlider->max(value, dispatch);
+        zSlider->max(value, dispatch);
+    }
+    
     //--------------------------------------------------------------
-    ofVec3f flVec3Slider::vec3Value() { return _vec3Value; }
-    void flVec3Slider::vec3Value(ofVec3f value, bool dispatch) {
-        _vec3Value = value;
-        
-        xSlider->value(_vec3Value.x, false);
-        ySlider->value(_vec3Value.y, false);
-        zSlider->value(_vec3Value.z, false);
-        
-        //------------------------------------------
-        //色の更新
-        _vec3Value.x = xSlider->value();
-        _vec3Value.y = ySlider->value();
-        _vec3Value.z = zSlider->value();
-        //------------------------------------------
-        
-        if(dispatch) {
-            flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
-            vec3SliderEvent->__vec3f = _vec3Value;
-            dispatchEvent(vec3SliderEvent);
-        }
+    vec3 flVec3Slider::value() { return _value; }
+    void flVec3Slider::value(vec3 value, bool dispatch) {
+        xSlider->value(value.x, dispatch);
+        ySlider->value(value.y, dispatch);
+        zSlider->value(value.z, dispatch);
+    }
+    
+    //----------------------------------
+    float flVec3Slider::xValue() { return xSlider->value(); }
+    void flVec3Slider::xValue(float value, bool dispatch) {
+        xSlider->value(value, dispatch);
+    }
+    
+    //----------------------------------
+    float flVec3Slider::yValue() { return ySlider->value(); }
+    void flVec3Slider::yValue(float value, bool dispatch) {
+        ySlider->value(value, dispatch);
+    }
+    
+    //----------------------------------
+    float flVec3Slider::zValue() { return zSlider->value(); }
+    void flVec3Slider::zValue(float value, bool dispatch) {
+        zSlider->value(value, dispatch);
     }
     
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flVec3Slider::_changeValue(bool dispatch) {
+        //------------------------------------------
+        if(dispatch) {
+            flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
+            vec3SliderEvent->__value = _value;
+            dispatchEvent(vec3SliderEvent);
+        }
+        //------------------------------------------
+    }
     
     //==============================================================
     // Protected / Private Event Handler
@@ -187,13 +222,22 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec3Slider::_eventHandler(flEvent& event) {
-        _vec3Value.x = xSlider->value();
-        _vec3Value.y = ySlider->value();
-        _vec3Value.z = zSlider->value();
+        _value.x = xSlider->value();
+        _value.y = ySlider->value();
+        _value.z = zSlider->value();
         
-        flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
-        vec3SliderEvent->__vec3f = _vec3Value;
-        dispatchEvent(vec3SliderEvent);
+        //------------------------------------------
+        _changeValue();
+        //------------------------------------------
+        
+        //------------------------------------------
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec3Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec3Param->set(_value);
+            }
+        }
+        //------------------------------------------
     }
     
 }

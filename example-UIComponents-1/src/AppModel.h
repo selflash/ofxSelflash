@@ -42,6 +42,10 @@ class AppModel : public flBasicDraggableObject {
 
         ofParameter<float> left = -50.0;
         ofParameter<float> right = 50.0;
+    
+        ofParameter<vec2> testVec2 = vec2(0, 0);
+        ofParameter<vec3> testVec3 = vec3(0, 0, 0);
+
 
     protected:
         

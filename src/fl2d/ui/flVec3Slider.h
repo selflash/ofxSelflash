@@ -9,67 +9,89 @@ namespace fl2d {
     
     class flVec3Slider : public flUIBase {
         
-    public:
-        flSlider* xSlider;
-        flSlider* ySlider;
-        flSlider* zSlider;
+        public:
+            flSlider* xSlider = NULL;
+            flSlider* ySlider = NULL;
+            flSlider* zSlider = NULL;
         
-    protected:
-        flTextField* _label1Text;
-        flTextField* _label2Text;
-        flTextField* _label3Text;
+        protected:
+            flTextField* _label1Text = NULL;
+            flTextField* _label2Text = NULL;
+            flTextField* _label3Text = NULL;
         
-        ofVec3f _vec3Value;
+            vec3 _value;
         
-    private:
+        private:
         
-    public:
-        flVec3Slider(
-                   float width = 200,
-                   float xMin = 0, float xMax = 100, float defaultXValue = 0,
-                   float yMin = 0, float yMax = 100, float defaultYValue = 0,
-                   float zMin = 0, float zMax = 100, float defaultZValue = 0
-                   );
-        virtual ~flVec3Slider();
+        public:
+            flVec3Slider(
+                       float width = 200,
+                       float xMin = 0, float xMax = 100, float defaultXValue = 0,
+                       float yMin = 0, float yMax = 100, float defaultYValue = 0,
+                       float zMin = 0, float zMax = 100, float defaultZValue = 0
+                       );
+            virtual ~flVec3Slider();
         
-        virtual void label(flTextField* value);
-        virtual void enabled(bool value);
+            virtual void label(flTextField* value);
+            virtual void enabled(bool value);
 
-        virtual ofVec3f vec3Value();
-        virtual void vec3Value(ofVec3f value, bool dispatch = true);
+            //----------------------------------
+            virtual float min();
+            virtual void min(float value, bool dispatch = true);
         
-        //----------------------------------
-        inline virtual float min() { xSlider->min(); }
-        inline virtual void min(float value, bool dispatch = true) {
-            xSlider->min(value, dispatch);
-            ySlider->min(value, dispatch);
-            zSlider->min(value, dispatch);
-        }
+            virtual float max();
+            virtual void max(float value, bool dispatch = true);
         
-        inline virtual float max() { xSlider->max(); }
-        inline virtual void max(float value, bool dispatch = true) {
-            xSlider->max(value, dispatch);
-            ySlider->max(value, dispatch);
-            zSlider->max(value, dispatch);
-        }
+            virtual vec3 value();
+            virtual void value(vec3 value, bool dispatch = true);
         
-        inline virtual float xValue() { return xSlider->value(); }
-        inline virtual void xValue(float value, bool dispatch = true) { xSlider->value(value, dispatch); }
+            virtual float xValue();
+            virtual void xValue(float value, bool dispatch = true);
         
-        inline virtual float yValue() { return ySlider->value(); }
-        inline virtual void yValue(float value, bool dispatch = true) { ySlider->value(value, dispatch); }
+            virtual float yValue();
+            virtual void yValue(float value, bool dispatch = true);
         
-        inline virtual float zValue() { return zSlider->value(); }
-        inline virtual void zValue(float value, bool dispatch = true) { zSlider->value(value, dispatch); }
-        //----------------------------------
+            virtual float zValue();
+            virtual void zValue(float value, bool dispatch = true);
+            //----------------------------------
+
+            //----------------------------------
+            ofParameter<vec3>* _vec3Param = NULL;
+            ofEventListeners _listeners;
+            virtual inline void bind(ofParameter<vec3>& param) {
+                _listeners.unsubscribeAll();
+                _vec3Param = NULL;
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+                
+                _vec3Param = &param;
+                _listeners.push(_vec3Param->newListener([&](vec3& val) {
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
+                    } else {
+                        _bChangedByOfParm["value"] = true;
+                        value(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["value"] = true;
+                value(_vec3Param->get());
+            }
+            virtual inline void unbind() {
+                _listeners.unsubscribeAll();
+                _vec3Param = NULL;
+            }
+            //----------------------------------
         
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
+        protected:
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
         
-    private:
-        virtual void _eventHandler(flEvent& event);
+            virtual void _changeValue(bool dispatch = true);
+        
+        private:
+            virtual void _eventHandler(flEvent& event);
         
     };
     

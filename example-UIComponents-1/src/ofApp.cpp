@@ -76,6 +76,18 @@ void ofApp::setup() {
     }));
     uiComponents->slider002->bind(appModel.speed);
 
+//    renderer->testVec2 = appModel.testVec2;
+    listeners.push(appModel.testVec2.newListener([&](vec2& value) {
+//        renderer->testVec2 = value;
+    }));
+    uiComponents->vec2Slider001->bind(appModel.testVec2);
+
+//    renderer->testVec3 = appModel.testVec3;
+    listeners.push(appModel.testVec3.newListener([&](vec3& value) {
+//        renderer->testVec3 = value;
+    }));
+    uiComponents->vec3Slider001->bind(appModel.testVec3);
+
     renderer->left = appModel.left;
     listeners.push(appModel.left.newListener([&](float& value) {
         renderer->left = value;
@@ -167,6 +179,17 @@ void ofApp::update() {
         appModel.cameraPosVelXY = vec2(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         appModel.cameraPosVelZ = sin(elapsedTime * 3.0);
 
+        appModel.testVec2 = vec2(
+                              ((sin(elapsedTime) + 1.0) / 2.0) * 200,
+                              ((sin(elapsedTime) + 1.0) / 1.5) * 200
+                              );
+
+        appModel.testVec3 = vec3(
+                                 ((sin(elapsedTime) + 1.0) / 2.0) * 200,
+                                 ((sin(elapsedTime) + 1.0) / 1.5) * 200,
+                                 ((sin(elapsedTime) + 1.0) / 2.5) * 200
+                                 );
+
 //        appModel.cameraPosXY = { sin(elapsedTime * 1.7), sin(elapsedTime * 1.5) };
 //        appModel.cameraPosXY.y = sin(elapsedTime * 1.5);
 //        uiComponents->joystick2001->moveLever(sin(elapsedTime * 1.7), sin(elapsedTime * 1.5));
@@ -193,6 +216,13 @@ void ofApp::update() {
                                                          ((sin(elapsedTime * 0.45) + 1.0) / 2.0) * 255,
                                                          255
                                                          ));
+        
+        uiComponents->vec2Slider001->xValue(((sin(elapsedTime) + 1.0) / 2.0) * 200);
+        uiComponents->vec2Slider001->yValue(((sin(elapsedTime) + 1.0) / 1.5) * 200);
+
+        uiComponents->vec3Slider001->xValue(((sin(elapsedTime) + 1.0) / 2.0) * 200);
+        uiComponents->vec3Slider001->yValue(((sin(elapsedTime) + 1.0) / 1.5) * 200);
+        uiComponents->vec3Slider001->zValue(((sin(elapsedTime) + 1.0) / 2.5) * 200);
 
         uiComponents->check001->selected(sin(elapsedTime * 1.4) < 0 ? false : true);
         uiComponents->check002->selected(sin(elapsedTime * 1.8) < 0 ? false : true);

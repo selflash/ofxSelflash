@@ -65,10 +65,15 @@ void AppModel::_draw() {
     {
         //--------------------------------------
         string text = "";
-        text += "Line Width = " + ofToString(lineWidth) + "\n";
+        text += "LineWidth = " + ofToString(lineWidth) + "\n";
         text += "Speed = " + ofToString(speed) + "\n";
         text += "Left = " + ofToString(left) + "\n";
         text += "Right = " + ofToString(right) + "\n";
+        text += "TestVec2.x = " + ofToString(testVec2->x) + "\n";
+        text += "TestVec2.y = " + ofToString(testVec2->y) + "\n";
+        text += "TestVec3.x = " + ofToString(testVec3->x) + "\n";
+        text += "TestVec3.y = " + ofToString(testVec3->y) + "\n";
+        text += "TestVec3.z = " + ofToString(testVec3->z) + "\n";
         //    text += "width = " + ofToString(width()) + "\n";
         //    text += "height = " + ofToString(height()) + "\n";
         //    text += "scaleX = " + ofToString(scaleX()) + "\n";
