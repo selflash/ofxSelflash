@@ -40,8 +40,8 @@ class AppModel : public flBasicDraggableObject {
         ofParameter<bool> fillEnabled = false;
         ofParameter<bool> wireframeEnabled = false;
 
-        ofParameter<float> left = 0.0;
-        ofParameter<float> right = 0.0;
+        ofParameter<float> left = -50.0;
+        ofParameter<float> right = 50.0;
 
     protected:
         

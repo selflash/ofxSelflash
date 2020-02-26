@@ -73,9 +73,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flCircleColorPicker::_setup() {
         //ofLog() << "[SimpleSlider]setup()";
@@ -93,9 +93,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flCircleColorPicker::label(flTextField* value) {
         _label = value;
@@ -154,9 +154,9 @@ namespace fl2d {
     int flCircleColorPicker::brightness() { return _selectedPixel->getBrightness(); }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flCircleColorPicker::_over() {
         if(isMouseDown()) return;
@@ -222,9 +222,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private Event Handler
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flCircleColorPicker::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[flCircleColorPicker]_mouseEventHandler(" << event.type();

@@ -96,9 +96,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flAngler::_setup() {
         //ofLog() << "[SimpleSlider]setup()";
@@ -217,9 +217,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     flTextField* flAngler::label() { return _label; }
     void flAngler::label(flTextField* value) { _label = value; }
@@ -274,9 +274,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flAngler::_areaOver() {
         //if(lever->isMouseDown()) return;
@@ -443,9 +443,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private Event Handler
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flAngler::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[Angler]_mouseEventHandler(" << event.type();

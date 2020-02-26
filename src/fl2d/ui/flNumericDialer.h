@@ -2,12 +2,12 @@
 
 #include "ofMain.h"
 #include "flUIBase.h"
-#include "flNumberDialerEvent.h"
+#include "flNumericDialerEvent.h"
 #include "flmath.h"
 
 namespace fl2d {
     
-    class flNumberDialer : public flUIBase {
+    class flNumericDialer : public flUIBase {
         
     public:
         //水平
@@ -44,8 +44,8 @@ namespace fl2d {
         ofPoint _startPos;
 
     public:
-        flNumberDialer(float width = 100, float height = 18);
-        virtual ~flNumberDialer();
+        flNumericDialer(float width = 100, float height = 18);
+        virtual ~flNumericDialer();
         
         virtual void label(flTextField* value);
         virtual void enabled(bool value);

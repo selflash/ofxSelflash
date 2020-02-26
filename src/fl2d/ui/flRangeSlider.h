@@ -78,12 +78,9 @@ namespace fl2d {
 
                 _floatMinParam = &param;
                 _minListeners.push(_floatMinParam->newListener([&](float& val) {
-                    ofLog() << "change min 1";
                     if(_bChangedByMyself["minValue"]) {
-                        ofLog() << "change min 2";
                         _bChangedByMyself["minValue"] = false;
                     } else {
-                        ofLog() << "change min 3";
                         _bChangedByOfParm["minValue"] = true;
                         minValue(val);
                     }

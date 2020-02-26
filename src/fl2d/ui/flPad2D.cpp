@@ -130,46 +130,46 @@ namespace fl2d {
 
         //------------------------------------------
         //左
-        _dialer01 = new flNumberDialer(_areaWidth);
+        _dialer01 = new flNumericDialer(_areaWidth);
         _dialer01->name("flPad2D.leftDialer");
         _dialer01->x(0);
         _dialer01->y(_n);
-        _dialer01->direction(flNumberDialer::VERTICALLY);
+        _dialer01->direction(flNumericDialer::VERTICALLY);
         _dialer01->max(_rightValue, false);
         _dialer01->value(_leftValue);
-        _dialer01->dragDirection(flNumberDialer::HORIZONTALLY);
-        _dialer01->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
+        _dialer01->dragDirection(flNumericDialer::HORIZONTALLY);
+        _dialer01->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
         addChild(_dialer01);
         //上
-        _dialer02 = new flNumberDialer(_areaWidth - 0);
+        _dialer02 = new flNumericDialer(_areaWidth - 0);
         _dialer02->name("flPad2D.topDialer");
         _dialer02->x(_n);
         _dialer02->y(0);
         _dialer02->stepSize(-1);
         _dialer02->max(_bottomValue, false);
         _dialer02->value(_topValue);
-        _dialer02->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
+        _dialer02->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
         addChild(_dialer02);
         //右
-        _dialer03 = new flNumberDialer(_areaWidth);
+        _dialer03 = new flNumericDialer(_areaWidth);
         _dialer03->name("flPad2D.rightDialer");
         _dialer03->x(_n + _areaWidth);
         _dialer03->y(_n);
-        _dialer03->direction(flNumberDialer::VERTICALLY);
-        _dialer03->dragDirection(flNumberDialer::HORIZONTALLY);
+        _dialer03->direction(flNumericDialer::VERTICALLY);
+        _dialer03->dragDirection(flNumericDialer::HORIZONTALLY);
         _dialer03->min(_leftValue, false);
         _dialer03->value(_rightValue);
-        _dialer03->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
+        _dialer03->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
         addChild(_dialer03);
         //下
-        _dialer04 = new flNumberDialer(_areaWidth - 0);
+        _dialer04 = new flNumericDialer(_areaWidth - 0);
         _dialer04->name("flPad2D.bottomDialer");
         _dialer04->x(_n);
         _dialer04->y(_n + _areaHeight);
         _dialer04->stepSize(-1);
         _dialer04->min(_topValue, false);
         _dialer04->value(_bottomValue);
-        _dialer04->addEventListener(flNumberDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
+        _dialer04->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad2D::_uiEventHandler);
         addChild(_dialer04);
         //------------------------------------------
         
@@ -672,7 +672,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // Private Event Handler
+    // Protected / Private Event Handler
     //==============================================================
 
     //--------------------------------------------------------------
@@ -741,9 +741,9 @@ namespace fl2d {
 //        ofLog() << "[flPad2D]target        = " << event.target() << ", " << ((flDisplayObject*) event.target())->name();
 
         //ナンバーダイアラー
-        if(event.type() == flNumberDialerEvent::CHANGE) {
-            flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-            flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+        if(event.type() == flNumericDialerEvent::CHANGE) {
+            flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
+            flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
             
             //左
             if(dialer == _dialer01) {

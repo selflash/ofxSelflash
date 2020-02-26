@@ -1,21 +1,21 @@
-#include "flNumberDialer.h"
+#include "flNumericDialer.h"
 
 namespace fl2d {
     //水平
-    string flNumberDialer::HORIZONTALLY = "horizontally";
+    string flNumericDialer::HORIZONTALLY = "horizontally";
     //垂直
-    string flNumberDialer::VERTICALLY = "vertically";
+    string flNumericDialer::VERTICALLY = "vertically";
     
     //==============================================================
     // Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
-    flNumberDialer::flNumberDialer(float width, float height) {
-        //ofLog() << "[flNumberDialer]flNumberDialer()";
+    flNumericDialer::flNumericDialer(float width, float height) {
+        //ofLog() << "[flNumericDialer]flNumericDialer()";
         
         _target = this;
-        name("flNumberDialer");
+        name("flNumericDialer");
 
         _uiWidth = width;
         _uiHeight = height;
@@ -26,9 +26,9 @@ namespace fl2d {
         //------------------------------------------
         _track = new flSprite();
         _track->buttonMode(true);
-        _track->addEventListener(flMouseEvent::ROLL_OVER, this, &flNumberDialer::_mouseEventHandler);
-        _track->addEventListener(flMouseEvent::ROLL_OUT, this, &flNumberDialer::_mouseEventHandler);
-        _track->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumberDialer::_mouseEventHandler);
+        _track->addEventListener(flMouseEvent::ROLL_OVER, this, &flNumericDialer::_mouseEventHandler);
+        _track->addEventListener(flMouseEvent::ROLL_OUT, this, &flNumericDialer::_mouseEventHandler);
+        _track->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumericDialer::_mouseEventHandler);
         addChild(_track);
         //------------------------------------------
         
@@ -60,12 +60,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    flNumberDialer::~flNumberDialer() {
-        //ofLog() << "[flNumberDialer]~flNumberDialer()";
+    flNumericDialer::~flNumericDialer() {
+        //ofLog() << "[flNumericDialer]~flNumericDialer()";
 
-        _track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumberDialer::_mouseEventHandler);
-        _track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flNumberDialer::_mouseEventHandler);
-        _track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumberDialer::_mouseEventHandler);
+        _track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumericDialer::_mouseEventHandler);
+        _track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flNumericDialer::_mouseEventHandler);
+        _track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumericDialer::_mouseEventHandler);
         delete _track;
         _track = NULL;
         
@@ -94,13 +94,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setup() {
-        //ofLog() << "[flNumberDialer]_setup()";
+    void flNumericDialer::_setup() {
+        //ofLog() << "[flNumericDialer]_setup()";
     }
 
     //--------------------------------------------------------------
-    void flNumberDialer::_update() {
-        //ofLog() << "[flNumberDialer]_update()";
+    void flNumericDialer::_update() {
+        //ofLog() << "[flNumericDialer]_update()";
 
         if(_track->isMouseDown()) {
             float preValue = _value;
@@ -134,7 +134,7 @@ namespace fl2d {
             if(preValue != _value) {
                 _valueText->text(ofToString(_value, 2));
 
-                flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
+                flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -143,7 +143,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_draw() {
+    void flNumericDialer::_draw() {
         
     }
 
@@ -152,7 +152,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flNumberDialer::label(flTextField* value) {
+    void flNumericDialer::label(flTextField* value) {
         _label = value;
         if (_label == NULL) return;
         
@@ -164,7 +164,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::enabled(bool value) {
+    void flNumericDialer::enabled(bool value) {
         _enabled = value;
         mouseEnabled(_enabled);
         mouseChildren(_enabled);
@@ -177,8 +177,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    string flNumberDialer::direction() { return _direction; }
-    void flNumberDialer::direction(string value) {
+    string flNumericDialer::direction() { return _direction; }
+    void flNumericDialer::direction(string value) {
         _direction = value;
         
         //水平
@@ -209,8 +209,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flNumberDialer::value() { return _value; }
-    void flNumberDialer::value(float value, bool dispatch) {
+    float flNumericDialer::value() { return _value; }
+    void flNumericDialer::value(float value, bool dispatch) {
         if(_value == value) return;
         
         float preValue = _value;
@@ -226,7 +226,7 @@ namespace fl2d {
             //------------------------------------------
             if(dispatch) {
                 //イベント
-                flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
+                flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -235,12 +235,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flNumberDialer::stepSize() { return _stepSize; }
-    void flNumberDialer::stepSize(float value, bool dispatch) { _stepSize = value; }
+    float flNumericDialer::stepSize() { return _stepSize; }
+    void flNumericDialer::stepSize(float value, bool dispatch) { _stepSize = value; }
     
     //--------------------------------------------------------------
-    float flNumberDialer::min() { return _min; }
-    void flNumberDialer::min(float value, bool dispatch) {
+    float flNumericDialer::min() { return _min; }
+    void flNumericDialer::min(float value, bool dispatch) {
         _min = value;
         if(_roundEnabled) _min = flmath::roundd(_min);
         
@@ -251,7 +251,7 @@ namespace fl2d {
             //------------------------------------------
             if(dispatch) {
                 //イベント
-                flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
+                flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -260,8 +260,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flNumberDialer::max() { return _max; }
-    void flNumberDialer::max(float value, bool dispatch) {
+    float flNumericDialer::max() { return _max; }
+    void flNumericDialer::max(float value, bool dispatch) {
         _max = value;
         if(_roundEnabled) _max = flmath::roundd(_max);
         
@@ -272,7 +272,7 @@ namespace fl2d {
             //------------------------------------------
             if(dispatch) {
                 //イベント
-                flNumberDialerEvent* event = new flNumberDialerEvent(flNumberDialerEvent::CHANGE);
+                flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
                 event->data<float>(_value);
                 dispatchEvent(event);
             }
@@ -281,42 +281,42 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flNumberDialer::weight() { return _weight; }
-    void flNumberDialer::weight(float value) { _weight = value; }
+    float flNumericDialer::weight() { return _weight; }
+    void flNumericDialer::weight(float value) { _weight = value; }
     
     //--------------------------------------------------------------
-    bool flNumberDialer::roundEnabled() { return _roundEnabled; }
-    void flNumberDialer::roundEnabled(bool value) { _roundEnabled = value; }
+    bool flNumericDialer::roundEnabled() { return _roundEnabled; }
+    void flNumericDialer::roundEnabled(bool value) { _roundEnabled = value; }
     
     //--------------------------------------------------------------
-    bool flNumberDialer::invertEnabled() { return _invertEnabled; }
-    void flNumberDialer::invertEnabled(bool value) { _invertEnabled = value; }
+    bool flNumericDialer::invertEnabled() { return _invertEnabled; }
+    void flNumericDialer::invertEnabled(bool value) { _invertEnabled = value; }
     
     //==============================================================
     // Protected / Private Method
     //==============================================================
 
     //--------------------------------------------------------------
-    void flNumberDialer::_over() {
+    void flNumericDialer::_over() {
         if(_track->isMouseDown()) return;
         
         _setOverColor();
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_out() {
+    void flNumericDialer::_out() {
         if(_track->isMouseDown()) return;
         
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_press() {
+    void flNumericDialer::_press() {
         _setActiveColor();
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_release() {
+    void flNumericDialer::_release() {
         if(_track->isMouseOver()) {
             _setOverColor();
         } else {
@@ -325,7 +325,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setNormalColor() {
+    void flNumericDialer::_setNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
@@ -333,7 +333,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setOverColor() {
+    void flNumericDialer::_setOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
@@ -341,7 +341,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setSelectedOverColor() {
+    void flNumericDialer::_setSelectedOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
@@ -349,7 +349,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setActiveColor() {
+    void flNumericDialer::_setActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
@@ -357,7 +357,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setDisableNormalColor() {
+    void flNumericDialer::_setDisableNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
@@ -365,7 +365,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_setDisableActiveColor() {
+    void flNumericDialer::_setDisableActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
@@ -373,7 +373,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flNumberDialer::_drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
+    void flNumericDialer::_drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
         flGraphics* g = _track->graphics();
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
@@ -386,15 +386,15 @@ namespace fl2d {
     }
     
     //==============================================================
-    // Private Event Handler
+    // Protected / Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
-    void flNumberDialer::_mouseEventHandler(flEvent& event) {
-//        ofLog() << "[flNumberDialer]_mouseEventHandler(" << event.type() << ")";
-//        ofLog() << "[flNumberDialer]this          = " << this << ", " << ((DisplayObject*) this)->name();
-//        ofLog() << "[flNumberDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flNumberDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name();
+    void flNumericDialer::_mouseEventHandler(flEvent& event) {
+//        ofLog() << "[flNumericDialer]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flNumericDialer]this          = " << this << ", " << ((DisplayObject*) this)->name();
+//        ofLog() << "[flNumericDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flNumericDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
@@ -414,7 +414,7 @@ namespace fl2d {
                 _startPos.y = mouseY();
                 _press();
                 if(stage()) {
-                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flNumberDialer::_mouseEventHandler);
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flNumericDialer::_mouseEventHandler);
                 }
             }
         }
@@ -423,7 +423,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_UP) {
             _release();
             if(stage()) {
-                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flNumberDialer::_mouseEventHandler);
+                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flNumericDialer::_mouseEventHandler);
             }
         }
     }

@@ -287,9 +287,9 @@ namespace fl2d {
         }
         
         //ナンバーダイアラー
-        if(event.type() == flNumberDialerEvent::CHANGE) {
-            flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-            flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+        if(event.type() == flNumericDialerEvent::CHANGE) {
+            flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
+            flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
         }
         
         //2Dパッド

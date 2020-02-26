@@ -13,9 +13,6 @@ namespace fl2d {
         _typeID = FL_TYPE_UIBASE;
         _target = this;
         name("flUIBase");
-
-        _label = NULL;
-        _enabled = true;
     }
     
     //--------------------------------------------------------------
@@ -23,9 +20,6 @@ namespace fl2d {
 //        ofLog() << "[flUIBase]~flUIBase()";
         
         _label = NULL;
-        _enabled = false;
-        
-//        _listeners.unsubscribeAll();
         
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();
@@ -65,7 +59,7 @@ namespace fl2d {
     //==============================================================
 
     //==============================================================
-    // Private Event Handler
+    // Protected / Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------

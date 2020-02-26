@@ -529,7 +529,7 @@ void UIComponents::_setup() {
     lineSpacing = 22;
     
     label = new flTextField();
-    label->text("Number Dialer Example");
+    label->text("Numeric Dialer Example");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -537,77 +537,77 @@ void UIComponents::_setup() {
     addChild(label);
     
     label = new flTextField();
-    label->text("Number Dialer1");
+    label->text("Numeric Dialer1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 1);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    dialer001 = new flNumberDialer(150);
+    dialer001 = new flNumericDialer(150);
     dialer001->label(label);
     dialer001->x(marginLeft + spacing * 0);
     dialer001->y(marginTop + lineSpacing * 2);
-    dialer001->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    dialer001->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer001);
     
     label = new flTextField();
-    label->text("Number Dialer2");
+    label->text("Numeric Dialer2");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 3);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    dialer002 = new flNumberDialer(150);
+    dialer002 = new flNumericDialer(150);
     dialer002->label(label);
-    dialer002->dragDirection(flNumberDialer::HORIZONTALLY);
+    dialer002->dragDirection(flNumericDialer::HORIZONTALLY);
     dialer002->x(marginLeft + spacing * 0);
     dialer002->y(marginTop + lineSpacing * 4);
     dialer002->value(-500);
     dialer002->stepSize(10);
     dialer002->max(100);
-    dialer002->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    dialer002->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);
     
     spacing = 18;
     label = new flTextField();
-    label->text("Number Dialer3");
+    label->text("Numeric Dialer3");
     label->x(marginLeft + spacing * 2 + 5);
     label->y(marginTop + lineSpacing * 5);
     label->rotation(90);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    dialer003 = new flNumberDialer(130);
+    dialer003 = new flNumericDialer(130);
     dialer003->label(label);
-    dialer003->direction(flNumberDialer::VERTICALLY);
+    dialer003->direction(flNumericDialer::VERTICALLY);
     dialer003->x(marginLeft + spacing * 0);
     dialer003->y(marginTop + lineSpacing * 5);
     dialer003->value(10.1);
     dialer003->stepSize(0.1);
     dialer003->min(-100);
     dialer003->max(100);
-    dialer003->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    dialer003->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer003);
     
     label = new flTextField();
-    label->text("Number Dialer4");
+    label->text("Numeric  Dialer4");
     label->x(marginLeft + spacing * 4 + 5 + 5 + 5);
     label->y(marginTop + lineSpacing * 5);
     label->rotation(90);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    dialer004 = new flNumberDialer(130);
+    dialer004 = new flNumericDialer(130);
     dialer004->label(label);
-    dialer004->direction(flNumberDialer::VERTICALLY);
-    dialer004->dragDirection(flNumberDialer::HORIZONTALLY);
+    dialer004->direction(flNumericDialer::VERTICALLY);
+    dialer004->dragDirection(flNumericDialer::HORIZONTALLY);
     dialer004->x(marginLeft + spacing * 2 + 5 + 5);
     dialer004->y(marginTop + lineSpacing * 5);
     dialer004->value(10.1);
     dialer004->stepSize(0.1);
     dialer004->min(-100);
     dialer004->max(100);
-    dialer004->addEventListener(flNumberDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    dialer004->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer004);
     ofLog() << "dialer004->y() : " << dialer004->y() + dialer004->width();
     //--------------------------------------
@@ -873,10 +873,10 @@ void UIComponents::_uiEventHandler(flEvent& event) {
         //        }
     }
     
-    //ナンバーダイアラー
-    if(event.type() == flNumberDialerEvent::CHANGE) {
-        flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+    //ナメリックダイアラー
+    if(event.type() == flNumericDialerEvent::CHANGE) {
+        flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
+        flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
     }
     
     //2Dパッド

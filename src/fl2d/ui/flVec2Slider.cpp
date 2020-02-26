@@ -19,47 +19,47 @@ namespace fl2d {
         
         float height = 18 + 2;
         
+        _vec2Value.x = defaultXValue;
+        _vec2Value.y = defaultYValue;
+        
         //------------------------------------------
-        //X
-        xSlider = new flSlider(width, xMin, xMax, defaultXValue);
-        //        xSlider->label("");
+        xSlider = new flSlider(width, xMin, xMax, _vec2Value.x);
+        xSlider->name("flVec2Slider.xSlider");
         xSlider->x(0);
         xSlider->y(height * 0);
         xSlider->addEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
         addChild(xSlider);
-        //Y
-        ySlider = new flSlider(width, yMin, yMax, defaultYValue);
-        //        ySlider->label("");
+        ySlider = new flSlider(width, yMin, yMax, _vec2Value.y);
+        ySlider->name("flVec2Slider.ySlider");
         ySlider->x(0);
         ySlider->y(height * 1);
         ySlider->addEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
         addChild(ySlider);
-        
         //------------------------------------------
-        //X
-        _label1Text = new flTextField();
-        _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
-        _label1Text->width(15);
-        _label1Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label1Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _label1Text->text("X");
-        _label1Text->mouseEnabled(false);
-        addChild(_label1Text);
-        //Y
-        _label2Text = new flTextField();
-        _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
-        _label2Text->width(15);
-        _label2Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label2Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _label2Text->text("Y");
-        _label2Text->mouseEnabled(false);
-        addChild(_label2Text);
+
+        //------------------------------------------
+        _xLabel = new flTextField();
+        _xLabel->name("flVec2Slider.xLabel");
+        _xLabel->x(width + 5);
+        _xLabel->y(height * 0 + 3);
+        _xLabel->width(15);
+        _xLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _xLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _xLabel->text("X");
+        _xLabel->mouseEnabled(false);
+        addChild(_xLabel);
+        _yLabel = new flTextField();
+        _yLabel->name("flVec2Slider.yLabel");
+        _yLabel->x(width + 5);
+        _yLabel->y(height * 1 + 3);
+        _yLabel->width(15);
+        _yLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _yLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _yLabel->text("Y");
+        _yLabel->mouseEnabled(false);
+        addChild(_yLabel);
         //------------------------------------------
         
-        _vec2Value.x = xSlider->value();
-        _vec2Value.y = ySlider->value();
     }
     
     //--------------------------------------------------------------
@@ -72,15 +72,15 @@ namespace fl2d {
         delete ySlider;
         ySlider = NULL;
         
-        delete _label1Text;
-        _label1Text = NULL;
+        delete _xLabel;
+        _xLabel = NULL;
         
-        delete _label2Text;
-        _label2Text = NULL;
+        delete _yLabel;
+        _yLabel = NULL;
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
@@ -90,7 +90,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec2Slider::_update() {
-        
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -99,7 +99,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -128,46 +128,62 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    ofVec2f flVec2Slider::vec2Value() { return _vec2Value; }
-    void flVec2Slider::vec2Value(ofVec2f value, bool dispatch) {
-        _vec2Value = value;
-        
-        xSlider->value(_vec2Value.x, false);
-        ySlider->value(_vec2Value.y, false);
-        
-        //------------------------------------------
-        //色の更新
+    ofVec2f flVec2Slider::vec2Value() {
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();
-        //------------------------------------------
-        
-        if(dispatch) {
-            flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
-            vec2SliderEvent->__vec2f = _vec2Value;
-            dispatchEvent(vec2SliderEvent);
-        }
+        return _vec2Value;
+    }
+    void flVec2Slider::vec2Value(ofVec2f value, bool dispatch) {
+        xSlider->value(_vec2Value.x, false);
+        ySlider->value(_vec2Value.y, false);
+    }
+    
+    //--------------------------------------------------------------
+    float flVec2Slider::min() { xSlider->min(); }
+    void flVec2Slider::min(float value, bool dispatch) {
+        xSlider->min(value, dispatch);
+        ySlider->min(value, dispatch);
+    }
+    
+    //--------------------------------------------------------------
+    float flVec2Slider::max() { xSlider->max(); }
+    void flVec2Slider::max(float value, bool dispatch) {
+        xSlider->max(value, dispatch);
+        ySlider->max(value, dispatch);
+    }
+    
+    //--------------------------------------------------------------
+    float flVec2Slider::xValue() { return xSlider->value(); }
+    void flVec2Slider::xValue(float value, bool dispatch) {
+        xSlider->value(value, dispatch);
+    }
+    
+    //--------------------------------------------------------------
+    float flVec2Slider::yValue() { return ySlider->value(); }
+    void flVec2Slider::yValue(float value, bool dispatch) {
+        ySlider->value(value, dispatch);
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
     void flVec2Slider::_eventHandler(flEvent& event) {
-//        ofLog(OF_LOG_VERBOSE) << "[flVec2Slider]_eventHandler(" << event.type() << ")";
 //        ofLog() << "[flVec2Slider]_eventHandler(" << event.type() << ")";
         
         _vec2Value.x = xSlider->value();
         _vec2Value.y = ySlider->value();
-        //------------------------------------------
         
+        //------------------------------------------
         flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
         vec2SliderEvent->__vec2f = _vec2Value;
         dispatchEvent(vec2SliderEvent);
+        //------------------------------------------
     }
     
 }

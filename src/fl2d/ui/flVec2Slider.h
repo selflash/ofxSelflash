@@ -5,17 +5,19 @@
 #include "flSlider.h"
 #include "flVec2SliderEvent.h"
 
+using namespace glm;
+
 namespace fl2d {
     
     class flVec2Slider : public flUIBase {
         
     public:
-        flSlider* xSlider;
-        flSlider* ySlider;
+        flSlider* xSlider = NULL;
+        flSlider* ySlider = NULL;
         
     protected:
-        flTextField* _label1Text;
-        flTextField* _label2Text;
+        flTextField* _xLabel = NULL;
+        flTextField* _yLabel = NULL;
         
         ofVec2f _vec2Value;
         
@@ -36,23 +38,42 @@ namespace fl2d {
         virtual void vec2Value(ofVec2f value, bool dispatch = true);
         
         //----------------------------------
-        inline virtual float min() { xSlider->min(); }
-        inline virtual void min(float value, bool dispatch = true) {
-            xSlider->min(value, dispatch);
-            ySlider->min(value, dispatch);
-        }
+        virtual float min();
+        virtual void min(float value, bool dispatch = true);
         
-        inline virtual float max() { xSlider->max(); }
-        inline virtual void max(float value, bool dispatch = true) {
-            xSlider->max(value, dispatch);
-            ySlider->max(value, dispatch);
-        }
-
-        inline virtual float xValue() { return xSlider->value(); }
-        inline virtual void xValue(float value, bool dispatch = true) { xSlider->value(value, dispatch); }
+        virtual float max();
+        virtual void max(float value, bool dispatch = true);
+        virtual float xValue();
+        virtual void xValue(float value, bool dispatch = true);
         
-        inline virtual float yValue() { return ySlider->value(); }
-        inline virtual void yValue(float value, bool dispatch = true) { ySlider->value(value, dispatch); }
+        virtual float yValue();
+        virtual void yValue(float value, bool dispatch = true);
+        //----------------------------------
+        
+        //----------------------------------
+        ofParameter<vec2>* _vec2Param = NULL;
+        ofEventListeners _listeners;
+        virtual inline void bind(ofParameter<vec2>& param) {
+            _listeners.unsubscribeAll();
+            _vec2Param = NULL;
+            
+            _vec2Param = &param;
+            _listeners.push(_vec2Param->newListener([&](vec2& val) {
+                if(_bChangedByMyself["value"]) {
+                    _bChangedByMyself["value"] = false;
+                } else {
+                    _bChangedByOfParm["value"] = true;
+                    vec2Value(val);
+                }
+            }));
+            
+            _bChangedByOfParm["value"] = true;
+            vec2Value(_vec2Param->get());
+        }
+        virtual inline void unbind() {
+            _listeners.unsubscribeAll();
+            _vec2Param = NULL;
+        }
         //----------------------------------
         
     protected:
@@ -60,6 +81,8 @@ namespace fl2d {
         virtual void _update();
         virtual void _draw();
         
+//        virtual void _changeValue(bool dispatch = true);
+
     private:
         void _eventHandler(flEvent& event);
         

@@ -5,9 +5,9 @@
 
 namespace fl2d {
     
-    class flNumberDialer;
-    class flNumberDialerEvent : public flEvent {
-        friend class flNumberDialer;
+    class flNumericDialer;
+    class flNumericDialerEvent : public flEvent {
+        friend class flNumericDialer;
         
     public:
         static string CHANGE;
@@ -17,8 +17,8 @@ namespace fl2d {
     private:
         
     public:
-        flNumberDialerEvent(string type);
-        virtual ~flNumberDialerEvent();
+        flNumericDialerEvent(string type);
+        virtual ~flNumericDialerEvent();
         
         template <class T>
         T data() { return getProperty<T>("data"); }

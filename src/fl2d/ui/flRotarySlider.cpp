@@ -98,9 +98,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flRotarySlider::_setup() {
         //ofLog() << "[SimpleSlider]setup()";
@@ -273,9 +273,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flRotarySlider::label(flTextField* value) {
         _label = value;
@@ -365,9 +365,9 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flRotarySlider::_areaOver() {
         //if(lever->isMouseDown()) return;
@@ -380,6 +380,7 @@ namespace fl2d {
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_areaOut() {
         //if(lever->isMouseDown()) return;
@@ -392,10 +393,12 @@ namespace fl2d {
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_areaPress() {
         
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_areaRelease() {
         
@@ -417,6 +420,7 @@ namespace fl2d {
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_ballOut() {
         if(lever->isMouseDown()) return;
@@ -436,6 +440,7 @@ namespace fl2d {
         g->endFill();
         //------------------------------------------
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_ballPress() {
         _draggablePoint->x = mouseX() - lever->x();
@@ -463,6 +468,7 @@ namespace fl2d {
         g->endFill();
         //------------------------------------------
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_ballRelease() {
         _draggablePoint->x = 0;
@@ -498,15 +504,16 @@ namespace fl2d {
         g->endFill();
         //------------------------------------------
     }
+    
     //--------------------------------------------------------------
     void flRotarySlider::_ballMove() {
         
     }
     
     //==============================================================
-    // EVENT HANDLER
+    // Protected / Private Event Handler
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flRotarySlider::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[flRotarySlider]_mouseEventHandler(" << event.type();

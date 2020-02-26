@@ -3,8 +3,8 @@
 #include "ofMain.h"
 #include "flUIBase.h"
 #include "flPadEvent.h"
-#include "flNumberDialer.h"
-#include "flNumberDialerEvent.h"
+#include "flNumericDialer.h"
+#include "flNumericDialerEvent.h"
 
 namespace fl2d {
     
@@ -41,10 +41,10 @@ namespace fl2d {
         
         ofPoint _draggablePoint;
         
-        flNumberDialer* _dialer01;
-        flNumberDialer* _dialer02;
-        flNumberDialer* _dialer03;
-        flNumberDialer* _dialer04;
+        flNumericDialer* _dialer01;
+        flNumericDialer* _dialer02;
+        flNumericDialer* _dialer03;
+        flNumericDialer* _dialer04;
         
     public:
         flPad3D(float width = 100, float height = 100);
