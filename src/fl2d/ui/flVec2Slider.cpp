@@ -66,9 +66,11 @@ namespace fl2d {
     flVec2Slider::~flVec2Slider() {
         //ofLog() << "[flVec2Slider]~flVec2Slider()";
         
+        xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
         delete xSlider;
         xSlider = NULL;
         
+        ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
         delete ySlider;
         ySlider = NULL;
         

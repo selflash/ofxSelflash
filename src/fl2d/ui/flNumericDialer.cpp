@@ -11,17 +11,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    flNumericDialer::flNumericDialer(float width, float height) {
+    flNumericDialer::flNumericDialer(float width) {
         //ofLog() << "[flNumericDialer]flNumericDialer()";
         
         _target = this;
         name("flNumericDialer");
 
         _uiWidth = width;
-        _uiHeight = height;
-        
-        _dragDirection = VERTICALLY;
-        _direction = HORIZONTALLY;
         
         //------------------------------------------
         _track = new flSprite();
@@ -42,20 +38,6 @@ namespace fl2d {
         addChild(_valueText);
         //------------------------------------------
         
-        //------------------------------------------
-        _value = 0.0;
-        _tempValue = 0.0;
-        _stepSize = 1.0;
-        _min = numeric_limits<float>::quiet_NaN();
-        _max = numeric_limits<float>::quiet_NaN();
-        
-        _weight = 1.0;
-        _roundEnabled = false;
-        _invertEnabled = false;
-        
-        _startPos = ofPoint(0, 0);
-        //------------------------------------------
-        
         direction(HORIZONTALLY);
     }
     
@@ -69,24 +51,8 @@ namespace fl2d {
         delete _track;
         _track = NULL;
         
-        _value = 0.0;
-        _tempValue = 0.0;
-        _stepSize = 0.0;
-        _min = 0.0;
-        _max = 0.0;
-        
-        _uiWidth = 0.0;
-        _uiHeight = 0.0;
-        
-        _dragDirection = "";
-        _direction = "";
-        
         delete _valueText;
         _valueText = NULL;
-        
-        _weight = 0.0;
-        _roundEnabled = false;
-        _invertEnabled = false;
     }
     
     //==============================================================
@@ -295,7 +261,18 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Method
     //==============================================================
-
+    
+    //--------------------------------------------------------------
+    void flNumericDialer::_changeValue(bool dispatch) {
+        //------------------------------------------
+        if(dispatch) {
+            flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
+            event->data<float>(_value);
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
+    
     //--------------------------------------------------------------
     void flNumericDialer::_over() {
         if(_track->isMouseDown()) return;

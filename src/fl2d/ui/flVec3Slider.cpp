@@ -20,88 +20,89 @@ namespace fl2d {
         
         float height = 18 + 2;
         
+        _value.x = defaultXValue;
+        _value.y = defaultYValue;
+        _value.z = defaultZValue;
+
         //------------------------------------------
-        //X
-        xSlider = new flSlider(width, xMin, xMax, defaultXValue);
-        //        xSlider->label("");
+        xSlider = new flSlider(width, xMin, xMax, _value.x);
+        xSlider->name("flVec3Slider.xSlider");
         xSlider->x(0);
         xSlider->y(height * 0);
         xSlider->addEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         addChild(xSlider);
-        //Y
-        ySlider = new flSlider(width, yMin, yMax, defaultYValue);
-        //        ySlider->label("");
+        ySlider = new flSlider(width, yMin, yMax, _value.y);
+        ySlider->name("flVec3Slider.ySlider");
         ySlider->x(0);
         ySlider->y(height * 1);
         ySlider->addEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         addChild(ySlider);
-        //Z
-        zSlider = new flSlider(width, zMin, zMax, defaultZValue);
-        //        zSlider->label("");
+        zSlider = new flSlider(width, zMin, zMax, _value.z);
+        zSlider->name("flVec3Slider.zSlider");
         zSlider->x(0);
         zSlider->y(height * 2);
         zSlider->addEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         addChild(zSlider);
-        
         //------------------------------------------
-        //X
-        _label1Text = new flTextField();
-        _label1Text->x(width + 5);
-        _label1Text->y(height * 0 + 3);
-        _label1Text->width(15);
-        _label1Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label1Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _label1Text->text("X");
-        _label1Text->mouseEnabled(false);
-        addChild(_label1Text);
-        //Y
-        _label2Text = new flTextField();
-        _label2Text->x(width + 5);
-        _label2Text->y(height * 1 + 3);
-        _label2Text->width(15);
-        _label2Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label2Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _label2Text->text("Y");
-        _label2Text->mouseEnabled(false);
-        addChild(_label2Text);
-        //Z
-        _label3Text = new flTextField();
-        _label3Text->x(width + 5);
-        _label3Text->y(height * 2 + 3);
-        _label3Text->width(15);
-        _label3Text->autoSize(flTextFieldAutoSize::CENTER);
-        _label3Text->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _label3Text->text("Z");
-        _label3Text->mouseEnabled(false);
-        addChild(_label3Text);
+
         //------------------------------------------
-        
-        _value.x = xSlider->value();
-        _value.y = ySlider->value();
-        _value.z = zSlider->value();
+        _xLabel = new flTextField();
+        _xLabel->name("flVec3Slider.xLabel");
+        _xLabel->x(width + 5);
+        _xLabel->y(height * 0 + 3);
+        _xLabel->width(15);
+        _xLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _xLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _xLabel->text("X");
+        _xLabel->mouseEnabled(false);
+        addChild(_xLabel);
+        _yLabel = new flTextField();
+        _yLabel->name("flVec3Slider.yLabel");
+        _yLabel->x(width + 5);
+        _yLabel->y(height * 1 + 3);
+        _yLabel->width(15);
+        _yLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _yLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _yLabel->text("Y");
+        _yLabel->mouseEnabled(false);
+        addChild(_yLabel);
+        _zLabel = new flTextField();
+        _zLabel->name("flVec3Slider.zLabel");
+        _zLabel->x(width + 5);
+        _zLabel->y(height * 2 + 3);
+        _zLabel->width(15);
+        _zLabel->autoSize(flTextFieldAutoSize::CENTER);
+        _zLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+        _zLabel->text("Z");
+        _zLabel->mouseEnabled(false);
+        addChild(_zLabel);
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
     flVec3Slider::~flVec3Slider() {
         //ofLog() << "[flVec3Slider]~flVec3Slider()";
         
+        xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         delete xSlider;
         xSlider = NULL;
         
+        ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         delete ySlider;
         ySlider = NULL;
         
+        zSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
         delete zSlider;
         zSlider = NULL;
         
-        delete _label1Text;
-        _label1Text = NULL;
+        delete _xLabel;
+        _xLabel = NULL;
         
-        delete _label2Text;
-        _label2Text = NULL;
+        delete _yLabel;
+        _yLabel = NULL;
         
-        delete _label3Text;
-        _label3Text = NULL;
+        delete _zLabel;
+        _zLabel = NULL;
         
         //------------------------------------------
         _vec3Param = NULL;

@@ -26,7 +26,7 @@ namespace fl2d {
         
         protected:
             void* _target = NULL;
-            map<string, ofEvent<flEvent> > _handlers;
+            map<string, ofEvent<flEvent>> _listeners;
         
         private:
             bool _debugEnabled;
@@ -44,8 +44,8 @@ namespace fl2d {
                                          void(ListenerClass::*listenerMethod)(ArgumentsType&),
                                          int priority = OF_EVENT_ORDER_AFTER_APP
                                          ) {
-                _handlers[eventName].remove(listener, listenerMethod, priority);
-                _handlers[eventName].add(listener, listenerMethod, priority);
+                _listeners[eventName].remove(listener, listenerMethod, priority);
+                _listeners[eventName].add(listener, listenerMethod, priority);
             }
         
             //--------------------------------------------------------------
@@ -57,30 +57,30 @@ namespace fl2d {
                                             void(ListenerClass::*listenerMethod)(ArgumentsType&),
                                             int priority = OF_EVENT_ORDER_AFTER_APP
                                             ) {
-                _handlers[eventName].remove(listener, listenerMethod, priority);
+                _listeners[eventName].remove(listener, listenerMethod, priority);
             }
         
             //--------------------------------------------------------------
             //
             inline void removeEventListeners(string eventName) {
-                _handlers.erase(eventName);
+                _listeners.erase(eventName);
             }
         
             //--------------------------------------------------------------
             //
-            inline void removeAllEventListeners() { _handlers.clear(); }
+            inline void removeAllEventListeners() { _listeners.clear(); }
         
             //--------------------------------------------------------------
             //
             inline bool hasEventListener(string type) {
                 //if(_debugEnabled) cout << "[flEventDispatcher]hasEventListener(" + type + ")" << endl;
                 //if(_handlers.size() == 0) return false;
-                bool check = bool(_handlers.find(type) != _handlers.end());
+                bool check = bool(_listeners.find(type) != _listeners.end());
                 //if(_debugEnabled) cou・＿・t << "check = " << check << endl;
                 return check;
             }
         
-            void dispatchEvent(flEvent* event);
+            virtual void dispatchEvent(flEvent* event);
         
         protected:
             //            flEventDispatcher();

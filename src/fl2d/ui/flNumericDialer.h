@@ -9,95 +9,97 @@ namespace fl2d {
     
     class flNumericDialer : public flUIBase {
         
-    public:
-        //水平
-        static string HORIZONTALLY;
-        //垂直
-        static string VERTICALLY;
+        public:
+            //水平
+            static string HORIZONTALLY;
+            //垂直
+            static string VERTICALLY;
         
-    protected:
+        protected:
         
-    private:
-        flSprite* _track;
+        private:
+            flSprite* _track = NULL;
 
-        flTextField* _valueText;
+            bool _roundEnabled = false;
 
-        float _uiWidth;
-        float _uiHeight;
-        
-        //direction of the slider.
-        string _direction;
-        string _dragDirection;
-        
-        float _value;
-        float _tempValue;
-        //Gets or sets a nonzero number that describes the unit of change between values.
-        float _stepSize;
-        
-        float _max;
-        float _min;
-        
-        float _weight;
-        bool _roundEnabled;
-        bool _invertEnabled;
-        
-        ofPoint _startPos;
+            //direction of the slider.
+            string _direction = HORIZONTALLY;
+            string _dragDirection = VERTICALLY;
 
-    public:
-        flNumericDialer(float width = 100, float height = 18);
-        virtual ~flNumericDialer();
+            float _uiWidth = 100;
+            float _uiHeight = 18;
         
-        virtual void label(flTextField* value);
-        virtual void enabled(bool value);
+            float _min = numeric_limits<float>::quiet_NaN();
+            float _max = numeric_limits<float>::quiet_NaN();
+            //Gets or sets a nonzero number that describes the unit of change between values.
+            float _stepSize = 1.0;
+            float _tempValue = 0.0;
+            float _value = 0.0;
+        
+            flTextField* _valueText = NULL;
+            int _digit = 2;
 
-        string direction();
-        virtual void direction(string value);
-        
-        inline string dragDirection() { return _dragDirection; }
-        inline void dragDirection(string value) { _dragDirection = value; }
-        
-        float value();
-        void value(float value, bool dispatch = true);
-        
-        float stepSize();
-        void stepSize(float value, bool dispatch = true);
-        
-        float min();
-        void min(float value, bool dispatch = true);
-        
-        float max();
-        void max(float value, bool dispatch = true);
-        
-        float weight();
-        void weight(float value);
-        
-        bool roundEnabled();
-        void roundEnabled(bool value);
-        
-        bool invertEnabled();
-        void invertEnabled(bool value);
+            float _weight = 1.0;
+            bool _invertEnabled = false;
+            ofPoint _startPos;
 
-    protected:
-        virtual void _setup();
-        virtual void _update();
-        virtual void _draw();
-
-        virtual void _over();
-        virtual void _out();
-        virtual void _press();
-        virtual void _release();
-
-        virtual void _setNormalColor();
-        virtual void _setOverColor();
-        virtual void _setSelectedOverColor();
-        virtual void _setActiveColor();
-        virtual void _setDisableNormalColor();
-        virtual void _setDisableActiveColor();
-
-        virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        public:
+            flNumericDialer(float width = 100);
+            virtual ~flNumericDialer();
         
-    private:
-        void _mouseEventHandler(flEvent& event);
+            virtual void label(flTextField* value);
+            virtual void enabled(bool value);
+
+            string direction();
+            virtual void direction(string value);
+        
+            inline string dragDirection() { return _dragDirection; }
+            inline void dragDirection(string value) { _dragDirection = value; }
+        
+            float value();
+            void value(float value, bool dispatch = true);
+        
+            float stepSize();
+            void stepSize(float value, bool dispatch = true);
+        
+            float min();
+            void min(float value, bool dispatch = true);
+        
+            float max();
+            void max(float value, bool dispatch = true);
+        
+            float weight();
+            void weight(float value);
+        
+            bool roundEnabled();
+            void roundEnabled(bool value);
+        
+            bool invertEnabled();
+            void invertEnabled(bool value);
+
+        protected:
+            virtual void _setup();
+            virtual void _update();
+            virtual void _draw();
+        
+            virtual void _changeValue(bool dispatch = true);
+
+            virtual void _over();
+            virtual void _out();
+            virtual void _press();
+            virtual void _release();
+
+            virtual void _setNormalColor();
+            virtual void _setOverColor();
+            virtual void _setSelectedOverColor();
+            virtual void _setActiveColor();
+            virtual void _setDisableNormalColor();
+            virtual void _setDisableActiveColor();
+
+            virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
+        
+        private:
+            void _mouseEventHandler(flEvent& event);
     };
     
 }

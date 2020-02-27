@@ -30,7 +30,7 @@ namespace fl2d {
         event->__currentTarget = _target;
         if(event->__target == NULL) event->__target = _target;
         
-        ofNotifyEvent(_handlers[event->type()], *event);
+        ofNotifyEvent(_listeners[event->type()], *event);
         
         delete event;
     }
@@ -39,4 +39,8 @@ namespace fl2d {
     // Protected / Private Method
     //==============================================================
     
+    //==============================================================
+    // Protected / Private Event Handler
+    //==============================================================
+
 }

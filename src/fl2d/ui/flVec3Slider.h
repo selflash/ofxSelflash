@@ -15,9 +15,9 @@ namespace fl2d {
             flSlider* zSlider = NULL;
         
         protected:
-            flTextField* _label1Text = NULL;
-            flTextField* _label2Text = NULL;
-            flTextField* _label3Text = NULL;
+            flTextField* _xLabel = NULL;
+            flTextField* _yLabel = NULL;
+            flTextField* _zLabel = NULL;
         
             vec3 _value;
         
