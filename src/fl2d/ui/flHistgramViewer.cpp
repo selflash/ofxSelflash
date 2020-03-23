@@ -95,7 +95,7 @@ namespace fl2d {
             //            //            if(_valueScale <= _min) _valueScale = _min;
             //            ofLogNotice() << "_valueScale = " << _valueScale;
             
-            _press();
+            _onPress();
             
             //            if(_roundEnabled) {
             //                _valueText->text(ofToString(MathUtil::roundd(_value)));
@@ -269,21 +269,21 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flHistgramViewer::_over() {
+    void flHistgramViewer::_onOver() {
         if(isMouseDown()) return;
         
         _setOverColor();
     }
     
     //--------------------------------------------------------------
-    void flHistgramViewer::_out() {
+    void flHistgramViewer::_onOut() {
         if(isMouseDown()) return;
         
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
-    void flHistgramViewer::_press() {
+    void flHistgramViewer::_onPress() {
         _valueScale = _tempValue + ((mouseY() - _startPos.y) * _weight);
         _valueScale = max(_valueScale, _min);
         //            if(!isnan(_max)) if(_max <= _value) _value = _max;
@@ -294,7 +294,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flHistgramViewer::_release() {
+    void flHistgramViewer::_onRelease() {
         if(isMouseOver()) {
             _setOverColor();
         } else {
@@ -377,12 +377,12 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) _over();
+            if(event.target() == this) _onOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) _out();
+            if(event.target() == this) _onOut();
         }
         
         //Mouse Down
@@ -391,7 +391,7 @@ namespace fl2d {
                 _tempValue = _valueScale;
                 _startPos.x = mouseX();
                 _startPos.y = mouseY();
-                _press();
+                _onPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
                 }
@@ -400,7 +400,7 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            _release();
+            _onRelease();
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flHistgramViewer::_mouseEventHandler);
             }

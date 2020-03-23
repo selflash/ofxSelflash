@@ -158,7 +158,7 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    void flCircleColorPicker::_over() {
+    void flCircleColorPicker::_onOver() {
         if(isMouseDown()) return;
         
         flGraphics* g;
@@ -170,7 +170,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flCircleColorPicker::_out() {
+    void flCircleColorPicker::_onOut() {
         if(isMouseDown()) return;
         
         flGraphics* g;
@@ -182,7 +182,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flCircleColorPicker::_press() {
+    void flCircleColorPicker::_onPress() {
         flGraphics* g;
         g = graphics();
         g->clear();
@@ -202,9 +202,9 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flCircleColorPicker::_release() {
+    void flCircleColorPicker::_onRelease() {
         if(isMouseOver()) {
-            _over();
+            _onOver();
             return;
         }
         
@@ -217,7 +217,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flCircleColorPicker::_move() {
+    void flCircleColorPicker::_onMove() {
         getPixel(mouseX(), mouseY());
     }
     
@@ -231,26 +231,26 @@ namespace fl2d {
         //ofLog() << "isMouseDown" << isMouseDown();
         
         if(event.type() == flMouseEvent::MOUSE_OVER) {
-            if(event.target() == this) _over();
+            if(event.target() == this) _onOver();
         }
         if(event.type() == flMouseEvent::MOUSE_OUT) {
-            if(event.target() == this) _out();
+            if(event.target() == this) _onOut();
         }
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this){
-                _press();
+                _onPress();
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flCircleColorPicker::_mouseEventHandler);
             }
         }
         if(event.type() == flMouseEvent::MOUSE_UP) {
             if(event.currentTarget() == stage()) {
-                _release();
+                _onRelease();
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flCircleColorPicker::_mouseEventHandler);
             }
         }
         if(event.type() == flMouseEvent::MOUSE_MOVE) {
             if(event.target() == this){
-                if(isMouseDown()) _move();
+                if(isMouseDown()) _onMove();
             }
         }
     }

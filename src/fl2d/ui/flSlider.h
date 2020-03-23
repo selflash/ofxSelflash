@@ -18,6 +18,7 @@ namespace fl2d {
         
         private:
             bool _roundEnabled = false;
+            int _digit = 2;
 
             ofColor _normalBarColor;
             ofColor _overBarColor;
@@ -37,7 +38,6 @@ namespace fl2d {
             float _percent = 0.5;
 
             flTextField* _valueText = NULL;
-            int _digit = 2;
 
             ofPoint _draggablePoint;
         
@@ -125,12 +125,12 @@ namespace fl2d {
 
             virtual void _changeValue(bool dispatch = true);
 
-            virtual void _trackOver();
-            virtual void _thumbOver();
-            virtual void _trackOut();
-            virtual void _thumbOut();
-            virtual void _press();
-            virtual void _release();
+            virtual void _onTrackOver();
+            virtual void _onThumbOver();
+            virtual void _onTrackOut();
+            virtual void _onThumbOut();
+            virtual void _onPress();
+            virtual void _onRelease();
         
             virtual void _setNormalColor();
             virtual void _setTrackOverColor();

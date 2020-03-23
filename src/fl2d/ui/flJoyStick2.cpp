@@ -95,7 +95,7 @@ namespace fl2d {
         if(lever->isMouseDown()) {
             _targetX = mouseX() - _draggablePoint.x;
             _targetY = mouseY() - _draggablePoint.y;
-            _leverPress();
+            _onLeverPress();
         } else {
             //------------------------------------------
             //Easing
@@ -296,21 +296,21 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flJoyStick2::_leverOver() {
+    void flJoyStick2::_onLeverOver() {
         if(lever->isMouseDown()) return;
         
         _setOverColor();
     }
     
     //--------------------------------------------------------------
-    void flJoyStick2::_leverOut() {
+    void flJoyStick2::_onLeverOut() {
         if(lever->isMouseDown()) return;
         
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
-    void flJoyStick2::_leverPress() {
+    void flJoyStick2::_onLeverPress() {
         //------------------------------------------
         float tx = _targetX;
         float ty = _targetY;
@@ -354,7 +354,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flJoyStick2::_leverRelease() {
+    void flJoyStick2::_onLeverRelease() {
         
         if(lever->isMouseOver()) {
             _setOverColor();
@@ -364,7 +364,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flJoyStick2::_leverMove() {
+    void flJoyStick2::_onLeverMove() {
         
     }
     
@@ -462,12 +462,12 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == lever) _leverOver();
+            if(event.target() == lever) _onLeverOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == lever) _leverOut();
+            if(event.target() == lever) _onLeverOut();
         }
         
         //Mouse Down
@@ -477,7 +477,7 @@ namespace fl2d {
                 _draggablePoint.y = mouseY() - lever->y();
                 _targetX = mouseX();
                 _targetY = mouseY();
-                _leverPress();
+                _onLeverPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick2::_mouseEventHandler);
                 }
@@ -488,7 +488,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_UP) {
             _draggablePoint.x = 0;
             _draggablePoint.y = 0;
-            _leverRelease();
+            _onLeverRelease();
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flJoyStick2::_mouseEventHandler);
             }
@@ -496,7 +496,7 @@ namespace fl2d {
         
 //        //Mouse Move
 //        if(event.type() == flMouseEvent::MOUSE_MOVE) {
-//            if(event.target() == lever) _leverMove();
+//            if(event.target() == lever) _onLeverMove();
 //        }
 //
 //        //Dragging

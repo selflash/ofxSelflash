@@ -17,26 +17,24 @@ namespace fl2d {
         _height = height;
         _areaWidth = _width;
         _areaHeight = _height;
-        _leftValue = 0;
-        _rightValue = 1;
-        _topValue = 0;
-        _bottomValue = 1;
-        _n = 0;
-        
-        _leverRadius = 7;
         
         buttonMode(true);
 
         flGraphics* g;
         
         //------------------------------------------
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
+        area = new flSprite();
+        area->name("flPad2D.body");
+//        g = body->graphics();
+//        g->enabledSmoothing(true);
+        area->addEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
         //addEventListener(flMouseEvent::MOUSE_MOVE, this, &flPad2D::_mouseEventHandler);
+        addChild(area);
         //------------------------------------------
         
         //------------------------------------------
@@ -60,27 +58,28 @@ namespace fl2d {
         
         _xRatio = (lever->x() - _n) / _areaWidth;
         _yRatio = (lever->y() - _n) / _areaHeight;
-        _xValue = _leftValue + _rangeWidth * _xRatio;
-        _yValue = _topValue + _rangeHeight * _yRatio;
+        _value.x = _leftValue + _rangeWidth * _xRatio;
+        _value.y = _topValue + _rangeHeight * _yRatio;
 
         //------------------------------------------
-        _ratioText = new flTextField();
-        _ratioText->name("flPad2D.ratioText");
-        _ratioText->x(_n);
-        _ratioText->y(18 * 0);
-        _ratioText->width(_areaWidth);
-        _ratioText->autoSize(flTextFieldAutoSize::LEFT);
-        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
-        _ratioText->mouseEnabled(false);
-        addChild(_ratioText);
+//        _ratioText = new flTextField();
+//        _ratioText->name("flPad2D.ratioText");
+//        _ratioText->x(_n);
+//        _ratioText->y(18 * 0);
+//        _ratioText->width(_areaWidth);
+//        _ratioText->autoSize(flTextFieldAutoSize::LEFT);
+//        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
+//        _ratioText->mouseEnabled(false);
+//        addChild(_ratioText);
 
         _valueText = new flTextField();
         _valueText->name("flPad2D.velueText");
         _valueText->x(_n);
-        _valueText->y(18 * 2);
+//        _valueText->y(18 * 2);
+        _valueText->y(18 * 0);
         _valueText->width(_areaWidth);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
-        _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
         _valueText->mouseEnabled(false);
         addChild(_valueText);
         //------------------------------------------
@@ -106,21 +105,24 @@ namespace fl2d {
         _rightValue = right;
         _topValue = top;
         _bottomValue = bottom;
-        
-        _leverRadius = 7;
 
         buttonMode(true);
 
         flGraphics* g;
         
         //------------------------------------------
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
+        area = new flSprite();
+        area->name("flPad2D.body");
+//        g = body->graphics();
+//        g->enabledSmoothing(true);
+        area->addEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
+        area->addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
         //addEventListener(flMouseEvent::MOUSE_MOVE, this, &flPad2D::_mouseEventHandler);
+        addChild(area);
         //------------------------------------------
         
         //------------------------------------------
@@ -189,27 +191,28 @@ namespace fl2d {
         
         _xRatio = (lever->x() - _n) / _areaWidth;
         _yRatio = (lever->y() - _n) / _areaHeight;
-        _xValue = _leftValue + _rangeWidth * _xRatio;
-        _yValue = _topValue + _rangeHeight * _yRatio;
+        _value.x = _leftValue + _rangeWidth * _xRatio;
+        _value.y = _topValue + _rangeHeight * _yRatio;
 
         //------------------------------------------
-        _ratioText = new flTextField();
-        _ratioText->name("flPad2D.ratioText");
-        _ratioText->x(_n);
-        _ratioText->y(_n + 18 * 0);
-        _ratioText->width(_areaWidth);
-        _ratioText->autoSize(flTextFieldAutoSize::LEFT);
-        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
-        _ratioText->mouseEnabled(false);
-        addChild(_ratioText);
+//        _ratioText = new flTextField();
+//        _ratioText->name("flPad2D.ratioText");
+//        _ratioText->x(_n);
+//        _ratioText->y(_n + 18 * 0);
+//        _ratioText->width(_areaWidth);
+//        _ratioText->autoSize(flTextFieldAutoSize::LEFT);
+//        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
+//        _ratioText->mouseEnabled(false);
+//        addChild(_ratioText);
         
         _valueText = new flTextField();
         _valueText->name("flPad2D.velueText");
         _valueText->x(_n);
-        _valueText->y(_n + 18 * 2);
+//        _valueText->y(_n + 18 * 2);
+        _valueText->y(_n + 18 * 0);
         _valueText->width(_areaWidth);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
-        _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
         _valueText->mouseEnabled(false);
         addChild(_valueText);
         //------------------------------------------
@@ -220,13 +223,15 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     flPad2D::~flPad2D() {
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
-        
+        area->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
+        area->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
+        area->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
+        area->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
+        area->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
+        area->removeEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
+        delete area;
+        area = NULL;
+
         lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
         lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
@@ -259,15 +264,22 @@ namespace fl2d {
             _dialer04 = NULL;
         }
 
-        removeChild(_ratioText);
-        delete _ratioText;
-        _ratioText = NULL;
+//        if(_ratioText != NULL) {
+//            removeChild(_ratioText);
+//            delete _ratioText;
+//            _ratioText = NULL;
+//        }
         
         if(_valueText != NULL) {
             removeChild(_valueText);
             delete _valueText;
             _valueText = NULL;
         }
+                
+        //------------------------------------------
+        _vec2Param = NULL;
+        _listeners.unsubscribeAll();
+        //------------------------------------------
     }
 
     //==============================================================
@@ -282,9 +294,11 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flPad2D::_update() {
-        if(lever->isMouseDown()) {
-            _leverPress();
+        if(area->isMouseDown() || lever->isMouseDown()) {
+            _onPress();
         }
+        
+        _bChangedByOfParm["value"] = false;
     }
 
     //--------------------------------------------------------------
@@ -333,7 +347,7 @@ namespace fl2d {
         if(temp <= 0.0) temp = 0.0;
         
         lever->x(temp * _areaWidth);
-        _areaPress();
+        _onPress();
         
         //------------------------------------------
         //値の更新
@@ -341,12 +355,7 @@ namespace fl2d {
         //------------------------------------------
         
         if(dispatch) {
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
+            _changeValue();
         }
     }
     
@@ -357,7 +366,7 @@ namespace fl2d {
         if(temp >= 1.0) temp = 1.0;
         
         lever->y(temp * _areaHeight);
-        _areaPress();
+        _onPress();
         
         //------------------------------------------
         //値の更新
@@ -365,23 +374,18 @@ namespace fl2d {
         //------------------------------------------
         
         if(dispatch) {
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
+            _changeValue();
         }
     }
 
     //--------------------------------------------------------------
-    float flPad2D::xValue() { return _xValue; }
+    float flPad2D::xValue() { return _value.x; }
     void flPad2D::xValue(float value, bool dispatch) {
 //        float temp = value;
 //        if(temp <= 0.0) temp = 0.0;
         
         lever->x(value * _areaWidth);
-        _areaPress();
+        _onPress();
         
         //------------------------------------------
         //値の更新
@@ -389,20 +393,15 @@ namespace fl2d {
         //------------------------------------------
         
         if(dispatch) {
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
+            _changeValue();
         }
     }
 
     //--------------------------------------------------------------
-    float flPad2D::yValue() { return _yValue; }
+    float flPad2D::yValue() { return _value.y; }
     void flPad2D::yValue(float value, bool dispatch) {
         lever->y(value * _areaHeight);
-        _areaPress();
+        _onPress();
         
         //------------------------------------------
         //値の更新
@@ -410,12 +409,51 @@ namespace fl2d {
         //------------------------------------------
         
         if(dispatch) {
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
+            _changeValue();
+        }
+    }
+    
+    //--------------------------------------------------------------
+    vec2 flPad2D::value() { return _value; }
+    void flPad2D::value(float xValue, float yValue, bool dispatch) {
+        //        float temp = value;
+        //        if(temp <= 0.0) temp = 0.0;
+        
+        lever->x(xValue * _areaWidth);
+        lever->y(yValue * _areaHeight);
+        _onPress();
+        
+        //------------------------------------------
+        //値の更新
+        _updateValue();
+        //------------------------------------------
+        
+        if(dispatch) {
+            _changeValue();
+
+//            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
+//            event->__xRatio = _xRatio;
+//            event->__yRatio = _yRatio;
+//            event->__xValue = _value.x;
+//            event->__yValue = _value.y;
+//            dispatchEvent(event);
+        }
+    }
+    void flPad2D::value(vec2 value, bool dispatch) {
+        //        float temp = value;
+        //        if(temp <= 0.0) temp = 0.0;
+        
+        lever->x(value.x * _areaWidth);
+        lever->y(value.y * _areaHeight);
+        _onPress();
+        
+        //------------------------------------------
+        //値の更新
+        _updateValue();
+        //------------------------------------------
+        
+        if(dispatch) {
+            _changeValue();
         }
     }
 
@@ -428,102 +466,47 @@ namespace fl2d {
     void flPad2D::_updateValue() {
         _xRatio = (lever->x() - _n) / _areaWidth;
         _yRatio = (lever->y() - _n) / _areaHeight;
-        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
+//        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
 
-        _xValue = _leftValue + _rangeWidth * _xRatio;
-        _yValue = _topValue + _rangeHeight * _yRatio;
-        _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
+        _value.x = _leftValue + _rangeWidth * _xRatio;
+        _value.y = _topValue + _rangeHeight * _yRatio;
     }
     
     //--------------------------------------------------------------
-    void flPad2D::_areaOver() {
-        if(lever->isMouseDown()) return;
-        
-        _setOverColor();
-    }
-    //--------------------------------------------------------------
-    void flPad2D::_areaOut() {
-        if(lever->isMouseDown()) return;
+    void flPad2D::_changeValue(bool dispatch) {
+//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
 
-        _setNormalColor();
-    }
-    //--------------------------------------------------------------
-    void flPad2D::_areaPress() {
-        if(lever->isMouseDown()) return;
-
-        float preXValue = _xValue;
-        float preYValue = _yValue;
-        
         //------------------------------------------
-        float tx = mouseX() + _draggablePoint.x;
-        float ty = mouseY() + _draggablePoint.y;
-        
-        if(tx < _n) tx = _n;
-        if(_n + _areaWidth < tx) tx = _n + _areaWidth;
-        if(ty < _n) ty = _n;
-        if(_n + _areaHeight < ty) ty = _n + _areaHeight;
-        
-        lever->x(tx);
-        lever->y(ty);
-        //------------------------------------------
-        
-        //------------------------------------------
-        //Update value.
-        _xRatio = (lever->x() - _n) / _areaWidth;
-        _yRatio = (lever->y() - _n) / _areaHeight;
-        
-        _xValue = _leftValue + _rangeWidth * _xRatio;
-        _yValue = _topValue + _rangeHeight * _yRatio;
-        //------------------------------------------
-        
-        _setActiveColor();
-        
-        //------------------------------------------
-        if(preXValue != _xValue || preYValue != _yValue) {
-            _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
-            _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
-            
-            //------------------------------------------
+        if(dispatch) {
             flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
             event->__xRatio = _xRatio;
             event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
+            event->__xValue = _value.x;
+            event->__yValue = _value.y;
             dispatchEvent(event);
-            //------------------------------------------
         }
         //------------------------------------------
     }
-    
-    //--------------------------------------------------------------
-    void flPad2D::_areaRelease() {
-        if(lever->isMouseDown()) return;
-
-        if(isMouseOver()) {
-            _setOverColor();
-        } else {
-            _setNormalColor();
-        }
-    }
 
     //--------------------------------------------------------------
-    void flPad2D::_leverOver() {
-        if(lever->isMouseDown()) return;
+    void flPad2D::_onOver() {
+        if(area->isMouseDown() || lever->isMouseDown()) return;
         
         _setOverColor();
     }
     
     //--------------------------------------------------------------
-    void flPad2D::_leverOut() {
-        if(lever->isMouseDown()) return;
+    void flPad2D::_onOut() {
+        if(area->isMouseDown() || lever->isMouseDown()) return;
         
         _setNormalColor();
     }
     
     //--------------------------------------------------------------
-    void flPad2D::_leverPress() {
-        float preXValue = _xValue;
-        float preYValue = _yValue;
+    void flPad2D::_onPress() {
+        float preXValue = _value.x;
+        float preYValue = _value.y;
 
         //------------------------------------------
         float tx = mouseX() + _draggablePoint.x;
@@ -539,36 +522,21 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        //Update value.
-        _xRatio = (lever->x() - _n) / _areaWidth;
-        _yRatio = (lever->y() - _n) / _areaHeight;
-
-        _xValue = _leftValue + _rangeWidth * _xRatio;
-        _yValue = _topValue + _rangeHeight * _yRatio;
+        _updateValue();
         //------------------------------------------
 
         _setActiveColor();
 
         //------------------------------------------
-        if(preXValue != _xValue || preYValue != _yValue) {
-            _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
-            _valueText->text("x:" + ofToString(_xValue, 2) + "\r\ny:" + ofToString(_yValue, 2));
-
-            //------------------------------------------
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
-            //------------------------------------------
+        if(preXValue != _value.x || preYValue != _value.y) {
+            _changeValue();
         }
         //------------------------------------------
     }
     
     //--------------------------------------------------------------
-    void flPad2D::_leverRelease() {
-        if(lever->isMouseOver()) {
+    void flPad2D::_onRelease() {
+        if(area->isMouseDown() || lever->isMouseOver()) {
             _setOverColor();
         } else {
             _setNormalColor();
@@ -576,15 +544,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flPad2D::_leverMove() {
+    void flPad2D::_onMove() {
         
     }
     
     //--------------------------------------------------------------
     void flPad2D::_setNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        
-        _ratioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         _drawAreaGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -594,8 +561,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flPad2D::_setOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        
-        _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawAreaGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR);
@@ -605,8 +571,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flPad2D::_setSelectedOverColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        
-        _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawAreaGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -616,8 +581,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flPad2D::_setActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
-        
-        _ratioText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
         _drawAreaGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
@@ -627,7 +591,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flPad2D::_setDisableNormalColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
 
         _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
@@ -637,7 +601,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flPad2D::_setDisableActiveColor() {
         if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
+//        _ratioText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
 
         _drawAreaGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
@@ -646,7 +610,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flPad2D::_drawAreaGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness) {
-        flGraphics* g = graphics();
+        flGraphics* g = area->graphics();
         g->clear();
         g->lineStyle(1, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
@@ -689,20 +653,25 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) _areaOver();
-            if(event.target() == lever) _leverOver();
+            if(event.target() == area) _onOver();
+            if(event.target() == lever) _onOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) _areaOut();
-            if(event.target() == lever) _leverOut();
+            if(event.target() == area) _onOut();
+            if(event.target() == lever) _onOut();
         }
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) {
-                _areaPress();
+            if(event.target() == area) {
+                //_leverPress();
+
+                _draggablePoint.x = 0.0;
+                _draggablePoint.y = 0.0;
+                _onPress();
+
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
                 }
@@ -710,7 +679,7 @@ namespace fl2d {
             if(event.target() == lever) {
                 _draggablePoint.x = lever->x() - mouseX();
                 _draggablePoint.y = lever->y() - mouseY();
-                _leverPress();
+                _onPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
                 }
@@ -721,7 +690,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_UP) {
             _draggablePoint.x = 0;
             _draggablePoint.y = 0;
-            _leverRelease();
+            _onRelease();
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
             }
@@ -729,7 +698,7 @@ namespace fl2d {
         
         //Mouse Move
         if(event.type() == flMouseEvent::MOUSE_MOVE) {
-            if(event.target() == lever) _leverMove();
+            if(event.target() == lever) _onMove();
         }
     }
     
@@ -777,12 +746,7 @@ namespace fl2d {
             _updateValue();
             
             //------------------------------------------
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _xValue;
-            event->__yValue = _yValue;
-            dispatchEvent(event);
+            _changeValue();
             //------------------------------------------
         }
     }

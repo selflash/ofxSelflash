@@ -181,13 +181,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flRangeSlider::_update() {
         if(bar->isMouseDown()) {
-            _barPress();
+            _onBarPress();
         }
         if(minThumb->isMouseDown()) {
-            _minThumbPress();
+            _onMinThumbPress();
         }
         if(maxThumb->isMouseDown()) {
-            _maxThumbPress();
+            _onMaxThumbPress();
         }
 
         //        ofLog() << "[flRangeSlider]bar->width = " << bar->width();
@@ -482,7 +482,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_over() {
+    void flRangeSlider::_onOver() {
         if(bar->isMouseDown()) return;
         if(minThumb->isMouseDown()) return;
         if(maxThumb->isMouseDown()) return;
@@ -491,7 +491,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_barOut() {
+    void flRangeSlider::_onBarOut() {
         if(bar->isMouseDown()) return;
         if(minThumb->isMouseDown()) return;
         if(maxThumb->isMouseDown()) return;
@@ -500,7 +500,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_thumbOut() {
+    void flRangeSlider::_onThumbOut() {
         if(bar->isMouseOver()) return;
         if(bar->isMouseDown()) return;
         if(minThumb->isMouseDown()) return;
@@ -510,7 +510,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_barPress() {
+    void flRangeSlider::_onBarPress() {
         //------------------------------------------
         float temp1 = mouseX() - _draggablePoint.x;
         if(temp1 < 0) {
@@ -563,7 +563,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_minThumbPress() {
+    void flRangeSlider::_onMinThumbPress() {
 //        ofLog() << "[flRangeSlider]_thumbPress()";
 
         float preValue = _minValue;
@@ -614,8 +614,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_maxThumbPress() {
-//        ofLog() << "[flRangeSlider]_maxThumbPress()";
+    void flRangeSlider::_onMaxThumbPress() {
+//        ofLog() << "[flRangeSlider]_onMaxThumbPress()";
 
         float preValue = _maxValue;
 
@@ -663,8 +663,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRangeSlider::_release() {
-//        ofLog() << "[flRangeSlider]_release()";
+    void flRangeSlider::_onRelease() {
+//        ofLog() << "[flRangeSlider]_onRelease()";
         if(
            bar->isMouseOver() ||
            minThumb->isMouseOver() ||
@@ -803,7 +803,7 @@ namespace fl2d {
 //        //------------------------------------------
 //    }
 //    //--------------------------------------------------------------
-//    void flRangeSlider::_release() {
+//    void flRangeSlider::_onRelease() {
 //        if(minThumb->isMouseOver() || track->isMouseOver()) {
 //            //------------------------------------------
 //            _drawTrackGraphics(flDefinition::UI_OVER_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
@@ -840,42 +840,42 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == bar) _over();
+            if(event.target() == bar) _onOver();
 //            else if(event.target() == minThumb) _thumbOver();
 //            else if(event.target() == maxThumb) _thumbOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == bar) _barOut();
-//            else if(event.target() == minThumb) _thumbOut();
-//            else if(event.target() == maxThumb) _thumbOut();
+            if(event.target() == bar) _onBarOut();
+//            else if(event.target() == minThumb) _onThumbOut();
+//            else if(event.target() == maxThumb) _onThumbOut();
         }
         
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
-            if(event.target() == minThumb || event.target() == maxThumb) _over();
+            if(event.target() == minThumb || event.target() == maxThumb) _onOver();
         }
         
         //Mouse Out
         if(event.type() == flMouseEvent::MOUSE_OUT) {
-            if(event.target() == minThumb || event.target() == maxThumb) _thumbOut();
+            if(event.target() == minThumb || event.target() == maxThumb) _onThumbOut();
         }
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == bar) {
                 _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
-                _barPress();
+                _onBarPress();
             }
             if(event.target() == minThumb) {
                 _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
 //                _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;
-                _minThumbPress();
+                _onMinThumbPress();
             }
             else if(event.target() == maxThumb) {
                 _draggablePoint.x = mouseX() - maxThumb->x();
-                _maxThumbPress();
+                _onMaxThumbPress();
             }
 
             if(stage()) {
@@ -913,13 +913,13 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
             }
-            _release();
+            _onRelease();
 
 //            if(event.currentTarget() == stage()) {
 //                _draggablePoint.x = 0;
 //                _draggablePoint.y = 0;
 //
-//                _release();
+//                _onRelease();
 //                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRangeSlider::_mouseEventHandler);
 //            }
         }

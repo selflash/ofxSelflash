@@ -140,7 +140,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSlider::_update() {
         if(thumb->isMouseDown()) {
-            _press();
+            _onPress();
         }
         
         _bChangedByOfParm["value"] = false;
@@ -444,7 +444,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_trackOver() {
+    void flSlider::_onTrackOver() {
         if(track->isMouseDown()) return;
         if(thumb->isMouseDown()) return;
 
@@ -452,14 +452,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_thumbOver() {
+    void flSlider::_onThumbOver() {
         if(track->isMouseDown()) return;
         
         _setThumbOverColor();
     }
 
     //--------------------------------------------------------------
-    void flSlider::_trackOut() {
+    void flSlider::_onTrackOut() {
         if(track->isMouseDown()) return;
         if(thumb->isMouseDown()) return;
         
@@ -467,7 +467,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_thumbOut() {
+    void flSlider::_onThumbOut() {
         if(track->isMouseDown()) return;
         if(thumb->isMouseDown()) return;
         
@@ -479,7 +479,7 @@ namespace fl2d {
     }
 
     //--------------------------------------------------------------
-    void flSlider::_press() {
+    void flSlider::_onPress() {
         float preValue = _value;
 
         //------------------------------------------
@@ -523,7 +523,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flSlider::_release() {
+    void flSlider::_onRelease() {
         if(track->isMouseOver()) {
             _setTrackOverColor();
         } else {
@@ -631,14 +631,14 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == track) _trackOver();
-            if(event.target() == thumb) _thumbOver();
+            if(event.target() == track) _onTrackOver();
+            if(event.target() == thumb) _onThumbOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == track) _trackOut();
-            if(event.target() == thumb) _thumbOut();
+            if(event.target() == track) _onTrackOut();
+            if(event.target() == thumb) _onThumbOut();
         }
         
         //Mouse Down
@@ -646,14 +646,14 @@ namespace fl2d {
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
                     _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;
-                    _press();
+                    _onPress();
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     }
                 }
             } else {
                 if(event.target() == track) {
-                    _press();
+                    _onPress();
                     if(stage()) {
                         stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
                     }
@@ -666,7 +666,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flSlider::_mouseEventHandler);
             }
-            _release();
+            _onRelease();
         }
     }
     

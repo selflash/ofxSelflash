@@ -20,7 +20,6 @@ namespace fl2d {
         private:
             string _type = HORIZONTALLY;
 
-            flTextField* _valueText = NULL;
             int _digit = 2;
 
             float _uiLength = 0.0;
@@ -35,6 +34,8 @@ namespace fl2d {
             float _targetValue = 0.0;
 
             float _value = 0.0;
+
+            flTextField* _valueText = NULL;
 
         public:
             flJoyStick1(float length = 100);
@@ -90,11 +91,11 @@ namespace fl2d {
 //            virtual void _areaPress();
 //            virtual void _areaRelease();
         
-            virtual void _leverOver();
-            virtual void _leverOut();
-            virtual void _leverPress();
-            virtual void _leverRelease();
-            virtual void _leverMove();
+            virtual void _onLeverOver();
+            virtual void _onLeverOut();
+            virtual void _onLeverPress();
+            virtual void _onLeverRelease();
+            virtual void _onLeverMove();
         
             virtual void _setNormalColor();
             virtual void _setOverColor();

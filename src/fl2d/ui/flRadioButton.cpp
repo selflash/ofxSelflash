@@ -187,7 +187,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_over() {
+    void flRadioButton::_onOver() {
         if(isMouseDown()) return;
         
         if(!_selected) {
@@ -198,7 +198,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_out() {
+    void flRadioButton::_onOut() {
         if(isMouseDown()) return;
         
         if(!_selected) {
@@ -209,12 +209,12 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_press() {
+    void flRadioButton::_onPress() {
         selected(!selected());
     }
     
     //--------------------------------------------------------------
-    void flRadioButton::_release() {
+    void flRadioButton::_onRelease() {
         if(!_selected) {
             if(isMouseOver()) {
                 _setOverColor();
@@ -352,18 +352,18 @@ namespace fl2d {
         
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
-            if(event.target() == this) _over();
+            if(event.target() == this) _onOver();
         }
         
         //Mouse Out
         if(event.type() == flMouseEvent::MOUSE_OUT) {
-            if(event.target() == this) _out();
+            if(event.target() == this) _onOut();
         }
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) {
-                _press();
+                _onPress();
                 if(stage()) {
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
                 }
@@ -375,7 +375,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
             }
-            _release();
+            _onRelease();
         }
     }
     

@@ -170,13 +170,13 @@ namespace fl2d {
         
             virtual void _changeValue(bool dispatch = true);
 
-            virtual void _over();
-            virtual void _barOut();
-            virtual void _thumbOut();
-            virtual void _barPress();
-            virtual void _minThumbPress();
-            virtual void _maxThumbPress();
-            virtual void _release();
+            virtual void _onOver();
+            virtual void _onBarOut();
+            virtual void _onThumbOut();
+            virtual void _onBarPress();
+            virtual void _onMinThumbPress();
+            virtual void _onMaxThumbPress();
+            virtual void _onRelease();
         
             virtual void _setNormalColor();
             virtual void _setOverColor();

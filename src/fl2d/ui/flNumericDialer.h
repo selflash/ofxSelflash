@@ -77,6 +77,34 @@ namespace fl2d {
             bool invertEnabled();
             void invertEnabled(bool value);
 
+        //------------------------------------------
+        ofParameter<float>* _floatParam = NULL;
+        ofEventListeners _listeners;
+        virtual inline void bind(ofParameter<float>& param) {
+            _listeners.unsubscribeAll();
+            _floatParam = NULL;
+            _bChangedByMyself["value"] = false;
+            _bChangedByOfParm["value"] = false;
+            
+            _floatParam = &param;
+            _listeners.push(_floatParam->newListener([&](float& val) {
+                if(_bChangedByMyself["value"]) {
+                    _bChangedByMyself["value"] = false;
+                } else {
+                    _bChangedByOfParm["value"] = true;
+                    value(val);
+                }
+            }));
+            
+            _bChangedByOfParm["value"] = true;
+            value(_floatParam->get());
+        }
+        virtual inline void unbind() {
+            _listeners.unsubscribeAll();
+            _floatParam = NULL;
+        }
+        //------------------------------------------
+        
         protected:
             virtual void _setup();
             virtual void _update();
@@ -84,10 +112,10 @@ namespace fl2d {
         
             virtual void _changeValue(bool dispatch = true);
 
-            virtual void _over();
-            virtual void _out();
-            virtual void _press();
-            virtual void _release();
+            virtual void _onOver();
+            virtual void _onOut();
+            virtual void _onPress();
+            virtual void _onRelease();
 
             virtual void _setNormalColor();
             virtual void _setOverColor();

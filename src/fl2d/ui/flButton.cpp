@@ -268,7 +268,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flButton::_over() {
+    void flButton::_onOver() {
         if(isMouseDown()) return;
         
         if(!_selected) {
@@ -284,7 +284,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flButton::_out() {
+    void flButton::_onOut() {
         if(isMouseDown()) return;
         
         if(!_selected) {
@@ -300,7 +300,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flButton::_press() {
+    void flButton::_onPress() {
         if(_toggleEnabled) {
             selected(!selected());
         } else {
@@ -319,7 +319,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flButton::_release() {
+    void flButton::_onRelease() {
         if(!_selected) {
             if(isMouseOver()) {
                 _setOverColor();
@@ -428,17 +428,17 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) _over();
+            if(event.target() == this) _onOver();
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) _out();
+            if(event.target() == this) _onOut();
         }
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _press();
+            if(event.target() == this) _onPress();
 //            addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             if(stage()) {
                 stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
@@ -451,7 +451,7 @@ namespace fl2d {
             if(stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             }
-            _release();
+            _onRelease();
         }
     }
     

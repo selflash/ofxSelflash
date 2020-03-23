@@ -547,6 +547,7 @@ void UIComponents::_setup() {
     dialer001->label(label);
     dialer001->x(marginLeft + spacing * 0);
     dialer001->y(marginTop + lineSpacing * 2);
+    dialer001->stepSize(0.2);
     dialer001->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer001);
     
@@ -563,7 +564,7 @@ void UIComponents::_setup() {
     dialer002->x(marginLeft + spacing * 0);
     dialer002->y(marginTop + lineSpacing * 4);
     dialer002->value(-500);
-    dialer002->stepSize(10);
+    dialer002->stepSize(5);
     dialer002->max(100);
     dialer002->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);

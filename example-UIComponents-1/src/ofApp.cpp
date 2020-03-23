@@ -111,6 +111,12 @@ void ofApp::setup() {
         renderer->wireframeEnabled = value;
     }));
     uiComponents->check002->bind(appModel.wireframeEnabled);
+    
+//    renderer->wireframeEnabled = appModel.wireframeEnabled;
+    listeners.push(appModel.testFloat.newListener([&](float& value) {
+//        renderer->wireframeEnabled = value;
+    }));
+    uiComponents->dialer001->bind(appModel.testFloat);
     //--------------------------------------
     
     
@@ -190,6 +196,8 @@ void ofApp::update() {
                                  ((sin(elapsedTime) + 1.0) / 2.5) * 200
                                  );
 
+        appModel.testFloat = sin(elapsedTime * 1.5) * 100;
+
 //        appModel.cameraPosXY = { sin(elapsedTime * 1.7), sin(elapsedTime * 1.5) };
 //        appModel.cameraPosXY.y = sin(elapsedTime * 1.5);
 //        uiComponents->joystick2001->moveLever(sin(elapsedTime * 1.7), sin(elapsedTime * 1.5));
@@ -229,6 +237,8 @@ void ofApp::update() {
 
         uiComponents->joystick2001->moveLever(sin(elapsedTime * 2.1), sin(elapsedTime * 1.5));
         uiComponents->joystick1001->moveLever(sin(elapsedTime * 3.0));
+        
+        uiComponents->dialer001->value(sin(elapsedTime * 1.5) * 100);
     }
 }
 
