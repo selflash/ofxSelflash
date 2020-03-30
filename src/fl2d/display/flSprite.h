@@ -13,6 +13,9 @@
 
 #include "flDisplayObjectContainer.h"
 #include "flGraphics.h"
+#include "flmath.h"
+
+using namespace flinternal;
 
 namespace fl2d {
     

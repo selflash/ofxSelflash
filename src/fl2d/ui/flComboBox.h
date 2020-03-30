@@ -27,33 +27,33 @@ namespace fl2d {
     private:
         //------------------------------------------
         //ドロップダウンリストの最大幅（ピクセル単位）を取得または設定します。
-        float _dropdownWidth;
+        float _dropdownWidth = 150;
         //スクロールバーを持たないドロップダウンリストに表示できる最大行数を取得または設定します。
-        int _rowCount;
+        int _rowCount = 0;
         //単一選択リストで選択されたアイテムのインデックスを取得または設定します。
-        int _selectedIndex;
+        int _selectedIndex = 0;
         //------------------------------------------
         
         //------------------------------------------
-        flButton* _topButton;
-        flSprite* _buttonContainer;
+        flButton* _topButton = NULL;
+        flSprite* _buttonContainer = NULL;
         
         vector<flButton*> _buttonList;
-        flButton* _selectedButton;
+        flButton* _selectedButton = NULL;
         //------------------------------------------
         
         //------------------------------------------
         vector<flObject*> _itemList;
         //ドロップダウンリストで選択されているアイテムの値を取得または設定します。
-        flObject* _selectedItem;
+        flObject* _selectedItem = NULL;
         //------------------------------------------
         
-        string _mode;
+        string _mode = "down";
         
-        void* _pointerValue;
-        string _stringValue;
-        float _floatValue;
-        int _intValue;
+        void* _pointerValue = NULL;
+        string _stringValue = "";
+        float _floatValue = 0.0;
+        int _intValue = 0;
         
     public:
         flComboBox(float dropdownWidth = 150);
@@ -258,11 +258,40 @@ namespace fl2d {
         int intValue();
         void intValue(int value);
         
+        //------------------------------------------
+        ofParameter<int>* _intParam = NULL;
+        ofEventListeners _listeners;
+        virtual inline void bind(ofParameter<int>& param) {
+            _listeners.unsubscribeAll();
+            _intParam = NULL;
+            _bChangedByMyself["value"] = false;
+            _bChangedByOfParm["value"] = false;
+            
+            _intParam = &param;
+            _listeners.push(_intParam->newListener([&](int& val) {
+                if(_bChangedByMyself["value"]) {
+                    _bChangedByMyself["value"] = false;
+                } else {
+                    _bChangedByOfParm["value"] = true;
+                    selectedIndex(val);
+                }
+            }));
+            
+            selectedIndex(_intParam->get());
+        }
+        virtual inline void unbind() {
+            _listeners.unsubscribeAll();
+            _intParam = NULL;
+        }
+        //------------------------------------------
+        
     protected:
         virtual void _setup();
         virtual void _update();
         virtual void _draw();
         
+        virtual void _changeValue(bool dispatch = true);
+
     private:
         virtual void _mouseEventHandler(flEvent& event);
         void _eventHandler(flEvent& event);

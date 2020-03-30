@@ -377,6 +377,9 @@ namespace fl2d {
         n1 = p2.x - _draggablePoint.x;
         n2 = p2.y - _draggablePoint.y;
         
+        n1 = flmath::roundd(n1);
+        n2 = flmath::roundd(n2);
+
         if(_draggableArea){
             if(n1 < _draggableArea->left()) n1 = _draggableArea->left();
             if(n1 > _draggableArea->right()) n1 = _draggableArea->right();

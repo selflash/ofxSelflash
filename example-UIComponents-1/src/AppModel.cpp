@@ -75,6 +75,10 @@ void AppModel::_draw() {
         text += "TestVec3.y = " + ofToString(testVec3->y) + "\n";
         text += "TestVec3.z = " + ofToString(testVec3->z) + "\n";
         text += "TestFloat = " + ofToString(testFloat) + "\n";
+        text += "TestVec2ForPad2d.x = " + ofToString(testVec2ForPad2d->x) + "\n";
+        text += "TestVec2ForPad2d.y = " + ofToString(testVec2ForPad2d->y) + "\n";
+        text += "TestInt = " + ofToString(testInt) + "\n";
+
         //    text += "width = " + ofToString(width()) + "\n";
         //    text += "height = " + ofToString(height()) + "\n";
         //    text += "scaleX = " + ofToString(scaleX()) + "\n";

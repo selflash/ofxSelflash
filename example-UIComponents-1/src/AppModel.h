@@ -48,6 +48,10 @@ class AppModel : public flBasicDraggableObject {
 
         ofParameter<float> testFloat = 0.0;
 
+        ofParameter<vec2> testVec2ForPad2d = vec2(0, 0);
+
+        ofParameter<int> testInt = 0;
+
 
     protected:
         

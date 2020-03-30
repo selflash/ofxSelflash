@@ -47,6 +47,8 @@ namespace fl2d {
 //        flTextField* _ratioText = NULL;
         flTextField* _valueText = NULL;
 
+        bool _flgX = false;
+        bool _flgY = false;
         ofPoint _draggablePoint;
         
     public:
@@ -94,7 +96,7 @@ namespace fl2d {
                     _bChangedByMyself["value"] = false;
                 } else {
                     _bChangedByOfParm["value"] = true;
-                    value(_vec2Param->get());
+                    value(val);
                 }
             }));
             
@@ -111,7 +113,6 @@ namespace fl2d {
         virtual void _update();
         virtual void _draw();
         
-        virtual void _updateValue();        
         virtual void _changeValue(bool dispatch = true);
         
         virtual void _onOver();

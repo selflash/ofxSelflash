@@ -343,135 +343,168 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flPad2D::xRatio() { return _xRatio; }
     void flPad2D::xRatio(float value, bool dispatch) {
-        float temp = value;
-        if(temp <= 0.0) temp = 0.0;
-        
-        lever->x(temp * _areaWidth);
-        _onPress();
-        
-        //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
-        
-        if(dispatch) {
-            _changeValue();
-        }
+//        float temp = value;
+//        if(temp <= 0.0) temp = 0.0;
+//
+//        lever->x(temp * _areaWidth);
+//        _onPress();
+//
+//        //------------------------------------------
+//        //値の更新
+//        _updateValue();
+//        //------------------------------------------
+//
+//        if(dispatch) {
+//            _changeValue();
+//        }
     }
     
     //--------------------------------------------------------------
     float flPad2D::yRatio() { return _yRatio; }
     void flPad2D::yRatio(float value, bool dispatch) {
-        float temp = value;
-        if(temp >= 1.0) temp = 1.0;
-        
-        lever->y(temp * _areaHeight);
-        _onPress();
-        
-        //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
-        
-        if(dispatch) {
-            _changeValue();
-        }
+//        float temp = value;
+//        if(temp >= 1.0) temp = 1.0;
+//
+//        lever->y(temp * _areaHeight);
+//        _onPress();
+//
+//        //------------------------------------------
+//        //値の更新
+//        _updateValue();
+//        //------------------------------------------
+//
+//        if(dispatch) {
+//            _changeValue();
+//        }
     }
 
     //--------------------------------------------------------------
     float flPad2D::xValue() { return _value.x; }
     void flPad2D::xValue(float value, bool dispatch) {
-//        float temp = value;
-//        if(temp <= 0.0) temp = 0.0;
+        //------------------------------------------
+        //Update Value.
+        _value.x = value;
         
-        lever->x(value * _areaWidth);
-        _onPress();
+        if(_value.x <= _leftValue) _value.x = _leftValue;
+        if(_value.x >= _rightValue) _value.x = _rightValue;
+        
+        _xRatio = ((_value.x - _leftValue) / _rangeWidth);
+        
+        lever->x(_n + (_xRatio * _areaWidth));
+        //------------------------------------------
+        
+        _setNormalColor();
         
         //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
+        _changeValue(dispatch);
         
-        if(dispatch) {
-            _changeValue();
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
         }
+        //------------------------------------------
     }
 
     //--------------------------------------------------------------
     float flPad2D::yValue() { return _value.y; }
     void flPad2D::yValue(float value, bool dispatch) {
-        lever->y(value * _areaHeight);
-        _onPress();
+        //------------------------------------------
+        //Update Value.
+        _value.y = value;
+        
+        if(_value.y <= _topValue) _value.y = _topValue;
+        if(_value.y >= _bottomValue) _value.y = _bottomValue;
+        
+        _yRatio = ((_value.y - _topValue) / _rangeHeight);
+        
+        lever->y(_n + (_yRatio * _areaHeight));
+        //------------------------------------------
+        
+        _setNormalColor();
         
         //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
+        _changeValue(dispatch);
         
-        if(dispatch) {
-            _changeValue();
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
         }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
     vec2 flPad2D::value() { return _value; }
     void flPad2D::value(float xValue, float yValue, bool dispatch) {
-        //        float temp = value;
-        //        if(temp <= 0.0) temp = 0.0;
+        //------------------------------------------
+        //Update Value.
+        _value.x = xValue;
+        _value.y = yValue;
         
-        lever->x(xValue * _areaWidth);
-        lever->y(yValue * _areaHeight);
-        _onPress();
+        if(_value.x <= _leftValue) _value.x = _leftValue;
+        if(_value.x >= _rightValue) _value.x = _rightValue;
+        if(_value.y <= _topValue) _value.y = _topValue;
+        if(_value.y >= _bottomValue) _value.y = _bottomValue;
+        
+        _xRatio = ((_value.x - _leftValue) / _rangeWidth);
+        _yRatio = ((_value.y - _topValue) / _rangeHeight);
+        
+        lever->x(_n + (_xRatio * _areaWidth));
+        lever->y(_n + (_yRatio * _areaHeight));
+        //------------------------------------------
+        
+        _setNormalColor();
         
         //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
-        
-        if(dispatch) {
-            _changeValue();
+        _changeValue(dispatch);
 
-//            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-//            event->__xRatio = _xRatio;
-//            event->__yRatio = _yRatio;
-//            event->__xValue = _value.x;
-//            event->__yValue = _value.y;
-//            dispatchEvent(event);
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
         }
+        //------------------------------------------
     }
     void flPad2D::value(vec2 value, bool dispatch) {
-        //        float temp = value;
-        //        if(temp <= 0.0) temp = 0.0;
+        //------------------------------------------
+        //Update Value.
+        _value.x = value.x;
+        _value.y = value.y;
         
-        lever->x(value.x * _areaWidth);
-        lever->y(value.y * _areaHeight);
-        _onPress();
+        if(_value.x <= _leftValue) _value.x = _leftValue;
+        if(_value.x >= _rightValue) _value.x = _rightValue;
+        if(_value.y <= _topValue) _value.y = _topValue;
+        if(_value.y >= _bottomValue) _value.y = _bottomValue;
+
+        _xRatio = ((_value.x - _leftValue) / _rangeWidth);
+        _yRatio = ((_value.y - _topValue) / _rangeHeight);
+        
+        lever->x(_n + (_xRatio * _areaWidth));
+        lever->y(_n + (_yRatio * _areaHeight));
+        //------------------------------------------
+
+        _setNormalColor();
         
         //------------------------------------------
-        //値の更新
-        _updateValue();
-        //------------------------------------------
-        
-        if(dispatch) {
-            _changeValue();
+        _changeValue(dispatch);
+
+        if(!_bChangedByOfParm["value"]) {
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
         }
+        //------------------------------------------
     }
 
     //==============================================================
     // Protected / Private Method
     //==============================================================
 
-    //--------------------------------------------------------------
-    //値の更新
-    void flPad2D::_updateValue() {
-        _xRatio = (lever->x() - _n) / _areaWidth;
-        _yRatio = (lever->y() - _n) / _areaHeight;
-//        _ratioText->text("x:" + ofToString(_xRatio, 2) + "\r\ny:" + ofToString(_yRatio, 2));
-
-        _value.x = _leftValue + _rangeWidth * _xRatio;
-        _value.y = _topValue + _rangeHeight * _yRatio;
-    }
-    
     //--------------------------------------------------------------
     void flPad2D::_changeValue(bool dispatch) {
 //        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
@@ -522,7 +555,12 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        _updateValue();
+        //Update value.
+        _xRatio = (lever->x() - _n) / _areaWidth;
+        _yRatio = (lever->y() - _n) / _areaHeight;
+        
+        _value.x = _leftValue + _rangeWidth * _xRatio;
+        _value.y = _topValue + _rangeHeight * _yRatio;
         //------------------------------------------
 
         _setActiveColor();
@@ -530,6 +568,11 @@ namespace fl2d {
         //------------------------------------------
         if(preXValue != _value.x || preYValue != _value.y) {
             _changeValue();
+            
+            if(_vec2Param != NULL) {
+                _bChangedByMyself["value"] = true;
+                _vec2Param->set(_value);
+            }
         }
         //------------------------------------------
     }
@@ -743,10 +786,35 @@ namespace fl2d {
                 _rangeHeight = _bottomValue - _topValue;
             }
             
-            _updateValue();
+            //------------------------------------------
+            //Update value.
+            if(_value.x <= _leftValue) _value.x = _leftValue;
+            if(_value.x >= _rightValue) _value.x = _rightValue;
+            if(_value.y <= _topValue) _value.y = _topValue;
+            if(_value.y >= _bottomValue) _value.y = _bottomValue;
             
+            _xRatio = ((_value.x - _leftValue) / _rangeWidth);
+            _yRatio = ((_value.y - _topValue) / _rangeHeight);
+            
+            lever->x(_n + (_xRatio * _areaWidth));
+            lever->y(_n + (_yRatio * _areaHeight));
+            
+//            _xRatio = (lever->x() - _n) / _areaWidth;
+//            _yRatio = (lever->y() - _n) / _areaHeight;
+//
+//            _value.x = _leftValue + _rangeWidth * _xRatio;
+//            _value.y = _topValue + _rangeHeight * _yRatio;
+            //------------------------------------------
+
             //------------------------------------------
             _changeValue();
+            
+            if(!_bChangedByOfParm["value"]) {
+                if(_vec2Param != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _vec2Param->set(_value);
+                }
+            }
             //------------------------------------------
         }
     }

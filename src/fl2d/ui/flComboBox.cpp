@@ -18,9 +18,6 @@ namespace fl2d {
         name("flComboBox");
         
         _dropdownWidth = dropdownWidth;
-        _rowCount = 0;
-        
-        _selectedIndex = 0;
         
         //------------------------------------------
         //ボタン
@@ -36,21 +33,7 @@ namespace fl2d {
         _buttonContainer = new flSprite();
         _buttonContainer->x(0);
         _buttonContainer->y(18);
-        
-        _selectedButton = NULL;
         //------------------------------------------
-        
-        //------------------------------------------
-        //アイテム
-        _selectedItem = NULL;
-        //------------------------------------------
-        
-        _mode = "down";
-        
-        _pointerValue = NULL;
-        _stringValue = "";
-        _floatValue = 0.0;
-        _intValue = 0;
     }
     
     //--------------------------------------------------------------
@@ -90,6 +73,11 @@ namespace fl2d {
         _stringValue = "";
         _floatValue = 0.0;
         _intValue = 0;
+        
+        //------------------------------------------
+        _intParam = NULL;
+        _listeners.unsubscribeAll();
+        //------------------------------------------
     }
     
     //==============================================================
@@ -103,7 +91,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::_update() {
-        
+
+        _bChangedByOfParm["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -152,7 +141,7 @@ namespace fl2d {
             
             _topButton->selected(false);
             if(_buttonContainer->parent()) removeChild(_buttonContainer);
-            //            if(_topButton->isFocus()) { _topButton->focusOut(); }
+//            if(_topButton->isFocus()) { _topButton->focusOut(); }
         }
     }
     
@@ -193,6 +182,17 @@ namespace fl2d {
         _topButton->labelText("");
         _selectedIndex = 0;
         _selectedItem = NULL;
+        
+        //------------------------------------------
+        _changeValue();
+        
+        if(!_bChangedByOfParm["value"]) {
+            if(_intParam != NULL) {
+                _bChangedByMyself["value"] = true;
+                _intParam->set(_selectedIndex);
+            }
+        }
+        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -217,14 +217,13 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
-//            event->__label = _selectedLabel;
-//            event->__pointerValue = _selectedData;
-//            event->__stringValue = _selectedText;
-//            event->__floatValue = _selectedValue;
-            dispatchEvent(event);
+        _changeValue(dispatch);
+        
+        if(!_bChangedByOfParm["value"]) {
+            if(_intParam != NULL) {
+                _bChangedByMyself["value"] = true;
+                _intParam->set(_selectedIndex);
+            }
         }
         //------------------------------------------
     }
@@ -254,6 +253,25 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Method
     //==============================================================
+    
+    //--------------------------------------------------------------
+    void flComboBox::_changeValue(bool dispatch) {
+        //------------------------------------------
+        if(dispatch) {
+//            ofLog() << "DEBUG START ----- ";
+//            flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
+//            flComboBoxEvent<float> event(flComboBoxEvent::CHANGE, 0.1f);
+
+            flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
+//            ofLog() << "DEBUG END   ----- ";
+//            event->__label = _selectedLabel;
+//            event->__pointerValue = _selectedData;
+//            event->__stringValue = _selectedText;
+//            event->__floatValue = _selectedValue;
+            dispatchEvent(event);
+        }
+        //------------------------------------------
+    }
     
     //==============================================================
     // Protected / Private Event Handler
@@ -320,19 +338,14 @@ namespace fl2d {
                 //                _selectedValue = _valueList[temp];
                 //                
                 //------------------------------------------
-                //イベント
-                //                ofLog() << "DEBUG START ----- ";
-                //                flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
-                //                flComboBoxEvent<float> event(flComboBoxEvent::CHANGE, 0.1f);
                 
-                //                new flComboBoxEvent<float>(flComboBoxEvent::CHANGE, 0.1f);
-                flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
-                //                ofLog() << "DEBUG END   ----- ";
-                //                event->__label = _selectedLabel;
-                //                event->__pointerValue = _selectedData;
-                //                event->__stringValue = _selectedText;
-                //                event->__floatValue = _selectedValue;
-                dispatchEvent(event);
+                //------------------------------------------
+                _changeValue();
+                
+                if(_intParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+                    _intParam->set(_selectedIndex);
+                }
                 //------------------------------------------
             }
         }

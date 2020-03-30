@@ -37,11 +37,11 @@ void Renderer::_setup() {
 //    g->beginFill(0xffffff, 1);
 //    g->drawRect(-1, -1, camWidth + 2, camHeight + 2);
     g->lineStyle(1, 0xffffff);
-    g->moveTo(-1, -1);
-    g->lineTo(camWidth, -1);
-    g->lineTo(camWidth, camHeight);
-    g->lineTo(-1, camHeight);
-    g->lineTo(-1, -1);
+    g->moveTo(-1, 0);
+    g->lineTo(camWidth + 1, 0);
+    g->lineTo(camWidth + 1, camHeight + 1);
+    g->lineTo(-1, camHeight + 1);
+    g->lineTo(-1, 0);
     g->endFill();
 
 //    flBitmap* bitmap = new flBitmap(_videoTexture);

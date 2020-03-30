@@ -31,7 +31,7 @@ void ofApp::setup() {
     renderer->setup();
     renderer->x(550);
     renderer->y(300);
-    ofxSelflash::stage()->addChild(renderer);
+    ofxSelflash::stage()->addChildAt(renderer, 0);
     //--------------------------------------
     
     //--------------------------------------
@@ -117,6 +117,18 @@ void ofApp::setup() {
 //        renderer->wireframeEnabled = value;
     }));
     uiComponents->dialer001->bind(appModel.testFloat);
+    
+//    renderer->testVec2 = appModel.testVec2;
+    listeners.push(appModel.testVec2ForPad2d.newListener([&](vec2& value) {
+        //        renderer->testVec2 = value;
+    }));
+    uiComponents->pad002->bind(appModel.testVec2ForPad2d);
+    
+//    renderer->testVec2 = appModel.testVec2;
+    listeners.push(appModel.testInt.newListener([&](int& value) {
+        //        renderer->testVec2 = value;
+    }));
+    uiComponents->comboBox001->bind(appModel.testInt);
     //--------------------------------------
     
     
@@ -198,6 +210,14 @@ void ofApp::update() {
 
         appModel.testFloat = sin(elapsedTime * 1.5) * 100;
 
+        appModel.testVec2ForPad2d = vec2(
+                                 ((sin(elapsedTime) + 1.0) / 2.0) * 200,
+                                 ((sin(elapsedTime) + 1.0) / 1.5) * 200
+                                 );
+        
+        appModel.testInt = ((sin(elapsedTime) + 1.0) / 2.0) * 8;
+
+        
 //        appModel.cameraPosXY = { sin(elapsedTime * 1.7), sin(elapsedTime * 1.5) };
 //        appModel.cameraPosXY.y = sin(elapsedTime * 1.5);
 //        uiComponents->joystick2001->moveLever(sin(elapsedTime * 1.7), sin(elapsedTime * 1.5));
@@ -239,6 +259,11 @@ void ofApp::update() {
         uiComponents->joystick1001->moveLever(sin(elapsedTime * 3.0));
         
         uiComponents->dialer001->value(sin(elapsedTime * 1.5) * 100);
+        
+        uiComponents->pad002->xValue(((sin(elapsedTime) + 1.0) / 2.0) * 200);
+        uiComponents->pad002->yValue(((sin(elapsedTime) + 1.0) / 1.5) * 200);
+
+        uiComponents->comboBox001->selectedIndex(((sin(elapsedTime) + 1.0) / 2.0) * 8);
     }
 }
 

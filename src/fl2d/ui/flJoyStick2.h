@@ -65,7 +65,7 @@ namespace fl2d {
                         _bChangedByMyself["value"] = false;
                     } else {
                         _bChangedByOfParm["value"] = true;
-                        moveLever(_vec2Param->get());
+                        moveLever(val);
                     }
                 }));
                 
