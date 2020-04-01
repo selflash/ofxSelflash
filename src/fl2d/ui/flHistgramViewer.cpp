@@ -87,7 +87,9 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flHistgramViewer::_update() {        
+    void flHistgramViewer::_update() {
+        flUIBase::_update();
+
         if(isMouseDown()) {
             //            _valueScale = _tempValue + ((mouseY() - _startPos.y) * _weight);
             //            _valueScale = max(_valueScale, _min);

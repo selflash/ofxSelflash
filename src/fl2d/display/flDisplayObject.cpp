@@ -392,15 +392,48 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     const flMatrix& flDisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
+
+    //--------------------------------------------------------------
+    // TODO Include a line. 領域に線を含める
+    flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
+        flRectangle rect;
+//        rect.left(_rect->left() * scaleX());
+//        rect.right(_rect->right() * scaleX());
+//        rect.top(_rect->top() * scaleY());
+//        rect.bottom(_rect->bottom() * scaleY());
+        
+//        ofVec4f temp;
+//        temp.x = _rect->left() * scaleX();
+//        temp.y = _rect->right() * scaleX();
+//        temp.z = _rect->top() * scaleY();
+//        temp.w = _rect->bottom() * scaleY();
+//        temp = temp * _matrix;
+//
+//        rect.__expandTo(temp.x, temp.y);
+//        rect.__expandTo(temp.z, temp.w);
+
+        return rect;
+    }
     
     //--------------------------------------------------------------
-    // TODO
+    // TODO Not include a line. 領域に線を含めない
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
         flRectangle rect;
         rect.left(_rect->left() * scaleX());
         rect.right(_rect->right() * scaleX());
         rect.top(_rect->top() * scaleY());
         rect.bottom(_rect->bottom() * scaleY());
+        
+//        ofVec3f p1 = ofVec3f(_rect->left(), _rect->top(), 0) * _matrix;
+//        ofVec3f p2 = ofVec3f(_rect->right(), _rect->top(), 0) * _matrix;
+//        ofVec3f p3 = ofVec3f(_rect->right(), _rect->bottom(), 0) * _matrix;
+//        ofVec3f p4 = ofVec3f(_rect->left(), _rect->bottom(), 0) * _matrix;
+////
+//        rect.__expandTo(p1);
+//        rect.__expandTo(p2);
+//        rect.__expandTo(p3);
+//        rect.__expandTo(p4);
+
         return rect;
     }
     

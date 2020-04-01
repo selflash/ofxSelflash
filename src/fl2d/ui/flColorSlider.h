@@ -16,6 +16,8 @@ namespace fl2d {
             flSlider* alphaSlider = NULL;
         
         protected:
+            int _digit = 2;
+
             flTextField* _hexText = NULL;
             flTextField* _redLabel = NULL;
             flTextField* _greenLabel = NULL;
@@ -165,7 +167,7 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
 
-            virtual void _changeValue(bool dispatch = true);
+            virtual void _dispatchEvent();
 
         private:
             void _updateColor();

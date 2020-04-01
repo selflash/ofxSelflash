@@ -135,14 +135,16 @@ namespace fl2d {
         
         //--------------------------------------
         //ヒットエリアの表示
-        if(_showHitArea) {
+        if(_hitAreaVisible) {
             ofPushMatrix();
             ofMultMatrix(matrix().getPtr());
 
             ofNoFill();
             ofSetLineWidth(1);
-            ofSetColor(255, 0, 0, 100);
+//            ofSetColor(0, 255, 0, 100);
 //            ofDrawRectangle(x(), y(), width(), height());
+//            ofDrawRectangle(0, 0, width(), height());
+            ofSetColor(255, 0, 0, 100);
             ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
 //            ofDrawRectangle(_rect->left(), _rect->top(), _rect->width(), _rect->height());
             

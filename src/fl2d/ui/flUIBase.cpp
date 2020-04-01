@@ -13,6 +13,11 @@ namespace fl2d {
         _typeID = FL_TYPE_UIBASE;
         _target = this;
         name("flUIBase");
+        
+        _toolTip = new flToolTip();
+        
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler);
     }
     
     //--------------------------------------------------------------
@@ -21,18 +26,46 @@ namespace fl2d {
         
         _label = NULL;
         
+        delete _toolTip;
+        _toolTip = NULL;
+    
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler);
+        removeEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler);
+        
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();
+
     }
     
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
     
+    //--------------------------------------------------------------
+    void flUIBase::_update() {
+//        if(
+//           _mouseWhenRollOver.x != ((flStage*)stage())->mouseX() ||
+//           _mouseWhenRollOver.y != ((flStage*)stage())->mouseY()
+//           ) {
+//            _showToolTip = false;
+//        }
+        
+        if(_toolTipEnabled && _toolTip->visible()) {
+            _toolTip->x(((flStage*)stage())->mouseX() + 30);
+            _toolTip->y(((flStage*)stage())->mouseY() + 10);
+        }
+    }
+    
     //==============================================================
     // Public Method
     //==============================================================
     
+    //--------------------------------------------------------------
+    bool flUIBase::toolTipEnabled() { return _toolTipEnabled; }
+    void flUIBase::toolTipEnabled(bool value) {
+        _toolTipEnabled = value;
+    }
+
     //--------------------------------------------------------------
     flTextField* flUIBase::label() { return _label; }
     void flUIBase::label(flTextField* value) { _label = value; }
@@ -71,12 +104,32 @@ namespace fl2d {
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            
+            if(event.target() == this) {
+                if(_toolTipEnabled) {
+//                    _showToolTip = true;
+                    _toolTip->visible(true);
+                    _mouseWhenRollOver.x = ((flStage*)stage())->mouseX();
+                    _mouseWhenRollOver.y = ((flStage*)stage())->mouseY();
+
+                    _toolTip->x(((flStage*)stage())->mouseX() + 20);
+                    _toolTip->y(((flStage*)stage())->mouseY() + 10);
+                    ((flStage*)stage())->addChild(_toolTip);
+                }
+            }
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            
+            if(event.target() == this) {
+                if(_toolTipEnabled) {
+//                    _showToolTip = false;
+                    _toolTip->visible(false);
+
+                    if(_toolTip->parent() != NULL) {
+                        ((flStage*)stage())->removeChild(_toolTip);
+                    }
+                }
+            }
         }
         
         //Mouse Down

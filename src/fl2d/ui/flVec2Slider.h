@@ -30,7 +30,7 @@ namespace fl2d {
                        float yMin = 0, float yMax = 100, float defaultYValue = 0
                        );
             virtual ~flVec2Slider();
-        
+
             virtual void label(flTextField* value);
             virtual void enabled(bool value);
 
@@ -84,7 +84,7 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
         
-            virtual void _changeValue(bool dispatch = true);
+            virtual void _dispatchEvent();
 
         private:
             void _eventHandler(flEvent& event);

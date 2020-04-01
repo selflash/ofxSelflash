@@ -27,7 +27,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flEventDispatcher::dispatchEvent(flEvent* event) {
+        //イベントリスナが関連付けられたオブジェクト
         event->__currentTarget = _target;
+        //直接XXXXされたオブジェクト
         if(event->__target == NULL) event->__target = _target;
         
         ofNotifyEvent(_listeners[event->type()], *event);

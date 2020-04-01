@@ -82,7 +82,7 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
         
-            virtual void _changeValue(bool dispatch = true);
+            virtual void _dispatchEvent();
 
             virtual void _onLeverOver();
             virtual void _onLeverOut();

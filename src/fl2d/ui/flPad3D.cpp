@@ -661,6 +661,8 @@ namespace fl2d {
         //        if(_dialer03->track->isMouseDown()) return;
         //        if(_dialer04->track->isMouseDown()) return;
         
+        if(_toolTipEnabled) _toolTip->visible(false);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _areaOver();

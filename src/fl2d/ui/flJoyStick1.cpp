@@ -112,6 +112,8 @@ namespace fl2d {
     void flJoyStick1::_update() {
         //ofLog() << "[flJoyStick1]_update()";
 
+        flUIBase::_update();
+
         if(lever->isMouseDown()) {
             if(_type == HORIZONTALLY) {
                 _targetValue = mouseX() - _draggablePoint.x;
@@ -198,7 +200,8 @@ namespace fl2d {
             //------------------------------------------
             
             //------------------------------------------
-            _changeValue(_flg);
+            _valueText->text(ofToString(_value, _digit));
+            if(_flg) _dispatchEvent();
             
             if(!_bChangedByOfParm["value"]) {
                 if(_floatParam != NULL) {
@@ -343,44 +346,38 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flJoyStick1::_changeValue(bool dispatch) {
-        _valueText->text(ofToString(_value, _digit));
+    void flJoyStick1::_dispatchEvent() {
+        flJoyStick1Event* event;
+        event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
+        event->__value = _value;
+        dispatchEvent(event);
         
-        //------------------------------------------
-        if(dispatch) {
-            flJoyStick1Event* event;
-            event = new flJoyStick1Event(flJoyStick1Event::CHANGE);
-            event->__value = _value;
-            dispatchEvent(event);
-            
-            //水平
-            if(_type == HORIZONTALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
-                if(_value < 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::LEFT);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
+        //水平
+        if(_type == HORIZONTALLY) {
+            if(_value > 0) {
+                event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
+                event->__value = _value;
+                dispatchEvent(event);
             }
-            //垂直
-            else if(_type == VERTICALLY) {
-                if(_value > 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::UP);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
-                if(_value <= 0) {
-                    event = new flJoyStick1Event(flJoyStick1Event::DOWN);
-                    event->__value = _value;
-                    dispatchEvent(event);
-                }
+            if(_value < 0) {
+                event = new flJoyStick1Event(flJoyStick1Event::LEFT);
+                event->__value = _value;
+                dispatchEvent(event);
             }
         }
-        //------------------------------------------
+        //垂直
+        else if(_type == VERTICALLY) {
+            if(_value > 0) {
+                event = new flJoyStick1Event(flJoyStick1Event::UP);
+                event->__value = _value;
+                dispatchEvent(event);
+            }
+            if(_value <= 0) {
+                event = new flJoyStick1Event(flJoyStick1Event::DOWN);
+                event->__value = _value;
+                dispatchEvent(event);
+            }
+        }
     }
     
     //--------------------------------------------------------------
@@ -460,7 +457,8 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        _changeValue(true);
+        _valueText->text(ofToString(_value, _digit));
+        _dispatchEvent();
         
         if(_floatParam != NULL) {
             _bChangedByMyself["value"] = true;
@@ -572,6 +570,8 @@ namespace fl2d {
     void flJoyStick1::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[flJoyStick1D]_mouseEventHandler(" << event.type();
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == lever) _onLeverOver();
@@ -584,6 +584,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             if(event.target() == lever){
                 _draggablePoint.x = mouseX() - lever->x();
                 _draggablePoint.y = mouseY() - lever->y();

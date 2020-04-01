@@ -67,6 +67,10 @@ namespace fl2d {
         
             //            virtual const string& data();
         
+            //https://n2works.net/columns/16
+            //直接クリックされたオブジェクトがtargetプロパティに格納され、currentTargetにはイベントリスナが関連付けられたオブジェクトが格納される。
+            //イベントリスナを関連付けているオブジェクトをEvent継承クラスから取得するにはcurrentTargetを参照するべき。
+        
             virtual inline void* currentTarget() { return __currentTarget; }
     //        virtual inline void currentTarget(void* value) { _currentTarget = value; }
         

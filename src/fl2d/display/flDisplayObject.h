@@ -156,7 +156,8 @@ namespace fl2d {
             virtual void matrix(const flMatrix& mat);
             
             virtual const flMatrix& concatenatedMatrix();
-            
+
+            virtual flRectangle getBounds(flDisplayObject* targetCoordinateSpace);
             virtual flRectangle getRect(flDisplayObject* targetCoordinateSpace);
             
             virtual bool hitTestObject(flDisplayObject* obj);

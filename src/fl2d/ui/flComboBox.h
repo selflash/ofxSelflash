@@ -78,6 +78,7 @@ namespace fl2d {
         inline void addItem(string label, const T& value) {
             //--------------------------------------
             flButton* button = new flButton(_dropdownWidth);
+            button->name("flComboBox." + label);
             button->labelText(label);
             button->setProperty<int>("index", _buttonList.size());
             button->x(0);
@@ -88,7 +89,7 @@ namespace fl2d {
             button->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
             _buttonContainer->addChild(button);
             _buttonList.push_back(button);
-            
+
             int l = _buttonList.size();
             for(int i = 0; i < l; i++) {
                 flButton* button = _buttonList[i];
@@ -96,7 +97,7 @@ namespace fl2d {
                 if(_mode == "up") button->y(18 * i - (18 * l));
             }
             //--------------------------------------
-            
+
             flGraphics* g;
             g = _buttonContainer->graphics();
             g->clear();
@@ -108,125 +109,127 @@ namespace fl2d {
                 g->drawRect(0, 0, _dropdownWidth, -18 * l);
             }
             g->endFill();
-            
+
             //--------------------------------------
             if (typeid(T) == typeid(float)) {
-                
+
             }
             if (typeid(T) == typeid(int)) {
-                
+
             }
-            
+
             flObject* item = new flObject();
             item->setProperty<string>("label", label);
             item->setProperty<T>("value", value);
             _itemList.push_back(item);
             //--------------------------------------
-            
+
             //--------------------------------------
             if(l == 0) {
-                
+
             }
         }
-        
-        inline void removeItemByIndex(int index) {
-            //--------------------------------------
-            //children()の箇所はリファクタリングとかで外に出したらダメ
-            if(index < 0 || index > _buttonList.size() - 1) return;
-            
-            flButton* button = _buttonList[index];
-            button->removeEventListener(flMouseEvent::ROLL_OVER, this, &flComboBox::_mouseEventHandler);
-            button->removeEventListener(flMouseEvent::ROLL_OUT, this, &flComboBox::_mouseEventHandler);
-            button->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
-            //                button->removeAllEventListener();
-            _buttonContainer->removeChild(button);
-            delete button;
-            _buttonList.erase(_buttonList.begin() + index);
-            //--------------------------------------
-            
-            //--------------------------------------
-            int l = _buttonList.size();
-            for(int i = 0; i < l; i++) {
-                flButton* button = _buttonList[i];
-                button->setProperty<int>("index", i);
-                if(_mode == "down") button->y(18 * i);
-                if(_mode == "up") button->y(18 * i - (18 * l));
-            }
-            //--------------------------------------
-            
-            flGraphics* g;
-            g = _buttonContainer->graphics();
-            g->clear();
-            g->beginFill(0x000000, 0.8);
-            if(_mode == "down") {
-                g->drawRect(0, 0, _dropdownWidth, 18 * _buttonList.size());
-            }
-            if(_mode == "up") {
-                g->drawRect(0, 0, _dropdownWidth, -18 * _buttonList.size());
-            }
-            g->endFill();
-            
-            flObject* item = _itemList[index];
-            delete item;
-            _itemList.erase(_itemList.begin() + index);
-            //--------------------------------------
-            
-            //--------------------------------------
-            _selectedButton = NULL;
-            _selectedItem = NULL;
-            
-            if(_buttonList.size() == 0) {
-                _buttonList.clear();
-                _itemList.clear();
-                _topButton->labelText("");
-                _selectedIndex = 0;
-                _selectedItem = NULL;
-            } else if(_selectedIndex == index) {
-                if(index == 0) {
-                    selectedIndex(index);
-                } else {
-                    selectedIndex(index - 1);
-                }
-            }
-            //--------------------------------------
-        }
-        
-        inline void mode(string value) {
-            _mode = value;
-            
-            if(_mode == "down") {
-                _buttonContainer->y(18 + 18);
-                
-                int l = _buttonList.size();
-                for(int i = 0; i < l; i++) {
-                    flButton* button = _buttonList[i];
-                    button->y(18 * i);
-                }
-                
-                flGraphics* g;
-                g = _buttonContainer->graphics();
-                g->clear();
-                g->beginFill(0x000000, 0.8);
-                g->drawRect(0, 0, _dropdownWidth, 18 * l);
-                g->endFill();
-            }
-            if(_mode == "up") {
-                _buttonContainer->y(18);
-                
-                int l = _buttonList.size();
-                for(int i = 0; i < l; i++) {
-                    flButton* button = _buttonList[i];
-                    button->y(18 * i - (18 * l));
-                }
-                
-                flGraphics* g;
-                g = _buttonContainer->graphics();
-                g->clear();
-                g->beginFill(0x000000, 0.8);
-                g->drawRect(0, 0, _dropdownWidth, -18 * l);
-                g->endFill();
-            }
-        }
+
+        void removeItemByIndex(int index);
+//        inline void removeItemByIndex(int index) {
+//            //--------------------------------------
+//            //children()の箇所はリファクタリングとかで外に出したらダメ
+//            if(index < 0 || index > _buttonList.size() - 1) return;
+//
+//            flButton* button = _buttonList[index];
+//            button->removeEventListener(flMouseEvent::ROLL_OVER, this, &flComboBox::_mouseEventHandler);
+//            button->removeEventListener(flMouseEvent::ROLL_OUT, this, &flComboBox::_mouseEventHandler);
+//            button->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
+//            //                button->removeAllEventListener();
+//            _buttonContainer->removeChild(button);
+//            delete button;
+//            _buttonList.erase(_buttonList.begin() + index);
+//            //--------------------------------------
+//
+//            //--------------------------------------
+//            int l = _buttonList.size();
+//            for(int i = 0; i < l; i++) {
+//                flButton* button = _buttonList[i];
+//                button->setProperty<int>("index", i);
+//                if(_mode == "down") button->y(18 * i);
+//                if(_mode == "up") button->y(18 * i - (18 * l));
+//            }
+//            //--------------------------------------
+//
+//            flGraphics* g;
+//            g = _buttonContainer->graphics();
+//            g->clear();
+//            g->beginFill(0x000000, 0.8);
+//            if(_mode == "down") {
+//                g->drawRect(0, 0, _dropdownWidth, 18 * _buttonList.size());
+//            }
+//            if(_mode == "up") {
+//                g->drawRect(0, 0, _dropdownWidth, -18 * _buttonList.size());
+//            }
+//            g->endFill();
+//
+//            flObject* item = _itemList[index];
+//            delete item;
+//            _itemList.erase(_itemList.begin() + index);
+//            //--------------------------------------
+//
+//            //--------------------------------------
+//            _selectedButton = NULL;
+//            _selectedItem = NULL;
+//
+//            if(_buttonList.size() == 0) {
+//                _buttonList.clear();
+//                _itemList.clear();
+//                _topButton->labelText("");
+//                _selectedIndex = 0;
+//                _selectedItem = NULL;
+//            } else if(_selectedIndex == index) {
+//                if(index == 0) {
+//                    selectedIndex(index);
+//                } else {
+//                    selectedIndex(index - 1);
+//                }
+//            }
+//            //--------------------------------------
+//        }
+
+        void mode(string value);
+//        inline void mode(string value) {
+//            _mode = value;
+//            
+//            if(_mode == "down") {
+//                _buttonContainer->y(18 + 18);
+//                
+//                int l = _buttonList.size();
+//                for(int i = 0; i < l; i++) {
+//                    flButton* button = _buttonList[i];
+//                    button->y(18 * i);
+//                }
+//                
+//                flGraphics* g;
+//                g = _buttonContainer->graphics();
+//                g->clear();
+//                g->beginFill(0x000000, 0.8);
+//                g->drawRect(0, 0, _dropdownWidth, 18 * l);
+//                g->endFill();
+//            }
+//            if(_mode == "up") {
+//                _buttonContainer->y(18);
+//                
+//                int l = _buttonList.size();
+//                for(int i = 0; i < l; i++) {
+//                    flButton* button = _buttonList[i];
+//                    button->y(18 * i - (18 * l));
+//                }
+//                
+//                flGraphics* g;
+//                g = _buttonContainer->graphics();
+//                g->clear();
+//                g->beginFill(0x000000, 0.8);
+//                g->drawRect(0, 0, _dropdownWidth, -18 * l);
+//                g->endFill();
+//            }
+//        }
         
 //            void removeItem(const string& label);
 //            void removeItemAt(const int& index);
@@ -290,7 +293,7 @@ namespace fl2d {
         virtual void _update();
         virtual void _draw();
         
-        virtual void _changeValue(bool dispatch = true);
+        virtual void _dispatchEvent();
 
     private:
         virtual void _mouseEventHandler(flEvent& event);

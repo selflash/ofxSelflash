@@ -16,6 +16,8 @@
 
 #include "ofMain.h"
 
+//using namespace glm;
+
 namespace fl2d {
     
     // forward decleration.
@@ -100,6 +102,8 @@ namespace fl2d {
         //DisplayObject
         void __setNull();
         void __setZero();
+        void __expandTo(ofVec2f p);
+//        void __expandTo(vec2 p);
         void __expandTo(float x, float y);
         void __expandToX(float x);
         void __expandToY(float y);

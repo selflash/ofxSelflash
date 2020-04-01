@@ -121,7 +121,8 @@ namespace fl2d {
     bool flRectangle::pointTest(float x, float y) {
         if(isNull()) return false;
         
-        if(_xMin < x && x < _xMax && _yMin < y && y < _yMax) return true;
+//        if(_xMin < x && x < _xMax && _yMin < y && y < _yMax) return true;
+        if(_xMin <= x && x <= _xMax && _yMin <= y && y <= _yMax) return true;
         return false;
         
         //        if(x < _xMin || x > _xMax || y < _yMin || y > _yMax) return false;
@@ -143,7 +144,15 @@ namespace fl2d {
     //    void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = 0 / 0.f; }
     void flRectangle::__setNull() { _xMin = _yMin = _xMax = _yMax = numeric_limits<float>::quiet_NaN(); }
     void flRectangle::__setZero() { _xMin = _yMin = _xMax = _yMax = 0.0; }
-    
+
+    //--------------------------------------------------------------
+    void flRectangle::__expandTo(ofVec2f p) {
+        __expandTo(p.x, p.y);
+    }
+    //--------------------------------------------------------------
+//    void flRectangle::__expandTo(vec2 p) {
+//        __expandTo(p.x, p.y);
+//    }
     //--------------------------------------------------------------
     void flRectangle::__expandTo(float x, float y) {
         //        if(isNull()) {

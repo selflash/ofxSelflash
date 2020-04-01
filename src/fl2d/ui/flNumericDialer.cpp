@@ -75,6 +75,8 @@ namespace fl2d {
     void flNumericDialer::_update() {
         //ofLog() << "[flNumericDialer]_update()";
 
+        flUIBase::_update();
+
         if(_track->isMouseDown()) {
             _onPress();
         }
@@ -174,7 +176,8 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _changeValue(dispatch);
+        _valueText->text(ofToString(_value, _digit));
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_floatParam != NULL) {
@@ -201,7 +204,8 @@ namespace fl2d {
             _value = _min;
             
             //------------------------------------------
-            _changeValue(dispatch);
+            _valueText->text(ofToString(_value, _digit));
+            if(dispatch) _dispatchEvent();
             //------------------------------------------
         }
     }
@@ -218,7 +222,8 @@ namespace fl2d {
             _value = _max;
             
             //------------------------------------------
-            _changeValue(dispatch);
+            _valueText->text(ofToString(_value, _digit));
+            if(dispatch) _dispatchEvent();
             //------------------------------------------
         }
     }
@@ -240,16 +245,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flNumericDialer::_changeValue(bool dispatch) {
-        _valueText->text(ofToString(_value, _digit));
-
-        //------------------------------------------
-        if(dispatch) {
-            flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
-            event->data<float>(_value);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+    void flNumericDialer::_dispatchEvent() {
+        flNumericDialerEvent* event = new flNumericDialerEvent(flNumericDialerEvent::CHANGE);
+        event->data<float>(_value);
+        dispatchEvent(event);
     }
     
     //--------------------------------------------------------------
@@ -299,7 +298,8 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        if(preValue != _value) _changeValue(true);
+        _valueText->text(ofToString(_value, _digit));
+        if(preValue != _value) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_floatParam != NULL) {
@@ -391,6 +391,8 @@ namespace fl2d {
 //        ofLog() << "[flNumericDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flNumericDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name();
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == _track) _onOver();
@@ -403,6 +405,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             if(event.target() == _track) {
                 _tempValue = _value;
                 _startPos.x = mouseX();

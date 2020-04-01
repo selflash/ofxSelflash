@@ -71,6 +71,8 @@ void UIComponents::_setup() {
     slider001->roundEnabled(true);
     slider001->x(marginLeft + spacing * 0);
     slider001->y(marginTop + lineSpacing * 1);
+    slider001->toolTipEnabled(true);
+    slider001->toolTipText(u8"スライダーのサンプルです。\nドラッグで値を変更できます。");
     slider001->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(slider001);
     
@@ -87,6 +89,8 @@ void UIComponents::_setup() {
     slider002->value(1);
     slider002->x(marginLeft + spacing * 0);
     slider002->y(marginTop + lineSpacing * 3);
+    slider002->toolTipEnabled(true);
+    slider002->toolTipText(u8"スライダーのサンプルです。\n左から右にかけて値が小さいです。");
     slider002->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(slider002);
     
@@ -106,6 +110,8 @@ void UIComponents::_setup() {
     rangeSlider001->max(50);
     rangeSlider001->minValue(-50);
     rangeSlider001->maxValue(50);
+    rangeSlider001->toolTipEnabled(true);
+    rangeSlider001->toolTipText(u8"レンジスライダーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     rangeSlider001->addEventListener(flRangeSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(rangeSlider001);
     
@@ -120,6 +126,7 @@ void UIComponents::_setup() {
     rangeSlider002->label(label);
     rangeSlider002->x(marginLeft + spacing * 0);
     rangeSlider002->y(marginTop + lineSpacing * 7);
+    rangeSlider002->toolTipEnabled(true);
     rangeSlider002->addEventListener(flRangeSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(rangeSlider002);
     //--------------------------------------
@@ -298,6 +305,7 @@ void UIComponents::_setup() {
     button001->labelText("Button");
     button001->x(marginLeft + spacing * 0);
     button001->y(marginTop + lineSpacing * 1);
+    button001->toolTipEnabled(true);
     button001->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button001);
     button002 = new flButton(150);
@@ -307,6 +315,7 @@ void UIComponents::_setup() {
     button002->toggleEnabled(true);
     button002->x(marginLeft + spacing * 0);
     button002->y(marginTop + lineSpacing * 2);
+    button002->toolTipEnabled(true);
     button002->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     button002->addEventListener(flButtonEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(button002);
@@ -315,6 +324,7 @@ void UIComponents::_setup() {
     button003->labelText("White");
     button003->x(marginLeft + spacing * 0);
     button003->y(marginTop + lineSpacing * 3);
+    button003->toolTipEnabled(true);
     button003->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button003);
     button004 = new flButton(150);
@@ -322,6 +332,7 @@ void UIComponents::_setup() {
     button004->labelText("Black");
     button004->x(marginLeft + spacing * 0);
     button004->y(marginTop + lineSpacing * 4);
+    button004->toolTipEnabled(true);
     button004->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button004);
     button005 = new flButton(150);
@@ -330,6 +341,7 @@ void UIComponents::_setup() {
     button005->x(marginLeft + spacing * 0);
     button005->y(marginTop + lineSpacing * 5);
     button005->enabled(false);
+    button005->toolTipEnabled(true);
     button005->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button005);
     button006 = new flButton(150);
@@ -339,6 +351,7 @@ void UIComponents::_setup() {
     button006->y(marginTop + lineSpacing * 6);
     button006->selected(true);
     button006->enabled(false);
+    button006->toolTipEnabled(true);
     button006->addEventListener(flButtonEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(button006);
     
@@ -365,18 +378,21 @@ void UIComponents::_setup() {
     check001->y(marginTop + lineSpacing * 1);
     check001->selected(true);
     //    check001->enabled(false);
+    check001->toolTipEnabled(true);
     check001->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(check001);
     check002 = new flCheckBox();
     check002->labelText("Wireframe Enabled");
     check002->x(marginLeft + spacing * 0);
     check002->y(marginTop + lineSpacing * 2);
+    check002->toolTipEnabled(true);
     check002->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(check002);
     check003 = new flCheckBox();
     check003->labelText("Check Box 3");
     check003->x(marginLeft + spacing * 0);
     check003->y(marginTop + lineSpacing * 3);
+    check003->toolTipEnabled(true);
     check003->addEventListener(flCheckBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(check003);
     //    cout << check003->y() + check003->height() << endl;
@@ -454,6 +470,8 @@ void UIComponents::_setup() {
     joystick1001->x(marginLeft + spacing * 0);
     joystick1001->y(marginTop + lineSpacing * 1);
     joystick1001->type(flJoyStick1::VERTICALLY);
+    joystick1001->toolTipEnabled(true);
+    joystick1001->toolTipText(u8"ジョイスティックのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1001);
     joystick1002 = new flJoyStick1(100);
@@ -461,6 +479,7 @@ void UIComponents::_setup() {
     joystick1002->x(marginLeft + spacing * 1);
     joystick1002->y(marginTop + lineSpacing * 1);
     joystick1002->type(flJoyStick1::VERTICALLY);
+    joystick1002->toolTipEnabled(true);
 //    joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1002);
     joystick1003 = new flJoyStick1(100);
@@ -468,18 +487,21 @@ void UIComponents::_setup() {
     joystick1003->x(marginLeft + spacing * 2);
     joystick1003->y(marginTop + lineSpacing * 1);
     joystick1003->type(flJoyStick1::VERTICALLY);
+    joystick1003->toolTipEnabled(true);
     addChild(joystick1003);
     joystick1004 = new flJoyStick1(100);
     joystick1004->label(label);
     joystick1004->x(marginLeft + spacing * 3);
     joystick1004->y(marginTop + lineSpacing * 1);
     joystick1004->type(flJoyStick1::VERTICALLY);
+    joystick1004->toolTipEnabled(true);
     addChild(joystick1004);
     joystick1005 = new flJoyStick1(100);
     joystick1005->label(label);
     joystick1005->x(marginLeft + spacing * 4);
     joystick1005->y(marginTop + lineSpacing * 1);
     joystick1005->type(flJoyStick1::VERTICALLY);
+    joystick1005->toolTipEnabled(true);
     addChild(joystick1005);
     ofLog() << "joystick1005->y() : " << joystick1005->y() + joystick1005->height();
 
@@ -493,6 +515,8 @@ void UIComponents::_setup() {
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 0);
     joystick1101->type(flJoyStick1::HORIZONTALLY);
+    joystick1101->toolTipEnabled(true);
+    joystick1101->toolTipText(u8"ジョイスティックのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(joystick1101);
 //    ofLog() << "joystick1101->height() : " << joystick1101->height();
@@ -517,6 +541,8 @@ void UIComponents::_setup() {
     joystick2001->label(label);
     joystick2001->x(marginLeft + spacing * 0 + 25);
     joystick2001->y(marginTop + lineSpacing * 1);
+    joystick2001->toolTipEnabled(true);
+    joystick2001->toolTipText(u8"ジョイスティックのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     addChild(joystick2001);
     //cout << joystick2001->y() + joystick2001->height() << endl;
     //--------------------------------------
@@ -548,6 +574,7 @@ void UIComponents::_setup() {
     dialer001->x(marginLeft + spacing * 0);
     dialer001->y(marginTop + lineSpacing * 2);
     dialer001->stepSize(0.2);
+    dialer001->toolTipEnabled(true);
     dialer001->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer001);
     
@@ -566,6 +593,8 @@ void UIComponents::_setup() {
     dialer002->value(-500);
     dialer002->stepSize(5);
     dialer002->max(100);
+    dialer002->hitAreaVisible(true);
+    dialer002->toolTipEnabled(true);
     dialer002->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);
     
@@ -587,6 +616,7 @@ void UIComponents::_setup() {
     dialer003->stepSize(0.1);
     dialer003->min(-100);
     dialer003->max(100);
+    dialer003->toolTipEnabled(true);
     dialer003->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer003);
     
@@ -608,6 +638,8 @@ void UIComponents::_setup() {
     dialer004->stepSize(0.1);
     dialer004->min(-100);
     dialer004->max(100);
+    dialer004->toolTipEnabled(true);
+    dialer004->hitAreaVisible(true);
     dialer004->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer004);
     ofLog() << "dialer004->y() : " << dialer004->y() + dialer004->width();
@@ -650,6 +682,8 @@ void UIComponents::_setup() {
     comboBox001->addItem<string>("Test7", "test7");
     comboBox001->selectedIndex(1, false);
     //    comboBox001->visible(false);
+    comboBox001->toolTipEnabled(true);
+    comboBox001->toolTipText(u8"コンボボックスのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(comboBox001);
     
@@ -670,6 +704,8 @@ void UIComponents::_setup() {
     comboBox002->addItem<float>("0.2", 0.2);
     comboBox002->addItem<float>("0.3", 0.3);
     comboBox002->selectedIndex(1, false);
+    comboBox002->toolTipEnabled(true);
+    comboBox002->toolTipText(u8"コンボボックスのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     comboBox002->addEventListener(flComboBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(comboBox002);
     
@@ -688,6 +724,8 @@ void UIComponents::_setup() {
     comboBox003->addItem<flComboBox*>("Combo Box 1", comboBox001);
     comboBox003->addItem<flComboBox*>("Combo Box 2", comboBox002);
     comboBox003->selectedIndex(1, false);
+    comboBox003->toolTipEnabled(true);
+    comboBox003->toolTipText(u8"コンボボックスのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     comboBox003->addEventListener(flComboBoxEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(comboBox003);
     //    cout << comboBox003->y() + comboBox003->height() << endl;
@@ -745,12 +783,14 @@ void UIComponents::_setup() {
     pad001->label(label);
     pad001->x(marginLeft + spacing * 0 + 18);
     pad001->y(marginTop + lineSpacing * 0);
+    pad001->toolTipEnabled(true);
     pad001->addEventListener(flPadEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(pad001);
     
     pad002 = new flPad2D(150, 150, 0, 1000, 0, 1000);
     pad002->x(marginLeft + spacing * 0);
     pad002->y(marginTop + lineSpacing * 1);
+    pad002->toolTipEnabled(true);
     pad002->addEventListener(flPadEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(pad002);
     
@@ -777,6 +817,7 @@ void UIComponents::_setup() {
     //    hViewer001->labelText("Histgram 1");
     hViewer001->x(marginLeft + spacing * 0);
     hViewer001->y(marginTop + lineSpacing * 1);
+    hViewer001->toolTipEnabled(true);
     //    hViewer001->addEventListener(flHistgramViewerEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(hViewer001);
     //--------------------------------------

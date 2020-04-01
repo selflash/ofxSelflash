@@ -111,8 +111,8 @@ namespace fl2d {
         
             virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
 
-        private:
             virtual void _mouseEventHandler(flEvent& event);
+        private:
     };
     
 }

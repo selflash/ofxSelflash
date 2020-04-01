@@ -180,6 +180,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_update() {
+        flUIBase::_update();
+
         if(bar->isMouseDown()) {
             _onBarPress();
         }
@@ -273,7 +275,9 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _changeValue(dispatch);
+        _minValueText->text(ofToString(_minValue, _digit));
+        _maxValueText->text(ofToString(_maxValue, _digit));
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["minValue"]) {
             if(_floatMinParam != NULL) {
@@ -323,7 +327,9 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _changeValue(dispatch);
+        _minValueText->text(ofToString(_minValue, _digit));
+        _maxValueText->text(ofToString(_maxValue, _digit));
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["maxValue"]) {
             if(_floatMaxParam != NULL) {
@@ -379,7 +385,9 @@ namespace fl2d {
         
         //------------------------------------------
         if(preValue != _minValue) {
-            _changeValue(dispatch);
+            _minValueText->text(ofToString(_minValue, _digit));
+            _maxValueText->text(ofToString(_maxValue, _digit));
+            if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["minValue"]) {
                 if(_floatMinParam != NULL) {
@@ -436,7 +444,9 @@ namespace fl2d {
         
         //------------------------------------------
         if(preValue != _maxValue) {
-            _changeValue(dispatch);
+            _minValueText->text(ofToString(_minValue, _digit));
+            _maxValueText->text(ofToString(_maxValue, _digit));
+            if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["maxValue"]) {
                 if(_floatMaxParam != NULL) {
@@ -464,21 +474,12 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flRangeSlider::_changeValue(bool dispatch) {
-        _minValueText->text(ofToString(_minValue, _digit));
-        _maxValueText->text(ofToString(_maxValue, _digit));
-
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
-            event->__minValue = _minValue;
-            event->__maxValue = _maxValue;
+    void flRangeSlider::_dispatchEvent() {
+        flRangeSliderEvent* event = new flRangeSliderEvent(flRangeSliderEvent::CHANGE);
+        event->__minValue = _minValue;
+        event->__maxValue = _maxValue;
 //            event->__range = _range;
-            dispatchEvent(event);
-
-        }
-        //------------------------------------------
+        dispatchEvent(event);
     }
     
     //--------------------------------------------------------------
@@ -540,7 +541,9 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        _changeValue(true);
+        _minValueText->text(ofToString(_minValue, _digit));
+        _maxValueText->text(ofToString(_maxValue, _digit));
+        _dispatchEvent();
 
         if(_floatMinParam != NULL) {
             _bChangedByMyself["minValue"] = true;
@@ -600,7 +603,11 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        if(preValue != _minValue) _changeValue(true);
+        if(preValue != _minValue) {
+            _minValueText->text(ofToString(_minValue, _digit));
+            _maxValueText->text(ofToString(_maxValue, _digit));
+            _dispatchEvent();
+        }
         
         if(_floatMinParam != NULL) {
             _bChangedByMyself["minValue"] = true;
@@ -649,7 +656,11 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(preValue != _maxValue) _changeValue(true);
+        if(preValue != _maxValue) {
+            _minValueText->text(ofToString(_minValue, _digit));
+            _maxValueText->text(ofToString(_maxValue, _digit));
+            _dispatchEvent();
+        }
         
         if(_floatMaxParam != NULL) {
             _bChangedByMyself["maxValue"] = true;
@@ -838,6 +849,8 @@ namespace fl2d {
 //        ofLog() << "[flRangeSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flRangeSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == bar) _onOver();
@@ -864,6 +877,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             if(event.target() == bar) {
                 _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
                 _onBarPress();

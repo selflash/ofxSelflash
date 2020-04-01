@@ -63,6 +63,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_update() {
+        flUIBase::_update();
+
         _bChangedByOfParm["value"] = false;
     }
     
@@ -158,7 +160,7 @@ namespace fl2d {
         }
         
         //------------------------------------------
-        _changeValue(dispatch);
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_boolParam != NULL) {
@@ -174,13 +176,9 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flCheckBox::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(dispatch) {
-            flCheckBoxEvent* event = new flCheckBoxEvent(flCheckBoxEvent::CHANGE);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+    void flCheckBox::_dispatchEvent() {
+        flCheckBoxEvent* event = new flCheckBoxEvent(flCheckBoxEvent::CHANGE);
+        dispatchEvent(event);
     }
     
     //--------------------------------------------------------------
@@ -347,6 +345,8 @@ namespace fl2d {
     void flCheckBox::_mouseEventHandler(flEvent& event) {
 //        ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
+        flUIBase::_mouseEventHandler(event);
+
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _onOver();
@@ -359,6 +359,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             if(event.target() == this) {
                 _onPress();
 //                addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);

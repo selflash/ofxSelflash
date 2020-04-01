@@ -84,6 +84,8 @@
 #include "flComboBox.h"
 #include "flHistgramViewer.h"
 
+#include "flToolTip.h"
+
 //those class are basic template.
 //if you use them, include in your project.
 //#include "flBasicController.h"

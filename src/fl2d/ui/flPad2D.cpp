@@ -294,6 +294,8 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flPad2D::_update() {
+        flUIBase::_update();
+
         if(area->isMouseDown() || lever->isMouseDown()) {
             _onPress();
         }
@@ -355,7 +357,7 @@ namespace fl2d {
 //        //------------------------------------------
 //
 //        if(dispatch) {
-//            _changeValue();
+//            _dispatchEvent();
 //        }
     }
     
@@ -374,7 +376,7 @@ namespace fl2d {
 //        //------------------------------------------
 //
 //        if(dispatch) {
-//            _changeValue();
+//            _dispatchEvent();
 //        }
     }
 
@@ -396,7 +398,9 @@ namespace fl2d {
         _setNormalColor();
         
         //------------------------------------------
-        _changeValue(dispatch);
+//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_vec2Param != NULL) {
@@ -425,7 +429,9 @@ namespace fl2d {
         _setNormalColor();
         
         //------------------------------------------
-        _changeValue(dispatch);
+//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_vec2Param != NULL) {
@@ -459,7 +465,9 @@ namespace fl2d {
         _setNormalColor();
         
         //------------------------------------------
-        _changeValue(dispatch);
+//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+        if(dispatch) _dispatchEvent();
 
         if(!_bChangedByOfParm["value"]) {
             if(_vec2Param != NULL) {
@@ -490,7 +498,9 @@ namespace fl2d {
         _setNormalColor();
         
         //------------------------------------------
-        _changeValue(dispatch);
+//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+        if(dispatch) _dispatchEvent();
 
         if(!_bChangedByOfParm["value"]) {
             if(_vec2Param != NULL) {
@@ -506,20 +516,13 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    void flPad2D::_changeValue(bool dispatch) {
-//        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
-        _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
-
-        //------------------------------------------
-        if(dispatch) {
-            flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
-            event->__xRatio = _xRatio;
-            event->__yRatio = _yRatio;
-            event->__xValue = _value.x;
-            event->__yValue = _value.y;
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+    void flPad2D::_dispatchEvent() {
+        flPadEvent* event = new flPadEvent(flPadEvent::CHANGE);
+        event->__xRatio = _xRatio;
+        event->__yRatio = _yRatio;
+        event->__xValue = _value.x;
+        event->__yValue = _value.y;
+        dispatchEvent(event);
     }
 
     //--------------------------------------------------------------
@@ -567,7 +570,9 @@ namespace fl2d {
 
         //------------------------------------------
         if(preXValue != _value.x || preYValue != _value.y) {
-            _changeValue();
+            //        _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+            _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+            _dispatchEvent();
             
             if(_vec2Param != NULL) {
                 _bChangedByMyself["value"] = true;
@@ -694,6 +699,8 @@ namespace fl2d {
 //        if(_dialer03->track->isMouseDown()) return;
 //        if(_dialer04->track->isMouseDown()) return;
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == area) _onOver();
@@ -708,6 +715,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             if(event.target() == area) {
                 //_leverPress();
 
@@ -807,7 +816,9 @@ namespace fl2d {
             //------------------------------------------
 
             //------------------------------------------
-            _changeValue();
+//            _ratioText->text("x:" + ofToString(_xRatio, _digit) + "\r\ny:" + ofToString(_yRatio, _digit));
+            _valueText->text("x:" + ofToString(_value.x, _digit) + "\r\ny:" + ofToString(_value.y, _digit));
+            _dispatchEvent();
             
             if(!_bChangedByOfParm["value"]) {
                 if(_vec2Param != NULL) {

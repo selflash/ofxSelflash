@@ -70,16 +70,16 @@ namespace fl2d {
             //------------------------------------------
             ofParameter<float>* _floatParam = NULL;
             ofParameter<int>* _intParam = NULL;
-            ofEventListeners _listeners;
+            ofEventListeners _paramListeners;
             virtual inline void bind(ofParameter<float>& param) {
-                _listeners.unsubscribeAll();
+                _paramListeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
 
                 _floatParam = &param;
-                _listeners.push(_floatParam->newListener([&](float& val) {
+                _paramListeners.push(_floatParam->newListener([&](float& val) {
                     if(_bChangedByMyself["value"]) {
                         _bChangedByMyself["value"] = false;
                     } else {
@@ -92,14 +92,14 @@ namespace fl2d {
                 value(_floatParam->get());
             }
             virtual inline void bind(ofParameter<int>& param) {
-                _listeners.unsubscribeAll();
+                _paramListeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
 
                 _intParam = &param;
-                _listeners.push(_intParam->newListener([&](int& val) {
+                _paramListeners.push(_intParam->newListener([&](int& val) {
                     if(_bChangedByMyself["value"]) {
                         _bChangedByMyself["value"] = false;
                     } else {
@@ -112,7 +112,7 @@ namespace fl2d {
                 value(_intParam->get());
             }
             virtual inline void unbind() {
-                _listeners.unsubscribeAll();
+                _paramListeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
             }
@@ -123,7 +123,7 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
 
-            virtual void _changeValue(bool dispatch = true);
+            virtual void _dispatchEvent();
 
             virtual void _onTrackOver();
             virtual void _onThumbOver();

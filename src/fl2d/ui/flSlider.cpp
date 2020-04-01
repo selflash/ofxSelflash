@@ -124,7 +124,7 @@ namespace fl2d {
         //------------------------------------------
         _floatParam = NULL;
         _intParam = NULL;
-        _listeners.unsubscribeAll();
+        _paramListeners.unsubscribeAll();
         //------------------------------------------
     }
     
@@ -139,6 +139,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSlider::_update() {
+        flUIBase::_update();
+        
         if(thumb->isMouseDown()) {
             _onPress();
         }
@@ -225,7 +227,8 @@ namespace fl2d {
         
         //------------------------------------------
         if(preValue != _value) {
-            _changeValue(dispatch);
+            _valueText->text(ofToString(_value, _digit));
+            if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["value"]) {
                 if(_floatParam != NULL) {
@@ -274,7 +277,8 @@ namespace fl2d {
 
         //------------------------------------------
         if(preValue != _value) {
-            _changeValue(dispatch);
+            _valueText->text(ofToString(_value, _digit));
+            if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["value"]) {
                 if(_floatParam != NULL) {
@@ -337,7 +341,8 @@ namespace fl2d {
 
         //------------------------------------------
         if(preValue != _value) {
-            _changeValue(dispatch);
+            _valueText->text(ofToString(_value, _digit));
+            if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["value"]) {
                 if(_floatParam != NULL) {
@@ -430,17 +435,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flSlider::_changeValue(bool dispatch) {
-        _valueText->text(ofToString(_value, _digit));
-        
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
-            event->data<float>(_value);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+    void flSlider::_dispatchEvent() {
+        flSliderEvent* event = new flSliderEvent(flSliderEvent::CHANGE);
+        event->data<float>(_value);
+        dispatchEvent(event);
     }
     
     //--------------------------------------------------------------
@@ -509,16 +507,28 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(preValue != _value) _changeValue(true);
+        if(preValue != _value) {
+            _valueText->text(ofToString(_value, _digit));
+            _dispatchEvent();
+            
+            if(_floatParam != NULL) {
+                _bChangedByMyself["value"] = true;
+                _floatParam->set(_value);
+            }
+            else if(_intParam != NULL) {
+                _bChangedByMyself["value"] = true;
+                _intParam->set(_value);
+            }
+        }
 
-        if(_floatParam != NULL) {
-            _bChangedByMyself["value"] = true;
-            _floatParam->set(_value);
-        }
-        else if(_intParam != NULL) {
-            _bChangedByMyself["value"] = true;
-            _intParam->set(_value);
-        }
+//        if(_floatParam != NULL) {
+//            _bChangedByMyself["value"] = true;
+//            _floatParam->set(_value);
+//        }
+//        else if(_intParam != NULL) {
+//            _bChangedByMyself["value"] = true;
+//            _intParam->set(_value);
+//        }
         //------------------------------------------
     }
     
@@ -629,6 +639,8 @@ namespace fl2d {
         ofLog() << "[flSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
         ofLog() << "[flSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == track) _onTrackOver();
@@ -643,6 +655,8 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+            
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
                     _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;

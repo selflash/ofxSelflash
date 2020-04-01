@@ -121,6 +121,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec3Slider::_update() {
+        flUIBase::_update();
+
         _bChangedByOfParm["value"] = false;
     }
     
@@ -207,14 +209,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flVec3Slider::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(dispatch) {
-            flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
-            vec3SliderEvent->__value = _value;
-            dispatchEvent(vec3SliderEvent);
-        }
-        //------------------------------------------
+    void flVec3Slider::_dispatchEvent() {
+        flVec3SliderEvent* vec3SliderEvent = new flVec3SliderEvent(flVec3SliderEvent::CHANGE);
+        vec3SliderEvent->__value = _value;
+        dispatchEvent(vec3SliderEvent);
     }
     
     //==============================================================
@@ -228,7 +226,7 @@ namespace fl2d {
         _value.z = zSlider->value();
         
         //------------------------------------------
-        _changeValue();
+        _dispatchEvent();
         //------------------------------------------
         
         //------------------------------------------

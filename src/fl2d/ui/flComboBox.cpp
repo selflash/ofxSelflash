@@ -22,6 +22,7 @@ namespace fl2d {
         //------------------------------------------
         //ボタン
         _topButton = new flButton(_dropdownWidth);
+        _topButton->name("flComboBox.topButton");
         _topButton->labelText("");
         _topButton->x(0);
         _topButton->y(0);
@@ -31,6 +32,7 @@ namespace fl2d {
         addChild(_topButton);
         
         _buttonContainer = new flSprite();
+        _buttonContainer->name("flComboBox.buttonContainer");
         _buttonContainer->x(0);
         _buttonContainer->y(18);
         //------------------------------------------
@@ -91,6 +93,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::_update() {
+        flUIBase::_update();
 
         _bChangedByOfParm["value"] = false;
     }
@@ -160,6 +163,107 @@ namespace fl2d {
 //    }
     
     //--------------------------------------------------------------
+    void flComboBox::removeItemByIndex(int index) {
+        //--------------------------------------
+        //children()の箇所はリファクタリングとかで外に出したらダメ
+        if(index < 0 || index > _buttonList.size() - 1) return;
+        
+        flButton* button = _buttonList[index];
+        button->removeEventListener(flMouseEvent::ROLL_OVER, this, &flComboBox::_mouseEventHandler);
+        button->removeEventListener(flMouseEvent::ROLL_OUT, this, &flComboBox::_mouseEventHandler);
+        button->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
+        //                button->removeAllEventListener();
+        _buttonContainer->removeChild(button);
+        delete button;
+        _buttonList.erase(_buttonList.begin() + index);
+        //--------------------------------------
+        
+        //--------------------------------------
+        int l = _buttonList.size();
+        for(int i = 0; i < l; i++) {
+            flButton* button = _buttonList[i];
+            button->setProperty<int>("index", i);
+            if(_mode == "down") button->y(18 * i);
+            if(_mode == "up") button->y(18 * i - (18 * l));
+        }
+        //--------------------------------------
+        
+        flGraphics* g;
+        g = _buttonContainer->graphics();
+        g->clear();
+        g->beginFill(0x000000, 0.8);
+        if(_mode == "down") {
+            g->drawRect(0, 0, _dropdownWidth, 18 * _buttonList.size());
+        }
+        if(_mode == "up") {
+            g->drawRect(0, 0, _dropdownWidth, -18 * _buttonList.size());
+        }
+        g->endFill();
+        
+        flObject* item = _itemList[index];
+        delete item;
+        _itemList.erase(_itemList.begin() + index);
+        //--------------------------------------
+        
+        //--------------------------------------
+        _selectedButton = NULL;
+        _selectedItem = NULL;
+        
+        if(_buttonList.size() == 0) {
+            _buttonList.clear();
+            _itemList.clear();
+            _topButton->labelText("");
+            _selectedIndex = 0;
+            _selectedItem = NULL;
+        } else if(_selectedIndex == index) {
+            if(index == 0) {
+                selectedIndex(index);
+            } else {
+                selectedIndex(index - 1);
+            }
+        }
+        //--------------------------------------
+    }
+    
+    //--------------------------------------------------------------
+    void flComboBox::mode(string value) {
+        _mode = value;
+        
+        if(_mode == "down") {
+            _buttonContainer->y(18 + 18);
+            
+            int l = _buttonList.size();
+            for(int i = 0; i < l; i++) {
+                flButton* button = _buttonList[i];
+                button->y(18 * i);
+            }
+            
+            flGraphics* g;
+            g = _buttonContainer->graphics();
+            g->clear();
+            g->beginFill(0x000000, 0.8);
+            g->drawRect(0, 0, _dropdownWidth, 18 * l);
+            g->endFill();
+        }
+        if(_mode == "up") {
+            _buttonContainer->y(18);
+            
+            int l = _buttonList.size();
+            for(int i = 0; i < l; i++) {
+                flButton* button = _buttonList[i];
+                button->y(18 * i - (18 * l));
+            }
+            
+            flGraphics* g;
+            g = _buttonContainer->graphics();
+            g->clear();
+            g->beginFill(0x000000, 0.8);
+            g->drawRect(0, 0, _dropdownWidth, -18 * l);
+            g->endFill();
+        }
+    }
+    
+    //--------------------------------------------------------------
     void flComboBox::removeAllItems() {
         if(_buttonContainer->parent()) removeChild(_buttonContainer);
         
@@ -184,7 +288,7 @@ namespace fl2d {
         _selectedItem = NULL;
         
         //------------------------------------------
-        _changeValue();
+        _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_intParam != NULL) {
@@ -217,7 +321,7 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _changeValue(dispatch);
+        if(dispatch) _dispatchEvent();
         
         if(!_bChangedByOfParm["value"]) {
             if(_intParam != NULL) {
@@ -255,22 +359,18 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flComboBox::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(dispatch) {
+    void flComboBox::_dispatchEvent() {
 //            ofLog() << "DEBUG START ----- ";
 //            flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
 //            flComboBoxEvent<float> event(flComboBoxEvent::CHANGE, 0.1f);
 
-            flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
+        flComboBoxEvent* event = new flComboBoxEvent(flComboBoxEvent::CHANGE);
 //            ofLog() << "DEBUG END   ----- ";
 //            event->__label = _selectedLabel;
 //            event->__pointerValue = _selectedData;
 //            event->__stringValue = _selectedText;
 //            event->__floatValue = _selectedValue;
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+        dispatchEvent(event);
     }
     
     //==============================================================
@@ -284,21 +384,29 @@ namespace fl2d {
 //        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+        flUIBase::_mouseEventHandler(event);
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            flButton* target = (flButton*) event.target();
-            _buttonContainer->addChild(target);
-            target->alpha(1);
+            if(event.target() != this) {
+                flButton* target = (flButton*) event.target();
+//                _buttonContainer->addChild(target);
+                target->alpha(1);
+            }
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            flButton* target = (flButton*) event.target();
-            if(target != _selectedItem) target->alpha(0.7);
+            if(event.target() != this) {
+                flButton* target = (flButton*) event.target();
+                if(target != _selectedItem) target->alpha(0.7);
+            }
         }
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) _toolTip->visible(false);
+
             flButton* target = (flButton*) event.target();
             if(target == _topButton) {
                 if(_topButton->selected()){
@@ -340,7 +448,7 @@ namespace fl2d {
                 //------------------------------------------
                 
                 //------------------------------------------
-                _changeValue();
+                _dispatchEvent();
                 
                 if(_intParam != NULL) {
                     _bChangedByMyself["value"] = true;

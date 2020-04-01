@@ -108,6 +108,8 @@ namespace fl2d {
     void flAngler::_update() {
         //ofLog() << "isMouseDown" << lever->isMouseDown();
         
+        flUIBase::_update();
+
         float distance = _center->distance(ofVec2f(lever->x(), lever->y()));
         
         if(lever->isMouseDown()) {

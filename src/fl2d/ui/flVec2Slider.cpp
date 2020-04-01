@@ -97,6 +97,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec2Slider::_update() {
+        flUIBase::_update();
+
         _bChangedByOfParm["value"] = false;
     }
     
@@ -108,7 +110,7 @@ namespace fl2d {
     //==============================================================
     // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flVec2Slider::label(flTextField* value) {
         _label = value;
@@ -176,14 +178,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flVec2Slider::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(dispatch) {
-            flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
-            vec2SliderEvent->__value = _value;
-            dispatchEvent(vec2SliderEvent);
-        }
-        //------------------------------------------
+    void flVec2Slider::_dispatchEvent() {
+        flVec2SliderEvent* vec2SliderEvent = new flVec2SliderEvent(flVec2SliderEvent::CHANGE);
+        vec2SliderEvent->__value = _value;
+        dispatchEvent(vec2SliderEvent);
     }
     
     //==============================================================
@@ -198,7 +196,7 @@ namespace fl2d {
         _value.y = ySlider->value();
         
         //------------------------------------------
-        _changeValue();
+        _dispatchEvent();
         //------------------------------------------
         
         //------------------------------------------

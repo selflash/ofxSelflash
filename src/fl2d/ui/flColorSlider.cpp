@@ -470,6 +470,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_update() {
+        flUIBase::_update();
+
         _bChangedByOfParm["value"] = false;
     }
     
@@ -563,16 +565,10 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flColorSlider::_changeValue(bool dispatch) {
-        _hexText->text(ofToString(_hexValue, 2));
-        
-        //------------------------------------------
-        if(dispatch) {
-            flColorSliderEvent* colorSliderEvent = new flColorSliderEvent(flColorSliderEvent::CHANGE);
-            colorSliderEvent->__color = _colorValue;
-            dispatchEvent(colorSliderEvent);
-        }
-        //------------------------------------------
+    void flColorSlider::_dispatchEvent() {
+        flColorSliderEvent* colorSliderEvent = new flColorSliderEvent(flColorSliderEvent::CHANGE);
+        colorSliderEvent->__color = _colorValue;
+        dispatchEvent(colorSliderEvent);
     }
     
     //--------------------------------------------------------------
@@ -613,7 +609,8 @@ namespace fl2d {
         
         //------------------------------------------
         if(preValue != _colorValue) {
-            _changeValue();
+            _hexText->text(ofToString(_hexValue, _digit));
+            _dispatchEvent();
         
             if(!_bChangedByOfParm["value"]) {
                 if(_colorParam != NULL) {

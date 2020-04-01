@@ -64,7 +64,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRadioButton::_update() {
-        
+        flUIBase::_update();
+
     }
     
     //--------------------------------------------------------------
@@ -172,18 +173,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flRadioButton::_changeValue(bool dispatch) {
+    void flRadioButton::_dispatchEvent() {
 //        if(_boolParam != NULL) {
 //            _changedValueByMyself = true;
 //            //            _boolParam->set(_value);
 //        }
-        
-        //------------------------------------------
-        if(dispatch) {
-            flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
+        flRadioButtonEvent* event = new flRadioButtonEvent(flRadioButtonEvent::CHANGE);
+        dispatchEvent(event);
     }
     
     //--------------------------------------------------------------

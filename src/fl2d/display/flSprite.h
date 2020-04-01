@@ -30,7 +30,7 @@ namespace fl2d {
         
             flSprite* __client = NULL;
         
-            bool _showHitArea = false;
+            bool _hitAreaVisible = false;
         
         private:
             ofPoint _draggablePoint;
@@ -69,7 +69,9 @@ namespace fl2d {
             //TODO
             virtual flSprite* hitArea();
             virtual void hitArea(flSprite* value);
-        
+            virtual inline bool hitAreaVisible() { return _hitAreaVisible; }
+            virtual inline void hitAreaVisible(bool value) { _hitAreaVisible = value; }
+
             virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
         
             virtual void useHandCursor(bool value);

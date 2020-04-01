@@ -71,6 +71,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flScrollKit::_update() {
+        flUIBase::_update();
+
         viewport.x = x() - _body->x();
         viewport.width = 500 + _body->x();
         viewport.y = y();

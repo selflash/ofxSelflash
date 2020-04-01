@@ -110,6 +110,8 @@ namespace fl2d {
     void flRotarySlider::_update() {
         //ofLog() << "isMouseDown" << lever->isMouseDown();
         
+        flUIBase::_update();
+
         if(lever->isMouseDown()) {
             //------------------------------------------
             float shiftX; float shiftY;
