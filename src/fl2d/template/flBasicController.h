@@ -47,14 +47,14 @@ namespace fl2d {
                 useHandCursor(_dragEnabled);
                 
                 if(!_dragEnabled) {
-                    if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
+                    if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
                     stopDrag();
                 }
             }
         
         protected:
-            virtual void _uiEventHandler(flEvent& event);
-            virtual void _mouseEventHandler(flEvent& event);
+            virtual void _flBasicControllerEventHandler(flEvent& event);
+            virtual void _flBasicControllerMouseEventHandler(flEvent& event);
 
         private:
         

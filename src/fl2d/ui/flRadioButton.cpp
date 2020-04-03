@@ -274,12 +274,12 @@ namespace fl2d {
         flGraphics* g = graphics();
         g->clear();
         
-        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢
+        //ƒqƒbƒgƒGƒŠƒA
         g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
-        //å¤–å´
+        //ŠO‘¤
         g->lineStyle(thickness, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
@@ -301,12 +301,12 @@ namespace fl2d {
         flGraphics* g = graphics();
         g->clear();
         
-        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢
+        //ƒqƒbƒgƒGƒŠƒA
         g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
-        //å¤–å´
+        //ŠO‘¤
         g->lineStyle(thickness, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
@@ -322,7 +322,7 @@ namespace fl2d {
         }
         g->endFill();
         
-        //å†…å´
+        //“à‘¤
         g->beginFill(innerColor.getHex());
         switch(_shapeType) {
                 //            case 0: g->drawRect(4, 3, 11, 11); break;

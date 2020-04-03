@@ -88,7 +88,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //繝悶Ξ繝ｳ繝峨Δ繝ｼ繝臥┌蜉ｹ
+    //ブレンドモード無効
     void flBlendMode::disable() {
         glDisable(GL_ALPHA_TEST);
         

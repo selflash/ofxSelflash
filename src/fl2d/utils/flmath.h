@@ -12,11 +12,11 @@ namespace flinternal {
             //
             inline static double round(double value, int n = 3) {
                 double dst;
-                //å‡¦ç†ã‚’è¡Œã†æ¡ã‚’10-1 ã®ä½ã«ã™ã‚‹
+                //ˆ—‚ğs‚¤Œ…‚ğ10-1 ‚ÌˆÊ‚É‚·‚é
                 dst = value * pow((double)10, (double)(-n - 1));
                 dst = (double)(int)(dst + 0.5);
                 
-                //å‡¦ç†ã‚’è¡Œã£ãŸæ¡ã‚’å…ƒã«æˆ»ã™
+                //ˆ—‚ğs‚Á‚½Œ…‚ğŒ³‚É–ß‚·
                 return dst * pow((double)10, (double)(n + 1));
             }
             

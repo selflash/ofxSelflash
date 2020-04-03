@@ -205,7 +205,7 @@ namespace fl2d {
     void flDisplayObject::stage(flDisplayObject* value) {
         //cout << "[flDisplayObject]stage(" << value << ")" << name() << endl;
         
-        //ä»Šã¾ã§ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã‚‹æ™‚
+        //¡‚Ü‚ÅƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚é
         if(!_stage && value) {
             _stage = value;
             
@@ -214,7 +214,7 @@ namespace fl2d {
 //            event->_target = _target;
             dispatchEvent(event);
         }
-        //æ—¢ã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã„ãªã„æ™‚
+        //Šù‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚¢‚È‚¢
         if(_stage && !value) {
             _stage = value;
             
@@ -229,7 +229,7 @@ namespace fl2d {
     void flDisplayObject::parent(flDisplayObject* value) {
         //cout << "[flDisplayObject]parent(" << value << ")" << name() << endl;
         
-        //ä»Šã¾ã§è¦ªã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«è¦ªã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã‚‹æ™‚
+        //¡‚Ü‚Åe‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚Ée‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚é
         if(!_parent && value) {
             _parent = value;
             _compoundAlpha = _parent->__compoundAlpha() * _alpha;
@@ -238,7 +238,7 @@ namespace fl2d {
 //            event->target(_target);
             dispatchEvent(event);
         }
-        //æ—¢ã«è¦ªã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«è¦ªã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã„ãªã„æ™‚
+        //Šù‚Ée‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚Ée‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚¢‚È‚¢
         if(_parent && !value) {
             _parent = value;
             
@@ -394,7 +394,7 @@ namespace fl2d {
     const flMatrix& flDisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
 
     //--------------------------------------------------------------
-    // TODO Include a line. é ˜åŸŸã«ç·šã‚’å«ã‚ã‚‹
+    // TODO Include a line. —Ìˆæ‚Éü‚ğŠÜ‚ß‚é
     flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
         flRectangle rect;
 //        rect.left(_rect->left() * scaleX());
@@ -416,7 +416,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    // TODO Not include a line. é ˜åŸŸã«ç·šã‚’å«ã‚ãªã„
+    // TODO Not include a line. —Ìˆæ‚Éü‚ğŠÜ‚ß‚È‚¢
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
         flRectangle rect;
         rect.left(_rect->left() * scaleX());
@@ -446,7 +446,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     bool flDisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
-        //ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›
+        //ƒOƒ[ƒoƒ‹À•W‚©‚çƒ[ƒJƒ‹À•W‚É•ÏŠ·
         _concatenatedMatrixInv.transformPoint(p);
         return _rect->pointTest(p.x, p.y);
     }
@@ -454,7 +454,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     ofPoint flDisplayObject::globalToLocal(const ofPoint& point) {
         ofPoint p = point;
-        //ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›
+        //ƒOƒ[ƒoƒ‹À•W‚©‚çƒ[ƒJƒ‹À•W‚É•ÏŠ·
         _concatenatedMatrixInv.transformPoint(p);
         return p;
     }

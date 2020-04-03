@@ -12,7 +12,7 @@ namespace fl2d {
             flButton* closeButton = NULL;
 
             //--------------------------------------
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(000)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(000)
             flTextField* text000 = NULL; flTextField* text001 = NULL; flTextField* text002 = NULL;
             flTextField* text003 = NULL; flTextField* text004 = NULL; flTextField* text005 = NULL;
             flTextField* text006 = NULL; flTextField* text007 = NULL; flTextField* text008 = NULL;
@@ -53,7 +53,7 @@ namespace fl2d {
             flTextField* text093 = NULL; flTextField* text094 = NULL; flTextField* text095 = NULL;
             flTextField* text096 = NULL; flTextField* text097 = NULL; flTextField* text098 = NULL;
             flTextField* text099 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(100)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(100)
             flTextField* text100 = NULL; flTextField* text101 = NULL; flTextField* text102 = NULL;
             flTextField* text103 = NULL; flTextField* text104 = NULL; flTextField* text105 = NULL;
             flTextField* text106 = NULL; flTextField* text107 = NULL; flTextField* text108 = NULL;
@@ -94,7 +94,7 @@ namespace fl2d {
             flTextField* text193 = NULL; flTextField* text194 = NULL; flTextField* text195 = NULL;
             flTextField* text196 = NULL; flTextField* text197 = NULL; flTextField* text198 = NULL;
             flTextField* text199 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(200)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(200)
             flTextField* text200 = NULL; flTextField* text201 = NULL; flTextField* text202 = NULL;
             flTextField* text203 = NULL; flTextField* text204 = NULL; flTextField* text205 = NULL;
             flTextField* text206 = NULL; flTextField* text207 = NULL; flTextField* text208 = NULL;
@@ -111,7 +111,7 @@ namespace fl2d {
             flTextField* text233 = NULL; flTextField* text234 = NULL; flTextField* text235 = NULL;
             flTextField* text236 = NULL; flTextField* text237 = NULL; flTextField* text238 = NULL;
             flTextField* text239 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(300)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(300)
             flTextField* text300 = NULL; flTextField* text301 = NULL; flTextField* text302 = NULL;
             flTextField* text303 = NULL; flTextField* text304 = NULL; flTextField* text305 = NULL;
             flTextField* text306 = NULL; flTextField* text307 = NULL; flTextField* text308 = NULL;
@@ -128,7 +128,7 @@ namespace fl2d {
             flTextField* text333 = NULL; flTextField* text334 = NULL; flTextField* text335 = NULL;
             flTextField* text336 = NULL; flTextField* text337 = NULL; flTextField* text338 = NULL;
             flTextField* text339 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(400)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(400)
             flTextField* text400 = NULL; flTextField* text401 = NULL; flTextField* text402 = NULL;
             flTextField* text403 = NULL; flTextField* text404 = NULL; flTextField* text405 = NULL;
             flTextField* text406 = NULL; flTextField* text407 = NULL; flTextField* text408 = NULL;
@@ -145,7 +145,7 @@ namespace fl2d {
             flTextField* text433 = NULL; flTextField* text434 = NULL; flTextField* text435 = NULL;
             flTextField* text436 = NULL; flTextField* text437 = NULL; flTextField* text438 = NULL;
             flTextField* text439 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(500)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(500)
             flTextField* text500 = NULL; flTextField* text501 = NULL; flTextField* text502 = NULL;
             flTextField* text503 = NULL; flTextField* text504 = NULL; flTextField* text505 = NULL;
             flTextField* text506 = NULL; flTextField* text507 = NULL; flTextField* text508 = NULL;
@@ -162,7 +162,7 @@ namespace fl2d {
             flTextField* text533 = NULL; flTextField* text534 = NULL; flTextField* text535 = NULL;
             flTextField* text536 = NULL; flTextField* text537 = NULL; flTextField* text538 = NULL;
             flTextField* text539;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(600)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(600)
             flTextField* text600 = NULL; flTextField* text601 = NULL; flTextField* text602 = NULL;
             flTextField* text603 = NULL; flTextField* text604 = NULL; flTextField* text605 = NULL;
             flTextField* text606 = NULL; flTextField* text607 = NULL; flTextField* text608 = NULL;
@@ -179,7 +179,7 @@ namespace fl2d {
             flTextField* text633 = NULL; flTextField* text634 = NULL; flTextField* text635 = NULL;
             flTextField* text636 = NULL; flTextField* text637 = NULL; flTextField* text638 = NULL;
             flTextField* text639 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(700)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(700)
             flTextField* text700 = NULL; flTextField* text701 = NULL; flTextField* text702 = NULL;
             flTextField* text703 = NULL; flTextField* text704 = NULL; flTextField* text705 = NULL;
             flTextField* text706 = NULL; flTextField* text707 = NULL; flTextField* text708 = NULL;
@@ -196,7 +196,7 @@ namespace fl2d {
             flTextField* text733 = NULL; flTextField* text734 = NULL; flTextField* text735 = NULL;
             flTextField* text736 = NULL; flTextField* text737 = NULL; flTextField* text738 = NULL;
             flTextField* text739 = NULL;
-            //„ÉÜ„Ç≠„Çπ„Éà„Éï„Ç£„Éº„É´„Éâ(800)
+            //ÉeÉLÉXÉgÉtÉBÅ[ÉãÉh(800)
             flTextField* text800 = NULL; flTextField* text801 = NULL; flTextField* text802 = NULL;
             flTextField* text803 = NULL; flTextField* text804 = NULL; flTextField* text805 = NULL;
             flTextField* text806 = NULL; flTextField* text807 = NULL; flTextField* text808 = NULL;
@@ -216,7 +216,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„Éú„Çø„É≥(000)
+            //É{É^Éì(000)
             flButton* button000 = NULL; flButton* button001 = NULL; flButton* button002 = NULL; flButton* button003 = NULL; flButton* button004 = NULL;
             flButton* button005 = NULL; flButton* button006 = NULL; flButton* button007 = NULL; flButton* button008 = NULL; flButton* button009 = NULL;
             flButton* button010 = NULL; flButton* button011 = NULL; flButton* button012 = NULL; flButton* button013 = NULL; flButton* button014 = NULL;
@@ -229,7 +229,7 @@ namespace fl2d {
             flButton* button045 = NULL; flButton* button046 = NULL; flButton* button047 = NULL; flButton* button048 = NULL; flButton* button049 = NULL;
             flButton* button050 = NULL; flButton* button051 = NULL; flButton* button052 = NULL; flButton* button053 = NULL; flButton* button054 = NULL;
             flButton* button055 = NULL; flButton* button056 = NULL; flButton* button057 = NULL; flButton* button058 = NULL; flButton* button059 = NULL;
-            //„Éú„Çø„É≥(100)
+            //É{É^Éì(100)
             flButton* button100 = NULL; flButton* button101 = NULL; flButton* button102 = NULL; flButton* button103 = NULL; flButton* button104 = NULL;
             flButton* button105 = NULL; flButton* button106 = NULL; flButton* button107 = NULL; flButton* button108 = NULL; flButton* button109 = NULL;
             flButton* button110 = NULL; flButton* button111 = NULL; flButton* button112 = NULL; flButton* button113 = NULL; flButton* button114 = NULL;
@@ -250,7 +250,7 @@ namespace fl2d {
             flButton* button185 = NULL; flButton* button186 = NULL; flButton* button187 = NULL; flButton* button188 = NULL; flButton* button189 = NULL;
             flButton* button190 = NULL; flButton* button191 = NULL; flButton* button192 = NULL; flButton* button193 = NULL; flButton* button194 = NULL;
             flButton* button195 = NULL; flButton* button196 = NULL; flButton* button197 = NULL; flButton* button198 = NULL; flButton* button199 = NULL;
-            //„Éú„Çø„É≥(200)
+            //É{É^Éì(200)
             flButton* button200 = NULL; flButton* button201 = NULL; flButton* button202 = NULL; flButton* button203 = NULL; flButton* button204 = NULL;
             flButton* button205 = NULL; flButton* button206 = NULL; flButton* button207 = NULL; flButton* button208 = NULL; flButton* button209 = NULL;
             flButton* button210 = NULL; flButton* button211 = NULL; flButton* button212 = NULL; flButton* button213 = NULL; flButton* button214 = NULL;
@@ -259,7 +259,7 @@ namespace fl2d {
             flButton* button225 = NULL; flButton* button226 = NULL; flButton* button227 = NULL; flButton* button228 = NULL; flButton* button229 = NULL;
             flButton* button290 = NULL; flButton* button291 = NULL; flButton* button292 = NULL; flButton* button293 = NULL; flButton* button294 = NULL;
             flButton* button295 = NULL; flButton* button296 = NULL; flButton* button297 = NULL; flButton* button298 = NULL; flButton* button299 = NULL;
-            //„Éú„Çø„É≥(300)
+            //É{É^Éì(300)
             flButton* button300 = NULL; flButton* button301 = NULL; flButton* button302 = NULL; flButton* button303 = NULL; flButton* button304 = NULL;
             flButton* button305 = NULL; flButton* button306 = NULL; flButton* button307 = NULL; flButton* button308 = NULL; flButton* button309 = NULL;
             flButton* button310 = NULL; flButton* button311 = NULL; flButton* button312 = NULL; flButton* button313 = NULL; flButton* button314 = NULL;
@@ -274,40 +274,40 @@ namespace fl2d {
             flButton* button355 = NULL; flButton* button356 = NULL; flButton* button357 = NULL; flButton* button358 = NULL; flButton* button359 = NULL;
             flButton* button390 = NULL; flButton* button391 = NULL; flButton* button392 = NULL; flButton* button393 = NULL; flButton* button394 = NULL;
             flButton* button395 = NULL; flButton* button396 = NULL; flButton* button397 = NULL; flButton* button398 = NULL; flButton* button399 = NULL;
-            //„Éú„Çø„É≥(400)
+            //É{É^Éì(400)
             flButton* button400 = NULL; flButton* button401 = NULL; flButton* button402 = NULL; flButton* button403 = NULL; flButton* button404 = NULL;
             flButton* button405 = NULL; flButton* button406 = NULL; flButton* button407 = NULL; flButton* button408 = NULL; flButton* button409 = NULL;
             flButton* button410 = NULL;
-            //„Éú„Çø„É≥(500)
+            //É{É^Éì(500)
             flButton* button500 = NULL; flButton* button501 = NULL; flButton* button502 = NULL; flButton* button503 = NULL; flButton* button504 = NULL;
             flButton* button505 = NULL; flButton* button506 = NULL; flButton* button507 = NULL; flButton* button508 = NULL; flButton* button509 = NULL;
             flButton* button510 = NULL; flButton* button511 = NULL; flButton* button512 = NULL; flButton* button513 = NULL; flButton* button514 = NULL;
             flButton* button515 = NULL; flButton* button516 = NULL; flButton* button517 = NULL; flButton* button518 = NULL; flButton* button519 = NULL;
             flButton* button520 = NULL; flButton* button521 = NULL; flButton* button522 = NULL; flButton* button523 = NULL; flButton* button524 = NULL;
             flButton* button525 = NULL; flButton* button526 = NULL; flButton* button527 = NULL; flButton* button528 = NULL; flButton* button529 = NULL;
-            //„Éú„Çø„É≥(600)
+            //É{É^Éì(600)
             flButton* button600 = NULL; flButton* button601 = NULL; flButton* button602 = NULL; flButton* button603 = NULL; flButton* button604 = NULL;
             flButton* button605 = NULL; flButton* button606 = NULL; flButton* button607 = NULL; flButton* button608 = NULL; flButton* button609 = NULL;
             flButton* button610 = NULL; flButton* button611 = NULL; flButton* button612 = NULL; flButton* button613 = NULL; flButton* button614 = NULL;
             flButton* button615 = NULL; flButton* button616 = NULL; flButton* button617 = NULL; flButton* button618 = NULL; flButton* button619 = NULL;
             flButton* button620 = NULL; flButton* button621 = NULL; flButton* button622 = NULL; flButton* button623 = NULL; flButton* button624 = NULL;
             flButton* button625 = NULL; flButton* button626 = NULL; flButton* button627 = NULL; flButton* button628 = NULL; flButton* button629 = NULL;
-            //„Éú„Çø„É≥(700)
+            //É{É^Éì(700)
             flButton* button700 = NULL; flButton* button701 = NULL; flButton* button702 = NULL; flButton* button703 = NULL; flButton* button704 = NULL;
             flButton* button705 = NULL; flButton* button706 = NULL; flButton* button707 = NULL; flButton* button708 = NULL; flButton* button709 = NULL;
             flButton* button710 = NULL;
-            //„Éú„Çø„É≥(800)
+            //É{É^Éì(800)
             flButton* button800 = NULL; flButton* button801 = NULL; flButton* button802 = NULL; flButton* button803 = NULL; flButton* button804 = NULL;
             flButton* button805 = NULL; flButton* button806 = NULL; flButton* button807 = NULL; flButton* button808 = NULL; flButton* button809 = NULL;
             flButton* button810 = NULL;
-            //„Éú„Çø„É≥(900)
+            //É{É^Éì(900)
             flButton* button900 = NULL; flButton* button901 = NULL; flButton* button902 = NULL; flButton* button903 = NULL; flButton* button904 = NULL;
             flButton* button905 = NULL; flButton* button906 = NULL; flButton* button907 = NULL; flButton* button908 = NULL; flButton* button909 = NULL;
             flButton* button910 = NULL;
             //--------------------------------------
         
             //--------------------------------------
-            //„Çπ„É©„Ç§„ÉÄ„Éº(000)
+            //ÉXÉâÉCÉ_Å[(000)
             flSlider* slider000 = NULL; flSlider* slider001 = NULL; flSlider* slider002 = NULL; flSlider* slider003 = NULL;
             flSlider* slider004 = NULL; flSlider* slider005 = NULL; flSlider* slider006 = NULL; flSlider* slider007 = NULL;
             flSlider* slider008 = NULL; flSlider* slider009 = NULL;
@@ -320,7 +320,7 @@ namespace fl2d {
             flSlider* slider030 = NULL; flSlider* slider031 = NULL; flSlider* slider032 = NULL; flSlider* slider033 = NULL;
             flSlider* slider034 = NULL; flSlider* slider035 = NULL; flSlider* slider036 = NULL; flSlider* slider037 = NULL;
             flSlider* slider038 = NULL; flSlider* slider039 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(100)
+            //ÉXÉâÉCÉ_Å[(100)
             flSlider* slider100 = NULL; flSlider* slider101 = NULL; flSlider* slider102 = NULL; flSlider* slider103 = NULL;
             flSlider* slider104 = NULL; flSlider* slider105 = NULL; flSlider* slider106 = NULL; flSlider* slider107 = NULL;
             flSlider* slider108 = NULL; flSlider* slider109 = NULL;
@@ -339,7 +339,7 @@ namespace fl2d {
             flSlider* slider150 = NULL; flSlider* slider151 = NULL; flSlider* slider152 = NULL; flSlider* slider153 = NULL;
             flSlider* slider154 = NULL; flSlider* slider155 = NULL; flSlider* slider156 = NULL; flSlider* slider157 = NULL;
             flSlider* slider158 = NULL; flSlider* slider159 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(200)
+            //ÉXÉâÉCÉ_Å[(200)
             flSlider* slider200 = NULL; flSlider* slider201 = NULL; flSlider* slider202 = NULL; flSlider* slider203 = NULL;
             flSlider* slider204 = NULL; flSlider* slider205 = NULL; flSlider* slider206 = NULL; flSlider* slider207 = NULL;
             flSlider* slider208 = NULL; flSlider* slider209 = NULL;
@@ -358,7 +358,7 @@ namespace fl2d {
             flSlider* slider250 = NULL; flSlider* slider251 = NULL; flSlider* slider252 = NULL; flSlider* slider253 = NULL;
             flSlider* slider254 = NULL; flSlider* slider255 = NULL; flSlider* slider256 = NULL; flSlider* slider257 = NULL;
             flSlider* slider258 = NULL; flSlider* slider259 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(300)
+            //ÉXÉâÉCÉ_Å[(300)
             flSlider* slider300 = NULL; flSlider* slider301 = NULL; flSlider* slider302 = NULL; flSlider* slider303 = NULL;
             flSlider* slider304 = NULL; flSlider* slider305 = NULL; flSlider* slider306 = NULL; flSlider* slider307 = NULL;
             flSlider* slider308 = NULL; flSlider* slider309 = NULL;
@@ -371,7 +371,7 @@ namespace fl2d {
             flSlider* slider330 = NULL; flSlider* slider331 = NULL; flSlider* slider332 = NULL; flSlider* slider333 = NULL;
             flSlider* slider334 = NULL; flSlider* slider335 = NULL; flSlider* slider336 = NULL; flSlider* slider337 = NULL;
             flSlider* slider338 = NULL; flSlider* slider339 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(400)
+            //ÉXÉâÉCÉ_Å[(400)
             flSlider* slider400 = NULL; flSlider* slider401 = NULL; flSlider* slider402 = NULL; flSlider* slider403 = NULL;
             flSlider* slider404 = NULL; flSlider* slider405 = NULL; flSlider* slider406 = NULL; flSlider* slider407 = NULL;
             flSlider* slider408 = NULL; flSlider* slider409 = NULL;
@@ -384,7 +384,7 @@ namespace fl2d {
             flSlider* slider430 = NULL; flSlider* slider431 = NULL; flSlider* slider432 = NULL; flSlider* slider433 = NULL;
             flSlider* slider434 = NULL; flSlider* slider435 = NULL; flSlider* slider436 = NULL; flSlider* slider437 = NULL;
             flSlider* slider438 = NULL; flSlider* slider439 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(500)
+            //ÉXÉâÉCÉ_Å[(500)
             flSlider* slider500 = NULL; flSlider* slider501 = NULL; flSlider* slider502 = NULL; flSlider* slider503 = NULL;
             flSlider* slider504 = NULL; flSlider* slider505 = NULL; flSlider* slider506 = NULL; flSlider* slider507 = NULL;
             flSlider* slider508 = NULL; flSlider* slider509 = NULL;
@@ -397,7 +397,7 @@ namespace fl2d {
             flSlider* slider530 = NULL; flSlider* slider531 = NULL; flSlider* slider532 = NULL; flSlider* slider533 = NULL;
             flSlider* slider534 = NULL; flSlider* slider535 = NULL; flSlider* slider536 = NULL; flSlider* slider537 = NULL;
             flSlider* slider538 = NULL; flSlider* slider539 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(600)
+            //ÉXÉâÉCÉ_Å[(600)
             flSlider* slider600 = NULL; flSlider* slider601 = NULL; flSlider* slider602 = NULL; flSlider* slider603 = NULL;
             flSlider* slider604 = NULL; flSlider* slider605 = NULL; flSlider* slider606 = NULL; flSlider* slider607 = NULL;
             flSlider* slider608 = NULL; flSlider* slider609 = NULL;
@@ -410,7 +410,7 @@ namespace fl2d {
             flSlider* slider630 = NULL; flSlider* slider631 = NULL; flSlider* slider632 = NULL; flSlider* slider633 = NULL;
             flSlider* slider634 = NULL; flSlider* slider635 = NULL; flSlider* slider636 = NULL; flSlider* slider637 = NULL;
             flSlider* slider638 = NULL; flSlider* slider639 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(700)
+            //ÉXÉâÉCÉ_Å[(700)
             flSlider* slider700 = NULL; flSlider* slider701 = NULL; flSlider* slider702 = NULL; flSlider* slider703 = NULL;
             flSlider* slider704 = NULL; flSlider* slider705 = NULL; flSlider* slider706 = NULL; flSlider* slider707 = NULL;
             flSlider* slider708 = NULL; flSlider* slider709 = NULL;
@@ -423,7 +423,7 @@ namespace fl2d {
             flSlider* slider730 = NULL; flSlider* slider731 = NULL; flSlider* slider732 = NULL; flSlider* slider733 = NULL;
             flSlider* slider734 = NULL; flSlider* slider735 = NULL; flSlider* slider736 = NULL; flSlider* slider737 = NULL;
             flSlider* slider738 = NULL; flSlider* slider739 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(800)
+            //ÉXÉâÉCÉ_Å[(800)
             flSlider* slider800 = NULL; flSlider* slider801 = NULL; flSlider* slider802 = NULL; flSlider* slider803 = NULL;
             flSlider* slider804 = NULL; flSlider* slider805 = NULL; flSlider* slider806 = NULL; flSlider* slider807 = NULL;
             flSlider* slider808 = NULL; flSlider* slider809 = NULL;
@@ -436,7 +436,7 @@ namespace fl2d {
             flSlider* slider830 = NULL; flSlider* slider831 = NULL; flSlider* slider832 = NULL; flSlider* slider833 = NULL;
             flSlider* slider834 = NULL; flSlider* slider835 = NULL; flSlider* slider836 = NULL; flSlider* slider837 = NULL;
             flSlider* slider838 = NULL; flSlider* slider839 = NULL;
-            //„Çπ„É©„Ç§„ÉÄ„Éº(900)
+            //ÉXÉâÉCÉ_Å[(900)
             flSlider* slider900 = NULL; flSlider* slider901 = NULL; flSlider* slider902 = NULL; flSlider* slider903 = NULL;
             flSlider* slider904 = NULL; flSlider* slider905 = NULL; flSlider* slider906 = NULL; flSlider* slider907 = NULL;
             flSlider* slider908 = NULL; flSlider* slider909 = NULL;
@@ -452,7 +452,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(000)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(000)
             flRangeSlider* rangeSlider000 = NULL; flRangeSlider* rangeSlider001 = NULL; flRangeSlider* rangeSlider002 = NULL; flRangeSlider* rangeSlider003 = NULL;
             flRangeSlider* rangeSlider004 = NULL; flRangeSlider* rangeSlider005 = NULL; flRangeSlider* rangeSlider006 = NULL; flRangeSlider* rangeSlider007 = NULL;
             flRangeSlider* rangeSlider008 = NULL; flRangeSlider* rangeSlider009 = NULL;
@@ -462,7 +462,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider020 = NULL; flRangeSlider* rangeSlider021 = NULL; flRangeSlider* rangeSlider022 = NULL; flRangeSlider* rangeSlider023 = NULL;
             flRangeSlider* rangeSlider024 = NULL; flRangeSlider* rangeSlider025 = NULL; flRangeSlider* rangeSlider026 = NULL; flRangeSlider* rangeSlider027 = NULL;
             flRangeSlider* rangeSlider028 = NULL; flRangeSlider* rangeSlider029 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(100)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(100)
             flRangeSlider* rangeSlider100 = NULL; flRangeSlider* rangeSlider101 = NULL; flRangeSlider* rangeSlider102 = NULL; flRangeSlider* rangeSlider103 = NULL;
             flRangeSlider* rangeSlider104 = NULL; flRangeSlider* rangeSlider105 = NULL; flRangeSlider* rangeSlider106 = NULL; flRangeSlider* rangeSlider107 = NULL;
             flRangeSlider* rangeSlider108 = NULL; flRangeSlider* rangeSlider109 = NULL;
@@ -472,7 +472,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider120 = NULL; flRangeSlider* rangeSlider121 = NULL; flRangeSlider* rangeSlider122 = NULL; flRangeSlider* rangeSlider123 = NULL;
             flRangeSlider* rangeSlider124 = NULL; flRangeSlider* rangeSlider125 = NULL; flRangeSlider* rangeSlider126 = NULL; flRangeSlider* rangeSlider127 = NULL;
             flRangeSlider* rangeSlider128 = NULL; flRangeSlider* rangeSlider129 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(200)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(200)
             flRangeSlider* rangeSlider200 = NULL; flRangeSlider* rangeSlider201 = NULL; flRangeSlider* rangeSlider202 = NULL; flRangeSlider* rangeSlider203 = NULL;
             flRangeSlider* rangeSlider204 = NULL; flRangeSlider* rangeSlider205 = NULL; flRangeSlider* rangeSlider206 = NULL; flRangeSlider* rangeSlider207 = NULL;
             flRangeSlider* rangeSlider208 = NULL; flRangeSlider* rangeSlider209 = NULL;
@@ -482,7 +482,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider220 = NULL; flRangeSlider* rangeSlider221 = NULL; flRangeSlider* rangeSlider222 = NULL; flRangeSlider* rangeSlider223 = NULL;
             flRangeSlider* rangeSlider224 = NULL; flRangeSlider* rangeSlider225 = NULL; flRangeSlider* rangeSlider226 = NULL; flRangeSlider* rangeSlider227 = NULL;
             flRangeSlider* rangeSlider228 = NULL; flRangeSlider* rangeSlider229 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(300)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(300)
             flRangeSlider* rangeSlider300 = NULL; flRangeSlider* rangeSlider301 = NULL; flRangeSlider* rangeSlider302 = NULL; flRangeSlider* rangeSlider303 = NULL;
             flRangeSlider* rangeSlider304 = NULL; flRangeSlider* rangeSlider305 = NULL; flRangeSlider* rangeSlider306 = NULL; flRangeSlider* rangeSlider307 = NULL;
             flRangeSlider* rangeSlider308 = NULL; flRangeSlider* rangeSlider309 = NULL;
@@ -492,7 +492,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider320 = NULL; flRangeSlider* rangeSlider321 = NULL; flRangeSlider* rangeSlider322 = NULL; flRangeSlider* rangeSlider323 = NULL;
             flRangeSlider* rangeSlider324 = NULL; flRangeSlider* rangeSlider325 = NULL; flRangeSlider* rangeSlider326 = NULL; flRangeSlider* rangeSlider327 = NULL;
             flRangeSlider* rangeSlider328 = NULL; flRangeSlider* rangeSlider329 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(400)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(400)
             flRangeSlider* rangeSlider400 = NULL; flRangeSlider* rangeSlider401 = NULL; flRangeSlider* rangeSlider402 = NULL; flRangeSlider* rangeSlider403 = NULL;
             flRangeSlider* rangeSlider404 = NULL; flRangeSlider* rangeSlider405 = NULL; flRangeSlider* rangeSlider406 = NULL; flRangeSlider* rangeSlider407 = NULL;
             flRangeSlider* rangeSlider408 = NULL; flRangeSlider* rangeSlider409 = NULL;
@@ -502,7 +502,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider420 = NULL; flRangeSlider* rangeSlider421 = NULL; flRangeSlider* rangeSlider422 = NULL; flRangeSlider* rangeSlider423 = NULL;
             flRangeSlider* rangeSlider424 = NULL; flRangeSlider* rangeSlider425 = NULL; flRangeSlider* rangeSlider426 = NULL; flRangeSlider* rangeSlider427 = NULL;
             flRangeSlider* rangeSlider428 = NULL; flRangeSlider* rangeSlider429 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(500)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(500)
             flRangeSlider* rangeSlider500 = NULL; flRangeSlider* rangeSlider501 = NULL; flRangeSlider* rangeSlider502 = NULL; flRangeSlider* rangeSlider503 = NULL;
             flRangeSlider* rangeSlider504 = NULL; flRangeSlider* rangeSlider505 = NULL; flRangeSlider* rangeSlider506 = NULL; flRangeSlider* rangeSlider507 = NULL;
             flRangeSlider* rangeSlider508 = NULL; flRangeSlider* rangeSlider509 = NULL;
@@ -512,7 +512,7 @@ namespace fl2d {
             flRangeSlider* rangeSlider520 = NULL; flRangeSlider* rangeSlider521 = NULL; flRangeSlider* rangeSlider522 = NULL; flRangeSlider* rangeSlider523 = NULL;
             flRangeSlider* rangeSlider524 = NULL; flRangeSlider* rangeSlider525 = NULL; flRangeSlider* rangeSlider526 = NULL; flRangeSlider* rangeSlider527 = NULL;
             flRangeSlider* rangeSlider528 = NULL; flRangeSlider* rangeSlider529 = NULL;
-            //„É¨„É≥„Ç∏„Çπ„É©„Ç§„ÉÄ„Éº(600)
+            //ÉåÉìÉWÉXÉâÉCÉ_Å[(600)
             flRangeSlider* rangeSlider600 = NULL; flRangeSlider* rangeSlider601 = NULL; flRangeSlider* rangeSlider602 = NULL; flRangeSlider* rangeSlider603 = NULL;
             flRangeSlider* rangeSlider604 = NULL; flRangeSlider* rangeSlider605 = NULL; flRangeSlider* rangeSlider606 = NULL; flRangeSlider* rangeSlider607 = NULL;
             flRangeSlider* rangeSlider608 = NULL; flRangeSlider* rangeSlider609 = NULL;
@@ -525,7 +525,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(000)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(000)
             flColorSlider* colorSlider000 = NULL; flColorSlider* colorSlider001 = NULL; flColorSlider* colorSlider002 = NULL; flColorSlider* colorSlider003 = NULL;
             flColorSlider* colorSlider004 = NULL; flColorSlider* colorSlider005 = NULL; flColorSlider* colorSlider006 = NULL; flColorSlider* colorSlider007 = NULL;
             flColorSlider* colorSlider008 = NULL; flColorSlider* colorSlider009;
@@ -544,7 +544,7 @@ namespace fl2d {
             flColorSlider* colorSlider050 = NULL; flColorSlider* colorSlider051 = NULL; flColorSlider* colorSlider052 = NULL; flColorSlider* colorSlider053 = NULL;
             flColorSlider* colorSlider054 = NULL; flColorSlider* colorSlider055 = NULL; flColorSlider* colorSlider056 = NULL; flColorSlider* colorSlider057 = NULL;
             flColorSlider* colorSlider058 = NULL; flColorSlider* colorSlider059 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(100)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(100)
             flColorSlider* colorSlider100 = NULL; flColorSlider* colorSlider101 = NULL; flColorSlider* colorSlider102 = NULL; flColorSlider* colorSlider103 = NULL;
             flColorSlider* colorSlider104 = NULL; flColorSlider* colorSlider105 = NULL; flColorSlider* colorSlider106 = NULL; flColorSlider* colorSlider107 = NULL;
             flColorSlider* colorSlider108 = NULL; flColorSlider* colorSlider109 = NULL;
@@ -554,7 +554,7 @@ namespace fl2d {
             flColorSlider* colorSlider120 = NULL; flColorSlider* colorSlider121 = NULL; flColorSlider* colorSlider122 = NULL; flColorSlider* colorSlider123 = NULL;
             flColorSlider* colorSlider124 = NULL; flColorSlider* colorSlider125 = NULL; flColorSlider* colorSlider126 = NULL; flColorSlider* colorSlider127 = NULL;
             flColorSlider* colorSlider128 = NULL; flColorSlider* colorSlider129 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(200)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(200)
             flColorSlider* colorSlider200 = NULL; flColorSlider* colorSlider201 = NULL; flColorSlider* colorSlider202 = NULL; flColorSlider* colorSlider203 = NULL;
             flColorSlider* colorSlider204 = NULL; flColorSlider* colorSlider205 = NULL; flColorSlider* colorSlider206 = NULL; flColorSlider* colorSlider207 = NULL;
             flColorSlider* colorSlider208 = NULL; flColorSlider* colorSlider209 = NULL;
@@ -564,7 +564,7 @@ namespace fl2d {
             flColorSlider* colorSlider220 = NULL; flColorSlider* colorSlider221 = NULL; flColorSlider* colorSlider222 = NULL; flColorSlider* colorSlider223 = NULL;
             flColorSlider* colorSlider224 = NULL; flColorSlider* colorSlider225 = NULL; flColorSlider* colorSlider226 = NULL; flColorSlider* colorSlider227 = NULL;
             flColorSlider* colorSlider228 = NULL; flColorSlider* colorSlider229 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(300)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(300)
             flColorSlider* colorSlider300 = NULL; flColorSlider* colorSlider301 = NULL; flColorSlider* colorSlider302 = NULL; flColorSlider* colorSlider303 = NULL;
             flColorSlider* colorSlider304 = NULL; flColorSlider* colorSlider305 = NULL; flColorSlider* colorSlider306 = NULL; flColorSlider* colorSlider307 = NULL;
             flColorSlider* colorSlider308 = NULL; flColorSlider* colorSlider309 = NULL;
@@ -574,7 +574,7 @@ namespace fl2d {
             flColorSlider* colorSlider320 = NULL; flColorSlider* colorSlider321 = NULL; flColorSlider* colorSlider322 = NULL; flColorSlider* colorSlider323 = NULL;
             flColorSlider* colorSlider324 = NULL; flColorSlider* colorSlider325 = NULL; flColorSlider* colorSlider326 = NULL; flColorSlider* colorSlider327 = NULL;
             flColorSlider* colorSlider328 = NULL; flColorSlider* colorSlider329 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(400)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(400)
             flColorSlider* colorSlider400 = NULL; flColorSlider* colorSlider401 = NULL; flColorSlider* colorSlider402 = NULL; flColorSlider* colorSlider403 = NULL;
             flColorSlider* colorSlider404 = NULL; flColorSlider* colorSlider405 = NULL; flColorSlider* colorSlider406 = NULL; flColorSlider* colorSlider407 = NULL;
             flColorSlider* colorSlider408 = NULL; flColorSlider* colorSlider409 = NULL;
@@ -584,7 +584,7 @@ namespace fl2d {
             flColorSlider* colorSlider420 = NULL; flColorSlider* colorSlider421 = NULL; flColorSlider* colorSlider422 = NULL; flColorSlider* colorSlider423 = NULL;
             flColorSlider* colorSlider424 = NULL; flColorSlider* colorSlider425 = NULL; flColorSlider* colorSlider426 = NULL; flColorSlider* colorSlider427 = NULL;
             flColorSlider* colorSlider428 = NULL; flColorSlider* colorSlider429 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(500)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(500)
             flColorSlider* colorSlider500 = NULL; flColorSlider* colorSlider501 = NULL; flColorSlider* colorSlider502 = NULL; flColorSlider* colorSlider503 = NULL;
             flColorSlider* colorSlider504 = NULL; flColorSlider* colorSlider505 = NULL; flColorSlider* colorSlider506 = NULL; flColorSlider* colorSlider507 = NULL;
             flColorSlider* colorSlider508 = NULL; flColorSlider* colorSlider509 = NULL;
@@ -594,7 +594,7 @@ namespace fl2d {
             flColorSlider* colorSlider520 = NULL; flColorSlider* colorSlider521 = NULL; flColorSlider* colorSlider522 = NULL; flColorSlider* colorSlider523 = NULL;
             flColorSlider* colorSlider524 = NULL; flColorSlider* colorSlider525 = NULL; flColorSlider* colorSlider526 = NULL; flColorSlider* colorSlider527 = NULL;
             flColorSlider* colorSlider528 = NULL; flColorSlider* colorSlider529 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(600)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(600)
             flColorSlider* colorSlider600 = NULL; flColorSlider* colorSlider601 = NULL; flColorSlider* colorSlider602 = NULL; flColorSlider* colorSlider603 = NULL;
             flColorSlider* colorSlider604 = NULL; flColorSlider* colorSlider605 = NULL; flColorSlider* colorSlider606 = NULL; flColorSlider* colorSlider607 = NULL;
             flColorSlider* colorSlider608 = NULL; flColorSlider* colorSlider609 = NULL;
@@ -604,7 +604,7 @@ namespace fl2d {
             flColorSlider* colorSlider620 = NULL; flColorSlider* colorSlider621 = NULL; flColorSlider* colorSlider622 = NULL; flColorSlider* colorSlider623 = NULL;
             flColorSlider* colorSlider624 = NULL; flColorSlider* colorSlider625 = NULL; flColorSlider* colorSlider626 = NULL; flColorSlider* colorSlider627 = NULL;
             flColorSlider* colorSlider628 = NULL; flColorSlider* colorSlider629 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(700)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(700)
             flColorSlider* colorSlider700 = NULL; flColorSlider* colorSlider701 = NULL; flColorSlider* colorSlider702 = NULL; flColorSlider* colorSlider703 = NULL;
             flColorSlider* colorSlider704 = NULL; flColorSlider* colorSlider705 = NULL; flColorSlider* colorSlider706 = NULL; flColorSlider* colorSlider707 = NULL;
             flColorSlider* colorSlider708 = NULL; flColorSlider* colorSlider709 = NULL;
@@ -614,7 +614,7 @@ namespace fl2d {
             flColorSlider* colorSlider720 = NULL; flColorSlider* colorSlider721 = NULL; flColorSlider* colorSlider722 = NULL; flColorSlider* colorSlider723 = NULL;
             flColorSlider* colorSlider724 = NULL; flColorSlider* colorSlider725 = NULL; flColorSlider* colorSlider726 = NULL; flColorSlider* colorSlider727 = NULL;
             flColorSlider* colorSlider728 = NULL; flColorSlider* colorSlider729 = NULL;
-            //„Ç´„É©„Éº„Çπ„É©„Ç§„ÉÄ„Éº(800)
+            //ÉJÉâÅ[ÉXÉâÉCÉ_Å[(800)
             flColorSlider* colorSlider800 = NULL; flColorSlider* colorSlider801 = NULL; flColorSlider* colorSlider802 = NULL; flColorSlider* colorSlider803 = NULL;
             flColorSlider* colorSlider804 = NULL; flColorSlider* colorSlider805 = NULL; flColorSlider* colorSlider806 = NULL; flColorSlider* colorSlider807 = NULL;
             flColorSlider* colorSlider808 = NULL; flColorSlider* colorSlider809 = NULL;
@@ -627,7 +627,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(000)
+            //Vec3ÉXÉâÉCÉ_Å[(000)
             flVec3Slider* vec3Slider000 = NULL; flVec3Slider* vec3Slider001 = NULL; flVec3Slider* vec3Slider002 = NULL; flVec3Slider* vec3Slider003 = NULL;
             flVec3Slider* vec3Slider004 = NULL; flVec3Slider* vec3Slider005 = NULL; flVec3Slider* vec3Slider006 = NULL; flVec3Slider* vec3Slider007 = NULL;
             flVec3Slider* vec3Slider008 = NULL; flVec3Slider* vec3Slider009 = NULL;
@@ -637,7 +637,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider020 = NULL; flVec3Slider* vec3Slider021 = NULL; flVec3Slider* vec3Slider022 = NULL; flVec3Slider* vec3Slider023 = NULL;
             flVec3Slider* vec3Slider024 = NULL; flVec3Slider* vec3Slider025 = NULL; flVec3Slider* vec3Slider026 = NULL; flVec3Slider* vec3Slider027 = NULL;
             flVec3Slider* vec3Slider028 = NULL; flVec3Slider* vec3Slider029 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(100)
+            //Vec3ÉXÉâÉCÉ_Å[(100)
             flVec3Slider* vec3Slider100 = NULL; flVec3Slider* vec3Slider101 = NULL; flVec3Slider* vec3Slider102 = NULL; flVec3Slider* vec3Slider103 = NULL;
             flVec3Slider* vec3Slider104 = NULL; flVec3Slider* vec3Slider105 = NULL; flVec3Slider* vec3Slider106 = NULL; flVec3Slider* vec3Slider107 = NULL;
             flVec3Slider* vec3Slider108 = NULL; flVec3Slider* vec3Slider109;
@@ -647,7 +647,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider120 = NULL; flVec3Slider* vec3Slider121 = NULL; flVec3Slider* vec3Slider122 = NULL; flVec3Slider* vec3Slider123 = NULL;
             flVec3Slider* vec3Slider124 = NULL; flVec3Slider* vec3Slider125 = NULL; flVec3Slider* vec3Slider126 = NULL; flVec3Slider* vec3Slider127 = NULL;
             flVec3Slider* vec3Slider128 = NULL; flVec3Slider* vec3Slider129 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(200)
+            //Vec3ÉXÉâÉCÉ_Å[(200)
             flVec3Slider* vec3Slider200 = NULL; flVec3Slider* vec3Slider201 = NULL; flVec3Slider* vec3Slider202 = NULL; flVec3Slider* vec3Slider203 = NULL;
             flVec3Slider* vec3Slider204 = NULL; flVec3Slider* vec3Slider205 = NULL; flVec3Slider* vec3Slider206 = NULL; flVec3Slider* vec3Slider207 = NULL;
             flVec3Slider* vec3Slider208 = NULL; flVec3Slider* vec3Slider209 = NULL;
@@ -657,7 +657,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider220 = NULL; flVec3Slider* vec3Slider221 = NULL; flVec3Slider* vec3Slider222 = NULL; flVec3Slider* vec3Slider223 = NULL;
             flVec3Slider* vec3Slider224 = NULL; flVec3Slider* vec3Slider225 = NULL; flVec3Slider* vec3Slider226 = NULL; flVec3Slider* vec3Slider227 = NULL;
             flVec3Slider* vec3Slider228 = NULL; flVec3Slider* vec3Slider229 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(300)
+            //Vec3ÉXÉâÉCÉ_Å[(300)
             flVec3Slider* vec3Slider300 = NULL; flVec3Slider* vec3Slider301 = NULL; flVec3Slider* vec3Slider302 = NULL; flVec3Slider* vec3Slider303 = NULL;
             flVec3Slider* vec3Slider304 = NULL; flVec3Slider* vec3Slider305 = NULL; flVec3Slider* vec3Slider306 = NULL; flVec3Slider* vec3Slider307 = NULL;
             flVec3Slider* vec3Slider308 = NULL; flVec3Slider* vec3Slider309 = NULL;
@@ -667,7 +667,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider320 = NULL; flVec3Slider* vec3Slider321 = NULL; flVec3Slider* vec3Slider322 = NULL; flVec3Slider* vec3Slider323 = NULL;
             flVec3Slider* vec3Slider324 = NULL; flVec3Slider* vec3Slider325 = NULL; flVec3Slider* vec3Slider326 = NULL; flVec3Slider* vec3Slider327 = NULL;
             flVec3Slider* vec3Slider328 = NULL; flVec3Slider* vec3Slider329 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(400)
+            //Vec3ÉXÉâÉCÉ_Å[(400)
             flVec3Slider* vec3Slider400 = NULL; flVec3Slider* vec3Slider401 = NULL; flVec3Slider* vec3Slider402 = NULL; flVec3Slider* vec3Slider403 = NULL;
             flVec3Slider* vec3Slider404 = NULL; flVec3Slider* vec3Slider405 = NULL; flVec3Slider* vec3Slider406 = NULL; flVec3Slider* vec3Slider407 = NULL;
             flVec3Slider* vec3Slider408 = NULL; flVec3Slider* vec3Slider409 = NULL;
@@ -677,7 +677,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider420 = NULL; flVec3Slider* vec3Slider421 = NULL; flVec3Slider* vec3Slider422 = NULL; flVec3Slider* vec3Slider423 = NULL;
             flVec3Slider* vec3Slider424 = NULL; flVec3Slider* vec3Slider425 = NULL; flVec3Slider* vec3Slider426 = NULL; flVec3Slider* vec3Slider427 = NULL;
             flVec3Slider* vec3Slider428 = NULL; flVec3Slider* vec3Slider429 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(500)
+            //Vec3ÉXÉâÉCÉ_Å[(500)
             flVec3Slider* vec3Slider500 = NULL; flVec3Slider* vec3Slider501 = NULL; flVec3Slider* vec3Slider502 = NULL; flVec3Slider* vec3Slider503 = NULL;
             flVec3Slider* vec3Slider504 = NULL; flVec3Slider* vec3Slider505 = NULL; flVec3Slider* vec3Slider506 = NULL; flVec3Slider* vec3Slider507 = NULL;
             flVec3Slider* vec3Slider508 = NULL; flVec3Slider* vec3Slider509 = NULL;
@@ -687,7 +687,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider520 = NULL; flVec3Slider* vec3Slider521 = NULL; flVec3Slider* vec3Slider522 = NULL; flVec3Slider* vec3Slider523 = NULL;
             flVec3Slider* vec3Slider524 = NULL; flVec3Slider* vec3Slider525 = NULL; flVec3Slider* vec3Slider526 = NULL; flVec3Slider* vec3Slider527 = NULL;
             flVec3Slider* vec3Slider528 = NULL; flVec3Slider* vec3Slider529;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(600)
+            //Vec3ÉXÉâÉCÉ_Å[(600)
             flVec3Slider* vec3Slider600 = NULL; flVec3Slider* vec3Slider601 = NULL; flVec3Slider* vec3Slider602 = NULL; flVec3Slider* vec3Slider603 = NULL;
             flVec3Slider* vec3Slider604 = NULL; flVec3Slider* vec3Slider605 = NULL; flVec3Slider* vec3Slider606 = NULL; flVec3Slider* vec3Slider607 = NULL;
             flVec3Slider* vec3Slider608 = NULL; flVec3Slider* vec3Slider609 = NULL;
@@ -697,7 +697,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider620 = NULL; flVec3Slider* vec3Slider621 = NULL; flVec3Slider* vec3Slider622 = NULL; flVec3Slider* vec3Slider623 = NULL;
             flVec3Slider* vec3Slider624 = NULL; flVec3Slider* vec3Slider625 = NULL; flVec3Slider* vec3Slider626 = NULL; flVec3Slider* vec3Slider627 = NULL;
             flVec3Slider* vec3Slider628 = NULL; flVec3Slider* vec3Slider629 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(700)
+            //Vec3ÉXÉâÉCÉ_Å[(700)
             flVec3Slider* vec3Slider700 = NULL; flVec3Slider* vec3Slider701 = NULL; flVec3Slider* vec3Slider702 = NULL; flVec3Slider* vec3Slider703 = NULL;
             flVec3Slider* vec3Slider704 = NULL; flVec3Slider* vec3Slider705 = NULL; flVec3Slider* vec3Slider706 = NULL; flVec3Slider* vec3Slider707 = NULL;
             flVec3Slider* vec3Slider708 = NULL; flVec3Slider* vec3Slider709 = NULL;
@@ -707,7 +707,7 @@ namespace fl2d {
             flVec3Slider* vec3Slider720 = NULL; flVec3Slider* vec3Slider721 = NULL; flVec3Slider* vec3Slider722 = NULL; flVec3Slider* vec3Slider723 = NULL;
             flVec3Slider* vec3Slider724 = NULL; flVec3Slider* vec3Slider725 = NULL; flVec3Slider* vec3Slider726 = NULL; flVec3Slider* vec3Slider727 = NULL;
             flVec3Slider* vec3Slider728 = NULL; flVec3Slider* vec3Slider729 = NULL;
-            //Vec3„Çπ„É©„Ç§„ÉÄ„Éº(800)
+            //Vec3ÉXÉâÉCÉ_Å[(800)
             flVec3Slider* vec3Slider800 = NULL; flVec3Slider* vec3Slider801 = NULL; flVec3Slider* vec3Slider802 = NULL; flVec3Slider* vec3Slider803 = NULL;
             flVec3Slider* vec3Slider804 = NULL; flVec3Slider* vec3Slider805 = NULL; flVec3Slider* vec3Slider806 = NULL; flVec3Slider* vec3Slider807 = NULL;
             flVec3Slider* vec3Slider808 = NULL; flVec3Slider* vec3Slider809 = NULL;
@@ -720,7 +720,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(000)
+            //Vec2ÉXÉâÉCÉ_Å[(000)
             flVec2Slider* vec2Slider000 = NULL; flVec2Slider* vec2Slider001 = NULL; flVec2Slider* vec2Slider002 = NULL; flVec2Slider* vec2Slider003 = NULL;
             flVec2Slider* vec2Slider004 = NULL; flVec2Slider* vec2Slider005 = NULL; flVec2Slider* vec2Slider006 = NULL; flVec2Slider* vec2Slider007 = NULL;
             flVec2Slider* vec2Slider008 = NULL; flVec2Slider* vec2Slider009 = NULL;
@@ -730,7 +730,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider020 = NULL; flVec2Slider* vec2Slider021 = NULL; flVec2Slider* vec2Slider022 = NULL; flVec2Slider* vec2Slider023 = NULL;
             flVec2Slider* vec2Slider024 = NULL; flVec2Slider* vec2Slider025 = NULL; flVec2Slider* vec2Slider026 = NULL; flVec2Slider* vec2Slider027 = NULL;
             flVec2Slider* vec2Slider028 = NULL; flVec2Slider* vec2Slider029 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(100)
+            //Vec2ÉXÉâÉCÉ_Å[(100)
             flVec2Slider* vec2Slider100 = NULL; flVec2Slider* vec2Slider101 = NULL; flVec2Slider* vec2Slider102 = NULL; flVec2Slider* vec2Slider103 = NULL;
             flVec2Slider* vec2Slider104 = NULL; flVec2Slider* vec2Slider105 = NULL; flVec2Slider* vec2Slider106 = NULL; flVec2Slider* vec2Slider107 = NULL;
             flVec2Slider* vec2Slider108 = NULL; flVec2Slider* vec2Slider109 = NULL;
@@ -740,7 +740,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider120 = NULL; flVec2Slider* vec2Slider121 = NULL; flVec2Slider* vec2Slider122 = NULL; flVec2Slider* vec2Slider123 = NULL;
             flVec2Slider* vec2Slider124 = NULL; flVec2Slider* vec2Slider125 = NULL; flVec2Slider* vec2Slider126 = NULL; flVec2Slider* vec2Slider127 = NULL;
             flVec2Slider* vec2Slider128 = NULL; flVec2Slider* vec2Slider129 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(200)
+            //Vec2ÉXÉâÉCÉ_Å[(200)
             flVec2Slider* vec2Slider200 = NULL; flVec2Slider* vec2Slider201 = NULL; flVec2Slider* vec2Slider202 = NULL; flVec2Slider* vec2Slider203 = NULL;
             flVec2Slider* vec2Slider204 = NULL; flVec2Slider* vec2Slider205 = NULL; flVec2Slider* vec2Slider206 = NULL; flVec2Slider* vec2Slider207 = NULL;
             flVec2Slider* vec2Slider208 = NULL; flVec2Slider* vec2Slider209 = NULL;
@@ -750,7 +750,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider220 = NULL; flVec2Slider* vec2Slider221 = NULL; flVec2Slider* vec2Slider222 = NULL; flVec2Slider* vec2Slider223 = NULL;
             flVec2Slider* vec2Slider224 = NULL; flVec2Slider* vec2Slider225 = NULL; flVec2Slider* vec2Slider226 = NULL; flVec2Slider* vec2Slider227 = NULL;
             flVec2Slider* vec2Slider228 = NULL; flVec2Slider* vec2Slider229 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(300)
+            //Vec2ÉXÉâÉCÉ_Å[(300)
             flVec2Slider* vec2Slider300 = NULL; flVec2Slider* vec2Slider301 = NULL; flVec2Slider* vec2Slider302 = NULL; flVec2Slider* vec2Slider303 = NULL;
             flVec2Slider* vec2Slider304 = NULL; flVec2Slider* vec2Slider305 = NULL; flVec2Slider* vec2Slider306 = NULL; flVec2Slider* vec2Slider307 = NULL;
             flVec2Slider* vec2Slider308 = NULL; flVec2Slider* vec2Slider309 = NULL;
@@ -760,7 +760,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider320 = NULL; flVec2Slider* vec2Slider321 = NULL; flVec2Slider* vec2Slider322 = NULL; flVec2Slider* vec2Slider323 = NULL;
             flVec2Slider* vec2Slider324 = NULL; flVec2Slider* vec2Slider325 = NULL; flVec2Slider* vec2Slider326 = NULL; flVec2Slider* vec2Slider327 = NULL;
             flVec2Slider* vec2Slider328 = NULL; flVec2Slider* vec2Slider329 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(400)
+            //Vec2ÉXÉâÉCÉ_Å[(400)
             flVec2Slider* vec2Slider400 = NULL; flVec2Slider* vec2Slider401 = NULL; flVec2Slider* vec2Slider402 = NULL; flVec2Slider* vec2Slider403 = NULL;
             flVec2Slider* vec2Slider404 = NULL; flVec2Slider* vec2Slider405 = NULL; flVec2Slider* vec2Slider406 = NULL; flVec2Slider* vec2Slider407 = NULL;
             flVec2Slider* vec2Slider408 = NULL; flVec2Slider* vec2Slider409 = NULL;
@@ -770,7 +770,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider420 = NULL; flVec2Slider* vec2Slider421 = NULL; flVec2Slider* vec2Slider422 = NULL; flVec2Slider* vec2Slider423 = NULL;
             flVec2Slider* vec2Slider424 = NULL; flVec2Slider* vec2Slider425 = NULL; flVec2Slider* vec2Slider426 = NULL; flVec2Slider* vec2Slider427 = NULL;
             flVec2Slider* vec2Slider428 = NULL; flVec2Slider* vec2Slider429 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(500)
+            //Vec2ÉXÉâÉCÉ_Å[(500)
             flVec2Slider* vec2Slider500 = NULL; flVec2Slider* vec2Slider501 = NULL; flVec2Slider* vec2Slider502 = NULL; flVec2Slider* vec2Slider503 = NULL;
             flVec2Slider* vec2Slider504 = NULL; flVec2Slider* vec2Slider505 = NULL; flVec2Slider* vec2Slider506 = NULL; flVec2Slider* vec2Slider507 = NULL;
             flVec2Slider* vec2Slider508 = NULL; flVec2Slider* vec2Slider509 = NULL;
@@ -780,7 +780,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider520 = NULL; flVec2Slider* vec2Slider521 = NULL; flVec2Slider* vec2Slider522 = NULL; flVec2Slider* vec2Slider523 = NULL;
             flVec2Slider* vec2Slider524 = NULL; flVec2Slider* vec2Slider525 = NULL; flVec2Slider* vec2Slider526 = NULL; flVec2Slider* vec2Slider527 = NULL;
             flVec2Slider* vec2Slider528 = NULL; flVec2Slider* vec2Slider529 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(600)
+            //Vec2ÉXÉâÉCÉ_Å[(600)
             flVec2Slider* vec2Slider600 = NULL; flVec2Slider* vec2Slider601 = NULL; flVec2Slider* vec2Slider602 = NULL; flVec2Slider* vec2Slider603 = NULL;
             flVec2Slider* vec2Slider604 = NULL; flVec2Slider* vec2Slider605 = NULL; flVec2Slider* vec2Slider606 = NULL; flVec2Slider* vec2Slider607 = NULL;
             flVec2Slider* vec2Slider608 = NULL; flVec2Slider* vec2Slider609 = NULL;
@@ -790,7 +790,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider620 = NULL; flVec2Slider* vec2Slider621 = NULL; flVec2Slider* vec2Slider622 = NULL; flVec2Slider* vec2Slider623 = NULL;
             flVec2Slider* vec2Slider624 = NULL; flVec2Slider* vec2Slider625 = NULL; flVec2Slider* vec2Slider626 = NULL; flVec2Slider* vec2Slider627 = NULL;
             flVec2Slider* vec2Slider628 = NULL; flVec2Slider* vec2Slider629 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(700)
+            //Vec2ÉXÉâÉCÉ_Å[(700)
             flVec2Slider* vec2Slider700 = NULL; flVec2Slider* vec2Slider701 = NULL; flVec2Slider* vec2Slider702 = NULL; flVec2Slider* vec2Slider703 = NULL;
             flVec2Slider* vec2Slider704 = NULL; flVec2Slider* vec2Slider705 = NULL; flVec2Slider* vec2Slider706 = NULL; flVec2Slider* vec2Slider707 = NULL;
             flVec2Slider* vec2Slider708 = NULL; flVec2Slider* vec2Slider709 = NULL;
@@ -800,7 +800,7 @@ namespace fl2d {
             flVec2Slider* vec2Slider720 = NULL; flVec2Slider* vec2Slider721 = NULL; flVec2Slider* vec2Slider722 = NULL; flVec2Slider* vec2Slider723 = NULL;
             flVec2Slider* vec2Slider724 = NULL; flVec2Slider* vec2Slider725 = NULL; flVec2Slider* vec2Slider726 = NULL; flVec2Slider* vec2Slider727 = NULL;
             flVec2Slider* vec2Slider728 = NULL; flVec2Slider* vec2Slider729 = NULL;
-            //Vec2„Çπ„É©„Ç§„ÉÄ„Éº(800)
+            //Vec2ÉXÉâÉCÉ_Å[(800)
             flVec2Slider* vec2Slider800 = NULL; flVec2Slider* vec2Slider801 = NULL; flVec2Slider* vec2Slider802 = NULL; flVec2Slider* vec2Slider803 = NULL;
             flVec2Slider* vec2Slider804 = NULL; flVec2Slider* vec2Slider805 = NULL; flVec2Slider* vec2Slider806 = NULL; flVec2Slider* vec2Slider807 = NULL;
             flVec2Slider* vec2Slider808 = NULL; flVec2Slider* vec2Slider809 = NULL;
@@ -813,7 +813,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„Éú„Çø„É≥(000)
+            //É{É^Éì(000)
             flNumericDialer* dialer000 = NULL; flNumericDialer* dialer001 = NULL; flNumericDialer* dialer002 = NULL; flNumericDialer* dialer003 = NULL; flNumericDialer* dialer004 = NULL;
             flNumericDialer* dialer005 = NULL; flNumericDialer* dialer006 = NULL; flNumericDialer* dialer007 = NULL; flNumericDialer* dialer008 = NULL; flNumericDialer* dialer009 = NULL;
             flNumericDialer* dialer010 = NULL; flNumericDialer* dialer011 = NULL; flNumericDialer* dialer012 = NULL; flNumericDialer* dialer013 = NULL; flNumericDialer* dialer014 = NULL;
@@ -822,7 +822,7 @@ namespace fl2d {
             flNumericDialer* dialer025 = NULL; flNumericDialer* dialer026 = NULL; flNumericDialer* dialer027 = NULL; flNumericDialer* dialer028 = NULL; flNumericDialer* dialer029 = NULL;
             flNumericDialer* dialer030 = NULL; flNumericDialer* dialer031 = NULL; flNumericDialer* dialer032 = NULL; flNumericDialer* dialer033 = NULL; flNumericDialer* dialer034 = NULL;
             flNumericDialer* dialer035 = NULL; flNumericDialer* dialer036 = NULL; flNumericDialer* dialer037 = NULL; flNumericDialer* dialer038 = NULL; flNumericDialer* dialer039 = NULL;
-            //„Éú„Çø„É≥(100)
+            //É{É^Éì(100)
             flNumericDialer* dialer100 = NULL; flNumericDialer* dialer101 = NULL; flNumericDialer* dialer102 = NULL; flNumericDialer* dialer103 = NULL; flNumericDialer* dialer104 = NULL;
             flNumericDialer* dialer105 = NULL; flNumericDialer* dialer106 = NULL; flNumericDialer* dialer107 = NULL; flNumericDialer* dialer108 = NULL; flNumericDialer* dialer109 = NULL;
             flNumericDialer* dialer110 = NULL; flNumericDialer* dialer111 = NULL; flNumericDialer* dialer112 = NULL; flNumericDialer* dialer113 = NULL; flNumericDialer* dialer114 = NULL;
@@ -835,7 +835,7 @@ namespace fl2d {
             flNumericDialer* dialer145 = NULL; flNumericDialer* dialer146 = NULL; flNumericDialer* dialer147 = NULL; flNumericDialer* dialer148 = NULL; flNumericDialer* dialer149 = NULL;
             flNumericDialer* dialer150 = NULL; flNumericDialer* dialer151 = NULL; flNumericDialer* dialer152 = NULL; flNumericDialer* dialer153 = NULL; flNumericDialer* dialer154 = NULL;
             flNumericDialer* dialer155 = NULL; flNumericDialer* dialer156 = NULL; flNumericDialer* dialer157 = NULL; flNumericDialer* dialer158 = NULL; flNumericDialer* dialer159 = NULL;
-            //„Éú„Çø„É≥(200)
+            //É{É^Éì(200)
             flNumericDialer* dialer200 = NULL; flNumericDialer* dialer201 = NULL; flNumericDialer* dialer202 = NULL; flNumericDialer* dialer203 = NULL; flNumericDialer* dialer204 = NULL;
             flNumericDialer* dialer205 = NULL; flNumericDialer* dialer206 = NULL; flNumericDialer* dialer207 = NULL; flNumericDialer* dialer208 = NULL; flNumericDialer* dialer209 = NULL;
             flNumericDialer* dialer210 = NULL; flNumericDialer* dialer211 = NULL; flNumericDialer* dialer212 = NULL; flNumericDialer* dialer213 = NULL; flNumericDialer* dialer214 = NULL;
@@ -844,7 +844,7 @@ namespace fl2d {
             flNumericDialer* dialer225 = NULL; flNumericDialer* dialer226 = NULL; flNumericDialer* dialer227 = NULL; flNumericDialer* dialer228 = NULL; flNumericDialer* dialer229 = NULL;
             flNumericDialer* dialer230 = NULL; flNumericDialer* dialer231 = NULL; flNumericDialer* dialer232 = NULL; flNumericDialer* dialer233 = NULL; flNumericDialer* dialer234 = NULL;
             flNumericDialer* dialer235 = NULL; flNumericDialer* dialer236 = NULL; flNumericDialer* dialer237 = NULL; flNumericDialer* dialer238 = NULL; flNumericDialer* dialer239 = NULL;
-            //„Éú„Çø„É≥(300)
+            //É{É^Éì(300)
             flNumericDialer* dialer300 = NULL; flNumericDialer* dialer301 = NULL; flNumericDialer* dialer302 = NULL; flNumericDialer* dialer303 = NULL; flNumericDialer* dialer304 = NULL;
             flNumericDialer* dialer305 = NULL; flNumericDialer* dialer306 = NULL; flNumericDialer* dialer307 = NULL; flNumericDialer* dialer308 = NULL; flNumericDialer* dialer309 = NULL;
             flNumericDialer* dialer310 = NULL; flNumericDialer* dialer311 = NULL; flNumericDialer* dialer312 = NULL; flNumericDialer* dialer313 = NULL; flNumericDialer* dialer314 = NULL;
@@ -853,7 +853,7 @@ namespace fl2d {
             flNumericDialer* dialer325 = NULL; flNumericDialer* dialer326 = NULL; flNumericDialer* dialer327 = NULL; flNumericDialer* dialer328 = NULL; flNumericDialer* dialer329 = NULL;
             flNumericDialer* dialer330 = NULL; flNumericDialer* dialer331 = NULL; flNumericDialer* dialer332 = NULL; flNumericDialer* dialer333 = NULL; flNumericDialer* dialer334 = NULL;
             flNumericDialer* dialer335 = NULL; flNumericDialer* dialer336 = NULL; flNumericDialer* dialer337 = NULL; flNumericDialer* dialer338 = NULL; flNumericDialer* dialer339 = NULL;
-            //„Éú„Çø„É≥(400)
+            //É{É^Éì(400)
             flNumericDialer* dialer400 = NULL; flNumericDialer* dialer401 = NULL; flNumericDialer* dialer402 = NULL; flNumericDialer* dialer403 = NULL; flNumericDialer* dialer404 = NULL;
             flNumericDialer* dialer405 = NULL; flNumericDialer* dialer406 = NULL; flNumericDialer* dialer407 = NULL; flNumericDialer* dialer408 = NULL; flNumericDialer* dialer409 = NULL;
             flNumericDialer* dialer410 = NULL; flNumericDialer* dialer411 = NULL; flNumericDialer* dialer412 = NULL; flNumericDialer* dialer413 = NULL; flNumericDialer* dialer414 = NULL;
@@ -862,7 +862,7 @@ namespace fl2d {
             flNumericDialer* dialer425 = NULL; flNumericDialer* dialer426 = NULL; flNumericDialer* dialer427 = NULL; flNumericDialer* dialer428 = NULL; flNumericDialer* dialer429 = NULL;
             flNumericDialer* dialer430 = NULL; flNumericDialer* dialer431 = NULL; flNumericDialer* dialer432 = NULL; flNumericDialer* dialer433 = NULL; flNumericDialer* dialer434 = NULL;
             flNumericDialer* dialer435 = NULL; flNumericDialer* dialer436 = NULL; flNumericDialer* dialer437 = NULL; flNumericDialer* dialer438 = NULL; flNumericDialer* dialer439 = NULL;
-            //„Éú„Çø„É≥(500)
+            //É{É^Éì(500)
             flNumericDialer* dialer500 = NULL; flNumericDialer* dialer501 = NULL; flNumericDialer* dialer502 = NULL; flNumericDialer* dialer503 = NULL; flNumericDialer* dialer504 = NULL;
             flNumericDialer* dialer505 = NULL; flNumericDialer* dialer506 = NULL; flNumericDialer* dialer507 = NULL; flNumericDialer* dialer508 = NULL; flNumericDialer* dialer509 = NULL;
             flNumericDialer* dialer510 = NULL; flNumericDialer* dialer511 = NULL; flNumericDialer* dialer512 = NULL; flNumericDialer* dialer513 = NULL; flNumericDialer* dialer514 = NULL;
@@ -871,7 +871,7 @@ namespace fl2d {
             flNumericDialer* dialer525 = NULL; flNumericDialer* dialer526 = NULL; flNumericDialer* dialer527 = NULL; flNumericDialer* dialer528 = NULL; flNumericDialer* dialer529 = NULL;
             flNumericDialer* dialer530 = NULL; flNumericDialer* dialer531 = NULL; flNumericDialer* dialer532 = NULL; flNumericDialer* dialer533 = NULL; flNumericDialer* dialer534 = NULL;
             flNumericDialer* dialer535 = NULL; flNumericDialer* dialer536 = NULL; flNumericDialer* dialer537 = NULL; flNumericDialer* dialer538 = NULL; flNumericDialer* dialer539 = NULL;
-            //„Éú„Çø„É≥(600)
+            //É{É^Éì(600)
             flNumericDialer* dialer600 = NULL; flNumericDialer* dialer601 = NULL; flNumericDialer* dialer602 = NULL; flNumericDialer* dialer603 = NULL; flNumericDialer* dialer604 = NULL;
             flNumericDialer* dialer605 = NULL; flNumericDialer* dialer606 = NULL; flNumericDialer* dialer607 = NULL; flNumericDialer* dialer608 = NULL; flNumericDialer* dialer609 = NULL;
             flNumericDialer* dialer610 = NULL; flNumericDialer* dialer611 = NULL; flNumericDialer* dialer612 = NULL; flNumericDialer* dialer613 = NULL; flNumericDialer* dialer614 = NULL;
@@ -880,7 +880,7 @@ namespace fl2d {
             flNumericDialer* dialer625 = NULL; flNumericDialer* dialer626 = NULL; flNumericDialer* dialer627 = NULL; flNumericDialer* dialer628 = NULL; flNumericDialer* dialer629 = NULL;
             flNumericDialer* dialer630 = NULL; flNumericDialer* dialer631 = NULL; flNumericDialer* dialer632 = NULL; flNumericDialer* dialer633 = NULL; flNumericDialer* dialer634 = NULL;
             flNumericDialer* dialer635 = NULL; flNumericDialer* dialer636 = NULL; flNumericDialer* dialer637 = NULL; flNumericDialer* dialer638 = NULL; flNumericDialer* dialer639 = NULL;
-            //„Éú„Çø„É≥(700)
+            //É{É^Éì(700)
             flNumericDialer* dialer700 = NULL; flNumericDialer* dialer701 = NULL; flNumericDialer* dialer702 = NULL; flNumericDialer* dialer703 = NULL; flNumericDialer* dialer704 = NULL;
             flNumericDialer* dialer705 = NULL; flNumericDialer* dialer706 = NULL; flNumericDialer* dialer707 = NULL; flNumericDialer* dialer708 = NULL; flNumericDialer* dialer709 = NULL;
             flNumericDialer* dialer710 = NULL; flNumericDialer* dialer711 = NULL; flNumericDialer* dialer712 = NULL; flNumericDialer* dialer713 = NULL; flNumericDialer* dialer714 = NULL;
@@ -889,7 +889,7 @@ namespace fl2d {
             flNumericDialer* dialer725 = NULL; flNumericDialer* dialer726 = NULL; flNumericDialer* dialer727 = NULL; flNumericDialer* dialer728 = NULL; flNumericDialer* dialer729 = NULL;
             flNumericDialer* dialer730 = NULL; flNumericDialer* dialer731 = NULL; flNumericDialer* dialer732 = NULL; flNumericDialer* dialer733 = NULL; flNumericDialer* dialer734 = NULL;
             flNumericDialer* dialer735 = NULL; flNumericDialer* dialer736 = NULL; flNumericDialer* dialer737 = NULL; flNumericDialer* dialer738 = NULL; flNumericDialer* dialer739 = NULL;
-            //„Éú„Çø„É≥(800)
+            //É{É^Éì(800)
             flNumericDialer* dialer800 = NULL; flNumericDialer* dialer801 = NULL; flNumericDialer* dialer802 = NULL; flNumericDialer* dialer803 = NULL; flNumericDialer* dialer804 = NULL;
             flNumericDialer* dialer805 = NULL; flNumericDialer* dialer806 = NULL; flNumericDialer* dialer807 = NULL; flNumericDialer* dialer808 = NULL; flNumericDialer* dialer809 = NULL;
             flNumericDialer* dialer810 = NULL; flNumericDialer* dialer811 = NULL; flNumericDialer* dialer812 = NULL; flNumericDialer* dialer813 = NULL; flNumericDialer* dialer814 = NULL;
@@ -898,7 +898,7 @@ namespace fl2d {
             flNumericDialer* dialer825 = NULL; flNumericDialer* dialer826 = NULL; flNumericDialer* dialer827 = NULL; flNumericDialer* dialer828 = NULL; flNumericDialer* dialer829 = NULL;
             flNumericDialer* dialer830 = NULL; flNumericDialer* dialer831 = NULL; flNumericDialer* dialer832 = NULL; flNumericDialer* dialer833 = NULL; flNumericDialer* dialer834 = NULL;
             flNumericDialer* dialer835 = NULL; flNumericDialer* dialer836 = NULL; flNumericDialer* dialer837 = NULL; flNumericDialer* dialer838 = NULL; flNumericDialer* dialer839 = NULL;
-            //„Éú„Çø„É≥(900)
+            //É{É^Éì(900)
             flNumericDialer* dialer900 = NULL; flNumericDialer* dialer901 = NULL; flNumericDialer* dialer902 = NULL; flNumericDialer* dialer903 = NULL; flNumericDialer* dialer904 = NULL;
             flNumericDialer* dialer905 = NULL; flNumericDialer* dialer906 = NULL; flNumericDialer* dialer907 = NULL; flNumericDialer* dialer908 = NULL; flNumericDialer* dialer909 = NULL;
             flNumericDialer* dialer910 = NULL; flNumericDialer* dialer911 = NULL; flNumericDialer* dialer912 = NULL; flNumericDialer* dialer913 = NULL; flNumericDialer* dialer914 = NULL;
@@ -910,37 +910,37 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //2D„Éë„ÉÉ„Éâ(000)
+            //2DÉpÉbÉh(000)
             flPad2D* pad000 = NULL; flPad2D* pad001 = NULL; flPad2D* pad002 = NULL; flPad2D* pad003 = NULL;
             flPad2D* pad004 = NULL; flPad2D* pad005 = NULL; flPad2D* pad006 = NULL; flPad2D* pad007 = NULL;
             flPad2D* pad008 = NULL; flPad2D* pad009 = NULL; flPad2D* pad010 = NULL; flPad2D* pad011 = NULL;
             flPad2D* pad012 = NULL; flPad2D* pad013 = NULL; flPad2D* pad014 = NULL; flPad2D* pad015 = NULL;
             flPad2D* pad016 = NULL; flPad2D* pad017 = NULL; flPad2D* pad018 = NULL; flPad2D* pad019 = NULL;
-            //2D„Éë„ÉÉ„Éâ(100)
+            //2DÉpÉbÉh(100)
             flPad2D* pad100 = NULL; flPad2D* pad101 = NULL; flPad2D* pad102 = NULL; flPad2D* pad103 = NULL;
             flPad2D* pad104 = NULL; flPad2D* pad105 = NULL; flPad2D* pad106 = NULL; flPad2D* pad107 = NULL;
             flPad2D* pad108 = NULL; flPad2D* pad109 = NULL; flPad2D* pad110 = NULL; flPad2D* pad111 = NULL;
             flPad2D* pad112 = NULL; flPad2D* pad113 = NULL; flPad2D* pad114 = NULL; flPad2D* pad115 = NULL;
             flPad2D* pad116 = NULL; flPad2D* pad117 = NULL; flPad2D* pad118 = NULL; flPad2D* pad119 = NULL;
-            //2D„Éë„ÉÉ„Éâ(200)
+            //2DÉpÉbÉh(200)
             flPad2D* pad200 = NULL; flPad2D* pad201 = NULL; flPad2D* pad202 = NULL; flPad2D* pad203 = NULL;
             flPad2D* pad204 = NULL; flPad2D* pad205 = NULL; flPad2D* pad206 = NULL; flPad2D* pad207 = NULL;
             flPad2D* pad208 = NULL; flPad2D* pad209 = NULL; flPad2D* pad210 = NULL; flPad2D* pad211 = NULL;
             flPad2D* pad212 = NULL; flPad2D* pad213 = NULL; flPad2D* pad214 = NULL; flPad2D* pad215 = NULL;
             flPad2D* pad216 = NULL; flPad2D* pad217 = NULL; flPad2D* pad218 = NULL; flPad2D* pad219 = NULL;
-            //2D„Éë„ÉÉ„Éâ(300)
+            //2DÉpÉbÉh(300)
             flPad2D* pad300 = NULL; flPad2D* pad301 = NULL; flPad2D* pad302 = NULL; flPad2D* pad303 = NULL;
             flPad2D* pad304 = NULL; flPad2D* pad305 = NULL; flPad2D* pad306 = NULL; flPad2D* pad307 = NULL;
             flPad2D* pad308 = NULL; flPad2D* pad309 = NULL; flPad2D* pad310 = NULL; flPad2D* pad311 = NULL;
             flPad2D* pad312 = NULL; flPad2D* pad313 = NULL; flPad2D* pad314 = NULL; flPad2D* pad315 = NULL;
             flPad2D* pad316 = NULL; flPad2D* pad317 = NULL; flPad2D* pad318 = NULL; flPad2D* pad319 = NULL;
-            //2D„Éë„ÉÉ„Éâ(400)
+            //2DÉpÉbÉh(400)
             flPad2D* pad400 = NULL; flPad2D* pad401 = NULL; flPad2D* pad402 = NULL; flPad2D* pad403 = NULL;
             flPad2D* pad404 = NULL; flPad2D* pad405 = NULL; flPad2D* pad406 = NULL; flPad2D* pad407 = NULL;
             flPad2D* pad408 = NULL; flPad2D* pad409 = NULL; flPad2D* pad410 = NULL; flPad2D* pad411 = NULL;
             flPad2D* pad412 = NULL; flPad2D* pad413 = NULL; flPad2D* pad414 = NULL; flPad2D* pad415 = NULL;
             flPad2D* pad416 = NULL; flPad2D* pad417 = NULL; flPad2D* pad418 = NULL; flPad2D* pad419 = NULL;
-            //2D„Éë„ÉÉ„Éâ(500)
+            //2DÉpÉbÉh(500)
             flPad2D* pad500 = NULL; flPad2D* pad501 = NULL; flPad2D* pad502 = NULL; flPad2D* pad503 = NULL;
             flPad2D* pad504 = NULL; flPad2D* pad505 = NULL; flPad2D* pad506 = NULL; flPad2D* pad507 = NULL;
             flPad2D* pad508 = NULL; flPad2D* pad509 = NULL; flPad2D* pad510 = NULL; flPad2D* pad511 = NULL;
@@ -949,7 +949,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(000)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(000)
             flCircleColorPicker* colorPicker000 = NULL; flCircleColorPicker* colorPicker001 = NULL; flCircleColorPicker* colorPicker002 = NULL;
             flCircleColorPicker* colorPicker003 = NULL; flCircleColorPicker* colorPicker004 = NULL; flCircleColorPicker* colorPicker005 = NULL;
             flCircleColorPicker* colorPicker006 = NULL; flCircleColorPicker* colorPicker007 = NULL; flCircleColorPicker* colorPicker008 = NULL;
@@ -957,7 +957,7 @@ namespace fl2d {
             flCircleColorPicker* colorPicker012 = NULL; flCircleColorPicker* colorPicker013 = NULL; flCircleColorPicker* colorPicker014 = NULL;
             flCircleColorPicker* colorPicker015 = NULL; flCircleColorPicker* colorPicker016 = NULL; flCircleColorPicker* colorPicker017 = NULL;
             flCircleColorPicker* colorPicker018 = NULL; flCircleColorPicker* colorPicker019 = NULL;
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(100)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(100)
             flCircleColorPicker* colorPicker100 = NULL; flCircleColorPicker* colorPicker101 = NULL; flCircleColorPicker* colorPicker102 = NULL;
             flCircleColorPicker* colorPicker103 = NULL; flCircleColorPicker* colorPicker104 = NULL; flCircleColorPicker* colorPicker105 = NULL;
             flCircleColorPicker* colorPicker106 = NULL; flCircleColorPicker* colorPicker107 = NULL; flCircleColorPicker* colorPicker108 = NULL;
@@ -965,7 +965,7 @@ namespace fl2d {
             flCircleColorPicker* colorPicker112 = NULL; flCircleColorPicker* colorPicker113 = NULL; flCircleColorPicker* colorPicker114 = NULL;
             flCircleColorPicker* colorPicker115 = NULL; flCircleColorPicker* colorPicker116 = NULL; flCircleColorPicker* colorPicker117 = NULL;
             flCircleColorPicker* colorPicker118 = NULL; flCircleColorPicker* colorPicker119 = NULL;
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(200)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(200)
             flCircleColorPicker* colorPicker200 = NULL; flCircleColorPicker* colorPicker201 = NULL; flCircleColorPicker* colorPicker202 = NULL;
             flCircleColorPicker* colorPicker203 = NULL; flCircleColorPicker* colorPicker204 = NULL; flCircleColorPicker* colorPicker205 = NULL;
             flCircleColorPicker* colorPicker206 = NULL; flCircleColorPicker* colorPicker207 = NULL; flCircleColorPicker* colorPicker208 = NULL;
@@ -973,7 +973,7 @@ namespace fl2d {
             flCircleColorPicker* colorPicker212 = NULL; flCircleColorPicker* colorPicker213 = NULL; flCircleColorPicker* colorPicker214 = NULL;
             flCircleColorPicker* colorPicker215 = NULL; flCircleColorPicker* colorPicker216 = NULL; flCircleColorPicker* colorPicker217 = NULL;
             flCircleColorPicker* colorPicker218 = NULL; flCircleColorPicker* colorPicker219 = NULL;
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(300)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(300)
             flCircleColorPicker* colorPicker300 = NULL; flCircleColorPicker* colorPicker301 = NULL; flCircleColorPicker* colorPicker302 = NULL;
             flCircleColorPicker* colorPicker303 = NULL; flCircleColorPicker* colorPicker304 = NULL; flCircleColorPicker* colorPicker305 = NULL;
             flCircleColorPicker* colorPicker306 = NULL; flCircleColorPicker* colorPicker307 = NULL; flCircleColorPicker* colorPicker308 = NULL;
@@ -981,7 +981,7 @@ namespace fl2d {
             flCircleColorPicker* colorPicker312 = NULL; flCircleColorPicker* colorPicker313 = NULL; flCircleColorPicker* colorPicker314 = NULL;
             flCircleColorPicker* colorPicker315 = NULL; flCircleColorPicker* colorPicker316 = NULL; flCircleColorPicker* colorPicker317 = NULL;
             flCircleColorPicker* colorPicker318 = NULL; flCircleColorPicker* colorPicker319 = NULL;
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(400)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(400)
             flCircleColorPicker* colorPicker400 = NULL; flCircleColorPicker* colorPicker401 = NULL; flCircleColorPicker* colorPicker402 = NULL;
             flCircleColorPicker* colorPicker403 = NULL; flCircleColorPicker* colorPicker404 = NULL; flCircleColorPicker* colorPicker405 = NULL;
             flCircleColorPicker* colorPicker406 = NULL; flCircleColorPicker* colorPicker407 = NULL; flCircleColorPicker* colorPicker408 = NULL;
@@ -989,7 +989,7 @@ namespace fl2d {
             flCircleColorPicker* colorPicker412 = NULL; flCircleColorPicker* colorPicker413 = NULL; flCircleColorPicker* colorPicker414 = NULL;
             flCircleColorPicker* colorPicker415 = NULL; flCircleColorPicker* colorPicker416 = NULL; flCircleColorPicker* colorPicker417 = NULL;
             flCircleColorPicker* colorPicker418 = NULL; flCircleColorPicker* colorPicker419 = NULL;
-            //„Ç´„É©„Éº„Éî„ÉÉ„Ç´„Éº(500)
+            //ÉJÉâÅ[ÉsÉbÉJÅ[(500)
             flCircleColorPicker* colorPicker500 = NULL; flCircleColorPicker* colorPicker501 = NULL; flCircleColorPicker* colorPicker502 = NULL;
             flCircleColorPicker* colorPicker503 = NULL; flCircleColorPicker* colorPicker504 = NULL; flCircleColorPicker* colorPicker505 = NULL;
             flCircleColorPicker* colorPicker506 = NULL; flCircleColorPicker* colorPicker507 = NULL; flCircleColorPicker* colorPicker508 = NULL;
@@ -1000,7 +1000,7 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(000)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(000)
             flCheckBox* check000 = NULL; flCheckBox* check001 = NULL; flCheckBox* check002 = NULL;
             flCheckBox* check003 = NULL; flCheckBox* check004 = NULL; flCheckBox* check005 = NULL;
             flCheckBox* check006 = NULL; flCheckBox* check007 = NULL; flCheckBox* check008 = NULL;
@@ -1021,7 +1021,7 @@ namespace fl2d {
             flCheckBox* check043 = NULL; flCheckBox* check044 = NULL; flCheckBox* check045 = NULL;
             flCheckBox* check046 = NULL; flCheckBox* check047 = NULL; flCheckBox* check048 = NULL;
             flCheckBox* check049 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(100)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(100)
             flCheckBox* check100 = NULL; flCheckBox* check101 = NULL; flCheckBox* check102 = NULL;
             flCheckBox* check103 = NULL; flCheckBox* check104 = NULL; flCheckBox* check105 = NULL;
             flCheckBox* check106 = NULL; flCheckBox* check107 = NULL; flCheckBox* check108 = NULL;
@@ -1062,7 +1062,7 @@ namespace fl2d {
             flCheckBox* check193 = NULL; flCheckBox* check194 = NULL; flCheckBox* check195 = NULL;
             flCheckBox* check196 = NULL; flCheckBox* check197 = NULL; flCheckBox* check198 = NULL;
             flCheckBox* check199 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(200)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(200)
             flCheckBox* check200 = NULL; flCheckBox* check201 = NULL; flCheckBox* check202 = NULL;
             flCheckBox* check203 = NULL; flCheckBox* check204 = NULL; flCheckBox* check205 = NULL;
             flCheckBox* check206 = NULL; flCheckBox* check207 = NULL; flCheckBox* check208 = NULL;
@@ -1079,7 +1079,7 @@ namespace fl2d {
             flCheckBox* check233 = NULL; flCheckBox* check234 = NULL; flCheckBox* check235 = NULL;
             flCheckBox* check236 = NULL; flCheckBox* check237 = NULL; flCheckBox* check238 = NULL;
             flCheckBox* check239 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(300)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(300)
             flCheckBox* check300 = NULL; flCheckBox* check301 = NULL; flCheckBox* check302 = NULL;
             flCheckBox* check303 = NULL; flCheckBox* check304 = NULL; flCheckBox* check305 = NULL;
             flCheckBox* check306 = NULL; flCheckBox* check307 = NULL; flCheckBox* check308 = NULL;
@@ -1104,7 +1104,7 @@ namespace fl2d {
             flCheckBox* check353 = NULL; flCheckBox* check354 = NULL; flCheckBox* check355 = NULL;
             flCheckBox* check356 = NULL; flCheckBox* check357 = NULL; flCheckBox* check358 = NULL;
             flCheckBox* check359 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(400)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(400)
             flCheckBox* check400 = NULL; flCheckBox* check401 = NULL; flCheckBox* check402 = NULL;
             flCheckBox* check403 = NULL; flCheckBox* check404 = NULL; flCheckBox* check405 = NULL;
             flCheckBox* check406 = NULL; flCheckBox* check407 = NULL; flCheckBox* check408 = NULL;
@@ -1121,7 +1121,7 @@ namespace fl2d {
             flCheckBox* check433 = NULL; flCheckBox* check434 = NULL; flCheckBox* check435 = NULL;
             flCheckBox* check436 = NULL; flCheckBox* check437 = NULL; flCheckBox* check438 = NULL;
             flCheckBox* check439 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(500)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(500)
             flCheckBox* check500 = NULL; flCheckBox* check501 = NULL; flCheckBox* check502 = NULL;
             flCheckBox* check503 = NULL; flCheckBox* check504 = NULL; flCheckBox* check505 = NULL;
             flCheckBox* check506 = NULL; flCheckBox* check507 = NULL; flCheckBox* check508 = NULL;
@@ -1138,7 +1138,7 @@ namespace fl2d {
             flCheckBox* check533 = NULL; flCheckBox* check534 = NULL; flCheckBox* check535 = NULL;
             flCheckBox* check536 = NULL; flCheckBox* check537 = NULL; flCheckBox* check538 = NULL;
             flCheckBox* check539 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(600)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(600)
             flCheckBox* check600 = NULL; flCheckBox* check601 = NULL; flCheckBox* check602 = NULL;
             flCheckBox* check603 = NULL; flCheckBox* check604 = NULL; flCheckBox* check605 = NULL;
             flCheckBox* check606 = NULL; flCheckBox* check607 = NULL; flCheckBox* check608 = NULL;
@@ -1155,7 +1155,7 @@ namespace fl2d {
             flCheckBox* check633 = NULL; flCheckBox* check634 = NULL; flCheckBox* check635 = NULL;
             flCheckBox* check636 = NULL; flCheckBox* check637 = NULL; flCheckBox* check638 = NULL;
             flCheckBox* check639 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(700)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(700)
             flCheckBox* check700 = NULL; flCheckBox* check701 = NULL; flCheckBox* check702 = NULL;
             flCheckBox* check703 = NULL; flCheckBox* check704 = NULL; flCheckBox* check705 = NULL;
             flCheckBox* check706 = NULL; flCheckBox* check707 = NULL; flCheckBox* check708 = NULL;
@@ -1172,7 +1172,7 @@ namespace fl2d {
             flCheckBox* check733 = NULL; flCheckBox* check734 = NULL; flCheckBox* check735 = NULL;
             flCheckBox* check736 = NULL; flCheckBox* check737 = NULL; flCheckBox* check738 = NULL;
             flCheckBox* check739 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(800)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(800)
             flCheckBox* check800 = NULL; flCheckBox* check801 = NULL; flCheckBox* check802 = NULL;
             flCheckBox* check803 = NULL; flCheckBox* check804 = NULL; flCheckBox* check805 = NULL;
             flCheckBox* check806 = NULL; flCheckBox* check807 = NULL; flCheckBox* check808 = NULL;
@@ -1189,7 +1189,7 @@ namespace fl2d {
             flCheckBox* check833 = NULL; flCheckBox* check834 = NULL; flCheckBox* check835 = NULL;
             flCheckBox* check836 = NULL; flCheckBox* check837 = NULL; flCheckBox* check838 = NULL;
             flCheckBox* check839 = NULL;
-            //„ÉÅ„Çß„ÉÉ„ÇØ„Éú„ÉÉ„ÇØ„Çπ(900)
+            //É`ÉFÉbÉNÉ{ÉbÉNÉX(900)
             flCheckBox* check900 = NULL; flCheckBox* check901 = NULL; flCheckBox* check902 = NULL;
             flCheckBox* check903 = NULL; flCheckBox* check904 = NULL; flCheckBox* check905 = NULL;
             flCheckBox* check906 = NULL; flCheckBox* check907 = NULL; flCheckBox* check908 = NULL;
@@ -1211,7 +1211,7 @@ namespace fl2d {
         
             //--------------------------------------
             vector<flRadioButtonGroup*> radioButtonGroups;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(000)
+            //ÉâÉWÉIÉ{É^Éì(000)
             flRadioButton* radio000 = NULL; flRadioButton* radio001 = NULL; flRadioButton* radio002 = NULL;
             flRadioButton* radio003 = NULL; flRadioButton* radio004 = NULL; flRadioButton* radio005 = NULL;
             flRadioButton* radio006 = NULL; flRadioButton* radio007 = NULL; flRadioButton* radio008 = NULL;
@@ -1232,7 +1232,7 @@ namespace fl2d {
             flRadioButton* radio043 = NULL; flRadioButton* radio044 = NULL; flRadioButton* radio045 = NULL;
             flRadioButton* radio046 = NULL; flRadioButton* radio047 = NULL; flRadioButton* radio048 = NULL;
             flRadioButton* radio049 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(100)
+            //ÉâÉWÉIÉ{É^Éì(100)
             flRadioButton* radio100 = NULL; flRadioButton* radio101 = NULL; flRadioButton* radio102 = NULL;
             flRadioButton* radio103 = NULL; flRadioButton* radio104 = NULL; flRadioButton* radio105 = NULL;
             flRadioButton* radio106 = NULL; flRadioButton* radio107 = NULL; flRadioButton* radio108 = NULL;
@@ -1273,7 +1273,7 @@ namespace fl2d {
             flRadioButton* radio193 = NULL; flRadioButton* radio194 = NULL; flRadioButton* radio195 = NULL;
             flRadioButton* radio196 = NULL; flRadioButton* radio197 = NULL; flRadioButton* radio198 = NULL;
             flRadioButton* radio199 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(200)
+            //ÉâÉWÉIÉ{É^Éì(200)
             flRadioButton* radio200 = NULL; flRadioButton* radio201 = NULL; flRadioButton* radio202 = NULL;
             flRadioButton* radio203 = NULL; flRadioButton* radio204 = NULL; flRadioButton* radio205 = NULL;
             flRadioButton* radio206 = NULL; flRadioButton* radio207 = NULL; flRadioButton* radio208 = NULL;
@@ -1290,7 +1290,7 @@ namespace fl2d {
             flRadioButton* radio233 = NULL; flRadioButton* radio234 = NULL; flRadioButton* radio235 = NULL;
             flRadioButton* radio236 = NULL; flRadioButton* radio237 = NULL; flRadioButton* radio238 = NULL;
             flRadioButton* radio239 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(300)
+            //ÉâÉWÉIÉ{É^Éì(300)
             flRadioButton* radio300 = NULL; flRadioButton* radio301 = NULL; flRadioButton* radio302 = NULL;
             flRadioButton* radio303 = NULL; flRadioButton* radio304 = NULL; flRadioButton* radio305 = NULL;
             flRadioButton* radio306 = NULL; flRadioButton* radio307 = NULL; flRadioButton* radio308 = NULL;
@@ -1315,7 +1315,7 @@ namespace fl2d {
             flRadioButton* radio353 = NULL; flRadioButton* radio354 = NULL; flRadioButton* radio355 = NULL;
             flRadioButton* radio356 = NULL; flRadioButton* radio357 = NULL; flRadioButton* radio358 = NULL;
             flRadioButton* radio359 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(400)
+            //ÉâÉWÉIÉ{É^Éì(400)
             flRadioButton* radio400 = NULL; flRadioButton* radio401 = NULL; flRadioButton* radio402 = NULL;
             flRadioButton* radio403 = NULL; flRadioButton* radio404 = NULL; flRadioButton* radio405 = NULL;
             flRadioButton* radio406 = NULL; flRadioButton* radio407 = NULL; flRadioButton* radio408 = NULL;
@@ -1332,7 +1332,7 @@ namespace fl2d {
             flRadioButton* radio433 = NULL; flRadioButton* radio434 = NULL; flRadioButton* radio435 = NULL;
             flRadioButton* radio436 = NULL; flRadioButton* radio437 = NULL; flRadioButton* radio438 = NULL;
             flRadioButton* radio439 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(500)
+            //ÉâÉWÉIÉ{É^Éì(500)
             flRadioButton* radio500 = NULL; flRadioButton* radio501 = NULL; flRadioButton* radio502 = NULL;
             flRadioButton* radio503 = NULL; flRadioButton* radio504 = NULL; flRadioButton* radio505 = NULL;
             flRadioButton* radio506 = NULL; flRadioButton* radio507 = NULL; flRadioButton* radio508 = NULL;
@@ -1349,7 +1349,7 @@ namespace fl2d {
             flRadioButton* radio533 = NULL; flRadioButton* radio534 = NULL; flRadioButton* radio535 = NULL;
             flRadioButton* radio536 = NULL; flRadioButton* radio537 = NULL; flRadioButton* radio538 = NULL;
             flRadioButton* radio539 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(600)
+            //ÉâÉWÉIÉ{É^Éì(600)
             flRadioButton* radio600 = NULL; flRadioButton* radio601 = NULL; flRadioButton* radio602 = NULL;
             flRadioButton* radio603 = NULL; flRadioButton* radio604 = NULL; flRadioButton* radio605 = NULL;
             flRadioButton* radio606 = NULL; flRadioButton* radio607 = NULL; flRadioButton* radio608 = NULL;
@@ -1366,7 +1366,7 @@ namespace fl2d {
             flRadioButton* radio633 = NULL; flRadioButton* radio634 = NULL; flRadioButton* radio635 = NULL;
             flRadioButton* radio636 = NULL; flRadioButton* radio637 = NULL; flRadioButton* radio638 = NULL;
             flRadioButton* radio639 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(700)
+            //ÉâÉWÉIÉ{É^Éì(700)
             flRadioButton* radio700 = NULL; flRadioButton* radio701 = NULL; flRadioButton* radio702 = NULL;
             flRadioButton* radio703 = NULL; flRadioButton* radio704 = NULL; flRadioButton* radio705 = NULL;
             flRadioButton* radio706 = NULL; flRadioButton* radio707 = NULL; flRadioButton* radio708 = NULL;
@@ -1383,7 +1383,7 @@ namespace fl2d {
             flRadioButton* radio733 = NULL; flRadioButton* radio734 = NULL; flRadioButton* radio735 = NULL;
             flRadioButton* radio736 = NULL; flRadioButton* radio737 = NULL; flRadioButton* radio738 = NULL;
             flRadioButton* radio739 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(800)
+            //ÉâÉWÉIÉ{É^Éì(800)
             flRadioButton* radio800 = NULL; flRadioButton* radio801 = NULL; flRadioButton* radio802 = NULL;
             flRadioButton* radio803 = NULL; flRadioButton* radio804 = NULL; flRadioButton* radio805 = NULL;
             flRadioButton* radio806 = NULL; flRadioButton* radio807 = NULL; flRadioButton* radio808 = NULL;
@@ -1400,7 +1400,7 @@ namespace fl2d {
             flRadioButton* radio833 = NULL; flRadioButton* radio834 = NULL; flRadioButton* radio835 = NULL;
             flRadioButton* radio836 = NULL; flRadioButton* radio837 = NULL; flRadioButton* radio838 = NULL;
             flRadioButton* radio839 = NULL;
-            //„É©„Ç∏„Ç™„Éú„Çø„É≥(900)
+            //ÉâÉWÉIÉ{É^Éì(900)
             flRadioButton* radio900 = NULL; flRadioButton* radio901 = NULL; flRadioButton* radio902 = NULL;
             flRadioButton* radio903 = NULL; flRadioButton* radio904 = NULL; flRadioButton* radio905 = NULL;
             flRadioButton* radio906 = NULL; flRadioButton* radio907 = NULL; flRadioButton* radio908 = NULL;
@@ -1421,34 +1421,34 @@ namespace fl2d {
             //--------------------------------------
         
             //--------------------------------------
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ1D(000)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN1D(000)
             flJoyStick1* joystick1000 = NULL; flJoyStick1* joystick1001 = NULL; flJoyStick1* joystick1002 = NULL; flJoyStick1* joystick1003 = NULL; flJoyStick1* joystick1004 = NULL;
             flJoyStick1* joystick1005 = NULL; flJoyStick1* joystick1006 = NULL; flJoyStick1* joystick1007 = NULL; flJoyStick1* joystick1008 = NULL; flJoyStick1* joystick1009 = NULL;
             flJoyStick1* joystick1010 = NULL; flJoyStick1* joystick1011 = NULL; flJoyStick1* joystick1012 = NULL; flJoyStick1* joystick1013 = NULL; flJoyStick1* joystick1014 = NULL;
             flJoyStick1* joystick1015 = NULL; flJoyStick1* joystick1016 = NULL; flJoyStick1* joystick1017 = NULL; flJoyStick1* joystick1018 = NULL; flJoyStick1* joystick1019 = NULL;
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ1D(100)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN1D(100)
             flJoyStick1* joystick1100 = NULL; flJoyStick1* joystick1101 = NULL; flJoyStick1* joystick1102 = NULL; flJoyStick1* joystick1103 = NULL; flJoyStick1* joystick1104 = NULL;
             flJoyStick1* joystick1105 = NULL; flJoyStick1* joystick1106 = NULL; flJoyStick1* joystick1107 = NULL; flJoyStick1* joystick1108 = NULL; flJoyStick1* joystick1109 = NULL;
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ1D(200)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN1D(200)
             flJoyStick1* joystick1200 = NULL; flJoyStick1* joystick1201 = NULL; flJoyStick1* joystick1202 = NULL; flJoyStick1* joystick1203 = NULL; flJoyStick1* joystick1204 = NULL;
             flJoyStick1* joystick1205 = NULL; flJoyStick1* joystick1206 = NULL; flJoyStick1* joystick1207 = NULL; flJoyStick1* joystick1208 = NULL; flJoyStick1* joystick1209 = NULL;
             //--------------------------------------
             //--------------------------------------
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ2D(000)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN2D(000)
             flJoyStick2* joystick2000 = NULL; flJoyStick2* joystick2001 = NULL; flJoyStick2* joystick2002 = NULL; flJoyStick2* joystick2003 = NULL; flJoyStick2* joystick2004 = NULL;
             flJoyStick2* joystick2005 = NULL; flJoyStick2* joystick2006 = NULL; flJoyStick2* joystick2007 = NULL; flJoyStick2* joystick2008 = NULL; flJoyStick2* joystick2009 = NULL;
             flJoyStick2* joystick2010 = NULL; flJoyStick2* joystick2011 = NULL; flJoyStick2* joystick2012 = NULL; flJoyStick2* joystick2013 = NULL; flJoyStick2* joystick2014 = NULL;
             flJoyStick2* joystick2015 = NULL; flJoyStick2* joystick2016 = NULL; flJoyStick2* joystick2017 = NULL; flJoyStick2* joystick2018 = NULL; flJoyStick2* joystick2019 = NULL;
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ2D(100)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN2D(100)
             flJoyStick2* joystick2100 = NULL; flJoyStick2* joystick2101 = NULL; flJoyStick2* joystick2102 = NULL; flJoyStick2* joystick2103 = NULL; flJoyStick2* joystick2104 = NULL;
             flJoyStick2* joystick2105 = NULL; flJoyStick2* joystick2106 = NULL; flJoyStick2* joystick2107 = NULL; flJoyStick2* joystick2108 = NULL; flJoyStick2* joystick2109 = NULL;
-            //„Ç∏„Éß„Ç§„Çπ„ÉÜ„Ç£„ÉÉ„ÇØ2D(200)
+            //ÉWÉáÉCÉXÉeÉBÉbÉN2D(200)
             flJoyStick2* joystick2200 = NULL; flJoyStick2* joystick2201 = NULL; flJoyStick2* joystick2202 = NULL; flJoyStick2* joystick2203 = NULL; flJoyStick2* joystick2204 = NULL;
             flJoyStick2* joystick2205 = NULL; flJoyStick2* joystick2206 = NULL; flJoyStick2* joystick2207 = NULL; flJoyStick2* joystick2208 = NULL; flJoyStick2* joystick2209 = NULL;
             //--------------------------------------
         
             //--------------------------------------
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(000)
+            //ÉRÉìÉ{É{ÉbÉNÉX(000)
             flComboBox* comboBox000 = NULL; flComboBox* comboBox001 = NULL; flComboBox* comboBox002 = NULL; flComboBox* comboBox003 = NULL;
             flComboBox* comboBox004 = NULL; flComboBox* comboBox005 = NULL; flComboBox* comboBox006 = NULL; flComboBox* comboBox007 = NULL;
             flComboBox* comboBox008 = NULL; flComboBox* comboBox009 = NULL;
@@ -1458,7 +1458,7 @@ namespace fl2d {
             flComboBox* comboBox020 = NULL; flComboBox* comboBox021 = NULL; flComboBox* comboBox022 = NULL; flComboBox* comboBox023 = NULL;
             flComboBox* comboBox024 = NULL; flComboBox* comboBox025 = NULL; flComboBox* comboBox026 = NULL; flComboBox* comboBox027 = NULL;
             flComboBox* comboBox028 = NULL; flComboBox* comboBox029 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(100)
+            //ÉRÉìÉ{É{ÉbÉNÉX(100)
             flComboBox* comboBox100 = NULL; flComboBox* comboBox101 = NULL; flComboBox* comboBox102 = NULL; flComboBox* comboBox103 = NULL;
             flComboBox* comboBox104 = NULL; flComboBox* comboBox105 = NULL; flComboBox* comboBox106 = NULL; flComboBox* comboBox107 = NULL;
             flComboBox* comboBox108 = NULL; flComboBox* comboBox109 = NULL;
@@ -1468,7 +1468,7 @@ namespace fl2d {
             flComboBox* comboBox120 = NULL; flComboBox* comboBox121 = NULL; flComboBox* comboBox122 = NULL; flComboBox* comboBox123 = NULL;
             flComboBox* comboBox124 = NULL; flComboBox* comboBox125 = NULL; flComboBox* comboBox126 = NULL; flComboBox* comboBox127 = NULL;
             flComboBox* comboBox128 = NULL; flComboBox* comboBox129 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(200)
+            //ÉRÉìÉ{É{ÉbÉNÉX(200)
             flComboBox* comboBox200 = NULL; flComboBox* comboBox201 = NULL; flComboBox* comboBox202 = NULL; flComboBox* comboBox203 = NULL;
             flComboBox* comboBox204 = NULL; flComboBox* comboBox205 = NULL; flComboBox* comboBox206 = NULL; flComboBox* comboBox207 = NULL;
             flComboBox* comboBox208 = NULL; flComboBox* comboBox209 = NULL;
@@ -1478,7 +1478,7 @@ namespace fl2d {
             flComboBox* comboBox220 = NULL; flComboBox* comboBox221 = NULL; flComboBox* comboBox222 = NULL; flComboBox* comboBox223 = NULL;
             flComboBox* comboBox224 = NULL; flComboBox* comboBox225 = NULL; flComboBox* comboBox226 = NULL; flComboBox* comboBox227 = NULL;
             flComboBox* comboBox228 = NULL; flComboBox* comboBox229 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(300)
+            //ÉRÉìÉ{É{ÉbÉNÉX(300)
             flComboBox* comboBox300 = NULL; flComboBox* comboBox301 = NULL; flComboBox* comboBox302 = NULL; flComboBox* comboBox303 = NULL;
             flComboBox* comboBox304 = NULL; flComboBox* comboBox305 = NULL; flComboBox* comboBox306 = NULL; flComboBox* comboBox307 = NULL;
             flComboBox* comboBox308 = NULL; flComboBox* comboBox309 = NULL;
@@ -1488,7 +1488,7 @@ namespace fl2d {
             flComboBox* comboBox320 = NULL; flComboBox* comboBox321 = NULL; flComboBox* comboBox322 = NULL; flComboBox* comboBox323 = NULL;
             flComboBox* comboBox324 = NULL; flComboBox* comboBox325 = NULL; flComboBox* comboBox326 = NULL; flComboBox* comboBox327 = NULL;
             flComboBox* comboBox328 = NULL; flComboBox* comboBox329 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(400)
+            //ÉRÉìÉ{É{ÉbÉNÉX(400)
             flComboBox* comboBox400 = NULL; flComboBox* comboBox401 = NULL; flComboBox* comboBox402 = NULL; flComboBox* comboBox403 = NULL;
             flComboBox* comboBox404 = NULL; flComboBox* comboBox405 = NULL; flComboBox* comboBox406 = NULL; flComboBox* comboBox407 = NULL;
             flComboBox* comboBox408 = NULL; flComboBox* comboBox409 = NULL;
@@ -1498,7 +1498,7 @@ namespace fl2d {
             flComboBox* comboBox420 = NULL; flComboBox* comboBox421 = NULL; flComboBox* comboBox422 = NULL; flComboBox* comboBox423 = NULL;
             flComboBox* comboBox424 = NULL; flComboBox* comboBox425 = NULL; flComboBox* comboBox426 = NULL; flComboBox* comboBox427 = NULL;
             flComboBox* comboBox428 = NULL; flComboBox* comboBox429 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(500)
+            //ÉRÉìÉ{É{ÉbÉNÉX(500)
             flComboBox* comboBox500 = NULL; flComboBox* comboBox501 = NULL; flComboBox* comboBox502 = NULL; flComboBox* comboBox503 = NULL;
             flComboBox* comboBox504 = NULL; flComboBox* comboBox505 = NULL; flComboBox* comboBox506 = NULL; flComboBox* comboBox507 = NULL;
             flComboBox* comboBox508 = NULL; flComboBox* comboBox509 = NULL;
@@ -1508,7 +1508,7 @@ namespace fl2d {
             flComboBox* comboBox520 = NULL; flComboBox* comboBox521 = NULL; flComboBox* comboBox522 = NULL; flComboBox* comboBox523 = NULL;
             flComboBox* comboBox524 = NULL; flComboBox* comboBox525 = NULL; flComboBox* comboBox526 = NULL; flComboBox* comboBox527 = NULL;
             flComboBox* comboBox528 = NULL; flComboBox* comboBox529 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(600)
+            //ÉRÉìÉ{É{ÉbÉNÉX(600)
             flComboBox* comboBox600 = NULL; flComboBox* comboBox601 = NULL; flComboBox* comboBox602 = NULL; flComboBox* comboBox603 = NULL;
             flComboBox* comboBox604 = NULL; flComboBox* comboBox605 = NULL; flComboBox* comboBox606 = NULL; flComboBox* comboBox607 = NULL;
             flComboBox* comboBox608 = NULL; flComboBox* comboBox609 = NULL;
@@ -1518,7 +1518,7 @@ namespace fl2d {
             flComboBox* comboBox620 = NULL; flComboBox* comboBox621 = NULL; flComboBox* comboBox622 = NULL; flComboBox* comboBox623 = NULL;
             flComboBox* comboBox624 = NULL; flComboBox* comboBox625 = NULL; flComboBox* comboBox626 = NULL; flComboBox* comboBox627 = NULL;
             flComboBox* comboBox628 = NULL; flComboBox* comboBox629 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(700)
+            //ÉRÉìÉ{É{ÉbÉNÉX(700)
             flComboBox* comboBox700 = NULL; flComboBox* comboBox701 = NULL; flComboBox* comboBox702 = NULL; flComboBox* comboBox703 = NULL;
             flComboBox* comboBox704 = NULL; flComboBox* comboBox705 = NULL; flComboBox* comboBox706 = NULL; flComboBox* comboBox707 = NULL;
             flComboBox* comboBox708 = NULL; flComboBox* comboBox709 = NULL;
@@ -1528,7 +1528,7 @@ namespace fl2d {
             flComboBox* comboBox720 = NULL; flComboBox* comboBox721 = NULL; flComboBox* comboBox722 = NULL; flComboBox* comboBox723 = NULL;
             flComboBox* comboBox724 = NULL; flComboBox* comboBox725 = NULL; flComboBox* comboBox726 = NULL; flComboBox* comboBox727 = NULL;
             flComboBox* comboBox728 = NULL; flComboBox* comboBox729 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(800)
+            //ÉRÉìÉ{É{ÉbÉNÉX(800)
             flComboBox* comboBox800 = NULL; flComboBox* comboBox801 = NULL; flComboBox* comboBox802 = NULL; flComboBox* comboBox803 = NULL;
             flComboBox* comboBox804 = NULL; flComboBox* comboBox805 = NULL; flComboBox* comboBox806 = NULL; flComboBox* comboBox807 = NULL;
             flComboBox* comboBox808 = NULL; flComboBox* comboBox809 = NULL;
@@ -1538,7 +1538,7 @@ namespace fl2d {
             flComboBox* comboBox820 = NULL; flComboBox* comboBox821 = NULL; flComboBox* comboBox822 = NULL; flComboBox* comboBox823 = NULL;
             flComboBox* comboBox824 = NULL; flComboBox* comboBox825 = NULL; flComboBox* comboBox826 = NULL; flComboBox* comboBox827 = NULL;
             flComboBox* comboBox828 = NULL; flComboBox* comboBox829 = NULL;
-            //„Ç≥„É≥„Éú„Éú„ÉÉ„ÇØ„Çπ(900)
+            //ÉRÉìÉ{É{ÉbÉNÉX(900)
             flComboBox* comboBox900 = NULL; flComboBox* comboBox901 = NULL; flComboBox* comboBox902 = NULL; flComboBox* comboBox903 = NULL;
             flComboBox* comboBox904 = NULL; flComboBox* comboBox905 = NULL; flComboBox* comboBox906 = NULL; flComboBox* comboBox907 = NULL;
             flComboBox* comboBox908 = NULL; flComboBox* comboBox909 = NULL;
@@ -1556,7 +1556,7 @@ namespace fl2d {
             //--------------------------------------
 
             //--------------------------------------
-            //„Éí„Çπ„Éà„Ç∞„É©„É†„Éì„É•„ÉØ„Éº(000)
+            //ÉqÉXÉgÉOÉâÉÄÉrÉÖÉèÅ[(000)
             flHistgramViewer* hViewer001 = NULL; flHistgramViewer* hViewer002 = NULL; flHistgramViewer* hViewer003 = NULL;
             //--------------------------------------
 

@@ -145,7 +145,7 @@ namespace fl2d {
     void flDisplayObjectContainer::stage(flDisplayObject* value) {
         //cout << "[flDisplayObjectContainer]stage(" << value << ")" << name() << endl;
         
-        //‰ªä„Åæ„Åß„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å™„Åè„Å¶value„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÇãÊôÇ
+        //��΁�����value�L�΁���
         if(!_stage && value) {
             _stage = value;
             
@@ -153,7 +153,7 @@ namespace fl2d {
 //            event->target(_target);
             dispatchEvent(event);
         }
-        //Êó¢„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å¶value„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÅÑ„Å™„ÅÑÊôÇ
+        //���L�΁�����value�L�΁���
         if(_stage && !value) {
             _stage = value;
             
@@ -171,7 +171,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child) {
         //    cout << "[flDisplayObjectContainer]addChild((" << child->name() << ")" << endl;
-        //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
+        //if(child == NULL) throw "TypeError: Error #2007: �� child  null �񁘁�";
         
         if(child->parent()){
             ((flDisplayObjectContainer*)(child->parent()))->removeChild(child);
@@ -189,7 +189,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child, int x, int y) {
         //    cout << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
-        //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
+        //if(child == NULL) throw "TypeError: Error #2007: �� child  null �񁘁�";
         
         if(child->parent()){
             ((flDisplayObjectContainer*)(child->parent()))->removeChild(child);
@@ -209,7 +209,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChildAt(flDisplayObject* child, int index) {
-        //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
+        //if(child == NULL) throw "TypeError: Error #2007: �� child  null �񁘁�";
         
         if(index < 0 || index > children.size() - 1) return NULL;
         if(child->parent()) {
@@ -227,9 +227,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
-        //if(child == NULL) throw "TypeError: Error #2007: „Éë„É©„É°„Éº„Çø„Éº child „ÅØ null ‰ª•Â§ñ„Åß„Å™„Åë„Çå„Å∞„Å™„Çä„Åæ„Åõ„Çì„ÄÇ";
+        //if(child == NULL) throw "TypeError: Error #2007: �� child  null �񁘁�";
         
-        //children()の箇所はリファクタリングとかで外に出したらダメ
+        //children()�̉ӏ��̓��t�@�N�^�����O�Ƃ��ŊO�ɏo������_��
         for(int i = 0; i < children.size(); i++){
             if(children[i] == child){
                 child->stage(NULL);
@@ -249,7 +249,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
-        //children()の箇所はリファクタリングとかで外に出したらダメ
+        //children()�̉ӏ��̓��t�@�N�^�����O�Ƃ��ŊO�ɏo������_��
         if(index < 0 || index > children.size() - 1) return NULL;
         flDisplayObject* child;
         child = children[index];
@@ -309,7 +309,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     vector<flDisplayObject*> flDisplayObjectContainer::getObjectsUnderPoint(ofPoint point) {
-        // TODO Êú™ÂÆüË£Ö
+        // TODO ��
         return children;
     }
     

@@ -24,7 +24,7 @@ namespace fl2d {
             unsigned char* _pixels;
             ofImage* _image;
             
-            //ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®é€æ˜Žåº¦ã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹ã‹ã©ã†ã‹ã‚’å®šç¾©ã—ã¾ã™ã€‚
+            //ƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚ªƒsƒNƒZƒ‹’PˆÊ‚Ì“§–¾“x‚ðƒTƒ|[ƒg‚·‚é‚©‚Ç‚¤‚©‚ð’è‹`‚µ‚Ü‚·B
             bool _transparent;
             
             int _width;
@@ -80,7 +80,7 @@ namespace fl2d {
             void unlock() {
                 _image->update();
                 //                if(_transparent) {
-                //                    //ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ã«æ ¼ç´
+                //                    //ƒAƒ‹ƒtƒ@—p‚ÉŠi”[
                 //                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
                 //                } else {
                 //                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR);

@@ -261,8 +261,9 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        //ã‚¤ãƒ™ãƒ³ãƒˆ
+        //ƒCƒxƒ“ƒg
         if(dispatch) {
+			ofLog() << "HOGEHOGEHOGHE0";
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
             dispatchEvent(event);
         }
@@ -304,7 +305,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flButton::_onPress() {
         if(_toggleEnabled) {
-            selected(!selected());
+            selected(!selected(), false);
         } else {
             _setActiveColor();
         }

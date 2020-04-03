@@ -15,14 +15,14 @@ namespace fl2d {
         //graphics->beginFill(0xcccccc);
         graphics()->drawRect(0, 0, 500, 600);
         
-        //繝吶�ｼ繧ｹ
+        //ベース
         //base = new Shape();
         //base->graphics->lineStyle(0.5, 0x0);
         //base->graphics->beginFill(0xcccccc);
         //base->graphics->drawRect(0, 0, 100, 200);
         //addChild(base);
         
-        //繝懊ョ繧｣
+        //ボディ
         _body = (flDisplayObject*)new flSprite();
         //_body->mouseEnabled(false);
         //_body->mouseChildren(false);

@@ -55,36 +55,36 @@ namespace fl2d {
             int	_mouseX;
             int	_mouseY;
         
-            //0 is left click.ã€€2 is right click.
+            //0 is left click.@2 is right click.
             int _mouseID;
             //Did click except left click.
             bool _isMouseChanged;
         
-            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’æŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹
+            //ƒL[ƒ{[ƒhƒL[‚ğ‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
             //bool _isKeyDown;
-            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹
+            //ƒL[ƒ{[ƒhƒL[‚ğ‰Ÿ‚µ‚½‚©
             //bool _isKeyPressed;
-            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’é›¢ã—ãŸã‹
+            //ƒL[ƒ{[ƒhƒL[‚ğ—£‚µ‚½‚©
             //bool _isKeyReleased;
         
             //Interactive objcet that is focused.
             flInteractiveObject* _focus;
         
-            //æœ€å‰é¢ã§ãƒã‚¦ã‚¹ã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹DisplayObject
+            //Å‘O–Ê‚Åƒ}ƒEƒX‚Éƒqƒbƒg‚µ‚Ä‚¢‚éDisplayObject
             flDisplayObject* _topMostHitDisplayObject;
             flDisplayObject* _topMostHitDisplayObjectPrev;
         
-            //æœ€å‰é¢ã§ãƒã‚¦ã‚¹ã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹InteractiveObject
+            //Å‘O–Ê‚Åƒ}ƒEƒX‚Éƒqƒbƒg‚µ‚Ä‚¢‚éInteractiveObject
             flInteractiveObject* _topMostHitInteractiveObject;
             flInteractiveObject* _topMostHitInteractiveObjectPrev;
         
-            //ãƒã‚¦ã‚¹ãƒ€ã‚¦ãƒ³ä¸­ã®InteractiveObject
+            //ƒ}ƒEƒXƒ_ƒEƒ“’†‚ÌInteractiveObject
             flInteractiveObject* _currentMouseDownInteractiveObject;
         
-            //Stageã‹ã‚‰ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¾ã§ã®é † [ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
+            //Stage‚©‚çƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚Ü‚Å‚Ì‡ [ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg ¨ Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg]
             vector<flInteractiveObject*> _lineTopDown;
             vector<flInteractiveObject*> _lineTopDownPrev;
-            //ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰Stageã¾ã§ã®é † [Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
+            //ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚©‚çStage‚Ü‚Å‚Ì‡ [Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg ¨ ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg]
             vector<flInteractiveObject*> _lineBottomUp;
             vector<flInteractiveObject*> _lineBottomUpPrev;
         

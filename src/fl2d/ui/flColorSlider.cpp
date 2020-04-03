@@ -601,7 +601,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    int flColorSlider::alphaValue() { _colorValue.a; }
+    int flColorSlider::alphaValue() { return _colorValue.a; }
     void flColorSlider::alphaValue(int value, bool dispatch) {
         if(alphaSlider != NULL) alphaSlider->value(value, dispatch);
     }

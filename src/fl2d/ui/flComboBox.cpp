@@ -1,9 +1,9 @@
 #include "flComboBox.h"
 
 namespace fl2d {
-    //豌ｴ蟷ｳ
+    //水平
     string flComboBox::DROPDOWNLIST_UP = "up";
-    //蝙ら峩
+    //垂直
     string flComboBox::DROPDOWNLIST_DOWN = "down";
     
     //==============================================================
@@ -20,7 +20,7 @@ namespace fl2d {
         _dropdownWidth = dropdownWidth;
         
         //------------------------------------------
-        //繝懊ち繝ｳ
+        //ボタン
         _topButton = new flButton(_dropdownWidth);
         _topButton->name("flComboBox.topButton");
         _topButton->labelText("");
@@ -50,7 +50,7 @@ namespace fl2d {
         _selectedIndex = 0;
         
         //------------------------------------------
-        //繝懊ち繝ｳ
+        //ボタン
         _topButton->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
         _topButton->removeEventListener(flFocusEvent::FOCUS_OUT, this, &flComboBox::_eventHandler);
         delete _topButton;
@@ -64,7 +64,7 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //繧｢繧､繝�繝
+        //アイテム
         _itemList.clear();
         _selectedItem = NULL;
         //------------------------------------------
@@ -165,7 +165,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flComboBox::removeItemByIndex(int index) {
         //--------------------------------------
-        //children()縺ｮ邂�謇縺ｯ繝ｪ繝輔ぃ繧ｯ繧ｿ繝ｪ繝ｳ繧ｰ縺ｨ縺九〒螟悶↓蜃ｺ縺励◆繧峨ム繝｡
+        //children()の箇所はリファクタリングとかで外に出したらダメ
         if(index < 0 || index > _buttonList.size() - 1) return;
         
         flButton* button = _buttonList[index];

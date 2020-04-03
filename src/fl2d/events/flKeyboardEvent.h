@@ -33,9 +33,9 @@ namespace fl2d {
         flKeyboardEvent(string type);
         virtual ~flKeyboardEvent();
         
-        //押したキーまたは離したキーの文字コード値を含みます。
+        //�������L�[�܂��͗������L�[�̕����R�[�h�l���܂݂܂��B
         //int charCode();
-        //押したキーまたは離したキーのキーコード値です。
+        //�������L�[�܂��͗������L�[�̃L�[�R�[�h�l�ł��B
         virtual inline int keyCode() { return __keyCode; }
         
     private:

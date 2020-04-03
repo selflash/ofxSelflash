@@ -76,7 +76,7 @@ namespace fl2d {
                 //if(_debugEnabled) cout << "[flEventDispatcher]hasEventListener(" + type + ")" << endl;
                 //if(_handlers.size() == 0) return false;
                 bool check = bool(_listeners.find(type) != _listeners.end());
-                //if(_debugEnabled) couãƒ»ï¼¿ãƒ»t << "check = " << check << endl;
+                //if(_debugEnabled) couEQEt << "check = " << check << endl;
                 return check;
             }
         

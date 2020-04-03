@@ -21,7 +21,7 @@ namespace fl2d {
             bool _roundEnabled = false;
             int _digit = 2;
 
-            //DEBUGGç”¨
+            //DEBUGG—p
             float _trackAlpha = 1.0;
 
             float _trackWidth = 150;

@@ -15,16 +15,16 @@ namespace fl2d {
         
         useHandCursor(true);
         
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_mouseEventHandler);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_flBasicControllerMouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_flBasicControllerMouseEventHandler);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerMouseEventHandler);
         //addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
         float marginLeft; float marginTop;
         float spacing; float lineSpacing;
         //--------------------------------------
         marginLeft = 5;
-        marginTop = 0;
+        marginTop = 5;
         spacing = 100;
         lineSpacing = 22;
         
@@ -40,24 +40,26 @@ namespace fl2d {
         
         _isMinimize = false;
         
-        //æœ€å°åŒ–ãƒœã‚¿ãƒ³
-        minimizeButton = new flButton(20, 13);
-        minimizeButton->labelText(" -");
+        //Å¬‰»ƒ{ƒ^ƒ“
+        minimizeButton = new flButton(18, 18);
+		minimizeButton->y(marginTop);
+        minimizeButton->labelText("-");
         minimizeButton->toggleEnabled(true);
-        minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_uiEventHandler);
+        minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
         addChild(minimizeButton);
         
-        //é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
-        closeButton = new flButton(20, 13);
-        closeButton->labelText(" x");
-        closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicController::_uiEventHandler);
+        //•Â‚¶‚éƒ{ƒ^ƒ“
+        closeButton = new flButton(18, 18);
+		closeButton->y(marginTop);
+		closeButton->labelText("x");
+        closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerEventHandler);
         addChild(closeButton);
         
         _backWidth = 0;
         _backHeight = 0;
         
         _minBackWidth = 0;
-        _minBackHeight = 22;
+        _minBackHeight = 18 + 10;
         
         _normalBackWidth = 0;
         _normalBackHeight = 0;
@@ -73,18 +75,18 @@ namespace fl2d {
         
         _target = NULL;
         
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_mouseEventHandler);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_mouseEventHandler);
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_flBasicControllerMouseEventHandler);
+        removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_flBasicControllerMouseEventHandler);
+        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerMouseEventHandler);
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
-        //æœ€å°åŒ–ãƒœã‚¿ãƒ³
-        minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_uiEventHandler);
+        //Å¬‰»ƒ{ƒ^ƒ“
+        minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
         delete minimizeButton;
         minimizeButton = NULL;
         
-        //é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
-        closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_uiEventHandler);
+        //•Â‚¶‚éƒ{ƒ^ƒ“
+        closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerEventHandler);
         delete closeButton;
         closeButton = NULL;
         
@@ -121,11 +123,11 @@ namespace fl2d {
         _updateRect();
         
         float w = width();
-        minimizeButton->x(w - (18 + 5 + 18 + 5 + 5));
-        minimizeButton->y(4);
+        minimizeButton->x(w - (18 + 5 + 18 + 5));
+        //minimizeButton->y(4);
         
-        closeButton->x(w - (18 + 5 + 5));
-        closeButton->y(4);
+        closeButton->x(w - (18 + 5));
+        //closeButton->y(4);
     }
     
     //==============================================================
@@ -215,13 +217,13 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flBasicController::_uiEventHandler(flEvent& event) {
-//        ofLog() << "[flBasicController]_uiEventHandler(" << event.type() << ")";
+    void flBasicController::_flBasicControllerEventHandler(flEvent& event) {
+//        ofLog() << "[flBasicController]_flBasicControllerEventHandler(" << event.type() << ")";
 //        ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
 
-        //ãƒœã‚¿ãƒ³
+        //ƒ{ƒ^ƒ“
         if(event.type() == flButtonEvent::ROLL_OVER) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
@@ -252,6 +254,8 @@ namespace fl2d {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
             
+			ofLog() << "flBasicController change";
+
             if(button == minimizeButton) {
                 if(minimizeButton->selected()) {
                     minimize();
@@ -261,7 +265,7 @@ namespace fl2d {
             }
         }
 
-        //ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹
+        //ƒRƒ“ƒ{ƒ{ƒbƒNƒX
         if(event.type() == flComboBoxEvent::CHANGE) {
             flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
             flComboBox* comboBox = (flComboBox*)(event.currentTarget());
@@ -274,49 +278,49 @@ namespace fl2d {
 //            ofLog() << "selectedValue : " << comboBox->selectedValue<flComboBox*>()->name();
         }
         
-        //ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
+        //ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
         if(event.type() == flCheckBoxEvent::CHANGE) {
             flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
             flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
         }
         
-        //ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
+        //ƒ‰ƒWƒIƒ{ƒ^ƒ“
         if(event.type() == flRadioButtonEvent::CHANGE) {
             flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
             flRadioButton* radio = (flRadioButton*)(event.currentTarget());
         }
         
-        //ãƒŠãƒ³ãƒãƒ¼ãƒ€ã‚¤ã‚¢ãƒ©ãƒ¼
+        //ƒiƒ“ƒo[ƒ_ƒCƒAƒ‰[
         if(event.type() == flNumericDialerEvent::CHANGE) {
             flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
             flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
         }
         
-        //2Dãƒ‘ãƒƒãƒ‰
+        //2Dƒpƒbƒh
         if(event.type() == flPadEvent::CHANGE) {
             flPadEvent& padEvent = *(flPadEvent*) &event;
             flPad2D* pad = (flPad2D*)(event.currentTarget());
         }
         
-        //ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
+        //ƒXƒ‰ƒCƒ_[
         if(event.type() == flSliderEvent::CHANGE) {
             flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
             flSlider* slider = (flSlider*)(event.currentTarget());
         }
         
-        //ãƒ¬ãƒ³ã‚¸ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
+        //ƒŒƒ“ƒWƒXƒ‰ƒCƒ_[
         if(event.type() == flRangeSliderEvent::CHANGE) {
             flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
             flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
         }
         
-        //ã‚«ãƒ©ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
+        //ƒJƒ‰[ƒXƒ‰ƒCƒ_[
         if(event.type() == flColorSliderEvent::CHANGE) {
             flColorSliderEvent& colorSliderEvent = *(flColorSliderEvent*) &event;
             flColorSlider* slider = (flColorSlider*)(event.currentTarget());
         }
         
-        //ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯1è»¸
+        //ƒWƒ‡ƒCƒXƒeƒBƒbƒN1Ž²
         if(event.type() == flJoyStick1Event::CHANGE) {
             flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
             flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
@@ -338,7 +342,7 @@ namespace fl2d {
             flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
         }
         
-        //ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯2è»¸
+        //ƒWƒ‡ƒCƒXƒeƒBƒbƒN2Ž²
         if(event.type() == flJoyStick2Event::CHANGE) {
             flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
             flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
@@ -362,7 +366,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flBasicController::_mouseEventHandler(flEvent& event) {
+    void flBasicController::_flBasicControllerMouseEventHandler(flEvent& event) {
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
@@ -407,7 +411,7 @@ namespace fl2d {
                 if(_dragEnabled) {
                     if(_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
                     startDrag();
-                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
+                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
                 }
             }
         }
@@ -418,7 +422,7 @@ namespace fl2d {
             
             //if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
             if(event.target() == stage()) {
-                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
+                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
                 stopDrag();
             }
         }

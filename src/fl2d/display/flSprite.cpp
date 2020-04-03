@@ -134,7 +134,7 @@ namespace fl2d {
         glBlendFunc(blendSrc, blendDst);
         
         //--------------------------------------
-        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢ã®è¡¨ç¤º
+        //ƒqƒbƒgƒGƒŠƒA‚Ì•\Ž¦
         if(_hitAreaVisible) {
             ofPushMatrix();
             ofMultMatrix(matrix().getPtr());
@@ -276,13 +276,13 @@ namespace fl2d {
     flSprite* flSprite::hitArea() { return _hitArea; }
     void flSprite::hitArea(flSprite* value) {
         /*
-         ãƒ»memo [AS3ã«ãŠã‘ã‚‹hitAreaã®æŒ™å‹•]
-         ãƒ»addChildã•ã‚Œã¦ã„ãªã„ã¨åå¿œã—ãªã„
-         ãƒ»hitAreaã«è¨­å®šã™ã‚‹flSpriteã®mouseEnabledã¯falseã—ãªã„ã¨ã„ã‘ãªã„
-         ãƒ»hitAreaã«è¨­å®šã™ã‚‹flSpriteã‚’ä»–ã®hitAreaã«ã™ã‚‹äº‹ã¯ã§ããªã„
-         ãƒ»ã‚‚ã£ã¨ã‚‚ä¸Šã«addChildã•ã‚ŒãŸflSpriteãŒå„ªå…ˆã•ã‚Œã‚‹
+         Ememo [AS3‚É‚¨‚¯‚éhitArea‚Ì‹““®]
+         EaddChild‚³‚ê‚Ä‚¢‚È‚¢‚Æ”½‰ž‚µ‚È‚¢
+         EhitArea‚ÉÝ’è‚·‚éflSprite‚ÌmouseEnabled‚Ífalse‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢
+         EhitArea‚ÉÝ’è‚·‚éflSprite‚ð‘¼‚ÌhitArea‚É‚·‚éŽ–‚Í‚Å‚«‚È‚¢
+         E‚à‚Á‚Æ‚àã‚ÉaddChild‚³‚ê‚½flSprite‚ª—Dæ‚³‚ê‚é
          
-         ãƒ»must be addedChild.
+         Emust be addedChild.
          */
         
         if(value == NULL) {
@@ -297,7 +297,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     bool flSprite::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
-        //ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›
+        //ƒOƒ[ƒoƒ‹À•W‚©‚çƒ[ƒJƒ‹À•W‚É•ÏŠ·
         //transform to local from global.
         _concatenatedMatrixInv.transformPoint(p);
         
@@ -313,7 +313,7 @@ namespace fl2d {
     void flSprite::startDrag(bool lockCenter, flRectangle* bounds) {
         _draggableArea = bounds;
         
-        //TODO å®Ÿè£…ãŒã‚¹ãƒžãƒ¼ãƒˆã˜ã‚ƒãªã„ãªãƒ¼ãƒ»ãƒ»
+        //TODO ŽÀ‘•‚ªƒXƒ}[ƒg‚¶‚á‚È‚¢‚È[EE
         //it's not cool...
         //ofPoint* p = new ofPoint(stage()->mouseX(), stage()->mouseY());
         ofPoint* p = new ofPoint(ofGetMouseX(), ofGetMouseY());

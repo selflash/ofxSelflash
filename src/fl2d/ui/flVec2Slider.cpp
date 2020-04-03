@@ -147,14 +147,14 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flVec2Slider::min() { xSlider->min(); }
+    float flVec2Slider::min() { return xSlider->min(); }
     void flVec2Slider::min(float value, bool dispatch) {
         xSlider->min(value, dispatch);
         ySlider->min(value, dispatch);
     }
     
     //--------------------------------------------------------------
-    float flVec2Slider::max() { xSlider->max(); }
+    float flVec2Slider::max() { return xSlider->max(); }
     void flVec2Slider::max(float value, bool dispatch) {
         xSlider->max(value, dispatch);
         ySlider->max(value, dispatch);

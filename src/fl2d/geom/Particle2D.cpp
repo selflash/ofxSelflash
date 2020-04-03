@@ -4,17 +4,17 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     Particle2D::Particle2D() {
-        //蟇ｿ蜻ｽ
+        //寿命
         _count = 0;
         _delay = 0;
         _life = 0;
         
-        //菴咲ｽｮ
+        //位置
         _position = new ofVec3f(0.0, 0.0, 0.0);
         _startPosition = new ofVec3f(0.0, 0.0, 0.0);
         _velPosition = new ofVec3f(0.0, 0.0, 0.0);
         
-        //蝗櫁ｻ｢
+        //回転
         _rotation = 0;
         _startRotation = 0;
         _velRotation = 0;
@@ -23,17 +23,17 @@ namespace fl2d {
         _startRotationXYZ = new ofVec3f(0, 0, 0);
         _velRotationXYZ = new ofVec3f(0, 0, 0);
         
-        //繧ｵ繧､繧ｺ
+        //サイズ
         _size = new ofVec3f(0.0, 0.0, 0.0);
         _sizeVel = new ofVec3f(0.0, 0.0, 0.0);
         _startSize = new ofVec3f(0.0, 0.0, 0.0);
         
-        //螟ｧ縺阪＆
+        //大きさ
         _scale = new ofVec3f(0.0, 0.0, 0.0);
         _startScale = new ofVec3f(0.0, 0.0, 0.0);
         _velScale = new ofVec3f(0.0, 0.0, 0.0);
         
-        //濶ｲ
+        //色
         _color = new ofFloatColor(1.0, 1.0, 1.0);
         _startColor = new ofFloatColor(1.0, 1.0, 1.0);
         _velColor = new ofFloatColor(0.0, 0.0, 0.0);
@@ -41,12 +41,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     Particle2D::~Particle2D() {
-        //蟇ｿ蜻ｽ
+        //寿命
         _count = 0;
         _delay = 0;
         _life = 0;
         
-        //菴咲ｽｮ
+        //位置
         delete _position;
         _position = NULL;
         delete _startPosition;
@@ -54,12 +54,12 @@ namespace fl2d {
         delete _velPosition;
         _velPosition = NULL;
         
-        //蝗櫁ｻ｢
+        //回転
         _rotation = 0;
         _startRotation = 0;
         _velRotation = 0;
         
-        //繧ｵ繧､繧ｺ
+        //サイズ
         delete _size;
         _size = NULL;
         delete _startSize;
@@ -67,7 +67,7 @@ namespace fl2d {
         delete _sizeVel;
         _sizeVel = NULL;
         
-        //螟ｧ縺阪＆
+        //大きさ
         delete _scale;
         _scale = NULL;
         delete _startScale;
@@ -75,7 +75,7 @@ namespace fl2d {
         delete _velScale;
         _velScale = NULL;
         
-        //濶ｲ
+        //色
         delete _color;
         _color = NULL;
         delete _startColor;
@@ -333,25 +333,25 @@ namespace fl2d {
             return;
         }
         
-        //蟇ｿ蜻ｽ
+        //寿命
         life(life() - 1);
         
-        //菴咲ｽｮ
+        //位置
         x(x() + velX());
         y(y() + velY());
         z(z() + velZ());
         
-        //蝗櫁ｻ｢
+        //回転
         rotationX(rotationX() + velRotationX());
         rotationY(rotationY() + velRotationY());
         rotationZ(rotationZ() + velRotationZ());
         
-        //繧ｵ繧､繧ｺ
+        //サイズ
         scaleX(scaleX() + velScaleX());
         scaleY(scaleY() + velScaleY());
         scaleZ(scaleZ() + velScaleZ());
         
-        //濶ｲ
+        //色
         red(red() + velRed());
         green(green() + velGreen());
         blue(blue() + velBlue());
@@ -375,19 +375,19 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void Particle2D::reset(){
-        //菴咲ｽｮ
+        //位置
         x(startX());
         y(startY());
         z(startZ());
-        //蝗櫁ｻ｢
+        //回転
         rotationX(startRotationX());
         rotationY(startRotationY());
         rotationZ(startRotationZ());
-        //繧ｵ繧､繧ｺ
+        //サイズ
         scaleX(startScaleX());
         scaleY(startScaleY());
         scaleZ(startScaleZ());
-        //濶ｲ
+        //色
         color(ofFloatColor(_startColor->r, _startColor->g, _startColor->b));
     }
     

@@ -53,7 +53,7 @@ namespace fl2d {
 
                 //------------------------------------------
                 if(dispatch) {
-                    //ã‚¤ãƒ™ãƒ³ãƒˆ
+                    //ƒCƒxƒ“ƒg
                     flHistgramViewerEvent* event = new flHistgramViewerEvent(flHistgramViewerEvent::CHANGE);
                     //            event->_target = this;
                     event->__value = _value;

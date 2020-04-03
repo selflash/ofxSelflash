@@ -26,11 +26,11 @@ namespace fl2d {
         
     private:
         //------------------------------------------
-        //ドロップダウンリストの最大幅（ピクセル単位）を取得または設定します。
+        //�h���b�v�_�E�����X�g�̍ő啝�i�s�N�Z���P�ʁj���擾�܂��͐ݒ肵�܂��B
         float _dropdownWidth = 150;
-        //スクロールバーを持たないドロップダウンリストに表示できる最大行数を取得または設定します。
+        //�X�N���[���o�[�������Ȃ��h���b�v�_�E�����X�g�ɕ\���ł���ő�s�����擾�܂��͐ݒ肵�܂��B
         int _rowCount = 0;
-        //単一選択リストで選択されたアイテムのインデックスを取得または設定します。
+        //�P��I�����X�g�őI�����ꂽ�A�C�e���̃C���f�b�N�X���擾�܂��͐ݒ肵�܂��B
         int _selectedIndex = 0;
         //------------------------------------------
         
@@ -44,7 +44,7 @@ namespace fl2d {
         
         //------------------------------------------
         vector<flObject*> _itemList;
-        //ドロップダウンリストで選択されているアイテムの値を取得または設定します。
+        //�h���b�v�_�E�����X�g�őI������Ă���A�C�e���̒l���擾�܂��͐ݒ肵�܂��B
         flObject* _selectedItem = NULL;
         //------------------------------------------
         
@@ -133,7 +133,7 @@ namespace fl2d {
         void removeItemByIndex(int index);
 //        inline void removeItemByIndex(int index) {
 //            //--------------------------------------
-//            //children()の箇所はリファクタリングとかで外に出したらダメ
+//            //children()�̉ӏ��̓��t�@�N�^�����O�Ƃ��ŊO�ɏo������_��
 //            if(index < 0 || index > _buttonList.size() - 1) return;
 //
 //            flButton* button = _buttonList[index];
@@ -237,11 +237,11 @@ namespace fl2d {
 //            void sortItems();
         void removeAllItems();
         
-        //0から始まるインデックス番号
+        //0����n�܂�C���f�b�N�X�ԍ�
         int selectedIndex();
         void selectedIndex(int value, bool dispatch = true);
         
-        //ComboBox コンポーネントの TextInput 部分に表示されるストリングを取得します。
+        //ComboBox �R���|�[�l���g�� TextInput �����ɕ\�������X�g�����O���擾���܂��B
         string selectedLabel();
         
         template <class T>

@@ -50,32 +50,32 @@ namespace fl2d {
         flMouseEvent(string type);
         virtual ~flMouseEvent();
         /*
-         //Alt キーがアクティブになっているか
+         //Alt �L�[���A�N�e�B�u�ɂȂ��Ă��邩
          void altKey(bool value);
          bool altKey();
-         //マウスの主ボタンが押されているか
+         //�}�E�X�̎�{�^����������Ă��邩
          void buttonDown(bool value);
          bool buttonDown();
-         //Ctrl キーがアクティブになっているか
+         //Ctrl �L�[���A�N�e�B�u�ɂȂ��Ă��邩
          void ctrlKey(bool value);
          bool ctrlKey();
-         //Shift キーがアクティブになっているか
+         //Shift �L�[���A�N�e�B�u�ɂȂ��Ă��邩
          void shiftKey(bool value);
          bool shiftKey();
          
-         //スプライトを基準とするイベント発生位置の水平座標
+         //�X�v���C�g����Ƃ���C�x���g�����ʒu�̐������W
          void localX(float value);
          float localX();
-         //スプライトを基準とするイベント発生位置の垂直座標
+         //�X�v���C�g����Ƃ���C�x���g�����ʒu�̐������W
          void localY(float value);
          float localY();
          
-         //グローバルステージ座標を基準とするイベント発生位置の水平座標
+         //�O���[�o���X�e�[�W���W����Ƃ���C�x���g�����ʒu�̐������W
          float stageX();
-         //グローバルステージ座標を基準とするイベント発生位置の垂直座標
+         //�O���[�o���X�e�[�W���W����Ƃ���C�x���g�����ʒu�̐������W
          float stageY();
          
-         //イベントに関連する表示リストオブジェクトへの参照
+         //�C�x���g�Ɋ֘A����\�����X�g�I�u�W�F�N�g�ւ̎Q��
          void relatedObject(InteractiveObject* value);
          InteractiveObject* relatedObject();
          */

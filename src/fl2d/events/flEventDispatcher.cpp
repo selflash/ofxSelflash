@@ -27,9 +27,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flEventDispatcher::dispatchEvent(flEvent* event) {
-        //ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠãŒé–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        //ƒCƒxƒ“ƒgƒŠƒXƒi‚ªŠÖ˜A•t‚¯‚ç‚ê‚½ƒIƒuƒWƒFƒNƒg
         event->__currentTarget = _target;
-        //ç›´æ¥XXXXã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        //’¼ÚXXXX‚³‚ê‚½ƒIƒuƒWƒFƒNƒg
         if(event->__target == NULL) event->__target = _target;
         
         ofNotifyEvent(_listeners[event->type()], *event);

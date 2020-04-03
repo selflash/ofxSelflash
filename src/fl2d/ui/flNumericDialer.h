@@ -10,9 +10,9 @@ namespace fl2d {
     class flNumericDialer : public flUIBase {
         
         public:
-            //Ê∞¥Âπ≥
+            //êÖïΩ
             static string HORIZONTALLY;
-            //ÂûÇÁõ¥
+            //êÇíº
             static string VERTICALLY;
         
         protected:

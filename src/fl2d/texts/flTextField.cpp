@@ -558,7 +558,7 @@ namespace fl2d {
     void flTextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
         //        char str = (char)event.key;
         
-        //エンターキーなら区切り文字を
+        //�G���^�[�L�[�Ȃ��؂蕶����
         if(event.key == OF_KEY_RETURN) {
             event.key = '\r\n';
             _text.end();
@@ -581,7 +581,7 @@ namespace fl2d {
             return;
         }
         
-        //デリートキーなら一文字削除
+        //�f���[�g�L�[�Ȃ�ꕶ���폜
         if(event.key == OF_KEY_DEL || event.key == OF_KEY_BACKSPACE) {
             if(text().size() != 0) {
                 text(_text.substr(0, _text.size() - 1));

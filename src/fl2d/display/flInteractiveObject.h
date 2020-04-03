@@ -36,16 +36,16 @@ namespace fl2d {
             bool _tabEnabled;
             int	_tabIndex;
         
-            //Stageã‹ã‚‰æ“ä½œã•ã‚Œã‚‹
+            //Stage‚©‚ç‘€ì‚³‚ê‚é
             bool __isMouseOver;
             bool __isRollOver;
-            //ãƒã‚¦ã‚¹ã‚’æŠ¼ã—ãŸã‹
+            //ƒ}ƒEƒX‚ğ‰Ÿ‚µ‚½‚©
             bool __isMousePressed;
-            //ãƒã‚¦ã‚¹ã‚’é›¢ã—ãŸã‹
+            //ƒ}ƒEƒX‚ğ—£‚µ‚½‚©
             bool __isMouseReleased;
-            //ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹
+            //ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
             bool __isMouseDown;
-            //ãƒ•ã‚©ãƒ¼ã‚«ã‚¹
+            //ƒtƒH[ƒJƒX
             bool __isFocus;
         
         private:

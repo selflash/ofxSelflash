@@ -63,11 +63,11 @@ namespace fl2d {
         
             vector<DrawCommand*> _commandList;
         
-            //ç·šã®è‰²
+            //ü‚ÌF
             ofColor _lineColor;
-            //å¡—ã‚Šã®è‰²
+            //“h‚è‚ÌF
             ofColor _fillColor;
-            //ç·šã®å¤ªã•
+            //ü‚Ì‘¾‚³
             float _thickness;
         
             bool _lineEnabled;

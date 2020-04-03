@@ -142,7 +142,7 @@ class ofxSelflash {
  =========================================
  
  -----------------------------------------
- ã€flash.displayã€‘
+ yflash.displayz
  
  [flash.display.Bitmap]
  
@@ -151,38 +151,38 @@ class ofxSelflash {
  [flash.display.BlendMode]
  
  [flash.display.DisplayObject]
- â–  stageã¸ã®å‚ç…§ãŒã¨ã‚Œãªã„æ™‚ãŒã‚ã‚‹
- â–¡ stage()ã®å‹ãŒDisplayObjectã«ãªã£ã¦ã‚‹
+ ¡ stage‚Ö‚ÌQÆ‚ª‚Æ‚ê‚È‚¢‚ª‚ ‚é
+   stage()‚ÌŒ^‚ªDisplayObject‚É‚È‚Á‚Ä‚é
  
  [flash.display.DisplayObjectContainer]
- â–¡ width, heightã®setterã§ã®å­ã¸ã®å½±éŸ¿
+   width, height‚Ìsetter‚Å‚Ìq‚Ö‚Ì‰e‹¿
  
  [flash.display.Graphics]
- â–  clear()ã®æŒ™å‹•ãŒé•ã†
+ ¡ clear()‚Ì‹““®‚ªˆá‚¤
  
  [flash.display.InteractiveObject]
  
  [flash.display.MovieClip]
  
  [flash.display.Sprite]
- â–¡ startDrag()ã®å®Ÿè£…æ–¹æ³•ãŒãƒ™ã‚¹ãƒˆã˜ã‚ƒãªã„
+   startDrag()‚ÌÀ‘••û–@‚ªƒxƒXƒg‚¶‚á‚È‚¢
  
  [flash.display.Stage]
- â–¡ ãƒãƒ³ãƒ‰ã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤º
- â–¡ è¤‡æ•°keyDownæ™‚ã®æŒ™å‹•
+   ƒnƒ“ƒhƒJ[ƒ\ƒ‹‚Ì•\¦
+   •¡”keyDown‚Ì‹““®
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.eventsã€‘
+ yflash.eventsz
  
  [flash.events.Event]
  
  [flash.events.EventDispathcer]
- â–¡ dispatchä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©å†…ã§dispatchä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’removeEventListenerã—ãŸæ™‚ã«ä¸Šæ‰‹ãè¡Œã‹ãªã„
+   dispatch’†‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰“à‚Ådispatch’†‚ÌƒCƒxƒ“ƒg‚ğremoveEventListener‚µ‚½‚Éãè‚­s‚©‚È‚¢
  
  [flash.events.MouseEvent]
- â–¡ MouseEvent.CLICKã®å®Ÿè£…
- â–¡ MouseEvent.DOUBLE_CLICKã®å®Ÿè£…
+   MouseEvent.CLICK‚ÌÀ‘•
+   MouseEvent.DOUBLE_CLICK‚ÌÀ‘•
  
  [flash.events.TextEvent]
  
@@ -200,13 +200,13 @@ class ofxSelflash {
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.filtersã€‘
+ yflash.filtersz
  
  [flash.filters.BlurFilter]
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.geomã€‘
+ yflash.geomz
  
  [flash.geom.flMatrix]
  
@@ -216,21 +216,21 @@ class ofxSelflash {
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.mediaã€‘
+ yflash.mediaz
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.netã€‘
+ yflash.netz
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.textã€‘
+ yflash.textz
  [flash.texts.TextField]
- â–¡ ãƒ†ã‚­ã‚¹ãƒˆã®yåº§æ¨™ãŒ0ã‚ˆã‚Šä¸Šã«é…ç½®ã•ã‚Œã‚‹
+   ƒeƒLƒXƒg‚ÌyÀ•W‚ª0‚æ‚èã‚É”z’u‚³‚ê‚é
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.uiã€‘
+ yflash.uiz
  
  [flash.ui.Keyboard]
  
@@ -252,7 +252,7 @@ class ofxSelflash {
  -----------------------------------------
  
  -----------------------------------------
- ã€flash.utilsã€‘
+ yflash.utilsz
  -----------------------------------------
  
  -----------------------------------------

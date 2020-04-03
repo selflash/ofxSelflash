@@ -51,7 +51,7 @@ namespace fl2d {
         protected:
             string _type;
         
-            //ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠãƒ¼ã‚’ç™»éŒ²ã—ãŸ EventDispatcher ã¨å¿…ãšä¸€è‡´ã™ã‚‹ã®ã¯ currentTarget
+            //ƒCƒxƒ“ƒgƒŠƒXƒi[‚ğ“o˜^‚µ‚½ EventDispatcher ‚Æ•K‚¸ˆê’v‚·‚é‚Ì‚Í currentTarget
             void* __currentTarget;
             void* __target;
         
@@ -68,8 +68,8 @@ namespace fl2d {
             //            virtual const string& data();
         
             //https://n2works.net/columns/16
-            //ç›´æ¥ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒtargetãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«æ ¼ç´ã•ã‚Œã€currentTargetã«ã¯ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠãŒé–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
-            //ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠã‚’é–¢é€£ä»˜ã‘ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’Eventç¶™æ‰¿ã‚¯ãƒ©ã‚¹ã‹ã‚‰å–å¾—ã™ã‚‹ã«ã¯currentTargetã‚’å‚ç…§ã™ã‚‹ã¹ãã€‚
+            //’¼ÚƒNƒŠƒbƒN‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ªtargetƒvƒƒpƒeƒB‚ÉŠi”[‚³‚êAcurrentTarget‚É‚ÍƒCƒxƒ“ƒgƒŠƒXƒi‚ªŠÖ˜A•t‚¯‚ç‚ê‚½ƒIƒuƒWƒFƒNƒg‚ªŠi”[‚³‚ê‚éB
+            //ƒCƒxƒ“ƒgƒŠƒXƒi‚ğŠÖ˜A•t‚¯‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğEventŒp³ƒNƒ‰ƒX‚©‚çæ“¾‚·‚é‚É‚ÍcurrentTarget‚ğQÆ‚·‚é‚×‚«B
         
             virtual inline void* currentTarget() { return __currentTarget; }
     //        virtual inline void currentTarget(void* value) { _currentTarget = value; }

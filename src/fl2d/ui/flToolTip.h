@@ -13,7 +13,8 @@ namespace fl2d {
         protected:
         
         private:
-            string _text = u8"縺薙％縺ｫ繝�繧ｭ繧ｹ繝医′蜈･繧翫∪縺吶�";
+            //string _text = u8"ここにテキストが入ります。";
+			string _text ="Test";
             int _fontHeight = 0;
         
         public:

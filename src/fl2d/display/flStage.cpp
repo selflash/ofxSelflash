@@ -211,7 +211,7 @@ namespace fl2d {
         //------------------------------------
         
         //------------------------------------
-        // „Éá„Éê„ÉÉ„Ç∞Áî®
+        // ��
         if(false) {
             if(_topMostHitDisplayObjectPrev != _topMostHitDisplayObject) {
                 ofLog() << "\n==========================================================";
@@ -246,14 +246,14 @@ namespace fl2d {
         _isMouseChanged	= false;
         
         //------------------------------------
-        //„Éû„Ç¶„ÇπÂ∫ßÊ®ô„ÅÆÊõ¥Êñ∞
+        //���΁灏��
         float mouseXPrev = _mouseX;
         float mouseYPrev = _mouseY;
         _mouseX = ofGetMouseX();
         _mouseY = ofGetMouseY();
         //------------------------------------
         //------------------------------------
-        //„Éû„Ç¶„Çπ„É†„Éº„Éñ„ÅÆÊ§úÁü•
+        //���΁���
         if(_mouseX != mouseXPrev || _mouseY != mouseYPrev) _mouseMove();
         //------------------------------------
     }
@@ -279,7 +279,7 @@ namespace fl2d {
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
         if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
         
-        //oF„Åß„ÅØÊ®ôÊ∫ñ„Åß„ÅØ„Ç¢„É´„Éï„Ç°„Éñ„É¨„É≥„Éá„Ç£„É≥„Ç∞ÊúâÂäπ
+        //oF�灑�L���N������
         //ofDisableAlphaBlending();
         //    glBlendFunc(GL_ONE, GL_ZERO);
         //    glDisable(GL_BLEND);
@@ -438,7 +438,7 @@ namespace fl2d {
             
             //------------------------------------ topMostHitDisplayObject
             
-            //ÂÜçÂ∏∞ÂëºÂá∫„Åó
+            //����
             if(_hasChildren(child)) {
                 flDisplayObjectContainer* container;
                 container = (flDisplayObjectContainer*)child;
@@ -464,10 +464,10 @@ namespace fl2d {
         if(__isMouseDown) return;
         //ofLog() << "_isMouseChanged = " << _isMouseChanged;
         
-        //ÊúÄÂâçÈù¢„Åß„Éû„Ç¶„Çπ„Å®„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅåÂâçÂõû„Å®Â§â„Çè„Å£„Åü„Åã„Å©„ÅÜ„Åã
+        //�����΁�����
         bool bHitDisplayObjectChanged = false;
         bHitDisplayObjectChanged = (_topMostHitDisplayObject != _topMostHitDisplayObjectPrev);
-        //ÊúÄÂâçÈù¢„Åß„Éû„Ç¶„Çπ„Å®„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂ§âÊõ¥„Å™„Åó,„Åù„ÅÆ‰ªñ„ÇÇ„Çç„ÇÇ„Çç„ÅÆÊù°‰ª∂„Åå‰∏ÄËá¥„Åó„Å¶„Åü„Çâ‰Ωï„ÇÇ„Åó„Å™„ÅÑ
+        //�����΁�����,�񁋁�݁񁏁���
         //if(!bHitDisplayObjectChanged && !_bMousePressed && !_bMouseReleased && !_isMouseChanged) return;
         if(!bHitDisplayObjectChanged && !__isMousePressed && !__isMouseReleased) return;
         
@@ -494,40 +494,40 @@ namespace fl2d {
         flDisplayObject* hitDisplayObject = _topMostHitDisplayObject;
         
         //if(bHitDisplayObjectChanged) {
-        //„É™„Çπ„Éà„ÇíÂâçÂõûÂàÜ„Å®„Åó„Å¶‰øùÊåÅ„Åó„Å¶„ÇØ„É™„Ç¢
+        //�΁������
         //_lineTopDownPrev = _lineTopDown;
         _lineBottomUpPrev = _lineBottomUp;
         //_lineTopDown.clear();
         _lineBottomUp.clear();
         
-        //„Éû„Ç¶„Çπ„Å´ÊúÄÂâçÈù¢„Åß„Éí„ÉÉ„Éà„Åó„Å¶„ÅÑ„Çã„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆË¶™„Çí„Çπ„ÉÜ„Éº„Ç∏„Åæ„ÅßËæø„Å£„Å¶InteractiveObject„Çí„É™„Çπ„Éà„Å´Âä†„Åà„Çã
+        //���΁L�������΁���InteractiveObject�΁L��
         if(hitDisplayObject) {
             dispObj = hitDisplayObject;
-            //„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Åå„Çπ„ÉÜ„Éº„Ç∏‰ª•Â§ñ„Å´„Å™„Çã„Åæ„Åß
+            //�΁񁘁L
             while(dispObj != this) {
                 //------------------------------------ InteractiveObject
-                //„ÇÇ„Åó„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„Éñ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Å™„ÇâÂá¶ÁêÜ„Åô„Çã
+                //������
                 if(_isInteractiveObject(dispObj)) {
                     intObj = (flInteractiveObject*)dispObj;
                     
                     //------------------------------------ mouseEnabled
-                    //[mouseEnabled„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
+                    //[mouseEnabled�L��]
                     if(intObj->mouseEnabled()) {
-                        //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
+                        //����UP�݁�
                         //                        intObj->__isMouseDown = _bMouseDown;
-                        //                            intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+                        //                            intObj->__isMouseDown = false; // TODO ������
                         intObj->__isMousePressed = false;
                         intObj->__isMouseReleased = false;
-                        //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
+                        //�΁��L��
                         //_lineTopDown.push_back(intObj);
-                        //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
+                        //�΁����L��
                         _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
                         
-                        //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+                        //�L����������
                         if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
                         
                         //------------------------------------ mouseChildren
-                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        //mouseChildrenfalse����
                         if(_isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) {
@@ -540,15 +540,15 @@ namespace fl2d {
                     } else {
                         
                         //------------------------------------ hitArea
-                        //[hitArea„Å´ÂØæ„Åô„ÇãÂá¶ÁêÜ]
+                        //[hitArea�L��]
                         /*
-                         „Éªmemo [AS3„Å´„Åä„Åë„ÇãhitArea„ÅÆÊåôÂãï]
-                         „ÉªhitArea„ÇíË®≠ÂÆö„Åó„ÅüSpriet„ÅØ„Éû„Ç¶„Çπ„ÅåÁÑ°Âäπ„Å´„Å™„Çã
-                         „ÉªaddChild„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ„Å®ÂèçÂøú„Åó„Å™„ÅÑ
-                         „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„ÅÆmouseEnabled„ÅØfalse„Åó„Å™„ÅÑ„Å®„ÅÑ„Åë„Å™„ÅÑ
-                         „ÉªhitArea„Å´Ë®≠ÂÆö„Åô„ÇãSprite„Çí‰ªñ„ÅÆhitArea„Å´„Åô„Çã‰∫ã„ÅØ„Åß„Åç„Å™„ÅÑ
-                         „Éª„ÇÇ„Å£„Å®„ÇÇ‰∏ä„Å´addChild„Åï„Çå„ÅüSprite„ÅåÂÑ™ÂÖà„Åï„Çå„Çã
-                         „ÉªhitArea„ÇíË®≠ÂÆö„Åó„Å¶„ÅÑ„ÇãSprite„ÅØËá™Ë∫´„Åå„Éû„Ç¶„Çπ„Ç§„Éô„É≥„Éà„ÇíÁô∫ÁÅ´„Åó„Å™„ÅÑ
+                         memo [AS3�LhitArea]
+                         hitArea��Spriet���΁��΁L
+                         addChild��
+                         hitArea�L��SpritemouseEnabledfalse
+                         hitArea�L��Sprite��hitArea�L���
+                         ����LaddChildSprite
+                         hitArea����Sprite��L���΁���L
                          */
                         if(_isSprite(intObj)) {
                             flSprite* sprite = (flSprite*) intObj;
@@ -558,18 +558,18 @@ namespace fl2d {
                                 //goto pushListEnd;
                                 
                                 intObj = (flInteractiveObject*)dispObj;
-                                //„Éû„Ç¶„Çπ„ÅåUPÁä∂ÊÖã„Å™„Çâ„Éï„É©„Ç∞„Çí„É™„Çª„ÉÉ„Éà
+                                //����UP�݁�
 //                                intObj->__isMouseDown = _bMouseDown;
-//                                intObj->__isMouseDown = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+//                                intObj->__isMouseDown = false; // TODO ������
 //                                intObj->__isMouseDown = false;
                                 intObj->__isMousePressed = false;
                                 intObj->__isMouseReleased = false;
-                                //„É™„Çπ„Éà„ÅÆÊúÄÂæåÂ∞æ„Å´Âä†„Åà„Çã
+                                //�΁��L��
                                 //_lineTopDown.push_back(intObj);
-                                //„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„Å´Âä†„Åà„Çã
+                                //�΁����L��
                                 _lineBottomUp.insert(_lineBottomUp.begin(), intObj);
                                 
-                                //„ÅØ„Åò„ÇÅ„Å´Êâì„Å°ÂΩì„Åü„Å£„Åü„Ç§„É≥„Çø„É©„ÇØ„ÉÜ„Ç£„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+                                //�L����������
                                 if(!_topMostHitInteractiveObject) _topMostHitInteractiveObject = intObj;
                             } else {
                                 
@@ -578,7 +578,7 @@ namespace fl2d {
                         //------------------------------------ hitArea
                         
                         //------------------------------------ mouseChildren
-                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        //mouseChildrenfalse����
                         if(_isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) {
@@ -608,14 +608,14 @@ namespace fl2d {
         //---------------------------------------------------------- MOUSE EVENTS
         
         //------------------------------------
-        //„É≠„Éº„É´„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+        //���L������
         if(_topMostHitInteractiveObjectPrev) {
             if(_topMostHitInteractiveObjectPrev != _topMostHitInteractiveObject) {
                 for(int i = 0; i < _lineBottomUpPrev.size(); i++) {
                     intObj = _lineBottomUpPrev[i];
                     bool check = false;
                     
-                    //„ÉÅ„Çß„ÉÉ„ÇØ
+                    //
                     for(int ii = 0; ii < _lineBottomUp.size(); ii++) {
                         check = bool(intObj == _lineBottomUp[ii]);
                         if(check) break;
@@ -630,7 +630,7 @@ namespace fl2d {
                         intObj->dispatchEvent(mouseEvent);
                         //------------------------------------
                         
-                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        //mouseChildrenfalse����
                         if(_isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) goto rollOutCheckEnd;
@@ -641,14 +641,14 @@ namespace fl2d {
         }
     rollOutCheckEnd:
         
-        //„É≠„Éº„É´„Ç™„Éº„Éê„Éº„Ç§„Éô„É≥„Éà
+        //���L��
         if(_topMostHitInteractiveObject) {
             if(_topMostHitInteractiveObject != _topMostHitInteractiveObjectPrev) {
                 for(int i = 0; i < _lineBottomUp.size(); i++) {
                     intObj = _lineBottomUp[i];
                     bool check = false;
                     
-                    //„ÉÅ„Çß„ÉÉ„ÇØ
+                    //
                     for(int ii = 0; ii < _lineBottomUpPrev.size(); ii++ ) {
                         check = bool(intObj == _lineBottomUpPrev[ii]);
                         if(check) break;
@@ -663,7 +663,7 @@ namespace fl2d {
                         intObj->dispatchEvent(mouseEvent);
                         //------------------------------------
                         
-                        //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                        //mouseChildrenfalse����
                         if(_isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) goto rollOverCheckEnd;
@@ -676,7 +676,7 @@ namespace fl2d {
         //------------------------------------
         
         //------------------------------------
-        //„Éû„Ç¶„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+        //���΁�����
         if(_topMostHitInteractiveObjectPrev) {
             if(_topMostHitInteractiveObjectPrev != _topMostHitInteractiveObject) {
                 for(int i = 0; i < _lineBottomUpPrev.size(); i++) {
@@ -688,7 +688,7 @@ namespace fl2d {
                     intObj->dispatchEvent(mouseEvent);
                     //------------------------------------
                     
-                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                    //mouseChildrenfalse����
                     if(_isDisplayObjectContainer(intObj)) {
                         flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                         if(!dispObjContainer->mouseChildren()) goto mouseOutCheckEnd;
@@ -698,7 +698,7 @@ namespace fl2d {
         }
     mouseOutCheckEnd:
         
-        //„Éû„Ç¶„Çπ„Ç™„Éº„Éê„Éº„Ç§„Éô„É≥„Éà
+        //���΁�
         if(_topMostHitInteractiveObject) {
             if(_topMostHitInteractiveObject != _topMostHitInteractiveObjectPrev) {
                 for(int i = 0; i < _lineBottomUp.size(); i++ ) {
@@ -710,7 +710,7 @@ namespace fl2d {
                     intObj->dispatchEvent(mouseEvent);
                     //------------------------------------
                     
-                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                    //mouseChildrenfalse����
                     if(_isDisplayObjectContainer(intObj)) {
                         flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                         if(!dispObjContainer->mouseChildren()) goto mouseOverCheckEnd;
@@ -722,34 +722,34 @@ namespace fl2d {
         //------------------------------------
         
         //        //------------------------------------
-        //        //„Éû„Ç¶„Çπ„ÉÄ„Ç¶„É≥„Ç§„Éô„É≥„Éà
+        //        //���΁���
         //        if(__isMousePressed) {
         //            ofLog() << "HOGE";
         //            if(_topMostHitInteractiveObject) {
         //                //------------------------------------
-        //                //„Éï„Ç©„Éº„Ç´„Çπ„ÅåÂ§â„Çè„Å£„Åü„Çâ
+        //                //�L�΁���
         //                if(_focus != _topMostHitInteractiveObject) {
         //                    FocusEvent* focusEvent;
         //
-        //                    // ‰æãÂ§ñ„ÅÆÁô∫Áîü„ÅóÂæó„ÇãÁØÑÂõ≤
+        //                    // �񁘁�
         //                    try {
-        //                        //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+        //                        //�L�΁�����
         //                        _focus->__isFocus = false;
         //                        focusEvent = new FocusEvent(FocusEvent::FOCUS_OUT);
         //                        focusEvent->__target = _focus;
         //                        _focus->dispatchEvent(focusEvent);
         //
-        //                        // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
-        //    //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
+        //                        // �񁘃΁�
+        //    //                    throw "�񁘁�";
         //                    } catch(const char* str ) {
-        //                        // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
+        //                        // �񁘁���
         //                        ofLog() << str;
         //                    }
         //
-        //                    //„Éï„Ç©„Éº„Ç´„Çπ
+        //                    //�L��
         //                    _focus = _topMostHitInteractiveObject;
         //
-        //                    //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
+        //                    //�L�΁���
         //                    _focus->__isFocus = true;
         //                    focusEvent = new FocusEvent(FocusEvent::FOCUS_IN);
         //                    focusEvent->__target = _focus;
@@ -766,12 +766,12 @@ namespace fl2d {
         //                    mouseEvent->__stageX = mouseX();
         //                    mouseEvent->__stageY = mouseY();
         //                    intObj = _lineBottomUp[i];
-        ////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+        ////                    intObj->__isMouseDown = true; // TODO ������
         //                    intObj->__isMousePressed = true;
         //                    intObj->dispatchEvent(mouseEvent);
         //                    //------------------------------------
         //
-        //                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+        //                    //mouseChildrenfalse����
         //                    if(_isDisplayObjectContainer(intObj)) {
         //                        flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
         //                        if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
@@ -781,7 +781,7 @@ namespace fl2d {
         //        }
         //    mouseDownCheckEnd:
         
-        //        //„Éû„Ç¶„Çπ„Ç¢„ÉÉ„Éó„Ç§„Éô„É≥„Éà
+        //        //���΁���
         //        if(__isMouseReleased) {
         //            if(_topMostHitInteractiveObject) {
         //                for(int i = 0; i < _lineBottomUp.size(); i++ ) {
@@ -793,12 +793,12 @@ namespace fl2d {
         //                    mouseEvent->__stageX = mouseX();
         //                    mouseEvent->__stageY = mouseY();
         //                    intObj = _lineBottomUp[i];
-        ////                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+        ////                    intObj->__isMouseDown = true; // TODO ������
         //                    intObj->__isMousePressed = true;
         //                    intObj->dispatchEvent(mouseEvent);
         //                    //------------------------------------
         //
-        //                    //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+        //                    //mouseChildrenfalse����
         //                    if(_isDisplayObjectContainer(intObj)) {
         //                        flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
         //                        if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
@@ -813,7 +813,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //Â≠ê„Åã„ÇâÈ†Ü„Å´Êõ¥Êñ∞„Åó„Å¶„ÅÑ„Åè
+    //�����L������
     void flStage::_updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& children) {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
@@ -838,7 +838,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    // ÊèèÁîª
+    // 
     void flStage::_drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& children) {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
@@ -1039,22 +1039,22 @@ namespace fl2d {
         //        } catch(...) {
         //            ofLog() << "[flStage]update error";
         //
-        //進行状況
+        //�i�s��
         //            ofLog(OF_LOG_VERBOSE) << "the number is " << 10;
         //            ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
         
-        //            //警告
+        //            //�x��
         //            ofLog(OF_LOG_NOTICE) << "the number is " << 10;
         //
-        //            //警告
+        //            //�x��
         //            ofLog(OF_LOG_WARNING) << "the number is " << 10;
         //
-        //            //エラー
+        //            //�G���[
         //            ofLog(OF_LOG_ERROR) << "the number is " << 10;
-        //            //致命的なエラー
+        //            //�v���I�ȃG���[
         //            ofLog(OF_LOG_FATAL_ERROR) << "the number is " << 10;
         //
-        //            //静かなログ
+        //            //�Â��ȃ��O
         //            ofLog(OF_LOG_SILENT) << "the number is " << 10;
         //
         //            ofExit();
@@ -1133,17 +1133,17 @@ namespace fl2d {
         
         //------------------------------------
         if(_topMostHitInteractiveObject) {
-            //            _topMostHitInteractiveObject->__isMousePressed = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+            //            _topMostHitInteractiveObject->__isMousePressed = true; // TODO ������
             
             //------------------------------------
             //2016.6.8
-            //„Éï„Ç©„Éº„Ç´„Çπ„ÅåÂ§â„Çè„Å£„Åü„Çâ
+            //�L�΁���
             if(_focus != _topMostHitInteractiveObject) {
                 flFocusEvent* focusEvent;
                 
-                // ‰æãÂ§ñ„ÅÆÁô∫Áîü„ÅóÂæó„ÇãÁØÑÂõ≤
+                // �񁘁�
                 try {
-                    //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+                    //�L�΁�����
                     _focus->__isFocus = false;
                     focusEvent = new flFocusEvent(flFocusEvent::FOCUS_OUT);
                     focusEvent->__target = _focus;
@@ -1152,17 +1152,17 @@ namespace fl2d {
                         //                        ofLog() << "focus out = " << _focus->name().c_str();
                     }
                     
-                    // ‰æãÂ§ñ„Çí„Çπ„É≠„Éº„Åô„Çã
-                    //                    throw "‰æãÂ§ñ„ÅåÁô∫Áîü„Åó„Åæ„Åó„Åü";
+                    // �񁘃΁�
+                    //                    throw "�񁘁�";
                 } catch(const char* str) {
-                    // ‰æãÂ§ñ„Çí„Ç≠„É£„ÉÉ„ÉÅ„Åô„Çã
+                    // �񁘁���
                     ofLog() << str;
                 }
                 
-                //„Éï„Ç©„Éº„Ç´„Çπ
+                //�L��
                 _focus = _topMostHitInteractiveObject;
                 
-                //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
+                //�L�΁���
                 _focus->__isFocus = true;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_IN);
                 focusEvent->__target = _focus;
@@ -1188,7 +1188,7 @@ namespace fl2d {
                 intObj->dispatchEvent(mouseEvent);
                 //------------------------------------
                 
-                //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                //mouseChildrenfalse����
                 if(_isDisplayObjectContainer(intObj)) {
                     flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                     if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
@@ -1204,11 +1204,11 @@ namespace fl2d {
             _currentMouseDownInteractiveObject = _topMostHitInteractiveObject;
         } else {
             //------------------------------------
-            //„Éï„Ç©„Éº„Ç´„Çπ
+            //�L��
             if(_focus != this) {
                 flFocusEvent* focusEvent;
                 
-                //„Éï„Ç©„Éº„Ç´„Çπ„Ç¢„Ç¶„Éà„Ç§„Éô„É≥„Éà
+                //�L�΁�����
                 _focus->__isFocus = false;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_OUT);
                 focusEvent->__target = _focus;
@@ -1219,7 +1219,7 @@ namespace fl2d {
                 
                 _focus = this;
                 
-                //„Éï„Ç©„Éº„Ç´„Çπ„Ç§„É≥„Ç§„Éô„É≥„Éà
+                //�L�΁���
                 _focus->__isFocus = true;
                 focusEvent = new flFocusEvent(flFocusEvent::FOCUS_IN);
                 focusEvent->__target = _focus;
@@ -1257,12 +1257,12 @@ namespace fl2d {
         
         //------------------------------------
         //    if(_topMostHitInteractiveObjectPrev) _topMostHitInteractiveObjectPrev->__isMouseDown = false;
-        // ÂøúÊÄ•Âá¶ÁΩÆ??
+        // ����??
         //    if(_topMostHitInteractiveObject) _topMostHitInteractiveObject->__isMouseDown = false;
         
         //------------------------------------
         //2016.6.8
-        //„Éû„Ç¶„Çπ„Ç¢„ÉÉ„Éó„Ç§„Éô„É≥„Éà
+        //���΁���
         if(_topMostHitInteractiveObject) {
             flInteractiveObject* intObj = NULL;
             for(int i = 0; i < _lineBottomUp.size(); i++ ) {
@@ -1274,14 +1274,14 @@ namespace fl2d {
                 mouseEvent->__stageX = mouseX();
                 mouseEvent->__stageY = mouseY();
                 intObj = _lineBottomUp[i];
-                //                    intObj->__isMouseDown = true; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+                //                    intObj->__isMouseDown = true; // TODO ������
                 intObj->__isMouseDown = false;
 //                intObj->__isMousePressed = true;
                 intObj->__isMouseReleased = true;
                 intObj->dispatchEvent(mouseEvent);
                 //------------------------------------
                 
-                //mouseChildren„Ååfalse„Å†„Å£„ÅüÊôÇ
+                //mouseChildrenfalse����
                 if(_isDisplayObjectContainer(intObj)) {
                     flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                     if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
@@ -1292,7 +1292,7 @@ namespace fl2d {
         //------------------------------------
         
         if(_currentMouseDownInteractiveObject) {
-//            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO „ÅÇ„Å£„Å¶„Çã„Åã‰∏çÂÆâ
+//            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO ������
             _currentMouseDownInteractiveObject->__isMouseDown = false;
             _currentMouseDownInteractiveObject = NULL;
         }

@@ -8,9 +8,9 @@ namespace fl2d {
     
     class flJoyStick1 : public flUIBase {
         public:
-            //Ê∞¥Âπ≥
+            //êÖïΩ
             static string HORIZONTALLY;
-            //ÂûÇÁõ¥
+            //êÇíº
             static string VERTICALLY;
         
             flSprite* lever = NULL;
