@@ -47,6 +47,7 @@ namespace fl2d {
         //        _concatenatedMatrixInv = NULL;
         
         _rect = new flRectangle();
+        _realRect = new flRectangle();
         //        _rectTransformed = NULL;
         _pixelBounds = new flRectangle();
         
@@ -93,7 +94,10 @@ namespace fl2d {
         
         delete _rect;
         _rect = NULL;
-        
+
+        delete _realRect;
+        _realRect = NULL;
+
         delete _pixelBounds;
         _pixelBounds = NULL;
         
@@ -396,7 +400,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     // TODO Include a line. —Ìˆæ‚Éü‚ðŠÜ‚ß‚é
     flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
-        flRectangle rect;
+//        flRectangle rect;
 //        rect.left(_rect->left() * scaleX());
 //        rect.right(_rect->right() * scaleX());
 //        rect.top(_rect->top() * scaleY());
@@ -412,17 +416,21 @@ namespace fl2d {
 //        rect.__expandTo(temp.x, temp.y);
 //        rect.__expandTo(temp.z, temp.w);
 
+        flRectangle rect;
+        rect.left(_realRect->left());
+        rect.right(_realRect->right());
+        rect.top(_realRect->top());
+        rect.bottom(_realRect->bottom());
         return rect;
     }
     
     //--------------------------------------------------------------
     // TODO Not include a line. —Ìˆæ‚Éü‚ðŠÜ‚ß‚È‚¢
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
-        flRectangle rect;
-        rect.left(_rect->left() * scaleX());
-        rect.right(_rect->right() * scaleX());
-        rect.top(_rect->top() * scaleY());
-        rect.bottom(_rect->bottom() * scaleY());
+//        _realRect->left(_rect->left() * scaleX());
+//        _realRect->right(_rect->right() * scaleX());
+//        _realRect->top(_rect->top() * scaleY());
+//        _realRect->bottom(_rect->bottom() * scaleY());
         
 //        ofVec3f p1 = ofVec3f(_rect->left(), _rect->top(), 0) * _matrix;
 //        ofVec3f p2 = ofVec3f(_rect->right(), _rect->top(), 0) * _matrix;
@@ -433,7 +441,16 @@ namespace fl2d {
 //        rect.__expandTo(p2);
 //        rect.__expandTo(p3);
 //        rect.__expandTo(p4);
-
+        
+        flRectangle rect;
+        rect.left(_realRect->left());
+        rect.right(_realRect->right());
+        rect.top(_realRect->top());
+        rect.bottom(_realRect->bottom());
+//        rect.left(_rect->left());
+//        rect.right(_rect->right());
+//        rect.top(_rect->top());
+//        rect.bottom(_rect->bottom());
         return rect;
     }
     
@@ -577,6 +594,11 @@ namespace fl2d {
         ////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         ////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //        //--------------------------------------
+        
+        _realRect->left(_rect->left() * scaleX());
+        _realRect->right(_rect->right() * scaleX());
+        _realRect->top(_rect->top() * scaleY());
+        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

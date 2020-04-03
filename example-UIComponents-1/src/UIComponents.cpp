@@ -90,6 +90,7 @@ void UIComponents::_setup() {
     slider002->x(marginLeft + spacing * 0);
     slider002->y(marginTop + lineSpacing * 3);
     slider002->toolTipEnabled(true);
+//    slider002->scaleY(2.0);
     slider002->toolTipText(u8"スライダーのサンプルです。\n左から右にかけて値が小さいです。");
     slider002->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(slider002);
@@ -415,7 +416,9 @@ void UIComponents::_setup() {
     lineSpacing = 22;
     
     radioButtonGroup = new flRadioButtonGroup();
-    
+    radioButtonGroup->toolTipEnabled(true);
+    radioButtonGroup->toolTipText(u8"ラジオボックスのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
+
     label = new flTextField();
     label->text("Radio Button Example");
     label->x(marginLeft + spacing * 0);

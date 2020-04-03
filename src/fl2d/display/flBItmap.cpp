@@ -456,6 +456,11 @@ namespace fl2d {
         //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //--------------------------------------
+        
+        _realRect->left(_rect->left() * scaleX());
+        _realRect->right(_rect->right() * scaleX());
+        _realRect->top(_rect->top() * scaleY());
+        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

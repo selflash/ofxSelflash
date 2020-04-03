@@ -17,6 +17,15 @@ namespace fl2d {
         _uiWidth = width;
         _uiHeight = 18;
         
+        //------------------------------------------
+//        flGraphics* g;
+//        g = graphics();
+//        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->drawRect(0, 0, _uiWidth, _uiHeight);
+//        g->endFill();
+        //------------------------------------------
+        
         addEventListener(flMouseEvent::MOUSE_OVER, this, &flRadioButton::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_OUT, this, &flRadioButton::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flRadioButton::_mouseEventHandler);
@@ -33,8 +42,12 @@ namespace fl2d {
         //------------------------------------------
 
         _groupOwner = NULL;
+        
+//        _hitAreaAlpha = 0.5;
+//        hitAreaVisible(true);
 
         _setNormalColor();
+        
     }
     
     //--------------------------------------------------------------
@@ -276,7 +289,8 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, _uiWidth, _uiHeight);
+//        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
         //外側
@@ -303,7 +317,8 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, _uiWidth, _uiHeight);
+//        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
         g->endFill();
         
         //外側
@@ -346,6 +361,8 @@ namespace fl2d {
     void flRadioButton::_mouseEventHandler(flEvent& event) {
 //        ofLog() << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
+        flUIBase::_mouseEventHandler(event);
+
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _onOver();
@@ -404,6 +421,8 @@ namespace fl2d {
         //ofLog() << "[flRadioButtonGroup]createRadioButton()";
         flRadioButton* radioButton = new flRadioButton();
         radioButton->_setGroupOwner(this);
+        radioButton->toolTipEnabled(_toolTipEnabled);
+        radioButton->toolTipText(_toolTipText);
         radioButton->addEventListener(flRadioButtonEvent::CHANGE, this, &flRadioButtonGroup::_uiEventHandler);
         _radioButtonList.push_back(radioButton);
         return radioButton;
@@ -429,6 +448,19 @@ namespace fl2d {
         
         return radioButton;
     }
+    
+    //--------------------------------------------------------------
+    bool flRadioButtonGroup::toolTipEnabled() { return _toolTipEnabled; }
+    void flRadioButtonGroup::toolTipEnabled(bool value) {
+        _toolTipEnabled = value;
+        
+        vector<flRadioButton*>::iterator it = _radioButtonList.begin();
+        while (it != _radioButtonList.end()) {
+            flRadioButton* radioButton = ((flRadioButton*)*it);
+            radioButton->toolTipEnabled(_toolTipEnabled);
+        }
+    }
+
     
     //==============================================================
     // Protected / Private Method

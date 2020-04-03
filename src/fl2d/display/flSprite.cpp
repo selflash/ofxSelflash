@@ -136,6 +136,7 @@ namespace fl2d {
         //--------------------------------------
         //ヒットエリアの表示
         if(_hitAreaVisible) {
+//        if(true) {
             ofPushMatrix();
             ofMultMatrix(matrix().getPtr());
 
@@ -143,9 +144,16 @@ namespace fl2d {
             ofSetLineWidth(1);
 //            ofSetColor(0, 255, 0, 100);
 //            ofDrawRectangle(x(), y(), width(), height());
-//            ofDrawRectangle(0, 0, width(), height());
-            ofSetColor(255, 0, 0, 100);
-            ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+            
+            flRectangle rect = getRect(this);
+
+//            ofSetColor(255, 0, 0, 100);
+//            ofDrawRectangle(rect.x(), rect.y(), width(), height());
+            
+            ofSetColor(0, 255, 0, 100);
+            ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
+            
+//            ofSetColor(0, 0, 255, 100);
 //            ofDrawRectangle(_rect->left(), _rect->top(), _rect->width(), _rect->height());
             
             ofPopMatrix();
@@ -304,7 +312,7 @@ namespace fl2d {
         if(shapeFlag) {
             return _graphics->__rect->pointTest(p.x, p.y);
         } else {
-            return _rect->pointTest(p.x, p.y);
+            return _realRect->pointTest(p.x, p.y);
         }
     }
     
@@ -359,6 +367,11 @@ namespace fl2d {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        
+        _realRect->left(_rect->left() * scaleX());
+        _realRect->right(_rect->right() * scaleX());
+        _realRect->top(_rect->top() * scaleY());
+        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

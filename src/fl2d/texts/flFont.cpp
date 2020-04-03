@@ -5,12 +5,12 @@ namespace fl2d {
     const int flFont::_normalFontSize = 10;
     map<int, float> flFont::_maxStringWidth;
     map<int, float> flFont::_maxStringHeight;
-
+    
     //--------------------------------------------------------------
     void flFont::setup() {
-		ofTrueTypeFont font;
-		_loadFont(font, flDefinition::_FONT_PATH, _normalFontSize);
-		_fonts[_normalFontSize] = font;
+        ofTrueTypeFont font;
+        _loadFont(font, flDefinition::_FONT_PATH, _normalFontSize);
+        _fonts[_normalFontSize] = font;
     }
     
     //--------------------------------------------------------------
@@ -23,9 +23,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flFont::loadFont(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
-			ofTrueTypeFont font;
-			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
-			_fonts[fontSize] = font;
+            ofTrueTypeFont font;
+            _loadFont(font, flDefinition::_FONT_PATH, fontSize);
+            _fonts[fontSize] = font;
         }
     }
     
@@ -34,47 +34,47 @@ namespace fl2d {
         // Fonts
         //        ofTrueTypeFont::setGlobalDpi(72);
         
-        ofTrueTypeFontSettings settings(path, fontSize);//İ’èˆê®‚ğ”[‚ß‚éƒCƒ“ƒXƒ^ƒ“ƒX
-        settings.addRanges(ofAlphabet::Emoji);//ŠG•¶š
-        settings.addRanges(ofAlphabet::Japanese);//“ú–{Œê
-        settings.addRange(ofUnicode::Space);//ƒXƒy[ƒX
-        settings.addRange(ofUnicode::IdeographicSpace);//‘SŠpƒXƒy[ƒX
-        settings.addRange(ofUnicode::Latin);//ƒAƒ‹ƒtƒ@ƒxƒbƒg“™
-        settings.addRange(ofUnicode::Latin1Supplement);//‹L†AƒAƒNƒTƒ“•t‚«•¶š‚È‚Ç
-        settings.addRange(ofUnicode::NumberForms);//”šH
-        settings.addRange(ofUnicode::Arrows);//–îˆó
-        settings.addRange(ofUnicode::MathOperators);//”®‹L†
-        settings.addRange(ofUnicode::Hiragana);//‚Ğ‚ç‚ª‚È
-        settings.addRange(ofUnicode::Katakana);//ƒJƒ^ƒJƒi
-        settings.addRange(ofUnicode::MiscSymbolsAndPictographs);//ŠG•¶š‚È‚Ç
-        settings.addRange(ofUnicode::Emoticons);//ƒGƒ‚[ƒeƒBƒRƒ“
+        ofTrueTypeFontSettings settings(path, fontSize);//Ãªâ€ºÃ­Ã‹Ã ÃÃ©Ã†Ã‡ï£¿Ã®[Ã‡ï¬‚Ã‡ÃˆÃ‰CÃ‰Ã¬Ã‰XÃ‰^Ã‰Ã¬Ã‰X
+        settings.addRanges(ofAlphabet::Emoji);//Ã¤GÃ¯âˆ‚Ã©Ã¶
+        settings.addRanges(ofAlphabet::Japanese);//Ã¬Ë™Ã±{Ã¥Ã
+        settings.addRange(ofUnicode::Space);//Ã‰XÃ‰yÃ…[Ã‰X
+        settings.addRange(ofUnicode::IdeographicSpace);//Ã«SÃ¤pÃ‰XÃ‰yÃ…[Ã‰X
+        settings.addRange(ofUnicode::Latin);//Ã‰AÃ‰Ã£Ã‰tÃ‰@Ã‰xÃ‰bÃ‰gÃ¬Ã´
+        settings.addRange(ofUnicode::Latin1Supplement);//Ã£LÃ§ÃœÃ…AÃ‰AÃ‰NÃ‰TÃ‰Ã¬Ã¯tÃ‡Â´Ã¯âˆ‚Ã©Ã¶Ã‡Â»Ã‡Â«
+        settings.addRange(ofUnicode::NumberForms);//ÃªÃ®Ã©Ã¶Ã…H
+        settings.addRange(ofUnicode::Arrows);//Ã±Ã“Ã Ã›
+        settings.addRange(ofUnicode::MathOperators);//ÃªÃ®Ã©Ã†Ã£LÃ§Ãœ
+        settings.addRange(ofUnicode::Hiragana);//Ã‡â€“Ã‡ÃÃ‡â„¢Ã‡Â»
+        settings.addRange(ofUnicode::Katakana);//Ã‰JÃ‰^Ã‰JÃ‰i
+        settings.addRange(ofUnicode::MiscSymbolsAndPictographs);//Ã¤GÃ¯âˆ‚Ã©Ã¶Ã‡Â»Ã‡Â«
+        settings.addRange(ofUnicode::Emoticons);//Ã‰GÃ‰Ã‡Ã…[Ã‰eÃ‰BÃ‰RÃ‰Ã¬
         
         string text = "";
-        text += "1234567890-^!#$%&'()0=~|'";
+        text += "1234567890-^Ã…Ã¨!#$%&'()0=~|'";
         text += "qwertyuiop@[QWERTYUIOP`{";
         text += "asdfghjkl;:]ASDFGHJKL+*}";
         text += "zxcvbnm,./_ZXCVBNM<>?_";
-        text += u8"‚ ‚¢‚¤‚¦‚¨";
-        text += u8"‚©‚«‚­‚¯‚±";
-        text += u8"‚³‚µ‚·‚¹‚»";
-        text += u8"‚½‚¿‚Â‚Ä‚Æ";
-        text += u8"‚È‚É‚Ê‚Ë‚Ì";
-        text += u8"‚Í‚Ğ‚Ó‚Ö‚Ù";
-        text += u8"‚Ü‚İ‚Ş‚ß‚à";
-        text += u8"‚ç‚è‚é‚ê‚ë";
-        text += u8"‚â‚ä‚æ";
-        text += u8"‚í‚ğ‚ñ";
+        text += u8"ã‚ã„ã†ãˆãŠ";
+        text += u8"ã‹ããã‘ã“";
+        text += u8"ã•ã—ã™ã›ã";
+        text += u8"ãŸã¡ã¤ã¦ã¨";
+        text += u8"ãªã«ã¬ã­ã®";
+        text += u8"ã¯ã²ãµã¸ã»";
+        text += u8"ã¾ã¿ã‚€ã‚ã‚‚";
+        text += u8"ã‚„ã‚†ã‚ˆ";
+        text += u8"ã‚‰ã‚Šã‚‹ã‚Œã‚";
+        text += u8"ã‚ã‚’ã‚“";
         
-        // İ’è‚ğƒ[ƒh
+        // Ãªâ€ºÃ­Ã‹Ã‡ï£¿Ã‰Ã§Ã…[Ã‰h
         //ofTrueTypeFont font;
         if(font.load(settings)){
             ofLog() << path << " has been loaded.";
-
-            font.setLetterSpacing(1.2);//•¶šŠÔ ƒfƒtƒHƒ‹ƒg‚Í1.0 •¶šŠÔ‚ğ‚æ‚èŠJ‚¯‚éê‡‚Í1.0‚ğ’´‚¦‚é’l‚ğw’è‚·‚é
+            
+            font.setLetterSpacing(1.2);//Ã¯âˆ‚Ã©Ã¶Ã¤â€˜ Ã‰fÃ‰tÃ‰HÃ‰Ã£Ã‰gÃ‡Ã•1.0 Ã¯âˆ‚Ã©Ã¶Ã¤â€˜Ã‡ï£¿Ã‡ÃŠÃ‡Ã‹Ã¤JÃ‡Ã˜Ã‡ÃˆÃ¨ÃÃ§Ã¡Ã‡Ã•1.0Ã‡ï£¿Ã­Â¥Ã‡Â¶Ã‡ÃˆÃ­lÃ‡ï£¿Ã©wÃ­Ã‹Ã‡âˆ‘Ã‡Ãˆ
             float maxStringWidth = font.stringWidth(text);
             float maxStringHeight = font.stringHeight(text);
-//            _font.setLetterSpacing(2);// •¶šŠÔ‚ğw’è‚·‚é
-            font.setLineHeight(maxStringHeight);// sŠÔ‚ğw’è‚·‚é
+            //            _font.setLetterSpacing(2);// Ã¯âˆ‚Ã©Ã¶Ã¤â€˜Ã‡ï£¿Ã©wÃ­Ã‹Ã‡âˆ‘Ã‡Ãˆ
+            font.setLineHeight(maxStringHeight);// Ã§sÃ¤â€˜Ã‡ï£¿Ã©wÃ­Ã‹Ã‡âˆ‘Ã‡Ãˆ
             
             _maxStringWidth[fontSize] = maxStringWidth;
             _maxStringHeight[fontSize] = maxStringHeight;
@@ -84,12 +84,12 @@ namespace fl2d {
         
         return font;
     }
-
+    
     //--------------------------------------------------------------
-//    void flFont::registFont(ofTrueTypeFont font) {
-//        _normalFont = _normalFont;
-//    }
-
+    //    void flFont::registFont(ofTrueTypeFont font) {
+    //        _normalFont = _normalFont;
+    //    }
+    
     //--------------------------------------------------------------
     void flFont::drawString(const std::string& text) {
         drawString(text, 0, 0);
@@ -105,27 +105,27 @@ namespace fl2d {
     void flFont::drawString(const std::string& text, int fontSize, float x, float y) {
         if(text == "") return;
         if (_fonts.find(fontSize) == _fonts.end()) {
-			ofTrueTypeFont font;
-			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
-			_fonts[fontSize] = font;
+            ofTrueTypeFont font;
+            _loadFont(font, flDefinition::_FONT_PATH, fontSize);
+            _fonts[fontSize] = font;
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         font.drawString(text, x, y);
     }
-
+    
     //--------------------------------------------------------------
     void flFont::drawStringHighlight(const string& text, const ofColor& background, const ofColor& foreground) {
         drawStringHighlight(text, 0, 0, background, foreground);
     }
     void flFont::drawStringHighlight(
-                                   const string& text,
-                                   float x, float y,
-                                   const ofColor& background,
-                                   const ofColor& foreground
-                                   ) {
+                                     const string& text,
+                                     float x, float y,
+                                     const ofColor& background,
+                                     const ofColor& foreground
+                                     ) {
         if(text != "") {
             const ofTrueTypeFont& font = _fonts[_normalFontSize];
-
+            
             ofPushStyle();
             ofSetColor(background);
             const ofRectangle& boundingBox = font.getStringBoundingBox(text, x, y);
@@ -151,11 +151,11 @@ namespace fl2d {
     void flFont::drawStringHighlight(const string& text, int fontSize, float x, float y, const ofColor& background, const ofColor& foreground) {
         if(text != "") {
             if (_fonts.find(fontSize) == _fonts.end()) {
-				ofTrueTypeFont font;
-				_loadFont(font, flDefinition::_FONT_PATH, fontSize);
-				_fonts[fontSize] = font;
+                ofTrueTypeFont font;
+                _loadFont(font, flDefinition::_FONT_PATH, fontSize);
+                _fonts[fontSize] = font;
             }
-
+            
             const ofTrueTypeFont& font = _fonts[fontSize];
             
             ofPushStyle();
@@ -191,9 +191,9 @@ namespace fl2d {
     }
     ofRectangle flFont::getStringBoundingBox(const string& text, int fontSize, float x, float y) {
         if (_fonts.find(fontSize) == _fonts.end()) {
-			ofTrueTypeFont font;
-			_loadFont(font, flDefinition::_FONT_PATH, fontSize);
-			_fonts[fontSize] = font;
+            ofTrueTypeFont font;
+            _loadFont(font, flDefinition::_FONT_PATH, fontSize);
+            _fonts[fontSize] = font;
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         return font.getStringBoundingBox(text, x, y);
@@ -214,7 +214,7 @@ namespace fl2d {
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         return font.stringWidth(text);
-
+        
     }
     float flFont::getStringHeight(const string& text, int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
@@ -222,9 +222,9 @@ namespace fl2d {
         }
         const ofTrueTypeFont& font = _fonts[fontSize];
         return font.stringHeight(text);
-
+        
     }
-
+    
     //--------------------------------------------------------------
     float flFont::getMaxStringWidth(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {

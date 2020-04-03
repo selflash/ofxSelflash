@@ -41,9 +41,9 @@ namespace fl2d {
         protected:
             string _name;
             
-            flDisplayObject* _stage;
-            flDisplayObject* _parent;
-            flDisplayObject* _mask;
+            flDisplayObject* _stage = NULL;
+            flDisplayObject* _parent = NULL;
+            flDisplayObject* _mask = NULL;
             
             float _z;
             
@@ -71,9 +71,10 @@ namespace fl2d {
             flMatrix _concatenatedMatrix;
             flMatrix _concatenatedMatrixInv;
             
-            flRectangle* _rect;
+            flRectangle* _rect = NULL;
+            flRectangle* _realRect = NULL;
             ofPoint _rectTransformed[4];
-            flRectangle* _pixelBounds;
+            flRectangle* _pixelBounds = NULL;
             
             bool _enabledSmoothing;
             bool _enabledAntiAliasing;

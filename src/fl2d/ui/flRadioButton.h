@@ -99,6 +99,8 @@ namespace fl2d {
         
         private:
             vector<flRadioButton*> _radioButtonList;
+            bool _toolTipEnabled = false;
+            string _toolTipText = "";
         
         public:
             flRadioButtonGroup();
@@ -107,6 +109,18 @@ namespace fl2d {
             flRadioButton* createRadioButton();
             flRadioButton* removeRadioButton(flRadioButton* radioButton);
         
+            bool toolTipEnabled();
+            void toolTipEnabled(bool value);
+            inline string toolTipText() { return _toolTipText; }
+            inline void toolTipText(string value) {
+                _toolTipText = value;
+                vector<flRadioButton*>::iterator it = _radioButtonList.begin();
+                while (it != _radioButtonList.end()) {
+                    flRadioButton* radioButton = ((flRadioButton*)*it);
+                    radioButton->toolTipText(_toolTipText);
+                }
+            }
+
         private:
             void _notice(flRadioButton* radioButton, string message);
             void _uiEventHandler(flEvent& event);
