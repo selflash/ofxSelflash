@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flVec2Slider::flVec2Slider(
-                           float width,
+                           float width_,
                            float xMin, float xMax, float defaultXValue,
                            float yMin, float yMax, float defaultYValue
                            ) {
@@ -17,7 +17,17 @@ namespace fl2d {
         _target = this;
         name("flVec2Slider");
         
+        float width = width_ - 15;
         float height = 18 + 2;
+        
+        //------------------------------------------
+        flGraphics* g;
+        g = graphics();
+        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->drawRect(0, 0, width_, 18 * 2 + 2 * 1);
+        g->endFill();
+        //------------------------------------------
         
         _value.x = defaultXValue;
         _value.y = defaultYValue;
@@ -40,8 +50,8 @@ namespace fl2d {
         //------------------------------------------
         _xLabel = new flTextField();
         _xLabel->name("flVec2Slider.xLabel");
-        _xLabel->x(width + 5);
-        _xLabel->y(height * 0 + 3);
+        _xLabel->x(width + 3);
+        _xLabel->y(height * 0);
         _xLabel->width(15);
         _xLabel->autoSize(flTextFieldAutoSize::CENTER);
         _xLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -50,8 +60,8 @@ namespace fl2d {
         addChild(_xLabel);
         _yLabel = new flTextField();
         _yLabel->name("flVec2Slider.yLabel");
-        _yLabel->x(width + 5);
-        _yLabel->y(height * 1 + 3);
+        _yLabel->x(width + 3);
+        _yLabel->y(height * 1);
         _yLabel->width(15);
         _yLabel->autoSize(flTextFieldAutoSize::CENTER);
         _yLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);

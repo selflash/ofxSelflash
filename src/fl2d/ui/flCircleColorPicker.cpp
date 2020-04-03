@@ -28,8 +28,8 @@ namespace fl2d {
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flCircleColorPicker::_mouseEventHandler);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flCircleColorPicker::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flCircleColorPicker::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flCircleColorPicker::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flCircleColorPicker::_mouseEventHandler);
         ///addEventListener(flMouseEvent::MOUSE_UP, this, &flCircleColorPicker::_mouseEventHandler);
         addEventListener(flMouseEvent::MOUSE_MOVE, this, &flCircleColorPicker::_mouseEventHandler);
@@ -56,8 +56,8 @@ namespace fl2d {
         
         _radius = 0.0;
         
-        removeEventListener(flMouseEvent::MOUSE_OVER, this, &flCircleColorPicker::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_OUT, this, &flCircleColorPicker::_mouseEventHandler);
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flCircleColorPicker::_mouseEventHandler);
+        removeEventListener(flMouseEvent::ROLL_OUT, this, &flCircleColorPicker::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flCircleColorPicker::_mouseEventHandler);
         //removeEventListener(flMouseEvent::MOUSE_UP, &flCircleColorPicker::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flCircleColorPicker::_mouseEventHandler);
@@ -231,10 +231,12 @@ namespace fl2d {
         //ofLog() << "[flCircleColorPicker]_mouseEventHandler(" << event.type();
         //ofLog() << "isMouseDown" << isMouseDown();
         
-        if(event.type() == flMouseEvent::MOUSE_OVER) {
+        flUIBase::_mouseEventHandler(event);
+
+        if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _onOver();
         }
-        if(event.type() == flMouseEvent::MOUSE_OUT) {
+        if(event.type() == flMouseEvent::ROLL_OUT) {
             if(event.target() == this) _onOut();
         }
         if(event.type() == flMouseEvent::MOUSE_DOWN) {

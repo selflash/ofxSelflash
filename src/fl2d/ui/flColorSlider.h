@@ -31,9 +31,9 @@ namespace fl2d {
         
         public:
             flColorSlider(float width, bool alphaEnabled = true);
-            flColorSlider(int r, int g, int b);
-            flColorSlider(int r, int g, int b, int a);
-            flColorSlider(float width = 200, int r = 255, int g = 255, int b = 255, int a = 255);
+            flColorSlider(int red, int green, int blue);
+            flColorSlider(int red, int green, int blue, int alpha);
+            flColorSlider(float width = 200, int red = 255, int green = 255, int blue = 255, int alpha = 255);
             virtual ~flColorSlider();
         
             virtual void label(flTextField* value);

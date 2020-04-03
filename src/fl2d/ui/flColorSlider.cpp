@@ -7,14 +7,29 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
-    flColorSlider::flColorSlider(float width, bool alphaEnabled) {
+    flColorSlider::flColorSlider(float width_, bool alphaEnabled) {
         //ofLog() << "[flColorSlider]flColorSlider()";
         
         _target = this;
         name("flColorSlider");
-        
+
+        float width = width_ - 15;
         float height = 18 + 2;
         
+        //------------------------------------------
+        flGraphics* g;
+        g = graphics();
+//        g->enabledSmoothing(true);
+        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        if(alphaEnabled) {
+            g->drawRect(0, 0, width_, 18 * 4 + 2 * 3);
+        } else {
+            g->drawRect(0, 0, width_, 18 * 3 + 2 * 2);
+        }
+        g->endFill();
+        //------------------------------------------
+
         //------------------------------------------
         redSlider = new flSlider(width, 0, 255);
         redSlider->x(0);
@@ -63,7 +78,7 @@ namespace fl2d {
         
         //------------------------------------------
         _redLabel = new flTextField();
-        _redLabel->x(width + 5);
+        _redLabel->x(width + 3);
         _redLabel->y(height * 0);
         _redLabel->width(15);
         _redLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -72,7 +87,7 @@ namespace fl2d {
         _redLabel->mouseEnabled(false);
         addChild(_redLabel);
         _greenLabel = new flTextField();
-        _greenLabel->x(width + 5);
+        _greenLabel->x(width + 3);
         _greenLabel->y(height * 1);
         _greenLabel->width(15);
         _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -81,7 +96,7 @@ namespace fl2d {
         _greenLabel->mouseEnabled(false);
         addChild(_greenLabel);
         _blueLabel = new flTextField();
-        _blueLabel->x(width + 5);
+        _blueLabel->x(width + 3);
         _blueLabel->y(height * 2);
         _blueLabel->width(15);
         _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -91,7 +106,7 @@ namespace fl2d {
         addChild(_blueLabel);
         if(alphaEnabled == true) {
             _alphaLabel = new flTextField();
-            _alphaLabel->x(width + 5);
+            _alphaLabel->x(width + 3);
             _alphaLabel->y(height * 3);
             _alphaLabel->width(15);
             _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -118,10 +133,10 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    flColorSlider::flColorSlider(int r, int g, int b) {
+    flColorSlider::flColorSlider(int red, int green, int blue) {
         //ofLog() << "[flColorSlider]flColorSlider()";
 
-        float width = 200;
+        float width = 200 - 15;
         
         _target = this;
         name("flColorSlider");
@@ -129,24 +144,34 @@ namespace fl2d {
         float height = 18 + 2;
         
         //------------------------------------------
+        flGraphics* g;
+        g = graphics();
+        //        g->enabledSmoothing(true);
+        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->drawRect(0, 0, width, 18 * 3 + 2 * 2);
+        g->endFill();
+        //------------------------------------------
+        
+        //------------------------------------------
         redSlider = new flSlider(width, 0, 255);
         redSlider->x(0);
         redSlider->y(height * 0);
-        redSlider->value(r);
+        redSlider->value(red);
         redSlider->roundEnabled(true);
         redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(redSlider);
         greenSlider = new flSlider(width, 0, 255);
         greenSlider->x(0);
         greenSlider->y(height * 1);
-        greenSlider->value(g);
+        greenSlider->value(green);
         greenSlider->roundEnabled(true);
         greenSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(greenSlider);
         blueSlider = new flSlider(width, 0, 255);
         blueSlider->x(0);
         blueSlider->y(height * 2);
-        blueSlider->value(b);
+        blueSlider->value(blue);
         blueSlider->roundEnabled(true);
         blueSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(blueSlider);
@@ -167,7 +192,7 @@ namespace fl2d {
         
         //------------------------------------------
         _redLabel = new flTextField();
-        _redLabel->x(width + 5);
+        _redLabel->x(width + 3);
         _redLabel->y(height * 0);
         _redLabel->width(15);
         _redLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -176,7 +201,7 @@ namespace fl2d {
         _redLabel->mouseEnabled(false);
         addChild(_redLabel);
         _greenLabel = new flTextField();
-        _greenLabel->x(width + 5);
+        _greenLabel->x(width + 3);
         _greenLabel->y(height * 1);
         _greenLabel->width(15);
         _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -185,7 +210,7 @@ namespace fl2d {
         _greenLabel->mouseEnabled(false);
         addChild(_greenLabel);
         _blueLabel = new flTextField();
-        _blueLabel->x(width + 5);
+        _blueLabel->x(width + 3);
         _blueLabel->y(height * 2);
         _blueLabel->width(15);
         _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -209,10 +234,10 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    flColorSlider::flColorSlider(int r, int g, int b, int a) {
+    flColorSlider::flColorSlider(int red, int green, int blue, int alpha) {
         //ofLog() << "[flColorSlider]flColorSlider()";
 
-        float width = 200;
+        float width = 200 - 15;
         
         _target = this;
         name("flColorSlider");
@@ -220,31 +245,41 @@ namespace fl2d {
         float height = 18 + 2;
         
         //------------------------------------------
+        flGraphics* g;
+        g = graphics();
+        //        g->enabledSmoothing(true);
+        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->drawRect(0, 0, width, 18 * 4 + 2 * 3);
+        g->endFill();
+        //------------------------------------------
+        
+        //------------------------------------------
         redSlider = new flSlider(width, 0, 255);
         redSlider->x(0);
         redSlider->y(height * 0);
-        redSlider->value(r);
+        redSlider->value(red);
         redSlider->roundEnabled(true);
         redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(redSlider);
         greenSlider = new flSlider(width, 0, 255);
         greenSlider->x(0);
         greenSlider->y(height * 1);
-        greenSlider->value(g);
+        greenSlider->value(green);
         greenSlider->roundEnabled(true);
         greenSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(greenSlider);
         blueSlider = new flSlider(width, 0, 255);
         blueSlider->x(0);
         blueSlider->y(height * 2);
-        blueSlider->value(b);
+        blueSlider->value(blue);
         blueSlider->roundEnabled(true);
         blueSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(blueSlider);
         alphaSlider = new flSlider(width, 0, 255);
         alphaSlider->x(0);
         alphaSlider->y(height * 3);
-        alphaSlider->value(a);
+        alphaSlider->value(alpha);
         alphaSlider->roundEnabled(true);
         alphaSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(alphaSlider);
@@ -264,7 +299,7 @@ namespace fl2d {
 
         //------------------------------------------
         _redLabel = new flTextField();
-        _redLabel->x(width + 5);
+        _redLabel->x(width + 3);
         _redLabel->y(height * 0);
         _redLabel->width(15);
         _redLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -273,7 +308,7 @@ namespace fl2d {
         _redLabel->mouseEnabled(false);
         addChild(_redLabel);
         _greenLabel = new flTextField();
-        _greenLabel->x(width + 5);
+        _greenLabel->x(width + 3);
         _greenLabel->y(height * 1);
         _greenLabel->width(15);
         _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -282,7 +317,7 @@ namespace fl2d {
         _greenLabel->mouseEnabled(false);
         addChild(_greenLabel);
         _blueLabel = new flTextField();
-        _blueLabel->x(width + 5);
+        _blueLabel->x(width + 3);
         _blueLabel->y(height * 2);
         _blueLabel->width(15);
         _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -291,7 +326,7 @@ namespace fl2d {
         _blueLabel->mouseEnabled(false);
         addChild(_blueLabel);
         _alphaLabel = new flTextField();
-        _alphaLabel->x(width + 5);
+        _alphaLabel->x(width + 3);
         _alphaLabel->y(height * 3);
         _alphaLabel->width(15);
         _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -314,40 +349,51 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    flColorSlider::flColorSlider(float width, int r, int g, int b, int a) {
+    flColorSlider::flColorSlider(float width_, int red, int green, int blue, int alpha) {
         //ofLog() << "[flColorSlider]flColorSlider()";
         
         _target = this;
         name("flColorSlider");
-    
+
+        float width = width_ - 15;
         float height = 18 + 2;
+        
+        //------------------------------------------
+        flGraphics* g;
+        g = graphics();
+        //        g->enabledSmoothing(true);
+        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->drawRect(0, 0, width, 18 * 4 + 2 * 3);
+        g->endFill();
+        //------------------------------------------
         
         //------------------------------------------
         redSlider = new flSlider(width, 0, 255);
         redSlider->x(0);
         redSlider->y(height * 0);
-        redSlider->value(r);
+        redSlider->value(red);
         redSlider->roundEnabled(true);
         redSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(redSlider);
         greenSlider = new flSlider(width, 0, 255);
         greenSlider->x(0);
         greenSlider->y(height * 1);
-        greenSlider->value(g);
+        greenSlider->value(green);
         greenSlider->roundEnabled(true);
         greenSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(greenSlider);
         blueSlider = new flSlider(width, 0, 255);
         blueSlider->x(0);
         blueSlider->y(height * 2);
-        blueSlider->value(b);
+        blueSlider->value(blue);
         blueSlider->roundEnabled(true);
         blueSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(blueSlider);
         alphaSlider = new flSlider(width, 0, 255);
         alphaSlider->x(0);
         alphaSlider->y(height * 3);
-        alphaSlider->value(a);
+        alphaSlider->value(alpha);
         alphaSlider->roundEnabled(true);
         alphaSlider->addEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
         addChild(alphaSlider);
@@ -367,7 +413,7 @@ namespace fl2d {
         
         //------------------------------------------
         _redLabel = new flTextField();
-        _redLabel->x(width + 5);
+        _redLabel->x(width + 3);
         _redLabel->y(height * 0);
         _redLabel->width(15);
         _redLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -376,7 +422,7 @@ namespace fl2d {
         _redLabel->mouseEnabled(false);
         addChild(_redLabel);
         _greenLabel = new flTextField();
-        _greenLabel->x(width + 5);
+        _greenLabel->x(width + 3);
         _greenLabel->y(height * 1);
         _greenLabel->width(15);
         _greenLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -385,7 +431,7 @@ namespace fl2d {
         _greenLabel->mouseEnabled(false);
         addChild(_greenLabel);
         _blueLabel = new flTextField();
-        _blueLabel->x(width + 5);
+        _blueLabel->x(width + 3);
         _blueLabel->y(height * 2);
         _blueLabel->width(15);
         _blueLabel->autoSize(flTextFieldAutoSize::CENTER);
@@ -394,7 +440,7 @@ namespace fl2d {
         _blueLabel->mouseEnabled(false);
         addChild(_blueLabel);
         _alphaLabel = new flTextField();
-        _alphaLabel->x(width + 5);
+        _alphaLabel->x(width + 3);
         _alphaLabel->y(height * 3);
         _alphaLabel->width(15);
         _alphaLabel->autoSize(flTextFieldAutoSize::CENTER);

@@ -145,15 +145,17 @@ void UIComponents::_setup() {
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    colorSlider001 = new flColorSlider(150 - 15, true);
+    colorSlider001 = new flColorSlider(150, true);
     colorSlider001->label(label);
     colorSlider001->x(marginLeft + spacing * 0);
     colorSlider001->y(marginTop + lineSpacing * 0 + 22.5);
-    colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     colorSlider001->redValue(156, false);
     colorSlider001->greenValue(20, false);
     colorSlider001->blueValue(210, false);
     colorSlider001->alphaValue(200, false);
+    colorSlider001->toolTipEnabled(true);
+    colorSlider001->toolTipText(u8"カラースライダーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
+    colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(colorSlider001);
     
     label = new flTextField();
@@ -163,14 +165,16 @@ void UIComponents::_setup() {
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    colorSlider002 = new flColorSlider(150 - 15, false);
+    colorSlider002 = new flColorSlider(150, false);
     colorSlider002->label(label);
     colorSlider002->x(marginLeft + spacing * 0);
     colorSlider002->y(marginTop + lineSpacing * 1 + 22.5);
-    colorSlider002->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     colorSlider002->redValue(230, false);
     colorSlider002->greenValue(210, false);
     colorSlider002->blueValue(50, false);
+    colorSlider002->toolTipEnabled(true);
+    colorSlider002->toolTipText(u8"カラースライダーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
+    colorSlider002->addEventListener(flColorSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(colorSlider002);
     //--------------------------------------
     
@@ -188,15 +192,17 @@ void UIComponents::_setup() {
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    vec2Slider001 = new flVec2Slider(150 - 15);
+    vec2Slider001 = new flVec2Slider(150);
     vec2Slider001->label(label);
     vec2Slider001->x(marginLeft + spacing * 0);
     vec2Slider001->y(marginTop + lineSpacing * 1);
-    vec2Slider001->addEventListener(flVec2SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     vec2Slider001->min(0.0);
     vec2Slider001->max(200.0);
     vec2Slider001->xValue(80.0, false);
     vec2Slider001->yValue(180.0, false);
+    vec2Slider001->toolTipEnabled(true);
+    vec2Slider001->toolTipText(u8"Vec2スライダーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
+    vec2Slider001->addEventListener(flVec2SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(vec2Slider001);
     //--------------------------------------
     
@@ -214,16 +220,18 @@ void UIComponents::_setup() {
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
-    vec3Slider001 = new flVec3Slider(150 - 15);
+    vec3Slider001 = new flVec3Slider(150);
     vec3Slider001->label(label);
     vec3Slider001->x(marginLeft + spacing * 0);
     vec3Slider001->y(marginTop + lineSpacing * 1);
-    vec3Slider001->addEventListener(flVec3SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     vec3Slider001->min(0.0);
     vec3Slider001->max(200.0);
     vec3Slider001->xValue(110.0, false);
     vec3Slider001->yValue(50.0, false);
     vec3Slider001->zValue(190.0, false);
+    vec3Slider001->toolTipEnabled(true);
+    vec3Slider001->toolTipText(u8"Vec2スライダーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
+    vec3Slider001->addEventListener(flVec3SliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(vec3Slider001);
     //cout << vec3Slider001->y() + vec3Slider001->height() << endl;
     //--------------------------------------
@@ -282,8 +290,10 @@ void UIComponents::_setup() {
     colorPicker001->label(label);
     colorPicker001->x(marginLeft + spacing * 0 + 25);
     colorPicker001->y(marginTop + lineSpacing * 1);
-    addChild(colorPicker001);
+    colorPicker001->toolTipEnabled(true);
+    colorPicker001->toolTipText(u8"カラーピッカーのサンプルです。\nあいうえお\nかきくけこ\nさしすせそ\nたちつてと");
     colorPicker001->addEventListener(flColorPickerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
+    addChild(colorPicker001);
     //--------------------------------------
     
     
@@ -593,7 +603,7 @@ void UIComponents::_setup() {
     dialer002->value(-500);
     dialer002->stepSize(5);
     dialer002->max(100);
-    dialer002->hitAreaVisible(true);
+//    dialer002->hitAreaVisible(true);
     dialer002->toolTipEnabled(true);
     dialer002->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer002);
@@ -639,7 +649,7 @@ void UIComponents::_setup() {
     dialer004->min(-100);
     dialer004->max(100);
     dialer004->toolTipEnabled(true);
-    dialer004->hitAreaVisible(true);
+//    dialer004->hitAreaVisible(true);
     dialer004->addEventListener(flNumericDialerEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(dialer004);
     ofLog() << "dialer004->y() : " << dialer004->y() + dialer004->width();
