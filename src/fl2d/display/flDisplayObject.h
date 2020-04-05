@@ -12,6 +12,7 @@
 #pragma once
 
 #include "flEventDispatcher.h"
+#include "flTransform.h"
 #include "flMatrix.h"
 #include "flRectangle.h"
 
@@ -66,15 +67,10 @@ namespace fl2d {
             
             int	 _blendMode;
             int	_level;
-            
-            flMatrix _matrix;
-            flMatrix _concatenatedMatrix;
-            flMatrix _concatenatedMatrixInv;
-            
+
+            flTransform _transform;
             flRectangle* _hitAreaRect = NULL;
-            ofPoint _rectTransformed[4];
-            flRectangle* _pixelBounds = NULL;
-            
+        
             bool _enabledSmoothing;
             bool _enabledAntiAliasing;
             
@@ -151,11 +147,9 @@ namespace fl2d {
             
             virtual int level();
             virtual void level(int value);
-            
-            virtual const flMatrix& matrix();
-            virtual void matrix(const flMatrix& mat);
-            
-            virtual const flMatrix& concatenatedMatrix();
+        
+            virtual flTransform& transform();
+            virtual void transform(const flTransform& value);
 
             virtual flRectangle getBounds(flDisplayObject* targetCoordinateSpace);
             virtual flRectangle getRect(flDisplayObject* targetCoordinateSpace);
@@ -175,10 +169,7 @@ namespace fl2d {
             //	TODO :: cacheAsBitmap - maybe this can be an FBO?
             //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
             //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
-            
-//            virtual const flMatrix& matrix();
-            virtual void transform(const flMatrix& mat);
-            
+        
             virtual bool enabledSmoothing();
             virtual void enabledSmoothing(bool value);
             
@@ -198,10 +189,12 @@ namespace fl2d {
             virtual void _draw();
             
             virtual void _updateRect();
-            
+            virtual void __updateConcatenatedMatrix(const flMatrix& mat);
+
             virtual float __compoundAlpha();
             virtual void __compoundAlpha(float value);
-            
+        
+        
             //virtual void updateOnFrame(){};
             //virtual void drawOnFrame(){};
             

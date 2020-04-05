@@ -94,8 +94,7 @@ void ofApp::update() {
     boxB->scaleX(1 + ((1 + sin(elapsedTime)) / 2.0));
                  
     boxB->rotation(boxB->rotation() + 0.5);
-    
-    
+        
     //http://level0.kayac.com//2009/11/matrix_with_getbounds.php
 //    //オブジェクトの現状のマトリクスを取得。
 //    flMatrix matrix = boxB->transform() transform.matrix;

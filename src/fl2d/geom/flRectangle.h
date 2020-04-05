@@ -21,6 +21,7 @@
 namespace fl2d {
     
     // forward decleration.
+    class flTransform;
     class flMatrix;
     class flDisplayObject;
     class flDisplayObjectContainer;
@@ -31,90 +32,92 @@ namespace fl2d {
     class TextField;
     
     class flRectangle {
-        //TODO
-        friend flMatrix;
-        friend flDisplayObject;
-        friend flDisplayObjectContainer;
-        friend flShape;
-        friend flSprite;
-        friend flBitmap;
-        friend flGraphics;
-        friend TextField;
+            //TODO
+            friend flTransform;
+            friend flMatrix;
+            friend flDisplayObject;
+            friend flDisplayObjectContainer;
+            friend flShape;
+            friend flSprite;
+            friend flBitmap;
+            friend flGraphics;
+            friend TextField;
         
-    public:
+        public:
         
-    protected:
+        protected:
         
-    private:
-        float _xMin = 0.0;
-        float _yMin = 0.0;
-        float _xMax = 0.0;
-        float _yMax = 0.0;
+        private:
+            float _xMin = 0.0;
+            float _yMin = 0.0;
+            float _xMax = 0.0;
+            float _yMax = 0.0;
         
-        bool _isChanged = false;
+            bool _isChanged = false;
         
-    public:
-        flRectangle();
-        flRectangle(float x, float y, float width, float height);
-        virtual ~flRectangle();
+        public:
+            flRectangle();
+            flRectangle(float x, float y, float width, float height);
+            virtual ~flRectangle();
         
-        float x() const;
-        void x(float value);
+            float x() const;
+            void x(float value);
         
-        float y() const;
-        void y(float value);
+            float y() const;
+            void y(float value);
         
-        float left() const;
-        void left(float value);
+            float left() const;
+            void left(float value);
         
-        float right() const;
-        void right(float value);
+            float right() const;
+            void right(float value);
         
-        float top() const;
-        void top(float value);
+            float top() const;
+            void top(float value);
         
-        float bottom() const;
-        void bottom(float value);
+            float bottom() const;
+            void bottom(float value);
         
-        ofPoint& topLeft() const;
-        void topLeft(ofPoint& value);
+            ofPoint& topLeft() const;
+            void topLeft(ofPoint& value);
         
-        ofPoint& bottomRight() const;
-        void bottomRight(ofPoint& value);
+            ofPoint& bottomRight() const;
+            void bottomRight(ofPoint& value);
         
-        float size();
+            float size();
         
-        float width();
-        void width(float value);
+            float width();
+            void width(float value);
         
-        float height();
-        void height(float value);
+            float height();
+            void height(float value);
         
-        bool isNull() const;
-        bool isZero() const;
-        bool pointTest(float x, float y);
+            bool isNull() const;
+            bool isZero() const;
+            bool pointTest(float x, float y);
         
-        bool isChanged();
+            bool isChanged();
         
-    protected:
+        protected:
         
-    private:
-        //DisplayObject
-        void __setNull();
-        void __setZero();
-        void __expandTo(ofVec2f p);
-//        void __expandTo(vec2 p);
-        void __expandTo(float x, float y);
-        void __expandToX(float x);
-        void __expandToY(float y);
-        void __expandToPoint(float x, float y);
-        void __expandToRect(const flRectangle& rect);
-        void __expandToCircle(float x, float y, float radius);
+        private:
+            //DisplayObject
+            void __setNull();
+            void __setZero();
+            void __expandTo(ofVec2f p);
+    //        void __expandTo(vec2 p);
+            void __expandTo(float x, float y);
+            void __expandToX(float x);
+            void __expandToY(float y);
+            void __expandToPoint(float x, float y);
+            void __expandToRect(const flRectangle& rect);
+            void __expandToCircle(float x, float y, float radius);
         
-        void __setToPoint(float x, float y);
-        void __setToRect(const flRectangle& rect);
-        void __setToRect(float x1, float y1, float x2, float y2);
+            void __setToPoint(float x, float y);
+            void __setToRect(const flRectangle& rect);
+            void __setToRect(float x1, float y1, float x2, float y2);
         
-        void __encloseRect(const vector<ofPoint>& points);
+            void __encloseRect(const vector<ofPoint>& points);
+            void __encloseRect(const ofPoint (&points)[4]);
     };
 }

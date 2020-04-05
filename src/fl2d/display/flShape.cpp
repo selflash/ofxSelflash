@@ -88,7 +88,7 @@ namespace fl2d {
             //            glPushMatrix();
             ofPushMatrix();
             //            glMultMatrixf(matrix().getPtr());
-            ofMultMatrix(matrix().getPtr());
+            ofMultMatrix(_transform.matrix().getPtr());
         }
         
         ofPushStyle();

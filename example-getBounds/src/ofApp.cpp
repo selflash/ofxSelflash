@@ -20,8 +20,8 @@ void ofApp::setup() {
     boxA->setup();
     boxA->title("Hit Area");
     boxA->name("BoxA");
-    boxA->x(sw * 0.5);
-    boxA->y(sh * 0.5);
+//    boxA->x(sw * 0.5);
+//    boxA->y(sh * 0.5);
     boxA->mouseEnabled(false);
     stage->addChild(boxA);
     //--------------------------------------
@@ -74,6 +74,24 @@ void ofApp::setup() {
     textField004->mouseEnabled(false);
     stage->addChild(textField004);
     //--------------------------------------
+    
+    
+    
+    //オブジェクトの現状のマトリクスを取得。
+    flMatrix& matrix = boxA->transform().matrix();
+
+    //オブジェクトの領域を取得
+    flRectangle rect = boxA->getBounds(ofxSelflash::stage());
+
+    //(0,0)にオブジェクトの中心を合わせる。(1)
+    matrix.translate(-(rect.left() + rect.width() / 2.0), -(rect.top() + rect.height() / 2.0));
+
+    //45度(Math.PI / 4)回転させる(2)
+//    matrix.rotate(45.0 / 180.0 * PI);
+    matrix.rotate(45.0 / 180.0 * PI);
+
+    //もとの位置にオブジェクトを移動する。(3)
+//    matrix.translate(rect.left() + rect.width() / 2.0, rect.top() + rect.height() / 2.0);
 }
 
 //--------------------------------------------------------------
@@ -88,20 +106,20 @@ void ofApp::update() {
     
     //http://level0.kayac.com//2009/11/matrix_with_getbounds.php
 //    //オブジェクトの現状のマトリクスを取得。
-//    flMatrix matrix = boxA->transform() transform.matrix;
+//    flMatrix& matrix = boxA->transform().matrix();
 //
 //    //オブジェクトの領域を取得
-//    var rect:Rectangle = _object.getBouns(_containerOfObject);
+//    flRectangle rect = boxA->getBounds(ofxSelflash::stage());
 //
 //    //(0,0)にオブジェクトの中心を合わせる。(1)
-//    matrix.translate(-(rect.left + rect.width / 2), -(rect.top + rect.height / 2));
+//    matrix.translate(-(rect.left() + rect.width() / 2.0), -(rect.top() + rect.height() / 2.0));
 //
 //    //45度(Math.PI / 4)回転させる(2)
-//    matrix.rotate(45 / 180 * Math.PI);
+////    matrix.rotate(45.0 / 180.0 * PI);
+//    matrix.rotate(1);
 //
 //    //もとの位置にオブジェクトを移動する。(3)
-//    matrix.translate(rect.left + rect.width / 2, rect.top + rect.height / 2);
-    
+//    matrix.translate(rect.left() + rect.width() / 2.0, rect.top() + rect.height() / 2.0);
 }
 
 //--------------------------------------------------------------

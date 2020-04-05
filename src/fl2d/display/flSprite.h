@@ -55,11 +55,11 @@ namespace fl2d {
             virtual float height();
             virtual void height(float value);
         
-            virtual float scaleX();
-            virtual void scaleX(float value);
-        
-            virtual float scaleY();
-            virtual void scaleY(float value);
+//            virtual float scaleX();
+//            virtual void scaleX(float value);
+//        
+//            virtual float scaleY();
+//            virtual void scaleY(float value);
         
             //            virtual float alpha();
             //            virtual void alpha(float value);

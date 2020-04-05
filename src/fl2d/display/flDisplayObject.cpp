@@ -42,13 +42,7 @@ namespace fl2d {
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = -1;
         
-        //        _matrix = NULL;
-        //        _concatenatedMatrix = NULL;
-        //        _concatenatedMatrixInv = NULL;
-        
         _hitAreaRect = new flRectangle();
-        //        _rectTransformed = NULL;
-        _pixelBounds = new flRectangle();
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;
@@ -87,15 +81,8 @@ namespace fl2d {
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = 0;
         
-        //        _matrix = NULL;
-        //        _concatenatedMatrix = NULL;
-        //        _concatenatedMatrixInv = NULL;
-        
         delete _hitAreaRect;
         _hitAreaRect = NULL;
-
-        delete _pixelBounds;
-        _pixelBounds = NULL;
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;
@@ -153,7 +140,7 @@ namespace fl2d {
             //            glPushMatrix();
             ofPushMatrix();
             //            glMultMatrixf(matrix().getPtr());
-            ofMultMatrix(matrix().getPtr());
+            ofMultMatrix(_transform.__matrix.getPtr());
         }
         
         ofPushStyle();
@@ -254,11 +241,11 @@ namespace fl2d {
     flDisplayObject* flDisplayObject::mask() { return _mask; }
     
     //--------------------------------------------------------------
-    float flDisplayObject::x() { return _matrix.tx(); }
-    void flDisplayObject::x(float value) { _matrix.tx(value); }
+    float flDisplayObject::x() { return _transform.__matrix.tx(); }
+    void flDisplayObject::x(float value) { _transform.__matrix.tx(value); }
     //--------------------------------------------------------------
-    float flDisplayObject::y() { return _matrix.ty(); }
-    void flDisplayObject::y(float value) { _matrix.ty(value); }
+    float flDisplayObject::y() { return _transform.__matrix.ty(); }
+    void flDisplayObject::y(float value) { _transform.__matrix.ty(value); }
     //--------------------------------------------------------------
     float flDisplayObject::z() { return _z; }
     void flDisplayObject::z(float value) { _z = value; }
@@ -318,7 +305,7 @@ namespace fl2d {
     }
     void flDisplayObject::width(float value) {
         _targetWidth = value;
-        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
     }
     
     //--------------------------------------------------------------
@@ -328,26 +315,26 @@ namespace fl2d {
     }
     void flDisplayObject::height(float value) {
         _targetHeight = value;
-        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------
     float flDisplayObject::scaleX() {
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        return _matrix.scaleX();
+        return _transform.__matrix.scaleX();
     }
     void flDisplayObject::scaleX(float value) {
         _targetHeight = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleX(value);
+        _transform.__matrix.scaleX(value);
     }
     //--------------------------------------------------------------
     float flDisplayObject::scaleY() {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        return _matrix.scaleY();
+        return _transform.__matrix.scaleY();
     }
     void flDisplayObject::scaleY(float value) {
         _targetHeight = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleY(value);
+        _transform.__matrix.scaleY(value);
     }
     
     //--------------------------------------------------------------
@@ -355,8 +342,8 @@ namespace fl2d {
     void flDisplayObject::scaleZ(float value) { _scaleZ = value; }
     
     //--------------------------------------------------------------
-    float flDisplayObject::rotation() { return _matrix.rotation() * RAD_TO_DEG; }
-    void flDisplayObject::rotation(float value) { _matrix.rotate(value * DEG_TO_RAD); }
+    float flDisplayObject::rotation() { return _transform.__matrix.rotation() * RAD_TO_DEG; }
+    void flDisplayObject::rotation(float value) { _transform.__matrix.rotate(value * DEG_TO_RAD); }
     //--------------------------------------------------------------
     float flDisplayObject::rotationX() { return _rotationX; }
     void flDisplayObject::rotationX(float value) { _rotationX = value; }
@@ -387,63 +374,24 @@ namespace fl2d {
     void flDisplayObject::level(int value) { _level = value; }
     
     //--------------------------------------------------------------
-    const flMatrix& flDisplayObject::matrix() { return _matrix; }
-    void flDisplayObject::matrix(const flMatrix& mat) { _matrix = mat; }
+    flTransform& flDisplayObject::transform() { return _transform; }
+    void flDisplayObject::transform(const flTransform& value) { _transform = value; }
     
     //--------------------------------------------------------------
-    const flMatrix& flDisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
+//    const flMatrix& flDisplayObject::matrix() { return _matrix; }
+//    void flDisplayObject::matrix(const flMatrix& mat) { _matrix = mat; }
+    
 
     //--------------------------------------------------------------
     // TODO Include a shape line.
     flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
-//        flRectangle rect;
-//        rect.left(_rect->left() * scaleX());
-//        rect.right(_rect->right() * scaleX());
-//        rect.top(_rect->top() * scaleY());
-//        rect.bottom(_rect->bottom() * scaleY());
-        
-//        ofVec4f temp;
-//        temp.x = _rect->left() * scaleX();
-//        temp.y = _rect->right() * scaleX();
-//        temp.z = _rect->top() * scaleY();
-//        temp.w = _rect->bottom() * scaleY();
-//        temp = temp * _matrix;
-//
-//        rect.__expandTo(temp.x, temp.y);
-//        rect.__expandTo(temp.z, temp.w);
-
-        flRectangle rect;
-        rect.left(_pixelBounds->left());
-        rect.right(_pixelBounds->right());
-        rect.top(_pixelBounds->top());
-        rect.bottom(_pixelBounds->bottom());
-        return rect;
+        return _transform.pixelBounds();
     }
     
     //--------------------------------------------------------------
     // TODO Not include a shape line.
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
-//        _realRect->left(_rect->left() * scaleX());
-//        _realRect->right(_rect->right() * scaleX());
-//        _realRect->top(_rect->top() * scaleY());
-//        _realRect->bottom(_rect->bottom() * scaleY());
-        
-//        ofVec3f p1 = ofVec3f(_rect->left(), _rect->top(), 0) * _matrix;
-//        ofVec3f p2 = ofVec3f(_rect->right(), _rect->top(), 0) * _matrix;
-//        ofVec3f p3 = ofVec3f(_rect->right(), _rect->bottom(), 0) * _matrix;
-//        ofVec3f p4 = ofVec3f(_rect->left(), _rect->bottom(), 0) * _matrix;
-////
-//        rect.__expandTo(p1);
-//        rect.__expandTo(p2);
-//        rect.__expandTo(p3);
-//        rect.__expandTo(p4);
-        
-        flRectangle rect;
-        rect.left(_pixelBounds->left());
-        rect.right(_pixelBounds->right());
-        rect.top(_pixelBounds->top());
-        rect.bottom(_pixelBounds->bottom());
-        return rect;
+        return _transform.pixelBounds();
     }
     
     //--------------------------------------------------------------
@@ -456,7 +404,7 @@ namespace fl2d {
     bool flDisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
-        _concatenatedMatrixInv.transformPoint(p);
+        _transform.__concatenatedMatrixInv.transformPoint(p);
         return _hitAreaRect->pointTest(p.x, p.y);
     }
     
@@ -464,67 +412,29 @@ namespace fl2d {
     ofPoint flDisplayObject::globalToLocal(const ofPoint& point) {
         ofPoint p = point;
         //グローバル座標からローカル座標に変換
-        _concatenatedMatrixInv.transformPoint(p);
+        _transform.__concatenatedMatrixInv.transformPoint(p);
         return p;
     }
     
     //--------------------------------------------------------------
     ofPoint flDisplayObject::globalToLocal3D(const ofPoint& point) {
         ofPoint p = point;
-        _concatenatedMatrixInv.transformPoint(p);
+        _transform.__concatenatedMatrixInv.transformPoint(p);
         return p;
     }
     
     //--------------------------------------------------------------
     ofPoint flDisplayObject::local3DToGlobal(const ofPoint& point) {
         ofPoint p = point;
-        _concatenatedMatrix.transformPoint(p);
+        _transform.__concatenatedMatrix.transformPoint(p);
         return p;
     }
     
     //--------------------------------------------------------------
     ofPoint flDisplayObject::localToGlobal(const ofPoint& point) {
         ofPoint p = point;
-        _concatenatedMatrix.transformPoint(p);
+        _transform.__concatenatedMatrix.transformPoint(p);
         return p;
-    }
-    
-    //--------------------------------------------------------------
-    void flDisplayObject::transform(const flMatrix& mat) {
-        _concatenatedMatrix = mat;
-        _concatenatedMatrixInv = mat;
-        _concatenatedMatrixInv.invert();
-        
-        float x1 = _hitAreaRect->left();
-        float y1 = _hitAreaRect->top();
-        float x2 = _hitAreaRect->right();
-        float y2 = _hitAreaRect->bottom();
-        
-        ofPoint p0(x1, y1);
-        ofPoint p1(x2, y1);
-        ofPoint p2(x2, y2);
-        ofPoint p3(x1, y2);
-        
-        mat.transformPoint(p0);
-        mat.transformPoint(p1);
-        mat.transformPoint(p2);
-        mat.transformPoint(p3);
-        
-        _rectTransformed[0] = p0;
-        _rectTransformed[1] = p1;
-        _rectTransformed[2] = p2;
-        _rectTransformed[3] = p3;
-        
-        //-- work out global bounding box.
-        
-        vector<ofPoint> points;
-        points.push_back(_rectTransformed[0]);
-        points.push_back(_rectTransformed[1]);
-        points.push_back(_rectTransformed[2]);
-        points.push_back(_rectTransformed[3]);
-        
-        _pixelBounds->__setNull();						// reset before enclosing new points.
-        _pixelBounds->__encloseRect(points);
     }
     
     //--------------------------------------------------------------
@@ -542,7 +452,7 @@ namespace fl2d {
             ofPoint p;
             p.x = _stage->mouseX();
             
-            _concatenatedMatrixInv.transformPoint(p);
+            _transform.__concatenatedMatrixInv.transformPoint(p);
             //		_mouseX = p.x - _rect->x();
             _mouseX = p.x;
         } else {
@@ -557,7 +467,7 @@ namespace fl2d {
             ofPoint p;
             p.y = _stage->mouseY();
             
-            _concatenatedMatrixInv.transformPoint(p);
+            _transform.__concatenatedMatrixInv.transformPoint(p);
             //            _mouseY = p.y - _rect->y();
             _mouseY = p.y;
         } else {
@@ -572,23 +482,48 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flDisplayObject::_updateRect() {
-        ////        _rect->__setZero();
-        //        
-        ////        _rect->width(_targetWidth);
-        ////        _rect->height(_targetHeight);
-        //        
-        //        //--------------------------------------
-        //        _realWidth = _rect->width();
-        //        _realHeight = _rect->height();
-        //        
-        //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        ////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-        ////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-        //        //--------------------------------------
+////        _rect->__setZero();
+//
+////        _rect->width(_targetWidth);
+////        _rect->height(_targetHeight);
+//
+//        //--------------------------------------
+//        _realWidth = _rect->width();
+//        _realHeight = _rect->height();
+//
+//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+//        //--------------------------------------
+    }
+    
+    //--------------------------------------------------------------
+    void flDisplayObject::__updateConcatenatedMatrix(const flMatrix& mat) {
+        _transform.__concatenatedMatrix = mat;
+        _transform.__concatenatedMatrixInv = mat;
+        _transform.__concatenatedMatrixInv.invert();
+        
+        float x1 = _hitAreaRect->left();
+        float y1 = _hitAreaRect->top();
+        float x2 = _hitAreaRect->right();
+        float y2 = _hitAreaRect->bottom();
+        
+        ofPoint p0(x1, y1);
+        ofPoint p1(x2, y1);
+        ofPoint p2(x2, y2);
+        ofPoint p3(x1, y2);
+        
+        mat.transformPoint(p0);
+        mat.transformPoint(p1);
+        mat.transformPoint(p2);
+        mat.transformPoint(p3);
+        
+        _transform.__updatePixelBounds(p0, p1, p2, p3);
     }
     
     //--------------------------------------------------------------
     float flDisplayObject::__compoundAlpha(){ return _compoundAlpha; }
     void flDisplayObject::__compoundAlpha(float value){ _compoundAlpha = value; }
+
 }

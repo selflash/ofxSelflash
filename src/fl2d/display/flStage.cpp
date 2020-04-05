@@ -382,9 +382,9 @@ namespace fl2d {
             //=========================================== Matrix.
             //transform child matrix by world matrix.
             flMatrix worldMatrix;
-            worldMatrix = parent->concatenatedMatrix();
-            worldMatrix.concat(child->matrix());
-            child->transform(worldMatrix);
+            worldMatrix = parent->transform().concatenatedMatrix();
+            worldMatrix.concat(child->transform().matrix());
+            child->__updateConcatenatedMatrix(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
 //            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
@@ -847,12 +847,12 @@ namespace fl2d {
             
             //-- matrix transform.
             bool bIdentity = true;
-            bIdentity = child->matrix().isIdentity();
+            bIdentity = child->transform().matrix().isIdentity();
             bIdentity = false;
             
             if(!bIdentity) {
                 glPushMatrix();
-                glMultMatrixf(child->matrix().getPtr());
+                glMultMatrixf(child->transform().matrix().getPtr());
             }
             
             //child->drawOnFrame();
@@ -991,12 +991,12 @@ namespace fl2d {
             
             //-- matrix transform.
             bool bIdentity = true;
-            bIdentity = child->matrix().isIdentity();
+            bIdentity = child->transform().matrix().isIdentity();
             bIdentity = false;
             
             if(!bIdentity) {
                 glPushMatrix();
-                glMultMatrixf(child->matrix().getPtr());
+                glMultMatrixf(child->transform().matrix().getPtr());
             }
             
             ofSetHexColor(0xff0000);

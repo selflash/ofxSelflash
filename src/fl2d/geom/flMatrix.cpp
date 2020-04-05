@@ -257,18 +257,28 @@ namespace fl2d {
         
         return r;
     }
+    
+    //--------------------------------------------------------------
+    void flMatrix::translate(float dx, float dy) {
+        postMultTranslate(dx, dy, 0);
+//        c(dx);
+//        b(dy);
+    }
+
     //--------------------------------------------------------------
     // TODO flMatrix オブジェクトに回転変換を適用します。
     void flMatrix::rotate(const float& angle) {
-        const float rot_x	= atan2(b(), a());
-        const float rot_y	= atan2(-c(), d());
-        const float scale_x	= scaleX();
-        const float scale_y	= scaleY();
-        
+        const float rot_x    = atan2(b(), a());
+        const float rot_y    = atan2(-c(), d());
+        const float scale_x    = scaleX();
+        const float scale_y    = scaleY();
+
         a(scale_x * cos(angle));
         b(scale_x * sin(angle));
-        c(scale_y * sin(rot_y - rot_x + angle) * -1);		// reverse sign.
+        c(scale_y * sin(rot_y - rot_x + angle) * -1);        // reverse sign.
         d(scale_y * cos(rot_y - rot_x + angle));
+        
+//        postMultRotate(angle, 0, 0, 1);
     }
     
     //=============================================== GETTERS.

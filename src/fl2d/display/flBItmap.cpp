@@ -397,44 +397,44 @@ namespace fl2d {
     //        _rect->height(value);
     //    }
     
-    //--------------------------------------------------------------
-    float flBitmap::width() {
-        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        return _realWidth * scaleX();
-    }
-    void flBitmap::width(float value) {
-        _targetWidth = value;
-        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-    }
+//    //--------------------------------------------------------------
+//    float flBitmap::width() {
+//        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        return _realWidth * scaleX();
+//    }
+//    void flBitmap::width(float value) {
+//        _targetWidth = value;
+//        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//    }
+//    
+//    //--------------------------------------------------------------
+//    float flBitmap::height() {
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
+//        return _realHeight * scaleY();
+//    }
+//    void flBitmap::height(float value) {
+//        _targetHeight = value;
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
+//    }
     
-    //--------------------------------------------------------------
-    float flBitmap::height() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
-        return _realHeight * scaleY();
-    }
-    void flBitmap::height(float value) {
-        _targetHeight = value;
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
-    }
-    
-    //--------------------------------------------------------------
-    float flBitmap::scaleX() {
-        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        return _matrix.scaleX();
-    }
-    void flBitmap::scaleX(float value) {
-        _targetWidth = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleX(value);
-    }
-    //--------------------------------------------------------------
-    float flBitmap::scaleY() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
-        return _matrix.scaleY();
-    }
-    void flBitmap::scaleY(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleY(value);
-    }
+//    //--------------------------------------------------------------
+//    float flBitmap::scaleX() {
+//        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        return _matrix.scaleX();
+//    }
+//    void flBitmap::scaleX(float value) {
+//        _targetWidth = numeric_limits<float>::quiet_NaN();
+//        _matrix.scaleX(value);
+//    }
+//    //--------------------------------------------------------------
+//    float flBitmap::scaleY() {
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
+//        return _matrix.scaleY();
+//    }
+//    void flBitmap::scaleY(float value) {
+//        _targetHeight = numeric_limits<float>::quiet_NaN();
+//        _matrix.scaleY(value);
+//    }
     
     //==============================================================
     // PROTECTED / PRIVATE METHOD

@@ -48,17 +48,17 @@ namespace fl2d {
             //            virtual void draw();
             //virtual ofTexture& getTextureReference();
             
-            virtual float width();
-            virtual void width(float value);
+//            virtual float width();
+//            virtual void width(float value);
+//            
+//            virtual float height();
+//            virtual void height(float value);
             
-            virtual float height();
-            virtual void height(float value);
-            
-            virtual float scaleX();
-            virtual void scaleX(float value);
-            
-            virtual float scaleY();
-            virtual void scaleY(float value);
+//            virtual float scaleX();
+//            virtual void scaleX(float value);
+//            
+//            virtual float scaleY();
+//            virtual void scaleY(float value);
             
     //        template <class T>
     //        virtual void data<T>(T* value);

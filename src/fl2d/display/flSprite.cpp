@@ -101,7 +101,7 @@ namespace fl2d {
 //            glPushMatrix();
             ofPushMatrix();
 //            glMultMatrixf(matrix().getPtr());
-            ofMultMatrix(matrix().getPtr());
+            ofMultMatrix(_transform.matrix().getPtr());
         }
         
         ofPushStyle();
@@ -138,7 +138,7 @@ namespace fl2d {
         if(_hitAreaVisible) {
 //        if(true) {
             ofPushMatrix();
-            ofMultMatrix(matrix().getPtr());
+            ofMultMatrix(_transform.matrix().getPtr());
 
             ofNoFill();
             ofSetLineWidth(3);
@@ -255,18 +255,18 @@ namespace fl2d {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
     }
     
-    //--------------------------------------------------------------
-    float flSprite::scaleX() { return _matrix.scaleX(); }
-    void flSprite::scaleX(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleX(value);
-    }
-    //--------------------------------------------------------------
-    float flSprite::scaleY() { return _matrix.scaleY(); }
-    void flSprite::scaleY(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
-        _matrix.scaleY(value);
-    }
+//    //--------------------------------------------------------------
+//    float flSprite::scaleX() { return _matrix.scaleX(); }
+//    void flSprite::scaleX(float value) {
+//        _targetHeight = numeric_limits<float>::quiet_NaN();
+//        _matrix.scaleX(value);
+//    }
+//    //--------------------------------------------------------------
+//    float flSprite::scaleY() { return _matrix.scaleY(); }
+//    void flSprite::scaleY(float value) {
+//        _targetHeight = numeric_limits<float>::quiet_NaN();
+//        _matrix.scaleY(value);
+//    }
     
     //--------------------------------------------------------------
     bool flSprite::useHandCursor() { return _useHandCursor; }
@@ -307,7 +307,7 @@ namespace fl2d {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
         //Transform to local from global.
-        _concatenatedMatrixInv.transformPoint(p);
+        _transform.__concatenatedMatrixInv.transformPoint(p);
         
         if(shapeFlag) {
             return _graphics->__rect->pointTest(p.x, p.y);

@@ -223,6 +223,17 @@ namespace fl2d {
             __expandTo(points[i].x, points[i].y);
         }
     }
+    //--------------------------------------------------------------
+    void flRectangle::__encloseRect(const ofPoint (&points)[4]) {
+        for(int i = 0; i < 4; i++){
+            if(i == 0){
+                __setToPoint(points[0].x, points[0].y);
+                continue;
+            }
+            __expandTo(points[i].x, points[i].y);
+        }
+    }
+
     
     //--------------------------------------------------------------
     void flRectangle::__expandToRect(const flRectangle& rect) {

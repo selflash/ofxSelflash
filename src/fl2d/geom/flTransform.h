@@ -9,14 +9,16 @@
  
  */
 
+#pragma once
+
 #include "ofMain.h"
 #include "flColorTransform.h"
 #include "flMatrix.h"
 #include "flRectangle.h"
 
 namespace fl2d {
-    class flStage;
     class flDisplayObject;
+    class flSprite;
     
     class flTransform : public flObject {
         public:
@@ -24,8 +26,28 @@ namespace fl2d {
             /**
              *  friends! http://www.cplusplus.com/doc/tutorial/inheritance/
              **/
-            friend flStage;
             friend flDisplayObject;
+            friend flSprite;
+        
+        protected:
+        
+        private:
+//            bool bDirtyColorTransform;
+//            bool bDirtyMatrix;
+//            bool bDirtyMatrix3D;
+
+            flColorTransform  _colorTransform;
+            flColorTransform  _concatenatedColorTransform;
+            flMatrix          __concatenatedMatrix;
+            flMatrix          __concatenatedMatrixInv;
+            flMatrix          __matrix;
+//            flMatrix          _matrix3D;
+            flRectangle      __pixelBounds;
+            ofPoint         _transformedPoints[4];
+
+        public:
+            flTransform();
+            virtual ~flTransform();
         
             /**
              *  Returns a Matrix3D object, which can transform the space of a specified display object in relation to the current display object's space.
@@ -34,43 +56,30 @@ namespace fl2d {
             //    ofxFlashMatrix getRelativeMatrix3D( ofxFlashDisplayObject relativeTo ) { return ofxFlashMatrix(); }
         
             // A ColorTransform object containing values that universally adjust the colors in the display object.
-            flColorTransform colorTransform;
+            virtual inline flColorTransform& colorTransform() { return _colorTransform; }
+        
             // [read-only] A ColorTransform object representing the combined color transformations applied to the display object and all of its parent objects, back to the root level.
-            flColorTransform concatenatedColorTransform;
+            virtual inline flColorTransform& concatenatedColorTransform() { return _concatenatedColorTransform; }
+        
             // [read-only] A flMatrix object representing the combined transformation matrixes of the display object and all of its parent objects, back to the root level.
-            flMatrix concatenatedMatrix;
+            virtual inline const flMatrix& concatenatedMatrix() { return __concatenatedMatrix; }
+        
             // A flMatrix object containing values that alter the scaling, rotation, and translation of the display object.
-            flMatrix matrix;
+            virtual inline flMatrix& matrix() { return __matrix; }
+            virtual inline void matrix(const flMatrix& mat) { __matrix = mat; }
+        
             // Provides access to the Matrix3D object of a three-dimensional display object.
-            flMatrix matrix3D;
+//            flMatrix matrix3D;
+        
             // [read-only] A Rectangle object that defines the bounding rectangle of the display object on the stage.
-            flRectangle* pixelBounds;
-        
+            virtual inline const flRectangle& pixelBounds() { return __pixelBounds; }
+
         protected:
+//            void update();
         
         private:
-            bool bDirtyColorTransform;
-            bool bDirtyMatrix;
-            bool bDirtyMatrix3D;
-        
-            flColorTransform  _colorTransform;
-            flColorTransform  _concatenatedColorTransform;
-            flMatrix          _concatenatedMatrix;
-            flMatrix          _concatenatedMatrixInv;
-            flMatrix          _matrix;
-            flMatrix          _matrix3D;
-            flRectangle*      _pixelBounds;
-            flRectangle*      _rect;
-            ofPoint         _rectTransformed[4];
-        
-        public:
-            flTransform();
-            virtual ~flTransform();
-        
-        protected:
-            void update();
-        
-        private:
+            void __updatePixelBounds(ofPoint p1, ofPoint p2, ofPoint p3, ofPoint p4);
+
     };
     
 }
