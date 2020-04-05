@@ -230,8 +230,6 @@ namespace fl2d {
     void flCircleColorPicker::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[flCircleColorPicker]_mouseEventHandler(" << event.type();
         //ofLog() << "isMouseDown" << isMouseDown();
-        
-        flUIBase::_mouseEventHandler(event);
 
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _onOver();

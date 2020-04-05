@@ -50,7 +50,7 @@ namespace fl2d {
         track->name("flRangeSlider.track");
         track->x(0);
         track->y(0);
-        track->mouseEnabled(false);
+//        track->mouseEnabled(false);
 //        track->addEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
 //        track->addEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
 //        track->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
@@ -130,6 +130,15 @@ namespace fl2d {
         //------------------------------------------
         
         _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+
+        //------------------------------------------
+//        flGraphics* g;
+//        g = graphics();
+//        g->clear();
+//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->drawRect(0, 0, _barWidth, 18);
+//        g->endFill();
+        //------------------------------------------
 
         _setNormalColor();
     }
@@ -849,8 +858,6 @@ namespace fl2d {
 //        ofLog() << "[flRangeSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flRangeSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
-        flUIBase::_mouseEventHandler(event);
-
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == bar) _onOver();
@@ -877,8 +884,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == bar) {
                 _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
                 _onBarPress();

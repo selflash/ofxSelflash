@@ -831,6 +831,7 @@ void UIComponents::_setup() {
     hViewer001->x(marginLeft + spacing * 0);
     hViewer001->y(marginTop + lineSpacing * 1);
     hViewer001->toolTipEnabled(true);
+    hViewer001->toolTipText(u8"ヒストグラムビュワーのサンプルです。\nドラッグで値を変更できます。");
     //    hViewer001->addEventListener(flHistgramViewerEvent::MOUSE_DOWN, this, &UIComponents::_uiEventHandler);
     addChild(hViewer001);
     //--------------------------------------

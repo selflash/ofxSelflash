@@ -346,8 +346,6 @@ namespace fl2d {
     void flCheckBox::_mouseEventHandler(flEvent& event) {
 //        ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
-        flUIBase::_mouseEventHandler(event);
-
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _onOver();
@@ -360,8 +358,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == this) {
                 _onPress();
 //                addEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);

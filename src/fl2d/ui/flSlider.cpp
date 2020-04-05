@@ -639,8 +639,6 @@ namespace fl2d {
 //        ofLog() << "[flSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
-        flUIBase::_mouseEventHandler(event);
-
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == track) _onTrackOver();
@@ -655,8 +653,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-            
             if(thumb->isMouseOver()) {
                 if(event.target() == thumb) {
                     _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;

@@ -698,8 +698,6 @@ namespace fl2d {
 //        if(_dialer02->track->isMouseDown()) return;
 //        if(_dialer03->track->isMouseDown()) return;
 //        if(_dialer04->track->isMouseDown()) return;
-        
-        flUIBase::_mouseEventHandler(event);
 
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
@@ -715,8 +713,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == area) {
                 //_leverPress();
 

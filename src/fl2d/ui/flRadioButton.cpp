@@ -361,8 +361,6 @@ namespace fl2d {
     void flRadioButton::_mouseEventHandler(flEvent& event) {
 //        ofLog() << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
-        flUIBase::_mouseEventHandler(event);
-
         //Mouse Over
         if(event.type() == flMouseEvent::MOUSE_OVER) {
             if(event.target() == this) _onOver();

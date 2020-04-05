@@ -16,8 +16,9 @@ namespace fl2d {
         
         _toolTip = new flToolTip();
         
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler);
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler_flUIBase);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler_flUIBase);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flUIBase::_mouseEventHandler_flUIBase);
     }
     
     //--------------------------------------------------------------
@@ -29,9 +30,10 @@ namespace fl2d {
         delete _toolTip;
         _toolTip = NULL;
     
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler);
-        
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler_flUIBase);
+        removeEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler_flUIBase);
+        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flUIBase::_mouseEventHandler_flUIBase);
+
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();
 
@@ -96,8 +98,8 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flUIBase::_mouseEventHandler(flEvent& event) {
-//        ofLog() << "[flUIBase]_mouseEventHandler(" << event.type() << ")";
+    void flUIBase::_mouseEventHandler_flUIBase(flEvent& event) {
+//        ofLog() << "[flUIBase]_mouseEventHandler_flUIBase(" << event.type() << ")";
 //        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
@@ -134,7 +136,7 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            
+            if(_toolTipEnabled) _toolTip->visible(false);
         }
         
         //Mouse Up

@@ -61,9 +61,9 @@ namespace fl2d {
         
         virtual void _update();
 
-        virtual void _mouseEventHandler(flEvent& event);
-
     private:
+        void _mouseEventHandler_flUIBase(flEvent& event);
+
     };
     
 }

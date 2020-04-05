@@ -384,8 +384,6 @@ namespace fl2d {
 //        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
-        flUIBase::_mouseEventHandler(event);
-
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() != this) {
@@ -405,8 +403,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             flButton* target = (flButton*) event.target();
             if(target == _topButton) {
                 if(_topButton->selected()){

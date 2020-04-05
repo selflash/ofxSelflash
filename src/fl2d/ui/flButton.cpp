@@ -429,8 +429,6 @@ namespace fl2d {
 //        ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flButton]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name();
         
-        flUIBase::_mouseEventHandler(event);
-        
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == this) _onOver();
@@ -443,8 +441,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == this) _onPress();
 //            addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
             if(stage()) {

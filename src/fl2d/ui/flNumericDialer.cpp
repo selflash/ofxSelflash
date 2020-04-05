@@ -393,8 +393,6 @@ namespace fl2d {
 //        ofLog() << "[flNumericDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flNumericDialer]target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name();
         
-        flUIBase::_mouseEventHandler(event);
-
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == _track) _onOver();
@@ -407,8 +405,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == _track) {
                 _tempValue = _value;
                 _startPos.x = mouseX();

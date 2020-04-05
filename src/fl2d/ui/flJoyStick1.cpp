@@ -570,8 +570,6 @@ namespace fl2d {
     void flJoyStick1::_mouseEventHandler(flEvent& event) {
         //ofLog() << "[flJoyStick1D]_mouseEventHandler(" << event.type();
         
-        flUIBase::_mouseEventHandler(event);
-
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == lever) _onLeverOver();
@@ -584,8 +582,6 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-
             if(event.target() == lever){
                 _draggablePoint.x = mouseX() - lever->x();
                 _draggablePoint.y = mouseY() - lever->y();
