@@ -1265,3 +1265,6 @@ example-Object Debug.xcscheme
 example-Object Release.xcscheme
 example-ObjectDebug
 .gitkeep
+example-getBoundsDebug
+example-getBounds Debug.xcscheme
+example-getBounds Release.xcscheme

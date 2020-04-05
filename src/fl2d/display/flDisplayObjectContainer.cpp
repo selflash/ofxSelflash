@@ -381,7 +381,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObjectContainer::_updateRect() {
         //        _rect->__setNull();
-        _rect->__setZero();
+        _hitAreaRect->__setZero();
         
         int i; int l;
         flDisplayObject* child;
@@ -392,22 +392,17 @@ namespace fl2d {
             //                _rect->__expandToRect(*child->getRect(this));
             float cx = child->x();
             float cy = child->y();
-            _rect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
-            _rect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
+            _hitAreaRect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
+            _hitAreaRect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
         }
         
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
+        _realWidth = _hitAreaRect->width();
+        _realHeight = _hitAreaRect->height();
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-        
-        _realRect->left(_rect->left() * scaleX());
-        _realRect->right(_rect->right() * scaleX());
-        _realRect->top(_rect->top() * scaleY());
-        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

@@ -141,20 +141,20 @@ namespace fl2d {
             ofMultMatrix(matrix().getPtr());
 
             ofNoFill();
-            ofSetLineWidth(1);
+            ofSetLineWidth(3);
+            
 //            ofSetColor(0, 255, 0, 100);
 //            ofDrawRectangle(x(), y(), width(), height());
             
-            flRectangle rect = getRect(this);
-
+//            flRectangle rect = getBounds(this);
+//            flRectangle rect = getRect(this);
 //            ofSetColor(255, 0, 0, 100);
 //            ofDrawRectangle(rect.x(), rect.y(), width(), height());
+//            ofSetColor(0, 255, 0, 150);
+//            ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
             
-            ofSetColor(0, 255, 0, 100);
-            ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
-            
-//            ofSetColor(0, 0, 255, 100);
-//            ofDrawRectangle(_rect->left(), _rect->top(), _rect->width(), _rect->height());
+            ofSetColor(0, 0, 255, 100);
+            ofDrawRectangle(_hitAreaRect->left(), _hitAreaRect->top(), _hitAreaRect->width(), _hitAreaRect->height());
             
             ofPopMatrix();
         }
@@ -306,13 +306,13 @@ namespace fl2d {
     bool flSprite::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
-        //transform to local from global.
+        //Transform to local from global.
         _concatenatedMatrixInv.transformPoint(p);
         
         if(shapeFlag) {
             return _graphics->__rect->pointTest(p.x, p.y);
         } else {
-            return _realRect->pointTest(p.x, p.y);
+            return _hitAreaRect->pointTest(p.x, p.y);
         }
     }
     
@@ -345,7 +345,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSprite::_updateRect() {
-        _rect->__setToRect(*_graphics->__rect);
+        _hitAreaRect->__setToRect(*_graphics->__rect);
         
         int i; int l;
         l = children.size();
@@ -354,12 +354,12 @@ namespace fl2d {
             //                _rect->__expandToRect(*child->getRect(this));
             float cx = child->x();
             float cy = child->y();
-            _rect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
-            _rect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
+            _hitAreaRect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
+            _hitAreaRect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
         }
         
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
+        _realWidth = _hitAreaRect->width();
+        _realHeight = _hitAreaRect->height();
         
         //        cout << "flSprite _realWidth" << _realWidth << " flSprite _realHeight" << _realHeight << endl;
         
@@ -367,11 +367,6 @@ namespace fl2d {
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-        
-        _realRect->left(_rect->left() * scaleX());
-        _realRect->right(_rect->right() * scaleX());
-        _realRect->top(_rect->top() * scaleY());
-        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

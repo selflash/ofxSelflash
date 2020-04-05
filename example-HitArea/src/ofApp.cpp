@@ -89,15 +89,53 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 void ofApp::update() {
 //    ofxSelflash::update();
+    
+    float elapsedTime = ofGetElapsedTimef();
+    boxB->scaleX(1 + ((1 + sin(elapsedTime)) / 2.0));
+                 
+    boxB->rotation(boxB->rotation() + 0.5);
+    
+    
+    //http://level0.kayac.com//2009/11/matrix_with_getbounds.php
+//    //オブジェクトの現状のマトリクスを取得。
+//    flMatrix matrix = boxB->transform() transform.matrix;
+//
+//    //オブジェクトの領域を取得
+//    var rect:Rectangle = _object.getBouns(_containerOfObject);
+//
+//    //(0,0)にオブジェクトの中心を合わせる。(1)
+//    matrix.translate(-(rect.left + rect.width / 2), -(rect.top + rect.height / 2));
+//
+//    //45度(Math.PI / 4)回転させる(2)
+//    matrix.rotate(45 / 180 * Math.PI);
+//
+//    //もとの位置にオブジェクトを移動する。(3)
+//    matrix.translate(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofxSelflash::draw();
+        
+    //--------------------------------------
+    flRectangle rect = boxB->getBounds(ofxSelflash::stage());
+    //            flRectangle rect = getRect(this);
+    //            ofSetColor(255, 0, 0, 100);
+    //            ofDrawRectangle(rect.x(), rect.y(), width(), height());
+    ofPushStyle();
+    ofNoFill();
+    ofSetLineWidth(3);
+    ofSetColor(255, 0, 0, 150);
+    ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
+    ofPopStyle();
+//    ofSetColor(0, 0, 255, 100);
+//    ofDrawRectangle(_rect->left(), _rect->top(), _rect->width(), _rect->height());
+    //--------------------------------------
     
     ofPushStyle();
     ofSetColor(0);
-    flFont::drawString("Drag and move right DisplayObject", 12, 15);
+    flFont::drawString("Drag and move the right display object", 12, 15);
     ofPopStyle();
     
     flStage* stage = ofxSelflash::stage();

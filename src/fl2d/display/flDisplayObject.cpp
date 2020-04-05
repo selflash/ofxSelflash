@@ -46,8 +46,7 @@ namespace fl2d {
         //        _concatenatedMatrix = NULL;
         //        _concatenatedMatrixInv = NULL;
         
-        _rect = new flRectangle();
-        _realRect = new flRectangle();
+        _hitAreaRect = new flRectangle();
         //        _rectTransformed = NULL;
         _pixelBounds = new flRectangle();
         
@@ -92,11 +91,8 @@ namespace fl2d {
         //        _concatenatedMatrix = NULL;
         //        _concatenatedMatrixInv = NULL;
         
-        delete _rect;
-        _rect = NULL;
-
-        delete _realRect;
-        _realRect = NULL;
+        delete _hitAreaRect;
+        _hitAreaRect = NULL;
 
         delete _pixelBounds;
         _pixelBounds = NULL;
@@ -398,7 +394,7 @@ namespace fl2d {
     const flMatrix& flDisplayObject::concatenatedMatrix() { return _concatenatedMatrix; }
 
     //--------------------------------------------------------------
-    // TODO Include a line. 領域に線を含める
+    // TODO Include a shape line.
     flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
 //        flRectangle rect;
 //        rect.left(_rect->left() * scaleX());
@@ -417,15 +413,15 @@ namespace fl2d {
 //        rect.__expandTo(temp.z, temp.w);
 
         flRectangle rect;
-        rect.left(_realRect->left());
-        rect.right(_realRect->right());
-        rect.top(_realRect->top());
-        rect.bottom(_realRect->bottom());
+        rect.left(_pixelBounds->left());
+        rect.right(_pixelBounds->right());
+        rect.top(_pixelBounds->top());
+        rect.bottom(_pixelBounds->bottom());
         return rect;
     }
     
     //--------------------------------------------------------------
-    // TODO Not include a line. 領域に線を含めない
+    // TODO Not include a shape line.
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
 //        _realRect->left(_rect->left() * scaleX());
 //        _realRect->right(_rect->right() * scaleX());
@@ -443,14 +439,10 @@ namespace fl2d {
 //        rect.__expandTo(p4);
         
         flRectangle rect;
-        rect.left(_realRect->left());
-        rect.right(_realRect->right());
-        rect.top(_realRect->top());
-        rect.bottom(_realRect->bottom());
-//        rect.left(_rect->left());
-//        rect.right(_rect->right());
-//        rect.top(_rect->top());
-//        rect.bottom(_rect->bottom());
+        rect.left(_pixelBounds->left());
+        rect.right(_pixelBounds->right());
+        rect.top(_pixelBounds->top());
+        rect.bottom(_pixelBounds->bottom());
         return rect;
     }
     
@@ -465,7 +457,7 @@ namespace fl2d {
         ofPoint p(x, y);
         //グローバル座標からローカル座標に変換
         _concatenatedMatrixInv.transformPoint(p);
-        return _rect->pointTest(p.x, p.y);
+        return _hitAreaRect->pointTest(p.x, p.y);
     }
     
     //--------------------------------------------------------------
@@ -503,10 +495,10 @@ namespace fl2d {
         _concatenatedMatrixInv = mat;
         _concatenatedMatrixInv.invert();
         
-        float x1 = _rect->left();
-        float y1 = _rect->top();
-        float x2 = _rect->right();
-        float y2 = _rect->bottom();
+        float x1 = _hitAreaRect->left();
+        float y1 = _hitAreaRect->top();
+        float x2 = _hitAreaRect->right();
+        float y2 = _hitAreaRect->bottom();
         
         ofPoint p0(x1, y1);
         ofPoint p1(x2, y1);
@@ -594,11 +586,6 @@ namespace fl2d {
         ////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         ////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //        //--------------------------------------
-        
-        _realRect->left(_rect->left() * scaleX());
-        _realRect->right(_rect->right() * scaleX());
-        _realRect->top(_rect->top() * scaleY());
-        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------

@@ -13,7 +13,7 @@ InteractiveBox::InteractiveBox(float graphicsWidth, float graphicsHeight, ofColo
     
     useHandCursor(true);
     
-    _showHitArea = false;
+//    _showHitArea = false;
     
     //--------------------------------------
     addEventListener(flMouseEvent::ROLL_OVER, this, &InteractiveBox::_mouseEventHandler);
@@ -39,6 +39,8 @@ InteractiveBox::InteractiveBox(float graphicsWidth, float graphicsHeight, ofColo
     //--------------------------------------
     
     _setNormalColor();
+    
+    hitAreaVisible(true);
 }
 
 //-------------------------------------------------------------
@@ -55,7 +57,7 @@ InteractiveBox::~InteractiveBox() {
     _graphicsWidth = 0.0;
     _graphicsHeight = 0.0;
     
-    _showHitArea = false;
+//    _showHitArea = false;
     
     delete _label;
     _label = NULL;
@@ -80,17 +82,17 @@ void InteractiveBox::_update() {
 void InteractiveBox::_draw() {
     //--------------------------------------
     //ヒットエリアの表示
-    if(_showHitArea) {
-        ofPushStyle();
-        ofNoFill();
-        ofSetLineWidth(1);
-        //    ofSetColor(_areaColor);
-        ofSetColor(_areaColor);
-        ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
-        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
-        //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
-        ofPopStyle();
-    }
+//    if(_showHitArea) {
+//        ofPushStyle();
+//        ofNoFill();
+//        ofSetLineWidth(1);
+//        //    ofSetColor(_areaColor);
+//        ofSetColor(_areaColor);
+//        ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
+//        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
+//        //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+//        ofPopStyle();    
+//    }
     //--------------------------------------
     
     //--------------------------------------

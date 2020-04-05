@@ -71,8 +71,7 @@ namespace fl2d {
             flMatrix _concatenatedMatrix;
             flMatrix _concatenatedMatrixInv;
             
-            flRectangle* _rect = NULL;
-            flRectangle* _realRect = NULL;
+            flRectangle* _hitAreaRect = NULL;
             ofPoint _rectTransformed[4];
             flRectangle* _pixelBounds = NULL;
             
@@ -177,6 +176,7 @@ namespace fl2d {
             //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
             //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
             
+//            virtual const flMatrix& matrix();
             virtual void transform(const flMatrix& mat);
             
             virtual bool enabledSmoothing();

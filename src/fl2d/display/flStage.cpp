@@ -1005,7 +1005,7 @@ namespace fl2d {
             ofDrawLine(0, -n, 0, n);
             
             ofNoFill();
-            ofDrawRectangle(child->_rect->left(), child->_rect->top(), child->_rect->right(), child->_rect->bottom());
+            ofDrawRectangle(child->_hitAreaRect->left(), child->_hitAreaRect->top(), child->_hitAreaRect->right(), child->_hitAreaRect->bottom());
             ofFill();
             
             ofSetHexColor(0x000000);

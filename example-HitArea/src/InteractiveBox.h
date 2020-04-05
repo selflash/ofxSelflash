@@ -19,8 +19,8 @@ class InteractiveBox:public flSprite {
         float _graphicsWidth;
         float _graphicsHeight;
         
-        bool _showHitArea;
-        
+//        bool _showHitArea;
+    
     public:
         InteractiveBox(float graphicsWidth = 400, float graphicsHeight = 300, ofColor areaColor = ofColor(255, 0, 0));
         virtual ~InteractiveBox();
@@ -32,8 +32,8 @@ class InteractiveBox:public flSprite {
         virtual void _update();
         virtual void _draw();
         
-        void showHitArea(bool value) { _showHitArea = value; }
-        bool showHitArea() { return _showHitArea; }
+//        void showHitArea(bool value) { _showHitArea = value; }
+//        bool showHitArea() { return _showHitArea; }
         
     private:
         void _over();

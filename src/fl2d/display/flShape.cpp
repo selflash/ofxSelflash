@@ -40,10 +40,10 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flShape::update() {
         //--------------------------------------
-        _rect->__setToRect(*_graphics->__rect);
+        _hitAreaRect->__setToRect(*_graphics->__rect);
         
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
+        _realWidth = _hitAreaRect->width();
+        _realHeight = _hitAreaRect->height();
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
@@ -131,20 +131,15 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flShape::_updateRect() {
-        _rect->__setToRect(*_graphics->__rect);
+        _hitAreaRect->__setToRect(*_graphics->__rect);
         
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
+        _realWidth = _hitAreaRect->width();
+        _realHeight = _hitAreaRect->height();
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-        
-        _realRect->left(_rect->left() * scaleX());
-        _realRect->right(_rect->right() * scaleX());
-        _realRect->top(_rect->top() * scaleY());
-        _realRect->bottom(_rect->bottom() * scaleY());
     }
     
     //--------------------------------------------------------------
