@@ -54,6 +54,9 @@ void ofApp::setup() {
     bitmap4 = new flBitmap(texture4);
     bitmap4->x(20 + 256 + 20);
     bitmap4->y(20 + 256 + 20);
+    bitmap4->width(200);
+    bitmap4->height(200);
+//    bitmap4->rotation(90);
     stage->addChild(bitmap4);
     //--------------------------------------
     

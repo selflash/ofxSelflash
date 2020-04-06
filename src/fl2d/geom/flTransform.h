@@ -18,6 +18,7 @@
 
 namespace fl2d {
     class flDisplayObject;
+    class flBitmap;
     class flSprite;
     
     class flTransform : public flObject {
@@ -27,6 +28,7 @@ namespace fl2d {
              *  friends! http://www.cplusplus.com/doc/tutorial/inheritance/
              **/
             friend flDisplayObject;
+            friend flBitmap;
             friend flSprite;
         
         protected:

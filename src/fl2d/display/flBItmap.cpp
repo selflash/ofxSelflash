@@ -410,31 +410,31 @@ namespace fl2d {
 //    
 //    //--------------------------------------------------------------
 //    float flBitmap::height() {
-//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
 //        return _realHeight * scaleY();
 //    }
 //    void flBitmap::height(float value) {
 //        _targetHeight = value;
-//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
 //    }
-    
+//    
 //    //--------------------------------------------------------------
 //    float flBitmap::scaleX() {
 //        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-//        return _matrix.scaleX();
+//        return _transform.__matrix.scaleX();
 //    }
 //    void flBitmap::scaleX(float value) {
 //        _targetWidth = numeric_limits<float>::quiet_NaN();
-//        _matrix.scaleX(value);
+//        _transform.__matrix.scaleX(value);
 //    }
 //    //--------------------------------------------------------------
 //    float flBitmap::scaleY() {
-//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleX(_targetHeight / _realHeight);
-//        return _matrix.scaleY();
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+//        return _transform.__matrix.scaleY();
 //    }
 //    void flBitmap::scaleY(float value) {
 //        _targetHeight = numeric_limits<float>::quiet_NaN();
-//        _matrix.scaleY(value);
+//        _transform.__matrix.scaleY(value);
 //    }
     
     //==============================================================

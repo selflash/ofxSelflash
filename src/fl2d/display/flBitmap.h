@@ -53,7 +53,7 @@ namespace fl2d {
 //            
 //            virtual float height();
 //            virtual void height(float value);
-            
+//            
 //            virtual float scaleX();
 //            virtual void scaleX(float value);
 //            
