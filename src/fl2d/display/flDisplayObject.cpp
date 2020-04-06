@@ -324,7 +324,7 @@ namespace fl2d {
         return _transform.__matrix.scaleX();
     }
     void flDisplayObject::scaleX(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
+		_targetWidth = numeric_limits<float>::quiet_NaN();
         _transform.__matrix.scaleX(value);
     }
     //--------------------------------------------------------------
