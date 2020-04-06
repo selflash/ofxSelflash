@@ -51,9 +51,7 @@ namespace fl2d {
         //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
         //--------------------------------------
         
-        _update();
-        
-        _updateRect();
+        flDisplayObject::update();
     }
     
     //--------------------------------------------------------------

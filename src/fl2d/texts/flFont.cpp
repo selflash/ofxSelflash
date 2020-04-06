@@ -1,16 +1,24 @@
 #include "flFont.h"
 
 namespace fl2d {
+    bool flFont::_loaded = false;
     map<int, ofTrueTypeFont> flFont::_fonts;
     const int flFont::_normalFontSize = 10;
     map<int, float> flFont::_maxStringWidth;
     map<int, float> flFont::_maxStringHeight;
     
     //--------------------------------------------------------------
+    bool flFont::loaded() {
+        return _loaded;
+    }
+
+    //--------------------------------------------------------------
     void flFont::setup() {
         ofTrueTypeFont font;
         _loadFont(font, flDefinition::_FONT_PATH, _normalFontSize);
         _fonts[_normalFontSize] = font;
+        
+        _loaded = true;
     }
     
     //--------------------------------------------------------------

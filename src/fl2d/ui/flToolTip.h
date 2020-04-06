@@ -1,21 +1,23 @@
 #pragma once
 
 #include "ofMain.h"
-#include "flSprite.h"
+#include "flShape.h"
 #include "flFont.h"
 
 namespace fl2d {
-    
-    class flToolTip : public flSprite {
-        
+    class flSprite;
+    class flToolTip : public flShape {
+        friend flSprite;
+
         public:
         
         protected:
         
         private:
-            //string _text = u8"ここにテキストが入ります。";
-			string _text ="Test";
+			string _text = "Some information is displayed here.";
             int _fontHeight = 0;
+        
+            bool _bReady = false;
         
         public:
             flToolTip();

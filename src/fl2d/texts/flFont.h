@@ -11,13 +11,15 @@ namespace fl2d {
     protected:
         
     private:
-
+        static bool _loaded;
         static map<int, ofTrueTypeFont> _fonts;
         const static int _normalFontSize;
         static map<int, float> _maxStringWidth;
         static map<int, float> _maxStringHeight;
         
     public:
+        static bool loaded();
+
         static void setup();
         static void clear();
         static void loadFont(int fontSize);

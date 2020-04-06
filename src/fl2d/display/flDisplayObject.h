@@ -76,7 +76,7 @@ namespace fl2d {
             
             int	_mouseX;
             int	_mouseY;
-            
+
         private:
             
         public:
@@ -178,7 +178,7 @@ namespace fl2d {
             
             virtual int mouseX();
             virtual int mouseY();
-            
+
         protected:
             flDisplayObject();
             virtual ~flDisplayObject();
@@ -193,12 +193,12 @@ namespace fl2d {
 
             virtual float __compoundAlpha();
             virtual void __compoundAlpha(float value);
-        
-        
+                
             //virtual void updateOnFrame(){};
             //virtual void drawOnFrame(){};
             
         private:
+
     };
     
 }

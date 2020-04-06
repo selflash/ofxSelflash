@@ -12,13 +12,7 @@ namespace fl2d {
         
         _typeID = FL_TYPE_UIBASE;
         _target = this;
-        name("flUIBase");
-        
-        _toolTip = new flToolTip();
-        
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler_flUIBase);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler_flUIBase);
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flUIBase::_mouseEventHandler_flUIBase);
+        name("flUIBase");        
     }
     
     //--------------------------------------------------------------
@@ -26,47 +20,18 @@ namespace fl2d {
 //        ofLog() << "[flUIBase]~flUIBase()";
         
         _label = NULL;
-        
-        delete _toolTip;
-        _toolTip = NULL;
-    
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flUIBase::_mouseEventHandler_flUIBase);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flUIBase::_mouseEventHandler_flUIBase);
-        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flUIBase::_mouseEventHandler_flUIBase);
-
+            
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();
-
     }
     
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
     
-    //--------------------------------------------------------------
-    void flUIBase::_update() {
-//        if(
-//           _mouseWhenRollOver.x != ((flStage*)stage())->mouseX() ||
-//           _mouseWhenRollOver.y != ((flStage*)stage())->mouseY()
-//           ) {
-//            _showToolTip = false;
-//        }
-        
-        if(_toolTipEnabled && _toolTip->visible()) {
-            _toolTip->x(((flStage*)stage())->mouseX() + 30);
-            _toolTip->y(((flStage*)stage())->mouseY() + 10);
-        }
-    }
-    
     //==============================================================
     // Public Method
     //==============================================================
-    
-    //--------------------------------------------------------------
-    bool flUIBase::toolTipEnabled() { return _toolTipEnabled; }
-    void flUIBase::toolTipEnabled(bool value) {
-        _toolTipEnabled = value;
-    }
 
     //--------------------------------------------------------------
     flTextField* flUIBase::label() { return _label; }
@@ -96,53 +61,6 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Event Handler
     //==============================================================
-    
-    //--------------------------------------------------------------
-    void flUIBase::_mouseEventHandler_flUIBase(flEvent& event) {
-//        ofLog() << "[flUIBase]_mouseEventHandler_flUIBase(" << event.type() << ")";
-//        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
-//        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
-        
-        //Roll Over
-        if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-//                    _showToolTip = true;
-                    _toolTip->visible(true);
-                    _mouseWhenRollOver.x = ((flStage*)stage())->mouseX();
-                    _mouseWhenRollOver.y = ((flStage*)stage())->mouseY();
 
-                    _toolTip->x(((flStage*)stage())->mouseX() + 20);
-                    _toolTip->y(((flStage*)stage())->mouseY() + 10);
-                    ((flStage*)stage())->addChild(_toolTip);
-                }
-            }
-        }
-        
-        //Roll Out
-        if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-//                    _showToolTip = false;
-                    _toolTip->visible(false);
-
-                    if(_toolTip->parent() != NULL) {
-                        ((flStage*)stage())->removeChild(_toolTip);
-                    }
-                }
-            }
-        }
-        
-        //Mouse Down
-        if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) _toolTip->visible(false);
-        }
-        
-        //Mouse Up
-        if(event.type() == flMouseEvent::MOUSE_UP) {
-            
-        }
-    }
     
 }

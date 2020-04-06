@@ -53,9 +53,7 @@ namespace fl2d {
         //    _rect->__expandTo(tempLeft, tempTop);
         //    _rect->__expandTo(tempRight, tempBottom);
         
-        _update();
-        
-        _updateRect();
+        flDisplayObject::update();        
     }
     
     //--------------------------------------------------------------

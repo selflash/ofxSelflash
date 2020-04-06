@@ -29,6 +29,9 @@ AppModel::AppModel() {
     g->lineTo(-1, camHeight + 1);
     g->lineTo(-1, -1);
     g->endFill();
+    
+    toolTipEnabled(true);
+    toolTipText(u8"各変数の値を表示するウィンドウです。");
 }
 
 //--------------------------------------------------------------

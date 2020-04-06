@@ -7,7 +7,6 @@
 #include "flShape.h"
 #include "flSprite.h"
 #include "flTextField.h"
-#include "flToolTip.h"
 
 //using namespace glm;
 
@@ -17,12 +16,7 @@ namespace fl2d {
         
     public:
         
-    protected:
-        bool _toolTipEnabled = false;
-        flToolTip* _toolTip = NULL;
-        bool _showToolTip = false;
-        ofPoint _mouseWhenRollOver;
-        
+    protected:        
         flTextField* _label = NULL;
         bool _enabled = true;
 
@@ -34,12 +28,6 @@ namespace fl2d {
     private:
         
     public:
-        virtual inline flToolTip* toolTip() { return _toolTip; }
-        virtual bool toolTipEnabled();
-        virtual void toolTipEnabled(bool value);
-        virtual inline string toolTipText() { return _toolTip->text(); }
-        virtual inline void toolTipText(string value) { _toolTip->text(value); }
-
         virtual flTextField* label();
         virtual void label(flTextField* value);
 
@@ -58,11 +46,8 @@ namespace fl2d {
     protected:
         flUIBase();
         virtual ~flUIBase();
-        
-        virtual void _update();
-
+ 
     private:
-        void _mouseEventHandler_flUIBase(flEvent& event);
 
     };
     

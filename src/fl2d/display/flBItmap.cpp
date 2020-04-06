@@ -304,6 +304,7 @@ namespace fl2d {
     //    }
     
 	void flBitmap::_update() {
+//        flDisplayObject::update();
 
 		if (!_isAllocated)
 		{

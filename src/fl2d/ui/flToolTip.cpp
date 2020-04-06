@@ -12,8 +12,8 @@ namespace fl2d {
         _target = this;
         name("flToolTip");
         
-        mouseEnabled(false);
-        mouseChildren(false);
+//        mouseEnabled(false);
+//        mouseChildren(false);
         
         _fontHeight = flFont::getLineHeight(10);
 //        ofLog() << "_fontHeight = " << _fontHeight;
@@ -40,6 +40,14 @@ namespace fl2d {
     void flToolTip::_update() {
     //    cout << width() << ", " << height() << endl;
     
+        //If the flFont is not ready, monitor a font is loaded or not.
+        if(!_bReady) {
+            if(flFont::loaded()) {
+                _fontHeight = flFont::getLineHeight(10);
+                _updateWindow();                
+                _bReady = true;
+            }
+        }
     }
     
     //--------------------------------------------------------------
@@ -67,10 +75,6 @@ namespace fl2d {
     // Protected / Private Method
     //==============================================================
     
-    //==============================================================
-    // Protected / Private Event Handler
-    //==============================================================
-    
     //--------------------------------------------------------------
     void flToolTip::_updateWindow() {
         ofRectangle rect = flFont::getStringBoundingBox(_text);
@@ -92,5 +96,9 @@ namespace fl2d {
         g->lineTo(-1, -1);
         g->endFill();
     }
+    
+    //==============================================================
+    // Protected / Private Event Handler
+    //==============================================================
 
 }

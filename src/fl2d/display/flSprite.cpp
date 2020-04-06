@@ -27,6 +27,13 @@ namespace fl2d {
         _draggableArea = NULL;
         
         ofAddListener(ofEvents().update, this, &flSprite::_updateEventHandler);
+        
+        //--------------------------------------
+        //Tooltip
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        addEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
+        //--------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -49,6 +56,18 @@ namespace fl2d {
         _draggableArea = NULL;
         
         ofRemoveListener(ofEvents().update, this, &flSprite::_updateEventHandler);
+        
+        //--------------------------------------
+        //Tooltip
+        if(_toolTip != NULL) {
+            delete _toolTip;
+            _toolTip = NULL;
+        }
+        
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
+        //--------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -64,9 +83,17 @@ namespace fl2d {
     //--------------------------------------------------------------
     //TODO
     void flSprite::update() {
-        _update();
+        flDisplayObjectContainer::update();
         
-        _updateRect();
+        //--------------------------------------
+        //Tooltip
+        if(_toolTipEnabled && _toolTip->visible()) {
+            float stageMouseX = stage()->mouseX();
+            float stageMouseY = stage()->mouseY();
+            _toolTip->x(stageMouseX + 30);
+            _toolTip->y(stageMouseY + 10);
+        }
+        //--------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -339,6 +366,24 @@ namespace fl2d {
         _draggableArea = NULL;
     }
     
+    //--------------------------------------------------------------
+    bool flSprite::toolTipEnabled() { return _toolTipEnabled; }
+    void flSprite::toolTipEnabled(bool value) {
+        if(_toolTipEnabled == value) return;
+        _toolTipEnabled = value;
+        
+        if(_toolTipEnabled) {
+            _toolTip = new flToolTip();
+            _toolTip->text(_toolTipText);
+        } else {
+            if(_toolTip->parent() != NULL) {
+                ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+            }
+            delete _toolTip;
+            _toolTip = NULL;
+        }
+    }
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
@@ -401,6 +446,56 @@ namespace fl2d {
         this->y(n2);
         
         dispatchEvent(new flMouseEvent(flMouseEvent::DRAGGING));
+    }
+    
+    //==============================================================
+    // Protected / Private Event Handler
+    //==============================================================
+    
+    //--------------------------------------------------------------
+    void flSprite::_mouseEventHandler_flSprite(flEvent& event) {
+        //        ofLog() << "[flUIBase]_mouseEventHandler_flSprite(" << event.type() << ")";
+        //        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        //        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        //        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+        
+        //Roll Over
+        if(event.type() == flMouseEvent::ROLL_OVER) {
+            if(event.target() == this) {
+                if(_toolTipEnabled) {
+                    float stageMouseX = stage()->mouseX();
+                    float stageMouseY = stage()->mouseY();
+                    _toolTip->x(stageMouseX + 20);
+                    _toolTip->y(stageMouseY + 10);
+                    ((flDisplayObjectContainer*)stage())->addChild(_toolTip);
+                }
+            }
+        }
+        
+        //Roll Out
+        if(event.type() == flMouseEvent::ROLL_OUT) {
+            if(event.target() == this) {
+                if(_toolTipEnabled) {
+                    if(_toolTip->parent() != NULL) {
+                        ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+                    }
+                }
+            }
+        }
+        
+        //Mouse Down
+        if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            if(_toolTipEnabled) {
+                if(_toolTip->parent() != NULL) {
+                    ((flDisplayObjectContainer*)stage())->removeChild(_toolTip);
+                }
+            }
+        }
+        
+        //Mouse Up
+        if(event.type() == flMouseEvent::MOUSE_UP) {
+            
+        }
     }
     
 }

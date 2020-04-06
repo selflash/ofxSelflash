@@ -13,6 +13,8 @@
 
 #include "flDisplayObjectContainer.h"
 #include "flGraphics.h"
+#include "flToolTip.h"
+#include "flMouseEvent.h"
 #include "flmath.h"
 
 using namespace flinternal;
@@ -31,7 +33,14 @@ namespace fl2d {
             flSprite* __client = NULL;
         
             bool _hitAreaVisible = false;
-        
+            
+            //--------------------------------------
+            //Tooltip
+            flToolTip* _toolTip = NULL;
+            bool _toolTipEnabled = false;
+            string _toolTipText = "Some information is displayed here.";
+            //--------------------------------------
+
         private:
             ofPoint _draggablePoint;
             flRectangle* _draggableArea = NULL;
@@ -81,6 +90,18 @@ namespace fl2d {
             virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
             virtual void stopDrag();
         
+            //--------------------------------------
+            //Tooltip
+            inline flToolTip* toolTip() { return _toolTip; }
+            bool toolTipEnabled();
+            void toolTipEnabled(bool value);
+            inline string toolTipText() { return _toolTipText; }
+            inline void toolTipText(string value) {
+                _toolTipText = value;
+                if(_toolTip != NULL) _toolTip->text(_toolTipText);
+            }
+            //--------------------------------------
+        
         protected:
             //virtual void updateOnFrame(){};
             virtual void _updateRect();
@@ -94,6 +115,9 @@ namespace fl2d {
             void _mouseDragging(ofMouseEventArgs& event) { _mouseDragging(event.x, event.y, -1); };
         
             // TODO :: soundTransform
+        
+            void _mouseEventHandler_flSprite(flEvent& event);
+
     };
     
 }

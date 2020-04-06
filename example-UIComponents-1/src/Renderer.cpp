@@ -5,6 +5,8 @@ Renderer::Renderer() {
     _target = this;
     name("Renderer");
 
+    toolTipEnabled(true);
+    toolTipText(u8"テスト用の3Dキューブを表示するウィンドウです。");
 }
 
 //--------------------------------------------------------------
