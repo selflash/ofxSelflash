@@ -90,7 +90,7 @@ void ofApp::draw() {
     
     ofPushStyle();
     ofSetColor(0);
-    flFont::drawString("Drag and move any DisplayObject", 12, 15);
+    flFont::drawString("Drag and move a DisplayObject", 12, 15);
     ofPopStyle();
     
     flStage* stage = ofxSelflash::stage();
@@ -99,7 +99,7 @@ void ofApp::draw() {
     if(disp) {
         textField001->text("TopMostHitDisplayObject = " + disp->name());
     } else {
-        textField001->text("TopMostHitDisplayObject = NONE");
+        textField001->text("TopMostHitDisplayObject = None");
     }
     
     flDisplayObject* dispPrev = stage->topMostHitDisplayObjectPrev();
@@ -107,7 +107,7 @@ void ofApp::draw() {
         if(dispPrev) {
             textField002->text("TopMostHitDisplayObjectPrev = " + dispPrev->name());
         } else {
-            textField002->text("TopMostHitDisplayObjectPrev = NONE");
+            textField002->text("TopMostHitDisplayObjectPrev = None");
         }
     }
     
@@ -115,7 +115,7 @@ void ofApp::draw() {
     if(intDisp) {
         textField003->text("TopMostHitInteractiveObject = " + intDisp->name());
     } else {
-        textField003->text("TopMostHitInteractiveObject = NONE");
+        textField003->text("TopMostHitInteractiveObject = None");
     }
     
     flInteractiveObject* intDispPrev = stage->topMostHitInteractiveObjectPrev();
@@ -123,7 +123,7 @@ void ofApp::draw() {
         if(intDispPrev) {
             textField004->text("TopMostHitInteractiveObjectPrev = " + intDispPrev->name());
         } else {
-            textField004->text("TopMostHitInteractiveObjectPrev = NONE");
+            textField004->text("TopMostHitInteractiveObjectPrev = None");
         }
     }
     

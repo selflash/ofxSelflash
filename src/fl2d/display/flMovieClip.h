@@ -4,6 +4,10 @@
  flash.display.MovieClip
  http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/display/MovieClip.html
  
+ ********************************
+ In development.
+ ********************************
+ 
  */
 
 #pragma once

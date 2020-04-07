@@ -288,7 +288,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -381,10 +381,10 @@ namespace fl2d {
             
             //=========================================== Matrix.
             //transform child matrix by world matrix.
-            flMatrix worldMatrix;
-            worldMatrix = parent->transform().concatenatedMatrix();
-            worldMatrix.concat(child->transform().matrix());
-            child->__updateConcatenatedMatrix(worldMatrix);
+//            flMatrix worldMatrix;
+//            worldMatrix = parent->transform().concatenatedMatrix();
+//            worldMatrix.concat(child->transform().matrix());
+//            child->__updateTransform(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
 //            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
@@ -1005,7 +1005,7 @@ namespace fl2d {
             ofDrawLine(0, -n, 0, n);
             
             ofNoFill();
-            ofDrawRectangle(child->_hitAreaRect->left(), child->_hitAreaRect->top(), child->_hitAreaRect->right(), child->_hitAreaRect->bottom());
+            ofDrawRectangle(child->_rect->left(), child->_rect->top(), child->_rect->right(), child->_rect->bottom());
             ofFill();
             
             ofSetHexColor(0x000000);

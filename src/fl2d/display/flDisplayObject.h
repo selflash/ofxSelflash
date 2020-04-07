@@ -32,9 +32,13 @@
 #define	FL_BLEND_MODE_HARDLIGHT    13
 
 namespace fl2d {
-    
+
+    class flDisplayObjectContainer;
+    class flSprite;
     class flStage;
     class flDisplayObject : public flEventDispatcher {
+        friend flDisplayObjectContainer;
+        friend flSprite;
         friend flStage;
             
         public:
@@ -69,7 +73,13 @@ namespace fl2d {
             int	_level;
 
             flTransform _transform;
-            flRectangle* _hitAreaRect = NULL;
+            flRectangle* _rect = NULL;
+
+            flRectangle _tempRect;
+            ofPoint _tempPoint1;
+            ofPoint _tempPoint2;
+            ofPoint _tempPoint3;
+            ofPoint _tempPoint4;
         
             bool _enabledSmoothing;
             bool _enabledAntiAliasing;
@@ -159,13 +169,11 @@ namespace fl2d {
             virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
             
             virtual ofPoint	globalToLocal(const ofPoint& point);
-            
             virtual ofPoint	globalToLocal3D(const ofPoint& point);
-            
+
+            virtual ofPoint localToGlobal(const ofPoint& point);
             virtual ofPoint	local3DToGlobal(const ofPoint& point);
-            
-            virtual ofPoint	localToGlobal(const ofPoint& point);
-            
+                    
             //	TODO :: cacheAsBitmap - maybe this can be an FBO?
             //	TODO :: transform :: http://livedocs.adobe.com/flex/3/langref/flash/geom/Transform.html
             //	TODO :: events - added, addedToStage, enterFrame, exitFrame, frameConstructed, removed, removedFromStage, render
@@ -178,7 +186,7 @@ namespace fl2d {
             
             virtual int mouseX();
             virtual int mouseY();
-
+        
         protected:
             flDisplayObject();
             virtual ~flDisplayObject();
@@ -189,7 +197,8 @@ namespace fl2d {
             virtual void _draw();
             
             virtual void _updateRect();
-            virtual void __updateConcatenatedMatrix(const flMatrix& mat);
+            virtual flRectangle __getRect(flDisplayObject* targetCoordinateSpace);
+            virtual void __updateTransform(const flMatrix& mat);
 
             virtual float __compoundAlpha();
             virtual void __compoundAlpha(float value);

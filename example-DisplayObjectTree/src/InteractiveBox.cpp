@@ -69,6 +69,7 @@ InteractiveBox::~InteractiveBox() {
 void InteractiveBox::_setup() {
     //ofLog() << "[InteractiveBox]_setup()";
     
+    rectVisible(true);
 }
 
 //-------------------------------------------------------------
@@ -80,17 +81,18 @@ void InteractiveBox::_update() {
 void InteractiveBox::_draw() {
     //--------------------------------------
     //ヒットエリアの表示
-    if(_showHitArea) {
-        ofPushStyle();
-        ofNoFill();
-        ofSetLineWidth(1);
-        //    ofSetColor(_areaColor);
-        ofSetColor(_areaColor);
-        ofDrawRectangle(_rect->x(), _rect->y(), _rect->width(), _rect->height());
-        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
-        //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
-        ofPopStyle();
-    }
+//    if(_showHitArea) {
+//        ofPushStyle();
+//        ofNoFill();
+//        ofSetLineWidth(1);
+//        //    ofSetColor(_areaColor);
+//        ofSetColor(_areaColor);
+//        flRectangle rect = getRect(this);
+//        ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
+//        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
+//        //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+//        ofPopStyle();
+//    }
     //--------------------------------------
     
     //--------------------------------------
@@ -101,15 +103,13 @@ void InteractiveBox::_draw() {
     text += "Mouse Children = " + ofToString(mouseChildren() ? "True" : "False") + "\n";
     text += "X = " + ofToString(x()) + "\n";
     text += "Y = " + ofToString(y()) + "\n";
-    //    text += "width = " + ofToString(width()) + "\n";
-    //    text += "height = " + ofToString(height()) + "\n";
-    //    text += "scaleX = " + ofToString(scaleX()) + "\n";
-    //    text += "scaleY = " + ofToString(scaleY()) + "\n";
+    text += "Width = " + ofToString(width()) + "\n";
+    text += "Height = " + ofToString(height()) + "\n";
+//    text += "scaleX = " + ofToString(scaleX()) + "\n";
+//    text += "scaleY = " + ofToString(scaleY()) + "\n";
     
     ofPushStyle();
-//    ofSetColor(0x000000);
     ofSetColor(255, 255, 255);
-    //    ofDrawBitmapString(text, 10, 50);
     flFont::drawString(text, 9, 10, 20);
     ofPopStyle();
     //--------------------------------------

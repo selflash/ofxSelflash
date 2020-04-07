@@ -53,6 +53,8 @@ namespace fl2d {
             float _xMax = 0.0;
             float _yMax = 0.0;
         
+            ofPoint _tempPoints[4];
+        
             bool _isChanged = false;
         
         public:
@@ -104,12 +106,16 @@ namespace fl2d {
             //DisplayObject
             void __setNull();
             void __setZero();
+        
             void __expandTo(ofVec2f p);
     //        void __expandTo(vec2 p);
             void __expandTo(float x, float y);
+        
             void __expandToX(float x);
             void __expandToY(float y);
+        
             void __expandToPoint(float x, float y);
+            void __expandToPoint(ofPoint& p);
             void __expandToRect(const flRectangle& rect);
             void __expandToCircle(float x, float y, float radius);
         
@@ -117,6 +123,7 @@ namespace fl2d {
             void __setToRect(const flRectangle& rect);
             void __setToRect(float x1, float y1, float x2, float y2);
         
+            void __encloseRect(ofPoint p1, ofPoint p2, ofPoint p3, ofPoint p4);
             void __encloseRect(const vector<ofPoint>& points);
             void __encloseRect(const ofPoint (&points)[4]);
     };

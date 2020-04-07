@@ -32,7 +32,7 @@ namespace fl2d {
         
             flSprite* __client = NULL;
         
-            bool _hitAreaVisible = false;
+            bool _rectVisible = false;
             
             //--------------------------------------
             //Tooltip
@@ -78,9 +78,12 @@ namespace fl2d {
             //TODO
             virtual flSprite* hitArea();
             virtual void hitArea(flSprite* value);
-            virtual inline bool hitAreaVisible() { return _hitAreaVisible; }
-            virtual inline void hitAreaVisible(bool value) { _hitAreaVisible = value; }
+            virtual inline bool rectVisible() { return _rectVisible; }
+            virtual inline void rectVisible(bool value) { _rectVisible = value; }
 
+            virtual flRectangle getBounds(flDisplayObject* targetCoordinateSpace);
+            virtual flRectangle getRect(flDisplayObject* targetCoordinateSpace);
+                
             virtual bool hitTestPoint(float x, float y, bool shapeFlag = false);
         
             virtual void useHandCursor(bool value);
@@ -106,9 +109,7 @@ namespace fl2d {
             //virtual void updateOnFrame(){};
             virtual void _updateRect();
         
-        private:
-            void _updateEventHandler(ofEventArgs& args);
-        
+        private:        
             virtual void __compoundAlpha(float value);
         
             void _mouseDragging(int x, int y, int id);
@@ -116,6 +117,7 @@ namespace fl2d {
         
             // TODO :: soundTransform
         
+            void _updateEventHandler(ofEventArgs& args);
             void _mouseEventHandler_flSprite(flEvent& event);
 
     };

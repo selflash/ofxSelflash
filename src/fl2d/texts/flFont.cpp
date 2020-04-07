@@ -42,47 +42,47 @@ namespace fl2d {
         // Fonts
         //        ofTrueTypeFont::setGlobalDpi(72);
         
-        ofTrueTypeFontSettings settings(path, fontSize);//[CX^X
-        settings.addRanges(ofAlphabet::Emoji);//G��
-        settings.addRanges(ofAlphabet::Japanese);//{
-        settings.addRange(ofUnicode::Space);//Xy[X
-        settings.addRange(ofUnicode::IdeographicSpace);//SpXy[X
-        settings.addRange(ofUnicode::Latin);//At@xbg
-        settings.addRange(ofUnicode::Latin1Supplement);//LAANTt�L��
-        settings.addRange(ofUnicode::NumberForms);//H
-        settings.addRange(ofUnicode::Arrows);//
-        settings.addRange(ofUnicode::MathOperators);//L
-        settings.addRange(ofUnicode::Hiragana);//
-        settings.addRange(ofUnicode::Katakana);//J^Ji
-        settings.addRange(ofUnicode::MiscSymbolsAndPictographs);//G��
-        settings.addRange(ofUnicode::Emoticons);//G[eBR
+        ofTrueTypeFontSettings settings(path, fontSize);//ê›íËàÍéÆÇî[ÇﬂÇÈÉCÉìÉXÉ^ÉìÉX
+        settings.addRanges(ofAlphabet::Emoji);//äGï∂éö
+        settings.addRanges(ofAlphabet::Japanese);//ì˙ñ{åÍ
+        settings.addRange(ofUnicode::Space);//ÉXÉyÅ[ÉX
+        settings.addRange(ofUnicode::IdeographicSpace);//ëSäpÉXÉyÅ[ÉX
+        settings.addRange(ofUnicode::Latin);//ÉAÉãÉtÉ@ÉxÉbÉgìô
+        settings.addRange(ofUnicode::Latin1Supplement);//ãLçÜÅAÉAÉNÉTÉìïtÇ´ï∂éöÇ»Ç«
+        settings.addRange(ofUnicode::NumberForms);//êîéöÅH
+        settings.addRange(ofUnicode::Arrows);//ñÓàÛ
+        settings.addRange(ofUnicode::MathOperators);//êîéÆãLçÜ
+        settings.addRange(ofUnicode::Hiragana);//Ç–ÇÁÇ™Ç»
+        settings.addRange(ofUnicode::Katakana);//ÉJÉ^ÉJÉi
+        settings.addRange(ofUnicode::MiscSymbolsAndPictographs);//äGï∂éöÇ»Ç«
+        settings.addRange(ofUnicode::Emoticons);//ÉGÉÇÅ[ÉeÉBÉRÉì
         
         string text = "";
-        text += "1234567890-^!#$%&'()0=~|'";
+        text += "1234567890-^Åè!#$%&'()0=~|'";
         text += "qwertyuiop@[QWERTYUIOP`{";
         text += "asdfghjkl;:]ASDFGHJKL+*}";
         text += "zxcvbnm,./_ZXCVBNM<>?_";
-        text += u8"����������";
-        text += u8"����������";
-        text += u8"����������";
-        text += u8"�����Ă�";
-        text += u8"�Ȃɂʂ˂�";
-        text += u8"�͂Ђӂւ�";
-        text += u8"�܂݂ނ߂�";
-        text += u8"����";
-        text += u8"������";
-        text += u8"�����";
+        text += u8"あいうえお";
+        text += u8"かきくけこ";
+        text += u8"さしすせそ";
+        text += u8"たちつてと";
+        text += u8"なにぬねの";
+        text += u8"はひふへほ";
+        text += u8"まみむめも";
+        text += u8"やゆよ";
+        text += u8"らりるれろ";
+        text += u8"わをん";
         
-        // [h
+        // ê›íËÇÉçÅ[Éh
         //ofTrueTypeFont font;
         if(font.load(settings)){
             ofLog() << path << " has been loaded.";
             
-            font.setLetterSpacing(1.2);//�݁e ftHg1.0 �݁eJ1.0����lw��
+            font.setLetterSpacing(1.2);//ï∂éöä‘ ÉfÉtÉHÉãÉgÇÕ1.0 ï∂éöä‘ÇÇÊÇËäJÇØÇÈèÍçáÇÕ1.0Çí¥Ç¶ÇÈílÇéwíËÇ∑ÇÈ
             float maxStringWidth = font.stringWidth(text);
             float maxStringHeight = font.stringHeight(text);
-            //            _font.setLetterSpacing(2);// �݁ew��
-            font.setLineHeight(maxStringHeight);// s�ew��
+            //            _font.setLetterSpacing(2);// ï∂éöä‘ÇéwíËÇ∑ÇÈ
+            font.setLineHeight(maxStringHeight);// çsä‘ÇéwíËÇ∑ÇÈ
             
             _maxStringWidth[fontSize] = maxStringWidth;
             _maxStringHeight[fontSize] = maxStringHeight;

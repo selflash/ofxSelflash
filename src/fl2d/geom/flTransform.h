@@ -45,7 +45,6 @@ namespace fl2d {
             flMatrix          __matrix;
 //            flMatrix          _matrix3D;
             flRectangle      __pixelBounds;
-            ofPoint         _transformedPoints[4];
 
         public:
             flTransform();

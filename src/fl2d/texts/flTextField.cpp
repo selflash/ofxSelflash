@@ -83,19 +83,19 @@ namespace fl2d {
         
         //--------------------------------------
         if(isnan(_targetWidth)) {
-            _hitAreaRect->width(_textWidth);
+            _rect->width(_textWidth);
         } else {
-            _hitAreaRect->width(_targetWidth);
+            _rect->width(_targetWidth);
         }
         
         if(isnan(_targetHeight)) {
-            _hitAreaRect->height(_textHeight);
+            _rect->height(_textHeight);
         } else {
-            _hitAreaRect->height(_targetHeight);
+            _rect->height(_targetHeight);
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         
         //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
@@ -253,19 +253,19 @@ namespace fl2d {
         
         //--------------------------------------
         if(isnan(_targetWidth)) {
-            _hitAreaRect->width(_textWidth);
+            _rect->width(_textWidth);
         } else {
-            _hitAreaRect->width(_targetWidth);
+            _rect->width(_targetWidth);
         }
         
         if(isnan(_targetHeight)) {
-            _hitAreaRect->height(_textHeight);
+            _rect->height(_textHeight);
         } else {
-            _hitAreaRect->height(_targetHeight);
+            _rect->height(_targetHeight);
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //--------------------------------------
         
         //---------------------------------
@@ -290,19 +290,19 @@ namespace fl2d {
         
         //--------------------------------------
         if(isnan(_targetWidth)) {
-            _hitAreaRect->width(_textWidth);
+            _rect->width(_textWidth);
         } else {
-            _hitAreaRect->width(_targetWidth);
+            _rect->width(_targetWidth);
         }
         
         if(isnan(_targetHeight)) {
-            _hitAreaRect->height(_textHeight);
+            _rect->height(_textHeight);
         } else {
-            _hitAreaRect->height(_targetHeight);
+            _rect->height(_targetHeight);
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //--------------------------------------
         
         //---------------------------------
@@ -374,19 +374,19 @@ namespace fl2d {
         
         //--------------------------------------
         if(isnan(_targetWidth)) {
-            _hitAreaRect->width(_textWidth);
+            _rect->width(_textWidth);
         } else {
-            _hitAreaRect->width(_targetWidth);
+            _rect->width(_targetWidth);
         }
         
         if(isnan(_targetHeight)) {
-            _hitAreaRect->height(_textHeight);
+            _rect->height(_textHeight);
         } else {
-            _hitAreaRect->height(_targetHeight);
+            _rect->height(_targetHeight);
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //--------------------------------------
         
         //---------------------------------

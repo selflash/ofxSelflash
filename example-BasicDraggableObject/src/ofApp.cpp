@@ -5,6 +5,7 @@ void ofApp::setup() {
     ofSetWindowTitle("example-BasicDraggableObject");
     ofSetVerticalSync(true);
     //ofDisableAntiAliasing();
+//    ofSetFrameRate(60);
     
     //--------------------------------------
     ofxSelflash::setup();
@@ -22,6 +23,8 @@ void ofApp::setup() {
     noFrameBorder->x(20);
     noFrameBorder->y(30);
     //    noFrameBorder->alpha(0.5);
+    noFrameBorder->toolTipEnabled(true);
+    noFrameBorder->toolTipText("No Frame Border");
     stage->addChild(noFrameBorder);
     
     flBitmap* bitmap1 = new flBitmap(image);
@@ -35,6 +38,8 @@ void ofApp::setup() {
     frameBorder1->x(20 + 276 + 20);
     frameBorder1->y(30);
     //    frameBorder1->alpha(0.5);
+    frameBorder1->toolTipEnabled(true);
+    frameBorder1->toolTipText("Frame Border 1");
     stage->addChild(frameBorder1);
     
     flBitmap* bitmap2 = new flBitmap(image);
@@ -49,6 +54,8 @@ void ofApp::setup() {
     frameBorder2->setup();
     frameBorder2->x(20);
     frameBorder2->y(30 + 276);
+    frameBorder2->toolTipEnabled(true);
+    frameBorder2->toolTipText("Frame Border 2");
 
     frameBorder1->update(); //must update for property fo width/height
     
@@ -63,8 +70,10 @@ void ofApp::setup() {
     frameBorder3->setup();
     frameBorder3->x(20 + 276 + 20);
     frameBorder3->y(30 + 276 + 10);
+    frameBorder3->toolTipEnabled(true);
+    frameBorder3->toolTipText("Frame Border 3");
     stage->addChild(frameBorder3);
-    cout << "frameBorder3 = " << frameBorder3->width() << " " << frameBorder3->height() << endl;
+    ofLog() << "frameBorder3 = " << frameBorder3->width() << " " << frameBorder3->height();
     //--------------------------------------
     
     //--------------------------------------
@@ -74,6 +83,8 @@ void ofApp::setup() {
     frameBorder4->x(20 + 276 + 20 + 276 + 20);
     frameBorder4->y(40);
 //    frameBorder1->alpha(0.5);
+    frameBorder4->toolTipEnabled(true);
+    frameBorder4->toolTipText("Frame Border 4");
     stage->addChild(frameBorder4);
     //--------------------------------------
 }

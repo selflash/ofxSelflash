@@ -34,16 +34,16 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
     void flShape::update() {
         //--------------------------------------
-        _hitAreaRect->__setToRect(*_graphics->__rect);
+        _rect->__setToRect(*_graphics->__rect);
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
@@ -112,7 +112,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -124,15 +124,15 @@ namespace fl2d {
     //    }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
     void flShape::_updateRect() {
-        _hitAreaRect->__setToRect(*_graphics->__rect);
+        _rect->__setToRect(*_graphics->__rect);
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         
         if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);

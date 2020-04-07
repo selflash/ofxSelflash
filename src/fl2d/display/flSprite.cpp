@@ -70,12 +70,6 @@ namespace fl2d {
         //--------------------------------------
     }
     
-    //--------------------------------------------------------------
-    void flSprite::_updateEventHandler(ofEventArgs& args) {
-        flEvent* event = new flEvent(flEvent::ENTER_FRAME);
-        dispatchEvent(event);
-    }
-    
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
@@ -88,10 +82,28 @@ namespace fl2d {
         //--------------------------------------
         //Tooltip
         if(_toolTipEnabled && _toolTip->visible()) {
-            float stageMouseX = stage()->mouseX();
-            float stageMouseY = stage()->mouseY();
-            _toolTip->x(stageMouseX + 30);
-            _toolTip->y(stageMouseY + 10);
+            if(stage() != NULL) {
+//                float stageWidth = stage()->width();
+//                float stageHeight = stage()->height();
+                float stageWidth = ofGetWidth();
+                float stageHeight = ofGetHeight();
+                float stageMouseX = stage()->mouseX();
+                float stageMouseY = stage()->mouseY();
+                float toolTipWidth = _toolTip->width();
+                float toolTipHeight = _toolTip->height();
+
+                if(stageWidth < stageMouseX + 30 + toolTipWidth) {
+                    _toolTip->x(stageMouseX - 30 - toolTipWidth);
+                } else {
+                    _toolTip->x(stageMouseX + 30);
+                }
+                
+                if(stageHeight < stageMouseY + 10 + toolTipHeight) {
+                    _toolTip->y(stageMouseY - 10 - toolTipHeight);
+                } else {
+                    _toolTip->y(stageMouseY + 10);
+                }
+            }
         }
         //--------------------------------------
     }
@@ -162,26 +174,30 @@ namespace fl2d {
         
         //--------------------------------------
         //ヒットエリアの表示
-        if(_hitAreaVisible) {
+        if(_rectVisible) {
 //        if(true) {
             ofPushMatrix();
-            ofMultMatrix(_transform.matrix().getPtr());
+            ofMultMatrix(_transform.__matrix.getPtr());
 
             ofNoFill();
-            ofSetLineWidth(3);
+            ofSetLineWidth(1);
             
-//            ofSetColor(0, 255, 0, 100);
-//            ofDrawRectangle(x(), y(), width(), height());
-            
-//            flRectangle rect = getBounds(this);
-//            flRectangle rect = getRect(this);
-//            ofSetColor(255, 0, 0, 100);
-//            ofDrawRectangle(rect.x(), rect.y(), width(), height());
-//            ofSetColor(0, 255, 0, 150);
-//            ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
-            
-            ofSetColor(0, 0, 255, 100);
-            ofDrawRectangle(_hitAreaRect->left(), _hitAreaRect->top(), _hitAreaRect->width(), _hitAreaRect->height());
+            {
+                flRectangle rect = getRect(this);
+//                flRectangle rect = *_rect;
+                ofSetColor(255, 0, 0, 150);
+                ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
+            }
+//            {
+//                int i; int l;
+//                l = children.size();
+//                for(i = 0; i < l; i++) {
+//                    flDisplayObject* child = children[i];
+//                    flRectangle rect = child->getRect(this);
+//                    ofSetColor(0, 255, 0, 150);
+//                    ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
+//                }
+//            }
             
             ofPopMatrix();
         }
@@ -339,7 +355,7 @@ namespace fl2d {
         if(shapeFlag) {
             return _graphics->__rect->pointTest(p.x, p.y);
         } else {
-            return _hitAreaRect->pointTest(p.x, p.y);
+            return _rect->pointTest(p.x, p.y);
         }
     }
     
@@ -384,34 +400,169 @@ namespace fl2d {
         }
     }
     
+    //--------------------------------------------------------------
+    // TODO Include a shape line.
+    flRectangle flSprite::getBounds(flDisplayObject* targetCoordinateSpace) {
+        _tempRect.__setNull();
+        
+        {
+            //Graphics rect
+            const flRectangle& tempRect = *_graphics->__rect;
+            float x1 = tempRect.left();
+            float y1 = tempRect.top();
+            float x2 = tempRect.right();
+            float y2 = tempRect.bottom();
+            
+            _tempPoint1.set(x1, y1);
+            _tempPoint2.set(x2, y1);
+            _tempPoint3.set(x2, y2);
+            _tempPoint4.set(x1, y2);
+            
+            //Local to global.
+            const flMatrix& localToGlobalMatrix = _transform.__concatenatedMatrix;
+            localToGlobalMatrix.transformPoint(_tempPoint1);
+            localToGlobalMatrix.transformPoint(_tempPoint2);
+            localToGlobalMatrix.transformPoint(_tempPoint3);
+            localToGlobalMatrix.transformPoint(_tempPoint4);
+            
+            //Global to local.
+            const flMatrix& globalToTargetLocalMatrix = targetCoordinateSpace->_transform.__concatenatedMatrixInv;
+            globalToTargetLocalMatrix.transformPoint(_tempPoint1);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint2);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint3);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint4);
+            
+            _tempRect.__encloseRect(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
+        }
+        
+        {
+            int i; int l;
+            l = children.size();
+            for(i = 0; i < l; i++) {
+                flDisplayObject* child = children[i];
+                if(!child->visible()) continue;
+                flRectangle childRect = child->getRect(targetCoordinateSpace);
+                
+                float x1 = childRect.left();
+                float y1 = childRect.top();
+                float x2 = childRect.right();
+                float y2 = childRect.bottom();
+                
+                _tempPoint1.set(x1, y1);
+                _tempPoint2.set(x2, y1);
+                _tempPoint3.set(x2, y2);
+                _tempPoint4.set(x1, y2);
+                
+                _tempRect.__expandTo(_tempPoint1);
+                _tempRect.__expandTo(_tempPoint2);
+                _tempRect.__expandTo(_tempPoint3);
+                _tempRect.__expandTo(_tempPoint4);
+            }
+        }
+        
+        return _tempRect;
+    }
+    
+    //--------------------------------------------------------------
+    // TODO Not include a shape line.
+    flRectangle flSprite::getRect(flDisplayObject* targetCoordinateSpace) {
+        _tempRect.__setNull();
+
+        {
+            //Graphics rect
+            const flRectangle& tempRect = *_graphics->__rect;
+            float x1 = tempRect.left();
+            float y1 = tempRect.top();
+            float x2 = tempRect.right();
+            float y2 = tempRect.bottom();
+            
+            _tempPoint1.set(x1, y1);
+            _tempPoint2.set(x2, y1);
+            _tempPoint3.set(x2, y2);
+            _tempPoint4.set(x1, y2);
+            
+            //Local to global.
+            const flMatrix& localToGlobalMatrix = _transform.__concatenatedMatrix;
+            localToGlobalMatrix.transformPoint(_tempPoint1);
+            localToGlobalMatrix.transformPoint(_tempPoint2);
+            localToGlobalMatrix.transformPoint(_tempPoint3);
+            localToGlobalMatrix.transformPoint(_tempPoint4);
+            
+            //Global to local.
+            const flMatrix& globalToTargetLocalMatrix = targetCoordinateSpace->_transform.__concatenatedMatrixInv;
+            globalToTargetLocalMatrix.transformPoint(_tempPoint1);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint2);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint3);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint4);
+            
+            _tempRect.__encloseRect(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
+        }
+        
+        {
+            int i; int l;
+            l = children.size();
+            for(i = 0; i < l; i++) {
+                flDisplayObject* child = children[i];
+                if(!child->visible()) continue;
+                flRectangle childRect = child->getRect(targetCoordinateSpace);
+
+                float x1 = childRect.left();
+                float y1 = childRect.top();
+                float x2 = childRect.right();
+                float y2 = childRect.bottom();
+                
+                _tempPoint1.set(x1, y1);
+                _tempPoint2.set(x2, y1);
+                _tempPoint3.set(x2, y2);
+                _tempPoint4.set(x1, y2);
+                
+                _tempRect.__expandTo(_tempPoint1);
+                _tempRect.__expandTo(_tempPoint2);
+                _tempRect.__expandTo(_tempPoint3);
+                _tempRect.__expandTo(_tempPoint4);
+            }
+        }
+        
+        return _tempRect;
+    }
+    
     //==============================================================
     // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
+    //Calculate width and height.
     void flSprite::_updateRect() {
-        _hitAreaRect->__setToRect(*_graphics->__rect);
+        _rect->__setToRect(*_graphics->__rect);
         
         int i; int l;
         l = children.size();
         for(i = 0; i < l; i++) {
             flDisplayObject* child = children[i];
-            //                _rect->__expandToRect(*child->getRect(this));
-            float cx = child->x();
-            float cy = child->y();
-            _hitAreaRect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
-            _hitAreaRect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
+            
+            //=========================================== Matrix.
+            //This the code is moved here from flStage._updateChildrenOne().
+            //transform child matrix by world matrix.
+            flMatrix worldMatrix;
+            worldMatrix = transform().concatenatedMatrix();
+            worldMatrix.concat(child->transform().matrix());
+            child->__updateTransform(worldMatrix);
+
+            if(!child->visible()) continue;
+            flRectangle childRect = child->__getRect(this);
+            _rect->__expandTo(childRect.left(), childRect.top());
+            _rect->__expandTo(childRect.right(), childRect.bottom());
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
-        
-        //        cout << "flSprite _realWidth" << _realWidth << " flSprite _realHeight" << _realHeight << endl;
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------
@@ -452,6 +603,12 @@ namespace fl2d {
     // Protected / Private Event Handler
     //==============================================================
     
+    //--------------------------------------------------------------
+    void flSprite::_updateEventHandler(ofEventArgs& args) {
+        flEvent* event = new flEvent(flEvent::ENTER_FRAME);
+        dispatchEvent(event);
+    }
+
     //--------------------------------------------------------------
     void flSprite::_mouseEventHandler_flSprite(flEvent& event) {
         //        ofLog() << "[flUIBase]_mouseEventHandler_flSprite(" << event.type() << ")";

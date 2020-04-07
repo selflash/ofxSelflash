@@ -35,10 +35,10 @@ namespace fl2d {
 		{
 			_imageWidth = _texture_ptr->getWidth();
 			_imageHeight = _texture_ptr->getHeight();
-			_hitAreaRect->width(_imageWidth);
-			_hitAreaRect->height(_imageHeight);
-			_realWidth = _hitAreaRect->width();
-			_realHeight = _hitAreaRect->height();
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
 
 			cout << "_imageHeight = " << _imageHeight << endl;
 			cout << "_targetWidth = " << _targetWidth << endl;
@@ -54,10 +54,10 @@ namespace fl2d {
 		else {
 			_imageWidth = 0;
 			_imageHeight = 0;
-			_hitAreaRect->width(_imageWidth);
-			_hitAreaRect->height(_imageHeight);
-			_realWidth = _hitAreaRect->width();
-			_realHeight = _hitAreaRect->height();
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
 		}
         
     }
@@ -96,10 +96,10 @@ namespace fl2d {
         
         _imageWidth = _bitmapData->width();
         _imageHeight = _bitmapData->height();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_bitmapData->width());
         //        height(_bitmapData->height());
@@ -122,10 +122,10 @@ namespace fl2d {
         
         _imageWidth = _image_ptr->getWidth();
         _imageHeight = _image_ptr->getHeight();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_image_ptr->getWidth());
         //        height(_image_ptr->getHeight());
@@ -147,10 +147,10 @@ namespace fl2d {
         
         _imageWidth = _image.getWidth();
         _imageHeight = _image.getHeight();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_image.getWidth());
         //        height(_image.getHeight());
@@ -173,10 +173,10 @@ namespace fl2d {
         
         _imageWidth = _texture_ptr->getWidth();
         _imageHeight = _texture_ptr->getHeight();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_texture_ptr->getWidth());
         //        height(_texture_ptr->getHeight());
@@ -198,10 +198,10 @@ namespace fl2d {
         
         _imageWidth = _texture.getWidth();
         _imageHeight = _texture.getHeight();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_texture.getWidth());
         //        height(_texture.getHeight());
@@ -224,10 +224,10 @@ namespace fl2d {
         
         _imageWidth = _fboImage.getWidth();
         _imageHeight = _fboImage.getHeight();
-        _hitAreaRect->width(_imageWidth);
-        _hitAreaRect->height(_imageHeight);
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
+        _rect->width(_imageWidth);
+        _rect->height(_imageHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
         //TODO
         //        width(_fboImage.getWidth());
         //        height(_fboImage.getHeight());
@@ -253,7 +253,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //    //--------------------------------------------------------------
@@ -304,8 +304,6 @@ namespace fl2d {
     //    }
     
 	void flBitmap::_update() {
-//        flDisplayObject::update();
-
 		if (!_isAllocated)
 		{
 			switch (_mode) {
@@ -317,10 +315,10 @@ namespace fl2d {
 				if (_isAllocated) {
 					_imageWidth = _texture_ptr->getWidth();
 					_imageHeight = _texture_ptr->getHeight();
-					_hitAreaRect->width(_imageWidth);
-					_hitAreaRect->height(_imageHeight);
-					_realWidth = _hitAreaRect->width();
-					_realHeight = _hitAreaRect->height();
+					_rect->width(_imageWidth);
+					_rect->height(_imageHeight);
+					_realWidth = _rect->width();
+					_realHeight = _rect->height();
 
 					if (!isnan(_targetWidth)) {
 						scaleX(_targetWidth / _realWidth);
@@ -438,25 +436,30 @@ namespace fl2d {
 //    }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
-    
     
     //--------------------------------------------------------------
     void flBitmap::_updateRect() {
-        //        _rect->__setZero();
-        //        _rect->width(_imageWidth);
-        //        _rect->height(_imageHeight);
+        //Empty
         
-        //--------------------------------------
-        //        _realWidth = _rect->width();
-        //        _realHeight = _rect->height();
-        
-        //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
-        //--------------------------------------
+//        ofLog() << "flBitmap::_imageWidth = " << _imageWidth;
+//        ofLog() << "flBitmap::_imageHeight = " << _imageHeight;
+//        _hitAreaRect->__setZero();
+//        _hitAreaRect->width(_imageWidth);
+//        _hitAreaRect->height(_imageHeight);
+//
+//        //--------------------------------------
+//        _realWidth = _hitAreaRect->width();
+//        _realHeight = _hitAreaRect->height();
+//
+//        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+////        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+////        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+//        //--------------------------------------
     }
     
     //--------------------------------------------------------------

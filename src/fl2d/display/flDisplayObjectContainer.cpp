@@ -27,7 +27,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
@@ -104,7 +104,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-            //            glPopMatrix();
+//            glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -120,7 +120,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -373,34 +373,43 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
     void flDisplayObjectContainer::_updateRect() {
-        //        _rect->__setNull();
-        _hitAreaRect->__setZero();
+//        _hitAreaRect->__setNull();
+        _rect->__setZero();
         
         int i; int l;
-        flDisplayObject* child;
-        
         l = children.size();
         for(i = 0; i < l; i++) {
-            child = children[i];
-            //                _rect->__expandToRect(*child->getRect(this));
-            float cx = child->x();
-            float cy = child->y();
-            _hitAreaRect->__expandTo(cx + child->getRect(this).left(), cy + child->getRect(this).top());
-            _hitAreaRect->__expandTo(cx + child->getRect(this).right(), cy + child->getRect(this).bottom());
+            flDisplayObject* child = children[i];
+            
+            //=========================================== Matrix.
+            //This the code is moved here from flStage._updateChildrenOne().
+            //transform child matrix by world matrix.
+            flMatrix worldMatrix;
+            worldMatrix = transform().concatenatedMatrix();
+            worldMatrix.concat(child->transform().matrix());
+            child->__updateTransform(worldMatrix);
+            
+            if(!child->visible()) continue;
+            flRectangle childRect = child->__getRect(this);
+            _rect->__expandTo(childRect.left(), childRect.top());
+            _rect->__expandTo(childRect.right(), childRect.bottom());
         }
         
-        _realWidth = _hitAreaRect->width();
-        _realHeight = _hitAreaRect->height();
-        
-        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
-        //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
+
+        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+
+//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------

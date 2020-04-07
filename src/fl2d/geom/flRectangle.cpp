@@ -214,6 +214,16 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
+    void flRectangle::__encloseRect(ofPoint p1, ofPoint p2, ofPoint p3, ofPoint p4) {
+        _tempPoints[0] = p1;
+        _tempPoints[1] = p2;
+        _tempPoints[2] = p3;
+        _tempPoints[3] = p4;
+        
+        __encloseRect(_tempPoints);
+    }
+
+    //--------------------------------------------------------------
     void flRectangle::__encloseRect(const vector<ofPoint>& points) {
         for(int i = 0; i < points.size(); i++){
             if(i == 0){
@@ -278,6 +288,15 @@ namespace fl2d {
         _yMin = _yMax = y;
     }
     
+    //--------------------------------------------------------------
+    void flRectangle::__expandToPoint(ofPoint& p) {
+        if(isNull()) {
+            __setToPoint(p.x, p.y);
+        } else {
+            __expandTo(p.x, p.y);
+        }
+    }
+
     //--------------------------------------------------------------
     void flRectangle::__expandToPoint(float x, float y) {
         if(isNull()) {

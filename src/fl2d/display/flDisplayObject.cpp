@@ -42,7 +42,7 @@ namespace fl2d {
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = -1;
         
-        _hitAreaRect = new flRectangle();
+        _rect = new flRectangle();
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;
@@ -81,8 +81,8 @@ namespace fl2d {
         _blendMode = FL_BLEND_MODE_NORMAL;
         _level = 0;
         
-        delete _hitAreaRect;
-        _hitAreaRect = NULL;
+        delete _rect;
+        _rect = NULL;
         
         _enabledSmoothing = false;
         _enabledAntiAliasing = false;
@@ -92,7 +92,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
+    // Setup / Update / Draw
     //==============================================================
     
     //--------------------------------------------------------------
@@ -380,19 +380,121 @@ namespace fl2d {
     //--------------------------------------------------------------
 //    const flMatrix& flDisplayObject::matrix() { return _matrix; }
 //    void flDisplayObject::matrix(const flMatrix& mat) { _matrix = mat; }
-    
 
     //--------------------------------------------------------------
     // TODO Include a shape line.
     flRectangle flDisplayObject::getBounds(flDisplayObject* targetCoordinateSpace) {
-        return _transform.pixelBounds();
+        _tempRect.__setNull();
+
+        {
+            //Rect
+//            const flRectangle& tempRect = *_graphics->__rect;
+            const flRectangle& tempRect = *_rect;
+            float x1 = tempRect.left();
+            float y1 = tempRect.top();
+            float x2 = tempRect.right();
+            float y2 = tempRect.bottom();
+            
+            _tempPoint1.set(x1, y1);
+            _tempPoint2.set(x2, y1);
+            _tempPoint3.set(x2, y2);
+            _tempPoint4.set(x1, y2);
+            
+            //Local to global.
+            const flMatrix& localToGlobalMatrix = _transform.__concatenatedMatrix;
+            localToGlobalMatrix.transformPoint(_tempPoint1);
+            localToGlobalMatrix.transformPoint(_tempPoint2);
+            localToGlobalMatrix.transformPoint(_tempPoint3);
+            localToGlobalMatrix.transformPoint(_tempPoint4);
+            
+            //Global to local.
+            const flMatrix& globalToTargetLocalMatrix = targetCoordinateSpace->_transform.__concatenatedMatrixInv;
+            globalToTargetLocalMatrix.transformPoint(_tempPoint1);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint2);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint3);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint4);
+            
+            _tempRect.__encloseRect(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
+        }
+        
+        return _tempRect;
     }
     
     //--------------------------------------------------------------
     // TODO Not include a shape line.
     flRectangle flDisplayObject::getRect(flDisplayObject* targetCoordinateSpace) {
-        return _transform.pixelBounds();
+        //transform child matrix by world matrix.
+        
+        _tempRect.__setNull();
+
+        {
+            //Rect
+//            const flRectangle& tempRect = *_graphics->__rect;
+            const flRectangle& tempRect = *_rect;
+            float x1 = tempRect.left();
+            float y1 = tempRect.top();
+            float x2 = tempRect.right();
+            float y2 = tempRect.bottom();
+            
+            _tempPoint1.set(x1, y1);
+            _tempPoint2.set(x2, y1);
+            _tempPoint3.set(x2, y2);
+            _tempPoint4.set(x1, y2);
+            
+            //Local to global.
+            const flMatrix& localToGlobalMatrix = _transform.__concatenatedMatrix;
+            localToGlobalMatrix.transformPoint(_tempPoint1);
+            localToGlobalMatrix.transformPoint(_tempPoint2);
+            localToGlobalMatrix.transformPoint(_tempPoint3);
+            localToGlobalMatrix.transformPoint(_tempPoint4);
+            
+            //Global to local.
+            const flMatrix& globalToTargetLocalMatrix = targetCoordinateSpace->_transform.__concatenatedMatrixInv;
+            globalToTargetLocalMatrix.transformPoint(_tempPoint1);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint2);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint3);
+            globalToTargetLocalMatrix.transformPoint(_tempPoint4);
+            
+            _tempRect.__encloseRect(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
+        }
+        
+        return _tempRect;
     }
+    
+    //--------------------------------------------------------------
+    // TODO Not include a shape line.
+    flRectangle flDisplayObject::__getRect(flDisplayObject* targetCoordinateSpace) {
+        //transform child matrix by world matrix.
+        
+        float x1 = _rect->left();
+        float y1 = _rect->top();
+        float x2 = _rect->right();
+        float y2 = _rect->bottom();
+        
+        _tempPoint1.set(x1, y1);
+        _tempPoint2.set(x2, y1);
+        _tempPoint3.set(x2, y2);
+        _tempPoint4.set(x1, y2);
+        
+        //Local to global.
+        const flMatrix& localToGlobalMatrix = _transform.__concatenatedMatrix;
+        localToGlobalMatrix.transformPoint(_tempPoint1);
+        localToGlobalMatrix.transformPoint(_tempPoint2);
+        localToGlobalMatrix.transformPoint(_tempPoint3);
+        localToGlobalMatrix.transformPoint(_tempPoint4);
+
+        //Global to local.
+        const flMatrix& globalToTargetLocalMatrix = targetCoordinateSpace->_transform.__concatenatedMatrixInv;
+        globalToTargetLocalMatrix.transformPoint(_tempPoint1);
+        globalToTargetLocalMatrix.transformPoint(_tempPoint2);
+        globalToTargetLocalMatrix.transformPoint(_tempPoint3);
+        globalToTargetLocalMatrix.transformPoint(_tempPoint4);
+
+        _tempRect.__setNull();
+        _tempRect.__encloseRect(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
+        return _tempRect;
+    }
+    
     
     //--------------------------------------------------------------
     bool flDisplayObject::hitTestObject(flDisplayObject* obj) {
@@ -403,9 +505,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     bool flDisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
         ofPoint p(x, y);
-        //グローバル座標からローカル座標に変換
+        //Global to local.
         _transform.__concatenatedMatrixInv.transformPoint(p);
-        return _hitAreaRect->pointTest(p.x, p.y);
+        return _rect->pointTest(p.x, p.y);
     }
     
     //--------------------------------------------------------------
@@ -415,18 +517,10 @@ namespace fl2d {
         _transform.__concatenatedMatrixInv.transformPoint(p);
         return p;
     }
-    
     //--------------------------------------------------------------
     ofPoint flDisplayObject::globalToLocal3D(const ofPoint& point) {
         ofPoint p = point;
         _transform.__concatenatedMatrixInv.transformPoint(p);
-        return p;
-    }
-    
-    //--------------------------------------------------------------
-    ofPoint flDisplayObject::local3DToGlobal(const ofPoint& point) {
-        ofPoint p = point;
-        _transform.__concatenatedMatrix.transformPoint(p);
         return p;
     }
     
@@ -436,6 +530,13 @@ namespace fl2d {
         _transform.__concatenatedMatrix.transformPoint(p);
         return p;
     }
+    //--------------------------------------------------------------
+    ofPoint flDisplayObject::local3DToGlobal(const ofPoint& point) {
+        ofPoint p = point;
+        _transform.__concatenatedMatrix.transformPoint(p);
+        return p;
+    }
+    
     
     //--------------------------------------------------------------
     bool flDisplayObject::enabledSmoothing() { return _enabledSmoothing; }
@@ -496,30 +597,45 @@ namespace fl2d {
 ////        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
 ////        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
 //        //--------------------------------------
+        
+        
+//        _rect->__setNull();
+        _rect->__setZero();
+        
+        _realWidth = _rect->width();
+        _realHeight = _rect->height();
+        
+        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+        
+//        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+//        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+//        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
+//        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
     }
     
     //--------------------------------------------------------------
-    void flDisplayObject::__updateConcatenatedMatrix(const flMatrix& mat) {
+    void flDisplayObject::__updateTransform(const flMatrix& mat) {
         _transform.__concatenatedMatrix = mat;
         _transform.__concatenatedMatrixInv = mat;
         _transform.__concatenatedMatrixInv.invert();
         
-        float x1 = _hitAreaRect->left();
-        float y1 = _hitAreaRect->top();
-        float x2 = _hitAreaRect->right();
-        float y2 = _hitAreaRect->bottom();
+        float x1 = _rect->left();
+        float y1 = _rect->top();
+        float x2 = _rect->right();
+        float y2 = _rect->bottom();
         
-        ofPoint p0(x1, y1);
-        ofPoint p1(x2, y1);
-        ofPoint p2(x2, y2);
-        ofPoint p3(x1, y2);
-        
-        mat.transformPoint(p0);
-        mat.transformPoint(p1);
-        mat.transformPoint(p2);
-        mat.transformPoint(p3);
-        
-        _transform.__updatePixelBounds(p0, p1, p2, p3);
+        _tempPoint1.set(x1, y1);
+        _tempPoint2.set(x2, y1);
+        _tempPoint3.set(x2, y2);
+        _tempPoint4.set(x1, y2);
+
+        mat.transformPoint(_tempPoint1);
+        mat.transformPoint(_tempPoint2);
+        mat.transformPoint(_tempPoint3);
+        mat.transformPoint(_tempPoint4);
+
+        _transform.__updatePixelBounds(_tempPoint1, _tempPoint2, _tempPoint3, _tempPoint4);
     }
     
     //--------------------------------------------------------------
