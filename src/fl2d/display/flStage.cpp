@@ -381,10 +381,10 @@ namespace fl2d {
             
             //=========================================== Matrix.
             //transform child matrix by world matrix.
-//            flMatrix worldMatrix;
-//            worldMatrix = parent->transform().concatenatedMatrix();
-//            worldMatrix.concat(child->transform().matrix());
-//            child->__updateTransform(worldMatrix);
+            flMatrix worldMatrix;
+            worldMatrix = parent->transform().concatenatedMatrix();
+            worldMatrix.concat(child->transform().matrix());
+            child->__updateTransform(worldMatrix);
             
             // compound alpha adds up down the parent-child chain.
 //            child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);

@@ -74,7 +74,7 @@ namespace fl2d {
     //        virtual inline void currentTarget(void* value) { _currentTarget = value; }
         
             virtual inline void* target() { return __target; }
-    //        virtual inline void target(void* value) { _target = value; }
+            virtual inline void target(void* value) { __target = value; }
         
             template <class T>
             T data() { return getProperty<T>("data"); }

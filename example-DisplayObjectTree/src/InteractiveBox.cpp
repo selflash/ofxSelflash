@@ -69,7 +69,7 @@ InteractiveBox::~InteractiveBox() {
 void InteractiveBox::_setup() {
     //ofLog() << "[InteractiveBox]_setup()";
     
-    rectVisible(true);
+//    rectVisible(true);
 }
 
 //-------------------------------------------------------------
@@ -82,16 +82,16 @@ void InteractiveBox::_draw() {
     //--------------------------------------
     //ヒットエリアの表示
 //    if(_showHitArea) {
-//        ofPushStyle();
-//        ofNoFill();
-//        ofSetLineWidth(1);
-//        //    ofSetColor(_areaColor);
-//        ofSetColor(_areaColor);
+        ofPushStyle();
+        ofNoFill();
+        ofSetLineWidth(1);
+        //    ofSetColor(_areaColor);
+        ofSetColor(_areaColor);
 //        flRectangle rect = getRect(this);
 //        ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
-//        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
-//        //    ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
-//        ofPopStyle();
+        //    ofRect(getRect(this).x(), getRect(this).y(), getRect(this).width(), getRect(this).height());
+        ofRect(_rect->left(), _rect->top(), _rect->right(), _rect->bottom());
+        ofPopStyle();
 //    }
     //--------------------------------------
     
