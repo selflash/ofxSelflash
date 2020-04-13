@@ -315,7 +315,7 @@ void ofApp::keyPressed(int key) {
         uiComponents->button003->press();
     }
     
-    if(key == ('l')) {
+    if(key == 'l') {
         enabled = !enabled;
         int numChildren = uiComponents->numChildren();
         for(int i = 0; i < numChildren; i++) {
@@ -327,6 +327,10 @@ void ofApp::keyPressed(int key) {
                 ((flUIBase*)displayObject)->enabled(enabled);
             }
         }
+    }
+    
+    if(key == 'd') {
+        listeners.unsubscribeAll();
     }
 }
 

@@ -40,7 +40,7 @@ InteractiveBox::InteractiveBox(float graphicsWidth, float graphicsHeight, ofColo
     
     _setNormalColor();
     
-    hitAreaVisible(true);
+    rectVisible(true);
 }
 
 //-------------------------------------------------------------

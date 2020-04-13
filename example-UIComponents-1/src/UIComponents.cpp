@@ -54,10 +54,22 @@ void UIComponents::_setup() {
     //--------------------------------------
     marginLeft = 10;
     marginTop = 10;
-    spacing = 155;
-    lineSpacing = 22;
-    
-    //スライダー
+    spacing = 100;
+    lineSpacing = 18 + 5;
+
+    label = new flTextField();
+    label->text("[Slider]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
+
     //デフォルト
     label = new flTextField();
     label->text("Slider1");
@@ -97,19 +109,39 @@ void UIComponents::_setup() {
     slider002->toolTipText(u8"スライダーのサンプルです。\n左から右にかけて値が小さいです。");
     slider002->addEventListener(flSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(slider002);
+    //--------------------------------------
+
+    //--------------------------------------
+    marginLeft = 10;
+    marginTop = slider002->y() + slider002->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
+    
+    label = new flTextField();
+    label->text("[Range Slider]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
     
     //レンジスライダー
     label = new flTextField();
     label->text("Range Slider1");
     label->x(marginLeft + spacing * 0);
-    label->y(marginTop + lineSpacing * 4);
+    label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider001 = new flRangeSlider(150);
     rangeSlider001->label(label);
     rangeSlider001->x(marginLeft + spacing * 0);
-    rangeSlider001->y(marginTop + lineSpacing * 5);
+    rangeSlider001->y(marginTop + lineSpacing * 1);
     rangeSlider001->min(-50);
     rangeSlider001->max(50);
     rangeSlider001->minValue(-50);
@@ -122,26 +154,41 @@ void UIComponents::_setup() {
     label = new flTextField();
     label->text("Range Slider2");
     label->x(marginLeft + spacing * 0);
-    label->y(marginTop + lineSpacing * 6);
+    label->y(marginTop + lineSpacing * 2);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
     addChild(label);
     rangeSlider002 = new flRangeSlider(150, -100, 1300, 300, 500);
     rangeSlider002->label(label);
     rangeSlider002->x(marginLeft + spacing * 0);
-    rangeSlider002->y(marginTop + lineSpacing * 7);
+    rangeSlider002->y(marginTop + lineSpacing * 3);
     rangeSlider002->toolTipEnabled(true);
     rangeSlider002->addEventListener(flRangeSliderEvent::CHANGE, this, &UIComponents::_uiEventHandler);
     addChild(rangeSlider002);
     //--------------------------------------
     
     //--------------------------------------
-    //カラースライダー
     marginLeft = 10;
-    marginTop = 190;
+    marginTop = rangeSlider002->y() + rangeSlider002->height() + 5;
     spacing = 100;
+    lineSpacing = 18 + 5;
+
+    label = new flTextField();
+    label->text("[Color Slider]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+
+
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 100;
+//    lineSpacing = 18 + 5;
     lineSpacing = 108;
-    
+
+    //カラースライダー
     label = new flTextField();
     label->text("Color Slider(RGBA)");
     label->x(marginLeft + spacing * 0);
@@ -183,14 +230,27 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //Vec2スライダー
     marginLeft = 10;
-    marginTop = 385;
+    marginTop = colorSlider002->y() + colorSlider002->height() + 5;
     spacing = 100;
-    lineSpacing = 22;
-    
+    lineSpacing = 18 + 5;
+
     label = new flTextField();
-    label->text("Vec2 Slider Example");
+    label->text("[Vec2 Slider]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
+    
+    //Vec2スライダー
+    label = new flTextField();
+    label->text("Vec2 Slider");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -211,14 +271,27 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //Vec3スライダー
     marginLeft = 10;
-    marginTop = 450;
+    marginTop = vec2Slider001->y() + vec2Slider001->height() + 5;
     spacing = 100;
-    lineSpacing = 22;
-    
+    lineSpacing = 18 + 5;
+
     label = new flTextField();
-    label->text("Vec3 Slider Example");
+    label->text("[Vec3 Slider]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
+    
+    //Vec3スライダー
+    label = new flTextField();
+    label->text("Vec3 Slider");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -241,14 +314,27 @@ void UIComponents::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-    //インプットテキストフィールド
     marginLeft = 10;
-    marginTop = 537;
-    spacing = 150;
-    lineSpacing = 22;
+    marginTop = vec3Slider001->y() + vec3Slider001->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
     
     label = new flTextField();
-    label->text("Text Field Example");
+    label->text("[Text Field]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 150;
+    lineSpacing = 18 + 5;
+
+    //インプットテキストフィールド
+    label = new flTextField();
+    label->text("Text Field 1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
@@ -277,14 +363,27 @@ void UIComponents::_setup() {
     
     
     //--------------------------------------
-    //カラーピッカー
     marginLeft = 10;
-    marginTop = 610;
-    spacing = 150;
-    lineSpacing = 22;
+    marginTop = text002->y() + text002->height() + 5;
+    spacing = 100;
+    lineSpacing = 18 + 5;
     
     label = new flTextField();
-    label->text("Color Picker Example");
+    label->text("[Color Picker]");
+    label->x(marginLeft + spacing * 0);
+    label->y(marginTop + lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    addChild(label);
+    
+    marginLeft = 10;
+    marginTop = label->y() + label->height() + 5;
+    spacing = 155;
+    lineSpacing = 18 + 5;
+    
+    //カラーピッカー
+    label = new flTextField();
+    label->text("Color Picker 1");
     label->x(marginLeft + spacing * 0);
     label->y(marginTop + lineSpacing * 0);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
