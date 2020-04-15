@@ -304,6 +304,13 @@ void ofApp::drawGrid() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
+    if(key == ' ') {
+        //Doesn't call update() and draw().
+        ofxSelflash::pause(!ofxSelflash::pause());
+        ofxSelflash::visible(!ofxSelflash::visible());
+    }
+
+    
     if(key == 'a') {
         animationEnabled = !animationEnabled;
     }

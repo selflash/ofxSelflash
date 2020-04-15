@@ -86,8 +86,8 @@
 
 #include "flToolTip.h"
 
-//those class are basic template.
-//if you use them, include in your project.
+//Those classes are basic templates.
+//If you use them, include the following in your project.
 //#include "flBasicController.h"
 //#include "flBasicDraggableObject.h"
 
@@ -124,6 +124,14 @@ class ofxSelflash {
 
         static inline fl2d::flStage* stage() { return fl2d::flStage::instance(); }
     
+        //If this parameter is true, doesn't call update.
+        static inline bool pause() { return fl2d::flStage::instance()->pause(); }
+        static inline void pause(bool value) { fl2d::flStage::instance()->pause(value); }
+
+        //If this parameter is true, doesn't call draw.
+        static inline bool visible() { return fl2d::flStage::instance()->visible(); }
+        static inline void visible(bool value) { fl2d::flStage::instance()->visible(value); }
+
     private:
     
 };

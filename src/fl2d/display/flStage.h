@@ -89,6 +89,7 @@ namespace fl2d {
             vector<flInteractiveObject*> _lineBottomUpPrev;
         
     //        ofEventOrder _priority;
+            bool _isPaused = false;
         
         public:
             static flStage* instance();
@@ -118,7 +119,9 @@ namespace fl2d {
             flDisplayObject* getMostHitDisplayObject(int x, int y);
         
     //        void priority(ofEventOrder value);
-        
+            inline bool pause() { return _isPaused; }
+            inline void pause(bool value) { _isPaused = value; }
+
         protected:
         
         private:

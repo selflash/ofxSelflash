@@ -8,7 +8,7 @@ namespace fl2d {
     flStage* flStage::instance() {
         if(!_instance) {
             _instance = new flStage();
-            _instance->setup();
+//            _instance->setup();
         }
         return _instance;
     };
@@ -176,6 +176,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flStage::update() {
+        if(_isPaused) return;
+        
         flEvent* event = new flEvent(flEvent::ENTER_FRAME);
         dispatchEvent(event);
         
@@ -260,6 +262,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flStage::draw() {
+        if(!visible()) return;
+
         //ofLog() << "[flStage]draw();
         
         //    glEnable(GL_BLEND);
