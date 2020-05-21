@@ -165,9 +165,9 @@ void SubController2::_uiEventHandler(flEvent& event) {
     }
     
     //ナンバーダイアラー
-    if(event.type() == flNumberDialerEvent::CHANGE) {
-        flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+    if(event.type() == flNumericDialerEvent::CHANGE) {
+        flNumericDialerEvent& numericDialerEvent = *(flNumericDialerEvent*) &event;
+        flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
     }
     
     //2Dパッド
