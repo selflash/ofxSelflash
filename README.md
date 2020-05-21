@@ -17,26 +17,6 @@ The operation has been confirmed on oepnFrameworks 0.10.1 on macOS Sierra and Wi
 ~+ A "fl3d" package is classes in imitation of PaperVision3D.~   
 ~+ A "tween" package is classes in imitation of TweenMax.~   
 
-This addon is still in development.
-Following examples are unable to build.
-
-~+ example-3D-1~   
-~+ example-3D-2~   
-~+ example-3D-Deferred-1~   
-+ example-BasicController
-+ example-BlendMode
-+ example-MovieClip   
-~+ example-Tweener-1~   
-~+ example-Tweener-2~   
-~+ example-Tweener-3~   
-~+ example-Tweener-4~   
-~+ example-Tweener-5~   
-~+ example-Tweener-6~   
-
-example-DisplayObjectTree
-https://vimeo.com/117660748
-
-
 ScreenShot
 --------
 + example-BasicController
@@ -49,6 +29,7 @@ ScreenShot
 ![example-HitArea](example-HitArea/screenshot.png)
 + example-MovieClip (in development)
 + example-DisplayObjectTree
+https://vimeo.com/117660748
 ![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)
 + example-Sprite
 ![example-Sprite](example-Sprite/screenshot.png)
