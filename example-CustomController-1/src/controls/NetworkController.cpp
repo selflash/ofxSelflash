@@ -332,8 +332,9 @@ void SocketController::_uiEventHandler(flEvent& event) {
     }
     
     //ナンバーダイアラー
-	else if(event.type() == flNumberDialerEvent::CHANGE) {
-        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+	else if(event.type() == flNumericDialerEvent::CHANGE) {
+		flNumericDialerEvent& numericDialerEvent = *(flNumericDialerEvent*) &event;
+        flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
     }
     
     //2Dパッド
@@ -465,16 +466,16 @@ void NetworkController::_setup() {
     //----------------------------------------------------------
     marginLeft = 5;
     marginTop = 5;
-    spacing = 80 + 5;
+    spacing = 100 + 5;
     lineSpacing = 18 + 5;
     
-    textField = new flTextField();
-    textField->text("Socket List");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    //textField = new flTextField();
+    //textField->text("Socket List");
+    //textField->x(marginLeft + spacing * 0);
+    //textField->y(marginTop + lineSpacing * 0);
+    //textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    //textField->mouseEnabled(false);
+    //addChild(textField);
     comboBox001 = new flComboBox();
     comboBox001->label(textField);
     comboBox001->x(marginLeft + spacing * 1);
@@ -615,8 +616,8 @@ void NetworkController::_uiEventHandler(flEvent& event) {
     }
     
     //ナンバーダイアラー
-	else if(event.type() == flNumberDialerEvent::CHANGE) {
-        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+	else if(event.type() == flNumericDialerEvent::CHANGE) {
+        flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
     }
     
     //2Dパッド

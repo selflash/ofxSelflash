@@ -862,9 +862,9 @@ void MainController::_uiEventHandler(flEvent& event) {
 	}
 
 	//ナンバーダイアラー
-	else if (event.type() == flNumberDialerEvent::CHANGE) {
-		flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-		flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+	else if (event.type() == flNumericDialerEvent::CHANGE) {
+		flNumericDialerEvent& numericDialerEvent = *(flNumericDialerEvent*) &event;
+		flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
 	}
 
 	//2Dパッド

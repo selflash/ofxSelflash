@@ -119,7 +119,7 @@ void SubController2::_setup() {
     joystick1001->label(textField);
     joystick1001->x(marginLeft + spacing * 0);
     joystick1001->y(marginTop + lineSpacing * 2);
-    joystick1001->type(flJoyStick1::VERTICALLY);
+    joystick1001->type(flJoyStick1::HORIZONTALLY);
     joystick1001->enabled(false);
     joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1001);
@@ -134,7 +134,7 @@ void SubController2::_setup() {
     joystick1002->label(textField);
     joystick1002->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
     joystick1002->y(marginTop + lineSpacing * 3);
-    joystick1002->type(flJoyStick1::HORIZONTALLY);
+    joystick1002->type(flJoyStick1::VERTICALLY);
     joystick1002->enabled(false);
     joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1002);
@@ -149,7 +149,7 @@ void SubController2::_setup() {
     joystick1003->label(textField);
     joystick1003->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
     joystick1003->y(marginTop + lineSpacing * 3);
-    joystick1003->type(flJoyStick1::HORIZONTALLY);
+    joystick1003->type(flJoyStick1::VERTICALLY);
     joystick1003->enabled(false);
     joystick1003->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1003);
@@ -211,7 +211,7 @@ void SubController2::_setup() {
     joystick1101->label(textField);
     joystick1101->x(marginLeft + spacing * 0);
     joystick1101->y(marginTop + lineSpacing * 2);
-    joystick1101->type(flJoyStick1::VERTICALLY);
+    joystick1101->type(flJoyStick1::HORIZONTALLY);
     joystick1101->enabled(false);
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1101);
@@ -226,7 +226,7 @@ void SubController2::_setup() {
     joystick1102->label(textField);
     joystick1102->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
     joystick1102->y(marginTop + lineSpacing * 3);
-    joystick1102->type(flJoyStick1::HORIZONTALLY);
+    joystick1102->type(flJoyStick1::VERTICALLY);
     joystick1102->enabled(false);
     joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1102);
@@ -241,7 +241,7 @@ void SubController2::_setup() {
     joystick1103->label(textField);
     joystick1103->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
     joystick1103->y(marginTop + lineSpacing * 3);
-    joystick1103->type(flJoyStick1::HORIZONTALLY);
+    joystick1103->type(flJoyStick1::VERTICALLY);
     joystick1103->enabled(false);
     joystick1103->addEventListener(flJoyStick1Event::CHANGE, this, &SubController2::_uiEventHandler);
     addChild(joystick1103);
@@ -352,9 +352,9 @@ void SubController2::_uiEventHandler(flEvent& event) {
     }
     
     //ナンバーダイアラー
-	else if(event.type() == flNumberDialerEvent::CHANGE) {
-        flNumberDialerEvent& numberDialerEvent = *(flNumberDialerEvent*) &event;
-        flNumberDialer* dialer = (flNumberDialer*)(event.currentTarget());
+	else if(event.type() == flNumericDialerEvent::CHANGE) {
+        flNumericDialerEvent& numericDialerEvent = *(flNumericDialerEvent*) &event;
+        flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
     }
     
     //2Dパッド

@@ -323,6 +323,7 @@ void ofApp::keyPressed(int key) {
     }
     
     if(key == 'l') {
+		//Lock / Unlock
         enabled = !enabled;
         int numChildren = uiComponents->numChildren();
         for(int i = 0; i < numChildren; i++) {
