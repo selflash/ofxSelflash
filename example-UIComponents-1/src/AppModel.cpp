@@ -1,4 +1,4 @@
-#include "AppModel.h"
+﻿#include "AppModel.h"
 
 //--------------------------------------------------------------
 AppModel::AppModel() {
