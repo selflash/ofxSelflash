@@ -62,6 +62,7 @@ ScreenShot
 ![example-ExtendsSprite](example-ExtendsSprite/screenshot.png)
 + example-Font
 ![example-Font](example-Font/screenshot.png)
++ example-getBounds (in development)
 
 How to build
 --------
