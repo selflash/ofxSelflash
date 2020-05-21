@@ -1512,3 +1512,7 @@ example-DisplayObjectTree/obj/x64/Release/example-.7FD42DF7.tlog/link.write.1.tl
 example-DisplayObjectTree/obj/x64/Release/example-.7FD42DF7.tlog/rc.command.1.tlog
 example-DisplayObjectTree/obj/x64/Release/example-.7FD42DF7.tlog/rc.read.1.tlog
 example-DisplayObjectTree/obj/x64/Release/example-.7FD42DF7.tlog/rc.write.1.tlog
+example-BasicDraggableObjectDebug
+example-DisplayObjectTreeDebug
+example-HitAreaDebug
+example-TextFieldDebug
