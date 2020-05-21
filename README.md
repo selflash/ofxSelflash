@@ -1,7 +1,7 @@
-# ofxSelflash ver0.9.0
+# ofxSelflash ver0.9.1
 =========
 
-Last update 2019.9.15
+Last update 2020.5.21
 
 Copyright (c) 2015 selflash
 
@@ -91,103 +91,108 @@ Please copy the fl-folder in "ofxSelflash/bin/data" to "your project folder/bin/
 Features:
 --------
 
-+ ofxSelflash.h
++ ofxSelflash
 
 [fl2d]
-+ Flash2D.h
-+ FlashConfig.h
++ flDefinition
 
 [fl2d.core](https://github.com/selflash/ofxSelflash/wiki/core)
-+ core/Object.h
++ core/flObject
 
 [fl2d.display](https://github.com/selflash/ofxSelflash/wiki/display)
-+ display/Stage.h
-+ display/MovieClip.h
-+ display/Sprite.h
-+ display/DisplayObjectContainer.h
-+ display/InteractiveObject.h
-+ display/BitmapData.h
-+ display/Bitmap.h
-+ display/Graphics.h
-+ display/Shape.h
-+ display/DisplayObject.h
-+ display/BlendMode.h
++ display/flStage
++ display/flMovieClip
++ display/flSprite
++ display/flDisplayObjectContainer
++ display/flInteractiveObject
++ display/flBitmapData
++ display/flBitmap
++ display/flGraphics
++ display/flShape
++ display/flDisplayObject
++ display/flBlendMode
 
 [fl2d.events](https://github.com/selflash/ofxSelflash/wiki/events)
-+ events/EventDispatcher.h
-+ events/Event.h
-+ events/SoundEvent.h
-+ events/AnimationEvent.h
-+ events/FocusEvent.h
-+ events/MouseEvent.h
-+ events/KeyboardEvent.h
-+ events/SliderEvent.h
-+ events/Vec2SliderEvent.h
-+ events/Vec3SliderEvent.h
-+ events/SliderEvent.h
-+ events/ButtonEvent.h
-+ events/RadioButtonEvent.h
-+ events/NumberDialerEvent.h
-+ events/RangeSliderEvent.h
-+ events/ColorSliderEvent.h
-+ events/ColorPickerEvent.h
-+ events/PadEvent.h
-+ events/Joystick1DEvent.h
-+ events/Joystick2DEvent.h
-+ events/ComboBoxEvent.h
-+ events/ButtonEvent.h
++ events/flEventDispatcher
++ events/flEvent
++ events/flFocusEvent
++ events/flMouseEvent
++ events/flKeyboardEvent
++ events/flSliderEvent
++ events/flVec2SliderEvent
++ events/flVec3SliderEvent
++ events/flSliderEvent
++ events/flButtonEvent
++ events/flCheckBoxEvent
++ events/flRadioButtonEvent
++ events/flNumericDialerEvent
++ events/flRangeSliderEvent
++ events/flColorSliderEvent
++ events/flColorPickerEvent
++ events/flPadEvent
++ events/flJoyStick1Event
++ events/flJoyStick2Event
++ events/flComboBoxEvent
++ events/flButtonEvent
++ events/flAnglerEvent (in development)
++ events/flHistgramViewerEvent (in development)
 
 [fl2d.geom](https://github.com/selflash/ofxSelflash/wiki/geom)
-+ geom/ColorTransform.h
-+ geom/Matrix.h
-+ geom/Particle2D.h
-+ geom/Rectangle.h
-+ geom/Transform.h
++ geom/flColorTransformt (in development)
++ geom/flMatrix
+~+ geom/flParticle2D~
++ geom/flRectangle
++ geom/flTransform (in development)
 
 [fl2d.net](https://github.com/selflash/ofxSelflash/wiki/net)
-+ net/Loader.h
+~+ net/Loader~
 
 [flash.texts](https://github.com/selflash/ofxSelflash/wiki/texts)
-+ texts/Font.h
-+ texts/TextField.h
-+ texts/TextFieldAutoSize.h
++ texts/flFont
++ texts/flTextField
++ texts/flTextFieldAutoSize
 
 [fl2d.ui](https://github.com/selflash/ofxSelflash/wiki/ui)
-+ ui/Mouse.h
-+ ui/Keyboard.h
-+ ui/Button.h
-+ ui/RadioButton.h
-+ ui/NumberDialer.h
-+ ui/Slider.h
-+ ui/Vec2Slider.h
-+ ui/Vec3Slider.h
-+ ui/RangeSlider.h
-+ ui/ColorSlider.h
-+ ui/CircleColorPicker.h
-+ ui/Pad2D.h
-+ ui/Pad3D.h
-+ ui/Joystick1D.h
-+ ui/Joystick2D.h
-+ ui/ScrollKit.h
-+ ui/ComboBox.h"
++ ui/flMouse
++ ui/flKeyboard
++ ui/flUIBase
++ ui/flButton
++ ui/flRadioButton
++ ui/flCheckBox
++ ui/flNumericDialer
++ ui/flSlider
++ ui/flVec2Slider
++ ui/flVec3Slider
++ ui/flRangeSlider
++ ui/flColorSlider
++ ui/flCircleColorPicker
++ ui/flPad2D
++ ui/flPad3D
++ ui/flJoystick1
++ ui/flJoystick2
++ ui/flScrollKit (in development)
++ ui/flComboBox
++ ui/flToolTip
++ ui/flHistgramViewer (in development)
++ ui/flAngler (in development)
 
-[fl3d.primitive]   
-[fl3d.render]  
-[fl3d.camera]  
-[fl3d.light]  
+~[fl3d.primitive]~  
+~[fl3d.render]~  
+~[fl3d.camera]~  
+~[fl3d.light]~  
 
-[fltw]
-+ CallBackFuncion.h
-+ DelayedCallFunction.h
-+ ofxSTweener.h
-+ ofxSTweener2D.h
-+ STween.h
-+ STweenCore.h
-+ STweener.h
-+ STweeneSelector.h
+~[fltw]~
+~+ CallBackFuncion~
+~+ DelayedCallFunction~
+~+ ofxSTweener~
+~+ ofxSTweener2D~
+~+ STween~
+~+ STweenCore~
+~+ STweener~
+~+ STweeneSelector~
 
-[fltw.fl2d]  
-[fltw.fl3d]  
+~[fltw.fl2d]~  
+~[fltw.fl3d]~  
 
 
 
