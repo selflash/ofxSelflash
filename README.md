@@ -40,12 +40,14 @@ https://vimeo.com/117660748
 ScreenShot
 --------
 + example-BasicController
-+ example-BlendMode
+![example-BasicController](example-BasicController/screenshot.png)
++ example-BlendMode (in development)
++ example-Bitmap (in development)
 + example-EventDispatcher-1
 + example-EventDispatcher-2
 + example-HitArea
 ![example-HitArea](example-HitArea/screenshot.png)
-+ example-MovieClip
++ example-MovieClip (in development)
 + example-DisplayObjectTree
 ![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)
 + example-Sprite
