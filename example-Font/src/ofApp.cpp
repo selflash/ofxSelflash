@@ -1,4 +1,4 @@
-#include "ofApp.h"
+﻿#include "ofApp.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -35,11 +35,11 @@ void ofApp::draw(){
     
     float w = ofGetWidth();
     float h = ofGetHeight();
-    drawText("ようこそ世界。\r\nHello World.", 60, w * 0.5, h * 0.5, true);
-    drawText("僕の名前はSelflash。\r\nI'm Selflash.", 15, 100, 50);
-    drawText("沖縄生まれ沖縄育ち。\r\nBorn Okinawa and grew up there.", 18, 10, 600);
-    drawText("僕の名前はSelflash。\r\nI'm Selflash.", 23, 600, 700);
-    drawText("沖縄生まれ沖縄育ち。\r\nBorn Okinawa and grew up there.", 30, 200, 150);
+    drawText(u8"ようこそ世界。\r\nHello World.", 60, w * 0.5, h * 0.5, true);
+    drawText(u8"僕の名前はSelflash。\r\nI'm Selflash.", 15, 100, 50);
+    drawText(u8"沖縄生まれ沖縄育ち。\r\nBorn Okinawa and grew up there.", 18, 10, 600);
+    drawText(u8"僕の名前はSelflash。\r\nI'm Selflash.", 23, 600, 700);
+    drawText(u8"沖縄生まれ沖縄育ち。\r\nBorn Okinawa and grew up there.", 30, 200, 150);
     
 //    ofPushStyle();
 //    ofSetColor(0, 0, 0, 255);
