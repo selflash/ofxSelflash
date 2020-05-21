@@ -19,8 +19,16 @@ The operation has been confirmed on oepnFrameworks 0.10.1 on macOS Sierra and Wi
 
 ScreenShot
 --------
+
++ example-DisplayObjectTree  
+https://vimeo.com/117660748
+![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)
++ example-UIComponents-1
+![example-UIComponents-1](example-UIComponents-1/screenshot.png)
 + example-BasicController
 ![example-BasicController](example-BasicController/screenshot.png)
++ example-CustomController-1
+![example-CustomController-1](example-CustomController-1/screenshot.png)
 + example-BlendMode (in development)
 + example-Bitmap (in development)
 + example-EventDispatcher-1
@@ -28,15 +36,11 @@ ScreenShot
 + example-HitArea
 ![example-HitArea](example-HitArea/screenshot.png)
 + example-MovieClip (in development)
-+ example-DisplayObjectTree  
-https://vimeo.com/117660748
-![example-DisplayObjectTree](example-DisplayObjectTree/screenshot.png)
+
 + example-Sprite
 ![example-Sprite](example-Sprite/screenshot.png)
 + example-TextField
 ![example-TextField](example-TextField/screenshot.png)
-+ example-UIComponents-1
-![example-UIComponents-1](example-UIComponents-1/screenshot.png)
 + example-BasicController
 ![example-BasicController](example-BasicController/screenshot.png)
 + example-BasicDraggableObject
