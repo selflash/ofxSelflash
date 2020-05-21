@@ -1,4 +1,4 @@
-# ofxSelflash ver0.9.1
+# ofxSelflash ver0.9.2
 =========
 
 Last update 2020.5.21
