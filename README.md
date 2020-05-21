@@ -129,12 +129,12 @@ Features:
 
 [fl2d.geom](https://github.com/selflash/ofxSelflash/wiki/geom)
 + geom/flColorTransformt (in development)
-+ geom/flMatrix
-~+ geom/flParticle2D~
++ geom/flMatrix   
+~+ geom/flParticle2D~   
 + geom/flRectangle
 + geom/flTransform (in development)
 
-[fl2d.net](https://github.com/selflash/ofxSelflash/wiki/net)
+[fl2d.net](https://github.com/selflash/ofxSelflash/wiki/net)   
 ~+ net/Loader~
 
 [flash.texts](https://github.com/selflash/ofxSelflash/wiki/texts)
@@ -171,15 +171,15 @@ Features:
 ~[fl3d.camera]~  
 ~[fl3d.light]~  
 
-~[fltw]~
-~+ CallBackFuncion~
-~+ DelayedCallFunction~
-~+ ofxSTweener~
-~+ ofxSTweener2D~
-~+ STween~
-~+ STweenCore~
-~+ STweener~
-~+ STweeneSelector~
+~[fltw]~   
+~+ CallBackFuncion~   
+~+ DelayedCallFunction~   
+~+ ofxSTweener~   
+~+ ofxSTweener2D~   
+~+ STween~   
+~+ STweenCore~   
+~+ STweener~   
+~+ STweeneSelector~   
 
 ~[fltw.fl2d]~  
 ~[fltw.fl3d]~  
