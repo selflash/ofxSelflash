@@ -1021,7 +1021,27 @@ namespace fl2d {
             flCheckBox* check043 = NULL; flCheckBox* check044 = NULL; flCheckBox* check045 = NULL;
             flCheckBox* check046 = NULL; flCheckBox* check047 = NULL; flCheckBox* check048 = NULL;
             flCheckBox* check049 = NULL;
-            //チェックボックス(100)
+			flCheckBox* check050 = NULL; flCheckBox* check051 = NULL; flCheckBox* check052 = NULL;
+			flCheckBox* check053 = NULL; flCheckBox* check054 = NULL; flCheckBox* check055 = NULL;
+			flCheckBox* check056 = NULL; flCheckBox* check057 = NULL; flCheckBox* check058 = NULL;
+			flCheckBox* check059 = NULL;
+			flCheckBox* check060 = NULL; flCheckBox* check061 = NULL; flCheckBox* check062 = NULL;
+			flCheckBox* check063 = NULL; flCheckBox* check064 = NULL; flCheckBox* check065 = NULL;
+			flCheckBox* check066 = NULL; flCheckBox* check067 = NULL; flCheckBox* check068 = NULL;
+			flCheckBox* check069 = NULL;
+			flCheckBox* check070 = NULL; flCheckBox* check071 = NULL; flCheckBox* check072 = NULL;
+			flCheckBox* check073 = NULL; flCheckBox* check074 = NULL; flCheckBox* check075 = NULL;
+			flCheckBox* check076 = NULL; flCheckBox* check077 = NULL; flCheckBox* check078 = NULL;
+			flCheckBox* check079 = NULL;
+			flCheckBox* check080 = NULL; flCheckBox* check081 = NULL; flCheckBox* check082 = NULL;
+			flCheckBox* check083 = NULL; flCheckBox* check084 = NULL; flCheckBox* check085 = NULL;
+			flCheckBox* check086 = NULL; flCheckBox* check087 = NULL; flCheckBox* check088 = NULL;
+			flCheckBox* check089 = NULL;
+			flCheckBox* check090 = NULL; flCheckBox* check091 = NULL; flCheckBox* check092 = NULL;
+			flCheckBox* check093 = NULL; flCheckBox* check094 = NULL; flCheckBox* check095 = NULL;
+			flCheckBox* check096 = NULL; flCheckBox* check097 = NULL; flCheckBox* check098 = NULL;
+			flCheckBox* check099 = NULL;
+			//チェックボックス(100)
             flCheckBox* check100 = NULL; flCheckBox* check101 = NULL; flCheckBox* check102 = NULL;
             flCheckBox* check103 = NULL; flCheckBox* check104 = NULL; flCheckBox* check105 = NULL;
             flCheckBox* check106 = NULL; flCheckBox* check107 = NULL; flCheckBox* check108 = NULL;

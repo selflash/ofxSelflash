@@ -60,7 +60,8 @@ namespace fl2d {
         
         //------------------------------------------
         _floatParam = NULL;
-        _listeners.unsubscribeAll();
+        _intParam = NULL;
+        _paramListeners.unsubscribeAll();
         //------------------------------------------
     }
     
@@ -186,6 +187,10 @@ namespace fl2d {
                 _bChangedByMyself["value"] = true;
                 _floatParam->set(_value);
             }
+			else if (_intParam != NULL) {
+				_bChangedByMyself["value"] = true;
+				_intParam->set(_value);
+			}
         }
         //------------------------------------------
     }
@@ -270,22 +275,27 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flNumericDialer::_onPress() {
         float preValue = _value;
+
+		//•Ï‰»—Ê
+		int n = 0;
         
         //------------------------------------------
         //…•½
         if(_dragDirection == VERTICALLY) {
-            if(!_invertEnabled) {
-                _value = _tempValue + ((mouseY() - _startPos.y) * _weight) * -_stepSize;
+			n = round((mouseY() - _startPos.y) * _weight);
+			if(!_invertEnabled) {
+                _value = _tempValue + (n * -_stepSize);
             } else {
-                _value = _tempValue - ((mouseY() - _startPos.y) * _weight) * -_stepSize;
+                _value = _tempValue - (n * -_stepSize);
             }
         }
         //‚’¼
         else if(_dragDirection == HORIZONTALLY) {
+			n = round((mouseX() - _startPos.x) * _weight);
             if(!_invertEnabled) {
-                _value = _tempValue + ((mouseX() - _startPos.x) * _weight) * _stepSize;
+                _value = _tempValue + (n * _stepSize);
             } else {
-                _value = _tempValue - ((mouseX() - _startPos.x) * _weight) * _stepSize;
+                _value = _tempValue - (n * _stepSize);
             }
         }
         
@@ -308,6 +318,10 @@ namespace fl2d {
                 _bChangedByMyself["value"] = true;
                 _floatParam->set(_value);
             }
+			else if (_intParam != NULL) {
+				_bChangedByMyself["value"] = true;
+				_intParam->set(_value);
+			}
         }
         //------------------------------------------
     }

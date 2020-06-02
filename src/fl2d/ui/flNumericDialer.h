@@ -68,6 +68,7 @@ namespace fl2d {
             float max();
             void max(float value, bool dispatch = true);
         
+			//0.0 - 1.0
             float weight();
             void weight(float value);
         
@@ -79,15 +80,17 @@ namespace fl2d {
 
         //------------------------------------------
         ofParameter<float>* _floatParam = NULL;
-        ofEventListeners _listeners;
+		ofParameter<int>* _intParam = NULL;
+        ofEventListeners _paramListeners;
         virtual inline void bind(ofParameter<float>& param) {
-            _listeners.unsubscribeAll();
+            _paramListeners.unsubscribeAll();
             _floatParam = NULL;
+			_intParam = NULL;
             _bChangedByMyself["value"] = false;
             _bChangedByOfParm["value"] = false;
             
             _floatParam = &param;
-            _listeners.push(_floatParam->newListener([&](float& val) {
+            _paramListeners.push(_floatParam->newListener([&](float& val) {
                 if(_bChangedByMyself["value"]) {
                     _bChangedByMyself["value"] = false;
                 } else {
@@ -98,10 +101,31 @@ namespace fl2d {
             
             _bChangedByOfParm["value"] = true;
             value(_floatParam->get());
+        }      
+		virtual inline void bind(ofParameter<int>& param) {
+            _paramListeners.unsubscribeAll();
+            _floatParam = NULL;
+			_intParam = NULL;
+            _bChangedByMyself["value"] = false;
+            _bChangedByOfParm["value"] = false;
+            
+			_intParam = &param;
+            _paramListeners.push(_intParam->newListener([&](int& val) {
+                if(_bChangedByMyself["value"]) {
+                    _bChangedByMyself["value"] = false;
+                } else {
+                    _bChangedByOfParm["value"] = true;
+                    value(val);
+                }
+            }));
+            
+            _bChangedByOfParm["value"] = true;
+            value(_intParam->get());
         }
         virtual inline void unbind() {
-            _listeners.unsubscribeAll();
+            _paramListeners.unsubscribeAll();
             _floatParam = NULL;
+			_intParam = NULL;
         }
         //------------------------------------------
         
