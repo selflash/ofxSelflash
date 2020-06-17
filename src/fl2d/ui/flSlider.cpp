@@ -340,12 +340,12 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        if(preValue != _value) {
+		if(preValue != _value) {
             _valueText->text(ofToString(_value, _digit));
             if(dispatch) _dispatchEvent();
         
-            if(!_bChangedByOfParm["value"]) {
-                if(_floatParam != NULL) {
+			if(!_bChangedByOfParm["value"]) {
+				if(_floatParam != NULL) {
                     _bChangedByMyself["value"] = true;
                     _floatParam->set(_value);
                 }

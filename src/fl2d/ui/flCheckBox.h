@@ -82,6 +82,7 @@ namespace fl2d {
                 
                 _bChangedByOfParm["value"] = true;
                 selected(_boolParam->get());
+				_bChangedByOfParm["value"] = false;
             }
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();

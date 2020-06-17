@@ -155,7 +155,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["value"] = true;
                 hexValue(_colorParam->get().getHex());
-            }
+				_bChangedByOfParm["value"] = false;
+			}
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();
                 _colorParam = NULL;

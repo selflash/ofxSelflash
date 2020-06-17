@@ -76,7 +76,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["value"] = true;
                 value(_vec3Param->get());
-            }
+				_bChangedByOfParm["value"] = false;
+			}
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();
                 _vec3Param = NULL;

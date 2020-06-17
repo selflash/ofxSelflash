@@ -280,8 +280,10 @@ namespace fl2d {
                 }
             }));
             
-            selectedIndex(_intParam->get());
-        }
+			_bChangedByOfParm["value"] = true;
+			selectedIndex(_intParam->get());
+			_bChangedByOfParm["value"] = false;
+		}
         virtual inline void unbind() {
             _listeners.unsubscribeAll();
             _intParam = NULL;

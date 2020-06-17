@@ -86,7 +86,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->beginFill(0x000000, 0.5);
+        g->beginFill(0x000000, 0.75);
         g->drawRect(0, 0, w, h);
         g->lineStyle(1, 0xffffff);
         g->moveTo(-1, -1);

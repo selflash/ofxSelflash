@@ -156,13 +156,17 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flNumericDialer::value() { return _value; }
     void flNumericDialer::value(float value, bool dispatch) {
-        if(_value == value) return;
+        //if(_value == value) return;
+		float preValue = _value;
 
-        _value = value;
+		//------------------------------------------
+		//Update value.
+		_value = value;
         if(_roundEnabled) _value = flmath::roundd(_value);
         if(_value < _min) _value = _min;
         if(_value > _max) _value = _max;
-        
+		//------------------------------------------
+
         //------------------------------------------
         //Update color.
         if(_enabled) {
@@ -179,19 +183,22 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        _valueText->text(ofToString(_value, _digit));
-        if(dispatch) _dispatchEvent();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_floatParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _floatParam->set(_value);
-            }
-			else if (_intParam != NULL) {
-				_bChangedByMyself["value"] = true;
-				_intParam->set(_value);
+		//------------------------------------------
+		if (preValue != _value) {
+			_valueText->text(ofToString(_value, _digit));
+			if (dispatch) _dispatchEvent();
+
+			if (!_bChangedByOfParm["value"]) {
+				if (_floatParam != NULL) {
+					_bChangedByMyself["value"] = true;
+					_floatParam->set(_value);
+				}
+				else if (_intParam != NULL) {
+					_bChangedByMyself["value"] = true;
+					_intParam->set(_value);
+				}
 			}
-        }
+		}
         //------------------------------------------
     }
     

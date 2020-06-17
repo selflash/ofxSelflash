@@ -101,7 +101,8 @@ namespace fl2d {
             
             _bChangedByOfParm["value"] = true;
             value(_floatParam->get());
-        }      
+			_bChangedByOfParm["value"] = false;
+		}
 		virtual inline void bind(ofParameter<int>& param) {
             _paramListeners.unsubscribeAll();
             _floatParam = NULL;
@@ -121,7 +122,8 @@ namespace fl2d {
             
             _bChangedByOfParm["value"] = true;
             value(_intParam->get());
-        }
+			_bChangedByOfParm["value"] = false;
+		}
         virtual inline void unbind() {
             _paramListeners.unsubscribeAll();
             _floatParam = NULL;

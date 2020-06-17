@@ -88,7 +88,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["minValue"] = true;
                 minValue(_floatMinParam->get());
-            }
+				_bChangedByOfParm["minValue"] = false;
+			}
             virtual inline void bindMin(ofParameter<int>& param) {
                 _minListeners.unsubscribeAll();
                 _floatMinParam = NULL;
@@ -108,7 +109,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["minValue"] = true;
                 minValue(_intMinParam->get());
-            }
+				_bChangedByOfParm["minValue"] = false;
+			}
         
             ofParameter<float>* _floatMaxParam = NULL;
             ofParameter<int>* _intMaxParam = NULL;
@@ -132,7 +134,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["maxValue"] = true;
                 maxValue(_floatMaxParam->get());
-            }
+				_bChangedByOfParm["maxValue"] = false;
+			}
             virtual inline void bindMax(ofParameter<int>& param) {
                 _maxListeners.unsubscribeAll();
                 _floatMaxParam = NULL;
@@ -152,7 +155,8 @@ namespace fl2d {
                 
                 _bChangedByOfParm["maxValue"] = true;
                 maxValue(_intMaxParam->get());
-            }
+				_bChangedByOfParm["maxValue"] = false;
+			}
             virtual inline void unbind() {
                 _minListeners.unsubscribeAll();
                 _maxListeners.unsubscribeAll();
