@@ -6,103 +6,55 @@ namespace fl2d {
     //==============================================================
     // Constructor / Destructor
     //==============================================================
-    
-//    template <class T>
-//    virtual void flBitmap::data<T>(T* value) {
-//
-//    }
-    void flBitmap::data(ofTexture* value) {
-        if(_mode == 1) {
-            delete _bitmapData;
-            _bitmapData = NULL;
-        }
-        else if(_mode == 2) {
-            _image_ptr = NULL;
-        }
-        else if(_mode == 3) {
-            _image.clear();
-        }
-        else if(_mode == 5) {
-            _texture.clear();
-        }
-        
-        _mode = 4;
-        _texture_ptr = value;
-
-		_isAllocated = _texture_ptr->isAllocated();
-
-		if(_isAllocated) 
-		{
-			_imageWidth = _texture_ptr->getWidth();
-			_imageHeight = _texture_ptr->getHeight();
-			_rect->width(_imageWidth);
-			_rect->height(_imageHeight);
-			_realWidth = _rect->width();
-			_realHeight = _rect->height();
-
-			cout << "_imageHeight = " << _imageHeight << endl;
-			cout << "_targetWidth = " << _targetWidth << endl;
-			cout << "isnan(_targetWidth) = " << isnan(_targetWidth) << endl;
-
-			if (!isnan(_targetWidth)) {
-				scaleX(_targetWidth / _realWidth);
-			}
-			if (!isnan(_targetHeight)) {
-				scaleY(_targetHeight / _realHeight);
-			}
-		}
-		else {
-			_imageWidth = 0;
-			_imageHeight = 0;
-			_rect->width(_imageWidth);
-			_rect->height(_imageHeight);
-			_realWidth = _rect->width();
-			_realHeight = _rect->height();
-		}
-        
-    }
-    
+       
     //--------------------------------------------------------------
     flBitmap::flBitmap() {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap()" << endl;
-        
-        _typeID = FL_TYPE_BITMAP;
-        _target = this;
-        _mode = 0;
-        
-        name("flBitmap");
-        
-        _imageWidth = 0;
-        _imageHeight = 0;
-        _realWidth = 0;
-        _realHeight = 0;
-        
-        ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
+        if(debug()) ofLog() << "[flBitmap]flBitmap()";
+
+		_typeID = FL_TYPE_BITMAP;
+		_target = this;
+		_dataType = BITMAPDATA_TYPE_BITMAPDATA;
+
+		name("flBitmap");
+
+		_bitmapDataPtr = &_bitmapData;
+
+		_imageWidth = _bitmapDataPtr->width();
+		_imageHeight = _bitmapDataPtr->height();
+		_rect->width(_imageWidth);
+		_rect->height(_imageHeight);
+		_realWidth = _rect->width();
+		_realHeight = _rect->height();
+		//TODO
+		//        width(_bitmapDataPtr->width());
+		//        height(_bitmapDataPtr->height());
+
+		ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
     
     //--------------------------------------------------------------
     flBitmap::flBitmap(flBitmapData* bitmapData, string pixelSnapping, bool smoothing) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(flBitmapData)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(flBitmapData)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 1;
+		_dataType = BITMAPDATA_TYPE_BITMAPDATA;
         
         name("flBitmap");
         
-        _bitmapData = bitmapData;
+        _bitmapDataPtr = bitmapData;
         
-        _imageWidth = _bitmapData->width();
-        _imageHeight = _bitmapData->height();
+        _imageWidth = _bitmapDataPtr->width();
+        _imageHeight = _bitmapDataPtr->height();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-        //        width(_bitmapData->width());
-        //        height(_bitmapData->height());
+        //        width(_bitmapDataPtr->width());
+        //        height(_bitmapDataPtr->height());
         
         ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
@@ -110,48 +62,49 @@ namespace fl2d {
     //--------------------------------------------------------------
     flBitmap::flBitmap(ofImage* image) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(ofImage ptr)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(ofImage ptr)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 2;
+		_dataType = BITMAPDATA_TYPE_OF_IMAGE;
         
         name("flBitmap");
         
-        _image_ptr = image;
+        _imagePtr = image;
         
-        _imageWidth = _image_ptr->getWidth();
-        _imageHeight = _image_ptr->getHeight();
+        _imageWidth = _imagePtr->getWidth();
+        _imageHeight = _imagePtr->getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-        //        width(_image_ptr->getWidth());
-        //        height(_image_ptr->getHeight());
+        //        width(_imagePtr->getWidth());
+        //        height(_imagePtr->getHeight());
         
         ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
     flBitmap::flBitmap(ofImage image) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(ofImage)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(ofImage)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 3;
+		_dataType = BITMAPDATA_TYPE_OF_IMAGE;
         
         name("flBitmap");
         
         _image = image;
-        
-        _imageWidth = _image.getWidth();
-        _imageHeight = _image.getHeight();
-        _rect->width(_imageWidth);
-        _rect->height(_imageHeight);
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
-        //TODO
+		_imagePtr = &_image;
+
+		_imageWidth = _imagePtr->getWidth();
+		_imageHeight = _imagePtr->getHeight();
+		_rect->width(_imageWidth);
+		_rect->height(_imageHeight);
+		_realWidth = _rect->width();
+		_realHeight = _rect->height();
+		//TODO
         //        width(_image.getWidth());
         //        height(_image.getHeight());
         
@@ -161,48 +114,49 @@ namespace fl2d {
     //--------------------------------------------------------------
     flBitmap::flBitmap(ofTexture* texture) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(ofTexture ptr)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(ofTexture ptr)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 4;
+		_dataType = BITMAPDATA_TYPE_OF_TEXTURE;
         
         name("flBitmap");
         
-        _texture_ptr = texture;
+        _texturePtr = texture;
         
-        _imageWidth = _texture_ptr->getWidth();
-        _imageHeight = _texture_ptr->getHeight();
+        _imageWidth = _texturePtr->getWidth();
+        _imageHeight = _texturePtr->getHeight();
         _rect->width(_imageWidth);
         _rect->height(_imageHeight);
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //TODO
-        //        width(_texture_ptr->getWidth());
-        //        height(_texture_ptr->getHeight());
+        //        width(_texturePtr->getWidth());
+        //        height(_texturePtr->getHeight());
         
         ofAddListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
     //--------------------------------------------------------------
     flBitmap::flBitmap(ofTexture texture) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(ofTexture)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(ofTexture)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 5;
+		_dataType = BITMAPDATA_TYPE_OF_TEXTURE;
         
         name("flBitmap");
         
         _texture = texture;
-        
-        _imageWidth = _texture.getWidth();
-        _imageHeight = _texture.getHeight();
-        _rect->width(_imageWidth);
-        _rect->height(_imageHeight);
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
-        //TODO
+		_texturePtr = &_texture;
+
+		_imageWidth = _texturePtr->getWidth();
+		_imageHeight = _texturePtr->getHeight();
+		_rect->width(_imageWidth);
+		_rect->height(_imageHeight);
+		_realWidth = _rect->width();
+		_realHeight = _rect->height();
+		//TODO
         //        width(_texture.getWidth());
         //        height(_texture.getHeight());
         
@@ -212,11 +166,11 @@ namespace fl2d {
     //--------------------------------------------------------------
     flBitmap::flBitmap(ofFbo fboImage) {
         //        debug(true);
-        if(debug()) cout << "[flBitmap]flBitmap(ofFbo)" << endl;
+        if(debug()) ofLog() << "[flBitmap]flBitmap(ofFbo)";
         
         _typeID = FL_TYPE_BITMAP;
         _target = this;
-        _mode = 6;
+		_dataType = BITMAPDATA_TYPE_OF_FBO;
         
         name("flBitmap");
         
@@ -237,11 +191,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flBitmap::~flBitmap() {
-        //        delete _bitmapData;
+        //        delete _bitmapDataPtr;
         
-        _bitmapData = NULL;
-        _image_ptr = NULL;
-        _texture_ptr = NULL;
+        _bitmapDataPtr = NULL;
+        _imagePtr = NULL;
+        _texturePtr = NULL;
         
         ofRemoveListener(ofEvents().update, this, &flBitmap::_updateEventHandler);
     }
@@ -306,30 +260,33 @@ namespace fl2d {
 	void flBitmap::_update() {
 		if (!_isAllocated)
 		{
-			switch (_mode) {
-			case 1: break;
-			case 2: break;
-			case 3: break;
-			case 4: 
-				_isAllocated = _texture_ptr->isAllocated();
-				if (_isAllocated) {
-					_imageWidth = _texture_ptr->getWidth();
-					_imageHeight = _texture_ptr->getHeight();
-					_rect->width(_imageWidth);
-					_rect->height(_imageHeight);
-					_realWidth = _rect->width();
-					_realHeight = _rect->height();
+			//Update width, height, scaleX, scaleY.
+			switch (_dataType) {
+				case BITMAPDATA_TYPE_BITMAPDATA: break;
+				case BITMAPDATA_TYPE_OF_IMAGE: break;
+				case BITMAPDATA_TYPE_OF_TEXTURE:
+					if (_texturePtr) {
+						_isAllocated = _texturePtr->isAllocated();
+						if (_isAllocated) {
+							ofLog() << "[flBitmap]_update() _isAllocated = " << _isAllocated;
+							_imageWidth = _texturePtr->getWidth();
+							_imageHeight = _texturePtr->getHeight();
 
-					if (!isnan(_targetWidth)) {
-						scaleX(_targetWidth / _realWidth);
+							_rect->width(_imageWidth);
+							_rect->height(_imageHeight);
+							_realWidth = _rect->width();
+							_realHeight = _rect->height();
+
+							if (!isnan(_targetWidth)) {
+								scaleX(_targetWidth / _realWidth);
+							}
+							if (!isnan(_targetHeight)) {
+								scaleY(_targetHeight / _realHeight);
+							}
+						}
 					}
-					if (!isnan(_targetHeight)) {
-						scaleY(_targetHeight / _realHeight);
-					}
-				}
-				break;
-			case 5: break;
-			case 6: break;
+					break;
+				case BITMAPDATA_TYPE_OF_FBO: break;
 			}
 		}
 	}
@@ -338,14 +295,12 @@ namespace fl2d {
     void flBitmap::_draw() {
         //--------------------------------------
         //draw image
-        //        cout << "_mode = " << _mode << endl;
-        switch(_mode) {
-            case 1: _bitmapData->__draw(0, 0); break;
-            case 2: if(_image_ptr->isAllocated()) _image_ptr->draw(0, 0); break;
-            case 3: if (_image.isAllocated()) _image.draw(0, 0); break;
-            case 4: if (_texture_ptr->isAllocated()) _texture_ptr->draw(0, 0); break;
-            case 5: if (_texture.isAllocated()) _texture.draw(0, 0); break;
-            case 6: if (_fboImage.isAllocated()) _fboImage.draw(0, 0); break;
+        //        ofLog() << "_mode = " << _mode;
+        switch(_dataType) {
+            case BITMAPDATA_TYPE_BITMAPDATA: _bitmapDataPtr->__draw(0, 0); break;
+            case BITMAPDATA_TYPE_OF_IMAGE: if (_imagePtr->isAllocated()) _imagePtr->draw(0, 0); break;
+            case BITMAPDATA_TYPE_OF_TEXTURE: if (_texturePtr->isAllocated()) _texturePtr->draw(0, 0); break;
+            case BITMAPDATA_TYPE_OF_FBO: if (_fboImage.isAllocated()) _fboImage.draw(0, 0); break;
         }
         //--------------------------------------
     }
@@ -359,7 +314,7 @@ namespace fl2d {
      */ 
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -434,6 +389,130 @@ namespace fl2d {
 //        _targetHeight = numeric_limits<float>::quiet_NaN();
 //        _transform.__matrix.scaleY(value);
 //    }
+
+	//    template <class T>
+//    virtual void flBitmap::data<T>(T* value) {
+//
+//    }
+
+	//--------------------------------------------------------------
+	void flBitmap::data(ofTexture value) {
+		ofLog() << "[flBitmap]data()";
+
+		switch (_dataType) {
+			case BITMAPDATA_TYPE_BITMAPDATA:
+				delete _bitmapDataPtr;
+				_bitmapDataPtr = NULL;
+				break;
+
+			case BITMAPDATA_TYPE_OF_IMAGE:
+				_imagePtr = NULL;
+				_image.clear();
+				break;
+
+			case BITMAPDATA_TYPE_OF_TEXTURE:
+				_texturePtr = NULL;
+				_texture.clear();
+				break;
+		}
+
+		_dataType = BITMAPDATA_TYPE_OF_TEXTURE;
+
+		_texture = value;
+		//const int w = value.getWidth();
+		//const int h = value.getHeight();
+		//const int glInternalFormat = value.getTextureData().glInternalFormat;
+		//_texture.allocate(w, h, glInternalFormat);
+		//ofPixels pixles;
+		//value.readToPixels(pixles);
+		//_texture.loadData(pixles);
+		_texturePtr = &_texture;
+		_isAllocated = _texturePtr->isAllocated();
+
+		if (_isAllocated)
+		{
+			_imageWidth = _texturePtr->getWidth();
+			_imageHeight = _texturePtr->getHeight();
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+
+			ofLog() << "_imageHeight = " << _imageHeight;
+			ofLog() << "_targetWidth = " << _targetWidth;
+			ofLog() << "isnan(_targetWidth) = " << isnan(_targetWidth);
+
+			if (!isnan(_targetWidth)) {
+				scaleX(_targetWidth / _realWidth);
+			}
+			if (!isnan(_targetHeight)) {
+				scaleY(_targetHeight / _realHeight);
+			}
+		}
+		else {
+			_imageWidth = 0;
+			_imageHeight = 0;
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+		}
+	}	
+	
+	//--------------------------------------------------------------
+	void flBitmap::data(ofTexture* value) {
+		switch (_dataType) {
+			case BITMAPDATA_TYPE_BITMAPDATA:
+				//if(_bitmapDataPtr != NULL) delete _bitmapDataPtr;
+				_bitmapDataPtr = NULL;
+				_bitmapData.clear();
+				break;
+
+			case BITMAPDATA_TYPE_OF_IMAGE:
+				_imagePtr = NULL;
+				_image.clear();
+				break;
+
+			case BITMAPDATA_TYPE_OF_TEXTURE:
+				_texturePtr = NULL;
+				_texture.clear();
+				break;
+		}
+
+		_dataType = BITMAPDATA_TYPE_OF_TEXTURE;
+
+		_texturePtr = value;
+		_isAllocated = _texturePtr->isAllocated();
+
+		if (_isAllocated)
+		{
+			_imageWidth = _texturePtr->getWidth();
+			_imageHeight = _texturePtr->getHeight();
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+
+			ofLog() << "_imageHeight = " << _imageHeight;
+			ofLog() << "_targetWidth = " << _targetWidth;
+			ofLog() << "isnan(_targetWidth) = " << isnan(_targetWidth);
+
+			if (!isnan(_targetWidth)) {
+				scaleX(_targetWidth / _realWidth);
+			}
+			if (!isnan(_targetHeight)) {
+				scaleY(_targetHeight / _realHeight);
+			}
+		}
+		else {
+			_imageWidth = 0;
+			_imageHeight = 0;
+			_rect->width(_imageWidth);
+			_rect->height(_imageHeight);
+			_realWidth = _rect->width();
+			_realHeight = _rect->height();
+		}
+	}
     
     //==============================================================
     // Protected / Private Method

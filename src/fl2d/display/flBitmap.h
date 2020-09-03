@@ -17,15 +17,24 @@ namespace fl2d {
         public:
             
         protected:
-            int _mode = 0;
+			enum BITMAPDATA_TYPE {
+				BITMAPDATA_TYPE_NONE = 0,
+				BITMAPDATA_TYPE_BITMAPDATA,
+				BITMAPDATA_TYPE_OF_IMAGE,
+				BITMAPDATA_TYPE_OF_TEXTURE,
+				BITMAPDATA_TYPE_OF_FBO
+			};
+
+			BITMAPDATA_TYPE _dataType = BITMAPDATA_TYPE_NONE;
             
-            flBitmapData* _bitmapData = NULL;
+            flBitmapData _bitmapData = flBitmapData(0, 0);
+            flBitmapData* _bitmapDataPtr = NULL;
             
-            ofImage* _image_ptr = NULL;
-            ofImage _image;
+			ofImage _image;
+			ofImage* _imagePtr = NULL;
             
-            ofTexture* _texture_ptr = NULL;
-            ofTexture _texture;
+			ofTexture _texture;
+			ofTexture* _texturePtr = NULL;
             
             ofFbo _fboImage;
             
@@ -62,6 +71,10 @@ namespace fl2d {
             
     //        template <class T>
     //        virtual void data<T>(T* value);
+			virtual ofTexture data() { return *_texturePtr; }
+			virtual ofTexture& dataReference() { return *_texturePtr; }
+
+            virtual void data(ofTexture value);
             virtual void data(ofTexture* value);
 
     //        template <class T>
