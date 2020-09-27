@@ -244,7 +244,10 @@ namespace fl2d {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
             
-            if(button == closeButton) dispatchEvent(new flEvent(flEvent::CLOSE));
+			if (button == closeButton) {
+				((flDisplayObjectContainer*)parent())->removeChild(this);
+				dispatchEvent(new flEvent(flEvent::CLOSE));
+			}
         }
         if(event.type() == flButtonEvent::MOUSE_UP) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;

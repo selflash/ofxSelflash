@@ -397,7 +397,7 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flBitmap::data(ofTexture value) {
-		ofLog() << "[flBitmap]data()";
+		//ofLog() << "[flBitmap]data()";
 
 		switch (_dataType) {
 			case BITMAPDATA_TYPE_BITMAPDATA:
@@ -438,9 +438,9 @@ namespace fl2d {
 			_realWidth = _rect->width();
 			_realHeight = _rect->height();
 
-			ofLog() << "_imageHeight = " << _imageHeight;
-			ofLog() << "_targetWidth = " << _targetWidth;
-			ofLog() << "isnan(_targetWidth) = " << isnan(_targetWidth);
+			//ofLog() << "_imageHeight = " << _imageHeight;
+			//ofLog() << "_targetWidth = " << _targetWidth;
+			//ofLog() << "isnan(_targetWidth) = " << isnan(_targetWidth);
 
 			if (!isnan(_targetWidth)) {
 				scaleX(_targetWidth / _realWidth);
