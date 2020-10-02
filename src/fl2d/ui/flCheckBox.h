@@ -18,7 +18,7 @@ namespace fl2d {
 
             float _hitAreaAlpha = 0.0;
             int _shapeType = 0;
-            bool _selected = false;
+			ofParameter<bool> _selected = false;
 
         public:
             flCheckBox(float width = 100);
@@ -31,7 +31,7 @@ namespace fl2d {
             string labelText();
             void labelText(string value);
         
-            bool selected();
+			ofParameter<bool>& selected();
             void selected(bool value, bool dispatch = true);
         
             inline int shapeType() { return _shapeType; };

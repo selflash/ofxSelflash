@@ -166,7 +166,7 @@ namespace fl2d {
     void flButton::toggleEnabled(bool value) { _toggleEnabled = value; }
     
     //--------------------------------------------------------------
-    bool flButton::selected() { return _selected; }
+	ofParameter<bool> flButton::selected() { return _selected; }
     void flButton::selected(bool value, bool dispatch) {
         if(_selected == value) return;
         _selected = value;

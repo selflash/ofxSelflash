@@ -133,7 +133,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    bool flCheckBox::selected() { return _selected; }
+	ofParameter<bool>& flCheckBox::selected() { return _selected; }
     void flCheckBox::selected(bool value, bool dispatch) {
         if(_selected == value) return;
         _selected = value;

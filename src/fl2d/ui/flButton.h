@@ -21,7 +21,7 @@ namespace fl2d {
             string _labelTextSelected = "";
         
             bool _toggleEnabled = false;
-            bool _selected = false;
+            ofParameter<bool> _selected = false;
         
             void* _pointerValue = NULL;
             string _stringValue = "";
@@ -44,7 +44,7 @@ namespace fl2d {
             bool toggleEnabled();
             void toggleEnabled(bool value);
         
-            bool selected();
+			ofParameter<bool> selected();
             void selected(bool value, bool dispatch = true);
         
             void* pointerValue();
