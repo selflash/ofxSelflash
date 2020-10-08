@@ -853,6 +853,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRangeSlider::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flRangeSlider]_mouseEventHandler(" << event.type() << ")";
 //        ofLog() << "[flRangeSlider]this          = " << this << "," << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flRangeSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();

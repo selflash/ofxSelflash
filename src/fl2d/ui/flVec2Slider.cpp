@@ -200,6 +200,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flVec2Slider::_eventHandler(flEvent& event) {
+		if (!_enabled) return;		
 //        ofLog() << "[flVec2Slider]_eventHandler(" << event.type() << ")";
         
         _value.x = xSlider->value();

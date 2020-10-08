@@ -409,6 +409,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flNumericDialer::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flNumericDialer]_mouseEventHandler(" << event.type() << ")";
 //        ofLog() << "[flNumericDialer]this          = " << this << ", " << ((DisplayObject*) this)->name();
 //        ofLog() << "[flNumericDialer]currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name();

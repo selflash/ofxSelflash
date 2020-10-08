@@ -456,6 +456,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flJoyStick2::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
         //ofLog() << "[flJoyStick2]_mouseEventHandler(" << event.type();
         
         //Roll Over

@@ -44,7 +44,7 @@ namespace fl2d {
             bool toggleEnabled();
             void toggleEnabled(bool value);
         
-			ofParameter<bool> selected();
+			ofParameter<bool>& selected();
             void selected(bool value, bool dispatch = true);
         
             void* pointerValue();

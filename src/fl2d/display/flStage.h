@@ -33,6 +33,24 @@ namespace fl2d {
         ofEventOrder mousePriority = OF_EVENT_ORDER_BEFORE_APP;
         ofEventOrder keyboardPriority = OF_EVENT_ORDER_BEFORE_APP;
         ofEventOrder windowPriority = OF_EVENT_ORDER_BEFORE_APP;
+
+		flSettings(
+			bool manualUpdate = false,
+			ofEventOrder updatePriority = OF_EVENT_ORDER_AFTER_APP,
+			bool manualDraw = true,
+			ofEventOrder drawPriority = OF_EVENT_ORDER_AFTER_APP,
+			ofEventOrder mousePriority = OF_EVENT_ORDER_BEFORE_APP,
+			ofEventOrder keyboardPriority = OF_EVENT_ORDER_BEFORE_APP,
+			ofEventOrder windowPriority = OF_EVENT_ORDER_BEFORE_APP
+		) {
+			this->manualUpdate = manualUpdate;
+			this->updatePriority = updatePriority;
+			this->manualDraw = manualDraw;
+			this->drawPriority = drawPriority;
+			this->mousePriority = mousePriority;
+			this->keyboardPriority = keyboardPriority;
+			this->windowPriority = windowPriority;
+		}
     };
     
     class flStage : public flDisplayObjectContainer {

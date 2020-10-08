@@ -166,19 +166,18 @@ namespace fl2d {
     void flButton::toggleEnabled(bool value) { _toggleEnabled = value; }
     
     //--------------------------------------------------------------
-	ofParameter<bool> flButton::selected() { return _selected; }
+	ofParameter<bool>& flButton::selected() { return _selected; }
     void flButton::selected(bool value, bool dispatch) {
         if(_selected == value) return;
-        _selected = value;
 
-        if(!_selected) {
+        if(!value) {
             _buttonLabel->text(_labelTextNotSelected);
         } else {
             _buttonLabel->text(_labelTextSelected);
         }
-        
+
         if(_enabled) {
-            if(_selected) {
+            if(value) {
                 if(isMouseOver()) {
                     _setOverColor();
                 } else {
@@ -192,19 +191,24 @@ namespace fl2d {
                 }
             }
         } else {
-            if(!_selected) {
+            if(!value) {
                 _setDisableNormalColor();
             } else {
                 _setDisableActiveColor();
             }
         }
-        
+
         //------------------------------------------
         if(dispatch) {
+			_selected.set(value);
+
 //            dispatchEvent(new flEvent(flEvent::CHANGE));
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
             dispatchEvent(event);
-        }
+		}
+		else {
+			_selected.setWithoutEventNotifications(value);
+		}
         //------------------------------------------
     }
     
@@ -226,7 +230,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flButton::press(bool dispatch) {
-        ofLog() << "[flButton]press()";
+        //ofLog() << "[flButton]press()";
         if(_toggleEnabled) {
             selected(!selected());
         } else {
@@ -238,11 +242,6 @@ namespace fl2d {
         if(dispatch) {
             flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
             dispatchEvent(event);
-            
-            if(_toggleEnabled) {
-                flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-                dispatchEvent(event);
-            }
         }
         //------------------------------------------
     }
@@ -305,20 +304,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flButton::_onPress() {
         if(_toggleEnabled) {
-            selected(!selected(), false);
+            selected(!selected());
         } else {
             _setActiveColor();
         }
         
-        //------------------------------------------
         flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
         dispatchEvent(event);
-        
-        if(_toggleEnabled) {
-            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -441,11 +433,13 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) _onPress();
-//            addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
-            if(stage()) {
-                stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
-            }
+			if (event.target() == this) {
+				_onPress();
+				//addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+				if (stage()) {
+					stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+				}
+			}
         }
         
         //Mouse Up

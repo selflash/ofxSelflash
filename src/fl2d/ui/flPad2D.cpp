@@ -752,6 +752,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flPad2D::_uiEventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flPad2D]_uiEventHandler(" << event.type() << ")";
 //        ofLog() << "[flPad2D]this          = " << this << ", " << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flPad2D]currentTarget = " << event.currentTarget() << ", " << ((flDisplayObject*) event.currentTarget())->name();

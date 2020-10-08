@@ -136,10 +136,9 @@ namespace fl2d {
 	ofParameter<bool>& flCheckBox::selected() { return _selected; }
     void flCheckBox::selected(bool value, bool dispatch) {
         if(_selected == value) return;
-        _selected = value;
 
         if(_enabled) {
-            if(!_selected) {
+            if(!value) {
                 if(isMouseOver()) {
                     _setOverColor();
                 } else {
@@ -153,7 +152,7 @@ namespace fl2d {
                 }
             }
         } else {
-            if(!_selected) {
+            if(!value) {
                 _setDisableNormalColor();
             } else {
                 _setDisableActiveColor();
@@ -161,8 +160,15 @@ namespace fl2d {
         }
         
         //------------------------------------------
-        if(dispatch) _dispatchEvent();
-        
+		if (dispatch) {
+			_selected.set(value);
+
+			_dispatchEvent();
+		}
+		else {
+			_selected.setWithoutEventNotifications(value);
+		}
+
         if(!_bChangedByOfParm["value"]) {
             if(_boolParam != NULL) {
                 _bChangedByMyself["value"] = true;
@@ -344,6 +350,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flCheckBox::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flCheckBox]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
         //Mouse Over

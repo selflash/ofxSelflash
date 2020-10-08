@@ -228,6 +228,7 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flCircleColorPicker::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
         //ofLog() << "[flCircleColorPicker]_mouseEventHandler(" << event.type();
         //ofLog() << "isMouseDown" << isMouseDown();
 

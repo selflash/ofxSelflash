@@ -372,10 +372,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flHistgramViewer::_mouseEventHandler(flEvent& event) {
-        //        ofLog() << "[flHistgramViewer]_mouseEventHandler(" << event.type() << ")";
-        //        ofLog() << "[flHistgramViewer]this          = " << this << "," << ((flDisplayObject*) this)->name();
-        //        ofLog() << "[flHistgramViewer]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-        //        ofLog() << "[flHistgramViewer]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+		if (!_enabled) return;
+//        ofLog() << "[flHistgramViewer]_mouseEventHandler(" << event.type() << ")";
+//        ofLog() << "[flHistgramViewer]this          = " << this << "," << ((flDisplayObject*) this)->name();
+//        ofLog() << "[flHistgramViewer]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+//        ofLog() << "[flHistgramViewer]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {

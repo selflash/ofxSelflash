@@ -462,6 +462,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::_eventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flComboBox]_eventHandler(" << event.type() << ")";
 //        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();

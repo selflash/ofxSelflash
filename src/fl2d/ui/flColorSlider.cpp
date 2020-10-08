@@ -632,6 +632,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flColorSlider::_eventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flColorSlider]_mouseEventHandler(" << event.type() << ")";
 //        ofLog() << "[flColorSlider]this          = " << this << "," << ((flDisplayObject*) this)->name();
 //        ofLog() << "[flColorSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();

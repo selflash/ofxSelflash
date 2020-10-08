@@ -359,6 +359,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRadioButton::_mouseEventHandler(flEvent& event) {
+		if (!_enabled) return;
 //        ofLog() << "[flRadioButton]_mouseEventHandler(" << ofToString(event.type()) << ")";
         
         //Mouse Over
