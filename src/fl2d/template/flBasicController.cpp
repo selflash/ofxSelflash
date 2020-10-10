@@ -108,6 +108,8 @@ namespace fl2d {
             radioButtonGroup = NULL;
         }
         radioButtonGroups.clear();
+
+		_listeners.unsubscribeAll();
     }
     
     //==============================================================

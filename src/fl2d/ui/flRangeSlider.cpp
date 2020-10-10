@@ -38,7 +38,7 @@ namespace fl2d {
 //        } else {
 //            _barWidth = (_min - _value) / (_range / _trackWidth);
 //        }
-//        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+//        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
 
         _percent = (_max - _min) / _trackWidth;    
@@ -73,9 +73,9 @@ namespace fl2d {
         g = minThumb->graphics();
         g->clear();
         g->beginFill(0xff0000);
-        g->drawRect(0, 0, _thumbWidth, _trackHeight - 1);
+        g->drawRect(-_thumbWidth * 0.5, 0, _thumbWidth, _trackHeight + 1);
         g->endFill();
-        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+        minThumb->x((_minValue - _min) / _percent);
         minThumb->y(0);
         minThumb->alpha(0);
         minThumb->useHandCursor(true);
@@ -91,7 +91,7 @@ namespace fl2d {
         g = maxThumb->graphics();
         g->clear();
         g->beginFill(0x00ff00);
-        g->drawRect(0, 0, _thumbWidth, _trackHeight - 1);
+        g->drawRect(-_thumbWidth * 0.5, 0, _thumbWidth, _trackHeight + 1);
         g->endFill();
         maxThumb->x((_maxValue - _min) / _percent);
         maxThumb->y(0);
@@ -103,7 +103,7 @@ namespace fl2d {
         track->addChild(maxThumb);
         //------------------------------------------
 
-        bar->x(minThumb->x() + _thumbWidth);
+        bar->x(minThumb->x());
 
         //------------------------------------------
         _minValueText = new flTextField();
@@ -129,7 +129,7 @@ namespace fl2d {
         addChild(_maxValueText);
         //------------------------------------------
         
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
 
         //------------------------------------------
 //        flGraphics* g;
@@ -201,6 +201,40 @@ namespace fl2d {
             _onMaxThumbPress();
         }
 
+		//Update hit area graphics.
+		if (_preRange != _range) {
+			flGraphics* g = NULL;
+			float distance = maxThumb->x() - minThumb->x();
+			if (distance <= _thumbWidth) {
+				g = minThumb->graphics();
+				g->clear();
+				g->beginFill(0xff0000);
+				g->drawRect(-_thumbWidth * 0.5, 0, (_thumbWidth * 0.5) + distance * 0.5, _trackHeight + 1);
+				g->endFill();
+
+				g = maxThumb->graphics();
+				g->clear();
+				g->beginFill(0x00ff00);
+				g->drawRect(-distance * 0.5, 0, (_thumbWidth * 0.5) + distance * 0.5, _trackHeight + 1);
+				g->endFill();
+			}
+			else {
+				g = minThumb->graphics();
+				g->clear();
+				g->beginFill(0xff0000);
+				g->drawRect(-_thumbWidth * 0.5, 0, _thumbWidth, _trackHeight + 1);
+				g->endFill();
+
+				g = maxThumb->graphics();
+				g->clear();
+				g->beginFill(0x00ff00);
+				g->drawRect(-_thumbWidth * 0.5, 0, _thumbWidth, _trackHeight + 1);
+				g->endFill();
+			}
+		}
+		_preRange = _range;
+
+
         //        ofLog() << "[flRangeSlider]bar->width = " << bar->width();
         
 //        ofLog() << "_min = " << _min;
@@ -261,11 +295,11 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+        minThumb->x((_minValue - _min) / _percent);
         maxThumb->x((_maxValue - _min) / _percent);
-        bar->x(minThumb->x() + _thumbWidth);
+        bar->x(minThumb->x());
 
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
@@ -314,10 +348,10 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+        minThumb->x((_minValue - _min) / _percent);
         maxThumb->x((_maxValue - _min) / _percent);
         
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
@@ -370,11 +404,11 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+        minThumb->x((_minValue - _min) / _percent);
 //        maxThumb->x((_maxValue - _min) / _percent);
-        bar->x(minThumb->x() + _thumbWidth);
+        bar->x(minThumb->x());
 
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
@@ -429,11 +463,11 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-//        minThumb->x(((_minValue - _min) / _percent) - _thumbWidth);
+//        minThumb->x((_minValue - _min) / _percent);
         maxThumb->x((_maxValue - _min) / _percent);
-//        bar->x(minThumb->x() + _thumbWidth);
+//        bar->x(minThumb->x());
 
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
@@ -529,14 +563,14 @@ namespace fl2d {
             temp1 = _trackWidth - _barWidth;
         }
         float temp2 = temp1 + _barWidth;
-        minThumb->x(temp1 - _thumbWidth);
+        minThumb->x(temp1);
         maxThumb->x(temp2);
-        bar->x(minThumb->x() + _thumbWidth);
+        bar->x(minThumb->x());
         //------------------------------------------
         
         //------------------------------------------
         //Update value.
-        _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
+        _minValue = _min + (minThumb->x() * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
             _minValue = flmath::roundd(_minValue);
@@ -590,15 +624,15 @@ namespace fl2d {
         //------------------------------------------
 
         //------------------------------------------
-        minThumb->x(temp - _thumbWidth);
-        bar->x(minThumb->x() + _thumbWidth);
+        minThumb->x(temp);
+        bar->x(minThumb->x());
         
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
         //Update value.
-        _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
+        _minValue = _min + (minThumb->x() * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
             _minValue = flmath::roundd(_minValue);
@@ -637,8 +671,8 @@ namespace fl2d {
 
         //------------------------------------------
         float temp = mouseX() - _draggablePoint.x;
-        if(temp < minThumb->x() + _thumbWidth + 1) {
-            temp = minThumb->x() + _thumbWidth + 1;
+        if(temp < minThumb->x() + 1) {
+            temp = minThumb->x() + 1;
         } else if(temp > _trackWidth) {
             temp = _trackWidth;
         }
@@ -647,11 +681,11 @@ namespace fl2d {
         //------------------------------------------
         maxThumb->x(temp);
         
-        _barWidth = maxThumb->x() - (minThumb->x() + _thumbWidth);
+        _barWidth = maxThumb->x() - minThumb->x();
         //------------------------------------------
         
         //------------------------------------------
-        _minValue = _min + ((minThumb->x() + _thumbWidth) * _percent);
+        _minValue = _min + (minThumb->x() * _percent);
         _maxValue = _min + (maxThumb->x() * _percent);
         if(_roundEnabled) {
             _minValue = flmath::roundd(_minValue);
@@ -776,7 +810,7 @@ namespace fl2d {
         g->lineStyle(thickness, lineColor.getHex());
 //            g->beginFill(0xff0000, _barAlpha);
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
-//        g->drawRect(minThumb->x() + _thumbWidth, 0, _barWidth, _trackHeight);
+//        g->drawRect(minThumb->x(), 0, _barWidth, _trackHeight);
         g->drawRect(0, 0, _barWidth, _trackHeight);
         g->endFill();
     }
@@ -886,11 +920,11 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == bar) {
-                _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
+                _draggablePoint.x = mouseX() - minThumb->x();
                 _onBarPress();
             }
             if(event.target() == minThumb) {
-                _draggablePoint.x = mouseX() - (minThumb->x() + _thumbWidth);
+                _draggablePoint.x = mouseX() - minThumb->x();
 //                _draggablePoint.x = mouseX() - thumb->x() - _thumbWidth * 0.5;
                 _onMinThumbPress();
             }

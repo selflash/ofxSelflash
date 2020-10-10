@@ -21,6 +21,8 @@ namespace fl2d {
         
             bool _onTop;
             bool _dragEnabled;
+
+			ofEventListeners _listeners;
         
         private:
         

@@ -31,6 +31,7 @@ namespace fl2d {
         
             float _min = 0.0;
             float _max = 100.0;
+			float _preRange = 0.0;
             float _range = 100.0;
             float _minValue = 50.0;
             float _maxValue = 70.0;
