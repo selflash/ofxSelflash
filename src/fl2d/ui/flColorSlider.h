@@ -135,10 +135,33 @@ namespace fl2d {
             //----------------------------------
         
             //----------------------------------
-            ofParameter<ofColor>* _colorParam = NULL;
+			ofParameter<ofFloatColor>* _floatColorParam = NULL;
+			ofParameter<ofColor>* _colorParam = NULL;
             ofEventListeners _listeners;
-            virtual inline void bind(ofParameter<ofColor>& param) {
+            virtual inline void bind(ofParameter<ofFloatColor>& param) {
                 _listeners.unsubscribeAll();
+				_floatColorParam = NULL;
+                _colorParam = NULL;
+                _bChangedByMyself["value"] = false;
+                _bChangedByOfParm["value"] = false;
+
+				_floatColorParam = &param;
+                _listeners.push(_floatColorParam->newListener([&](ofFloatColor& val) {
+                    if(_bChangedByMyself["value"]) {
+                        _bChangedByMyself["value"] = false;
+                    } else {
+                        _bChangedByOfParm["value"] = true;
+                        colorValue(val);
+                    }
+                }));
+                
+                _bChangedByOfParm["value"] = true;
+                hexValue(_floatColorParam->get().getHex());
+				_bChangedByOfParm["value"] = false;
+			}            
+			virtual inline void bind(ofParameter<ofColor>& param) {
+                _listeners.unsubscribeAll();
+				_floatColorParam = NULL;
                 _colorParam = NULL;
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
@@ -159,6 +182,7 @@ namespace fl2d {
 			}
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();
+				_floatColorParam = NULL;
                 _colorParam = NULL;
             }
             //----------------------------------

@@ -500,6 +500,7 @@ namespace fl2d {
         _alphaLabel = NULL;
         
         //------------------------------------------
+        _floatColorParam = NULL;
         _colorParam = NULL;
         _listeners.unsubscribeAll();
         //------------------------------------------
@@ -660,7 +661,11 @@ namespace fl2d {
             _dispatchEvent();
         
             if(!_bChangedByOfParm["value"]) {
-                if(_colorParam != NULL) {
+                if(_floatColorParam != NULL) {
+                    _bChangedByMyself["value"] = true;
+					_floatColorParam->set(_colorValue);
+                }        
+				else if(_colorParam != NULL) {
                     _bChangedByMyself["value"] = true;
                     _colorParam->set(_colorValue);
                 }

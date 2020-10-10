@@ -574,7 +574,29 @@ namespace fl2d {
             flColorSlider* colorSlider320 = NULL; flColorSlider* colorSlider321 = NULL; flColorSlider* colorSlider322 = NULL; flColorSlider* colorSlider323 = NULL;
             flColorSlider* colorSlider324 = NULL; flColorSlider* colorSlider325 = NULL; flColorSlider* colorSlider326 = NULL; flColorSlider* colorSlider327 = NULL;
             flColorSlider* colorSlider328 = NULL; flColorSlider* colorSlider329 = NULL;
-            //カラースライダー(400)
+			flColorSlider* colorSlider330 = NULL; flColorSlider* colorSlider331 = NULL; flColorSlider* colorSlider332 = NULL; flColorSlider* colorSlider333 = NULL;
+			flColorSlider* colorSlider334 = NULL; flColorSlider* colorSlider335 = NULL; flColorSlider* colorSlider336 = NULL; flColorSlider* colorSlider337 = NULL;
+			flColorSlider* colorSlider338 = NULL; flColorSlider* colorSlider339 = NULL;
+			flColorSlider* colorSlider340 = NULL; flColorSlider* colorSlider341 = NULL; flColorSlider* colorSlider342 = NULL; flColorSlider* colorSlider343 = NULL;
+			flColorSlider* colorSlider344 = NULL; flColorSlider* colorSlider345 = NULL; flColorSlider* colorSlider346 = NULL; flColorSlider* colorSlider347 = NULL;
+			flColorSlider* colorSlider348 = NULL; flColorSlider* colorSlider349 = NULL;
+			flColorSlider* colorSlider350 = NULL; flColorSlider* colorSlider351 = NULL; flColorSlider* colorSlider352 = NULL; flColorSlider* colorSlider353 = NULL;
+			flColorSlider* colorSlider354 = NULL; flColorSlider* colorSlider355 = NULL; flColorSlider* colorSlider356 = NULL; flColorSlider* colorSlider357 = NULL;
+			flColorSlider* colorSlider358 = NULL; flColorSlider* colorSlider359 = NULL;
+			flColorSlider* colorSlider360 = NULL; flColorSlider* colorSlider361 = NULL; flColorSlider* colorSlider362 = NULL; flColorSlider* colorSlider363 = NULL;
+			flColorSlider* colorSlider364 = NULL; flColorSlider* colorSlider365 = NULL; flColorSlider* colorSlider366 = NULL; flColorSlider* colorSlider367 = NULL;
+			flColorSlider* colorSlider368 = NULL; flColorSlider* colorSlider369 = NULL;
+			flColorSlider* colorSlider370 = NULL; flColorSlider* colorSlider371 = NULL; flColorSlider* colorSlider372 = NULL; flColorSlider* colorSlider373 = NULL;
+			flColorSlider* colorSlider374 = NULL; flColorSlider* colorSlider375 = NULL; flColorSlider* colorSlider376 = NULL; flColorSlider* colorSlider377 = NULL;
+			flColorSlider* colorSlider378 = NULL; flColorSlider* colorSlider379 = NULL;
+			flColorSlider* colorSlider380 = NULL; flColorSlider* colorSlider381 = NULL; flColorSlider* colorSlider382 = NULL; flColorSlider* colorSlider383 = NULL;
+			flColorSlider* colorSlider384 = NULL; flColorSlider* colorSlider385 = NULL; flColorSlider* colorSlider386 = NULL; flColorSlider* colorSlider387 = NULL;
+			flColorSlider* colorSlider388 = NULL; flColorSlider* colorSlider389 = NULL;
+			flColorSlider* colorSlider390 = NULL; flColorSlider* colorSlider391 = NULL; flColorSlider* colorSlider392 = NULL; flColorSlider* colorSlider393 = NULL;
+			flColorSlider* colorSlider394 = NULL; flColorSlider* colorSlider395 = NULL; flColorSlider* colorSlider396 = NULL; flColorSlider* colorSlider397 = NULL;
+			flColorSlider* colorSlider398 = NULL; flColorSlider* colorSlider399 = NULL;
+
+			//カラースライダー(400)
             flColorSlider* colorSlider400 = NULL; flColorSlider* colorSlider401 = NULL; flColorSlider* colorSlider402 = NULL; flColorSlider* colorSlider403 = NULL;
             flColorSlider* colorSlider404 = NULL; flColorSlider* colorSlider405 = NULL; flColorSlider* colorSlider406 = NULL; flColorSlider* colorSlider407 = NULL;
             flColorSlider* colorSlider408 = NULL; flColorSlider* colorSlider409 = NULL;
