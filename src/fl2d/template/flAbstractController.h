@@ -257,7 +257,19 @@ namespace fl2d {
             flButton* button215 = NULL; flButton* button216 = NULL; flButton* button217 = NULL; flButton* button218 = NULL; flButton* button219 = NULL;
             flButton* button220 = NULL; flButton* button221 = NULL; flButton* button222 = NULL; flButton* button223 = NULL; flButton* button224 = NULL;
             flButton* button225 = NULL; flButton* button226 = NULL; flButton* button227 = NULL; flButton* button228 = NULL; flButton* button229 = NULL;
-            flButton* button290 = NULL; flButton* button291 = NULL; flButton* button292 = NULL; flButton* button293 = NULL; flButton* button294 = NULL;
+			flButton* button230 = NULL; flButton* button231 = NULL; flButton* button232 = NULL; flButton* button233 = NULL; flButton* button234 = NULL;
+			flButton* button235 = NULL; flButton* button236 = NULL; flButton* button237 = NULL; flButton* button238 = NULL; flButton* button239 = NULL;
+			flButton* button240 = NULL; flButton* button241 = NULL; flButton* button242 = NULL; flButton* button243 = NULL; flButton* button244 = NULL;
+			flButton* button245 = NULL; flButton* button246 = NULL; flButton* button247 = NULL; flButton* button248 = NULL; flButton* button249 = NULL;
+			flButton* button250 = NULL; flButton* button251 = NULL; flButton* button252 = NULL; flButton* button253 = NULL; flButton* button254 = NULL;
+			flButton* button255 = NULL; flButton* button256 = NULL; flButton* button257 = NULL; flButton* button258 = NULL; flButton* button259 = NULL;
+			flButton* button260 = NULL; flButton* button261 = NULL; flButton* button262 = NULL; flButton* button263 = NULL; flButton* button264 = NULL;
+			flButton* button265 = NULL; flButton* button266 = NULL; flButton* button267 = NULL; flButton* button268 = NULL; flButton* button269 = NULL;
+			flButton* button270 = NULL; flButton* button271 = NULL; flButton* button272 = NULL; flButton* button273 = NULL; flButton* button274 = NULL;
+			flButton* button275 = NULL; flButton* button276 = NULL; flButton* button277 = NULL; flButton* button278 = NULL; flButton* button279 = NULL;
+			flButton* button280 = NULL; flButton* button281 = NULL; flButton* button282 = NULL; flButton* button283 = NULL; flButton* button284 = NULL;
+			flButton* button285 = NULL; flButton* button286 = NULL; flButton* button287 = NULL; flButton* button288 = NULL; flButton* button289 = NULL;
+			flButton* button290 = NULL; flButton* button291 = NULL; flButton* button292 = NULL; flButton* button293 = NULL; flButton* button294 = NULL;
             flButton* button295 = NULL; flButton* button296 = NULL; flButton* button297 = NULL; flButton* button298 = NULL; flButton* button299 = NULL;
             //ボタン(300)
             flButton* button300 = NULL; flButton* button301 = NULL; flButton* button302 = NULL; flButton* button303 = NULL; flButton* button304 = NULL;
@@ -272,39 +284,141 @@ namespace fl2d {
             flButton* button345 = NULL; flButton* button346 = NULL; flButton* button347 = NULL; flButton* button348 = NULL; flButton* button349 = NULL;
             flButton* button350 = NULL; flButton* button351 = NULL; flButton* button352 = NULL; flButton* button353 = NULL; flButton* button354 = NULL;
             flButton* button355 = NULL; flButton* button356 = NULL; flButton* button357 = NULL; flButton* button358 = NULL; flButton* button359 = NULL;
-            flButton* button390 = NULL; flButton* button391 = NULL; flButton* button392 = NULL; flButton* button393 = NULL; flButton* button394 = NULL;
+			flButton* button360 = NULL; flButton* button361 = NULL; flButton* button362 = NULL; flButton* button363 = NULL; flButton* button364 = NULL;
+			flButton* button365 = NULL; flButton* button366 = NULL; flButton* button367 = NULL; flButton* button368 = NULL; flButton* button369 = NULL;
+			flButton* button370 = NULL; flButton* button371 = NULL; flButton* button372 = NULL; flButton* button373 = NULL; flButton* button374 = NULL;
+			flButton* button375 = NULL; flButton* button376 = NULL; flButton* button377 = NULL; flButton* button378 = NULL; flButton* button379 = NULL;
+			flButton* button380 = NULL; flButton* button381 = NULL; flButton* button382 = NULL; flButton* button383 = NULL; flButton* button384 = NULL;
+			flButton* button385 = NULL; flButton* button386 = NULL; flButton* button387 = NULL; flButton* button388 = NULL; flButton* button389 = NULL;
+			flButton* button390 = NULL; flButton* button391 = NULL; flButton* button392 = NULL; flButton* button393 = NULL; flButton* button394 = NULL;
             flButton* button395 = NULL; flButton* button396 = NULL; flButton* button397 = NULL; flButton* button398 = NULL; flButton* button399 = NULL;
             //ボタン(400)
             flButton* button400 = NULL; flButton* button401 = NULL; flButton* button402 = NULL; flButton* button403 = NULL; flButton* button404 = NULL;
             flButton* button405 = NULL; flButton* button406 = NULL; flButton* button407 = NULL; flButton* button408 = NULL; flButton* button409 = NULL;
-            flButton* button410 = NULL;
-            //ボタン(500)
+			flButton* button410 = NULL; flButton* button411 = NULL; flButton* button412 = NULL; flButton* button413 = NULL; flButton* button414 = NULL;
+			flButton* button415 = NULL; flButton* button416 = NULL; flButton* button417 = NULL; flButton* button418 = NULL; flButton* button419 = NULL;
+			flButton* button420 = NULL; flButton* button421 = NULL; flButton* button422 = NULL; flButton* button423 = NULL; flButton* button424 = NULL;
+			flButton* button425 = NULL; flButton* button426 = NULL; flButton* button427 = NULL; flButton* button428 = NULL; flButton* button429 = NULL;
+			flButton* button430 = NULL; flButton* button431 = NULL; flButton* button432 = NULL; flButton* button433 = NULL; flButton* button434 = NULL;
+			flButton* button435 = NULL; flButton* button436 = NULL; flButton* button437 = NULL; flButton* button438 = NULL; flButton* button439 = NULL;
+			flButton* button440 = NULL; flButton* button441 = NULL; flButton* button442 = NULL; flButton* button443 = NULL; flButton* button444 = NULL;
+			flButton* button445 = NULL; flButton* button446 = NULL; flButton* button447 = NULL; flButton* button448 = NULL; flButton* button449 = NULL;
+			flButton* button450 = NULL; flButton* button451 = NULL; flButton* button452 = NULL; flButton* button453 = NULL; flButton* button454 = NULL;
+			flButton* button455 = NULL; flButton* button456 = NULL; flButton* button457 = NULL; flButton* button458 = NULL; flButton* button459 = NULL;
+			flButton* button460 = NULL; flButton* button461 = NULL; flButton* button462 = NULL; flButton* button463 = NULL; flButton* button464 = NULL;
+			flButton* button465 = NULL; flButton* button466 = NULL; flButton* button467 = NULL; flButton* button468 = NULL; flButton* button469 = NULL;
+			flButton* button470 = NULL; flButton* button471 = NULL; flButton* button472 = NULL; flButton* button473 = NULL; flButton* button474 = NULL;
+			flButton* button475 = NULL; flButton* button476 = NULL; flButton* button477 = NULL; flButton* button478 = NULL; flButton* button479 = NULL;
+			flButton* button480 = NULL; flButton* button481 = NULL; flButton* button482 = NULL; flButton* button483 = NULL; flButton* button484 = NULL;
+			flButton* button485 = NULL; flButton* button486 = NULL; flButton* button487 = NULL; flButton* button488 = NULL; flButton* button489 = NULL;
+			flButton* button490 = NULL; flButton* button491 = NULL; flButton* button492 = NULL; flButton* button493 = NULL; flButton* button494 = NULL;
+			flButton* button495 = NULL; flButton* button496 = NULL; flButton* button497 = NULL; flButton* button498 = NULL; flButton* button499 = NULL;
+			//ボタン(500)
             flButton* button500 = NULL; flButton* button501 = NULL; flButton* button502 = NULL; flButton* button503 = NULL; flButton* button504 = NULL;
             flButton* button505 = NULL; flButton* button506 = NULL; flButton* button507 = NULL; flButton* button508 = NULL; flButton* button509 = NULL;
             flButton* button510 = NULL; flButton* button511 = NULL; flButton* button512 = NULL; flButton* button513 = NULL; flButton* button514 = NULL;
             flButton* button515 = NULL; flButton* button516 = NULL; flButton* button517 = NULL; flButton* button518 = NULL; flButton* button519 = NULL;
             flButton* button520 = NULL; flButton* button521 = NULL; flButton* button522 = NULL; flButton* button523 = NULL; flButton* button524 = NULL;
             flButton* button525 = NULL; flButton* button526 = NULL; flButton* button527 = NULL; flButton* button528 = NULL; flButton* button529 = NULL;
-            //ボタン(600)
+			flButton* button530 = NULL; flButton* button531 = NULL; flButton* button532 = NULL; flButton* button533 = NULL; flButton* button534 = NULL;
+			flButton* button535 = NULL; flButton* button536 = NULL; flButton* button537 = NULL; flButton* button538 = NULL; flButton* button539 = NULL;
+			flButton* button540 = NULL; flButton* button541 = NULL; flButton* button542 = NULL; flButton* button543 = NULL; flButton* button544 = NULL;
+			flButton* button545 = NULL; flButton* button546 = NULL; flButton* button547 = NULL; flButton* button548 = NULL; flButton* button549 = NULL;
+			flButton* button550 = NULL; flButton* button551 = NULL; flButton* button552 = NULL; flButton* button553 = NULL; flButton* button554 = NULL;
+			flButton* button555 = NULL; flButton* button556 = NULL; flButton* button557 = NULL; flButton* button558 = NULL; flButton* button559 = NULL;
+			flButton* button560 = NULL; flButton* button561 = NULL; flButton* button562 = NULL; flButton* button563 = NULL; flButton* button564 = NULL;
+			flButton* button565 = NULL; flButton* button566 = NULL; flButton* button567 = NULL; flButton* button568 = NULL; flButton* button569 = NULL;
+			flButton* button570 = NULL; flButton* button571 = NULL; flButton* button572 = NULL; flButton* button573 = NULL; flButton* button574 = NULL;
+			flButton* button575 = NULL; flButton* button576 = NULL; flButton* button577 = NULL; flButton* button578 = NULL; flButton* button579 = NULL;
+			flButton* button580 = NULL; flButton* button581 = NULL; flButton* button582 = NULL; flButton* button583 = NULL; flButton* button584 = NULL;
+			flButton* button585 = NULL; flButton* button586 = NULL; flButton* button587 = NULL; flButton* button588 = NULL; flButton* button589 = NULL;
+			flButton* button590 = NULL; flButton* button591 = NULL; flButton* button592 = NULL; flButton* button593 = NULL; flButton* button594 = NULL;
+			flButton* button595 = NULL; flButton* button596 = NULL; flButton* button597 = NULL; flButton* button598 = NULL; flButton* button599 = NULL;
+			//ボタン(600)
             flButton* button600 = NULL; flButton* button601 = NULL; flButton* button602 = NULL; flButton* button603 = NULL; flButton* button604 = NULL;
             flButton* button605 = NULL; flButton* button606 = NULL; flButton* button607 = NULL; flButton* button608 = NULL; flButton* button609 = NULL;
             flButton* button610 = NULL; flButton* button611 = NULL; flButton* button612 = NULL; flButton* button613 = NULL; flButton* button614 = NULL;
             flButton* button615 = NULL; flButton* button616 = NULL; flButton* button617 = NULL; flButton* button618 = NULL; flButton* button619 = NULL;
             flButton* button620 = NULL; flButton* button621 = NULL; flButton* button622 = NULL; flButton* button623 = NULL; flButton* button624 = NULL;
             flButton* button625 = NULL; flButton* button626 = NULL; flButton* button627 = NULL; flButton* button628 = NULL; flButton* button629 = NULL;
-            //ボタン(700)
+			flButton* button630 = NULL; flButton* button631 = NULL; flButton* button632 = NULL; flButton* button633 = NULL; flButton* button634 = NULL;
+			flButton* button635 = NULL; flButton* button636 = NULL; flButton* button637 = NULL; flButton* button638 = NULL; flButton* button639 = NULL;
+			flButton* button640 = NULL; flButton* button641 = NULL; flButton* button642 = NULL; flButton* button643 = NULL; flButton* button644 = NULL;
+			flButton* button645 = NULL; flButton* button646 = NULL; flButton* button647 = NULL; flButton* button648 = NULL; flButton* button649 = NULL;
+			flButton* button650 = NULL; flButton* button651 = NULL; flButton* button652 = NULL; flButton* button653 = NULL; flButton* button654 = NULL;
+			flButton* button655 = NULL; flButton* button656 = NULL; flButton* button657 = NULL; flButton* button658 = NULL; flButton* button659 = NULL;
+			flButton* button660 = NULL; flButton* button661 = NULL; flButton* button662 = NULL; flButton* button663 = NULL; flButton* button664 = NULL;
+			flButton* button665 = NULL; flButton* button666 = NULL; flButton* button667 = NULL; flButton* button668 = NULL; flButton* button669 = NULL;
+			flButton* button670 = NULL; flButton* button671 = NULL; flButton* button672 = NULL; flButton* button673 = NULL; flButton* button674 = NULL;
+			flButton* button675 = NULL; flButton* button676 = NULL; flButton* button677 = NULL; flButton* button678 = NULL; flButton* button679 = NULL;
+			flButton* button680 = NULL; flButton* button681 = NULL; flButton* button682 = NULL; flButton* button683 = NULL; flButton* button684 = NULL;
+			flButton* button685 = NULL; flButton* button686 = NULL; flButton* button687 = NULL; flButton* button688 = NULL; flButton* button689 = NULL;
+			flButton* button690 = NULL; flButton* button691 = NULL; flButton* button692 = NULL; flButton* button693 = NULL; flButton* button694 = NULL;
+			flButton* button695 = NULL; flButton* button696 = NULL; flButton* button697 = NULL; flButton* button698 = NULL; flButton* button699 = NULL;
+			//ボタン(700)
             flButton* button700 = NULL; flButton* button701 = NULL; flButton* button702 = NULL; flButton* button703 = NULL; flButton* button704 = NULL;
             flButton* button705 = NULL; flButton* button706 = NULL; flButton* button707 = NULL; flButton* button708 = NULL; flButton* button709 = NULL;
-            flButton* button710 = NULL;
-            //ボタン(800)
+			flButton* button710 = NULL; flButton* button711 = NULL; flButton* button712 = NULL; flButton* button713 = NULL; flButton* button714 = NULL;
+			flButton* button715 = NULL; flButton* button716 = NULL; flButton* button717 = NULL; flButton* button718 = NULL; flButton* button719 = NULL;
+			flButton* button720 = NULL; flButton* button721 = NULL; flButton* button722 = NULL; flButton* button723 = NULL; flButton* button724 = NULL;
+			flButton* button725 = NULL; flButton* button726 = NULL; flButton* button727 = NULL; flButton* button728 = NULL; flButton* button729 = NULL;
+			flButton* button730 = NULL; flButton* button731 = NULL; flButton* button732 = NULL; flButton* button733 = NULL; flButton* button734 = NULL;
+			flButton* button735 = NULL; flButton* button736 = NULL; flButton* button737 = NULL; flButton* button738 = NULL; flButton* button739 = NULL;
+			flButton* button740 = NULL; flButton* button741 = NULL; flButton* button742 = NULL; flButton* button743 = NULL; flButton* button744 = NULL;
+			flButton* button745 = NULL; flButton* button746 = NULL; flButton* button747 = NULL; flButton* button748 = NULL; flButton* button749 = NULL;
+			flButton* button750 = NULL; flButton* button751 = NULL; flButton* button752 = NULL; flButton* button753 = NULL; flButton* button754 = NULL;
+			flButton* button755 = NULL; flButton* button756 = NULL; flButton* button757 = NULL; flButton* button758 = NULL; flButton* button759 = NULL;
+			flButton* button760 = NULL; flButton* button761 = NULL; flButton* button762 = NULL; flButton* button763 = NULL; flButton* button764 = NULL;
+			flButton* button765 = NULL; flButton* button766 = NULL; flButton* button767 = NULL; flButton* button768 = NULL; flButton* button769 = NULL;
+			flButton* button770 = NULL; flButton* button771 = NULL; flButton* button772 = NULL; flButton* button773 = NULL; flButton* button774 = NULL;
+			flButton* button775 = NULL; flButton* button776 = NULL; flButton* button777 = NULL; flButton* button778 = NULL; flButton* button779 = NULL;
+			flButton* button780 = NULL; flButton* button781 = NULL; flButton* button782 = NULL; flButton* button783 = NULL; flButton* button784 = NULL;
+			flButton* button785 = NULL; flButton* button786 = NULL; flButton* button787 = NULL; flButton* button788 = NULL; flButton* button789 = NULL;
+			flButton* button790 = NULL; flButton* button791 = NULL; flButton* button792 = NULL; flButton* button793 = NULL; flButton* button794 = NULL;
+			flButton* button795 = NULL; flButton* button796 = NULL; flButton* button797 = NULL; flButton* button798 = NULL; flButton* button799 = NULL;
+			//ボタン(800)
             flButton* button800 = NULL; flButton* button801 = NULL; flButton* button802 = NULL; flButton* button803 = NULL; flButton* button804 = NULL;
             flButton* button805 = NULL; flButton* button806 = NULL; flButton* button807 = NULL; flButton* button808 = NULL; flButton* button809 = NULL;
-            flButton* button810 = NULL;
-            //ボタン(900)
+			flButton* button810 = NULL; flButton* button811 = NULL; flButton* button812 = NULL; flButton* button813 = NULL; flButton* button814 = NULL;
+			flButton* button815 = NULL; flButton* button816 = NULL; flButton* button817 = NULL; flButton* button818 = NULL; flButton* button819 = NULL;
+			flButton* button820 = NULL; flButton* button821 = NULL; flButton* button822 = NULL; flButton* button823 = NULL; flButton* button824 = NULL;
+			flButton* button825 = NULL; flButton* button826 = NULL; flButton* button827 = NULL; flButton* button828 = NULL; flButton* button829 = NULL;
+			flButton* button830 = NULL; flButton* button831 = NULL; flButton* button832 = NULL; flButton* button833 = NULL; flButton* button834 = NULL;
+			flButton* button835 = NULL; flButton* button836 = NULL; flButton* button837 = NULL; flButton* button838 = NULL; flButton* button839 = NULL;
+			flButton* button840 = NULL; flButton* button841 = NULL; flButton* button842 = NULL; flButton* button843 = NULL; flButton* button844 = NULL;
+			flButton* button845 = NULL; flButton* button846 = NULL; flButton* button847 = NULL; flButton* button848 = NULL; flButton* button849 = NULL;
+			flButton* button850 = NULL; flButton* button851 = NULL; flButton* button852 = NULL; flButton* button853 = NULL; flButton* button854 = NULL;
+			flButton* button855 = NULL; flButton* button856 = NULL; flButton* button857 = NULL; flButton* button858 = NULL; flButton* button859 = NULL;
+			flButton* button860 = NULL; flButton* button861 = NULL; flButton* button862 = NULL; flButton* button863 = NULL; flButton* button864 = NULL;
+			flButton* button865 = NULL; flButton* button866 = NULL; flButton* button867 = NULL; flButton* button868 = NULL; flButton* button869 = NULL;
+			flButton* button870 = NULL; flButton* button871 = NULL; flButton* button872 = NULL; flButton* button873 = NULL; flButton* button874 = NULL;
+			flButton* button875 = NULL; flButton* button876 = NULL; flButton* button877 = NULL; flButton* button878 = NULL; flButton* button879 = NULL;
+			flButton* button880 = NULL; flButton* button881 = NULL; flButton* button882 = NULL; flButton* button883 = NULL; flButton* button884 = NULL;
+			flButton* button885 = NULL; flButton* button886 = NULL; flButton* button887 = NULL; flButton* button888 = NULL; flButton* button889 = NULL;
+			flButton* button890 = NULL; flButton* button891 = NULL; flButton* button892 = NULL; flButton* button893 = NULL; flButton* button894 = NULL;
+			flButton* button895 = NULL; flButton* button896 = NULL; flButton* button897 = NULL; flButton* button898 = NULL; flButton* button899 = NULL;
+			//ボタン(900)
             flButton* button900 = NULL; flButton* button901 = NULL; flButton* button902 = NULL; flButton* button903 = NULL; flButton* button904 = NULL;
             flButton* button905 = NULL; flButton* button906 = NULL; flButton* button907 = NULL; flButton* button908 = NULL; flButton* button909 = NULL;
-            flButton* button910 = NULL;
-            //--------------------------------------
+			flButton* button910 = NULL; flButton* button911 = NULL; flButton* button912 = NULL; flButton* button913 = NULL; flButton* button914 = NULL;
+			flButton* button915 = NULL; flButton* button916 = NULL; flButton* button917 = NULL; flButton* button918 = NULL; flButton* button919 = NULL;
+			flButton* button920 = NULL; flButton* button921 = NULL; flButton* button922 = NULL; flButton* button923 = NULL; flButton* button924 = NULL;
+			flButton* button925 = NULL; flButton* button926 = NULL; flButton* button927 = NULL; flButton* button928 = NULL; flButton* button929 = NULL;
+			flButton* button930 = NULL; flButton* button931 = NULL; flButton* button932 = NULL; flButton* button933 = NULL; flButton* button934 = NULL;
+			flButton* button935 = NULL; flButton* button936 = NULL; flButton* button937 = NULL; flButton* button938 = NULL; flButton* button939 = NULL;
+			flButton* button940 = NULL; flButton* button941 = NULL; flButton* button942 = NULL; flButton* button943 = NULL; flButton* button944 = NULL;
+			flButton* button945 = NULL; flButton* button946 = NULL; flButton* button947 = NULL; flButton* button948 = NULL; flButton* button949 = NULL;
+			flButton* button950 = NULL; flButton* button951 = NULL; flButton* button952 = NULL; flButton* button953 = NULL; flButton* button954 = NULL;
+			flButton* button955 = NULL; flButton* button956 = NULL; flButton* button957 = NULL; flButton* button958 = NULL; flButton* button959 = NULL;
+			flButton* button960 = NULL; flButton* button961 = NULL; flButton* button962 = NULL; flButton* button963 = NULL; flButton* button964 = NULL;
+			flButton* button965 = NULL; flButton* button966 = NULL; flButton* button967 = NULL; flButton* button968 = NULL; flButton* button969 = NULL;
+			flButton* button970 = NULL; flButton* button971 = NULL; flButton* button972 = NULL; flButton* button973 = NULL; flButton* button974 = NULL;
+			flButton* button975 = NULL; flButton* button976 = NULL; flButton* button977 = NULL; flButton* button978 = NULL; flButton* button979 = NULL;
+			flButton* button980 = NULL; flButton* button981 = NULL; flButton* button982 = NULL; flButton* button983 = NULL; flButton* button984 = NULL;
+			flButton* button985 = NULL; flButton* button986 = NULL; flButton* button987 = NULL; flButton* button988 = NULL; flButton* button989 = NULL;
+			flButton* button990 = NULL; flButton* button991 = NULL; flButton* button992 = NULL; flButton* button993 = NULL; flButton* button994 = NULL;
+			flButton* button995 = NULL; flButton* button996 = NULL; flButton* button997 = NULL; flButton* button998 = NULL; flButton* button999 = NULL;
+			//--------------------------------------
         
             //--------------------------------------
             //スライダー(000)
