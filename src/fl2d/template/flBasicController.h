@@ -22,6 +22,8 @@ namespace fl2d {
             bool _onTop;
             bool _dragEnabled;
 
+			bool _isLocked = false;
+
 			ofEventListeners _listeners;
         
         private:
@@ -47,12 +49,27 @@ namespace fl2d {
             virtual inline void dragEnabled(bool value) {
                 _dragEnabled = value;
                 useHandCursor(_dragEnabled);
-                
+
                 if(!_dragEnabled) {
                     if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
                     stopDrag();
                 }
             }
+
+			virtual bool lock() { return _isLocked; }
+			virtual void lock(bool value) { 
+				_isLocked = value;
+				
+				for (int i = 0; i < numChildren(); i++) {
+					flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
+					//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
+
+					if (displayObject->typeID() == FL_TYPE_UIBASE) {
+						//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
+						((flUIBase*)displayObject)->enabled(_isLocked);
+					}
+				}
+			}
         
         protected:
             virtual void _flBasicControllerEventHandler(flEvent& event);
