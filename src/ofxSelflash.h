@@ -59,6 +59,7 @@
 #include "flFont.h"
 #include "flTextField.h"
 #include "flTextFieldAutoSize.h"
+#include "flTextFormat.h"
 
 //flash.ui
 #include "flUIBase.h"

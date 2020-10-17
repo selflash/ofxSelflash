@@ -67,6 +67,19 @@ namespace flinternal {
                 
                 return n;
             }
+
+			static string getLongestSentence(string& str) {
+				vector<string> strings = ofSplitString(str, "\r\n");
+				string targetString = str;
+				int maxNum = 0;
+				for (auto& s : strings) {
+					if (s.size() > maxNum) {
+						maxNum = s.size();
+						targetString = s;
+					}
+				}
+				return targetString;
+			}
             
         private:
             flstringutil() { };

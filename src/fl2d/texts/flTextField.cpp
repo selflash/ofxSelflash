@@ -59,6 +59,9 @@ namespace fl2d {
         _autoSize = "";
         _tx = 0;
         _numLine = 0;
+
+		delete _defaultTextFormat;
+		_defaultTextFormat = NULL;
         
         _addedListeners = false;
         
@@ -193,7 +196,13 @@ namespace fl2d {
         ofPushStyle();
         ofSetColor(_textColor, 255 * _compoundAlpha);
         //        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
-        flFont::drawString(_text, 1, -4);
+		//flFont::drawString(_text, 1, -4);
+        flFont::drawString(
+			_text, 
+			(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
+			1, 
+			-4
+		);
         //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         
@@ -363,11 +372,19 @@ namespace fl2d {
         _text = value;
         
         _numLine = flstringutil::getLength(_text, "\n") + 1;
+        //_numLine = MAX(flstringutil::getLength(_text, "\n") + 1, flstringutil::getLength(_text, "\r\n") + 1);
         
-        ofRectangle bounds = flFont::getStringBoundingBox(_text, 0, 0);
-        _textWidth = bounds.width + 6;
-//        _textHeight = _numLine * flFont::getMaxStringHeight() + 2;
-        _textHeight = _numLine * flFont::getMaxStringHeight() + 0;
+		string logestSentence = flstringutil::getLongestSentence(_text);
+        ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, 0, 0);
+        //_textWidth = bounds.width + 6;
+		//if(_defaultTextFormat != NULL) _textWidth = _textWidth * (_defaultTextFormat->size() / 10);
+		int size = (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10;
+		_textWidth = flFont::getStringWidth(logestSentence, size);
+
+
+        //_textHeight = _numLine * flFont::getMaxStringHeight() + 2;
+        _textHeight = (flFont::getMaxStringHeight(size) + 0) * _numLine;
+		//_textHeight = flFont::getStringHeight(_text, (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10);
 
         if(color != -1) textColor(color);
         
@@ -421,6 +438,12 @@ namespace fl2d {
     //--------------------------------------------------------------
     string flTextField::autoSize() { return _autoSize; }
     void flTextField::autoSize(string value) { _autoSize = value; }
+
+	//--------------------------------------------------------------
+	const flTextFormat* flTextField::defaultTextFormat() { return _defaultTextFormat; }
+	void flTextField::defaultTextFormat(flTextFormat* value) {
+		_defaultTextFormat = value;
+	}
     
     //--------------------------------------------------------------
     bool flTextField::active() { return _isActive; }

@@ -12,6 +12,7 @@
 
 #include "flDefinition.h"
 #include "flTextFieldAutoSize.h"
+#include "flTextFormat.h"
 #include "flFont.h"
 #include "flInteractiveObject.h"
 #include "flGraphics.h"
@@ -50,6 +51,8 @@ namespace fl2d {
         string _autoSize;
         float _tx;
         int _numLine;
+
+		flTextFormat* _defaultTextFormat = NULL;
         
         int _activeLineWidth;
         
@@ -112,18 +115,21 @@ namespace fl2d {
         virtual const string& type();
         virtual void type(const string& value);
         
-        ofColor textColor();
-        void textColor(int value);
-        void textColor(const ofColor& value);
+		virtual ofColor textColor();
+		virtual void textColor(int value);
+		virtual void textColor(const ofColor& value);
         
-        string autoSize();
-        void autoSize(string value);
+		virtual string autoSize();
+		virtual void autoSize(string value);
+
+		virtual const flTextFormat* defaultTextFormat();
+		virtual void defaultTextFormat(flTextFormat* value);
         
-        bool active();
-        void active(bool value);
+		virtual bool active();
+		virtual void active(bool value);
         
-        bool enabled();
-        void enabled(bool value);
+		virtual bool enabled();
+		virtual void enabled(bool value);
         
         //            bool enabledAntiAliasing() { return _enabledAntiAliasing; }
         //            void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
