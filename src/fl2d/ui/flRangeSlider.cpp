@@ -282,7 +282,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flRangeSlider::min() { return _min; }
+	ofParameter<float>& flRangeSlider::min() { return _min; }
     void flRangeSlider::min(float value, bool dispatch) {
         //------------------------------------------
         //Update value.
@@ -335,7 +335,7 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    float flRangeSlider::max() { return _max; }
+	ofParameter<float>& flRangeSlider::max() { return _max; }
     void flRangeSlider::max(float value, bool dispatch) {
         //------------------------------------------
         //Update value.
@@ -388,7 +388,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flRangeSlider::minValue() { return _minValue; }
+	ofParameter<float>& flRangeSlider::minValue() { return _minValue; }
     void flRangeSlider::minValue(float value, bool dispatch) {
         float preValue = _minValue;
 
@@ -447,7 +447,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flRangeSlider::maxValue() { return _maxValue; }
+	ofParameter<float>& flRangeSlider::maxValue() { return _maxValue; }
     void flRangeSlider::maxValue(float value, bool dispatch) {
         float preValue = _maxValue;
 

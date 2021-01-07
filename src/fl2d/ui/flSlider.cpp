@@ -194,7 +194,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flSlider::min() { return _min; }
+	ofParameter<float>& flSlider::min() { return _min; }
     void flSlider::min(float value, bool dispatch) {
         _min = value;
         if(_max > _min) {
@@ -244,7 +244,7 @@ namespace fl2d {
         //------------------------------------------
     }
     //--------------------------------------------------------------
-    float flSlider::max() { return _max; }
+	ofParameter<float>& flSlider::max() { return _max; }
     void flSlider::max(float value, bool dispatch) {
         _max = value;
         if(_max > _min) {
@@ -295,7 +295,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flSlider::value() { return _value; }
+	ofParameter<float>& flSlider::value() { return _value; }
     void flSlider::value(float value, bool dispatch) {
         float preValue = _value;
         

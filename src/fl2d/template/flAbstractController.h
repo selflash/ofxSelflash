@@ -485,7 +485,25 @@ namespace fl2d {
             flSlider* slider330 = NULL; flSlider* slider331 = NULL; flSlider* slider332 = NULL; flSlider* slider333 = NULL;
             flSlider* slider334 = NULL; flSlider* slider335 = NULL; flSlider* slider336 = NULL; flSlider* slider337 = NULL;
             flSlider* slider338 = NULL; flSlider* slider339 = NULL;
-            //スライダー(400)
+			flSlider* slider340 = NULL; flSlider* slider341 = NULL; flSlider* slider342 = NULL; flSlider* slider343 = NULL;
+			flSlider* slider344 = NULL; flSlider* slider345 = NULL; flSlider* slider346 = NULL; flSlider* slider347 = NULL;
+			flSlider* slider348 = NULL; flSlider* slider349 = NULL;
+			flSlider* slider350 = NULL; flSlider* slider351 = NULL; flSlider* slider352 = NULL; flSlider* slider353 = NULL;
+			flSlider* slider354 = NULL; flSlider* slider355 = NULL; flSlider* slider356 = NULL; flSlider* slider357 = NULL;
+			flSlider* slider358 = NULL; flSlider* slider359 = NULL;
+			flSlider* slider360 = NULL; flSlider* slider361 = NULL; flSlider* slider362 = NULL; flSlider* slider363 = NULL;
+			flSlider* slider364 = NULL; flSlider* slider365 = NULL; flSlider* slider366 = NULL; flSlider* slider367 = NULL;
+			flSlider* slider368 = NULL; flSlider* slider369 = NULL;
+			flSlider* slider370 = NULL; flSlider* slider371 = NULL; flSlider* slider372 = NULL; flSlider* slider373 = NULL;
+			flSlider* slider374 = NULL; flSlider* slider375 = NULL; flSlider* slider376 = NULL; flSlider* slider377 = NULL;
+			flSlider* slider378 = NULL; flSlider* slider379 = NULL;
+			flSlider* slider380 = NULL; flSlider* slider381 = NULL; flSlider* slider382 = NULL; flSlider* slider383 = NULL;
+			flSlider* slider384 = NULL; flSlider* slider385 = NULL; flSlider* slider386 = NULL; flSlider* slider387 = NULL;
+			flSlider* slider388 = NULL; flSlider* slider389 = NULL;
+			flSlider* slider390 = NULL; flSlider* slider391 = NULL; flSlider* slider392 = NULL; flSlider* slider393 = NULL;
+			flSlider* slider394 = NULL; flSlider* slider395 = NULL; flSlider* slider396 = NULL; flSlider* slider397 = NULL;
+			flSlider* slider398 = NULL; flSlider* slider399 = NULL;
+			//スライダー(400)
             flSlider* slider400 = NULL; flSlider* slider401 = NULL; flSlider* slider402 = NULL; flSlider* slider403 = NULL;
             flSlider* slider404 = NULL; flSlider* slider405 = NULL; flSlider* slider406 = NULL; flSlider* slider407 = NULL;
             flSlider* slider408 = NULL; flSlider* slider409 = NULL;
@@ -1644,7 +1662,16 @@ namespace fl2d {
             flComboBox* comboBox320 = NULL; flComboBox* comboBox321 = NULL; flComboBox* comboBox322 = NULL; flComboBox* comboBox323 = NULL;
             flComboBox* comboBox324 = NULL; flComboBox* comboBox325 = NULL; flComboBox* comboBox326 = NULL; flComboBox* comboBox327 = NULL;
             flComboBox* comboBox328 = NULL; flComboBox* comboBox329 = NULL;
-            //コンボボックス(400)
+			flComboBox* comboBox330 = NULL; flComboBox* comboBox331 = NULL; flComboBox* comboBox332 = NULL; flComboBox* comboBox333 = NULL;
+			flComboBox* comboBox334 = NULL; flComboBox* comboBox335 = NULL; flComboBox* comboBox336 = NULL; flComboBox* comboBox337 = NULL;
+			flComboBox* comboBox338 = NULL; flComboBox* comboBox339 = NULL;
+			flComboBox* comboBox340 = NULL; flComboBox* comboBox341 = NULL; flComboBox* comboBox342 = NULL; flComboBox* comboBox343 = NULL;
+			flComboBox* comboBox344 = NULL; flComboBox* comboBox345 = NULL; flComboBox* comboBox346 = NULL; flComboBox* comboBox347 = NULL;
+			flComboBox* comboBox348 = NULL; flComboBox* comboBox349 = NULL;
+			flComboBox* comboBox350 = NULL; flComboBox* comboBox351 = NULL; flComboBox* comboBox352 = NULL; flComboBox* comboBox353 = NULL;
+			flComboBox* comboBox354 = NULL; flComboBox* comboBox355 = NULL; flComboBox* comboBox356 = NULL; flComboBox* comboBox357 = NULL;
+			flComboBox* comboBox358 = NULL; flComboBox* comboBox359 = NULL;
+			//コンボボックス(400)
             flComboBox* comboBox400 = NULL; flComboBox* comboBox401 = NULL; flComboBox* comboBox402 = NULL; flComboBox* comboBox403 = NULL;
             flComboBox* comboBox404 = NULL; flComboBox* comboBox405 = NULL; flComboBox* comboBox406 = NULL; flComboBox* comboBox407 = NULL;
             flComboBox* comboBox408 = NULL; flComboBox* comboBox409 = NULL;

@@ -29,12 +29,12 @@ namespace fl2d {
             float _thumbWidth = 10;
             float _barWidth = 50;
         
-            float _min = 0.0;
-            float _max = 100.0;
+			ofParameter<float> _min = 0.0;
+			ofParameter<float> _max = 100.0;
 			float _preRange = 0.0;
             float _range = 100.0;
-            float _minValue = 50.0;
-            float _maxValue = 70.0;
+			ofParameter<float> _minValue = 50.0;
+			ofParameter<float> _maxValue = 70.0;
             float _percent = 0.5;
 
             flTextField* _minValueText = NULL;
@@ -52,16 +52,16 @@ namespace fl2d {
             bool roundEnabled();
             void roundEnabled(bool value);
 
-            float min();
+			ofParameter<float>& min();
             void min(float value, bool dispatch = true);
         
-            float max();
+			ofParameter<float>& max();
             void max(float value, bool dispatch = true);
         
-            float minValue();
+			ofParameter<float>& minValue();
             void minValue(float value, bool dispatch = true);
         
-            float maxValue();
+			ofParameter<float>& maxValue();
             void maxValue(float value, bool dispatch = true);
         
             float range();
