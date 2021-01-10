@@ -3,8 +3,8 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
-    //==============================================================
+	// Constructor / Destructor
+	//==============================================================
     
     //--------------------------------------------------------------
     flBasicDraggableObject::flBasicDraggableObject() {
@@ -25,8 +25,8 @@ namespace fl2d {
     }
     
     //==============================================================
-    // SETUP / UPDATE / DRAW
-    //==============================================================
+	// Setup / Update / Draw
+	//==============================================================
     
     //--------------------------------------------------------------
     //void flBasicDraggableObject::_setup() {
@@ -46,20 +46,20 @@ namespace fl2d {
     //}
     
     //==============================================================
-    // PROTECTED / PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //==============================================================
-    // EVENT HANDLER
+    // Event Handler
     //==============================================================
     
     //--------------------------------------------------------------
     void flBasicDraggableObject::_mouseEventHandler(flEvent& event) {
-        //    cout << "[flBasicDraggableObject]_mouseEventHandler(" << event.type() << ")" << endl;
-        //    cout << "[PrentBox]this          = " << this << endl;
-        //    cout << "[ParetBox]currentTarget = " << event.currentTarget() << endl;
-        //    cout << "[ParetBox]target        = " << event.target() << endl;
-        
+		//ofLog() << "[flBasicDraggableObject]_mouseEventHandler(" << event.type() << ")";
+		//ofLog() << "[flBasicDraggableObject]this          = " << this;
+		//ofLog() << "[flBasicDraggableObject]currentTarget = " << event.currentTarget();
+		//ofLog() << "[flBasicDraggableObject]target        = " << event.target();
+
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) {
                 if(_dragEnabled) {

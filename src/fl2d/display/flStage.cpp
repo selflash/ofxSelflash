@@ -1134,6 +1134,8 @@ namespace fl2d {
         
         _isMouseChanged = (_mouseID != 0);
         if(_isMouseChanged) _mouseID = 0;
+
+		_startTime = ofGetElapsedTimef();
         
         //------------------------------------
         if(_topMostHitInteractiveObject) {
@@ -1258,6 +1260,9 @@ namespace fl2d {
         
         __isMouseDown = false;
         __isMouseReleased = true;
+
+		float elapsedTime = ofGetElapsedTimef() - _startTime;
+		//ofLog(OF_LOG_NOTICE) << "elapsedTime = " << elapsedTime;
         
         //------------------------------------
         //    if(_topMostHitInteractiveObjectPrev) _topMostHitInteractiveObjectPrev->__isMouseDown = false;
@@ -1298,8 +1303,21 @@ namespace fl2d {
         if(_currentMouseDownInteractiveObject) {
 //            _currentMouseDownInteractiveObject->__isMousePressed = false; // TODO ’÷ñ
             _currentMouseDownInteractiveObject->__isMouseDown = false;
-            _currentMouseDownInteractiveObject = NULL;
-        }
+
+			//------------------------------------
+			if ((elapsedTime <= 0.2) && (_currentMouseDownInteractiveObject == _topMostHitInteractiveObject)) {
+				flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::CLICK);
+				mouseEvent->__target = _currentMouseDownInteractiveObject;
+				mouseEvent->__localX = _currentMouseDownInteractiveObject->mouseX();
+				mouseEvent->__localY = _currentMouseDownInteractiveObject->mouseY();
+				mouseEvent->__stageX = mouseX();
+				mouseEvent->__stageY = mouseY();
+				_currentMouseDownInteractiveObject->dispatchEvent(mouseEvent);
+			}
+			//------------------------------------
+	
+			_currentMouseDownInteractiveObject = NULL;
+		}
         //------------------------------------
         
         //------------------------------------

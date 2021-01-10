@@ -259,7 +259,7 @@ namespace fl2d {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
             
-			ofLog() << "flBasicController change";
+			//ofLog() << "flBasicController change";
 
             if(button == minimizeButton) {
                 if(minimizeButton->selected()) {

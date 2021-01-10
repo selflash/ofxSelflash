@@ -105,6 +105,8 @@ namespace fl2d {
             //マウスヒットオブジェクトからStageまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
             vector<flInteractiveObject*> _lineBottomUp;
             vector<flInteractiveObject*> _lineBottomUpPrev;
+
+			float _startTime = 0.0;
         
     //        ofEventOrder _priority;
             bool _isPaused = false;
