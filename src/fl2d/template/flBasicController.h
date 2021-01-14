@@ -6,7 +6,7 @@
 
 namespace fl2d {
     
-    class flBasicController : public flAbstractController {
+    class flBasicController : public flSprite, public flAbstractController {
         public:
 
         protected:

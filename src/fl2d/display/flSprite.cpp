@@ -363,12 +363,17 @@ namespace fl2d {
     //TODO
     void flSprite::startDrag(bool lockCenter, flRectangle* bounds) {
         _draggableArea = bounds;
+
+		_startDragPoint.x = x();
+		_startDragPoint.y = y();
         
         //TODO 実装がスマートじゃないなー・・
         //it's not cool...
         //ofPoint* p = new ofPoint(stage()->mouseX(), stage()->mouseY());
-        ofPoint* p = new ofPoint(ofGetMouseX(), ofGetMouseY());
-        _draggablePoint = parent()->globalToLocal(*p);
+        //ofPoint* p = new ofPoint(ofGetMouseX(), ofGetMouseY());
+		_tempPoint.x = ofGetMouseX();
+		_tempPoint.y = ofGetMouseY();
+        _draggablePoint = parent()->globalToLocal(_tempPoint);
         _draggablePoint.x -= x();
         _draggablePoint.y -= y();
         
@@ -576,8 +581,10 @@ namespace fl2d {
         if(!_mouseEnabled) return;
         
         //ofPoint* p1 = new ofPoint(stage()->mouseX(), stage()->mouseY());
-        ofPoint* p1 = new ofPoint(x, y);
-        ofPoint p2 = parent()->globalToLocal(*p1);
+        //ofPoint* p1 = new ofPoint(x, y);
+		_tempPoint.x = x;
+		_tempPoint.y = y;
+        ofPoint p2 = parent()->globalToLocal(_tempPoint);
         
         float n1, n2;
         n1 = p2.x - _draggablePoint.x;

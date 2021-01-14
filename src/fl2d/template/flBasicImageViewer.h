@@ -3,10 +3,11 @@
 #include "ofMain.h"
 #include "ofxSelflash.h"
 #include "flAbstractController.h"
+#include "flBasicDraggableObject.h"
 
 namespace fl2d {
 
-	class flBasicImageFrame : public flAbstractController {
+	class flBasicImageViewer : public flBasicDraggableObject, public flAbstractController  {
 		public:
 
 		protected:
@@ -19,23 +20,23 @@ namespace fl2d {
 
 			int _mode = 0;
 
-			bool _onTop;
-			bool _dragEnabled;
-
 			bool _isLocked = false;
 
 			ofEventListeners _listeners;
 
 			bool _isActive = false;
 
-		private:
+			flBasicDraggableObject* rightBottomCorner;
+
 			flBitmap* _bitmap = NULL;
 			float _defaultImageWidth;
 			float _defaultImageHeight;
 
+		private:
+
 		public:
-			flBasicImageFrame(flBitmap* bitmap, int w, int h);
-			virtual ~flBasicImageFrame();
+			flBasicImageViewer(flBitmap* bitmap, int w, int h);
+			virtual ~flBasicImageViewer();
 
 			virtual void setup();
 
@@ -53,17 +54,6 @@ namespace fl2d {
 			virtual inline float minBackHeight() { return _minBackHeight; }
 			virtual inline float normalBackWidth() { return _normalBackWidth; }
 			virtual inline float normalBackHeight() { return _normalBackHeight; }
-
-			virtual inline bool dragEnabled() { return _dragEnabled = NULL; }
-			virtual inline void dragEnabled(bool value) {
-				_dragEnabled = value;
-				useHandCursor(_dragEnabled);
-
-				if (!_dragEnabled) {
-					if (stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageFrame::_mouseEventHandler);
-					stopDrag();
-				}
-			}
 
 			virtual bool lock() { return _isLocked; }
 			virtual void lock(bool value) {
@@ -84,6 +74,8 @@ namespace fl2d {
 			virtual void _setup();
 			virtual void _update();
 			virtual void _draw();
+
+			virtual void _updateGraphics(int x, int y);
 
 			virtual void _mouseEventHandler(flEvent& event);
 			virtual void _uiEventHandler(flEvent& event);

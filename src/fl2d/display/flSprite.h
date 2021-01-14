@@ -42,7 +42,10 @@ namespace fl2d {
             //--------------------------------------
 
         private:
-            ofPoint _draggablePoint;
+			ofPoint _startDragPoint;
+			ofPoint _tempPoint;
+
+			ofPoint _draggablePoint;
             flRectangle* _draggableArea = NULL;
         
             bool _buttonMode;
@@ -92,6 +95,8 @@ namespace fl2d {
             //void startDrag(bool lockCenter = false, flRectangle bounds = NULL);
             virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
             virtual void stopDrag();
+
+			virtual ofPoint startDragPoint() { return _startDragPoint; }
         
             //--------------------------------------
             //Tooltip

@@ -3,10 +3,11 @@
 #include "ofMain.h"
 #include "ofxSelflash.h"
 #include "flAbstractController.h"
+//#include "flBasicDraggableObject.h"
 
 using namespace fl2d;
 
-class UIComponents : public flAbstractController {
+class UIComponents : public flSprite, public flAbstractController {
     public:
         flRadioButtonGroup* radioButtonGroup;
 

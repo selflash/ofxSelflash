@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flBasicDraggableObject::flBasicDraggableObject() {
-        //    cout << "[flBasicDraggableObject]flBasicDraggableObject()" << endl;
+        //    ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]flBasicDraggableObject()";
         _target = this;
         name("flBasicDraggableObject");
         
@@ -19,7 +19,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flBasicDraggableObject::~flBasicDraggableObject() {
-        //    cout << "[flBasicDraggableObject]~flBasicDraggableObject()" << endl;
+        //    ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]~flBasicDraggableObject()";
         
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
     }
@@ -55,10 +55,46 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicDraggableObject::_mouseEventHandler(flEvent& event) {
-		//ofLog() << "[flBasicDraggableObject]_mouseEventHandler(" << event.type() << ")";
-		//ofLog() << "[flBasicDraggableObject]this          = " << this;
-		//ofLog() << "[flBasicDraggableObject]currentTarget = " << event.currentTarget();
-		//ofLog() << "[flBasicDraggableObject]target        = " << event.target();
+		//ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]_mouseEventHandler(" << event.type() << ")";
+		//ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]this          = " << this;
+		//ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]currentTarget = " << event.currentTarget();
+		//ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]target        = " << event.target();
+
+		//Roll Over
+		if (event.type() == flMouseEvent::ROLL_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+
+			if (event.target() == this) {
+
+			}
+		}
+
+		//Roll Out
+		if (event.type() == flMouseEvent::ROLL_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+
+			if (event.target() == this) {
+
+			}
+		}
+
+		//Mouse Over
+		if (event.type() == flMouseEvent::MOUSE_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+
+			if (event.target() == this) {
+
+			}
+		}
+
+		//Mouse Out
+		if (event.type() == flMouseEvent::MOUSE_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+
+			if (event.target() == this) {
+
+			}
+		}
 
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) {

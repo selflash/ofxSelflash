@@ -1,4 +1,4 @@
-#include "flBasicImageFrame.h"
+#include "flBasicImageViewer.h"
 
 namespace fl2d {
 
@@ -7,20 +7,18 @@ namespace fl2d {
 	//==============================================================
 
 	//--------------------------------------------------------------
-	flBasicImageFrame::flBasicImageFrame(flBitmap* bitmap, int w, int h) {
-		ofLog() << "[flBasicImageFrame]flBasicImageFrame()";
+	flBasicImageViewer::flBasicImageViewer(flBitmap* bitmap, int w, int h) {
+		//ofLog() << "[flBasicImageViewer]flBasicImageViewer()";
 		_target = this;
-
-		name("flBasicImageFrame");
+		name("flBasicImageViewer");
 
 		//mouseChildren(false);
 		useHandCursor(true);
-		dragEnabled(false);
 
-		addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicImageFrame::_mouseEventHandler);
-		addEventListener(flMouseEvent::ROLL_OUT, this, &flBasicImageFrame::_mouseEventHandler);
-		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageFrame::_mouseEventHandler);
-		//addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageFrame::_mouseEventHandler);
+		addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicImageViewer::_mouseEventHandler);
+		addEventListener(flMouseEvent::ROLL_OUT, this, &flBasicImageViewer::_mouseEventHandler);
+		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageViewer::_mouseEventHandler);
+		//addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 
 		float marginLeft; float marginTop;
 		float spacing; float lineSpacing;
@@ -49,7 +47,7 @@ namespace fl2d {
 		minimizeButton->labelText("-");
 		minimizeButton->toggleEnabled(true);
 		minimizeButton->visible(false);
-		minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicImageFrame::_uiEventHandler);
+		minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicImageViewer::_uiEventHandler);
 		addChild(minimizeButton);
 
 		//閉じるボタン
@@ -57,7 +55,7 @@ namespace fl2d {
 		closeButton->y(marginTop);
 		closeButton->labelText("x");
 		closeButton->visible(false);
-		closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicImageFrame::_uiEventHandler);
+		closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicImageViewer::_uiEventHandler);
 		addChild(closeButton);
 
 		_backWidth = 0;
@@ -68,10 +66,6 @@ namespace fl2d {
 
 		_normalBackWidth = 0;
 		_normalBackHeight = 0;
-
-		_onTop = true;
-
-		_dragEnabled = false;
 
 
 
@@ -93,26 +87,45 @@ namespace fl2d {
 		g->endFill();
 
 		//_updateRect();
+
+		{
+			rightBottomCorner = new flBasicDraggableObject();
+			rightBottomCorner->x(0);
+			rightBottomCorner->y(0);
+			rightBottomCorner->visible(false);
+			rightBottomCorner->dragEnabled(true);
+			rightBottomCorner->useHandCursor(true);
+			rightBottomCorner->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageViewer::_mouseEventHandler);
+			addChild(rightBottomCorner);
+
+			flGraphics* g = rightBottomCorner->graphics();
+			g->clear();
+			g->beginFill(0xff0000, 0.0);
+			g->drawCircle(0, 0, 12);
+			g->endFill();
+		}
 	}
 
 	//--------------------------------------------------------------
-	flBasicImageFrame::~flBasicImageFrame() {
-		ofLog() << "[flBasicImageFrame]~flBasicImageFrame()";
+	flBasicImageViewer::~flBasicImageViewer() {
+		ofLog() << "[flBasicImageViewer]~flBasicImageViewer()";
 
 		_target = NULL;
 
-		removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicImageFrame::_mouseEventHandler);
-		removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicImageFrame::_mouseEventHandler);
-		removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageFrame::_mouseEventHandler);
+		_dragEnabled = false;
+
+		removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicImageViewer::_mouseEventHandler);
+		removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicImageViewer::_mouseEventHandler);
+		removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageViewer::_mouseEventHandler);
 		//removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
 
 		//最小化ボタン
-		minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicImageFrame::_uiEventHandler);
+		minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicImageViewer::_uiEventHandler);
 		delete minimizeButton;
 		minimizeButton = NULL;
 
 		//閉じるボタン
-		closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicImageFrame::_uiEventHandler);
+		closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicImageViewer::_uiEventHandler);
 		delete closeButton;
 		closeButton = NULL;
 
@@ -125,13 +138,13 @@ namespace fl2d {
 		_normalBackWidth = 0;
 		_normalBackHeight = 0;
 
-		_onTop = false;
-
-		_dragEnabled = false;
-
 		_listeners.unsubscribeAll();
 
 		_bitmap = NULL;
+
+		delete rightBottomCorner;
+		rightBottomCorner = NULL;
+
 	}
 
 	//==============================================================
@@ -139,7 +152,7 @@ namespace fl2d {
 	//==============================================================
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::setup() {
+	void flBasicImageViewer::setup() {
 		//Sprite::setup();
 
 		_setup();
@@ -155,8 +168,8 @@ namespace fl2d {
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::_setup() {
-		ofLog() << "[flBasicImageFrame]_setup()";
+	void flBasicImageViewer::_setup() {
+		ofLog() << "[flBasicImageViewer]_setup()";
 
 		//_normalBackWidth = 380 + 350;
 		//_normalBackHeight = 759 + 5;
@@ -177,22 +190,28 @@ namespace fl2d {
 		flTextField* label = NULL;
 		////--------------------------------------
 
-
-
+		rightBottomCorner->x(_backWidth);
+		rightBottomCorner->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
 	//
-	void flBasicImageFrame::_update() {
-		//ofLog() << "[flBasicImageFrame]update()";
+	void flBasicImageViewer::_update() {
+		//ofLog() << "[flBasicImageViewer]update()";
 
+		int dx = abs(rightBottomCorner->x() - rightBottomCorner->startDragPoint().x);
+		int dy = abs(rightBottomCorner->y() - rightBottomCorner->startDragPoint().y);
+		if (dx == 0 && dy == 0) return;
 
+		int x = rightBottomCorner->x();
+		int y = rightBottomCorner->y();
+		_updateGraphics(x, y);
 	}
 
 	//--------------------------------------------------------------
 	//
-	void flBasicImageFrame::_draw() {
-		//ofLog() << "[flBasicImageFrame]draw()";
+	void flBasicImageViewer::_draw() {
+		//ofLog() << "[flBasicImageViewer]draw()";
 
 		if (_mode == 0) return;
 
@@ -204,10 +223,87 @@ namespace fl2d {
 	//==============================================================
 
 	//--------------------------------------------------------------
-	bool flBasicImageFrame::active() { return _isActive; }
+	bool flBasicImageViewer::active() { return _isActive; }
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::active(bool value) {
+	void flBasicImageViewer::_updateGraphics(int x, int y) {
+
+		if (_isActive) {
+			int borderWidth = 1;
+			int imgW = x - borderWidth * 2;
+			int imgH = y - borderWidth * 2 - (22 + 5);
+
+			//rightBottomCorner
+
+			//if (dx > dy) {
+			//	w = (_defaultImageWidth / _defaultImageHeight) * h;
+			//}
+			//else if (dx < dy) {
+			//	h = (_defaultImageHeight / _defaultImageWidth) * w;
+			//}
+
+			//if (x > y) {
+			//	//縦幅に横幅を合わせる
+			//	w = (_defaultImageWidth / _defaultImageHeight) * h;
+			//	if (x < w) {
+			//		w = x - borderWidth * 2;
+			//		//横幅に縦幅を合わせる
+			//		h = (_defaultImageHeight / _defaultImageWidth) * w;
+			//	}
+			//}
+			//else if (x < y) {
+			//	//横幅に縦幅を合わせる
+			//	h = (_defaultImageHeight / _defaultImageWidth) * w;
+			//}
+
+			//if (dx > dy) {
+			//	//横幅に縦幅を合わせる
+			//	h = (_defaultImageHeight / _defaultImageWidth) * w;
+			//	//if (y < h) {
+			//	//	h = y - borderWidth * 2 - (22 + 5);
+			//	//	//縦幅に横幅を合わせる
+			//	//	w = (_defaultImageWidth / _defaultImageHeight) * h;
+			//	//}
+			//}
+			//else if (dx < dy) {
+			//	//縦幅に横幅を合わせる
+			//	w = (_defaultImageWidth / _defaultImageHeight) * h;
+			//	//if (x < w) {
+			//	//	w = x - borderWidth * 2;
+			//	//	//横幅に縦幅を合わせる
+			//	//	h = (_defaultImageHeight / _defaultImageWidth) * w;
+			//	//}
+			//}
+			
+			if (_defaultImageWidth > _defaultImageHeight) {
+				//横幅に縦幅を合わせる
+				imgH = (_defaultImageHeight / _defaultImageWidth) * imgW;
+			}
+			else {
+				//縦幅に横幅を合わせる
+				imgW = (_defaultImageWidth / _defaultImageHeight) * imgH;
+			}
+			_bitmap->width(imgW);
+			_bitmap->height(imgH);
+
+			_backWidth = imgW + borderWidth * 2;
+			_backHeight = (22 + 5) + imgH + borderWidth * 2;
+
+			flGraphics* g = graphics();
+			g->clear();
+			g->lineStyle(1, 0xffffff);
+			g->beginFill(0x000000, 0.7);
+			g->drawRect(0, 0, _backWidth, _backHeight);
+			g->endFill();
+
+			minimizeButton->x(_backWidth - (18 + 5 + 18 + 5));
+
+			closeButton->x(_backWidth - (18 + 5));
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flBasicImageViewer::active(bool value) {
 		//if (_bitmap->width() == 0.0 || _bitmap->height() == 0.0) return;
 
 		if (_isActive == value) return;
@@ -216,55 +312,54 @@ namespace fl2d {
 		dragEnabled(_isActive);
 
 		if (_isActive) {
-			//mouseChildren(true);
+			_bitmap->x(1);
+			_bitmap->y((22 + 5) + 1);
 
-			_bitmap->scaleX(0.5);
-			_bitmap->scaleY(0.5);
-			addChild(_bitmap, 1, 1 + (22 + 5));
+			_backWidth = _bitmap->width() + 2;
+			_backHeight = (22 + 5) + _bitmap->height() + 2;
 
-			int w = _bitmap->width();
-			int h = _bitmap->height();
+			minimizeButton->x(_backWidth - (18 + 5 + 18 + 5));
+			minimizeButton->visible(true);
 
-			flGraphics* g = graphics();
-			g->clear();
-			g->lineStyle(1, 0xffffff);
-			g->beginFill(0x000000, 0.7);
-			g->drawRect(0, 0, w + 2, h + 2 + (22 + 5));
-			g->endFill();
+			closeButton->x(_backWidth - (18 + 5));
+			closeButton->visible(true);
 
-			{
-				_updateRect();
+			rightBottomCorner->x(_backWidth);
+			rightBottomCorner->y(_backHeight);
+			rightBottomCorner->visible(true);
 
-				float w = width();
-				minimizeButton->x(w - (18 + 5 + 18 + 5));
-
-				closeButton->x(w - (18 + 5));
-
-				minimizeButton->visible(true);
-				closeButton->visible(true);
-			}
+			int x = rightBottomCorner->x();
+			int y = rightBottomCorner->y();
+			_updateGraphics(x, y);
 		}
 		else {
-			//mouseChildren(false);
+			_bitmap->x(1);
+			_bitmap->y(1);
 
 			_bitmap->width(_defaultImageWidth);
 			_bitmap->height(_defaultImageHeight);
-			addChild(_bitmap, 1, 1);
+
+			_backWidth = _defaultImageWidth + 2;
+			_backHeight = _defaultImageHeight + 2;
+
+			minimizeButton->visible(false);
+			closeButton->visible(false);
+
+			rightBottomCorner->x(_backWidth);
+			rightBottomCorner->y(_backHeight);
+			rightBottomCorner->visible(false);
 
 			flGraphics* g = graphics();
 			g->clear();
 			g->lineStyle(1, 0xffffff);
 			g->beginFill(0x000000, 0.7);
-			g->drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+			g->drawRect(0, 0, _backWidth, _backHeight);
 			g->endFill();
-
-			minimizeButton->visible(false);
-			closeButton->visible(false);
 		}
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::minimize() {
+	void flBasicImageViewer::minimize() {
 		if (_mode == 0) return;
 		_mode = 0;
 		minimizeButton->selected(true);
@@ -302,14 +397,14 @@ namespace fl2d {
 
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::normalize() {
+	void flBasicImageViewer::normalize() {
 		if (_mode == 1) return;
 		_mode = 1;
 
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::maximize() {
+	void flBasicImageViewer::maximize() {
 		if (_mode == 2) return;
 		_mode = 2;
 
@@ -346,7 +441,7 @@ namespace fl2d {
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::resize(float w, float h) {
+	void flBasicImageViewer::resize(float w, float h) {
 
 	}
 
@@ -359,16 +454,19 @@ namespace fl2d {
 	//==============================================================
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::_mouseEventHandler(flEvent& event) {
-		//ofLog() << "[flBasicImageFrame]_mouseEventHandler(" << event.type() << ")";
-		//ofLog() << "[flBasicImageFrame]this          = " << this;
-		//ofLog() << "[flBasicImageFrame]currentTarget = " << event.currentTarget();
-		//ofLog() << "[flBasicImageFrame]target        = " << event.target();
-			//Roll Over
+	void flBasicImageViewer::_mouseEventHandler(flEvent& event) {
+		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]_mouseEventHandler(" << event.type() << ")";
+		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]this          = " << this;
+		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]currentTarget = " << event.currentTarget();
+		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]target        = " << event.target();
+		
+		//Roll Over
 		if (event.type() == flMouseEvent::ROLL_OVER) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
-			if (event.target() == this) {
+			if (target == this) {
 
 			}
 		}
@@ -376,8 +474,10 @@ namespace fl2d {
 		//Roll Out
 		if (event.type() == flMouseEvent::ROLL_OUT) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
-			if (event.target() == this) {
+			if (target == this) {
 
 			}
 		}
@@ -385,8 +485,10 @@ namespace fl2d {
 		//Mouse Over
 		if (event.type() == flMouseEvent::MOUSE_OVER) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
-			if (event.target() == this) {
+			if (target == this) {
 
 			}
 		}
@@ -394,8 +496,10 @@ namespace fl2d {
 		//Mouse Out
 		if (event.type() == flMouseEvent::MOUSE_OUT) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
-			if (event.target() == this) {
+			if (target == this) {
 
 			}
 		}
@@ -403,31 +507,42 @@ namespace fl2d {
 		//Mouse Down
 		if (event.type() == flMouseEvent::MOUSE_DOWN) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
-			if (event.target() == this) {
+			if (target == this) {
 				if (_dragEnabled) {
-					//if (_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
+					((flDisplayObjectContainer*)parent())->addChild(this);
 					startDrag();
-					stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageFrame::_mouseEventHandler);
+					stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 				}
+			}
+
+			if (target == rightBottomCorner) {
+				stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 			}
 		}
 
 		//Mouse Up
 		if (event.type() == flMouseEvent::MOUSE_UP) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
 
 			//if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
-			if (event.target() == stage()) {
-				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageFrame::_mouseEventHandler);
+			if (target == stage()) {
+				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 				stopDrag();
+
+				rightBottomCorner->x(_backWidth);
+				rightBottomCorner->y(_backHeight);
 			}
 		}
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageFrame::_uiEventHandler(flEvent& event) {
-		//    ofLog() << "[flBasicImageFrame]_uiEventHandler(" << event.type();
+	void flBasicImageViewer::_uiEventHandler(flEvent& event) {
+		//    ofLog() << "[flBasicImageViewer]_uiEventHandler(" << event.type();
 
 		//ボタン
 		if (event.type() == flButtonEvent::ROLL_OVER) {

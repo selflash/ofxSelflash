@@ -5,11 +5,12 @@
 
 namespace fl2d {
     
-    class flAbstractController : public flSprite {
+    class flAbstractController {
         public:
             flTextField* titleTf = NULL;
             flButton* minimizeButton = NULL;
-            flButton* closeButton = NULL;
+			flButton* maximizeButton = NULL;
+			flButton* closeButton = NULL;
 
             //--------------------------------------
             //テキストフィールド(000)

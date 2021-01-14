@@ -87,6 +87,14 @@
 
 #include "flToolTip.h"
 
+//Templates
+//#include "flAbstractController.h"
+//#include "flBasicController.h"
+//#include "flBasicDraggableObject.h"
+//#include "flBasicImageViewer.h"
+
+
+
 //Those classes are basic templates.
 //If you use them, include the following in your project.
 //#include "flBasicController.h"
