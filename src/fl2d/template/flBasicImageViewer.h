@@ -18,6 +18,8 @@ namespace fl2d {
 			float _normalBackWidth;
 			float _normalBackHeight;
 
+			string _titleText = "";
+
 			int _mode = 0;
 
 			bool _isLocked = false;

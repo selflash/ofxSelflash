@@ -89,7 +89,7 @@
 
 //Templates
 //#include "flAbstractController.h"
-//#include "flBasicController.h"
+#include "flBasicController.h"
 //#include "flBasicDraggableObject.h"
 //#include "flBasicImageViewer.h"
 

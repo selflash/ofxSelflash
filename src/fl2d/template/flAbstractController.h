@@ -7,7 +7,7 @@ namespace fl2d {
     
     class flAbstractController {
         public:
-            flTextField* titleTf = NULL;
+            //flTextField* titleTf = NULL;
             flButton* minimizeButton = NULL;
 			flButton* maximizeButton = NULL;
 			flButton* closeButton = NULL;

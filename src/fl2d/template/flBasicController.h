@@ -10,14 +10,21 @@ namespace fl2d {
         public:
 
         protected:
-            float _backWidth;
-            float _backHeight;
-            float _minBackWidth;
-            float _minBackHeight;
-            float _normalBackWidth;
-            float _normalBackHeight;
+            float _backWidth = 0.0;
+            float _backHeight = 0.0;
+            float _minBackWidth = 0.0;
+            float _minBackHeight = 0.0;
+            float _normalBackWidth = 0.0;
+            float _normalBackHeight = 0.0;
+
+			float _margin = 0.0;
+			float _spacing = 0.0;
+			float _lineSpacing = 0.0;
+
+			string _titleText = "";
+			float _titleBarHeight = 0.0;
         
-            bool _isMinimize;
+            bool _isMinimize = false;
         
             bool _onTop;
             bool _dragEnabled;
@@ -72,6 +79,10 @@ namespace fl2d {
 			}
         
         protected:
+			//virtual void _setup();
+			//virtual void _update();
+			virtual void _draw();
+
             virtual void _flBasicControllerEventHandler(flEvent& event);
             virtual void _flBasicControllerMouseEventHandler(flEvent& event);
 
