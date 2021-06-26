@@ -229,8 +229,8 @@ namespace fl2d {
     void flButton::intValue(int value) { _intValue = value; }
     
     //--------------------------------------------------------------
-    void flButton::press(bool dispatch) {
-        //ofLog() << "[flButton]press()";
+    void flButton::down(bool dispatch) {
+        //ofLog() << "[flButton]down()";
         if(_toggleEnabled) {
             selected(!selected());
         } else {
@@ -262,7 +262,6 @@ namespace fl2d {
         //------------------------------------------
         //ƒCƒxƒ“ƒg
         if(dispatch) {
-			ofLog() << "HOGEHOGEHOGHE0";
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
             dispatchEvent(event);
         }

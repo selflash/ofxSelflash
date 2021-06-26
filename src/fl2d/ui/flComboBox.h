@@ -31,7 +31,7 @@ namespace fl2d {
         //スクロールバーを持たないドロップダウンリストに表示できる最大行数を取得または設定します。
         int _rowCount = 0;
         //単一選択リストで選択されたアイテムのインデックスを取得または設定します。
-        int _selectedIndex = 0;
+		ofParameter<int> _selectedIndex = 0;
         //------------------------------------------
         
         //------------------------------------------
@@ -238,7 +238,7 @@ namespace fl2d {
         void removeAllItems();
         
         //0から始まるインデックス番号
-        int selectedIndex();
+		ofParameter<int>& selectedIndex();
         void selectedIndex(int value, bool dispatch = true);
         
         //ComboBox コンポーネントの TextInput 部分に表示されるストリングを取得します。

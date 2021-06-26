@@ -300,19 +300,19 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    int flComboBox::selectedIndex() { return _selectedIndex; }
+	ofParameter<int>& flComboBox::selectedIndex() { return _selectedIndex; }
     void flComboBox::selectedIndex(int value, bool dispatch) {
-        _selectedIndex = value;
-        if(value < 0) _selectedIndex = 0;
-        if(_itemList.size() - 1 <= value) _selectedIndex = _itemList.size() - 1;
-        //------------------------------------------
+        if(value < 0) value = 0;
+        if(_itemList.size() - 1 <= value) value = _itemList.size() - 1;
+        
+		//------------------------------------------
         if(_selectedButton != NULL) {
             _selectedButton->selected(false);
             _selectedButton->alpha(0.7);
         }
-        _selectedButton = _buttonList[_selectedIndex];
+        _selectedButton = _buttonList[value];
         
-        _selectedItem = _itemList[_selectedIndex];
+        _selectedItem = _itemList[value];
         
         //------------------------------------------
         _topButton->labelText(_selectedItem->getProperty<string>("label"));
@@ -321,8 +321,15 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(dispatch) _dispatchEvent();
-        
+		if (dispatch) {
+			_selectedIndex.set(value);
+
+			_dispatchEvent();
+		}
+		else {
+			_selectedIndex.setWithoutEventNotifications(value);
+		}
+
         if(!_bChangedByOfParm["value"]) {
             if(_intParam != NULL) {
                 _bChangedByMyself["value"] = true;

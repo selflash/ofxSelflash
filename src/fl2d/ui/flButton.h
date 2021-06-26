@@ -59,7 +59,7 @@ namespace fl2d {
             int intValue();
             void intValue(int value);
         
-            void press(bool dispatch = true);
+            void down(bool dispatch = true);
         
             //------------------------------------------
             ofParameter<bool>* _boolParam = NULL;

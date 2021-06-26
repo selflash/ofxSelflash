@@ -12,7 +12,8 @@ namespace fl2d {
         
         _target = this;
         name("flBasicController");
-        
+		_titleText = "[Contoller]";
+
         useHandCursor(true);
         
         addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_flBasicControllerMouseEventHandler);
@@ -20,22 +21,33 @@ namespace fl2d {
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerMouseEventHandler);
         //addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
-        float marginLeft; float marginTop;
-        float spacing; float lineSpacing;
+		float marginLeft; float marginTop;
+		int x, y, w, h;
+		flDisplayObject* displayObject = NULL;
+		flTextField* label = NULL;
         //--------------------------------------
-        marginLeft = 5;
-        marginTop = 5;
-        spacing = 100;
-        lineSpacing = 22;
-        
-        titleTf = new flTextField();
-        titleTf->x(marginLeft + spacing * 0);
-        titleTf->y(marginTop + lineSpacing * 0);
-        titleTf->width(120);
-        titleTf->textColor(0xffffff);
-        titleTf->text("[Contoller]");
-        titleTf->mouseEnabled(false);
-        addChild(titleTf);
+
+		_margin = 6;
+		_spacing = 150;
+		_lineSpacing = 18 + _margin;
+
+		marginLeft = _margin;
+		marginTop = _margin;
+
+        //marginLeft = 5;
+        //marginTop = 5;
+        //spacing = 100;
+        //lineSpacing = 22;   
+		x = marginLeft;
+		y = marginTop;
+        //titleTf = new flTextField();
+        //titleTf->x(x);
+        //titleTf->y(y);
+        //titleTf->width(120);
+        //titleTf->textColor(0xffffff);
+        //titleTf->text("[Contoller]");
+        //titleTf->mouseEnabled(false);
+        //addChild(titleTf);
         //--------------------------------------
         
         _isMinimize = false;
@@ -67,7 +79,9 @@ namespace fl2d {
         _onTop = true;
         
         _dragEnabled = true;
-    }
+
+		_titleBarHeight = (_margin + 18) + _margin;
+	}
     
     //--------------------------------------------------------------
     flBasicController::~flBasicController() {
@@ -118,9 +132,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::setup() {
-        //Sprite::setup();
-        
-        _setup();
+        flSprite::setup();        
+        //_setup();
         
         _updateRect();
         
@@ -130,6 +143,16 @@ namespace fl2d {
         
         closeButton->x(w - (18 + 5));
         //closeButton->y(4);
+    }
+
+    //--------------------------------------------------------------
+    void flBasicController::_draw() {
+		flSprite::_draw();
+
+		ofPushStyle();
+		ofSetColor(255, 255, 255, 255);
+		flFont::drawString(_titleText, 6, 20);
+		ofPopStyle();
     }
     
     //==============================================================
@@ -161,7 +184,7 @@ namespace fl2d {
         for(i = 0; i < l; i++) {
             flDisplayObject* child = getChildAt(i);
             
-            if(child == titleTf) continue;
+            //if(child == titleTf) continue;
             if(child == closeButton) continue;
             if(child == minimizeButton) continue;
             
@@ -198,7 +221,7 @@ namespace fl2d {
         for(i = 0; i < l; i++) {
             flDisplayObject* child = getChildAt(i);
             
-            if(child == titleTf) continue;
+            //if(child == titleTf) continue;
             if(child == closeButton) continue;
             if(child == minimizeButton) continue;
             

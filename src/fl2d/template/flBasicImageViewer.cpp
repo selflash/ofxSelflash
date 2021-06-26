@@ -11,6 +11,7 @@ namespace fl2d {
 		//ofLog() << "[flBasicImageViewer]flBasicImageViewer()";
 		_target = this;
 		name("flBasicImageViewer");
+		_titleText = "[flBasicImageViewer]";
 
 		//mouseChildren(false);
 		useHandCursor(true);
@@ -28,13 +29,13 @@ namespace fl2d {
 		spacing = 100;
 		lineSpacing = 22;
 
-		titleTf = new flTextField();
-		titleTf->x(marginLeft + spacing * 0);
-		titleTf->y(marginTop + lineSpacing * 0);
-		titleTf->width(120);
-		titleTf->textColor(0xffffff);
-		titleTf->text("[Contoller]");
-		titleTf->mouseEnabled(false);
+		//titleTf = new flTextField();
+		//titleTf->x(marginLeft + spacing * 0);
+		//titleTf->y(marginTop + lineSpacing * 0);
+		//titleTf->width(120);
+		//titleTf->textColor(0xffffff);
+		//titleTf->text("[Contoller]");
+		//titleTf->mouseEnabled(false);
 		//titleTf->text("[" + title + "]");
 		//addChild(titleTf);
 		//--------------------------------------
@@ -383,7 +384,7 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
-			if (child == titleTf) continue;
+			//if (child == titleTf) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 
@@ -429,7 +430,7 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
-			if (child == titleTf) continue;
+			//if (child == titleTf) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 
