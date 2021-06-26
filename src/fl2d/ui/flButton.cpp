@@ -262,7 +262,6 @@ namespace fl2d {
         //------------------------------------------
         //ƒCƒxƒ“ƒg
         if(dispatch) {
-			ofLog() << "HOGEHOGEHOGHE0";
             flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
             dispatchEvent(event);
         }
