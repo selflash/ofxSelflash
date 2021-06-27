@@ -209,6 +209,13 @@ namespace fl2d {
 		else {
 			_selected.setWithoutEventNotifications(value);
 		}
+
+		if (!_bChangedByOfParm["value"]) {
+			if (_boolParam != NULL) {
+				_bChangedByMyself["value"] = true;
+				_boolParam->set(_selected);
+			}
+		}
         //------------------------------------------
     }
     
@@ -250,23 +257,23 @@ namespace fl2d {
     // Protected / Private Method
     //==============================================================
     
-    //--------------------------------------------------------------
-    void flButton::_changeValue(bool dispatch) {
-        //------------------------------------------
-        if(_boolParam != NULL) {
-            _bChangedByMyself["value"] = true;
-//            _boolParam->set(_value);
-        }
-        //------------------------------------------
-
-        //------------------------------------------
-        //イベント
-        if(dispatch) {
-            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
-            dispatchEvent(event);
-        }
-        //------------------------------------------
-    }
+//    //--------------------------------------------------------------
+//    void flButton::_changeValue(bool dispatch) {
+//        //------------------------------------------
+//        if(_boolParam != NULL) {
+//            _bChangedByMyself["value"] = true;
+////            _boolParam->set(_value);
+//        }
+//        //------------------------------------------
+//
+//        //------------------------------------------
+//        //イベント
+//        if(dispatch) {
+//            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
+//            dispatchEvent(event);
+//        }
+//        //------------------------------------------
+//    }
     
     //--------------------------------------------------------------
     void flButton::_onOver() {
@@ -304,6 +311,15 @@ namespace fl2d {
     void flButton::_onPress() {
         if(_toggleEnabled) {
             selected(!selected());
+
+			//------------------------------------------
+			if (!_bChangedByOfParm["value"]) {
+				if (_boolParam != NULL) {
+					_bChangedByMyself["value"] = true;
+					_boolParam->set(_selected);
+				}
+			}
+			//------------------------------------------
         } else {
             _setActiveColor();
         }

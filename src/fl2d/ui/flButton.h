@@ -75,14 +75,20 @@ namespace fl2d {
                     if(_bChangedByMyself["value"]) {
                         _bChangedByMyself["value"] = false;
                     } else {
-                        if(val == true) {
-                            _onPress();
-                        }
-//                        value(val);
+						_bChangedByOfParm["value"] = true;
+						selected(val);
+//                        if(val == true) {
+//                            _onPress();
+//                        }
+////                        value(val);
                     }
                 }));
                 
 //                value(_floatParam->get());
+
+				_bChangedByOfParm["value"] = true;
+				selected(_boolParam->get());
+				_bChangedByOfParm["value"] = false;
             }
             virtual inline void unbind() {
                 _listeners.unsubscribeAll();
@@ -95,7 +101,7 @@ namespace fl2d {
             virtual void _update();
             virtual void _draw();
         
-            virtual void _changeValue(bool dispatch = true);
+            //virtual void _changeValue(bool dispatch = true);
 
             virtual void _onOver();
             virtual void _onOut();
