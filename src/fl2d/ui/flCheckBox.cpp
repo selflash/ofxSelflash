@@ -130,6 +130,33 @@ namespace fl2d {
     void flCheckBox::labelText(string value) {
         _label->text(value);
         _updateRect();
+
+		if (_enabled) {
+			if (!_selected) {
+				if (isMouseOver()) {
+					_setOverColor();
+				}
+				else {
+					_setNormalColor();
+				}
+			}
+			else {
+				if (isMouseOver()) {
+					_setSelectedOverColor();
+				}
+				else {
+					_setActiveColor();
+				}
+			}
+		}
+		else {
+			if (!_selected) {
+				_setDisableNormalColor();
+			}
+			else {
+				_setDisableActiveColor();
+			}
+		}
     }
     
     //--------------------------------------------------------------

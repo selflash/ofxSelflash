@@ -105,6 +105,8 @@ namespace fl2d {
 			g->drawCircle(0, 0, 12);
 			g->endFill();
 		}
+
+		_dragEnabled = false;
 	}
 
 	//--------------------------------------------------------------
@@ -146,6 +148,7 @@ namespace fl2d {
 		delete rightBottomCorner;
 		rightBottomCorner = NULL;
 
+		_scaleOnActive = 0;
 	}
 
 	//==============================================================
@@ -313,20 +316,22 @@ namespace fl2d {
 		dragEnabled(_isActive);
 
 		if (_isActive) {
-			_bitmap->x(1);
-			_bitmap->y((22 + 5) + 1);
+			//_backWidth = _bitmap->width() + 2;
+			//_backHeight = (22 + 5) + _bitmap->height() + 2;
 
-			_backWidth = _bitmap->width() + 2;
-			_backHeight = (22 + 5) + _bitmap->height() + 2;
+			//_bitmap->x(1);
+			_bitmap->y(1 + (22 + 5));
 
-			minimizeButton->x(_backWidth - (18 + 5 + 18 + 5));
+			//minimizeButton->x(_backWidth - (18 + 5 + 18 + 5));
 			minimizeButton->visible(true);
 
-			closeButton->x(_backWidth - (18 + 5));
+			//closeButton->x(_backWidth - (18 + 5));
 			closeButton->visible(true);
 
-			rightBottomCorner->x(_backWidth);
-			rightBottomCorner->y(_backHeight);
+			_backHeight = _bitmap->y() + _bitmap->height() + 1;
+
+			rightBottomCorner->x(_backWidth * _scaleOnActive);
+			rightBottomCorner->y(_backHeight * _scaleOnActive);
 			rightBottomCorner->visible(true);
 
 			int x = rightBottomCorner->x();
@@ -334,7 +339,7 @@ namespace fl2d {
 			_updateGraphics(x, y);
 		}
 		else {
-			_bitmap->x(1);
+			//_bitmap->x(1);
 			_bitmap->y(1);
 
 			_bitmap->width(_defaultImageWidth);

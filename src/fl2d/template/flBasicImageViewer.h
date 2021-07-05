@@ -27,6 +27,7 @@ namespace fl2d {
 			ofEventListeners _listeners;
 
 			bool _isActive = false;
+			float _scaleOnActive = 2.0;
 
 			flBasicDraggableObject* rightBottomCorner;
 
@@ -71,6 +72,9 @@ namespace fl2d {
 					}
 				}
 			}
+
+			virtual inline float scaleOnActive() { return _scaleOnActive; }
+			virtual inline void scaleOnActive(float value) { _scaleOnActive = value; }
 
 		protected:
 			virtual void _setup();
