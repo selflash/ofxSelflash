@@ -625,7 +625,13 @@ namespace fl2d {
             flRangeSlider* rangeSlider320 = NULL; flRangeSlider* rangeSlider321 = NULL; flRangeSlider* rangeSlider322 = NULL; flRangeSlider* rangeSlider323 = NULL;
             flRangeSlider* rangeSlider324 = NULL; flRangeSlider* rangeSlider325 = NULL; flRangeSlider* rangeSlider326 = NULL; flRangeSlider* rangeSlider327 = NULL;
             flRangeSlider* rangeSlider328 = NULL; flRangeSlider* rangeSlider329 = NULL;
-            //レンジスライダー(400)
+			flRangeSlider* rangeSlider330 = NULL; flRangeSlider* rangeSlider331 = NULL; flRangeSlider* rangeSlider332 = NULL; flRangeSlider* rangeSlider333 = NULL;
+			flRangeSlider* rangeSlider334 = NULL; flRangeSlider* rangeSlider335 = NULL; flRangeSlider* rangeSlider336 = NULL; flRangeSlider* rangeSlider337 = NULL;
+			flRangeSlider* rangeSlider338 = NULL; flRangeSlider* rangeSlider339 = NULL;
+			flRangeSlider* rangeSlider340 = NULL; flRangeSlider* rangeSlider341 = NULL; flRangeSlider* rangeSlider342 = NULL; flRangeSlider* rangeSlider343 = NULL;
+			flRangeSlider* rangeSlider344 = NULL; flRangeSlider* rangeSlider345 = NULL; flRangeSlider* rangeSlider346 = NULL; flRangeSlider* rangeSlider347 = NULL;
+			flRangeSlider* rangeSlider348 = NULL; flRangeSlider* rangeSlider349 = NULL;
+			//レンジスライダー(400)
             flRangeSlider* rangeSlider400 = NULL; flRangeSlider* rangeSlider401 = NULL; flRangeSlider* rangeSlider402 = NULL; flRangeSlider* rangeSlider403 = NULL;
             flRangeSlider* rangeSlider404 = NULL; flRangeSlider* rangeSlider405 = NULL; flRangeSlider* rangeSlider406 = NULL; flRangeSlider* rangeSlider407 = NULL;
             flRangeSlider* rangeSlider408 = NULL; flRangeSlider* rangeSlider409 = NULL;
