@@ -58,10 +58,10 @@ namespace fl2d {
         
         //            bool _enabledAntiAliasing;
         
-        //            //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。
-        //            bool _background;
-        //            //テキストフィールドの背景の色です。
-        //            int _backgroundColor;
+        //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。
+        bool _background = false;
+        //テキストフィールドの背景の色です。
+		ofColor _backgroundColor = ofColor::gray;
         
         //            //指定されたテキストフィールドに現在表示されている一番下の行を示す整数です（1 から始まるインデックス）。
         //            int _bottomScrollV;
@@ -121,6 +121,12 @@ namespace fl2d {
         
 		virtual string autoSize();
 		virtual void autoSize(string value);
+
+		virtual const bool background();
+		virtual void background(bool value);
+
+		virtual const ofColor backgroundColor();
+		virtual void backgroundColor(ofColor value);
 
 		virtual const flTextFormat* defaultTextFormat();
 		virtual void defaultTextFormat(flTextFormat* value);

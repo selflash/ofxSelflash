@@ -179,7 +179,7 @@ namespace fl2d {
             _tx = 2;
         }
         else if(_autoSize == flTextFieldAutoSize::RIGHT) {
-            _tx = _realWidth - _textWidth;
+            _tx = _realWidth - _textWidth - 7;
             _tx = floor(_tx);
         }
         else if(_autoSize == flTextFieldAutoSize::CENTER) {
@@ -197,12 +197,23 @@ namespace fl2d {
         ofSetColor(_textColor, 255 * _compoundAlpha);
         //        if(_enabledAntiAliasing) { ofEnableAntiAliasing(); }
 		//flFont::drawString(_text, 1, -4);
-        flFont::drawString(
-			_text, 
-			(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
-			1, 
-			-4
-		);
+		if (_background) {
+			flFont::drawStringHighlight(
+				_text,
+				(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
+				1,
+				-4,
+				_backgroundColor
+			);
+		}
+		else {
+			flFont::drawString(
+				_text,
+				(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
+				1,
+				-4
+			);
+		}
         //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }
         ofPopStyle();
         
@@ -438,6 +449,14 @@ namespace fl2d {
     //--------------------------------------------------------------
     string flTextField::autoSize() { return _autoSize; }
     void flTextField::autoSize(string value) { _autoSize = value; }
+
+	//--------------------------------------------------------------
+	const bool flTextField::background() { return _background; }
+	void flTextField::background(bool value) { _background = value; }
+
+	//--------------------------------------------------------------
+	const ofColor flTextField::backgroundColor() { return _backgroundColor; }
+	void flTextField::backgroundColor(ofColor value) { _backgroundColor = value; }
 
 	//--------------------------------------------------------------
 	const flTextFormat* flTextField::defaultTextFormat() { return _defaultTextFormat; }
