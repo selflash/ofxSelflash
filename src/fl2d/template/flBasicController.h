@@ -17,6 +17,9 @@ namespace fl2d {
             float _normalBackWidth = 0.0;
             float _normalBackHeight = 0.0;
 
+			flGraphics _minimalGraphics;
+			flGraphics _normalGraphics;
+
 			float _margin = 0.0;
 			float _spacing = 0.0;
 			float _lineSpacing = 0.0;
