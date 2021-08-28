@@ -227,7 +227,7 @@ namespace fl2d {
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
-        //children()の箇所はリファクタリングとかで外に出したらダメ
+        //children.size()の箇所はリファクタリングとかで外に出したらダメ
         for(int i = 0; i < children.size(); i++){
             if(children[i] == child){
                 child->stage(NULL);
@@ -247,7 +247,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
-        //children()の箇所はリファクタリングとかで外に出したらダメ
+        //children.size()の箇所はリファクタリングとかで外に出したらダメ
         if(index < 0 || index > children.size() - 1) return NULL;
         flDisplayObject* child;
         child = children[index];
