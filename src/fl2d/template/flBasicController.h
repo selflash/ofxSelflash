@@ -21,6 +21,8 @@ namespace fl2d {
 			flGraphics _normalGraphics;
 
 			float _margin = 0.0;
+			float _marginLeft = 0.0; 
+			float _marginTop = 0.0;
 			float _spacing = 0.0;
 			float _lineSpacing = 0.0;
 
