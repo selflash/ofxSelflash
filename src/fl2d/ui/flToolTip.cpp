@@ -55,7 +55,7 @@ namespace fl2d {
         //--------------------------------------
         ofPushStyle();
         ofSetColor(255, 255, 255);
-        flFont::drawString(_text, 10, 3, _fontHeight - 5);
+        flFont::drawString(_text, 10, 3, _fontHeight - 2);
         ofPopStyle();
         //--------------------------------------
     }

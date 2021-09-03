@@ -99,7 +99,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(event.target() == this) {
                 if(_dragEnabled) {
-                    ((flDisplayObjectContainer*)parent())->addChild(this);
+                    if(_moveFrontOnSelect) ((flDisplayObjectContainer*)parent())->addChild(this);
                     startDrag();
                     stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicDraggableObject::_mouseEventHandler);
                 }

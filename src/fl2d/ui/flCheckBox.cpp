@@ -311,7 +311,7 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
         //外側
@@ -339,7 +339,7 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
         //外側
