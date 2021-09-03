@@ -35,7 +35,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flEvent::flEvent(string type) {
-        //        cout << "[flEvent]flEvent1()" << endl;
+        //ofLog() << "[flEvent]flEvent()";
         
         _type = type;
         

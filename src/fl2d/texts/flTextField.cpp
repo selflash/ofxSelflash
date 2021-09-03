@@ -202,7 +202,7 @@ namespace fl2d {
 				_text,
 				(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
 				1,
-				-4,
+				-3,
 				_backgroundColor
 			);
 		}
@@ -211,7 +211,7 @@ namespace fl2d {
 				_text,
 				(_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10,
 				1,
-				-4
+				-3
 			);
 		}
         //        if(_enabledAntiAliasing) { ofDisableAntiAliasing(); }

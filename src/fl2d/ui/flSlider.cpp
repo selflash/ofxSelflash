@@ -90,7 +90,7 @@ namespace fl2d {
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
         _valueText->text(ofToString(_value));
         _valueText->mouseEnabled(false);
-        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 0);
+        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5));
         addChild(_valueText);
         //------------------------------------------
         
