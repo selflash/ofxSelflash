@@ -3,7 +3,7 @@
 namespace fl2d {
     
     //==============================================================
-    // CONSTRUCTOR / DESTRUCTOR
+	// Constructor / Destructor
     //==============================================================
     
     //--------------------------------------------------------------
@@ -33,7 +33,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PUBLIC METHOD
+    // Public Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -137,7 +137,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // PRIVATE METHOD
+    // Protected / Private Method
     //==============================================================
     
     //--------------------------------------------------------------
@@ -155,14 +155,14 @@ namespace fl2d {
 //    }
     //--------------------------------------------------------------
     void flRectangle::__expandTo(float x, float y) {
-        //        if(isNull()) {
-        //            _xMin = x;
-        //            _yMin = y;
-        //            _xMax = x;
-        //            _yMax = y;
-        //            _isChanged = true;
-        //            return;
-        //        }
+        //if(isNull()) {
+        //    _xMin = x;
+        //    _yMin = y;
+        //    _xMax = x;
+        //    _yMax = y;
+        //    _isChanged = true;
+        //    return;
+        //}
         
         if(
            _xMin != MIN(_xMin, x) ||
@@ -179,12 +179,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRectangle::__expandToX(float x) {
-        //        if(isNull()) {
-        //            _xMin = x;
-        //            _xMax = x;
-        //            _isChanged = true;
-        //            return;
-        //        }
+        //if(isNull()) {
+        //    _xMin = x;
+        //    _xMax = x;
+        //    _isChanged = true;
+        //    return;
+        //}
         
         if(
            _xMin != MIN(_xMin, x) ||
@@ -197,12 +197,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flRectangle::__expandToY(float y) {
-        //        if(isNull()) {
-        //            _yMin = y;
-        //            _yMax = y;
-        //            _isChanged = true;
-        //            return;
-        //        }
+        //if(isNull()) {
+        //    _yMin = y;
+        //    _yMax = y;
+        //    _isChanged = true;
+        //    return;
+        //}
         
         if(
            _yMin != MIN(_yMin, y) ||
@@ -213,38 +213,26 @@ namespace fl2d {
         _yMax = MAX(_yMax, y);
     }
     
-    //--------------------------------------------------------------
-    void flRectangle::__encloseRect(ofPoint p1, ofPoint p2, ofPoint p3, ofPoint p4) {
-        _tempPoints[0] = p1;
-        _tempPoints[1] = p2;
-        _tempPoints[2] = p3;
-        _tempPoints[3] = p4;
-        
-        __encloseRect(_tempPoints);
-    }
+	//--------------------------------------------------------------
+	void flRectangle::__expandToPoint(float x, float y) {
+		if (isNull()) {
+			__setToPoint(x, y);
+		}
+		else {
+			__expandTo(x, y);
+		}
+	}
 
-    //--------------------------------------------------------------
-    void flRectangle::__encloseRect(const vector<ofPoint>& points) {
-        for(int i = 0; i < points.size(); i++){
-            if(i == 0){
-                __setToPoint(points[0].x, points[0].y);
-                continue;
-            }
-            __expandTo(points[i].x, points[i].y);
-        }
-    }
-    //--------------------------------------------------------------
-    void flRectangle::__encloseRect(const ofPoint (&points)[4]) {
-        for(int i = 0; i < 4; i++){
-            if(i == 0){
-                __setToPoint(points[0].x, points[0].y);
-                continue;
-            }
-            __expandTo(points[i].x, points[i].y);
-        }
-    }
+	//--------------------------------------------------------------
+	void flRectangle::__expandToPoint(ofPoint& p) {
+		if (isNull()) {
+			__setToPoint(p.x, p.y);
+		}
+		else {
+			__expandTo(p.x, p.y);
+		}
+	}
 
-    
     //--------------------------------------------------------------
     void flRectangle::__expandToRect(const flRectangle& rect) {
         if(rect.isNull()) return;
@@ -263,46 +251,6 @@ namespace fl2d {
             _yMin = MIN(_yMin, rect.top());
             _xMax = MAX(_xMax, rect.right());
             _yMax = MAX(_yMax, rect.bottom());
-        }
-    }
-    
-    //--------------------------------------------------------------
-    void flRectangle::__setToPoint(float x, float y) {
-        //        if(isNull()) {
-        //            _xMin = x;
-        //            _yMin = y;
-        //            _xMax = x;
-        //            _yMax = y;
-        //            _isChanged = true;
-        //            return;
-        //        }
-        
-        if(
-           _xMin != x ||
-           _xMax != x ||
-           _yMin != y ||
-           _yMax != y
-           ) _isChanged = true;
-        
-        _xMin = _xMax = x;
-        _yMin = _yMax = y;
-    }
-    
-    //--------------------------------------------------------------
-    void flRectangle::__expandToPoint(ofPoint& p) {
-        if(isNull()) {
-            __setToPoint(p.x, p.y);
-        } else {
-            __expandTo(p.x, p.y);
-        }
-    }
-
-    //--------------------------------------------------------------
-    void flRectangle::__expandToPoint(float x, float y) {
-        if(isNull()) {
-            __setToPoint(x, y);
-        } else {
-            __expandTo(x, y);
         }
     }
     
@@ -329,17 +277,106 @@ namespace fl2d {
             _yMax = MAX(_yMax, y + radius);
         }
     }
-    
+
+	//--------------------------------------------------------------
+	void flRectangle::__contractToLeft(float x) {
+		if (_xMin != MAX(_xMin, x)) { _isChanged = true; }
+		_xMin = MAX(_xMin, x);
+	}
+	//--------------------------------------------------------------
+	void flRectangle::__contractToRight(float x) {
+		if (_xMax != MIN(_xMax, x)) { _isChanged = true; }
+		_xMax = MIN(_xMax, x);
+	}
+	//--------------------------------------------------------------
+	void flRectangle::__contractToTop(float y) {
+		if (_yMin != MAX(_yMin, y)) { _isChanged = true; }
+		_yMin = MAX(_yMin, y);
+	}
+	//--------------------------------------------------------------
+	void flRectangle::__contractToBottom(float y) {
+		if (_yMax != MIN(_yMax, y)) { _isChanged = true; }
+		_yMax = MIN(_yMax, y);
+	}
+
+	//--------------------------------------------------------------
+	void flRectangle::__contractToRect(const flRectangle& rect) {
+		if (rect.isNull()) return;
+
+		if (isNull()) {
+			*this = rect;
+		}
+		else {
+			if (
+				_xMin != MAX(_xMin, rect.left()) ||
+				_yMin != MAX(_yMin, rect.top()) ||
+				_xMax != MIN(_xMax, rect.right()) ||
+				_yMax != MIN(_yMax, rect.bottom())
+				) _isChanged = true;
+
+			_xMin = MAX(_xMin, rect.left());
+			_yMin = MAX(_yMin, rect.top());
+			_xMax = MIN(_xMax, rect.right());
+			_yMax = MIN(_yMax, rect.bottom());
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flRectangle::__setToPoint(float x, float y) {
+		//if(isNull()) {
+		//    _xMin = x;
+		//    _yMin = y;
+		//    _xMax = x;
+		//    _yMax = y;
+		//    _isChanged = true;
+		//    return;
+		//}
+
+		if (
+			_xMin != x ||
+			_xMax != x ||
+			_yMin != y ||
+			_yMax != y
+			) _isChanged = true;
+
+		_xMin = _xMax = x;
+		_yMin = _yMax = y;
+	}
+
+	//--------------------------------------------------------------
+	void flRectangle::__setToRect(const flRectangle& rect) {
+		//if(isNull()) {
+		//    _xMin = rect.left();
+		//    _yMin = rect.top();
+		//    _xMax = rect.right();
+		//    _yMax = rect.bottom();
+		//    _isChanged = true;
+		//    return;
+		//}
+
+		if (
+			_xMin != rect.left() ||
+			_yMin != rect.top() ||
+			_xMax != rect.right() ||
+			_yMax != rect.bottom()
+			) _isChanged = true;
+
+		_xMin = rect.left();
+		_yMin = rect.top();
+		_xMax = rect.right();
+		_yMax = rect.bottom();
+	}
+
     //--------------------------------------------------------------
     void flRectangle::__setToRect(float x1, float y1, float x2, float y2) {
-        //        if(isNull()) {
-        //            _xMin = x1;
-        //            _yMin = y1;
-        //            _xMax = x2;
-        //            _yMax = y2;
-        //            _isChanged = true;
-        //            return;
-        //        }
+        //if(isNull()) {
+        //    _xMin = x1;
+        //    _yMin = y1;
+        //    _xMax = x2;
+        //    _yMax = y2;
+        //    _isChanged = true;
+        //    return;
+        //}
         
         if(
            _xMin != x1 ||
@@ -353,29 +390,35 @@ namespace fl2d {
         _xMax = x2;
         _yMax = y2;
     }
-    
-    //--------------------------------------------------------------
-    void flRectangle::__setToRect(const flRectangle& rect) {
-        //        if(isNull()) {
-        //            _xMin = rect.left();
-        //            _yMin = rect.top();
-        //            _xMax = rect.right();
-        //            _yMax = rect.bottom();
-        //            _isChanged = true;
-        //            return;
-        //        }
-        
-        if(
-           _xMin != rect.left()  ||
-           _yMin != rect.top()   ||
-           _xMax != rect.right() ||
-           _yMax != rect.bottom()
-           ) _isChanged = true;
-        
-        _xMin = rect.left();
-        _yMin = rect.top();
-        _xMax = rect.right();
-        _yMax = rect.bottom();
-    }
-    
+
+	//--------------------------------------------------------------
+	void flRectangle::__encloseRect(ofPoint p1, ofPoint p2, ofPoint p3, ofPoint p4) {
+		_tempPoints[0] = p1;
+		_tempPoints[1] = p2;
+		_tempPoints[2] = p3;
+		_tempPoints[3] = p4;
+
+		__encloseRect(_tempPoints);
+	}
+
+	//--------------------------------------------------------------
+	void flRectangle::__encloseRect(const vector<ofPoint>& points) {
+		for (int i = 0; i < points.size(); i++) {
+			if (i == 0) {
+				__setToPoint(points[0].x, points[0].y);
+				continue;
+			}
+			__expandTo(points[i].x, points[i].y);
+		}
+	}
+	//--------------------------------------------------------------
+	void flRectangle::__encloseRect(const ofPoint(&points)[4]) {
+		for (int i = 0; i < 4; i++) {
+			if (i == 0) {
+				__setToPoint(points[0].x, points[0].y);
+				continue;
+			}
+			__expandTo(points[i].x, points[i].y);
+		}
+	}
 }

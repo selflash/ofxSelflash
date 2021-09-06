@@ -349,14 +349,14 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofDrawRectangle(x, y, width, height);
+            ofDrawRectangle(x + 0.5, y, width - 1.0, height);
 
-#ifdef __APPLE__
-			ofDrawLine(x + width, y, x + width + 1, y); //1ピクセルかけているのを埋める
-#elif defined _WIN32
-			ofDrawLine(x, y, x, y + height + 1); //1ピクセルかけているのを埋める
-#endif								 
-			//ofLine(x - 1, y - 1, x, y);
+//#ifdef __APPLE__
+//			ofDrawLine(x + width, y, x + width + 1, y); //1ピクセルかけているのを埋める
+//#elif defined _WIN32
+//			ofDrawLine(x, y, x, y + height + 1); //1ピクセルかけているのを埋める
+//#endif								 
+			//ofDrawLine(x - 1, y - 1, x, y);
 
             ofFill();
         }

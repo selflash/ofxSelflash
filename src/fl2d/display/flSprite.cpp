@@ -15,7 +15,7 @@ namespace fl2d {
         
         name("flSprite");
         
-        __client = NULL;
+        __hitAreaObject = NULL;
         
         _graphics = new flGraphics();
         
@@ -42,7 +42,7 @@ namespace fl2d {
         
         _target = NULL;
         
-        __client = NULL;
+        __hitAreaObject = NULL;
         
         delete _graphics;
         _graphics = NULL;
@@ -111,7 +111,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flSprite::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
-        
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_beginDrawingStencil();
+
+			//draw mask shapes
+			ofPushMatrix();
+			ofMultMatrix(_mask->parent()->transform().matrix().getPtr());
+			_mask->draw();
+			ofPopMatrix();
+			
+			_beginUsingStencil();
+		}
+		//draw scene to be masked
+		//------------------------------------------
+
         // save off current state of blend enabled
         GLboolean blendEnabled;
         glGetBooleanv(GL_BLEND, &blendEnabled);
@@ -132,20 +147,27 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-        //        bool bIdentity = true;
-        //        bIdentity = matrix().isIdentity();
-        //        bIdentity = false;
-        //        if(!bIdentity){
+        //bool bIdentity = true;
+        //bIdentity = matrix().isIdentity();
+        //bIdentity = false;
+		//if(!bIdentity){
         if(applyMatrix){
-//            glPushMatrix();
+			//glPushMatrix();
             ofPushMatrix();
-//            glMultMatrixf(matrix().getPtr());
+			//glMultMatrixf(matrix().getPtr());
             ofMultMatrix(_transform.matrix().getPtr());
         }
-        
+
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _graphics->__draw();
+
+		//if (parent()) {
+		//	ofSetColor(255, 0, 0, 255 * _compoundAlpha);
+		//	int index = ((flDisplayObjectContainer*)parent())->getChildIndex(this);
+		//	flFont::drawString(ofToString(index), 10, 40);
+		//}
+
         _draw();
         
         for(int i = 0; i < children.size(); i++){
@@ -156,13 +178,13 @@ namespace fl2d {
         }
         ofPopStyle();
         
-        //        if(!bIdentity) {
+        //if(!bIdentity) {
         if(applyMatrix) {
-            //            glPopMatrix();
+            //glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
-        
+
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
         if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
@@ -202,6 +224,12 @@ namespace fl2d {
             ofPopMatrix();
         }
         //--------------------------------------
+
+		//------------------------------------------
+		if (_mask != NULL) {			 
+			_endUsingStencil();
+		}
+		//------------------------------------------
     }
     
     //==============================================================
@@ -337,17 +365,24 @@ namespace fl2d {
          */
         
         if(value == NULL) {
-            value->__client = NULL;
+            value->__hitAreaObject = NULL;
             _hitArea = NULL;
         } else {
-            value->__client = this;
+            value->__hitAreaObject = this;
             _hitArea = value;
         }
     }
     
     //--------------------------------------------------------------
     bool flSprite::hitTestPoint(float x, float y, bool shapeFlag) {
+		//if (_mask != NULL) {
+		//	bool isHit = _mask->hitTestPoint(x, y, shapeFlag);
+		//	//ofLog() << "hitTestPoint" << isHit;
+		//	return isHit;
+		//}
+
         ofPoint p(x, y);
+
         //グローバル座標からローカル座標に変換
         //Transform to local from global.
         _transform.__concatenatedMatrixInv.transformPoint(p);
@@ -558,7 +593,7 @@ namespace fl2d {
             _rect->__expandTo(childRect.left(), childRect.top());
             _rect->__expandTo(childRect.right(), childRect.bottom());
         }
-        
+       
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         
@@ -568,6 +603,17 @@ namespace fl2d {
 //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
 //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
 //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+
+		//if (_mask != NULL) {
+		//	ofPoint p = ofPoint(_mask->x(), _mask->y());
+		//	ofPoint global = _mask->parent()->localToGlobal(p);
+		//	ofPoint local = globalToLocal(global);
+
+		//	_rect->__contractToLeft(local.x);
+		//	_rect->__contractToRight(local.x + _mask->width());
+		//	_rect->__contractToTop(local.y);
+		//	_rect->__contractToBottom(local.y + _mask->height());
+		//}
     }
     
     //--------------------------------------------------------------

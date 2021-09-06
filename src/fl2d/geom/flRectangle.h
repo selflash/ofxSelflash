@@ -118,6 +118,20 @@ namespace fl2d {
             void __expandToPoint(ofPoint& p);
             void __expandToRect(const flRectangle& rect);
             void __expandToCircle(float x, float y, float radius);
+
+			//void __contractTo(ofVec2f p);
+			////        void __contractTo(vec2 p);
+			//void __contractTo(float x, float y);
+
+			//void __contractToX(float x);
+			//void __contractToY(float y);
+            void __contractToLeft(float x);
+            void __contractToRight(float x);
+			void __contractToTop(float y);
+			void __contractToBottom(float y);
+			//         void __contractToPoint(ofPoint& p);
+            void __contractToRect(const flRectangle& rect);
+            //void __contractToCircle(float x, float y, float radius);
         
             void __setToPoint(float x, float y);
             void __setToRect(const flRectangle& rect);

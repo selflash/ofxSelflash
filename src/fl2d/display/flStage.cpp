@@ -369,6 +369,7 @@ namespace fl2d {
         // clear pixel bounds on every loop and recalculate.
         //parent->resetPixelBounds();
         
+		bool isInEffectiveArea = true;
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
             child = children[i];
@@ -395,69 +396,81 @@ namespace fl2d {
 //            child->updateOnFrame();
             
             //------------------------------------ topMostHitDisplayObject
-            
-            //------------------------------------ mouseEnabled
-            if(_isInteractiveObject(child)) {
-                flInteractiveObject* intObj = (flInteractiveObject*)child;
-                if(intObj->mouseEnabled()) {
-                    
-                    //------------------------------------ hitArea
-                    if(_isSprite(child)) {
-                        flSprite* sprite = (flSprite*) child;
-                        if(sprite->hitArea() == NULL) {
-                            if(child->hitTestPoint(_mouseX, _mouseY, true)) {
-                                _topMostHitDisplayObject = child;
-                            }
-                        } else {
-                            
-                        }
-                    } else {
-                        if(child->hitTestPoint(_mouseX, _mouseY, true)) {
-                            _topMostHitDisplayObject = child;
-                        }
-                    }
-                    //------------------------------------ hitArea
-                } else {
-                    //------------------------------------ hitArea
-                    if(_isSprite(child)) {
-                        flSprite* sprite = (flSprite*)child;
-                        if(sprite->__client) {
-                            if(child->hitTestPoint(_mouseX, _mouseY, true)) {
-                                _topMostHitDisplayObject = child;
-                            }
-                        } else {
-                            
-                        }
-                    } else {
-                        
-                    }
-                    //------------------------------------ hitArea
-                }
-            } else {
-                if(child->hitTestPoint(_mouseX, _mouseY, true)) {
-                    _topMostHitDisplayObject = child;
-                }
-            }
-            //------------------------------------ mouseEnabled
-            
-            //------------------------------------ topMostHitDisplayObject
-            
-            //‡ç
-            if(_hasChildren(child)) {
-                flDisplayObjectContainer* container;
-                container = (flDisplayObjectContainer*)child;
-                
-                //------------------------------------ mouseChildren
-                if(container->mouseChildren()) {
-                    if(container->children.size() > 0) {
-                        _updateChildrenOne(child, container->children);
-                    }
-                }
-                //------------------------------------ mouseChildren
-            }
-            
-            // compound pixel bounds from children.
-            //parent->addToPixelBounds(child->pixelBounds());
+
+			if (isInEffectiveArea && child->mask() != NULL) {
+				isInEffectiveArea = child->mask()->hitTestPoint(_mouseX, _mouseY, true);
+				//ofLog() << "hitTestPoint" << isHit;
+			}
+
+			if (isInEffectiveArea) {
+				//------------------------------------ mouseEnabled
+				if (_isInteractiveObject(child)) {
+					flInteractiveObject* intObj = (flInteractiveObject*)child;
+					if (intObj->mouseEnabled()) {
+						//------------------------------------ hitArea
+						if (_isSprite(child)) {
+							flSprite* sprite = (flSprite*)child;
+							if (sprite->hitArea() == NULL) {
+								if (child->hitTestPoint(_mouseX, _mouseY, true)) {
+									_topMostHitDisplayObject = child;
+								}
+							}
+							else {
+
+							}
+						}
+						else {
+							if (child->hitTestPoint(_mouseX, _mouseY, true)) {
+								_topMostHitDisplayObject = child;
+							}
+						}
+						//------------------------------------ hitArea
+					}
+					else {
+						//------------------------------------ hitArea
+						if (_isSprite(child)) {
+							flSprite* sprite = (flSprite*)child;
+							if (sprite->__hitAreaObject) {
+								if (child->hitTestPoint(_mouseX, _mouseY, true)) {
+									_topMostHitDisplayObject = child;
+								}
+							}
+							else {
+
+							}
+						}
+						else {
+
+						}
+						//------------------------------------ hitArea
+					}
+				}
+				else {
+					if (child->hitTestPoint(_mouseX, _mouseY, true)) {
+						_topMostHitDisplayObject = child;
+					}
+				}
+				//------------------------------------ mouseEnabled
+
+				//------------------------------------ topMostHitDisplayObject
+
+				//‡ç
+				if (_hasChildren(child)) {
+					flDisplayObjectContainer* container;
+					container = (flDisplayObjectContainer*)child;
+
+					//------------------------------------ mouseChildren
+					if (container->mouseChildren()) {
+						if (container->children.size() > 0) {
+							_updateChildrenOne(child, container->children);
+						}
+					}
+					//------------------------------------ mouseChildren
+				}
+
+				// compound pixel bounds from children.
+				//parent->addToPixelBounds(child->pixelBounds());
+			}
         }
     }
     
@@ -556,9 +569,9 @@ namespace fl2d {
                          */
                         if(_isSprite(intObj)) {
                             flSprite* sprite = (flSprite*) intObj;
-                            if(sprite->__client) {
-                                dispObj = sprite->__client;
-                                //sprite->__client->dispatchEvent(mouseEvent);
+                            if(sprite->__hitAreaObject) {
+                                dispObj = sprite->__hitAreaObject;
+                                //sprite->__hitAreaObject->dispatchEvent(mouseEvent);
                                 //goto pushListEnd;
                                 
                                 intObj = (flInteractiveObject*)dispObj;
@@ -881,6 +894,8 @@ namespace fl2d {
 //        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
         flDisplayObject* mostHitDisplayObject;
         
+		bool isInEffectiveArea = true;
+
         int i; int l;
         l = children.size();
         for(i = 0; i < l; i++) {
@@ -890,6 +905,7 @@ namespace fl2d {
             if(!child->visible()) continue;
             
             //------------------------------------ topMostHitDisplayObject
+
             //------------------------------------ mouseEnabled
             if(_isInteractiveObject(child)) {
                 flInteractiveObject* intObj = (flInteractiveObject*)child;
@@ -915,7 +931,7 @@ namespace fl2d {
                     //------------------------------------ hitArea
                     if(_isSprite(child)) {
                         flSprite* sprite = (flSprite*) child;
-                        if(sprite->__client) {
+                        if(sprite->__hitAreaObject) {
                             if(child->hitTestPoint(x, y, true)) {
                                 mostHitDisplayObject = child;
                             }

@@ -195,7 +195,11 @@ namespace fl2d {
             virtual void _setup();
             virtual void _update();
             virtual void _draw();
-            
+
+			virtual void _beginDrawingStencil();
+			virtual void _beginUsingStencil();
+			virtual void _endUsingStencil();
+
             virtual void _updateRect();
             virtual flRectangle __getRect(flDisplayObject* targetCoordinateSpace);
             virtual void __updateTransform(const flMatrix& mat);

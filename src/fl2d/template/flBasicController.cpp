@@ -243,10 +243,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::_flBasicControllerEventHandler(flEvent& event) {
-//        ofLog() << "[flBasicController]_flBasicControllerEventHandler(" << event.type() << ")";
-//        ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*) this)->name();
-//        ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+        //ofLog() << "[flBasicController]_flBasicControllerEventHandler(" << event.type() << ")";
+        //ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        //ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        //ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
 
         //ƒ{ƒ^ƒ“
         if(event.type() == flButtonEvent::ROLL_OVER) {
@@ -395,6 +395,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::_flBasicControllerMouseEventHandler(flEvent& event) {
+		//ofLog() << "[flBasicController]_flBasicControllerMouseEventHandler(" << event.type() << ")";
+		//ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
@@ -435,7 +440,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
             
-            if(event.target() == this) {
+            if(event.target() == (hitArea() != NULL ? hitArea() : this)) {
                 if(_dragEnabled) {
                     if(_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
                     startDrag();

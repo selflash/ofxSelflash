@@ -110,7 +110,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObject::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
-        
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_beginDrawingStencil();
+
+			//draw mask shapes
+			ofPushMatrix();
+			ofMultMatrix(_mask->parent()->transform().matrix().getPtr());
+			_mask->draw();
+			ofPopMatrix();
+
+			_beginUsingStencil();
+		}
+		//draw scene to be masked
+		//------------------------------------------
+
         // save off current state of blend enabled
         GLboolean blendEnabled;
         glGetBooleanv(GL_BLEND, &blendEnabled);
@@ -129,7 +144,7 @@ namespace fl2d {
         glDisable(GL_DEPTH_TEST);
         if(_enabledSmoothing) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         if(_enabledAntiAliasing) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
-        
+
         //------------------------------------------
         //-- matrix transform.
         //        bool bIdentity = true;
@@ -153,7 +168,7 @@ namespace fl2d {
             ofPopMatrix();
         }
         //------------------------------------------
-        
+
         if(preMultiSample == GL_TRUE) { ofEnableAntiAliasing(); } else { ofDisableAntiAliasing(); }
         if(preLineSmooth == GL_TRUE) { ofEnableSmoothing(); } else { ofDisableSmoothing(); }
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
@@ -162,6 +177,12 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_endUsingStencil();
+		}
+		//------------------------------------------
     };
     
     //--------------------------------------------------------------
@@ -237,7 +258,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     // TODO
-    void flDisplayObject::mask(flDisplayObject* value){ }
+	void flDisplayObject::mask(flDisplayObject* value) { _mask = value; }
     flDisplayObject* flDisplayObject::mask() { return _mask; }
     
     //--------------------------------------------------------------
@@ -504,6 +525,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flDisplayObject::hitTestPoint(float x, float y, bool shapeFlag) {
+		//if (_mask != NULL) {
+		//	bool isHit = _mask->hitTestPoint(x, y, shapeFlag);
+		//	//ofLog() << "hitTestPoint" << isHit;
+		//	return isHit;
+		//}
+
         ofPoint p(x, y);
         //Global to local.
         _transform.__concatenatedMatrixInv.transformPoint(p);
@@ -581,6 +608,39 @@ namespace fl2d {
     // Protected / Private Method
     //==============================================================
 
+	//--------------------------------------------------------------
+	void flDisplayObject::_beginDrawingStencil() {
+		glPushAttrib(GL_ALL_ATTRIB_BITS);
+
+		//set up to draw stencil
+
+		glClear(GL_STENCIL_BUFFER_BIT);
+		glEnable(GL_STENCIL_TEST); //Enable using the stencil buffer  
+		glColorMask(0, 0, 0, 0); //Disable drawing colors to the screen  
+		glStencilFunc(GL_ALWAYS, 1, 1); //Make the stencil test always pass  
+		//Make pixels in the stencil buffer be set to 1 when the stencil test passes  
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+		//Set all of the pixels below to be 1 in the stencil buffer...  
+
+	}
+	//--------------------------------------------------------------
+	void flDisplayObject::_beginUsingStencil() {
+		//switch from drawing stencil to scene to be masked  
+
+		glColorMask(1, 1, 1, 1); //Enable drawing colors to the screen  
+		//Make the stencil test pass only when the pixel is 1 in the stencil buffer  
+		glStencilFunc(GL_EQUAL, 1, 1);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP); //Make the stencil buffer not change  
+		//Draw all pixels where the stencil buffer is 1...  
+	}
+	//--------------------------------------------------------------
+	void flDisplayObject::_endUsingStencil() {
+		//back to normal unmasked drawing 
+		glDisable(GL_STENCIL_TEST); //Disable using the stencil buffer  
+
+		glPopAttrib();
+	}
+
     //--------------------------------------------------------------
     void flDisplayObject::_updateRect() {
 ////        _rect->__setZero();
@@ -612,6 +672,17 @@ namespace fl2d {
 //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
 //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
 //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+
+		//if (_mask != NULL) {
+		//	ofPoint p = ofPoint(_mask->x(), _mask->y());
+		//	ofPoint global = _mask->parent()->localToGlobal(p);
+		//	ofPoint local = globalToLocal(global);
+
+		//	_rect->__contractToLeft(local.x);
+		//	_rect->__contractToRight(local.x + _mask->width());
+		//	_rect->__contractToTop(local.y);
+		//	_rect->__contractToBottom(local.y + _mask->height());
+		//}
     }
     
     //--------------------------------------------------------------

@@ -59,7 +59,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObjectContainer::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
-        
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_beginDrawingStencil();
+
+			//draw mask shapes
+			ofPushMatrix();
+			ofMultMatrix(_mask->parent()->transform().matrix().getPtr());
+			_mask->draw();
+			ofPopMatrix();
+
+			_beginUsingStencil();
+		}
+		//draw scene to be masked
+		//------------------------------------------
+
         // save off current state of blend enabled
         GLboolean blendEnabled;
         glGetBooleanv(GL_BLEND, &blendEnabled);
@@ -80,19 +95,19 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-        //        bool bIdentity = true;
-        //        bIdentity = matrix().isIdentity();
-        //        bIdentity = false;
+        //bool bIdentity = true;
+        //bIdentity = matrix().isIdentity();
+        //bIdentity = false;
         
         if(applyMatrix){
-            //            glPushMatrix();
+            //glPushMatrix();
             ofPushMatrix();
-            //            glMultMatrixf(matrix().getPtr());
+            //glMultMatrixf(matrix().getPtr());
             ofMultMatrix(_transform.matrix().getPtr());
         }
         
         ofPushStyle();
-        //        ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+        //ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
         
         for(int i = 0; i < children.size(); i++) {
@@ -104,7 +119,7 @@ namespace fl2d {
         ofPopStyle();
         
         if(applyMatrix){
-//            glPopMatrix();
+			//glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -117,6 +132,12 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_endUsingStencil();
+		}
+		//------------------------------------------
     }
     
     //==============================================================
@@ -399,7 +420,7 @@ namespace fl2d {
             _rect->__expandTo(childRect.left(), childRect.top());
             _rect->__expandTo(childRect.right(), childRect.bottom());
         }
-        
+ 
         _realWidth = _rect->width();
         _realHeight = _rect->height();
 
@@ -410,6 +431,17 @@ namespace fl2d {
 //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
 //        if(_targetWidth != -9999.0) scaleX(_targetWidth / _realWidth);
 //        if(_targetHeight != -9999.0) scaleY(_targetHeight / _realHeight);
+
+		//if (_mask != NULL) {
+		//	ofPoint p = ofPoint(_mask->x(), _mask->y());
+		//	ofPoint global = _mask->parent()->localToGlobal(p);
+		//	ofPoint local = globalToLocal(global);
+
+		//	_rect->__contractToLeft(local.x);
+		//	_rect->__contractToRight(local.x + _mask->width());
+		//	_rect->__contractToTop(local.y);
+		//	_rect->__contractToBottom(local.y + _mask->height());
+		//}
     }
     
     //--------------------------------------------------------------
