@@ -9,7 +9,7 @@
 #include "SubController1.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Deconstructor
 //==============================================================
 
 //--------------------------------------------------------------
@@ -20,213 +20,206 @@ SubController1::SubController1(string title) {
     name(title);
     useHandCursor(true);
     
-    titleTf->text("[" + title + "]");
+	_titleText = "[" + title + "]";
 }
 
 //--------------------------------------------------------------
 SubController1::~SubController1() {
     ofLog() << "[SubController1]~SubController1()";
+
     _target = NULL;
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
 void SubController1::_setup() {
     ofLog() << "[SubController1]_setup()";
     
-    flBasicController::_setup();
-    
-    _normalBackWidth = 540;
-    _normalBackHeight = 243;
-    _minBackWidth = _normalBackWidth;
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
-    
-    float marginLeft; float marginTop;
-    float spacing; float lineSpacing;
-    flTextField* textField = NULL;
-    //--------------------------------------
+	//--------------------------------------
+	int x, y, w, h = 0;
+	flDisplayObject* displayObject = NULL;
+	flTextField* label = NULL;
+	flRadioButtonGroup* radioButtonGroup = NULL;
+	//--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5;
-    marginTop = 20;
-    spacing = 155;
-    lineSpacing = 22;
+	x = _marginLeft;
+	y = _marginTop + _lineSpacing * 0;
+    label = new flTextField();
+    label->text("Rotation");
+    label->x(_marginLeft + _spacing * 0);
+    label->y(_marginTop + _lineSpacing * 0);
+    label->autoSize(flTextFieldAutoSize::CENTER);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     
-    textField = new flTextField();
-    textField->text("Rotation");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
-    
-    textField = new flTextField();
-    textField->text("Y");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 1);
-    textField->width(150);
-    textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Y");
+    label->x(_marginLeft + _spacing * 0);
+    label->y(_marginTop + _lineSpacing * 1);
+    label->width(150);
+    label->autoSize(flTextFieldAutoSize::CENTER);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1001 = new flJoyStick1(150);
-    joystick1001->label(textField);
-    joystick1001->x(marginLeft + spacing * 0);
-    joystick1001->y(marginTop + lineSpacing * 2);
+    joystick1001->label(label);
+    joystick1001->x(_marginLeft + _spacing * 0);
+    joystick1001->y(_marginTop + _lineSpacing * 2);
     joystick1001->type(flJoyStick1::HORIZONTALLY);
     //    joystick1001->enabled(false);
     joystick1001->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1001);
+    displayObject = addChild(joystick1001);
     
-    textField = new flTextField();
-    textField->text("X");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("X");
+    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1002 = new flJoyStick1(150);
-    joystick1002->label(textField);
-    joystick1002->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
-    joystick1002->y(marginTop + lineSpacing * 3);
+    joystick1002->label(label);
+    joystick1002->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5);
+    joystick1002->y(_marginTop + _lineSpacing * 3);
     joystick1002->type(flJoyStick1::VERTICALLY);
     //    joystick1002->enabled(false);
     joystick1002->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1002);
+    displayObject = addChild(joystick1002);
     
-    textField = new flTextField();
-    textField->text("Z");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Z");
+    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1003 = new flJoyStick1(150);
-    joystick1003->label(textField);
-    joystick1003->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
-    joystick1003->y(marginTop + lineSpacing * 3);
+    joystick1003->label(label);
+    joystick1003->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5);
+    joystick1003->y(_marginTop + _lineSpacing * 3);
     joystick1003->type(flJoyStick1::VERTICALLY);
     //    joystick1003->enabled(false);
     joystick1003->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1003);
+    displayObject = addChild(joystick1003);
     
     text001 = new flTextField();
     text001->text("X : ");
-    text001->x(marginLeft + spacing * 1);
-    text001->y(marginTop + lineSpacing * 4);
+    text001->x(_marginLeft + _spacing * 1);
+    text001->y(_marginTop + _lineSpacing * 4);
     text001->autoSize(flTextFieldAutoSize::LEFT);
     text001->mouseEnabled(false);
-    addChild(text001);
+    displayObject = addChild(text001);
     text002 = new flTextField();
     text002->text("Y : ");
-    text002->x(marginLeft + spacing * 1);
-    text002->y(marginTop + lineSpacing * 5);
+    text002->x(_marginLeft + _spacing * 1);
+    text002->y(_marginTop + _lineSpacing * 5);
     text002->autoSize(flTextFieldAutoSize::LEFT);
     text002->mouseEnabled(false);
-    addChild(text002);
+    displayObject = addChild(text002);
     text003 = new flTextField();
     text003->text("Z : ");
-    text003->x(marginLeft + spacing * 1);
-    text003->y(marginTop + lineSpacing * 6);
+    text003->x(_marginLeft + _spacing * 1);
+    text003->y(_marginTop + _lineSpacing * 6);
     text003->autoSize(flTextFieldAutoSize::LEFT);
     text003->mouseEnabled(false);
-    addChild(text003);
+    displayObject = addChild(text003);
     //--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5 + 150 + 5 + 100 + 5;
-    marginTop = 20;
-    spacing = 155;
-    lineSpacing = 22;
+	_marginLeft = 5 + 150 + 5 + 100 + 5;
+	_marginTop = 20;
+	_spacing = 155;
+	_lineSpacing = 22;
     
-    textField = new flTextField();
-    textField->text("Position");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Position");
+    label->x(_marginLeft + _spacing * 0);
+    label->y(_marginTop + _lineSpacing * 0);
+    label->autoSize(flTextFieldAutoSize::CENTER);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     
-    textField = new flTextField();
-    textField->text("X");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 1);
-    textField->width(150);
-    textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("X");
+    label->x(_marginLeft + _spacing * 0);
+    label->y(_marginTop + _lineSpacing * 1);
+    label->width(150);
+    label->autoSize(flTextFieldAutoSize::CENTER);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1101 = new flJoyStick1(150);
-    joystick1101->label(textField);
-    joystick1101->x(marginLeft + spacing * 0);
-    joystick1101->y(marginTop + lineSpacing * 2);
+    joystick1101->label(label);
+    joystick1101->x(_marginLeft + _spacing * 0);
+    joystick1101->y(_marginTop + _lineSpacing * 2);
     joystick1101->type(flJoyStick1::HORIZONTALLY);
     //    joystick1101->enabled(false);
     joystick1101->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1101);
+    displayObject = addChild(joystick1101);
     
-    textField = new flTextField();
-    textField->text("Y");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Y");
+    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1102 = new flJoyStick1(150);
-    joystick1102->label(textField);
-    joystick1102->x(marginLeft + spacing * 0 + (150 / 3) * 1 - 7 - 5);
-    joystick1102->y(marginTop + lineSpacing * 3);
+    joystick1102->label(label);
+    joystick1102->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5);
+    joystick1102->y(_marginTop + _lineSpacing * 3);
     joystick1102->type(flJoyStick1::VERTICALLY);
     //    joystick1102->enabled(false);
     joystick1102->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1102);
+    displayObject = addChild(joystick1102);
     
-    textField = new flTextField();
-    textField->text("Z");
-    textField->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
-    textField->y(marginTop + lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Z");
+    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->mouseEnabled(false);
+    displayObject = addChild(label);
     joystick1103 = new flJoyStick1(150);
-    joystick1103->label(textField);
-    joystick1103->x(marginLeft + spacing * 0 + (150 / 3) * 2 - 7 + 5);
-    joystick1103->y(marginTop + lineSpacing * 3);
+    joystick1103->label(label);
+    joystick1103->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5);
+    joystick1103->y(_marginTop + _lineSpacing * 3);
     joystick1103->type(flJoyStick1::VERTICALLY);
     //    joystick1103->enabled(false);
     joystick1103->addEventListener(flJoyStick1Event::CHANGE, this, &SubController1::_uiEventHandler);
-    addChild(joystick1103);
+    displayObject = addChild(joystick1103);
     
     text101 = new flTextField();
     text101->text("X : ");
-    text101->x(marginLeft + spacing * 1);
-    text101->y(marginTop + lineSpacing * 4);
+    text101->x(_marginLeft + _spacing * 1);
+    text101->y(_marginTop + _lineSpacing * 4);
     text101->autoSize(flTextFieldAutoSize::LEFT);
     text101->mouseEnabled(false);
-    addChild(text101);
+    displayObject = addChild(text101);
     text102 = new flTextField();
     text102->text("Y : ");
-    text102->x(marginLeft + spacing * 1);
-    text102->y(marginTop + lineSpacing * 5);
+    text102->x(_marginLeft + _spacing * 1);
+    text102->y(_marginTop + _lineSpacing * 5);
     text102->autoSize(flTextFieldAutoSize::LEFT);
     text102->mouseEnabled(false);
-    addChild(text102);
+    displayObject = addChild(text102);
     text103 = new flTextField();
     text103->text("Z : ");
-    text103->x(marginLeft + spacing * 1);
-    text103->y(marginTop + lineSpacing * 6);
+    text103->x(_marginLeft + _spacing * 1);
+    text103->y(_marginTop + _lineSpacing * 6);
     text103->autoSize(flTextFieldAutoSize::LEFT);
     text103->mouseEnabled(false);
-    addChild(text103);
+    displayObject = addChild(text103);
     //--------------------------------------
+
+	ofLog() << "joystick1103->height() " << joystick1103->y() + joystick1103->height();
+
+	_normalBackWidth = 500;
+	_normalBackHeight = 500;
+
+	//addEventListener(flEvent::CLOSE, this, &SubController1::_eventHandler);
+	
+	flBasicController::_setup();
 }
 
 //--------------------------------------------------------------
@@ -245,16 +238,25 @@ void SubController1::_draw() {
 }
 
 //==============================================================
-// PUBLIC MEHTOD
+// Public Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Protected / Private Method
+//==============================================================
+
+//==============================================================
+// Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 void SubController1::_uiEventHandler(flEvent& event) {
-    //    ofLog() << "[SubController1]_uiEventHandler(" << event.type();
+	//ofLog() << "----------------------------------------------------------";
+	//ofLog() << "[SubController1]_uiEventHandler(" << event.type() << ")";
+	//ofLog() << "name = " << name().c_str();
+	//ofLog() << "target = " << ((flDisplayObject*)event.target())->name().c_str();
+	//ofLog() << "currnetTarget = " << ((flDisplayObject*)event.currentTarget())->name().c_str();
+	//ofLog() << "----------------------------------------------------------";
     
     //ボタン(マウスダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {

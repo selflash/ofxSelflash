@@ -20,7 +20,7 @@ SubController2::SubController2(string title) {
     name(title);
     useHandCursor(true);
     
-    titleTf->text("[" + title + "]");
+	_titleText = "[" + title + "]";
 }
 
 //--------------------------------------------------------------
@@ -37,75 +37,68 @@ SubController2::~SubController2() {
 void SubController2::_setup() {
     ofLog() << "[SubController2]_setup()";
     
-    flBasicController::_setup();
-    
-    _normalBackWidth = 400;
-    _normalBackHeight = 105;
-    _minBackWidth = _normalBackWidth;
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
-    
-    float marginLeft; float marginTop;
-    float spacing; float lineSpacing;
-    flTextField* textField = NULL;
-    //--------------------------------------
+	//--------------------------------------
+	int x, y, w, h = 0;
+	flDisplayObject* displayObject = NULL;
+	flTextField* label = NULL;
+	flRadioButtonGroup* radioButtonGroup = NULL;
+	//--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5;
-    marginTop = 20;
-    spacing = 205;
-    lineSpacing = 22.5;
+    _marginLeft = 5;
+	_marginTop = 20;
+	_spacing = 205;
+	_lineSpacing = 22.5;
     
-    textField = new flTextField();
-    textField->text("Box Color");
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Box Color");
+    label->x(_marginLeft + _spacing * 0);
+    label->y(_marginTop + _lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+	displayObject = addChild(label);
     colorSlider001 = new flColorSlider(185, false);
-    colorSlider001->label(textField);
+    colorSlider001->label(label);
     //    colorSlider001->label()->width(200);
     //    colorSlider001->label()->autoSize(flTextFieldAutoSize::CENTER);
-    colorSlider001->x(marginLeft + spacing * 0);
-    colorSlider001->y(marginTop + lineSpacing * 1);
+    colorSlider001->x(_marginLeft + _spacing * 0);
+    colorSlider001->y(_marginTop + _lineSpacing * 1);
     colorSlider001->redValue<float>(1.0);
     colorSlider001->greenValue<float>(1.0);
     colorSlider001->blueValue<float>(1.0);
     //    colorSlider001->addEventListener(flColorSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
-    addChild(colorSlider001);
+	displayObject = addChild(colorSlider001);
     
     //スライダー
-    textField = new flTextField();
-    textField->text("Line Width");
-    textField->x(marginLeft + spacing * 1);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
+    label = new flTextField();
+    label->text("Line Width");
+    label->x(_marginLeft + _spacing * 1);
+    label->y(_marginTop + _lineSpacing * 0);
+    label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+    label->mouseEnabled(false);
+	displayObject = addChild(label);
     slider001 = new flSlider(185, 1, 20, 1);
-    slider001->x(marginLeft + spacing * 1);
-    slider001->y(marginTop + lineSpacing * 1);
+    slider001->x(_marginLeft + _spacing * 1);
+    slider001->y(_marginTop + _lineSpacing * 1);
     //    slider001->addEventListener(flSliderEvent::CHANGE, this, &SubController2::_uiEventHandler);
-    addChild(slider001);
+	displayObject = addChild(slider001);
     
     check001 = new flCheckBox();
     check001->labelText("Fill Enabled");
-    check001->x(marginLeft + spacing * 1);
-    check001->y(marginTop + lineSpacing * 2 + 10);
+    check001->x(_marginLeft + _spacing * 1);
+    check001->y(_marginTop + _lineSpacing * 2 + 10);
     //    check001->selected(true);
     //    check001->enabled(false);
     //    check001->addEventListener(flRadioButtonEvent::CHANGE, this, &SubController2::_uiEventHandler);
-    addChild(check001);
+	displayObject = addChild(check001);
     //--------------------------------------
+
+	_normalBackWidth = 400;
+	_normalBackHeight = 105;
+
+	//addEventListener(flEvent::CLOSE, this, &SubController2::_eventHandler);
+
+	flBasicController::_setup();
 }
 
 //--------------------------------------------------------------

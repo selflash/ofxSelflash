@@ -1,15 +1,7 @@
-//
-//  MainController.cpp
-//  ofApp
-//
-//  Created by 横田達也 on 2016/12/15.
-//
-//
-
 #include "MainController.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Deconstructor
 //==============================================================
 
 //--------------------------------------------------------------
@@ -19,6 +11,8 @@ MainController::MainController() {
     
     name("MainController");
     useHandCursor(true);
+
+	_titleText = "[MainController]";
 }
 
 //--------------------------------------------------------------
@@ -35,102 +29,63 @@ MainController::~MainController() {
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
 void MainController::_setup() {
     ofLog() << "[MainController]_setup()";
     
-    flBasicController::_setup();
-    
-    //    minimizeButton->visible(false);
-    closeButton->visible(false);
-    //    isDraggable(false);
-    
-    _normalBackWidth = 315;
-    _normalBackHeight = 145;
-    _minBackWidth = _normalBackWidth;
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
-    
-    titleTf->text("Main Controller");
-    
-    float marginLeft; float marginTop;
-    float spacing; float lineSpacing;
-    flTextField* textField = NULL;
+	//--------------------------------------
+	int x, y, w, h = 0;
+	flDisplayObject* displayObject = NULL;
+	flTextField* label = NULL;
+	flRadioButtonGroup* radioButtonGroup = NULL;
+	//--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5;
-    marginTop = 5;
-    spacing = 155;
-    lineSpacing = 22.5;
-    
+	x = _marginLeft;
+	y = _marginTop + _lineSpacing * 0;
     button001 = new flButton(150);
     button001->labelText("Full Screen");
-    button001->x(marginLeft + spacing * 0);
-    button001->y(marginTop + lineSpacing * 1);
     button001->toggleEnabled(true);
     button001->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(button001);
+	displayObject = addChild(button001, x, y);
     
-    textField = new flTextField();
-    textField->text("Window Depth");
-    textField->x(marginLeft + spacing * 1);
-    textField->y(marginTop + lineSpacing * 0);
-    textField->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-    textField->mouseEnabled(false);
-    addChild(textField);
+	label = new flTextField();
+	label->text("Window Depth");
+	label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
+	label->mouseEnabled(false);
+	displayObject = addChild(label, displayObject->x(), displayObject->y() + displayObject->height() + _margin);
     comboBox001 = new flComboBox(150);
-    comboBox001->label(textField);
-    comboBox001->x(marginLeft + spacing * 1);
-    comboBox001->y(marginTop + lineSpacing * 1);
+    comboBox001->label(label);
     comboBox001->addItem<string>("Default", "default");
     comboBox001->addItem<string>("Always on Bottom", "alwaysOnBottom");
     comboBox001->addItem<string>("Always on Top", "alwaysOnTop");
     comboBox001->selectedIndex(0);
     comboBox001->addEventListener(flComboBoxEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(comboBox001);
+	displayObject = addChild(comboBox001, displayObject->x(), displayObject->y() + displayObject->height() + _margin);
     //--------------------------------------
     
     //--------------------------------------
-    marginLeft = 5;
-    marginTop = 5;
-    spacing = 155;
-    lineSpacing = 22.5;
-    
-    textField = new flTextField();
-    textField->x(marginLeft + spacing * 0);
-    textField->y(marginTop + lineSpacing * 2);
-    textField->text("Sub Controllers");
-    textField->width(300);
-    textField->autoSize(flTextFieldAutoSize::CENTER);
-    textField->mouseEnabled(false);
-    addChild(textField);
+	label = new flTextField();
+	label->text("Sub Controllers");
+	label->width(150);
+	label->autoSize(flTextFieldAutoSize::LEFT);
+	label->mouseEnabled(false);
+	displayObject = addChild(label, displayObject->x(), displayObject->y() + displayObject->height() + _margin);
     
     button101 = new flButton(150);
     button101->labelText("Controller 1");
-    button101->x(marginLeft + spacing * 0);
-    button101->y(marginTop + lineSpacing * 3);
     button101->toggleEnabled(true);
     button101->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(button101);
+	displayObject = addChild(button101, displayObject->x(), displayObject->y() + displayObject->height() + _margin);
     
     button102 = new flButton(150);
     button102->labelText("Controller 2");
-    button102->x(marginLeft + spacing * 1);
-    button102->y(marginTop + lineSpacing * 3);
     button102->toggleEnabled(true);
     button102->addEventListener(flButtonEvent::CHANGE, this, &MainController::_uiEventHandler);
-    addChild(button102);
+	displayObject = addChild(button102, displayObject->x(), displayObject->y() + displayObject->height() + _margin);
     //--------------------------------------
     
     //--------------------------------------
@@ -153,6 +108,13 @@ void MainController::_setup() {
     _controller2->addEventListener(flEvent::CLOSE, this, &MainController::_uiEventHandler);
     _controller2->addEventListener("uiEvent", this, &MainController::_uiEventHandler);
     //--------------------------------------
+
+	_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
+	_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+
+	flBasicController::_setup();
+
+	closeButton->visible(false);
 }
 
 //--------------------------------------------------------------
@@ -167,46 +129,15 @@ void MainController::_draw() {
     
     if(_isMinimize) return;
     
-    ofPushStyle();
-    ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-    flFont::drawString("When the stage has a focus.\nScroll to change scale.\nDrag to change rotatin.", 5, 105);
-    ofPopStyle();
+    //ofPushStyle();
+    //ofSetColor(255, 255, 255, 255 * _compoundAlpha);
+    //flFont::drawString("When the stage has a focus.\nScroll to change scale.\nDrag to change rotatin.", 5, 105);
+    //ofPopStyle();
 }
 
 //==============================================================
-// PUBLIC MEHTOD
+// Public Method
 //==============================================================
-
-//--------------------------------------------------------------
-void MainController::normalize() {
-    if(!_isMinimize) return;
-    _isMinimize = false;
-    
-    minimizeButton->selected(false);
-    
-    //----------------------------------
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
-    //----------------------------------
-    
-    //----------------------------------
-    int i; int l;
-    l = numChildren();
-    for(i = 0; i < l; i++) {
-        getChildAt(i)->visible(true);
-    }
-    
-    if(parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
-    //----------------------------------
-}
 
 //--------------------------------------------------------------
 void MainController::toggleShowAll() {
@@ -217,24 +148,29 @@ void MainController::toggleShowAll() {
 }
 
 //==============================================================
-// EVENT HANDLER
+// Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 void MainController::_uiEventHandler(flEvent& event) {
-    //    ofLog() << "[MainController]_uiEventHandler(" << event.type();
+	//ofLog() << "----------------------------------------------------------";
+	//ofLog() << "[MainController]_uiEventHandler(" << event.type() << ")";
+	//ofLog() << "name = " << name().c_str();
+	//ofLog() << "target = " << ((flDisplayObject*)event.target())->name().c_str();
+	//ofLog() << "currnetTarget = " << ((flDisplayObject*)event.currentTarget())->name().c_str();
+	//ofLog() << "----------------------------------------------------------";
     
     if(event.type() == flEvent::CLOSE) {
         flBasicController* target = (flBasicController*)(event.currentTarget());
         //コントローラー1
         if(target == _controller1) {
-            ((flStage*)stage())->removeChild(target);
+			if(target->parent()) ((flDisplayObjectContainer*)target->parent())->removeChild(target);
             button101->selected(false, false);
         }
         //コントローラー2
         if(target == _controller2) {
-            ((flStage*)stage())->removeChild(target);
-            button102->selected(false, false);
+			if (target->parent()) ((flDisplayObjectContainer*)target->parent())->removeChild(target);
+			button102->selected(false, false);
         }
     }
     

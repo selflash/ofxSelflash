@@ -319,7 +319,7 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            ofSetCircleResolution(128);
+            //ofSetCircleResolution(128);
             ofDrawCircle(x, y, radius);
         }
         
@@ -327,7 +327,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            ofSetCircleResolution(128);
+            //ofSetCircleResolution(128);
             ofDrawCircle(x, y, radius);
             ofFill();
         }
@@ -346,19 +346,27 @@ namespace fl2d {
         }
         
         if(_lineEnabled) {
-            ofNoFill();
-            ofSetLineWidth(_thickness);
-            ofSetColor(_lineColor);
-            ofDrawRectangle(x + 0.5, y, width - 1.0, height);
+//            ofNoFill();
+//            ofSetLineWidth(_thickness);
+//            ofSetColor(_lineColor);
+//            ofDrawRectangle(x + 0.5, y, width - 1.0, height);
+//
+////#ifdef __APPLE__
+////			ofDrawLine(x + width, y, x + width + 1, y); //1ピクセルかけているのを埋める
+////#elif defined _WIN32
+////			ofDrawLine(x, y, x, y + height + 1); //1ピクセルかけているのを埋める
+////#endif								 
+//			//ofDrawLine(x - 1, y - 1, x, y);
+//
+//            ofFill();
 
-//#ifdef __APPLE__
-//			ofDrawLine(x + width, y, x + width + 1, y); //1ピクセルかけているのを埋める
-//#elif defined _WIN32
-//			ofDrawLine(x, y, x, y + height + 1); //1ピクセルかけているのを埋める
-//#endif								 
-			//ofDrawLine(x - 1, y - 1, x, y);
 
-            ofFill();
+			ofSetLineWidth(_thickness);
+			ofSetColor(_lineColor);
+			ofDrawLine(x, y, width, y);
+			ofDrawLine(x, height, width, height);
+			ofDrawLine(x, y, x, height);
+			ofDrawLine(width, y, width, height);
         }
         
         ofPopStyle();

@@ -8,11 +8,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flBasicController::flBasicController() {
-        //    cout << "[flBasicController]flBasicController()";
+		//ofLog() << "[flBasicController]flBasicController()";
         
         _target = this;
         name("flBasicController");
+
 		_titleText = "[Contoller]";
+		_titleBarHeight = (_margin + 18) + _margin;
 
         useHandCursor(true);
         
@@ -21,25 +23,8 @@ namespace fl2d {
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerMouseEventHandler);
         //addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
-		float marginLeft; float marginTop;
-		int x, y, w, h;
-		flDisplayObject* displayObject = NULL;
-		flTextField* label = NULL;
-        //--------------------------------------
-
-		_margin = 6;
-		_spacing = 150;
-		_lineSpacing = 18 + _margin;
-
-		marginLeft = _margin;
-		marginTop = _margin;
-
-        //marginLeft = 5;
-        //marginTop = 5;
-        //spacing = 100;
-        //lineSpacing = 22;   
-		x = marginLeft;
-		y = marginTop;
+		//x = marginLeft;
+		//y = marginTop;
         //titleTf = new flTextField();
         //titleTf->x(x);
         //titleTf->y(y);
@@ -49,43 +34,11 @@ namespace fl2d {
         //titleTf->mouseEnabled(false);
         //addChild(titleTf);
         //--------------------------------------
-        
-        _isMinimize = false;
-        
-        //最小化ボタン
-        minimizeButton = new flButton(18, 18);
-		minimizeButton->y(marginTop);
-        minimizeButton->labelText("-");
-        minimizeButton->toggleEnabled(true);
-        minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-        addChild(minimizeButton);
-        
-        //閉じるボタン
-        closeButton = new flButton(18, 18);
-		closeButton->y(marginTop);
-		closeButton->labelText("x");
-        closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerEventHandler);
-        addChild(closeButton);
-        
-        _backWidth = 0;
-        _backHeight = 0;
-        
-        _minBackWidth = 0;
-        _minBackHeight = 18 + 10;
-        
-        _normalBackWidth = 0;
-        _normalBackHeight = 0;
-        
-        _onTop = true;
-        
-        _dragEnabled = true;
-
-		_titleBarHeight = (_margin + 18) + _margin;
 	}
     
     //--------------------------------------------------------------
     flBasicController::~flBasicController() {
-        //    cout << "[flBasicController]~flBasicController()";
+		//ofLog() << "[flBasicController]~flBasicController()";
         
         _target = NULL;
         
@@ -104,19 +57,6 @@ namespace fl2d {
         delete closeButton;
         closeButton = NULL;
         
-        _backWidth = 0;
-        _backHeight = 0;
-        
-        _minBackWidth = 0;
-        _minBackHeight = 0;
-        
-        _normalBackWidth = 0;
-        _normalBackHeight = 0;
-        
-        _onTop = false;
-        
-        _dragEnabled = false;
-        
         for(auto* radioButtonGroup : radioButtonGroups) {
             delete radioButtonGroup;
             radioButtonGroup = NULL;
@@ -132,18 +72,84 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::setup() {
-        flSprite::setup();        
         //_setup();
+
+		//_margin = 6;
+		//_marginLeft = _margin;
+		//_marginTop = (_margin + 18) + _margin;
+		//_spacing = 150;
+		//_lineSpacing = 18 + _margin;
         
         _updateRect();
-        
-        float w = width();
-        minimizeButton->x(w - (18 + 5 + 18 + 5));
-        //minimizeButton->y(4);
-        
-        closeButton->x(w - (18 + 5));
-        //closeButton->y(4);
+
+		int x, y, w, h = 0;
+		flDisplayObject* displayObject = NULL;
+		flTextField* label = NULL;
+		flRadioButtonGroup* radioButtonGroup = NULL;
+		//--------------------------------------
+
+		//最小化ボタン
+		minimizeButton = new flButton(18, 18);
+		//minimizeButton->x(w - (18 + 5 + 18 + 5));
+		minimizeButton->y(_margin);
+		minimizeButton->labelText("-");
+		minimizeButton->toggleEnabled(true);
+		minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
+		displayObject = addChild(minimizeButton);
+
+		//閉じるボタン
+		closeButton = new flButton(18, 18);
+		//closeButton->x(w - (18 + 5));
+		closeButton->y(_margin);
+		closeButton->labelText("x");
+		closeButton->addEventListener(flButtonEvent::MOUSE_DOWN, this, &flBasicController::_flBasicControllerEventHandler);
+		displayObject = addChild(closeButton);
+
+		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
+		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+
+		//_minBackWidth = _normalBackWidth;
+		_minBackHeight = _margin + 18 + _margin;
+
+		flSprite::setup();
     }
+
+	//--------------------------------------------------------------
+	void flBasicController::_setup() {
+		_minBackWidth = _normalBackWidth;
+		_backWidth = _normalBackWidth;
+		_backHeight = _normalBackHeight;
+
+		//--------------------------------------
+		_normalGraphics.clear();
+		_normalGraphics.lineStyle(1, 0xffffff);
+		_normalGraphics.beginFill(0x000000, 0.3);
+		_normalGraphics.drawRect(0, 0, _backWidth, _backHeight);
+		_normalGraphics.endFill();
+		//--------------------------------------
+
+		//----------------------------------
+		_minimalGraphics.clear();
+		_minimalGraphics.lineStyle(1, 0xffffff);
+		_minimalGraphics.beginFill(0x000000, 0.3);
+		_minimalGraphics.drawRect(0, 0, _minBackWidth, _minBackHeight);
+		_minimalGraphics.endFill();
+		//----------------------------------
+
+		_graphics = &_normalGraphics;
+
+		{
+			float w = _backWidth;
+			minimizeButton->x(w - (18 + 5 + 18 + 5));
+			addChild(minimizeButton);
+			closeButton->x(w - (18 + 5));
+			addChild(closeButton);
+		}
+
+		_updateRect();
+
+		//addEventListener(flEvent::CLOSE, this, &flBasicController::_eventHandler);
+	}
 
     //--------------------------------------------------------------
     void flBasicController::_draw() {
@@ -163,20 +169,27 @@ namespace fl2d {
     void flBasicController::minimize() {
         if(_isMinimize) return;
         _isMinimize = true;
-        minimizeButton->selected(true);
+
+        minimizeButton->selected(true, false);
         
-        //----------------------------------
-        _backWidth = _minBackWidth;
-        _backHeight = _minBackHeight;
-        
-        flGraphics* g;
-        g = graphics();
-        g->clear();
-        g->lineStyle(1, 0xffffff);
-        g->beginFill(0x000000, 0.7);
-        g->drawRect(0, 0, _backWidth, _backHeight);
-        g->endFill();
-        //----------------------------------
+        ////----------------------------------
+        //_backWidth = _minBackWidth;
+        //_backHeight = _minBackHeight;
+        //
+        //flGraphics* g;
+        //g = graphics();
+        //g->clear();
+        //g->lineStyle(1, 0xffffff);
+        //g->beginFill(0x000000, 0.7);
+        //g->drawRect(0, 0, _backWidth, _backHeight);
+        //g->endFill();
+        ////----------------------------------
+
+		//----------------------------------
+		_backWidth = _minBackWidth;
+		_backHeight = _minBackHeight;
+		_graphics = &_minimalGraphics;
+		//----------------------------------
         
         //----------------------------------
         int i; int l;
@@ -200,20 +213,26 @@ namespace fl2d {
         if(!_isMinimize) return;
         _isMinimize = false;
         
-        minimizeButton->selected(false);
+        minimizeButton->selected(false, false);
         
-        //----------------------------------
-        _backWidth = _normalBackWidth;
-        _backHeight = _normalBackHeight;
-        
-        flGraphics* g;
-        g = graphics();
-        g->clear();
-        g->lineStyle(1, 0xffffff);
-        g->beginFill(0x000000, 0.7);
-        g->drawRect(0, 0, _backWidth, _backHeight);
-        g->endFill();
-        //----------------------------------
+        ////----------------------------------
+        //_backWidth = _normalBackWidth;
+        //_backHeight = _normalBackHeight;
+        //
+        //flGraphics* g;
+        //g = graphics();
+        //g->clear();
+        //g->lineStyle(1, 0xffffff);
+        //g->beginFill(0x000000, 0.7);
+        //g->drawRect(0, 0, _backWidth, _backHeight);
+        //g->endFill();
+        ////----------------------------------
+
+		//----------------------------------
+		_backWidth = _normalBackWidth;
+		_backHeight = _normalBackHeight;
+		_graphics = &_normalGraphics;
+		//----------------------------------
         
         //----------------------------------
         int i; int l;
@@ -270,7 +289,7 @@ namespace fl2d {
             flButton* button = (flButton*)(event.currentTarget());
             
 			if (button == closeButton) {
-				((flDisplayObjectContainer*)parent())->removeChild(this);
+				if(parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
 				dispatchEvent(new flEvent(flEvent::CLOSE));
 			}
         }
