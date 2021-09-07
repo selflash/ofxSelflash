@@ -37,6 +37,12 @@ void MainController::_setup() {
     ofLog() << "[MainController]_setup()";
     
 	//--------------------------------------
+	_normalGraphics.clear();
+	_normalGraphics.lineStyle(1, 0xffffff);
+	_normalGraphics.beginFill(0x000000, 0.7);
+	//--------------------------------------
+
+	//--------------------------------------
 	int x, y, w, h = 0;
 	flDisplayObject* displayObject = NULL;
 	flTextField* label = NULL;
@@ -109,8 +115,13 @@ void MainController::_setup() {
     _controller2->addEventListener("uiEvent", this, &MainController::_uiEventHandler);
     //--------------------------------------
 
+	//--------------------------------------
 	_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
 	_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+
+	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.endFill();
+	//--------------------------------------
 
 	flBasicController::_setup();
 
@@ -146,6 +157,10 @@ void MainController::toggleShowAll() {
     _controller1->visible(visible());
     _controller2->visible(visible());
 }
+
+//==============================================================
+// Protected / Private Method
+//==============================================================
 
 //==============================================================
 // Event Handler
