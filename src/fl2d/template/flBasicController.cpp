@@ -15,6 +15,7 @@ namespace fl2d {
 
 		_titleText = "[Contoller]";
 		_titleBarHeight = (_margin + 18) + _margin;
+		_marginTop = _titleBarHeight;
 
         useHandCursor(true);
         
@@ -116,27 +117,27 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flBasicController::_setup() {
-		_minBackWidth = _normalBackWidth;
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
+		////--------------------------------------
+		//_normalGraphics.clear();
+		//_normalGraphics.lineStyle(1, 0xffffff);
+		//_normalGraphics.beginFill(0x000000, 0.7);
+		//_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+		//_normalGraphics.endFill();
+		////--------------------------------------
 
-		//--------------------------------------
-		_normalGraphics.clear();
-		_normalGraphics.lineStyle(1, 0xffffff);
-		_normalGraphics.beginFill(0x000000, 0.3);
-		_normalGraphics.drawRect(0, 0, _backWidth, _backHeight);
-		_normalGraphics.endFill();
-		//--------------------------------------
+		_minBackWidth = _normalBackWidth;
 
 		//----------------------------------
 		_minimalGraphics.clear();
 		_minimalGraphics.lineStyle(1, 0xffffff);
-		_minimalGraphics.beginFill(0x000000, 0.3);
+		_minimalGraphics.beginFill(0x000000, 0.7);
 		_minimalGraphics.drawRect(0, 0, _minBackWidth, _minBackHeight);
 		_minimalGraphics.endFill();
 		//----------------------------------
 
 		_graphics = &_normalGraphics;
+		_backWidth = _normalBackWidth;
+		_backHeight = _normalBackHeight;
 
 		{
 			float w = _backWidth;
