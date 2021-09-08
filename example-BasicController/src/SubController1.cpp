@@ -39,6 +39,12 @@ void SubController1::_setup() {
     ofLog() << "[SubController1]_setup()";
     
 	//--------------------------------------
+	_normalGraphics.clear();
+	_normalGraphics.lineStyle(1, 0xffffff);
+	_normalGraphics.beginFill(0x000000, 0.7);
+	//--------------------------------------
+
+	//--------------------------------------
 	int x, y, w, h = 0;
 	flDisplayObject* displayObject = NULL;
 	flTextField* label = NULL;
@@ -50,22 +56,20 @@ void SubController1::_setup() {
 	y = _marginTop + _lineSpacing * 0;
     label = new flTextField();
     label->text("Rotation");
-    label->x(_marginLeft + _spacing * 0);
-    label->y(_marginTop + _lineSpacing * 0);
     label->autoSize(flTextFieldAutoSize::CENTER);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
-    displayObject = addChild(label);
+    displayObject = addChild(label, x, y);
     
     label = new flTextField();
     label->text("Y");
     label->x(_marginLeft + _spacing * 0);
     label->y(_marginTop + _lineSpacing * 1);
-    label->width(150);
+    label->width(100);
     label->autoSize(flTextFieldAutoSize::CENTER);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1001 = new flJoyStick1(150);
+    joystick1001 = new flJoyStick1();
     joystick1001->label(label);
     joystick1001->x(_marginLeft + _spacing * 0);
     joystick1001->y(_marginTop + _lineSpacing * 2);
@@ -76,13 +80,13 @@ void SubController1::_setup() {
     
     label = new flTextField();
     label->text("X");
-    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
-    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->x(_marginLeft + _spacing * 0 + (100 / 3) * 1 - 7 - 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 100 * 0.5 - 22 * 0.5);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1002 = new flJoyStick1(150);
+    joystick1002 = new flJoyStick1();
     joystick1002->label(label);
-    joystick1002->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5);
+    joystick1002->x(_marginLeft + _spacing * 0 + (100 / 3) * 1 - 7 - 5);
     joystick1002->y(_marginTop + _lineSpacing * 3);
     joystick1002->type(flJoyStick1::VERTICALLY);
     //    joystick1002->enabled(false);
@@ -91,13 +95,13 @@ void SubController1::_setup() {
     
     label = new flTextField();
     label->text("Z");
-    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
-    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->x(_marginLeft + _spacing * 0 + (100 / 3) * 2 - 7 + 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 100 * 0.5 - 22 * 0.5);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1003 = new flJoyStick1(150);
+    joystick1003 = new flJoyStick1();
     joystick1003->label(label);
-    joystick1003->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5);
+    joystick1003->x(_marginLeft + _spacing * 0 + (100 / 3) * 2 - 7 + 5);
     joystick1003->y(_marginTop + _lineSpacing * 3);
     joystick1003->type(flJoyStick1::VERTICALLY);
     //    joystick1003->enabled(false);
@@ -128,31 +132,26 @@ void SubController1::_setup() {
     //--------------------------------------
     
     //--------------------------------------
-	_marginLeft = 5 + 150 + 5 + 100 + 5;
-	_marginTop = 20;
-	_spacing = 155;
-	_lineSpacing = 22;
-    
+	x = _marginLeft + _margin + 100 + _margin;
+	y = _marginTop + _lineSpacing * 0;
     label = new flTextField();
     label->text("Position");
-    label->x(_marginLeft + _spacing * 0);
-    label->y(_marginTop + _lineSpacing * 0);
     label->autoSize(flTextFieldAutoSize::CENTER);
     label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
     label->mouseEnabled(false);
-    displayObject = addChild(label);
+    displayObject = addChild(label, x, y);
     
     label = new flTextField();
     label->text("X");
-    label->x(_marginLeft + _spacing * 0);
+    label->x(_marginLeft + _spacing * 1);
     label->y(_marginTop + _lineSpacing * 1);
-    label->width(150);
+    label->width(100);
     label->autoSize(flTextFieldAutoSize::CENTER);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1101 = new flJoyStick1(150);
+    joystick1101 = new flJoyStick1();
     joystick1101->label(label);
-    joystick1101->x(_marginLeft + _spacing * 0);
+    joystick1101->x(_marginLeft + _spacing * 1);
     joystick1101->y(_marginTop + _lineSpacing * 2);
     joystick1101->type(flJoyStick1::HORIZONTALLY);
     //    joystick1101->enabled(false);
@@ -161,13 +160,13 @@ void SubController1::_setup() {
     
     label = new flTextField();
     label->text("Y");
-    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5 - 22);
-    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->x(_marginLeft + _spacing * 0 + (100 / 3) * 1 - 7 - 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 100 * 0.5 - 22 * 0.5);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1102 = new flJoyStick1(150);
+    joystick1102 = new flJoyStick1();
     joystick1102->label(label);
-    joystick1102->x(_marginLeft + _spacing * 0 + (150 / 3) * 1 - 7 - 5);
+    joystick1102->x(_marginLeft + _spacing * 1 + (100 / 3) * 1 - 7 - 5);
     joystick1102->y(_marginTop + _lineSpacing * 3);
     joystick1102->type(flJoyStick1::VERTICALLY);
     //    joystick1102->enabled(false);
@@ -176,13 +175,13 @@ void SubController1::_setup() {
     
     label = new flTextField();
     label->text("Z");
-    label->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5 - 22);
-    label->y(_marginTop + _lineSpacing * 3 + 150 * 0.5 - 22 * 0.5);
+    label->x(_marginLeft + _spacing * 1 + (100 / 3) * 2 - 7 + 5 - 22);
+    label->y(_marginTop + _lineSpacing * 3 + 100 * 0.5 - 22 * 0.5);
     label->mouseEnabled(false);
     displayObject = addChild(label);
-    joystick1103 = new flJoyStick1(150);
+    joystick1103 = new flJoyStick1();
     joystick1103->label(label);
-    joystick1103->x(_marginLeft + _spacing * 0 + (150 / 3) * 2 - 7 + 5);
+    joystick1103->x(_marginLeft + _spacing * 1 + (150 / 3) * 2 - 7 + 5);
     joystick1103->y(_marginTop + _lineSpacing * 3);
     joystick1103->type(flJoyStick1::VERTICALLY);
     //    joystick1103->enabled(false);
@@ -214,8 +213,13 @@ void SubController1::_setup() {
 
 	ofLog() << "joystick1103->height() " << joystick1103->y() + joystick1103->height();
 
+	//--------------------------------------
 	_normalBackWidth = 500;
 	_normalBackHeight = 500;
+
+	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.endFill();
+	//--------------------------------------
 
 	//addEventListener(flEvent::CLOSE, this, &SubController1::_eventHandler);
 	

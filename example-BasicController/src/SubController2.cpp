@@ -1,15 +1,7 @@
-//
-//  SubController2.cpp
-//  ofApp
-//
-//  Created by 横田達也 on 2016/12/15.
-//
-//
-
 #include "SubController2.h"
 
 //==============================================================
-// CONSTRUCTOR / DESTRUCTOR
+// Constructor / Destructor
 //==============================================================
 
 //--------------------------------------------------------------
@@ -30,13 +22,19 @@ SubController2::~SubController2() {
 }
 
 //==============================================================
-// SETUP / UPDATE / DRAW
+// Setup / Update / Draw
 //==============================================================
 
 //--------------------------------------------------------------
 void SubController2::_setup() {
     ofLog() << "[SubController2]_setup()";
     
+	//--------------------------------------
+	_normalGraphics.clear();
+	_normalGraphics.lineStyle(1, 0xffffff);
+	_normalGraphics.beginFill(0x000000, 0.7);
+	//--------------------------------------
+
 	//--------------------------------------
 	int x, y, w, h = 0;
 	flDisplayObject* displayObject = NULL;
@@ -45,10 +43,7 @@ void SubController2::_setup() {
 	//--------------------------------------
     
     //--------------------------------------
-    _marginLeft = 5;
-	_marginTop = 20;
 	_spacing = 205;
-	_lineSpacing = 22.5;
     
     label = new flTextField();
     label->text("Box Color");
@@ -93,8 +88,15 @@ void SubController2::_setup() {
 	displayObject = addChild(check001);
     //--------------------------------------
 
+	displayObject = colorSlider001;
+
+	//--------------------------------------
 	_normalBackWidth = 400;
-	_normalBackHeight = 105;
+	_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+
+	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.endFill();
+	//--------------------------------------
 
 	//addEventListener(flEvent::CLOSE, this, &SubController2::_eventHandler);
 
@@ -117,16 +119,25 @@ void SubController2::_draw() {
 }
 
 //==============================================================
-// PUBLIC MEHTOD
+// Public Method
 //==============================================================
 
 //==============================================================
-// EVENT HANDLER
+// Protected / Private Method
+//==============================================================
+
+//==============================================================
+// Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 void SubController2::_uiEventHandler(flEvent& event) {
-    //    ofLog() << "[SubController2]_uiEventHandler(" << event.type();
+	//ofLog() << "----------------------------------------------------------";
+	//ofLog() << "[SubController2]_uiEventHandler(" << event.type() << ")";
+	//ofLog() << "name = " << name().c_str();
+	//ofLog() << "target = " << ((flDisplayObject*)event.target())->name().c_str();
+	//ofLog() << "currnetTarget = " << ((flDisplayObject*)event.currentTarget())->name().c_str();
+	//ofLog() << "----------------------------------------------------------";
     
     //ボタン(マウスダウン)
     if(event.type() == flButtonEvent::MOUSE_DOWN) {

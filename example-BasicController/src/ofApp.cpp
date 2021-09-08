@@ -35,7 +35,7 @@ void ofApp::setup() {
     mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
     mainController->addEventListener("uiEvent1", this, &ofApp::_uiEventHandler);
     //    mainController->alpha(0.5);
-    ofxSelflash::stage()->addChild(mainController);
+    ofxSelflash::stage()->addChild(mainController, 0, 60);
     //--------------------------------------
 }
 
@@ -112,6 +112,13 @@ void ofApp::draw() {
     ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 10);
     ofPopStyle();
     //----------------------------------
+
+	//----------------------------------
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 255);
+	flFont::drawString("When the stage has a focus.\nScroll to change scale.\nDrag to change rotatin.", 6, 20);
+	ofPopStyle();
+	//----------------------------------
 }
 
 //==============================================================
