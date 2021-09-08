@@ -90,7 +90,7 @@ namespace fl2d {
         _valueText->autoSize(flTextFieldAutoSize::LEFT);
         _valueText->text(ofToString(_value));
         _valueText->mouseEnabled(false);
-        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5) - 0);
+        _valueText->y(round(_trackHeight * 0.5 - _valueText->textHeight() * 0.5));
         addChild(_valueText);
         //------------------------------------------
         
@@ -302,7 +302,7 @@ namespace fl2d {
         //------------------------------------------
         //Update value.
         _value = value;
-        
+
         if(_roundEnabled) _value = flmath::roundd(_value);
         if(_max > _min) {
             if(_value < _min) _value = _min;

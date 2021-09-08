@@ -319,7 +319,7 @@ void ofApp::keyPressed(int key) {
     }
 
     if(key == 's') {
-        uiComponents->button003->press();
+        uiComponents->button003->down();
     }
     
     if(key == 'l') {

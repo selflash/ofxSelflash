@@ -4,7 +4,10 @@
 //
 void ofApp::setup() {
     ofSetWindowTitle("example-BasicController");
-    ofDisableAntiAliasing();
+	ofSetFrameRate(30);
+	ofSetVerticalSync(true);
+	ofDisableArbTex();
+    //ofDisableAntiAliasing();
     
     //--------------------------------------
     //Camera
@@ -32,7 +35,7 @@ void ofApp::setup() {
     mainController->controller1()->text103->text("Z : " + ofToString(transformableNode.z()));
     mainController->addEventListener("uiEvent1", this, &ofApp::_uiEventHandler);
     //    mainController->alpha(0.5);
-    ofxSelflash::stage()->addChild(mainController);
+    ofxSelflash::stage()->addChild(mainController, 0, 60);
     //--------------------------------------
 }
 
@@ -109,19 +112,28 @@ void ofApp::draw() {
     ofDrawCircle(ofGetMouseX(), ofGetMouseY(), 10);
     ofPopStyle();
     //----------------------------------
+
+	//----------------------------------
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 255);
+	flFont::drawString("When the stage has a focus.\nScroll to change scale.\nDrag to change rotatin.", 6, 20);
+	ofPopStyle();
+	//----------------------------------
 }
 
 //==============================================================
-// EVENT HANDLER
+// Event Handler
 //==============================================================
 
 //--------------------------------------------------------------
 //
 void ofApp::_eventHandler(flEvent& event) {
-    cout << "[ofApp]_eventHandler(" << event.type() << ")" << endl;
-    //    cout << "[ofApp]this          = " << this << "," << ((flDisplayObject*) this)->name() << endl;
-    cout << "[ofApp]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name() << endl;
-    cout << "[ofApp]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name() << endl;
+	//ofLog() << "----------------------------------------------------------";
+	//ofLog() << "[ofApp]_eventHandler(" << event.type() << ")";
+	//ofLog() << "name = " << name().c_str();
+	//ofLog() << "target = " << ((flDisplayObject*)event.target())->name().c_str();
+	//ofLog() << "currnetTarget = " << ((flDisplayObject*)event.currentTarget())->name().c_str();
+	//ofLog() << "----------------------------------------------------------";
     
     if(event.type() == flEvent::ADDED_TO_STAGE) {
         
@@ -142,16 +154,12 @@ void ofApp::_eventHandler(flEvent& event) {
 //--------------------------------------------------------------
 //
 void ofApp::_uiEventHandler(flEvent& event) {
-    cout << "[ofApp]_uiEventHandler(" << event.type() << ")" << endl;
-    
-    //    //------------------------------------------
-    //    //イベントタイプ
-    //    cout << "event.type          = " << event.type() << endl;
-    //    //カレントターゲット
-    //    cout << "event.currentTarget = " << event.currentTarget() << ", " << ((DisplayObject*) event.currentTarget())->name() << endl;
-    //    //イベントターゲット
-    //    cout << "event.target        = " << event.target() << ", " << ((DisplayObject*) event.target())->name() << endl;
-    //    //------------------------------------------
+	//ofLog() << "----------------------------------------------------------";
+	//ofLog() << "[ofApp]_uiEventHandler(" << event.type() << ")";
+	//ofLog() << "name = " << name().c_str();
+	//ofLog() << "target = " << ((flDisplayObject*)event.target())->name().c_str();
+	//ofLog() << "currnetTarget = " << ((flDisplayObject*)event.currentTarget())->name().c_str();
+	//ofLog() << "----------------------------------------------------------";
     
     if(event.type() == "uiEvent1") {
         if(event.target() == mainController->controller1()->joystick1001) {

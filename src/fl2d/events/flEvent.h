@@ -80,10 +80,10 @@ namespace fl2d {
             T data() { return getProperty<T>("data"); }
         
         protected:
-        
+			template <class T>
+			void data(T value) { setProperty<T>("data", value); }
+
         private:
-            template <class T>
-            void data(T value) { setProperty<T>("data", value); }
         
     };
     

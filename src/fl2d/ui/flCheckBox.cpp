@@ -27,7 +27,7 @@ namespace fl2d {
         _label->x(15);
         _label->autoSize(flTextFieldAutoSize::LEFT);
         _label->text("Check Box");
-        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5) - 0);
+        _label->y(floor(_uiHeight * 0.5 - _label->textHeight() * 0.5));
         addChild(_label);
         //------------------------------------------
         
@@ -311,7 +311,7 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
         //外側
@@ -320,7 +320,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 12, 12);
+                g->drawRect(1, 3, 13, 15);
                 break;
             case 1:
                 g->enabledSmoothing(true);
@@ -339,7 +339,7 @@ namespace fl2d {
         
         //ヒットエリア
         g->beginFill(0xff0000, _hitAreaAlpha);
-        g->drawRect(0, 0, 6 + _label->x() + _label->width(), 15);
+        g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
         //外側
@@ -348,7 +348,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 12, 12);
+                g->drawRect(1, 3, 13, 15);
                 break;
             case 1:
                 g->enabledSmoothing(true);

@@ -133,8 +133,8 @@ namespace fl2d {
             //
             template <class T>
             inline T& getProperty(string propertyName) {
-//                cout << propertyName << ", " << *static_cast<T*>(_properties[propertyName]) << endl;
-//                cout << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << endl;
+//                ofLog() << propertyName << ", " << *static_cast<T*>(_properties[propertyName]);
+//                ofLog() << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get());
                 
                 return *static_cast<T*>(_properties[propertyName].get());
             }
@@ -143,7 +143,7 @@ namespace fl2d {
             template <class T>
             inline void setProperty(string propertyName, const T* value) {
                 _properties[propertyName] = shared_ptr<T>(new T(*value));
-//                cout << "[flObject]setProperty1(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")" << endl;
+//                ofLog() << "[flObject]setProperty1(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")";
             }
             //--------------------------------------------------------------
             //
@@ -151,7 +151,7 @@ namespace fl2d {
             inline void setProperty(string propertyName, const T& value) {
                 _properties[propertyName] = shared_ptr<T>(new T(value));
 
-//                cout << "[flObject]setProperty2(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")" << endl;
+//                ofLog() << "[flObject]setProperty2(" << propertyName << ", " << *static_cast<T*>(_properties[propertyName].get()) << ")";
             }
         
         protected:

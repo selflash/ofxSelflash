@@ -72,14 +72,18 @@ namespace fl2d {
             ofParameter<int>* _intParam = NULL;
             ofEventListeners _paramListeners;
             virtual inline void bind(ofParameter<float>& param) {
+				roundEnabled(false);
+
                 _paramListeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
 
+				min(param.getMin(), false);
+				max(param.getMax(), false);
 				_floatParam = &param;
-                _paramListeners.push(_floatParam->newListener([&](float& val) {
+				_paramListeners.push(_floatParam->newListener([&](float& val) {
                     if(_bChangedByMyself["value"]) {
                         _bChangedByMyself["value"] = false;
                     } else {
@@ -93,13 +97,17 @@ namespace fl2d {
 				_bChangedByOfParm["value"] = false;
 			}
             virtual inline void bind(ofParameter<int>& param) {
+				roundEnabled(true);
+
                 _paramListeners.unsubscribeAll();
                 _floatParam = NULL;
                 _intParam = NULL;
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
 
-                _intParam = &param;
+				min(param.getMin(), false);
+				max(param.getMax(), false);
+				_intParam = &param;
                 _paramListeners.push(_intParam->newListener([&](int& val) {
                     if(_bChangedByMyself["value"]) {
                         _bChangedByMyself["value"] = false;

@@ -21,8 +21,8 @@ int main() {
     //settings.setGLVersion(2, 1); // GL2
     //settings.setSize(1280 * 0.5 * 3, 720);
 //    settings.setGLVersion(3, 2); // GL3
-    //settings.setGLVersion(4, 1); // GL4
-    
+	settings.setGLVersion(4, 6); // GL4
+
     ofCreateWindow(settings);
 //    ofSetupOpenGL(1024,768,OF_WINDOW);            // <-------- setup the GL context
 

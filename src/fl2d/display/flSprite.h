@@ -30,7 +30,7 @@ namespace fl2d {
         protected:
             flGraphics* _graphics;
         
-            flSprite* __client = NULL;
+            flSprite* __hitAreaObject = NULL;
         
             bool _rectVisible = false;
             

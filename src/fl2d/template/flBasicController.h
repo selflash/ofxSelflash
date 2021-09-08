@@ -20,17 +20,19 @@ namespace fl2d {
 			flGraphics _minimalGraphics;
 			flGraphics _normalGraphics;
 
-			float _margin = 0.0;
-			float _spacing = 0.0;
-			float _lineSpacing = 0.0;
+			float _margin = 6.0;
+			float _marginLeft = 6.0;
+			float _marginTop = (6.0 + 18) + 6.0;
+			float _spacing = 150.0;
+			float _lineSpacing = 18 + 6.0;
 
 			string _titleText = "";
 			float _titleBarHeight = 0.0;
         
             bool _isMinimize = false;
         
-            bool _onTop;
-            bool _dragEnabled;
+            bool _onTop = true;
+            bool _dragEnabled = true;
 
 			bool _isLocked = false;
 
@@ -82,7 +84,7 @@ namespace fl2d {
 			}
         
         protected:
-			//virtual void _setup();
+			virtual void _setup();
 			//virtual void _update();
 			virtual void _draw();
 

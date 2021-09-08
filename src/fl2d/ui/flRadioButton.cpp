@@ -299,7 +299,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 12, 12);
+                g->drawRect(1, 3, 13, 15);
                 break;
 //            case 1: g->drawCircle(7, 8, 6); break;
             case 1:
@@ -327,7 +327,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 12, 12);
+                g->drawRect(1, 3, 13, 15);
                 break;
 //            case 1: g->drawCircle(7, 8, 6); break;
             case 1:

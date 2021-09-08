@@ -62,7 +62,11 @@ namespace fl2d {
     //    ofEventOrder flDefinition::WINDOW_PRIORITY = OF_EVENT_ORDER_AFTER_APP;
     
     //    string flDefinition::_FONT_PATH = "fl/fl2d/fonts/verdana.ttf";
-    string flDefinition::_FONT_PATH = "fl/fl2d/fonts/03SmartFontUI.ttf";
+    //string flDefinition::_FONT_PATH = "fl/fl2d/fonts/03SmartFontUI.ttf";
+    //string flDefinition::_FONT_PATH = "fl/fl2d/fonts/IBMPlexSansJP-ExtraLight.ttf";
+    string flDefinition::_FONT_PATH = "fl/fl2d/fonts/IBMPlexSansJP-Light.ttf";
+	//string flDefinition::_FONT_PATH = "fl/fl2d/fonts/IBMPlexSansJP-Regular.ttf";
+	//string flDefinition::_FONT_PATH = "fl/fl2d/fonts/IBMPlexSansJP-Thin.ttf";
     //    string flDefinition::_FONT_PATH = "fl/fl2d/fonts/FLOPDesignFont.ttf";
     string flDefinition::_COLORWHEEL_IMAGE_PATH = "fl/fl2d/images/colorwheel.png";
     
