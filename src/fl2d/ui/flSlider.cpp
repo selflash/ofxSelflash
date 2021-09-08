@@ -302,7 +302,7 @@ namespace fl2d {
         //------------------------------------------
         //Update value.
         _value = value;
-        
+
         if(_roundEnabled) _value = flmath::roundd(_value);
         if(_max > _min) {
             if(_value < _min) _value = _min;
