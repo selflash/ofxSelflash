@@ -44,11 +44,20 @@ namespace fl2d {
     flButton::~flButton() {
 //        ofLog() << "[flButton]~flButton()";
         
+		if (stage()) {
+			if (stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
+				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+			}
+		}
+
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flButton::_mouseEventHandler);
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
         
+		//_label = NULL;
+
+		removeChild(_buttonLabel);
         delete _buttonLabel;
         _buttonLabel = NULL;
         

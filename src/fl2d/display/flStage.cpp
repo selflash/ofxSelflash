@@ -1470,6 +1470,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flStage::_isInteractiveObject(flDisplayObject* displayObject) {
+		if (displayObject == NULL) return false;
+
         bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
         b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
@@ -1483,7 +1485,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flStage::_isDisplayObject(flDisplayObject* displayObject) {
-        bool b = false;
+		if (displayObject == NULL) return false;
+
+		bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_SHAPE);
         b = b || (displayObject->typeID() == FL_TYPE_BITMAP);
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
@@ -1496,7 +1500,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flStage::_isDisplayObjectContainer(flDisplayObject* displayObject) {
-        bool b = false;
+		if (displayObject == NULL) return false;
+
+		bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
@@ -1507,7 +1513,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flStage::_isSprite(flDisplayObject* displayObject) {
-        bool b = false;
+		if (displayObject == NULL) return false;
+
+		bool b = false;
         b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
         b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
         b = b || (displayObject->typeID() == FL_TYPE_UIBASE);

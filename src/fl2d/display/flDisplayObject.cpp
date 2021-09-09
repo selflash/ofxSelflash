@@ -53,6 +53,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject::~flDisplayObject() {
+		//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
+		removeAllEventListeners();
+
         _target = NULL;
         _name = "";
         

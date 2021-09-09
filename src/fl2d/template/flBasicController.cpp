@@ -42,6 +42,8 @@ namespace fl2d {
 		//ofLog() << "[flBasicController]~flBasicController()";
         
         _target = NULL;
+
+		_graphics = NULL;
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_flBasicControllerMouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_flBasicControllerMouseEventHandler);
@@ -49,12 +51,14 @@ namespace fl2d {
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
         
         //最小化ボタン
+		removeChild(minimizeButton);
         minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
         delete minimizeButton;
         minimizeButton = NULL;
         
         //閉じるボタン
-        closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerEventHandler);
+		removeChild(closeButton);
+		closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerEventHandler);
         delete closeButton;
         closeButton = NULL;
         

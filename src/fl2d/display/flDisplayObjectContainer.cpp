@@ -20,6 +20,29 @@ namespace fl2d {
     flDisplayObjectContainer::~flDisplayObjectContainer() {
         _target = NULL;
         
+		//for (auto& child : children) {
+		//	if(contains(child)) removeChild(child);
+		//	delete child;
+		//}
+		//removeAllChildren();
+		//for (auto& child : children) {
+		//	delete child;
+		//}
+
+		int i = 0;
+		int l = children.size();
+		flDisplayObject* child = NULL;
+		for (i; i < l; i++) {
+			child = children[i];
+			//child->removeAllEventListeners();
+			//child->stage(NULL);
+			//child->parent(NULL);
+			//child->level(-1);
+			delete child;
+			//children.erase(children.begin() + i);
+			//--i;
+			//--l;
+		}
         children.clear();
         
         _mouseChildren = false;
@@ -285,18 +308,18 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObjectContainer::removeAllChildren() {
         int i = 0;
-        int t = children.size();
+        int l = children.size();
         
         flDisplayObject* child;
         
-        for(i; i < t; i++){
+        for(i; i < l; i++){
             child = children[i];
             child->stage(NULL);
             child->parent(NULL);
             child->level(-1);
             children.erase(children.begin() + i);
             --i;
-            --t;
+            --l;
         }
         
         _updateRect();        

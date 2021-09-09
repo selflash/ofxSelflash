@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flSprite::flSprite() {
-        //        cout << "[Sprite]Sprite()" << endl;
+        //        ofLog() << "[Sprite]Sprite()";
         
         _typeID = FL_TYPE_SPRITE;
         _target = this;
@@ -38,13 +38,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flSprite::~flSprite() {
-        //        cout << "[flSprite]~flSprite()" << endl;
+        //ofLog() << "[flSprite]~flSprite()";
         
         _target = NULL;
         
         __hitAreaObject = NULL;
         
-        delete _graphics;
+        if(_graphics != NULL) delete _graphics;
         _graphics = NULL;
         
         _buttonMode = false;
@@ -52,17 +52,15 @@ namespace fl2d {
         _hitArea = NULL;
         _useHandCursor = false;
         
-        delete _draggableArea;
+		if (_draggableArea != NULL) delete _draggableArea;
         _draggableArea = NULL;
         
         ofRemoveListener(ofEvents().update, this, &flSprite::_updateEventHandler);
         
         //--------------------------------------
         //Tooltip
-        if(_toolTip != NULL) {
-            delete _toolTip;
-            _toolTip = NULL;
-        }
+        if(_toolTip != NULL) delete _toolTip;
+		_toolTip = NULL;
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
@@ -573,7 +571,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     //Calculate width and height.
     void flSprite::_updateRect() {
-        _rect->__setToRect(*_graphics->__rect);
+        if(_graphics != NULL) _rect->__setToRect(*_graphics->__rect);
         
         int i; int l;
         l = children.size();

@@ -28,7 +28,7 @@ namespace fl2d {
         public:
         
         protected:
-            flGraphics* _graphics;
+            flGraphics* _graphics = NULL;
         
             flSprite* __hitAreaObject = NULL;
         
