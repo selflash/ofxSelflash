@@ -34,6 +34,10 @@ namespace fl2d {
             flButton(float width = 100, float height = 18);
             virtual ~flButton();
         
+			virtual flDisplayObject* stage();
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void stage(flDisplayObject* value);
+
             virtual void label(flTextField* value);
         
             virtual void enabled(bool value);
@@ -117,6 +121,7 @@ namespace fl2d {
         
             virtual void _drawGraphics(const ofColor& lineColor, const ofColor& fillColor, float thickness = 1.0);
 
+            virtual void _eventHandler(flEvent& event);
             virtual void _mouseEventHandler(flEvent& event);
         private:
     };

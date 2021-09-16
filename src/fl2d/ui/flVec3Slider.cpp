@@ -8,11 +8,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flVec3Slider::flVec3Slider(
-                           float width_,
-                           float xMin, float xMax, float defaultXValue,
-                           float yMin, float yMax, float defaultYValue,
-                           float zMin, float zMax, float defaultZValue
-                           ) {
+		float width_,
+        float xMin, float xMax, float defaultXValue,
+        float yMin, float yMax, float defaultYValue,
+        float zMin, float zMax, float defaultZValue
+	) {
         //ofLog() << "[flVec3Slider]flVec3Slider()";
 
         _target = this;
@@ -93,26 +93,44 @@ namespace fl2d {
     flVec3Slider::~flVec3Slider() {
         //ofLog() << "[flVec3Slider]~flVec3Slider()";
         
-        xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
-        delete xSlider;
-        xSlider = NULL;
+		if (xSlider != NULL) {
+			removeChild(xSlider);
+			xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
+			delete xSlider;
+			xSlider = NULL;
+		}
         
-        ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
-        delete ySlider;
-        ySlider = NULL;
+		if (ySlider != NULL) {
+			removeChild(ySlider);
+			ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
+			delete ySlider;
+			ySlider = NULL;
+		}
         
-        zSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
-        delete zSlider;
-        zSlider = NULL;
+		if (zSlider != NULL) {
+			removeChild(zSlider);
+			zSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec3Slider::_eventHandler);
+			delete zSlider;
+			zSlider = NULL;
+		}
         
-        delete _xLabel;
-        _xLabel = NULL;
+		if (_xLabel != NULL) {
+			removeChild(_xLabel);
+			delete _xLabel;
+			_xLabel = NULL;
+		}
         
-        delete _yLabel;
-        _yLabel = NULL;
+		if (_yLabel != NULL) {
+			removeChild(_yLabel);
+			delete _yLabel;
+			_yLabel = NULL;
+		}
         
-        delete _zLabel;
-        _zLabel = NULL;
+		if (_zLabel != NULL) {
+			removeChild(_zLabel);
+			delete _zLabel;
+			_zLabel = NULL;
+		}
         
         //------------------------------------------
         _vec3Param = NULL;

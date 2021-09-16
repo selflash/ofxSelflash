@@ -63,7 +63,7 @@ namespace fl2d {
             flSettings _settings;
         
             static flStage* _instance;
-            flMovieClip* _root;
+            flMovieClip* _root = NULL;
         
             int _stageWidth;
             int _stageHeight;
@@ -86,23 +86,23 @@ namespace fl2d {
             //bool _isKeyReleased;
         
             //Interactive objcet that is focused.
-            flInteractiveObject* _focus;
+            flInteractiveObject* _focus = NULL;
         
             //最前面でマウスにヒットしているDisplayObject
-            flDisplayObject* _topMostHitDisplayObject;
-            flDisplayObject* _topMostHitDisplayObjectPrev;
+            flDisplayObject* _topMostHitDisplayObject = NULL;
+            flDisplayObject* _topMostHitDisplayObjectPrev = NULL;
         
             //最前面でマウスにヒットしているInteractiveObject
-            flInteractiveObject* _topMostHitInteractiveObject;
-            flInteractiveObject* _topMostHitInteractiveObjectPrev;
+            flInteractiveObject* _topMostHitInteractiveObject = NULL;
+            flInteractiveObject* _topMostHitInteractiveObjectPrev = NULL;
         
             //マウスダウン中のInteractiveObject
-            flInteractiveObject* _currentMouseDownInteractiveObject;
+            flInteractiveObject* _currentMouseDownInteractiveObject = NULL;
         
-            //Stageからマウスヒットオブジェクトまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
-            vector<flInteractiveObject*> _lineTopDown;
-            vector<flInteractiveObject*> _lineTopDownPrev;
-            //マウスヒットオブジェクトからStageまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
+            //マウスヒットオブジェクトからStageまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
+            //vector<flInteractiveObject*> _lineTopDown;
+            //vector<flInteractiveObject*> _lineTopDownPrev;
+            //Stageからマウスヒットオブジェクトまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
             vector<flInteractiveObject*> _lineBottomUp;
             vector<flInteractiveObject*> _lineBottomUpPrev;  
 
@@ -150,7 +150,8 @@ namespace fl2d {
             inline void pause(bool value) { _isPaused = value; }
 
         protected:
-        
+			virtual void _childEventHandler(flEvent& event);
+
         private:
             flStage();
             virtual ~flStage();
@@ -187,6 +188,9 @@ namespace fl2d {
             bool _isDisplayObject(flDisplayObject* displayObject);
             bool _isDisplayObjectContainer(flDisplayObject* displayObject);
             bool _isSprite(flDisplayObject* displayObject);
+
+			void _removeFromList(flDisplayObject* displayObject);
+
     };
     
 }

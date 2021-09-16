@@ -34,14 +34,15 @@ namespace fl2d {
 		flDisplayObject* child = NULL;
 		for (i; i < l; i++) {
 			child = children[i];
-			//child->removeAllEventListeners();
-			//child->stage(NULL);
-			//child->parent(NULL);
-			//child->level(-1);
+			child->removeAllEventListeners();
+			child->stage(NULL);
+			child->parent(NULL);
+			child->level(-1);
 			delete child;
-			//children.erase(children.begin() + i);
-			//--i;
-			//--l;
+
+			children.erase(children.begin() + i);
+			--i;
+			--l;
 		}
         children.clear();
         
@@ -187,27 +188,37 @@ namespace fl2d {
     void flDisplayObjectContainer::stage(flDisplayObject* value) {
         //cout << "[flDisplayObjectContainer]stage(" << value << ")" << name() << endl;
         
-        //‰π￡¶¶value´π￡¶
+        //もともとステージにAddされていなくて、Addされたら
         if(!_stage && value) {
             _stage = value;
             
+			for (int i = 0; i < children.size(); i++) {
+				flDisplayObject* child = children[i];
+				child->stage(_stage);
+
+				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+				child->dispatchEvent(event);
+			}
+
             flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-//            event->target(_target);
             dispatchEvent(event);
         }
-        //￠´π￡¶¶value´π￡¶
-        if(_stage && !value) {
+
+		//もともとステージにAddされていて、Removeされたら
+		if(_stage && !value) {
             _stage = value;
             
+			for (int i = 0; i < children.size(); i++) {
+				flDisplayObject* child = children[i];
+				child->stage(_stage);
+
+				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+				child->dispatchEvent(event);
+			}
+
             flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-//            event->target(_target);
             dispatchEvent(event);
-        }
-        
-        for(int i = 0; i < children.size(); i++) {
-            flDisplayObject* displayObject = children[i];
-            displayObject->stage(_stage);
-        }
+        }        
     }
     
     //--------------------------------------------------------------
@@ -215,8 +226,10 @@ namespace fl2d {
         //    cout << "[flDisplayObjectContainer]addChild((" << child->name() << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
+		//bool isChild = contains(child);
+
         if(child->parent()){
-            ((flDisplayObjectContainer*)(child->parent()))->removeChild(child);
+            ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
         
         children.push_back(child);
@@ -225,6 +238,21 @@ namespace fl2d {
         child->level(this->level()+1);
         
         _updateRect();
+
+		if (!child->hasEventListener(flEvent::DEINIT)) {
+			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
+		}
+
+		//if (!isChild) {
+		//	flEvent* event = new flEvent(flEvent::ADDED);
+		//	child->dispatchEvent(event);
+		//}
+
+		//bool onStage = bool(_stage != NULL);
+		//if (onStage) {
+		//	flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+		//	child->dispatchEvent(event);
+		//}
         
         return child;
     }
@@ -233,8 +261,10 @@ namespace fl2d {
         //    cout << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
+		//bool isChild = contains(child);
+
         if(child->parent()){
-            ((flDisplayObjectContainer*)(child->parent()))->removeChild(child);
+            ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
         
         children.push_back(child);
@@ -245,6 +275,21 @@ namespace fl2d {
         child->level(this->level()+1);
         
         _updateRect();
+
+		if (!child->hasEventListener(flEvent::DEINIT)) {
+			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
+		}
+
+		//if (!isChild) {
+		//	flEvent* event = new flEvent(flEvent::ADDED);
+		//	child->dispatchEvent(event);
+		//}	
+
+		//bool onStage = bool(_stage != NULL);
+		//if (onStage) {
+		//	flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+		//	child->dispatchEvent(event);
+		//}
         
         return child;
     }
@@ -254,15 +299,34 @@ namespace fl2d {
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
         if(index < 0 || index > children.size() - 1) return NULL;
+
+		//bool isChild = contains(child);
+
         if(child->parent()) {
-            ((flDisplayObjectContainer*)(child->parent()))->removeChild(child);
+            ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
+
         children.insert(children.begin() + index, child);
         child->stage(this->_stage);
         child->parent(this);
         child->level(this->level() + 1);
         
         _updateRect();
+
+		if (!child->hasEventListener(flEvent::DEINIT)) {
+			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
+		}
+
+		//if (!isChild) {
+		//	flEvent* event = new flEvent(flEvent::ADDED);
+		//	child->dispatchEvent(event);
+		//}
+
+		//bool onStage = bool(_stage != NULL);
+		//if (onStage) {
+		//	flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+		//	child->dispatchEvent(event);
+		//}
         
         return child;
     }
@@ -277,9 +341,21 @@ namespace fl2d {
                 child->stage(NULL);
                 child->parent(NULL);
                 child->level(-1);
+				//if (child->hasEventListener(flEvent::FINALIZE)) {
+				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
+				//}
                 children.erase(children.begin() + i);
                 
                 _updateRect();
+
+				//flEvent* event = new flEvent(flEvent::REMOVED);
+				//child->dispatchEvent(event);
+
+				//bool onStage = bool(_stage != NULL);
+				//if (onStage) {
+				//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+				//	child->dispatchEvent(event);
+				//}
                 
                 return child;
             }
@@ -287,7 +363,30 @@ namespace fl2d {
         
         throw "flDisplayObjectContainer::removeChild\n";
     }
-    
+
+	//--------------------------------------------------------------
+	flDisplayObject* flDisplayObjectContainer::_removeChild(flDisplayObject* child) {
+		//if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
+
+		//children.size()の箇所はリファクタリングとかで外に出したらダメ
+		for (int i = 0; i < children.size(); i++) {
+			if (children[i] == child) {
+				//child->stage(NULL);
+				//child->parent(NULL);
+				//child->level(-1);
+				//if (child->hasEventListener(flEvent::FINALIZE)) {
+				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
+				//}
+				children.erase(children.begin() + i);
+
+				_updateRect();
+
+				return child;
+			}
+		}
+
+		throw "flDisplayObjectContainer::_removeChild\n";
+	}
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
@@ -298,9 +397,21 @@ namespace fl2d {
         child->stage(NULL);
         child->parent(NULL);
         child->level(-1);
-        children.erase(children.begin() + index);
+		//if (child->hasEventListener(flEvent::FINALIZE)) {
+		//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
+		//}
+		children.erase(children.begin() + index);
         
         _updateRect();
+
+		//flEvent* event = new flEvent(flEvent::REMOVED);
+		//child->dispatchEvent(event);
+
+		//bool onStage = bool(_stage != NULL);
+		//if (onStage) {
+		//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+		//	child->dispatchEvent(event);
+		//}
         
         return child;
     }
@@ -317,7 +428,20 @@ namespace fl2d {
             child->stage(NULL);
             child->parent(NULL);
             child->level(-1);
-            children.erase(children.begin() + i);
+			//if (child->hasEventListener(flEvent::FINALIZE)) {
+			//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
+			//}
+			children.erase(children.begin() + i);
+
+			//flEvent* event = new flEvent(flEvent::REMOVED);
+			//child->dispatchEvent(event);
+
+			//bool onStage = bool(_stage != NULL);
+			//if (onStage) {
+			//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+			//	child->dispatchEvent(event);
+			//}
+
             --i;
             --l;
         }
@@ -419,7 +543,7 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flDisplayObjectContainer::_updateRect() {
 //        _hitAreaRect->__setNull();
@@ -478,5 +602,59 @@ namespace fl2d {
 
         return b;
     }
-    
+
+	//==============================================================
+	// Protected / Private Event Handler
+	//==============================================================
+
+	//--------------------------------------------------------------
+	void flDisplayObjectContainer::_childEventHandler(flEvent& event) {
+		//ofLog() << "[flDisplayObjectContainer]_childEventHandler(" << event.type() << ")";
+		//ofLog() << "[flDisplayObjectContainer]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flDisplayObjectContainer]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flDisplayObjectContainer]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+
+		if (event.type() == flEvent::ADDED) {
+			if (event.target() == this) {
+
+			}
+			else {
+
+			}
+		}
+		else if (event.type() == flEvent::ADDED_TO_STAGE) {
+			if (event.target() == this) {
+
+			}
+			else {
+
+			}
+		}
+		else if (event.type() == flEvent::REMOVED) {
+			if (event.target() == this) {
+
+			}
+			else {
+				flEvent* event_ = new flEvent(flEvent::REMOVED);
+				event_->__target = event.target();
+				dispatchEvent(event_);
+			}
+		}
+		else if (event.type() == flEvent::DEINIT) {
+			if (event.target() == this) {
+
+			}
+			else {
+				flDisplayObject* child = ((flDisplayObject*)event.target());
+				//if (child->hasEventListener(flEvent::FINALIZE)) {
+					child->removeEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
+				//}
+
+				flEvent* event_ = new flEvent(flEvent::DEINIT);
+				event_->__target = child;
+				dispatchEvent(event_);
+			}
+		}
+	}
+
 }

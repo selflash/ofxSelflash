@@ -91,6 +91,7 @@ namespace fl2d {
             
         public:
             virtual void setup();
+            virtual void tearDown();
             virtual void update();
             virtual void draw(bool applyMatrix = true);
             
@@ -98,9 +99,11 @@ namespace fl2d {
             virtual void name(string value);
             
             virtual flDisplayObject* stage();
-            virtual void stage(flDisplayObject* value);
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void stage(flDisplayObject* value);
             
             virtual flDisplayObject* parent();
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
             virtual void parent(flDisplayObject* value);
             
             virtual flDisplayObject* mask();
@@ -193,6 +196,7 @@ namespace fl2d {
             
             //for override
             virtual void _setup();
+            virtual void _tearDown();
             virtual void _update();
             virtual void _draw();
 

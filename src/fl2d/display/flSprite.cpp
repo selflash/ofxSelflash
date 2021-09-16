@@ -695,7 +695,7 @@ namespace fl2d {
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
             if(_toolTipEnabled) {
                 if(_toolTip->parent() != NULL) {
-                    ((flDisplayObjectContainer*)stage())->removeChild(_toolTip);
+                    ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
                 }
             }
         }

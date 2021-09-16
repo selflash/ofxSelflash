@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flUIBase::flUIBase() {
-//        ofLog() << "[flUIBase]flUIBase()";
+		//ofLog() << "[flUIBase]flUIBase()";
         
         _typeID = FL_TYPE_UIBASE;
         _target = this;
@@ -19,7 +19,12 @@ namespace fl2d {
     flUIBase::~flUIBase() {
 //        ofLog() << "[flUIBase]~flUIBase()";
         
-        _label = NULL;
+		if (_label != NULL) {
+			//if (contains(_label)) removeChild(_label);
+			if (_label->parent()) ((flDisplayObjectContainer*)_label->parent())->removeChild(_label);
+			delete _label;
+			_label = NULL;
+		}
             
         _bChangedByMyself.clear();
         _bChangedByOfParm.clear();

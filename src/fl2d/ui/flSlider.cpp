@@ -102,23 +102,35 @@ namespace fl2d {
         //ofLog() << "[flSlider]~flSlider()";
         
         //------------------------------------------
-        track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
-        track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
-        track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
-        delete track;
-        track = NULL;
+		if (thumb != NULL) {
+			track->removeChild(thumb);
+			thumb->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
+			thumb->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
+			thumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
+			delete thumb;
+			thumb = NULL;
+		}
+
+		if (bar != NULL) {
+			track->removeChild(bar);
+			delete bar;
+			bar = NULL;
+		}
+
+		if (track != NULL) {
+			removeChild(track);
+			track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
+			track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
+			track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
+			delete track;
+			track = NULL;
+		}
         
-        delete bar;
-        bar = NULL;
-        
-        thumb->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
-        thumb->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
-        thumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
-        delete thumb;
-        thumb = NULL;
-        
-        delete _valueText;
-        _valueText = NULL;
+		if (_valueText != NULL) {
+			removeChild(_valueText);
+			delete _valueText;
+			_valueText = NULL;
+		}
         //------------------------------------------
 
         //------------------------------------------

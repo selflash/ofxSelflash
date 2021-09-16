@@ -33,7 +33,7 @@ namespace fl2d {
 			}
         
 		protected:
-			//        virtual void _setup();
+			virtual void _setup();
 			//        virtual void _update();
 			//        virtual void _draw();
         

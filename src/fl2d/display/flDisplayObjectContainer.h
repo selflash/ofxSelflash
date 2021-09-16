@@ -63,7 +63,11 @@ namespace fl2d {
         
             bool _hasChildren(flDisplayObject* displayObject);
         
+			virtual void _childEventHandler(flEvent& event);
+
         private:
+			virtual flDisplayObject* _removeChild(flDisplayObject* child);
+
     };
     
 }

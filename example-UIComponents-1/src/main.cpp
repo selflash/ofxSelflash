@@ -3,6 +3,8 @@
 
 //========================================================================
 int main() {
+	ofLogToConsole();
+
 //    ofSetLogLevel(OF_LOG_VERBOSE);
     
 //    ofGLWindowSettings settings;

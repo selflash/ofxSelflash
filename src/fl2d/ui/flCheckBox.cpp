@@ -38,13 +38,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flCheckBox::~flCheckBox() {
+		//_label = NULL;
+
         removeEventListener(flMouseEvent::MOUSE_OVER, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_OUT, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
-        
-        delete _label;
-        _label = NULL;
         
         //------------------------------------------
         _boolParam = NULL;

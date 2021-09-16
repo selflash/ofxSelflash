@@ -12,15 +12,19 @@ namespace fl2d {
         _target = this;
         name("flBasicDraggableObject");
         
-        useHandCursor(true);
-        
-        addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
+        useHandCursor(true);        
     }
     
     //--------------------------------------------------------------
     flBasicDraggableObject::~flBasicDraggableObject() {
         //    ofLog(OF_LOG_NOTICE) << "[flBasicDraggableObject]~flBasicDraggableObject()";
         
+		if (stage()) {
+			if (stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
+				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicDraggableObject::_mouseEventHandler);
+			}
+		}
+
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
     }
     
@@ -29,10 +33,11 @@ namespace fl2d {
 	//==============================================================
     
     //--------------------------------------------------------------
-    //void flBasicDraggableObject::_setup() {
-    //    cout << "[flBasicDraggableObject]_setup()" << endl;
-    //
-    //}
+    void flBasicDraggableObject::_setup() {
+		//ofLog() << "[flBasicDraggableObject]_setup()";
+
+		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
+    }
     
     //--------------------------------------------------------------
     //void flBasicDraggableObject::_update() {

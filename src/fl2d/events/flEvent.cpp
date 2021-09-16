@@ -22,7 +22,8 @@ namespace fl2d {
     //string flflEvent::FULLSCREEN = "fullScreen";
     //string flflEvent::ID3 = "id3";
     string flEvent::INIT = "init";
-    //string flEvent::MOUSE_LEAVE = "mouseLeave";
+	string flEvent::DEINIT = "deinit";
+	//string flEvent::MOUSE_LEAVE = "mouseLeave";
     //string flEvent::RENDER = "render";
     //string flEvent::RESIZE = "resize";
     //string flEvent::SCROLL = "scroll";
@@ -34,10 +35,13 @@ namespace fl2d {
     //string flEvent::UNLOAD = "unload";
     
     //--------------------------------------------------------------
-    flEvent::flEvent(string type) {
+    flEvent::flEvent(string type, bool bubbles, bool cancelable) {
         //ofLog() << "[flEvent]flEvent()";
         
         _type = type;
+
+		_bubbles = bubbles;
+		_cancelable = cancelable;
         
         __currentTarget = NULL;
         __target = NULL;

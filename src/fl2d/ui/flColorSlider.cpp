@@ -466,39 +466,64 @@ namespace fl2d {
     flColorSlider::~flColorSlider() {
         //ofLog() << "[flColorSlider]~flColorSlider()";
         
-        redSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
-        delete redSlider;
-        redSlider = NULL;
+		if (redSlider != NULL) {
+			removeChild(redSlider);
+			redSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
+			delete redSlider;
+			redSlider = NULL;
+		}
         
-        greenSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
-        delete greenSlider;
-        greenSlider = NULL;
-        
-        blueSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
-        delete blueSlider;
-        blueSlider = NULL;
-        
+		if (greenSlider != NULL) {
+			removeChild(greenSlider);
+			greenSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
+			delete greenSlider;
+			greenSlider = NULL;
+		}
+
+		if (blueSlider != NULL) {
+			removeChild(blueSlider);
+			blueSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
+			delete blueSlider;
+			blueSlider = NULL;
+		}
+
         if(alphaSlider != NULL) {
-            alphaSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
+			removeChild(alphaSlider);
+			alphaSlider->removeEventListener(flSliderEvent::CHANGE, this, &flColorSlider::_eventHandler);
             delete alphaSlider;
             alphaSlider = NULL;
         }
         
-        delete _hexText;
-        _hexText = NULL;
+		if (_hexText != NULL) {
+			removeChild(_hexText);
+			delete _hexText;
+			_hexText = NULL;
+		}
 
-        delete _redLabel;
-        _redLabel = NULL;
-        
-        delete _greenLabel;
-        _greenLabel = NULL;
-        
-        delete _blueLabel;
-        _blueLabel = NULL;
-        
-        delete _alphaLabel;
-        _alphaLabel = NULL;
-        
+		if (_redLabel != NULL) {
+			removeChild(_redLabel);
+			delete _redLabel;
+			_redLabel = NULL;
+		}
+
+		if (_greenLabel != NULL) {
+			removeChild(_greenLabel);
+			delete _greenLabel;
+			_greenLabel = NULL;
+		}
+
+		if (_blueLabel != NULL) {
+			removeChild(_blueLabel);
+			delete _blueLabel;
+			_blueLabel = NULL;
+		}
+
+		if (_alphaLabel != NULL) {
+			removeChild(_alphaLabel);
+			delete _alphaLabel;
+			_alphaLabel = NULL;
+		}
+
         //------------------------------------------
         _floatColorParam = NULL;
         _colorParam = NULL;

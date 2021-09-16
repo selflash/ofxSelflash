@@ -32,7 +32,7 @@ namespace fl2d {
         //直接XXXXされたオブジェクト
         if(event->__target == NULL) event->__target = _target;
         
-        ofNotifyEvent(_listeners[event->type()], *event);
+         ofNotifyEvent(_listeners[event->type()], *event);
         
         delete event;
     }

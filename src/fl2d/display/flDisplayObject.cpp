@@ -54,13 +54,16 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject::~flDisplayObject() {
 		//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
+
 		removeAllEventListeners();
 
         _target = NULL;
         _name = "";
         
-        _stage = NULL;
-        _parent = NULL;
+		_stage = NULL;
+
+		_parent = NULL;
+
         _mask = NULL;
         
         _z = 0.0;
@@ -101,6 +104,13 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObject::setup() {
         _setup();
+    } 
+
+    //--------------------------------------------------------------
+    void flDisplayObject::tearDown() {
+        _tearDown();
+
+		dispatchEvent(new flEvent(flEvent::DEINIT));
     }
     
     //--------------------------------------------------------------
@@ -190,6 +200,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flDisplayObject::_setup() {
+        
+    }   
+
+    //--------------------------------------------------------------
+    void flDisplayObject::_tearDown() {
         
     }
     

@@ -57,8 +57,11 @@ namespace fl2d {
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRadioButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_UP, this, &flRadioButton::_mouseEventHandler);
         
-        delete _label;
-        _label = NULL;
+		if (_label != NULL) {
+			removeChild(_label);
+			delete _label;
+			_label = NULL;
+		}
         
         if(_groupOwner != NULL) {
             _groupOwner->_notice(this, "remove");

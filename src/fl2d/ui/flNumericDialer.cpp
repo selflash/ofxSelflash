@@ -49,14 +49,20 @@ namespace fl2d {
     flNumericDialer::~flNumericDialer() {
         //ofLog() << "[flNumericDialer]~flNumericDialer()";
 
-        _track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumericDialer::_mouseEventHandler);
-        _track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flNumericDialer::_mouseEventHandler);
-        _track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumericDialer::_mouseEventHandler);
-        delete _track;
-        _track = NULL;
+		if (_track != NULL) {
+			removeChild(_track);
+			_track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flNumericDialer::_mouseEventHandler);
+			_track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flNumericDialer::_mouseEventHandler);
+			_track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flNumericDialer::_mouseEventHandler);
+			delete _track;
+			_track = NULL;
+		}
         
-        delete _valueText;
-        _valueText = NULL;
+		if (_valueText != NULL) {
+			removeChild(_valueText);
+			delete _valueText;
+			_valueText = NULL;
+		}
         
         //------------------------------------------
         _floatParam = NULL;
@@ -248,7 +254,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     bool flNumericDialer::roundEnabled() { return _roundEnabled; }
-    void flNumericDialer::roundEnabled(bool value) { _roundEnabled = value; }
+    void flNumericDialer::roundEnabled(bool value) { _roundEnabled = value; }    
+
+    //--------------------------------------------------------------
+	int flNumericDialer::digit() { return _digit; }
+    void flNumericDialer::digit(int value) { _digit = value; }
     
     //--------------------------------------------------------------
     bool flNumericDialer::invertEnabled() { return _invertEnabled; }

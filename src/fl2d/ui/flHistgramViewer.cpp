@@ -65,9 +65,11 @@ namespace fl2d {
         _uiWidth = 0.0;
         _uiHeight = 0.0;
         
-        removeChild(_valueText);
-        delete _valueText;
-        _valueText = NULL;
+		if (_valueText != NULL) {
+			removeChild(_valueText);
+			delete _valueText;
+			_valueText = NULL;
+		}
         
         _value = 0.0;
         _tempValue = 0.0;

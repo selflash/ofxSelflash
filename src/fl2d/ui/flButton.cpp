@@ -44,10 +44,8 @@ namespace fl2d {
     flButton::~flButton() {
 //        ofLog() << "[flButton]~flButton()";
         
-		if (stage()) {
-			if (stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
-				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
-			}
+		if (stage() && stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
+			stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
 		}
 
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
@@ -57,9 +55,11 @@ namespace fl2d {
         
 		//_label = NULL;
 
-		removeChild(_buttonLabel);
-        delete _buttonLabel;
-        _buttonLabel = NULL;
+		if (_buttonLabel != NULL) {
+			if (contains(_buttonLabel)) removeChild(_buttonLabel);
+			delete _buttonLabel;
+			_buttonLabel = NULL;
+		}
         
         _pointerValue = NULL;
         
@@ -101,6 +101,34 @@ namespace fl2d {
     // Public Method
     //==============================================================
     
+	//--------------------------------------------------------------
+	flDisplayObject* flButton::stage() { return _stage; }
+	void flButton::stage(flDisplayObject* value) {
+		//cout << "[flButton]stage(" << value << ")" << name() << endl;
+
+		//今までステージへの参照がもっていなくてvalueにステージへの参照が入る時
+		if (!_stage && value) {
+			_stage = value;
+
+			flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+			//            event->target(_target);
+			//            event->_target = _target;
+			dispatchEvent(event);
+		}
+		//既にステージへの参照がもっていてvalueにステージへの参照がなくなる時
+		if (_stage && !value) {
+			if (_stage->hasEventListener(flMouseEvent::MOUSE_UP)) {
+				_stage->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+			}
+
+			_stage = value;
+
+			flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+			//            event->target(_target);
+			dispatchEvent(event);
+		}
+	}
+
     //--------------------------------------------------------------
     void flButton::label(flTextField* value) {
         _label = value;
@@ -436,14 +464,24 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Event Handler
     //==============================================================
-    
+
+	//--------------------------------------------------------------
+	void flButton::_eventHandler(flEvent& event) {
+		//ofLog() << "[flButton]_eventHandler(" << event.type() << ")";
+		//ofLog() << "[flButton]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flButton]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+
+
+	}
+
     //--------------------------------------------------------------
     void flButton::_mouseEventHandler(flEvent& event) {
         if(!_enabled) return;
-//        ofLog() << "[flButton]_mouseEventHandler(" << event.type() << ")";
-//        ofLog() << "[flButton]this          = " << this << "," << ((DisplayObject*) this)->name();
-//        ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flButton]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name();
+		//ofLog() << "[flButton]_mouseEventHandler(" << event.type() << ")";
+		//ofLog() << "[flButton]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flButton]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
@@ -458,11 +496,11 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
 			if (event.target() == this) {
-				_onPress();
 				//addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
 				if (stage()) {
 					stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
 				}
+				_onPress();
 			}
         }
         

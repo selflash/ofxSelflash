@@ -146,33 +146,51 @@ namespace fl2d {
     //--------------------------------------------------------------
     flRangeSlider::~flRangeSlider() {
         //ofLog() << "[flRangeSlider]~flRangeSlider()";
+                
+		if (bar != NULL) {
+			track->removeChild(bar);
+			bar->removeEventListener(flMouseEvent::ROLL_OVER, this, &flRangeSlider::_mouseEventHandler);
+			bar->removeEventListener(flMouseEvent::ROLL_OUT, this, &flRangeSlider::_mouseEventHandler);
+			bar->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
+			delete bar;
+			bar = NULL;
+		}
+
+		if (minThumb != NULL) {
+			track->removeChild(minThumb);
+			minThumb->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flRangeSlider::_mouseEventHandler);
+			minThumb->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
+			minThumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
+			delete minThumb;
+			minThumb = NULL;
+		}
         
-        delete track;
-        track = NULL;
+		if (maxThumb != NULL) {
+			track->removeChild(maxThumb);
+			maxThumb->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flRangeSlider::_mouseEventHandler);
+			maxThumb->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
+			maxThumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
+			delete maxThumb;
+			maxThumb = NULL;
+		}
+
+		if (track != NULL) {
+			removeChild(track);
+			delete track;
+			track = NULL;
+		}
+
+		if (_minValueText != NULL) {
+			removeChild(_minValueText);
+			delete _minValueText;
+			_minValueText = NULL;
+		}
         
-        bar->removeEventListener(flMouseEvent::ROLL_OVER, this, &flRangeSlider::_mouseEventHandler);
-        bar->removeEventListener(flMouseEvent::ROLL_OUT, this, &flRangeSlider::_mouseEventHandler);
-        bar->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
-        delete bar;
-        bar = NULL;
-        
-        minThumb->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flRangeSlider::_mouseEventHandler);
-        minThumb->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
-        minThumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
-        delete minThumb;
-        minThumb = NULL;
-        
-        maxThumb->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flRangeSlider::_mouseEventHandler);
-        maxThumb->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flRangeSlider::_mouseEventHandler);
-        maxThumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flRangeSlider::_mouseEventHandler);
-        delete maxThumb;
-        maxThumb = NULL;
-        
-        delete _minValueText;
-        _minValueText = NULL;
-        
-        delete _maxValueText;
-        _maxValueText = NULL;
+		if (_maxValueText != NULL) {
+			removeChild(_maxValueText);
+			delete _maxValueText;
+			_maxValueText = NULL;
+		}
         
         _minListeners.unsubscribeAll();
         _maxListeners.unsubscribeAll();

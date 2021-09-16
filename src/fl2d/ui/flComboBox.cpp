@@ -51,13 +51,19 @@ namespace fl2d {
         
         //------------------------------------------
         //ƒ{ƒ^ƒ“
-        _topButton->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
-        _topButton->removeEventListener(flFocusEvent::FOCUS_OUT, this, &flComboBox::_eventHandler);
-        delete _topButton;
-        _topButton = NULL;
-        
-        delete _buttonContainer;
-        _buttonContainer = NULL;
+		if (_topButton != NULL) {
+			_topButton->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flComboBox::_mouseEventHandler);
+			_topButton->removeEventListener(flFocusEvent::FOCUS_OUT, this, &flComboBox::_eventHandler);
+			if (contains(_topButton)) removeChild(_topButton);
+			delete _topButton;
+			_topButton = NULL;
+		}
+
+		if (_buttonContainer != NULL) {
+			if (contains(_buttonContainer)) removeChild(_buttonContainer);
+			delete _buttonContainer;
+			_buttonContainer = NULL;
+		}
         
         _buttonList.clear();
         _selectedButton = NULL;
@@ -115,10 +121,10 @@ namespace fl2d {
         l = _buttonList.size();
         for(i = 0; i < l; i++) {
             flButton* button = _buttonList[i];
-            button->label(_label);
+            //button->label(_label);
         }
         
-        _topButton->label(_label);
+        //_topButton->label(_label);
         
         if (_label == NULL) return;
         
@@ -143,7 +149,7 @@ namespace fl2d {
             if(_label != NULL) _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
             
             _topButton->selected(false);
-            if(_buttonContainer->parent()) removeChild(_buttonContainer);
+            if(contains(_buttonContainer)) removeChild(_buttonContainer);
 //            if(_topButton->isFocus()) { _topButton->focusOut(); }
         }
     }
@@ -265,7 +271,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::removeAllItems() {
-        if(_buttonContainer->parent()) removeChild(_buttonContainer);
+		if (contains(_buttonContainer)) removeChild(_buttonContainer);
         
         int i; int l;
         l = _buttonList.size();
@@ -317,7 +323,7 @@ namespace fl2d {
         //------------------------------------------
         _topButton->labelText(_selectedItem->getProperty<string>("label"));
         _topButton->selected(false);
-        if(_buttonContainer->parent()) removeChild(_buttonContainer);
+		if (contains(_buttonContainer)) removeChild(_buttonContainer);
         //------------------------------------------
         
         //------------------------------------------
@@ -386,10 +392,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::_mouseEventHandler(flEvent& event) {
-//        ofLog() << "[flComboBox]_mouseEventHandler(" << event.type() << ")";
-//        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
-//        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+        ofLog() << "[flComboBox]_mouseEventHandler(" << event.type() << ")";
+        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
@@ -419,6 +425,7 @@ namespace fl2d {
                     removeChild(_buttonContainer);
                 }
             } else {
+				ofLog() << "Test1";
                 //------------------------------------------
                 if(_selectedButton) {
                     _selectedButton->selected(false);
@@ -435,7 +442,7 @@ namespace fl2d {
                 //------------------------------------------
                 _topButton->labelText(_selectedItem->getProperty<string>("label"));
                 _topButton->selected(false);
-                if(_buttonContainer->parent()) removeChild(_buttonContainer);
+				if (contains(_buttonContainer)) removeChild(_buttonContainer);
                 //------------------------------------------
                 
                 //                //------------------------------------------
@@ -449,15 +456,18 @@ namespace fl2d {
                 //                _selectedValue = _valueList[temp];
                 //                
                 //------------------------------------------
-                
+				ofLog() << "Test2";
+
                 //------------------------------------------
                 _dispatchEvent();
-                
+				ofLog() << "Test3";
+
                 if(_intParam != NULL) {
                     _bChangedByMyself["value"] = true;
                     _intParam->set(_selectedIndex);
                 }
-                //------------------------------------------
+				ofLog() << "Test4";
+				//------------------------------------------
             }
         }
         
@@ -479,7 +489,7 @@ namespace fl2d {
         if(event.type() == flFocusEvent::FOCUS_OUT) {
             if(event.target() == _topButton) {
                 _topButton->selected(false);
-                if(_buttonContainer->parent()) removeChild(_buttonContainer);
+				if (contains(_buttonContainer)) removeChild(_buttonContainer);
             }
         }
     }
