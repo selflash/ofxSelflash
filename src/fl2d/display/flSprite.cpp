@@ -171,7 +171,8 @@ namespace fl2d {
         for(int i = 0; i < children.size(); i++){
             flDisplayObject* child;
             child = children[i];
-            //child->drawOnFrame();
+			if (child->__maskOwner != NULL) continue;
+			//child->drawOnFrame();
             child->draw();
         }
         ofPopStyle();
@@ -586,7 +587,8 @@ namespace fl2d {
             worldMatrix.concat(child->transform().matrix());
             child->__updateTransform(worldMatrix);
 
-            if(!child->visible()) continue;
+            if(!child->visible()) continue; 
+
             flRectangle childRect = child->__getRect(this);
             _rect->__expandTo(childRect.left(), childRect.top());
             _rect->__expandTo(childRect.right(), childRect.bottom());

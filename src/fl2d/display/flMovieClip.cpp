@@ -224,9 +224,9 @@ namespace fl2d {
             child = _frame->children[i];
             
             children.push_back(child);
-            child->stage(stage());
-            child->parent(this);
-            child->level(this->level() + 1);
+            child->__stage(stage());
+            child->__parent(this);
+            child->__level(this->__level() + 1);
         }
     }
     

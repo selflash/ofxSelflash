@@ -382,6 +382,7 @@ namespace fl2d {
 //            }
             //------------------------------------
             
+            if(child->__maskOwner != NULL) continue;
             if(!child->visible()) continue;
             
             //=========================================== Matrix.
@@ -456,8 +457,7 @@ namespace fl2d {
 
 				//‡ç
 				if (_hasChildren(child)) {
-					flDisplayObjectContainer* container;
-					container = (flDisplayObjectContainer*)child;
+					flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
 
 					//------------------------------------ mouseChildren
 					if (container->mouseChildren()) {
@@ -841,8 +841,7 @@ namespace fl2d {
             child->__compoundAlpha(parent->__compoundAlpha() * child->_alpha);
             
             if(_hasChildren(child)) {
-                flDisplayObjectContainer* container;
-                container = (flDisplayObjectContainer*)child;
+                flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
                 
                 if(container->children.size() > 0) {
                     _updateChildrenTwo(child, container->children);
@@ -860,7 +859,9 @@ namespace fl2d {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
             child = children[i];
-            if(!child->visible()) continue;
+
+			if (child->__maskOwner != NULL) continue;
+			if (!child->visible()) continue;
             
             //-- matrix transform.
             bool bIdentity = true;
@@ -876,8 +877,7 @@ namespace fl2d {
             child->draw();
             
             if(_hasChildren(child)) {
-                flDisplayObjectContainer* container;
-                container = (flDisplayObjectContainer*)child;
+                flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
                 if(container->children.size() > 0) {
                     _drawChildren(child, container->children);
                 }
@@ -902,70 +902,86 @@ namespace fl2d {
             flDisplayObject* child;
             child = children[i];
             
-            if(!child->visible()) continue;
-            
+			if (child->__maskOwner != NULL) continue;
+			if (!child->visible()) continue;
+
             //------------------------------------ topMostHitDisplayObject
 
-            //------------------------------------ mouseEnabled
-            if(_isInteractiveObject(child)) {
-                flInteractiveObject* intObj = (flInteractiveObject*)child;
-                if(intObj->mouseEnabled()) {
-                    //------------------------------------ hitArea
-                    if(_isSprite(child)) {
-                        flSprite* sprite = (flSprite*) child;
-                        if(sprite->hitArea() == NULL) {
-                            if(child->hitTestPoint(x, y, true)) {
-                                mostHitDisplayObject = child;
-                            }
-                        } else {
-                            
-                        }
-                        
-                    } else {
-                        if(child->hitTestPoint(x, y, true)) {
-                            mostHitDisplayObject = child;
-                        }
-                    }
-                    //------------------------------------ hitArea
-                } else {
-                    //------------------------------------ hitArea
-                    if(_isSprite(child)) {
-                        flSprite* sprite = (flSprite*) child;
-                        if(sprite->__hitAreaObject) {
-                            if(child->hitTestPoint(x, y, true)) {
-                                mostHitDisplayObject = child;
-                            }
-                        } else {
-                            
-                        }
-                    } else {
-                        
-                    }
-                    //------------------------------------ hitArea
-                    
-                }
-            } else {
-                if(child->hitTestPoint(x, y, true)) {
-                    mostHitDisplayObject = child;
-                }
-            }
-            //------------------------------------ mouseEnabled
-            //------------------------------------ topMostHitDisplayObject
-            
-            //------------------------------------
-            if(_hasChildren(child)) {
-                flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
-                //------------------------------------ mouseChildren
-                if(container->mouseChildren()) {
-                    if(container->children.size() > 0) {
-                        flDisplayObject* hitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
-                        if(hitDisplayObject != NULL) mostHitDisplayObject = hitDisplayObject;
-                        //                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
-                    }
-                }
-                //------------------------------------ mouseChildren
-            }
-            //------------------------------------
+			if (isInEffectiveArea && child->mask() != NULL) {
+				isInEffectiveArea = child->mask()->hitTestPoint(_mouseX, _mouseY, true);
+				//ofLog() << "hitTestPoint" << isHit;
+			}
+
+			if (isInEffectiveArea) {
+				//------------------------------------ mouseEnabled
+				if (_isInteractiveObject(child)) {
+					flInteractiveObject* intObj = (flInteractiveObject*)child;
+					if (intObj->mouseEnabled()) {
+						//------------------------------------ hitArea
+						if (_isSprite(child)) {
+							flSprite* sprite = (flSprite*)child;
+							if (sprite->hitArea() == NULL) {
+								if (child->hitTestPoint(x, y, true)) {
+									mostHitDisplayObject = child;
+								}
+							}
+							else {
+
+							}
+
+						}
+						else {
+							if (child->hitTestPoint(x, y, true)) {
+								mostHitDisplayObject = child;
+							}
+						}
+						//------------------------------------ hitArea
+					}
+					else {
+						//------------------------------------ hitArea
+						if (_isSprite(child)) {
+							flSprite* sprite = (flSprite*)child;
+							if (sprite->__hitAreaObject) {
+								if (child->hitTestPoint(x, y, true)) {
+									mostHitDisplayObject = child;
+								}
+							}
+							else {
+
+							}
+						}
+						else {
+
+						}
+						//------------------------------------ hitArea
+
+					}
+				}
+				else {
+					if (child->hitTestPoint(x, y, true)) {
+						mostHitDisplayObject = child;
+					}
+				}
+				//------------------------------------ mouseEnabled
+
+				//------------------------------------ topMostHitDisplayObject
+
+				//------------------------------------
+				if (_hasChildren(child)) {
+					flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
+
+					//------------------------------------ mouseChildren
+					if (container->mouseChildren()) {
+						if (container->children.size() > 0) {
+							flDisplayObject* hitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
+							if (hitDisplayObject != NULL) mostHitDisplayObject = hitDisplayObject;
+							//                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
+						}
+					}
+					//------------------------------------ mouseChildren
+				}
+				//------------------------------------
+			}
         }
         
 //        if(mostHitDisplayObject) ofLog() << "[flStage]" << mostHitDisplayObject->name();
@@ -1007,7 +1023,9 @@ namespace fl2d {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
             child = children[i];
-            if(!child->visible()) continue;
+
+			if (child->__maskOwner != NULL) continue;
+            if (!child->visible()) continue;
             
             //-- matrix transform.
             bool bIdentity = true;
@@ -1093,40 +1111,35 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flStage::_updateEventHandler(ofEventArgs& event) {
         update();
-        //        try {
-        //            update();
-        //        } catch(...) {
-        //            ofLog() << "[flStage]update error";
-        //
-        //isó‹µ
-        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 10;
-        //            ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
-        
-        //            //Œx
-        //            ofLog(OF_LOG_NOTICE) << "the number is " << 10;
-        //
-        //            //Œx
-        //            ofLog(OF_LOG_WARNING) << "the number is " << 10;
-        //
-        //            //ƒGƒ‰[
-        //            ofLog(OF_LOG_ERROR) << "the number is " << 10;
-        //            //’v–½“I‚ÈƒGƒ‰[
-        //            ofLog(OF_LOG_FATAL_ERROR) << "the number is " << 10;
-        //
-        //            //Ã‚©‚ÈƒƒO
-        //            ofLog(OF_LOG_SILENT) << "the number is " << 10;
-        //
-        //            ofExit();
-        //        }
-    }
+
+		//try {
+		//	update();
+		//} catch(...) {
+		//	ofLog() << "[flStage]update error";
+		//	//isó‹µ
+		//	ofLog(OF_LOG_VERBOSE) << "the number is " << 10;
+		//	ofLog(OF_LOG_VERBOSE) << "the number is " << 20;
+		//	//Œx
+		//	ofLog(OF_LOG_NOTICE) << "the number is " << 10;
+		//	//Œx
+		//	ofLog(OF_LOG_WARNING) << "the number is " << 10;
+		//	//ƒGƒ‰[
+		//	ofLog(OF_LOG_ERROR) << "the number is " << 10;
+		//	//’v–½“I‚ÈƒGƒ‰[
+		//	ofLog(OF_LOG_FATAL_ERROR) << "the number is " << 10;
+		//	//Ã‚©‚ÈƒƒO
+		//	ofLog(OF_LOG_SILENT) << "the number is " << 10;
+		//	ofExit();
+		//}
+	}
     //--------------------------------------------------------------
     void flStage::_drawEventHandler(ofEventArgs& event) {
         draw();
-        //        try {
-        //            draw();
-        //        } catch(...) {
-        //            ofLog() << "[flStage]draw error";
-        //        }
+        //try {
+        //    draw();
+        //} catch(...) {
+        //    ofLog() << "[flStage]draw error";
+        //}
     }
     
     //--------------------------------------------------------------
@@ -1222,8 +1235,11 @@ namespace fl2d {
 				}
                 
                 //LƒÎ
+				_lineBottomUpForFocus.clear();
                 _focus = _topMostHitInteractiveObject;                
 				if (_focus) {
+					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
+
 					//LƒÎ˜˜
 					_focus->__isFocus = true;
 
@@ -1293,8 +1309,11 @@ namespace fl2d {
 					}
 				}
                 
+				_lineBottomUpForFocus.clear();
 				_focus = this;
 				{
+					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
+
 					//LƒÎ˜˜
 					_focus->__isFocus = true;
 					flFocusEvent* focusEvent = new flFocusEvent(flFocusEvent::FOCUS_IN);
@@ -1441,40 +1460,68 @@ namespace fl2d {
         if(key == 32) flKeyboard::isSpaceKeyDown(true);
         //Shift
         if(key == 2304) flKeyboard::isShiftKeyDown(true);
-        
-        
-        flKeyboardEvent* keyboardEvent;
+                
+        flKeyboardEvent* keyboardEvent = NULL;
         
         //------------------------------------
         if(!flKeyboard::__checkKeyIsDown(key)) {
-            //        if(_isKeyDown == false) {
-            if(debug()) ofLog() << "[flStage]_keyDownEventHandler(KEY_PRESS)";
+        //if(_isKeyDown == false) {
             keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_PRESS);
             keyboardEvent->__keyCode = key;
             dispatchEvent(keyboardEvent);
             
             if(_focus != this) {
-                keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_PRESS);
-                keyboardEvent->__keyCode = key;
-                _focus->dispatchEvent(keyboardEvent);
+				//ofLog() << "--------------------------------";
+				//ofLog() << "_lineBottomUpForFocus.size() = " << _lineBottomUpForFocus.size();
+				//ofLog() << "_focus = " << _focus->name();
+				for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+					flDisplayObject* dispObj = _lineBottomUpForFocus[i];
+					//ofLog() << "dispObj = " << dispObj->name();
+
+					if (_isInteractiveObject(dispObj)) {
+						flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
+						if (intObj->mouseEnabled()) {
+							keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_PRESS);
+							keyboardEvent->__target = _focus;
+							keyboardEvent->__keyCode = key;
+							intObj->dispatchEvent(keyboardEvent);
+						}
+					}
+				}
+				//ofLog() << "--------------------------------";
             }
-        }
+		}
         //------------------------------------
         
         //------------------------------------
         keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_DOWN);
         keyboardEvent->__keyCode = key;
         dispatchEvent(keyboardEvent);
-        
-        if(_focus != this) {
-            keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_DOWN);
-            keyboardEvent->__keyCode = key;
-            _focus->dispatchEvent(keyboardEvent);
-        }
+
+		if (_focus != this) {
+			//ofLog() << "--------------------------------";
+			//ofLog() << "_lineBottomUpForFocus.size() = " << _lineBottomUpForFocus.size();
+			//ofLog() << "_focus = " << _focus->name();
+			for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+				flDisplayObject* dispObj = _lineBottomUpForFocus[i];
+				//ofLog() << "dispObj = " << dispObj->name();
+
+				if (_isInteractiveObject(dispObj)) {
+					flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
+					if (intObj->mouseEnabled()) {
+						keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_DOWN);
+						keyboardEvent->__target = _focus;
+						keyboardEvent->__keyCode = key;
+						intObj->dispatchEvent(keyboardEvent);
+					}
+				}
+			}
+			//ofLog() << "--------------------------------";
+		}
         //------------------------------------
         
         flKeyboard::__addDownKey(key);
-        //        _isKeyDown = true;
+        //_isKeyDown = true;
     }
     
     //--------------------------------------------------------------
@@ -1487,42 +1534,71 @@ namespace fl2d {
         //Shift
         if(key == 2304) flKeyboard::isShiftKeyDown(false);
         
-        flKeyboardEvent* keyboardEvent;
-        
-        //------------------------------------
-        if(flKeyboard::__checkKeyIsDown(key)) {
-            //        if(_isKeyDown) {
-            if(debug()) ofLog() << "[flStage]_keyDownEventHandler(KEY_RELEASE)";
-            keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
-            keyboardEvent->__keyCode = key;
-            dispatchEvent(keyboardEvent);
-            
-            if(_focus != this) {
-                keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
-                keyboardEvent->__keyCode = key;
-                _focus->dispatchEvent(keyboardEvent);
-            }
-        }
-        //------------------------------------
-        
-        //------------------------------------
-        keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_UP);
-        keyboardEvent->__keyCode = key;
-        dispatchEvent(keyboardEvent);
-        
-        if(_focus != this) {
-            keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_UP);
-            keyboardEvent->__keyCode = key;
-            _focus->dispatchEvent(keyboardEvent);
-        }
-        //------------------------------------
+		flKeyboardEvent* keyboardEvent = NULL;
+
+		//------------------------------------
+		if (flKeyboard::__checkKeyIsDown(key)) {
+			//if(_isKeyDown) {
+			keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
+			keyboardEvent->__keyCode = key;
+			dispatchEvent(keyboardEvent);
+
+			if (_focus != this) {
+				//ofLog() << "--------------------------------";
+				//ofLog() << "_lineBottomUpForFocus.size() = " << _lineBottomUpForFocus.size();
+				//ofLog() << "_focus = " << _focus->name();
+				for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+					flDisplayObject* dispObj = _lineBottomUpForFocus[i];
+					//ofLog() << "dispObj = " << dispObj->name();
+
+					if (_isInteractiveObject(dispObj)) {
+						flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
+						if (intObj->mouseEnabled()) {
+							keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
+							keyboardEvent->__target = _focus;
+							keyboardEvent->__keyCode = key;
+							intObj->dispatchEvent(keyboardEvent);
+						}
+					}
+				}
+				//ofLog() << "--------------------------------";
+			}
+		}
+		//------------------------------------
+
+		//------------------------------------
+		keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_UP);
+		keyboardEvent->__keyCode = key;
+		dispatchEvent(keyboardEvent);
+
+		if (_focus != this) {
+			//ofLog() << "--------------------------------";
+			//ofLog() << "_lineBottomUpForFocus.size() = " << _lineBottomUpForFocus.size();
+			//ofLog() << "_focus = " << _focus->name();
+			for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+				flDisplayObject* dispObj = _lineBottomUpForFocus[i];
+				//ofLog() << "dispObj = " << dispObj->name();
+
+				if (_isInteractiveObject(dispObj)) {
+					flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
+					if (intObj->mouseEnabled()) {
+						keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_UP);
+						keyboardEvent->__target = _focus;
+						keyboardEvent->__keyCode = key;
+						intObj->dispatchEvent(keyboardEvent);
+					}
+				}
+			}
+			//ofLog() << "--------------------------------";
+		}
+		//------------------------------------
         
         flKeyboard::__removeDownKey(key);
-        //        _isKeyDown = false;
+        //_isKeyDown = false;
     }
     
     //==============================================================
-    // RESIZE
+    // Resize
     //==============================================================
     
     //--------------------------------------------------------------
@@ -1534,7 +1610,7 @@ namespace fl2d {
     }
     
     //==============================================================
-    // UTILITY
+    // Utility
     //==============================================================
     
     //--------------------------------------------------------------
@@ -1606,6 +1682,15 @@ namespace fl2d {
 		}
 
 		int l = 0;
+		l = _lineBottomUpForFocus.size();
+		for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+			if (_lineBottomUpForFocus[i] == displayObject) {
+				_lineBottomUpForFocus.erase(_lineBottomUpForFocus.begin() + i);
+				--i;
+				--l;
+			}
+		}		
+		
 		l = _lineBottomUp.size();
 		for (int i = 0; i < _lineBottomUp.size(); i++) {
 			if (_lineBottomUp[i] == displayObject) {

@@ -35,9 +35,9 @@ namespace fl2d {
 		for (i; i < l; i++) {
 			child = children[i];
 			child->removeAllEventListeners();
-			child->stage(NULL);
-			child->parent(NULL);
-			child->level(-1);
+			child->__stage(NULL);
+			child->__parent(NULL);
+			child->__level(-1);
 			delete child;
 
 			children.erase(children.begin() + i);
@@ -137,6 +137,7 @@ namespace fl2d {
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
             child = children[i];
+			if (child->__maskOwner != NULL) continue;
             //child->drawOnFrame();
             child->draw();
         }
@@ -185,8 +186,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::stage() { return _stage; }
-    void flDisplayObjectContainer::stage(flDisplayObject* value) {
-        //cout << "[flDisplayObjectContainer]stage(" << value << ")" << name() << endl;
+    void flDisplayObjectContainer::__stage(flDisplayObject* value) {
+        //cout << "[flDisplayObjectContainer]__stage(" << value << ")" << name() << endl;
         
         //もともとステージにAddされていなくて、Addされたら
         if(!_stage && value) {
@@ -194,7 +195,7 @@ namespace fl2d {
             
 			for (int i = 0; i < children.size(); i++) {
 				flDisplayObject* child = children[i];
-				child->stage(_stage);
+				child->__stage(_stage);
 
 				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
 				child->dispatchEvent(event);
@@ -210,7 +211,7 @@ namespace fl2d {
             
 			for (int i = 0; i < children.size(); i++) {
 				flDisplayObject* child = children[i];
-				child->stage(_stage);
+				child->__stage(_stage);
 
 				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
 				child->dispatchEvent(event);
@@ -233,9 +234,9 @@ namespace fl2d {
         }
         
         children.push_back(child);
-        child->stage(this->_stage);
-        child->parent(this);
-        child->level(this->level()+1);
+        child->__stage(this->_stage);
+        child->__parent(this);
+        child->__level(this->__level()+1);
         
         _updateRect();
 
@@ -270,9 +271,9 @@ namespace fl2d {
         children.push_back(child);
         child->x(x);
         child->y(y);
-        child->stage(this->_stage);
-        child->parent(this);
-        child->level(this->level()+1);
+        child->__stage(this->_stage);
+        child->__parent(this);
+        child->__level(this->__level()+1);
         
         _updateRect();
 
@@ -307,9 +308,9 @@ namespace fl2d {
         }
 
         children.insert(children.begin() + index, child);
-        child->stage(this->_stage);
-        child->parent(this);
-        child->level(this->level() + 1);
+        child->__stage(this->_stage);
+        child->__parent(this);
+        child->__level(this->__level() + 1);
         
         _updateRect();
 
@@ -338,9 +339,9 @@ namespace fl2d {
         //children.size()の箇所はリファクタリングとかで外に出したらダメ
         for(int i = 0; i < children.size(); i++){
             if(children[i] == child){
-                child->stage(NULL);
-                child->parent(NULL);
-                child->level(-1);
+                child->__stage(NULL);
+                child->__parent(NULL);
+                child->__level(-1);
 				//if (child->hasEventListener(flEvent::FINALIZE)) {
 				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 				//}
@@ -371,9 +372,9 @@ namespace fl2d {
 		//children.size()の箇所はリファクタリングとかで外に出したらダメ
 		for (int i = 0; i < children.size(); i++) {
 			if (children[i] == child) {
-				//child->stage(NULL);
+				//child->__stage(NULL);
 				//child->parent(NULL);
-				//child->level(-1);
+				//child->__level(-1);
 				//if (child->hasEventListener(flEvent::FINALIZE)) {
 				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 				//}
@@ -394,9 +395,9 @@ namespace fl2d {
         if(index < 0 || index > children.size() - 1) return NULL;
         flDisplayObject* child;
         child = children[index];
-        child->stage(NULL);
-        child->parent(NULL);
-        child->level(-1);
+        child->__stage(NULL);
+        child->__parent(NULL);
+        child->__level(-1);
 		//if (child->hasEventListener(flEvent::FINALIZE)) {
 		//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 		//}
@@ -425,9 +426,9 @@ namespace fl2d {
         
         for(i; i < l; i++){
             child = children[i];
-            child->stage(NULL);
-            child->parent(NULL);
-            child->level(-1);
+            child->__stage(NULL);
+            child->__parent(NULL);
+            child->__level(-1);
 			//if (child->hasEventListener(flEvent::FINALIZE)) {
 			//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 			//}

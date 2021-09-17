@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashDisplayObject.h
@@ -35,11 +35,13 @@ namespace fl2d {
 
     class flDisplayObjectContainer;
     class flSprite;
+    class flMovieClip;
     class flStage;
     class flDisplayObject : public flEventDispatcher {
         friend flDisplayObjectContainer;
         friend flSprite;
-        friend flStage;
+		friend flMovieClip;
+		friend flStage;
             
         public:
             
@@ -49,6 +51,7 @@ namespace fl2d {
             flDisplayObject* _stage = NULL;
             flDisplayObject* _parent = NULL;
             flDisplayObject* _mask = NULL;
+            flDisplayObject* __maskOwner = NULL;
             
             float _z;
             
@@ -99,12 +102,8 @@ namespace fl2d {
             virtual void name(string value);
             
             virtual flDisplayObject* stage();
-			//–{—ˆ‚Í“Ç‚İæ‚èê—p‚É‚µ‚½‚¢B‚È‚Ì‚ÅflDisplayObjectContainer‚©‚ç‚ÍŒÄ‚Ño‚·‚ÈI
-			virtual void stage(flDisplayObject* value);
-            
+
             virtual flDisplayObject* parent();
-			//–{—ˆ‚Í“Ç‚İæ‚èê—p‚É‚µ‚½‚¢B‚È‚Ì‚ÅflDisplayObjectContainer‚©‚ç‚ÍŒÄ‚Ño‚·‚ÈI
-            virtual void parent(flDisplayObject* value);
             
             virtual flDisplayObject* mask();
             virtual void mask(flDisplayObject* value);
@@ -157,9 +156,6 @@ namespace fl2d {
             
             virtual int blendMode();
             virtual void blendMode(int value);
-            
-            virtual int level();
-            virtual void level(int value);
         
             virtual flTransform& transform();
             virtual void transform(const flTransform& value);
@@ -199,6 +195,14 @@ namespace fl2d {
             virtual void _tearDown();
             virtual void _update();
             virtual void _draw();
+
+			//æœ¬æ¥ã¯èª­ã¿å–ã‚Šå°‚ç”¨ã«ã—ãŸã„ã€‚ãªã®ã§flDisplayObjectContainerã‹ã‚‰ã¯å‘¼ã³å‡ºã™ãªï¼
+			virtual void __stage(flDisplayObject* value);
+			//æœ¬æ¥ã¯èª­ã¿å–ã‚Šå°‚ç”¨ã«ã—ãŸã„ã€‚ãªã®ã§flDisplayObjectContainerã‹ã‚‰ã¯å‘¼ã³å‡ºã™ãªï¼
+			virtual void __parent(flDisplayObject* value);
+
+			virtual int __level();
+			virtual void __level(int value);
 
 			virtual void _beginDrawingStencil();
 			virtual void _beginUsingStencil();

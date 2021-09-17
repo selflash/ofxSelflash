@@ -1,4 +1,4 @@
-#include "flDisplayObject.h"
+ï»¿#include "flDisplayObject.h"
 
 namespace fl2d {
     
@@ -12,10 +12,6 @@ namespace fl2d {
         _typeID = FL_TYPE_DISPLAY_OBJECT;
         _target = this;
         name("flDisplayObject");
-        
-        _stage = NULL;
-        _parent = NULL;
-        _mask = NULL;
         
         _z = 0.0;
         
@@ -61,10 +57,9 @@ namespace fl2d {
         _name = "";
         
 		_stage = NULL;
-
 		_parent = NULL;
-
         _mask = NULL;
+		__maskOwner = NULL;
         
         _z = 0.0;
         
@@ -228,10 +223,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::stage() { return _stage; }
-    void flDisplayObject::stage(flDisplayObject* value) {
-        //cout << "[flDisplayObject]stage(" << value << ")" << name() << endl;
+    void flDisplayObject::__stage(flDisplayObject* value) {
+        //ofLog() << "[flDisplayObject]__stage(" << value << ")" << name();
         
-        //¡‚Ü‚ÅƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚é
+        //ä»Šã¾ã§ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã‚‹æ™‚
         if(!_stage && value) {
             _stage = value;
             
@@ -240,7 +235,7 @@ namespace fl2d {
 //            event->_target = _target;
             dispatchEvent(event);
         }
-        //Šù‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚¢‚È‚¢
+        //æ—¢ã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã„ãªã„æ™‚
         if(_stage && !value) {
             _stage = value;
             
@@ -252,10 +247,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::parent() { return _parent; }
-    void flDisplayObject::parent(flDisplayObject* value) {
-        //cout << "[flDisplayObject]parent(" << value << ")" << name() << endl;
+    void flDisplayObject::__parent(flDisplayObject* value) {
+        //ofLog() << "[flDisplayObject]__parent(" << value << ")" << name();
         
-        //¡‚Ü‚Åe‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚Ée‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚é
+        //ä»Šã¾ã§è¦ªã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«è¦ªã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã‚‹æ™‚
         if(!_parent && value) {
             _parent = value;
             _compoundAlpha = _parent->__compoundAlpha() * _alpha;
@@ -264,7 +259,7 @@ namespace fl2d {
 //            event->target(_target);
             dispatchEvent(event);
         }
-        //Šù‚Ée‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚Ée‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚¢‚È‚¢
+        //æ—¢ã«è¦ªã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«è¦ªã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã„ãªã„æ™‚
         if(_parent && !value) {
             _parent = value;
             
@@ -276,7 +271,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     // TODO
-	void flDisplayObject::mask(flDisplayObject* value) { _mask = value; }
+	void flDisplayObject::mask(flDisplayObject* value) { 
+		if (value == NULL && _mask != NULL) {
+			_mask->__maskOwner = NULL;
+		}
+
+		_mask = value;
+		_mask->__maskOwner = this;
+	}
     flDisplayObject* flDisplayObject::mask() { return _mask; }
     
     //--------------------------------------------------------------
@@ -409,8 +411,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    int flDisplayObject::level() { return _level; }
-    void flDisplayObject::level(int value) { _level = value; }
+    int flDisplayObject::__level() { return _level; }
+    void flDisplayObject::__level(int value) { _level = value; }
     
     //--------------------------------------------------------------
     flTransform& flDisplayObject::transform() { return _transform; }
@@ -558,7 +560,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     ofPoint flDisplayObject::globalToLocal(const ofPoint& point) {
         ofPoint p = point;
-        //ƒOƒ[ƒoƒ‹À•W‚©‚çƒ[ƒJƒ‹À•W‚É•ÏŠ·
+        //ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›
         _transform.__concatenatedMatrixInv.transformPoint(p);
         return p;
     }

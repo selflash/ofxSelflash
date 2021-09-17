@@ -105,6 +105,7 @@ namespace fl2d {
             //Stageからマウスヒットオブジェクトまでの順 [Stageに最も近いオブジェクト → マウスヒットオブジェクト]
             vector<flInteractiveObject*> _lineBottomUp;
             vector<flInteractiveObject*> _lineBottomUpPrev;  
+			vector<flInteractiveObject*> _lineBottomUpForFocus;
 
 			//Stageからマウスヒットオブジェクトまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
 			//vector<ofPtr<flInteractiveObject>> _lineTopDown;

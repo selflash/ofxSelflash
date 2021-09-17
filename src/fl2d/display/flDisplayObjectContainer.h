@@ -37,7 +37,6 @@ namespace fl2d {
             virtual bool contains(flDisplayObject* child);
         
             virtual flDisplayObject* stage();
-            virtual void stage(flDisplayObject* value);
         
             virtual flDisplayObject* addChild(flDisplayObject* child);
             virtual flDisplayObject* addChild(flDisplayObject* child, int x, int y);
@@ -59,6 +58,8 @@ namespace fl2d {
             flDisplayObjectContainer();
             virtual ~flDisplayObjectContainer();
         
+			virtual void __stage(flDisplayObject* value);
+
             virtual void _updateRect();
         
             bool _hasChildren(flDisplayObject* displayObject);
