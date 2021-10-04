@@ -11,7 +11,7 @@ namespace fl2d {
 		//ofLog() << "[flBasicImageViewer]flBasicImageViewer()";
 		_target = this;
 		name("flBasicImageViewer");
-		_titleText = "[flBasicImageViewer]";
+		_title = "[flBasicImageViewer]";
 
 		//mouseChildren(false);
 		useHandCursor(true);

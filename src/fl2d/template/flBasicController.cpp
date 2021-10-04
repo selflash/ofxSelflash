@@ -13,9 +13,7 @@ namespace fl2d {
         _target = this;
         name("flBasicController");
 
-		_titleText = "[Contoller]";
-		_titleBarHeight = (_margin + 18) + _margin;
-		_marginTop = _titleBarHeight;
+		_title = "[Contoller]";
 
         useHandCursor(true);
         //--------------------------------------
@@ -38,7 +36,13 @@ namespace fl2d {
 		removeChild(minimizeButton);
         minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
         delete minimizeButton;
-        minimizeButton = NULL;
+        minimizeButton = NULL;   
+
+        //最大化ボタン
+		removeChild(maximizeButton);
+		maximizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
+        delete maximizeButton;
+		maximizeButton = NULL;
         
         //閉じるボタン
 		removeChild(closeButton);
@@ -63,13 +67,9 @@ namespace fl2d {
     void flBasicController::setup() {
         //_setup();
 
-		//_margin = 6;
-		//_marginLeft = _margin;
-		//_marginTop = (_margin + 18) + _margin;
-		//_spacing = 150;
-		//_lineSpacing = 18 + _margin;
+		_marginTop = _titleBarHeight;
         
-        _updateRect();
+        //_updateRect();
 
 		int x, y, w, h = 0;
 		flDisplayObject* displayObject = NULL;
@@ -78,23 +78,78 @@ namespace fl2d {
 		//--------------------------------------
 
 		//最小化ボタン
-		minimizeButton = new flButton(18, 18);
-		minimizeButton->name("MinimizeButton");
-		//minimizeButton->x(w - (18 + 5 + 18 + 5));
-		minimizeButton->y(_margin);
-		minimizeButton->labelText("-");
-		minimizeButton->toggleEnabled(true);
-		minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-		displayObject = addChild(minimizeButton);
+		{
+			minimizeButton = new flButton(18, 18);
+			minimizeButton->name("MinimizeButton");
+			//minimizeButton->x(w - (18 + 5 + 18 + 5));
+			minimizeButton->y(_margin);
+			minimizeButton->labelText("");
+			minimizeButton->toggleEnabled(true);
+			minimizeButton->toolTipEnabled(true);
+			minimizeButton->toolTipText(u8"最小化。");
+			minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
+			displayObject = addChild(minimizeButton);
+
+			flShape* icon = new flShape();
+			flGraphics* g = icon->graphics();
+			g->clear();
+			g->lineStyle(1, 0xffffff);
+			g->moveTo(4, 9);
+			g->lineTo(14, 9);
+			g->endFill();
+			minimizeButton->addChild(icon);
+		}
+
+		//最大化ボタン
+		{
+			maximizeButton = new flButton(18, 18);
+			maximizeButton->name("MaximizeButton");
+			//maximizeButton->x(w - (18 + 5 + 18 + 5));
+			maximizeButton->y(_margin);
+			maximizeButton->labelText("");
+			maximizeButton->toggleEnabled(true);
+			maximizeButton->toolTipEnabled(true);
+			maximizeButton->toolTipText(u8"最大化。");
+			maximizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
+			displayObject = addChild(maximizeButton);
+
+			flShape* icon = new flShape();
+			flGraphics* g = icon->graphics();
+			g->clear();
+			g->lineStyle(1, 0xffffff);
+			g->moveTo(4, 4);
+			g->lineTo(14, 4);
+			g->lineTo(14, 14);
+			g->lineTo(3, 14);
+			g->lineTo(4, 4);
+			g->endFill();
+			maximizeButton->addChild(icon);
+		}
 
 		//閉じるボタン
-		closeButton = new flButton(18, 18);
-		closeButton->name("CloseButton");
-		//closeButton->x(w - (18 + 5));
-		closeButton->y(_margin);
-		closeButton->labelText("x");
-		closeButton->addEventListener(flButtonEvent::CLICK, this, &flBasicController::_flBasicControllerEventHandler);
-		displayObject = addChild(closeButton);
+		{
+			closeButton = new flButton(18, 18);
+			closeButton->name("CloseButton");
+			//closeButton->x(w - (18 + 5));
+			closeButton->y(_margin);
+			closeButton->labelText("");
+			closeButton->toolTipEnabled(true);
+			closeButton->toolTipText(u8"閉じる。");
+			closeButton->addEventListener(flButtonEvent::CLICK, this, &flBasicController::_flBasicControllerEventHandler);
+			displayObject = addChild(closeButton);
+
+			flShape* icon = new flShape();
+			flGraphics* g = icon->graphics();
+			g->clear();
+			g->lineStyle(1, 0xffffff);
+			g->moveTo(4, 4);
+			g->lineTo(14, 14);
+			g->moveTo(14, 4);
+			g->lineTo(4, 14);
+			g->endFill();
+			closeButton->addChild(icon);
+		}
+
 
 		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
 		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
@@ -131,13 +186,13 @@ namespace fl2d {
 		//_normalGraphics.endFill();
 		////--------------------------------------
 
-		_minBackWidth = _normalBackWidth;
+		//_minBackWidth = _normalBackWidth;
 
 		//----------------------------------
 		_minimalGraphics.clear();
 		_minimalGraphics.lineStyle(1, 0xffffff);
 		_minimalGraphics.beginFill(0x000000, 0.7);
-		_minimalGraphics.drawRect(0, 0, _minBackWidth, _minBackHeight);
+		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
 		_minimalGraphics.endFill();
 		//----------------------------------
 
@@ -145,13 +200,7 @@ namespace fl2d {
 		_backWidth = _normalBackWidth;
 		_backHeight = _normalBackHeight;
 
-		{
-			float w = _backWidth;
-			minimizeButton->x(w - (18 + 5 + 18 + 5));
-			addChild(minimizeButton);
-			closeButton->x(w - (18 + 5));
-			addChild(closeButton);
-		}
+		_relocateTitleBarButtons();
 
 		_updateRect();
 
@@ -164,8 +213,22 @@ namespace fl2d {
 
 		ofPushStyle();
 		ofSetColor(255, 255, 255, 255);
-		flFont::drawString(_titleText, 6, 20);
+		flFont::drawString(_title, 6, 20);
 		ofPopStyle();
+    }
+
+    //--------------------------------------------------------------
+    void flBasicController::_relocateTitleBarButtons() {
+		float w = _backWidth;
+
+		minimizeButton->x(w - (18 + 5) * 3);
+		addChild(minimizeButton);
+
+		maximizeButton->x(w - (18 + 5) * 2);
+		addChild(maximizeButton);
+
+		closeButton->x(w - (18 + 5) * 1);
+		addChild(closeButton);
     }
     
     //==============================================================
@@ -175,10 +238,14 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flBasicController::minimize() {
         if(_isMinimize) return;
-        _isMinimize = true;
 
+        _isMinimize = true;
         minimizeButton->selected(true, false);
-        
+
+		_isMaximize = false;
+		maximizeButton->selected(false, false);
+		maximizeButton->enabled(false);
+
         ////----------------------------------
         //_backWidth = _minBackWidth;
         //_backHeight = _minBackHeight;
@@ -193,7 +260,7 @@ namespace fl2d {
         ////----------------------------------
 
 		//----------------------------------
-		_backWidth = _minBackWidth;
+		//_backWidth = _minBackWidth;
 		_backHeight = _minBackHeight;
 		_graphics = &_minimalGraphics;
 		//----------------------------------
@@ -205,23 +272,88 @@ namespace fl2d {
             flDisplayObject* child = getChildAt(i);
             
             //if(child == titleTf) continue;
-            if(child == closeButton) continue;
-            if(child == minimizeButton) continue;
-            
+			if (child == closeButton) continue;
+			if (child == minimizeButton) continue;
+			if (child == maximizeButton) continue;
+
             child->visible(false);
         }
         //    titleTf->visible(true);
         //    minimizeButton->visible(true);
         //    closeButton->visible(true);
         //----------------------------------
+
+		_relocateTitleBarButtons();
+    } 
+
+    //--------------------------------------------------------------
+    void flBasicController::maximize() {
+        if(_isMaximize) return;
+
+		_isMinimize = false;
+		minimizeButton->selected(false, false);
+		minimizeButton->enabled(false);
+
+		_isMaximize = true;
+		maximizeButton->selected(true, false);
+        
+		//----------------------------------
+		_maxBackWidth = ofGetWidth();
+		_maxBackHeight = ofGetHeight();
+		_maximumGraphics.clear();
+		_maximumGraphics.lineStyle(1, 0xffffff);
+		_maximumGraphics.beginFill(0x000000, 0.7);
+		_maximumGraphics.drawRect(0, 0, _maxBackWidth, _maxBackHeight);
+		_maximumGraphics.endFill();
+		//----------------------------------
+
+
+		//----------------------------------
+		_backWidth = _maxBackWidth;
+		_backHeight = _maxBackHeight;
+		_graphics = &_maximumGraphics;
+
+		if (parent()) {
+			ofPoint localPoint = parent()->globalToLocal(ofPoint(0, 0));
+			x(roundf(localPoint.x));
+			y(roundf(localPoint.y));
+		}
+		//----------------------------------
+        
+		//----------------------------------
+		int i; int l;
+		l = numChildren();
+		for (i = 0; i < l; i++) {
+			flDisplayObject* child = getChildAt(i);
+
+			//if(child == titleTf) continue;
+			if (child == closeButton) continue;
+			if (child == minimizeButton) continue;
+			if (child == maximizeButton) continue;
+
+			child->visible(true);
+		}
+
+		if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
+		//----------------------------------
+
+		_relocateTitleBarButtons();
     }
+
     //--------------------------------------------------------------
     void flBasicController::normalize() {
-        if(!_isMinimize) return;
-        _isMinimize = false;
-        
-        minimizeButton->selected(false, false);
-        
+        if(!_isMinimize && !_isMaximize) return;
+
+		bool preModeIsMaximize = _isMaximize;
+
+        _isMinimize = false;        
+        minimizeButton->selected(false, false);        
+		minimizeButton->enabled(true);
+
+		_isMaximize = false;
+		maximizeButton->selected(false, false);
+		maximizeButton->enabled(true);
+
         ////----------------------------------
         //_backWidth = _normalBackWidth;
         //_backHeight = _normalBackHeight;
@@ -239,6 +371,19 @@ namespace fl2d {
 		_backWidth = _normalBackWidth;
 		_backHeight = _normalBackHeight;
 		_graphics = &_normalGraphics;
+
+		if (preModeIsMaximize) {
+			if (parent()) {
+				ofPoint localPoint = parent()->globalToLocal(
+					ofPoint(
+						(ofGetWidth() * 0.5) - (_backWidth * 0.5),
+						(ofGetHeight() * 0.5) - (_backHeight * 0.5)
+					)
+				);
+				x(roundf(localPoint.x));
+				y(roundf(localPoint.y));
+			}
+		}
 		//----------------------------------
         
         //----------------------------------
@@ -248,19 +393,37 @@ namespace fl2d {
             flDisplayObject* child = getChildAt(i);
             
             //if(child == titleTf) continue;
-            if(child == closeButton) continue;
-            if(child == minimizeButton) continue;
-            
+			if (child == closeButton) continue;
+			if (child == minimizeButton) continue;
+			if (child == maximizeButton) continue;
+
             child->visible(true);
         }
         
         if(parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
         //----------------------------------
+
+		_relocateTitleBarButtons();
     }
     
     //--------------------------------------------------------------
     void flBasicController::resize(float w, float h) {
-        
+
+		//--------------------------------------
+		_normalBackWidth = w;
+		_normalBackHeight = h;
+
+		_normalGraphics.clear();
+		_normalGraphics.lineStyle(1, 0xffffff);
+		_normalGraphics.beginFill(0x000000, 0.7);
+		//--------------------------------------
+
+		//--------------------------------------
+		_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+		_normalGraphics.endFill();
+		//--------------------------------------
+
+		flBasicController::_setup();
     }
     
     //==============================================================
@@ -305,6 +468,7 @@ namespace fl2d {
 
 			if (button == closeButton) {
 				//if (stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
+				normalize();
 				if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
 				dispatchEvent(new flEvent(flEvent::CLOSE));
 			}
@@ -318,6 +482,14 @@ namespace fl2d {
             if(button == minimizeButton) {
                 if(minimizeButton->selected()) {
                     minimize();
+                } else {
+                    normalize();
+                }
+            }
+
+            if(button == maximizeButton) {
+                if(maximizeButton->selected()) {
+					maximize();
                 } else {
                     normalize();
                 }

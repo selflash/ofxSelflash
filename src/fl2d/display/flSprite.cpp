@@ -306,7 +306,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flSprite::width() {
         _updateRect();
-        if(_realWidth == 0.0) return 0.0;
+		if (_mask) return _mask->width();
+        if (_realWidth == 0.0) return 0.0;
         return _realWidth * scaleX();
     }
     void flSprite::width(float value) {
@@ -317,7 +318,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flSprite::height() {
         _updateRect();
-        if(_realHeight == 0.0) return 0.0;
+		if (_mask) return _mask->height();
+		if (_realHeight == 0.0) return 0.0;
         return _realHeight * scaleY();
     }
     void flSprite::height(float value) {

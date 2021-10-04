@@ -341,9 +341,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     float flDisplayObject::width() {
-        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        return _realWidth * scaleX();
-    }
+		//if (_mask) return _mask->width();
+  //      if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+  //      return _realWidth * scaleX();
+		_updateRect();
+		if (_mask) return _mask->width();
+		if (_realWidth == 0.0) return 0.0;
+		return _realWidth * scaleX();
+	}
     void flDisplayObject::width(float value) {
         _targetWidth = value;
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
@@ -351,8 +356,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     float flDisplayObject::height() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        return _realHeight * scaleY();
+		//if (_mask) return _mask->height();
+		//if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+  //      return _realHeight * scaleY();
+		_updateRect();
+		if (_mask) return _mask->height();
+		if (_realHeight == 0.0) return 0.0;
+		return _realHeight * scaleY();
     }
     void flDisplayObject::height(float value) {
         _targetHeight = value;

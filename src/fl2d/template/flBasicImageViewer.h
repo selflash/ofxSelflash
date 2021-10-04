@@ -18,7 +18,7 @@ namespace fl2d {
 			float _normalBackWidth;
 			float _normalBackHeight;
 
-			string _titleText = "";
+			string _title = "";
 
 			int _mode = 0;
 
@@ -29,7 +29,7 @@ namespace fl2d {
 			bool _isActive = false;
 			float _scaleOnActive = 2.0;
 
-			flBasicDraggableObject* rightBottomCorner;
+			flBasicDraggableObject* _rightBottomCorner = NULL;
 
 			flBitmap* _bitmap = NULL;
 			float _defaultImageWidth;

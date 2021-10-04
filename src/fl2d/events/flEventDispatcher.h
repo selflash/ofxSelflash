@@ -80,7 +80,7 @@ namespace fl2d {
                 return check;
             }
         
-            virtual void dispatchEvent(flEvent* event);
+            virtual void dispatchEvent(flEvent* event, bool destry = true);
         
         protected:
             //            flEventDispatcher();

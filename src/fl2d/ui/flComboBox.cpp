@@ -219,7 +219,7 @@ namespace fl2d {
             _buttonList.clear();
             _itemList.clear();
             _topButton->labelText("");
-            _selectedIndex = 0;
+            _selectedIndex = -1;
             _selectedItem = NULL;
         } else if(_selectedIndex == index) {
             if(index == 0) {
@@ -270,7 +270,11 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flComboBox::removeAllItems() {
+    void flComboBox::removeAllItems(bool dispatch) {
+		if (!_buttonContainer) return;
+		if (_buttonList.size() == 0) return;
+		if (_itemList.size() == 0) return;
+
 		if (contains(_buttonContainer)) removeChild(_buttonContainer);
         
         int i; int l;
@@ -290,18 +294,20 @@ namespace fl2d {
         g->clear();
         
         _topButton->labelText("");
-        _selectedIndex = 0;
+        _selectedIndex = -1;
         _selectedItem = NULL;
         
         //------------------------------------------
-        _dispatchEvent();
-        
-        if(!_bChangedByOfParm["value"]) {
-            if(_intParam != NULL) {
-                _bChangedByMyself["value"] = true;
-                _intParam->set(_selectedIndex);
-            }
-        }
+		if (dispatch) {
+			_dispatchEvent();
+		}
+
+		if (!_bChangedByOfParm["value"]) {
+			if (_intParam != NULL) {
+				_bChangedByMyself["value"] = true;
+				_intParam->set(_selectedIndex);
+			}
+		}
         //------------------------------------------
     }
     
