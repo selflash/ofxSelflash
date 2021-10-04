@@ -641,9 +641,11 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
             
-            if(event.target() == (hitArea() != NULL ? hitArea() : this)) {
+            if(target == (hitArea() != NULL ? hitArea() : this)) {
                 if(_dragEnabled) {
                     if(_onTop) ((flDisplayObjectContainer*)parent())->addChild(this);
                     startDrag();
@@ -654,10 +656,12 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
             
             //if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
-            if(event.target() == stage()) {
+            if(target == stage()) {
 				if(_dragEnabled) {
 					stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
 					stopDrag();

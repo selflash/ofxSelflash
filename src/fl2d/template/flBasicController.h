@@ -37,7 +37,8 @@ namespace fl2d {
             bool _isMaximize = false;
         
             bool _onTop = true;
-            bool _dragEnabled = true;
+			bool _dragEnabled = true;
+			bool _moveFrontOnSelect = true;
 
 			bool _isLocked = false;
 
@@ -66,6 +67,9 @@ namespace fl2d {
             virtual inline float normalBackWidth() { return _normalBackWidth; }
             virtual inline float normalBackHeight() { return _normalBackHeight; }
         
+			virtual inline bool moveFrontOnSelect() { return _moveFrontOnSelect; }
+			virtual inline void moveFrontOnSelect(bool value) { _moveFrontOnSelect = value; }
+
             virtual inline bool dragEnabled() { return _dragEnabled; }
             virtual inline void dragEnabled(bool value) {
                 _dragEnabled = value;

@@ -90,16 +90,16 @@ namespace fl2d {
 		//_updateRect();
 
 		{
-			rightBottomCorner = new flBasicDraggableObject();
-			rightBottomCorner->x(0);
-			rightBottomCorner->y(0);
-			rightBottomCorner->visible(false);
-			rightBottomCorner->dragEnabled(true);
-			rightBottomCorner->useHandCursor(true);
-			rightBottomCorner->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageViewer::_mouseEventHandler);
-			addChild(rightBottomCorner);
+			_rightBottomCorner = new flBasicDraggableObject();
+			_rightBottomCorner->x(0);
+			_rightBottomCorner->y(0);
+			_rightBottomCorner->visible(false);
+			_rightBottomCorner->dragEnabled(true);
+			_rightBottomCorner->useHandCursor(true);
+			_rightBottomCorner->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicImageViewer::_mouseEventHandler);
+			addChild(_rightBottomCorner);
 
-			flGraphics* g = rightBottomCorner->graphics();
+			flGraphics* g = _rightBottomCorner->graphics();
 			g->clear();
 			g->beginFill(0xff0000, 0.0);
 			g->drawCircle(0, 0, 12);
@@ -145,8 +145,8 @@ namespace fl2d {
 
 		_bitmap = NULL;
 
-		delete rightBottomCorner;
-		rightBottomCorner = NULL;
+		delete _rightBottomCorner;
+		_rightBottomCorner = NULL;
 
 		_scaleOnActive = 0;
 	}
@@ -194,8 +194,8 @@ namespace fl2d {
 		flTextField* label = NULL;
 		////--------------------------------------
 
-		rightBottomCorner->x(_backWidth);
-		rightBottomCorner->y(_backHeight);
+		_rightBottomCorner->x(_backWidth);
+		_rightBottomCorner->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -203,12 +203,12 @@ namespace fl2d {
 	void flBasicImageViewer::_update() {
 		//ofLog() << "[flBasicImageViewer]update()";
 
-		int dx = abs(rightBottomCorner->x() - rightBottomCorner->startDragPoint().x);
-		int dy = abs(rightBottomCorner->y() - rightBottomCorner->startDragPoint().y);
+		int dx = abs(_rightBottomCorner->x() - _rightBottomCorner->startDragPoint().x);
+		int dy = abs(_rightBottomCorner->y() - _rightBottomCorner->startDragPoint().y);
 		if (dx == 0 && dy == 0) return;
 
-		int x = rightBottomCorner->x();
-		int y = rightBottomCorner->y();
+		int x = _rightBottomCorner->x();
+		int y = _rightBottomCorner->y();
 		_updateGraphics(x, y);
 	}
 
@@ -237,7 +237,7 @@ namespace fl2d {
 			int imgW = x - borderWidth * 2;
 			int imgH = y - borderWidth * 2 - (22 + 5);
 
-			//rightBottomCorner
+			//_rightBottomCorner
 
 			//if (dx > dy) {
 			//	w = (_defaultImageWidth / _defaultImageHeight) * h;
@@ -330,12 +330,12 @@ namespace fl2d {
 
 			_backHeight = _bitmap->y() + _bitmap->height() + 1;
 
-			rightBottomCorner->x(_backWidth * _scaleOnActive);
-			rightBottomCorner->y(_backHeight * _scaleOnActive);
-			rightBottomCorner->visible(true);
+			_rightBottomCorner->x(_backWidth * _scaleOnActive);
+			_rightBottomCorner->y(_backHeight * _scaleOnActive);
+			_rightBottomCorner->visible(true);
 
-			int x = rightBottomCorner->x();
-			int y = rightBottomCorner->y();
+			int x = _rightBottomCorner->x();
+			int y = _rightBottomCorner->y();
 			_updateGraphics(x, y);
 		}
 		else {
@@ -351,9 +351,9 @@ namespace fl2d {
 			minimizeButton->visible(false);
 			closeButton->visible(false);
 
-			rightBottomCorner->x(_backWidth);
-			rightBottomCorner->y(_backHeight);
-			rightBottomCorner->visible(false);
+			_rightBottomCorner->x(_backWidth);
+			_rightBottomCorner->y(_backHeight);
+			_rightBottomCorner->visible(false);
 
 			flGraphics* g = graphics();
 			g->clear();
@@ -466,6 +466,8 @@ namespace fl2d {
 		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]currentTarget = " << event.currentTarget();
 		//ofLog(OF_LOG_NOTICE) << "[flBasicImageViewer]target        = " << event.target();
 		
+		//flBasicDraggableObject::_mouseEventHandler(event);
+
 		//Roll Over
 		if (event.type() == flMouseEvent::ROLL_OVER) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
@@ -516,7 +518,7 @@ namespace fl2d {
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
-			if (target == this) {
+			if (target == (hitArea() != NULL ? hitArea() : this)) {
 				if (_dragEnabled) {
 					((flDisplayObjectContainer*)parent())->addChild(this);
 					startDrag();
@@ -524,7 +526,7 @@ namespace fl2d {
 				}
 			}
 
-			if (target == rightBottomCorner) {
+			if (target == _rightBottomCorner) {
 				stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 			}
 		}
@@ -540,8 +542,8 @@ namespace fl2d {
 				stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
 				stopDrag();
 
-				rightBottomCorner->x(_backWidth);
-				rightBottomCorner->y(_backHeight);
+				_rightBottomCorner->x(_backWidth);
+				_rightBottomCorner->y(_backHeight);
 			}
 		}
 	}

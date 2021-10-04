@@ -36,9 +36,10 @@ namespace fl2d {
 			virtual void _setup();
 			//        virtual void _update();
 			//        virtual void _draw();
-        
+
+			virtual void _mouseEventHandler(flEvent& event);
+
 		private:
-			void _mouseEventHandler(flEvent& event);
         
     };
     

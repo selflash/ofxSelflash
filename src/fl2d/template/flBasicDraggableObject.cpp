@@ -101,8 +101,13 @@ namespace fl2d {
 			}
 		}
 
+		//Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(event.target() == this) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			if (target == (hitArea() != NULL ? hitArea() : this)) {
                 if(_dragEnabled) {
                     if(_moveFrontOnSelect) ((flDisplayObjectContainer*)parent())->addChild(this);
                     startDrag();
@@ -110,8 +115,15 @@ namespace fl2d {
                 }
             }
         }
+
+		//Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            if(event.currentTarget() == stage()) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+            //if(currentTarget == stage()) {
+			if (target == stage()) {
                 stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicDraggableObject::_mouseEventHandler);
                 stopDrag();
             }
