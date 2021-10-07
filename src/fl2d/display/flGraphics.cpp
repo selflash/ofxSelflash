@@ -364,9 +364,9 @@ namespace fl2d {
 			ofSetLineWidth(_thickness);
 			ofSetColor(_lineColor);
 			ofDrawLine(x, y, x + width, y);
-			ofDrawLine(x, y + height, x + width, y + height);
-			ofDrawLine(x, y, x, y + height);
 			ofDrawLine(x + width, y, x + width, y + height);
+			ofDrawLine(x + width, y + height, x - 1, y + height);
+			ofDrawLine(x, y + height, x, y);
         }
         
         ofPopStyle();

@@ -169,6 +169,7 @@ namespace fl2d {
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
+		_afterDraw();
         ofPopStyle();
         
         if(applyMatrix){
@@ -212,7 +213,12 @@ namespace fl2d {
     void flDisplayObject::_draw() {
         
     }
-    
+
+	//--------------------------------------------------------------
+	void flDisplayObject::_afterDraw() {
+
+	}
+
     //==============================================================
     // Public Method
     //==============================================================
@@ -223,31 +229,38 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::stage() { return _stage; }
-    void flDisplayObject::__stage(flDisplayObject* value) {
+    void flDisplayObject::__stage(flDisplayObject* value, bool dispatch) {
         //ofLog() << "[flDisplayObject]__stage(" << value << ")" << name();
         
         //今までステージへの参照がもっていなくてvalueにステージへの参照が入ってる時
+		//もともとステージにAddされていなくて、Addされたら
         if(!_stage && value) {
             _stage = value;
             
-            flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-//            event->target(_target);
-//            event->_target = _target;
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+				//event->target(_target);
+				//event->_target = _target;
+				dispatchEvent(event);
+			}
         }
+
         //既にステージへの参照がもっていてvalueにステージへの参照が入っていない時
+		//もともとステージにAddされていて、Removeされたら
         if(_stage && !value) {
             _stage = value;
             
-            flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
     }
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::parent() { return _parent; }
-    void flDisplayObject::__parent(flDisplayObject* value) {
+    void flDisplayObject::__parent(flDisplayObject* value, bool dispatch) {
         //ofLog() << "[flDisplayObject]__parent(" << value << ")" << name();
         
         //今まで親への参照がもっていなくてvalueに親への参照が入ってる時
@@ -255,17 +268,21 @@ namespace fl2d {
             _parent = value;
             _compoundAlpha = _parent->__compoundAlpha() * _alpha;
             
-            flEvent* event = new flEvent(flEvent::ADDED);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::ADDED);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
         //既に親への参照がもっていてvalueに親への参照が入っていない時
         if(_parent && !value) {
             _parent = value;
             
-            flEvent* event = new flEvent(flEvent::REMOVED);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::REMOVED);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
     }
     

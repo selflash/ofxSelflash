@@ -124,9 +124,11 @@ namespace fl2d {
 
             //if(currentTarget == stage()) {
 			if (target == stage()) {
-                stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicDraggableObject::_mouseEventHandler);
-                stopDrag();
-            }
+				if (_dragEnabled) {
+					stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicDraggableObject::_mouseEventHandler);
+					stopDrag();
+				}
+			}
         }
     }
     

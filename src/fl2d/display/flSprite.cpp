@@ -30,8 +30,8 @@ namespace fl2d {
         
         //--------------------------------------
         //Tooltip
-        addEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        addEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        addEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
@@ -62,8 +62,8 @@ namespace fl2d {
         if(_toolTip != NULL) delete _toolTip;
 		_toolTip = NULL;
         
-        removeEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        removeEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        removeEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
@@ -158,7 +158,7 @@ namespace fl2d {
 
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        _graphics->__draw();
+        if(_graphics->drawOrder() == 0) _graphics->__draw();
 
 		//if (parent()) {
 		//	ofSetColor(255, 0, 0, 255 * _compoundAlpha);
@@ -167,7 +167,7 @@ namespace fl2d {
 		//}
 
         _draw();
-        
+
         for(int i = 0; i < children.size(); i++){
             flDisplayObject* child;
             child = children[i];
@@ -175,6 +175,11 @@ namespace fl2d {
 			//child->drawOnFrame();
             child->draw();
         }
+
+		if (_graphics->drawOrder() == 1) _graphics->__draw();
+
+		_afterDraw();
+
         ofPopStyle();
         
         //if(!bIdentity) {
@@ -209,6 +214,10 @@ namespace fl2d {
                 ofSetColor(255, 0, 0, 150);
                 ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
             }
+
+
+
+
 //            {
 //                int i; int l;
 //                l = children.size();
@@ -398,6 +407,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     //TODO
     void flSprite::startDrag(bool lockCenter, flRectangle* bounds) {
+		if (_isGrabbed) return;
+		_isGrabbed = true;
+
         _draggableArea = bounds;
 
 		_startDragPoint.x = x();
@@ -418,6 +430,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSprite::stopDrag() {
+		if (!_isGrabbed) return;
+		_isGrabbed = false;
+
         ofRemoveListener(ofEvents().mouseDragged, this, &flSprite::_mouseDragging);
         
         _draggableArea = NULL;
@@ -670,34 +685,58 @@ namespace fl2d {
         //        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
         //        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
         //        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
-        
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-                    float stageMouseX = stage()->mouseX();
-                    float stageMouseY = stage()->mouseY();
-                    _toolTip->x(stageMouseX + 20);
-                    _toolTip->y(stageMouseY + 10);
-                    ((flDisplayObjectContainer*)stage())->addChild(_toolTip);
-                }
-            }
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();		
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-                    if(_toolTip->parent() != NULL) {
-                        ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
-                    }
-                }
-            }
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
         }
-        
+
+		//Mouse Over
+		if (event.type() == flMouseEvent::MOUSE_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			if (target == this) {
+				if (_toolTipEnabled && stage()) {
+					float stageMouseX = stage()->mouseX();
+					float stageMouseY = stage()->mouseY();
+					_toolTip->x(stageMouseX + 20);
+					_toolTip->y(stageMouseY + 10);
+					((flDisplayObjectContainer*)stage())->addChild(_toolTip);
+				}
+			}
+		}
+
+		//Mouse Out
+		if (event.type() == flMouseEvent::MOUSE_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			if (target == this) {
+				if (_toolTipEnabled && _toolTip->parent()) {
+					((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+				}
+			}
+		}
+
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+			
+			if(_toolTipEnabled) {
                 if(_toolTip->parent() != NULL) {
                     ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
                 }
@@ -706,7 +745,10 @@ namespace fl2d {
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
         }
     }
     

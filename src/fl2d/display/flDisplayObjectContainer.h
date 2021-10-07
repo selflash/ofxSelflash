@@ -58,7 +58,8 @@ namespace fl2d {
             flDisplayObjectContainer();
             virtual ~flDisplayObjectContainer();
         
-			virtual void __stage(flDisplayObject* value);
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void __stage(flDisplayObject* value, bool dispatch = true);
 
             virtual void _updateRect();
         

@@ -88,10 +88,10 @@
 #include "flToolTip.h"
 
 //Templates
-//#include "flAbstractController.h"
+#include "flAbstractController.h"
 #include "flBasicController.h"
-//#include "flBasicDraggableObject.h"
-//#include "flBasicImageViewer.h"
+#include "flBasicDraggableObject.h"
+#include "flBasicImageViewer.h"
 
 
 

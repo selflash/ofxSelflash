@@ -1,7 +1,32 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxSelflash.h"
+
+//flash.ui
+#include "flUIBase.h"
+#include "flMouse.h"
+#include "flKeyboard.h"
+#include "flButton.h"
+#include "flCheckBox.h"
+#include "flRadioButton.h"
+#include "flNumericDialer.h"
+#include "flSlider.h"
+#include "flRangeSlider.h"
+#include "flColorSlider.h"
+#include "flVec2Slider.h"
+#include "flVec3Slider.h"
+#include "flRotarySlider.h"
+#include "flAngler.h"
+#include "flCircleColorPicker.h"
+#include "flPad2D.h"
+//#include "flPad3D.h"
+#include "flJoyStick2.h"
+#include "flJoyStick1.h"
+#include "flScrollKit.h"
+#include "flComboBox.h"
+#include "flHistgramViewer.h"
+
+#include "flToolTip.h"
 
 namespace fl2d {
     

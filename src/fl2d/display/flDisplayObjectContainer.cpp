@@ -141,6 +141,9 @@ namespace fl2d {
             //child->drawOnFrame();
             child->draw();
         }
+
+		_afterDraw();
+
         ofPopStyle();
         
         if(applyMatrix){
@@ -186,25 +189,31 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::stage() { return _stage; }
-    void flDisplayObjectContainer::__stage(flDisplayObject* value) {
-        //cout << "[flDisplayObjectContainer]__stage(" << value << ")" << name() << endl;
+    void flDisplayObjectContainer::__stage(flDisplayObject* value, bool dispatch) {
+        //ofLog() << "[flDisplayObjectContainer]__stage(" << value << ")" << name();
         
-        //もともとステージにAddされていなくて、Addされたら
-        if(!_stage && value) {
+		//今までステージへの参照がもっていなくてvalueにステージへの参照が入ってる時
+		//もともとステージにAddされていなくて、Addされたら
+		if(!_stage && value) {
             _stage = value;
             
 			for (int i = 0; i < children.size(); i++) {
 				flDisplayObject* child = children[i];
 				child->__stage(_stage);
 
-				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-				child->dispatchEvent(event);
+				if (dispatch) {
+					flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+					child->dispatchEvent(event);
+				}
 			}
 
-            flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+				dispatchEvent(event);
+			}
         }
 
+		//既にステージへの参照がもっていてvalueにステージへの参照が入っていない時
 		//もともとステージにAddされていて、Removeされたら
 		if(_stage && !value) {
             _stage = value;
@@ -213,18 +222,22 @@ namespace fl2d {
 				flDisplayObject* child = children[i];
 				child->__stage(_stage);
 
-				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-				child->dispatchEvent(event);
+				if (dispatch) {
+					flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+					child->dispatchEvent(event);
+				}
 			}
 
-            flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+				dispatchEvent(event);
+			}
         }        
     }
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child) {
-        //    cout << "[flDisplayObjectContainer]addChild((" << child->name() << ")" << endl;
+        //    ofLog() << "[flDisplayObjectContainer]addChild((" << child->name() << ")";
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
 		//bool isChild = contains(child);
@@ -259,7 +272,7 @@ namespace fl2d {
     }
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child, int x, int y) {
-        //    cout << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")" << endl;
+        //    ofLog() << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")";
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
 		//bool isChild = contains(child);
@@ -372,9 +385,9 @@ namespace fl2d {
 		//children.size()の箇所はリファクタリングとかで外に出したらダメ
 		for (int i = 0; i < children.size(); i++) {
 			if (children[i] == child) {
-				//child->__stage(NULL);
-				//child->parent(NULL);
-				//child->__level(-1);
+				child->__stage(NULL, false);
+				child->__parent(NULL, false);
+				child->__level(-1);
 				//if (child->hasEventListener(flEvent::FINALIZE)) {
 				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 				//}

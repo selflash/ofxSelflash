@@ -86,6 +86,7 @@ namespace fl2d {
         
             float _compoundAlpha;
         
+			int _drawOrder = 0;
         
         public:
             flGraphics();
@@ -117,7 +118,10 @@ namespace fl2d {
         
             inline bool enabledAntiAliasing() { return _enabledAntiAliasing; }
             inline void enabledAntiAliasing(bool value) { _enabledAntiAliasing = value; }
-        
+
+			inline int drawOrder() { return _drawOrder; }
+			inline void drawOrder(int value) { _drawOrder = value; }
+
         protected:
         
         private:

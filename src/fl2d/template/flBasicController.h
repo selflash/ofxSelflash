@@ -1,12 +1,12 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
-#include "ofxSelflash.h"
+#include "flBasicDraggableObject.h"
 #include "flAbstractController.h"
 
 namespace fl2d {
     
-    class flBasicController : public flSprite, public flAbstractController {
+    class flBasicController : public flBasicDraggableObject, public flAbstractController {
         public:
 
         protected:
@@ -36,9 +36,9 @@ namespace fl2d {
             bool _isMinimize = false;
             bool _isMaximize = false;
         
-            bool _onTop = true;
-			bool _dragEnabled = true;
-			bool _moveFrontOnSelect = true;
+            //bool _onTop = true;
+			//bool _dragEnabled = true;
+			//bool _moveFrontOnSelect = true;
 
 			bool _isLocked = false;
 
@@ -67,34 +67,22 @@ namespace fl2d {
             virtual inline float normalBackWidth() { return _normalBackWidth; }
             virtual inline float normalBackHeight() { return _normalBackHeight; }
         
-			virtual inline bool moveFrontOnSelect() { return _moveFrontOnSelect; }
-			virtual inline void moveFrontOnSelect(bool value) { _moveFrontOnSelect = value; }
+			//virtual inline bool moveFrontOnSelect() { return _moveFrontOnSelect; }
+			//virtual inline void moveFrontOnSelect(bool value) { _moveFrontOnSelect = value; }
 
-            virtual inline bool dragEnabled() { return _dragEnabled; }
-            virtual inline void dragEnabled(bool value) {
-                _dragEnabled = value;
-                useHandCursor(_dragEnabled);
+            //virtual inline bool dragEnabled() { return _dragEnabled; }
+            //virtual inline void dragEnabled(bool value) {
+            //    _dragEnabled = value;
+            //    useHandCursor(_dragEnabled);
 
-                if(!_dragEnabled) {
-                    if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
-                    stopDrag();
-                }
-            }
+            //    if(!_dragEnabled) {
+            //        if(stage() != NULL) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
+            //        stopDrag();
+            //    }
+            //}
 
-			virtual bool lock() { return _isLocked; }
-			virtual void lock(bool value) { 
-				_isLocked = value;
-				
-				for (int i = 0; i < numChildren(); i++) {
-					flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
-					//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
-
-					if (displayObject->typeID() == FL_TYPE_UIBASE) {
-						//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
-						((flUIBase*)displayObject)->enabled(_isLocked);
-					}
-				}
-			}
+			virtual bool lock();
+			virtual void lock(bool value);
         
         protected:
 			virtual void _setup();
@@ -104,7 +92,8 @@ namespace fl2d {
 			virtual void _relocateTitleBarButtons();
 
             virtual void _flBasicControllerEventHandler(flEvent& event);
-            virtual void _flBasicControllerMouseEventHandler(flEvent& event);
+            //virtual void _flBasicControllerMouseEventHandler(flEvent& event);
+			virtual void _mouseEventHandler(flEvent& event);
 
         private:
         

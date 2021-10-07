@@ -91,8 +91,15 @@ namespace fl2d {
         
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        _graphics->__draw();
+
+		if (_graphics->drawOrder() == 0) _graphics->__draw();
+
         _draw();
+
+		if (_graphics->drawOrder() == 1) _graphics->__draw();
+
+		_afterDraw();
+
         ofPopStyle();
         
         if(applyMatrix){

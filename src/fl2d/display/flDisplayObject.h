@@ -195,11 +195,12 @@ namespace fl2d {
             virtual void _tearDown();
             virtual void _update();
             virtual void _draw();
+            virtual void _afterDraw();
 
 			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
-			virtual void __stage(flDisplayObject* value);
+			virtual void __stage(flDisplayObject* value, bool dispatch = true);
 			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
-			virtual void __parent(flDisplayObject* value);
+			virtual void __parent(flDisplayObject* value, bool dispatch = true);
 
 			virtual int __level();
 			virtual void __level(int value);

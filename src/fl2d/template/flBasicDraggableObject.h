@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxSelflash.h"
+#include "flSprite.h"
 
 namespace fl2d {
     
@@ -10,8 +10,10 @@ namespace fl2d {
         
 		protected:
 			bool _dragEnabled = true;
-			bool _moveFrontOnSelect = true;
-        
+			bool _moveFrontOnSelect = true;        
+
+			flBasicDraggableObject* _sizingHandle = NULL;
+
 		private:
         
 		public:
