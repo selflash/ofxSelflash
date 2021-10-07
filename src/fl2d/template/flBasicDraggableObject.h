@@ -12,14 +12,12 @@ namespace fl2d {
 			bool _dragEnabled = true;
 			bool _moveFrontOnSelect = true;        
 
-			flBasicDraggableObject* _sizingHandle = NULL;
-
 		private:
         
 		public:
 			flBasicDraggableObject();
 			virtual ~flBasicDraggableObject();
-        
+
 			virtual inline bool moveFrontOnSelect() { return _moveFrontOnSelect; }
 			virtual inline void moveFrontOnSelect(bool value) { _moveFrontOnSelect = value; }        
 
@@ -35,9 +33,9 @@ namespace fl2d {
 			}
         
 		protected:
-			virtual void _setup();
-			//        virtual void _update();
-			//        virtual void _draw();
+			virtual void _setup();			    
+			//virtual void _update();
+			//virtual void _draw();
 
 			virtual void _mouseEventHandler(flEvent& event);
 
