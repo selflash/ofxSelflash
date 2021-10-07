@@ -88,12 +88,12 @@ namespace fl2d {
 			virtual void _setup();
 			//virtual void _update();
 			virtual void _draw();
-
+			virtual void _resize(float w, float h);
 			virtual void _relocateTitleBarButtons();
 
-            virtual void _flBasicControllerEventHandler(flEvent& event);
-            //virtual void _flBasicControllerMouseEventHandler(flEvent& event);
 			virtual void _mouseEventHandler(flEvent& event);
+			virtual void _flBasicControllerEventHandler(flEvent& event);
+            //virtual void _flBasicControllerMouseEventHandler(flEvent& event);
 
         private:
         

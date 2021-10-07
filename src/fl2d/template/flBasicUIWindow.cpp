@@ -11,7 +11,9 @@ namespace fl2d {
         //ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]flBasicUIWindow()";
         _target = this;
         name("flBasicUIWindow");
-        
+
+		_title = "[flBasicUIWindow]";
+
         useHandCursor(true);        
     }
     
@@ -47,8 +49,8 @@ namespace fl2d {
 	//==============================================================
     
     //--------------------------------------------------------------
-    void flBasicUIWindow::_setup() {
-		//ofLog() << "[flBasicUIWindow]_setup()";
+    void flBasicUIWindow::setup() {
+		//ofLog() << "[flBasicUIWindow]setup()";
 
 		_marginTop = _titleBarHeight;
 		_minBackHeight = _titleBarHeight;
@@ -158,9 +160,31 @@ namespace fl2d {
 			g->endFill();
 		}
 
-		flBasicDraggableObject::_setup();
+		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
+		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+
+		flBasicDraggableObject::setup();
     }
-    
+
+	//--------------------------------------------------------------
+	void flBasicUIWindow::_setup() {
+		//----------------------------------
+		_minimalGraphics.clear();
+		_minimalGraphics.lineStyle(1, 0xffffff);
+		_minimalGraphics.beginFill(0x000000, 0.7);
+		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
+		_minimalGraphics.endFill();
+		//----------------------------------
+
+		_backWidth = _normalBackWidth;
+		_backHeight = _normalBackHeight;
+		_graphics = &_normalGraphics;
+
+		_relocateTitleBarButtons();
+
+		_updateRect();
+	}
+
     //--------------------------------------------------------------
     void flBasicUIWindow::_update() {
 		//ofLog() << "[flBasicUIWindow]update()";
@@ -172,7 +196,8 @@ namespace fl2d {
 
 			int x = _sizingHandle->x();
 			int y = _sizingHandle->y();
-			_resize(x, y);
+
+			resize(x, y);
 		}
     }
     
@@ -338,34 +363,6 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::resize(float w, float h) {
-		_resize(w, h);
-
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
-	}
-
-	//--------------------------------------------------------------
-	bool flBasicUIWindow::lock() { return _isLocked; }
-	void flBasicUIWindow::lock(bool value) {
-		_isLocked = value;
-
-		for (int i = 0; i < numChildren(); i++) {
-			flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
-			//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
-
-			if (displayObject->typeID() == FL_TYPE_UIBASE) {
-				//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
-				((flUIBase*)displayObject)->enabled(_isLocked);
-			}
-		}
-	}
-
-    //==============================================================
-    // Protected / Private Method
-    //==============================================================
-    
-	//--------------------------------------------------------------
-	void flBasicUIWindow::_resize(float w, float h) {
 		_normalBackWidth = w;
 		_normalBackHeight = h;
 
@@ -392,20 +389,38 @@ namespace fl2d {
 		_relocateTitleBarButtons();
 
 		_updateRect();
+
+		_sizingHandle->x(_backWidth);
+		_sizingHandle->y(_backHeight);
 	}
 
+	//--------------------------------------------------------------
+	bool flBasicUIWindow::lock() { return _isLocked; }
+	void flBasicUIWindow::lock(bool value) {
+		_isLocked = value;
+
+		for (int i = 0; i < numChildren(); i++) {
+			flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
+			//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
+
+			if (displayObject->typeID() == FL_TYPE_UIBASE) {
+				//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
+				((flUIBase*)displayObject)->enabled(_isLocked);
+			}
+		}
+	}
+
+    //==============================================================
+    // Protected / Private Method
+    //==============================================================
+ 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_relocateTitleBarButtons() {
 		float w = _backWidth;
 
 		minimizeButton->x(w - (18 + 5) * 3);
-		//addChild(minimizeButton);
-
 		maximizeButton->x(w - (18 + 5) * 2);
-		//addChild(maximizeButton);
-
 		closeButton->x(w - (18 + 5) * 1);
-		//addChild(closeButton);
 	}
 
     //==============================================================

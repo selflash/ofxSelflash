@@ -33,8 +33,10 @@ namespace fl2d {
 	//==============================================================
     
     //--------------------------------------------------------------
-    void flBasicDraggableObject::_setup() {
-		//ofLog() << "[flBasicDraggableObject]_setup()";
+    void flBasicDraggableObject::setup() {
+		//ofLog() << "[flBasicDraggableObject]setup()";
+
+		flSprite::setup();
 
 		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
     }

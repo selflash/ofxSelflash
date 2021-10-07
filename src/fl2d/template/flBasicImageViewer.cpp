@@ -20,6 +20,8 @@ namespace fl2d {
 		_defaultImageWidth = w;
 		_defaultImageHeight = h;
 		_bitmap = bitmap;
+
+		_dragEnabled = false;
 	}
 
 	//--------------------------------------------------------------
@@ -42,8 +44,6 @@ namespace fl2d {
 		flBasicUIWindow::_setup();
 
 		addChildAt(_bitmap, getChildIndex(_sizingHandle) - 1);
-
-		_dragEnabled = false;
 
 		resize(_defaultImageWidth, _defaultImageHeight);
 	}
@@ -87,6 +87,13 @@ namespace fl2d {
 	}
 
 	//--------------------------------------------------------------
+	void flBasicImageViewer::resize(float w, float h) {
+		flBasicUIWindow::resize(w, h);
+
+		_updateGraphics(w, h);
+	}
+
+	//--------------------------------------------------------------
 	bool flBasicImageViewer::active() { return _isActive; }
 	void flBasicImageViewer::active(bool value) {
 		//if (_bitmap->width() == 0.0 || _bitmap->height() == 0.0) return;
@@ -103,14 +110,6 @@ namespace fl2d {
 			resize(_normalBackWidth * _scaleOnActive, _titleBarHeight + _normalBackHeight * _scaleOnActive);
 
 			_sizingHandle->visible(true);
-
-			//_bitmap->y(_titleBarHeight);
-			//_bitmap->width(_backWidth);
-			//_bitmap->height(_backHeight - _titleBarHeight);
-
-			//int x = _sizingHandle->x();
-			//int y = _sizingHandle->y();
-			//_updateGraphics(x, y);
 		}
 		else {
 			dragEnabled(false);
@@ -120,10 +119,6 @@ namespace fl2d {
 
 			resize(_defaultImageWidth, _defaultImageHeight);
 
-			//_bitmap->y(0);
-			//_bitmap->width(_backWidth);
-			//_bitmap->height(_backHeight);
-
 			_sizingHandle->visible(false);
 		}
 	}
@@ -131,13 +126,6 @@ namespace fl2d {
 	//==============================================================
 	// Protected / Private Method
 	//==============================================================
-
-	//--------------------------------------------------------------
-	void flBasicImageViewer::_resize(float w, float h) {
-		flBasicUIWindow::_resize(w, h);
-
-		_updateGraphics(w, h);
-	}
 
 	//--------------------------------------------------------------
 	void flBasicImageViewer::_updateGraphics(float w, float h) {

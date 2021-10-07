@@ -69,11 +69,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::setup() {
-        //_setup();
-
 		_marginTop = _titleBarHeight;
-        
-        //_updateRect();
+		_minBackHeight = _titleBarHeight;
 
 		int x, y, w, h = 0;
 		flDisplayObject* displayObject = NULL;
@@ -85,7 +82,6 @@ namespace fl2d {
 		{
 			minimizeButton = new flButton(18, 18);
 			minimizeButton->name("MinimizeButton");
-			//minimizeButton->x(w - (18 + 5 + 18 + 5));
 			minimizeButton->y(_margin);
 			minimizeButton->labelText("");
 			minimizeButton->toggleEnabled(true);
@@ -108,7 +104,6 @@ namespace fl2d {
 		{
 			maximizeButton = new flButton(18, 18);
 			maximizeButton->name("MaximizeButton");
-			//maximizeButton->x(w - (18 + 5 + 18 + 5));
 			maximizeButton->y(_margin);
 			maximizeButton->labelText("");
 			maximizeButton->toggleEnabled(true);
@@ -134,7 +129,6 @@ namespace fl2d {
 		{
 			closeButton = new flButton(18, 18);
 			closeButton->name("CloseButton");
-			//closeButton->x(w - (18 + 5));
 			closeButton->y(_margin);
 			closeButton->labelText("");
 			closeButton->toolTipEnabled(true);
@@ -157,39 +151,12 @@ namespace fl2d {
 		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
 		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
 
-		//_minBackWidth = _normalBackWidth;
-		_minBackHeight = _margin + 18 + _margin;
-
 		flBasicDraggableObject::setup();
-
-		//addEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_mouseEventHandler);
-		//addEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_mouseEventHandler);
-		//addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_mouseEventHandler);
-		//addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-
-		//x = marginLeft;
-		//y = marginTop;
-		//titleTf = new flTextField();
-		//titleTf->x(x);
-		//titleTf->y(y);
-		//titleTf->width(120);
-		//titleTf->textColor(0xffffff);
-		//titleTf->text("[Contoller]");
-		//titleTf->mouseEnabled(false);
-		//addChild(titleTf);
     }
 
 	//--------------------------------------------------------------
 	void flBasicController::_setup() {
-		////--------------------------------------
-		//_normalGraphics.clear();
-		//_normalGraphics.lineStyle(1, 0xffffff);
-		//_normalGraphics.beginFill(0x000000, 0.7);
-		//_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
-		//_normalGraphics.endFill();
-		////--------------------------------------
-
-		//_minBackWidth = _normalBackWidth;
+		//resize(_normalBackWidth, _minBackHeight);
 
 		//----------------------------------
 		_minimalGraphics.clear();
@@ -206,9 +173,6 @@ namespace fl2d {
 		_relocateTitleBarButtons();
 
 		_updateRect();
-
-		//addEventListener(flEvent::CLOSE, this, &flBasicController::_eventHandler);
-		flBasicDraggableObject::_setup();
 	}
 
     //--------------------------------------------------------------
@@ -236,21 +200,7 @@ namespace fl2d {
 		maximizeButton->selected(false, false);
 		maximizeButton->enabled(false);
 
-        ////----------------------------------
-        //_backWidth = _minBackWidth;
-        //_backHeight = _minBackHeight;
-        //
-        //flGraphics* g;
-        //g = graphics();
-        //g->clear();
-        //g->lineStyle(1, 0xffffff);
-        //g->beginFill(0x000000, 0.7);
-        //g->drawRect(0, 0, _backWidth, _backHeight);
-        //g->endFill();
-        ////----------------------------------
-
 		//----------------------------------
-		//_backWidth = _minBackWidth;
 		_backHeight = _minBackHeight;
 		_graphics = &_minimalGraphics;
 		//----------------------------------
@@ -261,16 +211,12 @@ namespace fl2d {
         for(i = 0; i < l; i++) {
             flDisplayObject* child = getChildAt(i);
             
-            //if(child == titleTf) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
 
             child->visible(false);
         }
-        //    titleTf->visible(true);
-        //    minimizeButton->visible(true);
-        //    closeButton->visible(true);
         //----------------------------------
 
 		_relocateTitleBarButtons();
@@ -297,7 +243,6 @@ namespace fl2d {
 		_maximumGraphics.endFill();
 		//----------------------------------
 
-
 		//----------------------------------
 		_backWidth = _maxBackWidth;
 		_backHeight = _maxBackHeight;
@@ -316,7 +261,6 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
-			//if(child == titleTf) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
@@ -344,19 +288,6 @@ namespace fl2d {
 		maximizeButton->selected(false, false);
 		maximizeButton->enabled(true);
 
-        ////----------------------------------
-        //_backWidth = _normalBackWidth;
-        //_backHeight = _normalBackHeight;
-        //
-        //flGraphics* g;
-        //g = graphics();
-        //g->clear();
-        //g->lineStyle(1, 0xffffff);
-        //g->beginFill(0x000000, 0.7);
-        //g->drawRect(0, 0, _backWidth, _backHeight);
-        //g->endFill();
-        ////----------------------------------
-
 		//----------------------------------
 		_backWidth = _normalBackWidth;
 		_backHeight = _normalBackHeight;
@@ -382,7 +313,6 @@ namespace fl2d {
         for(i = 0; i < l; i++) {
             flDisplayObject* child = getChildAt(i);
             
-            //if(child == titleTf) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
@@ -398,22 +328,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flBasicController::resize(float w, float h) {
-
-		//--------------------------------------
-		_normalBackWidth = w;
-		_normalBackHeight = h;
-
-		_normalGraphics.clear();
-		_normalGraphics.lineStyle(1, 0xffffff);
-		_normalGraphics.beginFill(0x000000, 0.7);
-		//--------------------------------------
-
-		//--------------------------------------
-		_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
-		_normalGraphics.endFill();
-		//--------------------------------------
-
-		_setup();
+		_resize(w, h);
     }
     
 	//--------------------------------------------------------------
@@ -437,23 +352,100 @@ namespace fl2d {
 	//==============================================================
 
 	//--------------------------------------------------------------
+	void flBasicController::_resize(float w, float h) {
+		_normalBackWidth = w;
+		_normalBackHeight = h;
+
+		//----------------------------------
+		_minimalGraphics.clear();
+		_minimalGraphics.lineStyle(1, 0xffffff);
+		_minimalGraphics.beginFill(0x000000, 0.7);
+		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
+		_minimalGraphics.endFill();
+		//----------------------------------
+
+		//--------------------------------------
+		_normalGraphics.clear();
+		_normalGraphics.lineStyle(1, 0xffffff);
+		_normalGraphics.beginFill(0x000000, 0.7);
+		_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+		_normalGraphics.endFill();
+		//--------------------------------------
+
+		_backWidth = _normalBackWidth;
+		_backHeight = _normalBackHeight;
+		_graphics = &_normalGraphics;
+
+		_relocateTitleBarButtons();
+
+		_updateRect();
+	}
+
+	//--------------------------------------------------------------
 	void flBasicController::_relocateTitleBarButtons() {
 		float w = _backWidth;
 
 		minimizeButton->x(w - (18 + 5) * 3);
-		addChild(minimizeButton);
-
 		maximizeButton->x(w - (18 + 5) * 2);
-		addChild(maximizeButton);
-
 		closeButton->x(w - (18 + 5) * 1);
-		addChild(closeButton);
 	}
 
     //==============================================================
     // Protected / Private Event Handler
     //==============================================================
-    
+
+	//--------------------------------------------------------------
+	void flBasicController::_mouseEventHandler(flEvent& event) {
+		//ofLog() << "[flBasicController]_mouseEventHandler(" << event.type() << ")";
+		//ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+
+		flBasicDraggableObject::_mouseEventHandler(event);
+
+		//Roll Over
+		if (event.type() == flMouseEvent::ROLL_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+
+		//Roll Out
+		if (event.type() == flMouseEvent::ROLL_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+
+		//Mouse Over
+		if (event.type() == flMouseEvent::MOUSE_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+
+		//Mouse Out
+		if (event.type() == flMouseEvent::MOUSE_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+
+		//Mouse Down
+		if (event.type() == flMouseEvent::MOUSE_DOWN) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+
+		//Mouse Up
+		if (event.type() == flMouseEvent::MOUSE_UP) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+		}
+	}
+
     //--------------------------------------------------------------
     void flBasicController::_flBasicControllerEventHandler(flEvent& event) {
         //ofLog() << "[flBasicController]_flBasicControllerEventHandler(" << event.type() << ")";
@@ -500,8 +492,6 @@ namespace fl2d {
         if(event.type() == flButtonEvent::CHANGE) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-            
-			//ofLog() << "flBasicController change";
 
             if(button == minimizeButton) {
                 if(minimizeButton->selected()) {
@@ -619,89 +609,5 @@ namespace fl2d {
             flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());
         }
     }
-    
-    //--------------------------------------------------------------
-    void flBasicController::_mouseEventHandler(flEvent& event) {
-		//ofLog() << "[flBasicController]_mouseEventHandler(" << event.type() << ")";
-		//ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*)this)->name();
-		//ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
-		//ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
-
-		flBasicDraggableObject::_mouseEventHandler(event);
-
-        //Roll Over
-        if(event.type() == flMouseEvent::ROLL_OVER) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            if(target == this) {
-                
-            }
-        }
-        
-        //Roll Out
-        if(event.type() == flMouseEvent::ROLL_OUT) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            if(target == this) {
-                
-            }
-        }
-        
-        //Mouse Over
-        if(event.type() == flMouseEvent::MOUSE_OVER) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            if(target == this) {
-                
-            }
-        }
-        
-        //Mouse Out
-        if(event.type() == flMouseEvent::MOUSE_OUT) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            if(target == this) {
-                
-            }
-        }
-        
-        //Mouse Down
-        if(event.type() == flMouseEvent::MOUSE_DOWN) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            //if(target == (hitArea() != NULL ? hitArea() : this)) {
-            //    if(_dragEnabled) {
-            //        if(_moveFrontOnSelect) ((flDisplayObjectContainer*)parent())->addChild(this);
-            //        startDrag();
-            //        stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-            //    }
-            //}
-        }
-        
-        //Mouse Up
-        if(event.type() == flMouseEvent::MOUSE_UP) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-            
-            //if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
-    //        if(target == stage()) {
-				//if(_dragEnabled) {
-				//	stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-				//	stopDrag();
-				//}
-    //        }
-        }
-    }
-    
+     
 }

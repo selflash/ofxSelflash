@@ -18,6 +18,8 @@ namespace fl2d {
 			flBasicDraggableObject();
 			virtual ~flBasicDraggableObject();
 
+			virtual void setup();
+
 			virtual inline bool moveFrontOnSelect() { return _moveFrontOnSelect; }
 			virtual inline void moveFrontOnSelect(bool value) { _moveFrontOnSelect = value; }        
 
@@ -33,7 +35,7 @@ namespace fl2d {
 			}
         
 		protected:
-			virtual void _setup();			    
+			//virtual void _setup();			    
 			//virtual void _update();
 			//virtual void _draw();
 

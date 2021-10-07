@@ -50,7 +50,9 @@ namespace fl2d {
 		public:
 			flBasicUIWindow();
 			virtual ~flBasicUIWindow();
-       
+
+			virtual void setup();
+
 			virtual void minimize();
 			virtual void normalize();
 			virtual void maximize();
@@ -74,7 +76,6 @@ namespace fl2d {
 			virtual void _update();
 			//virtual void _draw();
 			virtual void _afterDraw();
-			virtual void _resize(float w, float h);
 
 			virtual void _relocateTitleBarButtons();
 

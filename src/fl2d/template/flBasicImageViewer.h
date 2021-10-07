@@ -28,6 +28,7 @@ namespace fl2d {
 
 			virtual void normalize();
 			virtual void maximize();
+			virtual void resize(float w, float h);
 
 			bool active();
 			void active(bool value);
@@ -39,7 +40,6 @@ namespace fl2d {
 			virtual void _setup();
 			virtual void _update();
 			virtual void _draw();
-			virtual void _resize(float w, float h);
 
 			virtual void _updateGraphics(float w, float h);
 
