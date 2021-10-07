@@ -65,7 +65,6 @@ namespace fl2d {
 		{
 			minimizeButton = new flButton(18, 18);
 			minimizeButton->name("MinimizeButton");
-			//minimizeButton->x(w - (18 + 5 + 18 + 5));
 			minimizeButton->y(_margin);
 			minimizeButton->labelText("");
 			minimizeButton->toggleEnabled(true);
@@ -83,14 +82,13 @@ namespace fl2d {
 			g->endFill();
 			minimizeButton->addChild(icon);
 
-			minimizeButton->visible(false);
+			//minimizeButton->visible(false);
 		}
 
 		//最大化ボタン
 		{
 			maximizeButton = new flButton(18, 18);
 			maximizeButton->name("MaximizeButton");
-			//maximizeButton->x(w - (18 + 5 + 18 + 5));
 			maximizeButton->y(_margin);
 			maximizeButton->labelText("");
 			maximizeButton->toggleEnabled(true);
@@ -111,14 +109,13 @@ namespace fl2d {
 			g->endFill();
 			maximizeButton->addChild(icon);
 
-			maximizeButton->visible(false);
+			//maximizeButton->visible(false);
 		}
 
 		//閉じるボタン
 		{
 			closeButton = new flButton(18, 18);
 			closeButton->name("CloseButton");
-			//closeButton->x(w - (18 + 5));
 			closeButton->y(_margin);
 			closeButton->labelText("");
 			closeButton->toolTipEnabled(true);
@@ -137,7 +134,7 @@ namespace fl2d {
 			g->endFill();
 			closeButton->addChild(icon);
 
-			closeButton->visible(false);
+			//closeButton->visible(false);
 		}
 
 		{
@@ -145,7 +142,7 @@ namespace fl2d {
 			_sizingHandle->setup();
 			_sizingHandle->x(0);
 			_sizingHandle->y(0);
-			_sizingHandle->visible(false);
+			//_sizingHandle->visible(false);
 			_sizingHandle->dragEnabled(true);
 			_sizingHandle->useHandCursor(true);
 			_sizingHandle->toolTipEnabled(true);
@@ -155,7 +152,7 @@ namespace fl2d {
 
 			flGraphics* g = _sizingHandle->graphics();
 			g->clear();
-			g->beginFill(0xff0000, 0.0);
+			g->beginFill(0xff0000, 0.7);
 			g->drawCircle(0, 0, 12);
 			g->endFill();
 		}
@@ -168,26 +165,30 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_setup() {
-		//----------------------------------
-		_minimalGraphics.clear();
-		_minimalGraphics.lineStyle(1, 0xffffff);
-		_minimalGraphics.beginFill(0x000000, 0.7);
-		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
-		_minimalGraphics.endFill();
-		//----------------------------------
+		resize(_normalBackWidth, _normalBackHeight);
 
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
-		_graphics = &_normalGraphics;
+		////----------------------------------
+		//_minimalGraphics.clear();
+		//_minimalGraphics.lineStyle(1, 0xffffff);
+		//_minimalGraphics.beginFill(0x000000, 0.7);
+		//_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
+		//_minimalGraphics.endFill();
+		////----------------------------------
 
-		_relocateTitleBarButtons();
+		//_backWidth = _normalBackWidth;
+		//_backHeight = _normalBackHeight;
+		//_graphics = &_normalGraphics;
 
-		_updateRect();
+		//_relocateTitleBarButtons();
+
+		//_updateRect();
 	}
 
     //--------------------------------------------------------------
-    void flBasicUIWindow::_update() {
+    void flBasicUIWindow::update() {
 		//ofLog() << "[flBasicUIWindow]update()";
+
+		flBasicDraggableObject::update();
 
 		if (_sizingHandle->isGrabbed()) {
 			int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
@@ -202,23 +203,16 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //void flBasicUIWindow::_draw() {
-    //    
-    //}
+    void flBasicUIWindow::draw() {
+		flBasicDraggableObject::draw();
 
-	//--------------------------------------------------------------
-	void flBasicUIWindow::_afterDraw() {
-		//ofLog() << "[flBasicUIWindow]_afterDraw()";
-		flBasicDraggableObject::_afterDraw();
-
-		ofPushStyle();
-		ofSetColor(255, 255, 255);
-		ofDrawLine(0, 0, _backWidth, 0);
-		ofDrawLine(_backWidth, 0, _backWidth, _backHeight);
-		ofDrawLine(_backWidth, _backHeight, 0, _backHeight);
-		ofDrawLine(0, _backHeight, 0, 0);
-		ofPopStyle();
-	}
+		if (_title != "") {
+			ofPushStyle();
+			ofSetColor(255, 255, 255, 255);
+			flFont::drawString(_title, 6, 20);
+			ofPopStyle();
+		}
+    }
 
 	//==============================================================
 	// Public Method
@@ -421,6 +415,10 @@ namespace fl2d {
 		minimizeButton->x(w - (18 + 5) * 3);
 		maximizeButton->x(w - (18 + 5) * 2);
 		closeButton->x(w - (18 + 5) * 1);
+
+		//addChild(minimizeButton);
+		//addChild(maximizeButton);
+		//addChild(closeButton);
 	}
 
     //==============================================================
@@ -540,10 +538,6 @@ namespace fl2d {
 
 			if (button == closeButton) {
 				//if (stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
-				//normalize();
-				//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
-				//dispatchEvent(new flEvent(flEvent::CLOSE));
-
 				normalize();
 				if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
 				dispatchEvent(new flEvent(flEvent::CLOSE));

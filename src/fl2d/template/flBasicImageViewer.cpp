@@ -43,25 +43,27 @@ namespace fl2d {
 
 		flBasicUIWindow::_setup();
 
-		addChildAt(_bitmap, getChildIndex(_sizingHandle) - 1);
+		addChildAt(_bitmap, getChildIndex(_sizingHandle));
+
+		minimizeButton->visible(false);
+		maximizeButton->visible(false);
+		closeButton->visible(false);
 
 		resize(_defaultImageWidth, _defaultImageHeight);
 	}
 
 	//--------------------------------------------------------------
-	void flBasicImageViewer::_update() {
-		//ofLog() << "[flBasicImageViewer]update()";
+	void flBasicImageViewer::_afterDraw() {
+		//ofLog() << "[flBasicUIWindow]_afterDraw()";
+		flBasicDraggableObject::_afterDraw();
 
-		flBasicUIWindow::_update();
-	}
-
-	//--------------------------------------------------------------
-	void flBasicImageViewer::_draw() {
-		//ofLog() << "[flBasicImageViewer]draw()";
-
-		flBasicUIWindow::_draw();
-
-		if (_mode == 0) return;
+		ofPushStyle();
+		ofSetColor(255, 255, 255);
+		ofDrawLine(0, 0, _backWidth, 0);
+		ofDrawLine(_backWidth, 0, _backWidth, _backHeight);
+		ofDrawLine(_backWidth, _backHeight, 0, _backHeight);
+		ofDrawLine(0, _backHeight, 0, 0);
+		ofPopStyle();
 	}
 
 	//==============================================================

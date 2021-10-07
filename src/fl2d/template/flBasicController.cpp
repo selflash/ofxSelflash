@@ -26,369 +26,24 @@ namespace fl2d {
 
 		_graphics = NULL;
         
-		//if (stage()) {
-		//	if (stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
-		//		stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-		//	}
-		//}
-        //removeEventListener(flMouseEvent::ROLL_OVER, this, &flBasicController::_mouseEventHandler);
-        //removeEventListener(flMouseEvent::ROLL_OUT, this, &flBasicController::_mouseEventHandler);
-        removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicController::_mouseEventHandler);
-        //removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_mouseEventHandler);
-        
-        //最小化ボタン
-		removeChild(minimizeButton);
-        minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-        delete minimizeButton;
-        minimizeButton = NULL;   
-
-        //最大化ボタン
-		removeChild(maximizeButton);
-		maximizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-        delete maximizeButton;
-		maximizeButton = NULL;
-        
-        //閉じるボタン
-		removeChild(closeButton);
-		closeButton->removeEventListener(flButtonEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerEventHandler);
-        delete closeButton;
-        closeButton = NULL;
-        
         for(auto* radioButtonGroup : radioButtonGroups) {
             delete radioButtonGroup;
             radioButtonGroup = NULL;
         }
         radioButtonGroups.clear();
-
-		_listeners.unsubscribeAll();
     }
     
     //==============================================================
     // Setup / Update / Draw
     //==============================================================
-    
-    //--------------------------------------------------------------
-    void flBasicController::setup() {
-		_marginTop = _titleBarHeight;
-		_minBackHeight = _titleBarHeight;
 
-		int x, y, w, h = 0;
-		flDisplayObject* displayObject = NULL;
-		flTextField* label = NULL;
-		flRadioButtonGroup* radioButtonGroup = NULL;
-		//--------------------------------------
-
-		//最小化ボタン
-		{
-			minimizeButton = new flButton(18, 18);
-			minimizeButton->name("MinimizeButton");
-			minimizeButton->y(_margin);
-			minimizeButton->labelText("");
-			minimizeButton->toggleEnabled(true);
-			minimizeButton->toolTipEnabled(true);
-			minimizeButton->toolTipText(u8"最小化。");
-			minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-			displayObject = addChild(minimizeButton);
-
-			flShape* icon = new flShape();
-			flGraphics* g = icon->graphics();
-			g->clear();
-			g->lineStyle(1, 0xffffff);
-			g->moveTo(4, 9);
-			g->lineTo(14, 9);
-			g->endFill();
-			minimizeButton->addChild(icon);
-		}
-
-		//最大化ボタン
-		{
-			maximizeButton = new flButton(18, 18);
-			maximizeButton->name("MaximizeButton");
-			maximizeButton->y(_margin);
-			maximizeButton->labelText("");
-			maximizeButton->toggleEnabled(true);
-			maximizeButton->toolTipEnabled(true);
-			maximizeButton->toolTipText(u8"最大化。");
-			maximizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicController::_flBasicControllerEventHandler);
-			displayObject = addChild(maximizeButton);
-
-			flShape* icon = new flShape();
-			flGraphics* g = icon->graphics();
-			g->clear();
-			g->lineStyle(1, 0xffffff);
-			g->moveTo(4, 4);
-			g->lineTo(14, 4);
-			g->lineTo(14, 14);
-			g->lineTo(3, 14);
-			g->lineTo(4, 4);
-			g->endFill();
-			maximizeButton->addChild(icon);
-		}
-
-		//閉じるボタン
-		{
-			closeButton = new flButton(18, 18);
-			closeButton->name("CloseButton");
-			closeButton->y(_margin);
-			closeButton->labelText("");
-			closeButton->toolTipEnabled(true);
-			closeButton->toolTipText(u8"閉じる。");
-			closeButton->addEventListener(flButtonEvent::CLICK, this, &flBasicController::_flBasicControllerEventHandler);
-			displayObject = addChild(closeButton);
-
-			flShape* icon = new flShape();
-			flGraphics* g = icon->graphics();
-			g->clear();
-			g->lineStyle(1, 0xffffff);
-			g->moveTo(4, 4);
-			g->lineTo(14, 14);
-			g->moveTo(14, 4);
-			g->lineTo(4, 14);
-			g->endFill();
-			closeButton->addChild(icon);
-		}
-
-		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
-		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
-
-		flBasicDraggableObject::setup();
-    }
-
-	//--------------------------------------------------------------
-	void flBasicController::_setup() {
-		//resize(_normalBackWidth, _minBackHeight);
-
-		//----------------------------------
-		_minimalGraphics.clear();
-		_minimalGraphics.lineStyle(1, 0xffffff);
-		_minimalGraphics.beginFill(0x000000, 0.7);
-		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
-		_minimalGraphics.endFill();
-		//----------------------------------
-
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
-		_graphics = &_normalGraphics;
-
-		_relocateTitleBarButtons();
-
-		_updateRect();
-	}
-
-    //--------------------------------------------------------------
-    void flBasicController::_draw() {
-		flBasicDraggableObject::_draw();
-
-		ofPushStyle();
-		ofSetColor(255, 255, 255, 255);
-		flFont::drawString(_title, 6, 20);
-		ofPopStyle();
-    }
-    
     //==============================================================
     // Public Method
     //==============================================================
-    
-    //--------------------------------------------------------------
-    void flBasicController::minimize() {
-        if(_isMinimize) return;
-
-        _isMinimize = true;
-        minimizeButton->selected(true, false);
-
-		_isMaximize = false;
-		maximizeButton->selected(false, false);
-		maximizeButton->enabled(false);
-
-		//----------------------------------
-		_backHeight = _minBackHeight;
-		_graphics = &_minimalGraphics;
-		//----------------------------------
-        
-        //----------------------------------
-        int i; int l;
-        l = numChildren();
-        for(i = 0; i < l; i++) {
-            flDisplayObject* child = getChildAt(i);
-            
-			if (child == closeButton) continue;
-			if (child == minimizeButton) continue;
-			if (child == maximizeButton) continue;
-
-            child->visible(false);
-        }
-        //----------------------------------
-
-		_relocateTitleBarButtons();
-    } 
-
-    //--------------------------------------------------------------
-    void flBasicController::maximize() {
-        if(_isMaximize) return;
-
-		_isMinimize = false;
-		minimizeButton->selected(false, false);
-		minimizeButton->enabled(false);
-
-		_isMaximize = true;
-		maximizeButton->selected(true, false);
-        
-		//----------------------------------
-		_maxBackWidth = ofGetWidth();
-		_maxBackHeight = ofGetHeight();
-		_maximumGraphics.clear();
-		_maximumGraphics.lineStyle(1, 0xffffff);
-		_maximumGraphics.beginFill(0x000000, 0.7);
-		_maximumGraphics.drawRect(0, 0, _maxBackWidth, _maxBackHeight);
-		_maximumGraphics.endFill();
-		//----------------------------------
-
-		//----------------------------------
-		_backWidth = _maxBackWidth;
-		_backHeight = _maxBackHeight;
-		_graphics = &_maximumGraphics;
-
-		if (parent()) {
-			ofPoint localPoint = parent()->globalToLocal(ofPoint(0, 0));
-			x(roundf(localPoint.x));
-			y(roundf(localPoint.y));
-		}
-		//----------------------------------
-        
-		//----------------------------------
-		int i; int l;
-		l = numChildren();
-		for (i = 0; i < l; i++) {
-			flDisplayObject* child = getChildAt(i);
-
-			if (child == closeButton) continue;
-			if (child == minimizeButton) continue;
-			if (child == maximizeButton) continue;
-
-			child->visible(true);
-		}
-
-		if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
-		//----------------------------------
-
-		_relocateTitleBarButtons();
-    }
-
-    //--------------------------------------------------------------
-    void flBasicController::normalize() {
-        if(!_isMinimize && !_isMaximize) return;
-
-		bool preModeIsMaximize = _isMaximize;
-
-        _isMinimize = false;        
-        minimizeButton->selected(false, false);        
-		minimizeButton->enabled(true);
-
-		_isMaximize = false;
-		maximizeButton->selected(false, false);
-		maximizeButton->enabled(true);
-
-		//----------------------------------
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
-		_graphics = &_normalGraphics;
-
-		if (preModeIsMaximize) {
-			if (parent()) {
-				ofPoint localPoint = parent()->globalToLocal(
-					ofPoint(
-						(ofGetWidth() * 0.5) - (_backWidth * 0.5),
-						(ofGetHeight() * 0.5) - (_backHeight * 0.5)
-					)
-				);
-				x(roundf(localPoint.x));
-				y(roundf(localPoint.y));
-			}
-		}
-		//----------------------------------
-        
-        //----------------------------------
-        int i; int l;
-        l = numChildren();
-        for(i = 0; i < l; i++) {
-            flDisplayObject* child = getChildAt(i);
-            
-			if (child == closeButton) continue;
-			if (child == minimizeButton) continue;
-			if (child == maximizeButton) continue;
-
-            child->visible(true);
-        }
-        
-        if(parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
-        //----------------------------------
-
-		_relocateTitleBarButtons();
-    }
-    
-    //--------------------------------------------------------------
-    void flBasicController::resize(float w, float h) {
-		_resize(w, h);
-    }
-    
-	//--------------------------------------------------------------
-	bool flBasicController::lock() { return _isLocked; }
-	void flBasicController::lock(bool value) {
-		_isLocked = value;
-
-		for (int i = 0; i < numChildren(); i++) {
-			flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
-			//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
-
-			if (displayObject->typeID() == FL_TYPE_UIBASE) {
-				//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
-				((flUIBase*)displayObject)->enabled(_isLocked);
-			}
-		}
-	}
 
 	//==============================================================
 	// Protected / Private Method
 	//==============================================================
-
-	//--------------------------------------------------------------
-	void flBasicController::_resize(float w, float h) {
-		_normalBackWidth = w;
-		_normalBackHeight = h;
-
-		//----------------------------------
-		_minimalGraphics.clear();
-		_minimalGraphics.lineStyle(1, 0xffffff);
-		_minimalGraphics.beginFill(0x000000, 0.7);
-		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
-		_minimalGraphics.endFill();
-		//----------------------------------
-
-		//--------------------------------------
-		_normalGraphics.clear();
-		_normalGraphics.lineStyle(1, 0xffffff);
-		_normalGraphics.beginFill(0x000000, 0.7);
-		_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
-		_normalGraphics.endFill();
-		//--------------------------------------
-
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
-		_graphics = &_normalGraphics;
-
-		_relocateTitleBarButtons();
-
-		_updateRect();
-	}
-
-	//--------------------------------------------------------------
-	void flBasicController::_relocateTitleBarButtons() {
-		float w = _backWidth;
-
-		minimizeButton->x(w - (18 + 5) * 3);
-		maximizeButton->x(w - (18 + 5) * 2);
-		closeButton->x(w - (18 + 5) * 1);
-	}
 
     //==============================================================
     // Protected / Private Event Handler
@@ -401,7 +56,7 @@ namespace fl2d {
 		//ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
 		//ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
 
-		flBasicDraggableObject::_mouseEventHandler(event);
+		flBasicUIWindow::_mouseEventHandler(event);
 
 		//Roll Over
 		if (event.type() == flMouseEvent::ROLL_OVER) {
@@ -447,11 +102,13 @@ namespace fl2d {
 	}
 
     //--------------------------------------------------------------
-    void flBasicController::_flBasicControllerEventHandler(flEvent& event) {
-        //ofLog() << "[flBasicController]_flBasicControllerEventHandler(" << event.type() << ")";
+    void flBasicController::_uiEventHandler(flEvent& event) {
+        //ofLog() << "[flBasicController]_uiEventHandler(" << event.type() << ")";
         //ofLog() << "[flBasicController]this          = " << this << "," << ((flDisplayObject*) this)->name();
         //ofLog() << "[flBasicController]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
         //ofLog() << "[flBasicController]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+
+		flBasicUIWindow::_uiEventHandler(event);
 
         //ボタン
         if(event.type() == flButtonEvent::ROLL_OVER) {
@@ -481,33 +138,10 @@ namespace fl2d {
 		if(event.type() == flButtonEvent::CLICK) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-
-			if (button == closeButton) {
-				//if (stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
-				normalize();
-				if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
-				dispatchEvent(new flEvent(flEvent::CLOSE));
-			}
 		}
         if(event.type() == flButtonEvent::CHANGE) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
-
-            if(button == minimizeButton) {
-                if(minimizeButton->selected()) {
-                    minimize();
-                } else {
-                    normalize();
-                }
-            }
-
-            if(button == maximizeButton) {
-                if(maximizeButton->selected()) {
-					maximize();
-                } else {
-                    normalize();
-                }
-            }
         }
 
         //コンボボックス

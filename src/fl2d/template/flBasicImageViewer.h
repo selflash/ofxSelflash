@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "flAbstractController.h"
 #include "flBasicUIWindow.h"
 
 namespace fl2d {
@@ -14,8 +13,6 @@ namespace fl2d {
 			flBitmap* _bitmap = NULL;
 			float _defaultImageWidth;
 			float _defaultImageHeight;
-
-			int _mode = 0;
 
 			bool _isActive = false;
 			float _scaleOnActive = 2.0;
@@ -38,8 +35,7 @@ namespace fl2d {
 
 		protected:
 			virtual void _setup();
-			virtual void _update();
-			virtual void _draw();
+			virtual void _afterDraw();
 
 			virtual void _updateGraphics(float w, float h);
 

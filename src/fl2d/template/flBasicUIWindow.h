@@ -12,7 +12,6 @@ namespace fl2d {
 		protected:
 			float _backWidth = 0.0;
 			float _backHeight = 0.0;
-			//float _minBackWidth = 0.0;
 			float _minBackHeight = 0.0;
 			float _maxBackWidth = 0.0;
 			float _maxBackHeight = 0.0;
@@ -52,6 +51,8 @@ namespace fl2d {
 			virtual ~flBasicUIWindow();
 
 			virtual void setup();
+			virtual void update();
+			virtual void draw();
 
 			virtual void minimize();
 			virtual void normalize();
@@ -63,7 +64,6 @@ namespace fl2d {
 
 			virtual inline float backWidth() { return _backWidth; }
 			virtual inline float backHeight() { return _backHeight; }
-			//virtual inline float minBackWidth() { return _minBackWidth; }
 			virtual inline float minBackHeight() { return _minBackHeight; }
 			virtual inline float normalBackWidth() { return _normalBackWidth; }
 			virtual inline float normalBackHeight() { return _normalBackHeight; }
@@ -73,9 +73,8 @@ namespace fl2d {
 
 		protected:
 			virtual void _setup();			    
-			virtual void _update();
+			//virtual void _update();
 			//virtual void _draw();
-			virtual void _afterDraw();
 
 			virtual void _relocateTitleBarButtons();
 
