@@ -105,8 +105,8 @@ namespace fl2d {
                 _bChangedByMyself["value"] = false;
                 _bChangedByOfParm["value"] = false;
 
-				min(param.getMin(), false);
-				max(param.getMax(), false);
+				if (INT_MIN < param.getMin()) min(param.getMin(), false);
+				if (param.getMax() < INT_MAX) max(param.getMax(), false);
 				_intParam = &param;
                 _paramListeners.push(_intParam->newListener([&](int& val) {
                     if(_bChangedByMyself["value"]) {

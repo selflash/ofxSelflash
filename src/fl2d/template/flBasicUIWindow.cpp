@@ -76,7 +76,7 @@ namespace fl2d {
 			flShape* icon = new flShape();
 			flGraphics* g = icon->graphics();
 			g->clear();
-			g->lineStyle(1, 0xffffff);
+			g->lineStyle(1, flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
 			g->moveTo(4, 9);
 			g->lineTo(14, 9);
 			g->endFill();
@@ -100,7 +100,7 @@ namespace fl2d {
 			flShape* icon = new flShape();
 			flGraphics* g = icon->graphics();
 			g->clear();
-			g->lineStyle(1, 0xffffff);
+			g->lineStyle(1, flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
 			g->moveTo(4, 4);
 			g->lineTo(14, 4);
 			g->lineTo(14, 14);
@@ -126,7 +126,7 @@ namespace fl2d {
 			flShape* icon = new flShape();
 			flGraphics* g = icon->graphics();
 			g->clear();
-			g->lineStyle(1, 0xffffff);
+			g->lineStyle(1, flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
 			g->moveTo(4, 4);
 			g->lineTo(14, 14);
 			g->moveTo(14, 4);
@@ -142,7 +142,7 @@ namespace fl2d {
 			_sizingHandle->setup();
 			_sizingHandle->x(0);
 			_sizingHandle->y(0);
-			//_sizingHandle->visible(false);
+			_sizingHandle->visible(false);
 			_sizingHandle->dragEnabled(true);
 			_sizingHandle->useHandCursor(true);
 			_sizingHandle->toolTipEnabled(true);
@@ -152,7 +152,7 @@ namespace fl2d {
 
 			flGraphics* g = _sizingHandle->graphics();
 			g->clear();
-			g->beginFill(0xff0000, 0.7);
+			g->beginFill(0xff0000, 0.0);
 			g->drawCircle(0, 0, 12);
 			g->endFill();
 		}
@@ -255,6 +255,9 @@ namespace fl2d {
 	void flBasicUIWindow::maximize() {
 		if (_isMaximize) return;
 
+		_preDragEnabled = dragEnabled();
+		dragEnabled(false);
+
 		_isMinimize = false;
 		minimizeButton->selected(false, false);
 		minimizeButton->enabled(false);
@@ -306,6 +309,8 @@ namespace fl2d {
 	//--------------------------------------------------------------
 	void flBasicUIWindow::normalize() {
 		if (!_isMinimize && !_isMaximize) return;
+
+		dragEnabled(_preDragEnabled);
 
 		bool preModeIsMaximize = _isMaximize;
 
@@ -468,14 +473,6 @@ namespace fl2d {
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
-			if (target == (hitArea() != NULL ? hitArea() : this)) {
-                if(_dragEnabled) {
-                    if(_moveFrontOnSelect) ((flDisplayObjectContainer*)parent())->addChild(this);
-                    startDrag();
-                    stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
-                }
-            }
-
 			if (target == _sizingHandle) {
 				stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
 			}
@@ -491,9 +488,6 @@ namespace fl2d {
             //if(currentTarget == stage()) {
 			if (target == stage()) {
 				if (_dragEnabled) {
-					stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
-					stopDrag();
-
 					_sizingHandle->x(_backWidth);
 					_sizingHandle->y(_backHeight);
 				}

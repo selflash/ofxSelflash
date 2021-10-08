@@ -100,7 +100,7 @@ namespace fl2d {
     //==============================================================
     // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flGraphics::lineStyle(float thickness, int color, float alpha) {
         DrawCommand* command = new DrawCommand();
@@ -218,7 +218,37 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-    
+
+	//--------------------------------------------------------------
+	void flGraphics::style(float thickness, int color, float alpha) {
+		for (auto& command : _commandList) {
+			command->thickness = thickness;
+			command->color = color;
+			command->alpha = alpha;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::color(int value) {
+		for (auto& command : _commandList) {
+			command->color = value;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::thickness(float value) {
+		for (auto& command : _commandList) {
+			command->thickness = value;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::alpha(float value) {
+		for (auto& command : _commandList) {
+			command->alpha = value;
+		}
+	}
+
     //--------------------------------------------------------------
     void flGraphics::clear() {
         //        DrawCommand* command = new DrawCommand();

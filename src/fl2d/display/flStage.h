@@ -13,6 +13,7 @@
 
 #include "ofMain.h"
 
+#include "flUtil.h"
 #include "flDefinition.h"
 #include "flBlendMode.h"
 #include "flDisplayObject.h"
@@ -184,11 +185,6 @@ namespace fl2d {
         
             void _keyDownEventHandler(ofKeyEventArgs& event);
             void _keyUpEventHandler(ofKeyEventArgs& event);
-        
-            bool _isInteractiveObject(flDisplayObject* displayObject);
-            bool _isDisplayObject(flDisplayObject* displayObject);
-            bool _isDisplayObjectContainer(flDisplayObject* displayObject);
-            bool _isSprite(flDisplayObject* displayObject);
 
 			void _removeFromList(flDisplayObject* displayObject);
 

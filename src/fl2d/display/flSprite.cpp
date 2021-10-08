@@ -30,8 +30,10 @@ namespace fl2d {
         
         //--------------------------------------
         //Tooltip
-        addEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        addEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        addEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+		addEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		//addEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        //addEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
@@ -62,8 +64,10 @@ namespace fl2d {
         if(_toolTip != NULL) delete _toolTip;
 		_toolTip = NULL;
         
-        removeEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        removeEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+        removeEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+		removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		//removeEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        //removeEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
@@ -690,20 +694,6 @@ namespace fl2d {
         if(event.type() == flMouseEvent::ROLL_OVER) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
 			void* target = event.target();
-			void* currentTarget = event.currentTarget();		
-        }
-        
-        //Roll Out
-        if(event.type() == flMouseEvent::ROLL_OUT) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
-			void* currentTarget = event.currentTarget();
-        }
-
-		//Mouse Over
-		if (event.type() == flMouseEvent::MOUSE_OVER) {
-			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
-			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
 			if (target == this) {
@@ -715,10 +705,10 @@ namespace fl2d {
 					((flDisplayObjectContainer*)stage())->addChild(_toolTip);
 				}
 			}
-		}
-
-		//Mouse Out
-		if (event.type() == flMouseEvent::MOUSE_OUT) {
+        }
+        
+        //Roll Out
+        if(event.type() == flMouseEvent::ROLL_OUT) {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
@@ -728,6 +718,36 @@ namespace fl2d {
 					((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
 				}
 			}
+        }
+
+		//Mouse Over
+		if (event.type() == flMouseEvent::MOUSE_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//if (target == this) {
+			//	if (_toolTipEnabled && stage()) {
+			//		float stageMouseX = stage()->mouseX();
+			//		float stageMouseY = stage()->mouseY();
+			//		_toolTip->x(stageMouseX + 20);
+			//		_toolTip->y(stageMouseY + 10);
+			//		((flDisplayObjectContainer*)stage())->addChild(_toolTip);
+			//	}
+			//}
+		}
+
+		//Mouse Out
+		if (event.type() == flMouseEvent::MOUSE_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//if (target == this) {
+			//	if (_toolTipEnabled && _toolTip->parent()) {
+			//		((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+			//	}
+			//}
 		}
 
         //Mouse Down

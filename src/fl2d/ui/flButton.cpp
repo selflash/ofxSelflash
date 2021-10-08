@@ -404,7 +404,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
-    }
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
+				}
+			}	
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setOverColor() {
@@ -413,7 +428,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
-    }
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setSelectedOverColor() {
@@ -422,7 +452,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
-    }
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setActiveColor() {
@@ -431,7 +476,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-    }
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_ACTIVE_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_ACTIVE_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setDisableNormalColor() {
@@ -440,7 +500,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
-    }
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setDisableActiveColor() {
@@ -449,6 +524,21 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
+
+		for (auto& child : children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR.getHex());
+				}
+			}
+		}
     }
     
     //--------------------------------------------------------------

@@ -5,6 +5,7 @@
 //flash.utils
 #include "flmath.h"
 #include "flstringutil.h"
+#include "flUtil.h"
 
 #include "flDefinition.h"
 

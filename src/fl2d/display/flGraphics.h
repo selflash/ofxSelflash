@@ -110,7 +110,12 @@ namespace fl2d {
         
             void lineTo(float x, float y);
             void moveTo(float x, float y);
-        
+
+			void style(float thickness, int color, float alpha);
+			void color(int value);
+			void thickness(float value);
+			void alpha(float value);
+
             void clear();
         
             inline bool enabledSmoothing() { return _enabledSmoothing; }

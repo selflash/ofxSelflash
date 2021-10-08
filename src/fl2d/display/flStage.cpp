@@ -183,7 +183,7 @@ namespace fl2d {
         
         //------------------------------------
         if(_topMostHitInteractiveObject) {
-            if(_isSprite(_topMostHitInteractiveObject)) {
+            if(flUtil::isSprite(_topMostHitInteractiveObject)) {
                 flSprite* sprite = (flSprite*) _topMostHitInteractiveObject;
                 //------------------------------------
                 if(sprite->useHandCursor() == true) {
@@ -405,11 +405,11 @@ namespace fl2d {
 
 			if (isInEffectiveArea) {
 				//------------------------------------ mouseEnabled
-				if (_isInteractiveObject(child)) {
+				if (flUtil::isInteractiveObject(child)) {
 					flInteractiveObject* intObj = (flInteractiveObject*)child;
 					if (intObj->mouseEnabled()) {
 						//------------------------------------ hitArea
-						if (_isSprite(child)) {
+						if (flUtil::isSprite(child)) {
 							flSprite* sprite = (flSprite*)child;
 							if (sprite->hitArea() == NULL) {
 								if (child->hitTestPoint(_mouseX, _mouseY, true)) {
@@ -429,7 +429,7 @@ namespace fl2d {
 					}
 					else {
 						//------------------------------------ hitArea
-						if (_isSprite(child)) {
+						if (flUtil::isSprite(child)) {
 							flSprite* sprite = (flSprite*)child;
 							if (sprite->__hitAreaObject) {
 								if (child->hitTestPoint(_mouseX, _mouseY, true)) {
@@ -524,7 +524,7 @@ namespace fl2d {
             while(dispObj != this) {
                 //------------------------------------ InteractiveObject
                 //˜’÷
-                if(_isInteractiveObject(dispObj)) {
+                if(flUtil::isInteractiveObject(dispObj)) {
                     intObj = (flInteractiveObject*)dispObj;
                     
                     //------------------------------------ mouseEnabled
@@ -545,7 +545,7 @@ namespace fl2d {
                         
                         //------------------------------------ mouseChildren
                         //mouseChildrenfalseõ’
-                        if(_isDisplayObjectContainer(intObj)) {
+                        if(flUtil::isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) {
                                 _lineBottomUp.clear();
@@ -567,7 +567,7 @@ namespace fl2d {
                          ’ñLaddChildSprite
                          hitArea‚÷SpriteçL÷ƒÎ˜çL
                          */
-                        if(_isSprite(intObj)) {
+                        if(flUtil::isSprite(intObj)) {
                             flSprite* sprite = (flSprite*) intObj;
                             if(sprite->__hitAreaObject) {
                                 dispObj = sprite->__hitAreaObject;
@@ -596,7 +596,7 @@ namespace fl2d {
                         
                         //------------------------------------ mouseChildren
                         //mouseChildrenfalseõ’
-                        if(_isDisplayObjectContainer(intObj)) {
+                        if(flUtil::isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) {
                                 _lineBottomUp.clear();
@@ -648,7 +648,7 @@ namespace fl2d {
                         //------------------------------------
                         
                         //mouseChildrenfalseõ’
-                        if(_isDisplayObjectContainer(intObj)) {
+                        if(flUtil::isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) goto rollOutCheckEnd;
                         }
@@ -681,7 +681,7 @@ namespace fl2d {
                         //------------------------------------
                         
                         //mouseChildrenfalseõ’
-                        if(_isDisplayObjectContainer(intObj)) {
+                        if(flUtil::isDisplayObjectContainer(intObj)) {
                             flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                             if(!dispObjContainer->mouseChildren()) goto rollOverCheckEnd;
                         }
@@ -706,7 +706,7 @@ namespace fl2d {
                     //------------------------------------
                     
                     //mouseChildrenfalseõ’
-                    if(_isDisplayObjectContainer(intObj)) {
+                    if(flUtil::isDisplayObjectContainer(intObj)) {
                         flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                         if(!dispObjContainer->mouseChildren()) goto mouseOutCheckEnd;
                     }
@@ -728,7 +728,7 @@ namespace fl2d {
                     //------------------------------------
                     
                     //mouseChildrenfalseõ’
-                    if(_isDisplayObjectContainer(intObj)) {
+                    if(flUtil::isDisplayObjectContainer(intObj)) {
                         flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                         if(!dispObjContainer->mouseChildren()) goto mouseOverCheckEnd;
                     }
@@ -789,7 +789,7 @@ namespace fl2d {
         //                    //------------------------------------
         //
         //                    //mouseChildrenfalseõ’
-        //                    if(_isDisplayObjectContainer(intObj)) {
+        //                    if(flUtil::isDisplayObjectContainer(intObj)) {
         //                        flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
         //                        if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
         //                    }
@@ -816,7 +816,7 @@ namespace fl2d {
         //                    //------------------------------------
         //
         //                    //mouseChildrenfalseõ’
-        //                    if(_isDisplayObjectContainer(intObj)) {
+        //                    if(flUtil::isDisplayObjectContainer(intObj)) {
         //                        flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
         //                        if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
         //                    }
@@ -914,11 +914,11 @@ namespace fl2d {
 
 			if (isInEffectiveArea) {
 				//------------------------------------ mouseEnabled
-				if (_isInteractiveObject(child)) {
+				if (flUtil::isInteractiveObject(child)) {
 					flInteractiveObject* intObj = (flInteractiveObject*)child;
 					if (intObj->mouseEnabled()) {
 						//------------------------------------ hitArea
-						if (_isSprite(child)) {
+						if (flUtil::isSprite(child)) {
 							flSprite* sprite = (flSprite*)child;
 							if (sprite->hitArea() == NULL) {
 								if (child->hitTestPoint(x, y, true)) {
@@ -939,7 +939,7 @@ namespace fl2d {
 					}
 					else {
 						//------------------------------------ hitArea
-						if (_isSprite(child)) {
+						if (flUtil::isSprite(child)) {
 							flSprite* sprite = (flSprite*)child;
 							if (sprite->__hitAreaObject) {
 								if (child->hitTestPoint(x, y, true)) {
@@ -1271,7 +1271,7 @@ namespace fl2d {
 				intObj->__isMousePressed = true;
 
 				bool bMouseDownCheckEnd = false;
-				if(_isDisplayObjectContainer(intObj)) {
+				if(flUtil::isDisplayObjectContainer(intObj)) {
 					flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
 					if (!dispObjContainer->mouseChildren()) bMouseDownCheckEnd = true;
 				}
@@ -1280,7 +1280,7 @@ namespace fl2d {
                 //------------------------------------
                 
                 //mouseChildrenfalseõ’
-                //if(_isDisplayObjectContainer(intObj)) {
+                //if(flUtil::isDisplayObjectContainer(intObj)) {
                 //    flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                 //    if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
                 //}
@@ -1384,7 +1384,7 @@ namespace fl2d {
 				intObj->__isMouseReleased = true;
 
 				bool bMouseUpCheckEnd = false;
-				if (_isDisplayObjectContainer(intObj)) {
+				if (flUtil::isDisplayObjectContainer(intObj)) {
 					flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*)intObj;
 					if (!dispObjContainer->mouseChildren()) bMouseUpCheckEnd = true;
 				}
@@ -1393,7 +1393,7 @@ namespace fl2d {
                 //------------------------------------
                 
                 //mouseChildrenfalseõ’
-                //if(_isDisplayObjectContainer(intObj)) {
+                //if(flUtil::isDisplayObjectContainer(intObj)) {
                 //    flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
                 //    if(!dispObjContainer->mouseChildren()) goto mouseUpCheckEnd;
                 //}
@@ -1478,7 +1478,7 @@ namespace fl2d {
 					flDisplayObject* dispObj = _lineBottomUpForFocus[i];
 					//ofLog() << "dispObj = " << dispObj->name();
 
-					if (_isInteractiveObject(dispObj)) {
+					if (flUtil::isInteractiveObject(dispObj)) {
 						flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
 						if (intObj->mouseEnabled()) {
 							keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_PRESS);
@@ -1506,7 +1506,7 @@ namespace fl2d {
 				flDisplayObject* dispObj = _lineBottomUpForFocus[i];
 				//ofLog() << "dispObj = " << dispObj->name();
 
-				if (_isInteractiveObject(dispObj)) {
+				if (flUtil::isInteractiveObject(dispObj)) {
 					flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
 					if (intObj->mouseEnabled()) {
 						keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_DOWN);
@@ -1551,7 +1551,7 @@ namespace fl2d {
 					flDisplayObject* dispObj = _lineBottomUpForFocus[i];
 					//ofLog() << "dispObj = " << dispObj->name();
 
-					if (_isInteractiveObject(dispObj)) {
+					if (flUtil::isInteractiveObject(dispObj)) {
 						flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
 						if (intObj->mouseEnabled()) {
 							keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_RELEASE);
@@ -1579,7 +1579,7 @@ namespace fl2d {
 				flDisplayObject* dispObj = _lineBottomUpForFocus[i];
 				//ofLog() << "dispObj = " << dispObj->name();
 
-				if (_isInteractiveObject(dispObj)) {
+				if (flUtil::isInteractiveObject(dispObj)) {
 					flInteractiveObject* intObj = (flInteractiveObject*)dispObj;
 					if (intObj->mouseEnabled()) {
 						keyboardEvent = new flKeyboardEvent(flKeyboardEvent::KEY_UP);
@@ -1612,62 +1612,6 @@ namespace fl2d {
     //==============================================================
     // Utility
     //==============================================================
-    
-    //--------------------------------------------------------------
-    bool flStage::_isInteractiveObject(flDisplayObject* displayObject) {
-		if (displayObject == NULL) return false;
-
-        bool b = false;
-        b = b || (displayObject->typeID() == FL_TYPE_INTERACTIVE_OBJECT);
-        b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
-        b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
-        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
-        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
-
-        return b;
-    }
-    
-    //--------------------------------------------------------------
-    bool flStage::_isDisplayObject(flDisplayObject* displayObject) {
-		if (displayObject == NULL) return false;
-
-		bool b = false;
-        b = b || (displayObject->typeID() == FL_TYPE_SHAPE);
-        b = b || (displayObject->typeID() == FL_TYPE_BITMAP);
-        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
-        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        b = b || (displayObject->typeID() == FL_TYPE_TEXT_FIELD);
-        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
-
-        return b;
-    }
-    
-    //--------------------------------------------------------------
-    bool flStage::_isDisplayObjectContainer(flDisplayObject* displayObject) {
-		if (displayObject == NULL) return false;
-
-		bool b = false;
-        b = b || (displayObject->typeID() == FL_TYPE_DISPLAY_OBJECT_CONTAINER);
-        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
-        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
-
-        return b;
-    }
-    
-    //--------------------------------------------------------------
-    bool flStage::_isSprite(flDisplayObject* displayObject) {
-		if (displayObject == NULL) return false;
-
-		bool b = false;
-        b = b || (displayObject->typeID() == FL_TYPE_SPRITE);
-        b = b || (displayObject->typeID() == FL_TYPE_MOVIE_CLIP);
-        b = b || (displayObject->typeID() == FL_TYPE_UIBASE);
-
-        return b;
-    }
-    
 
 	//--------------------------------------------------------------
 	void flStage::_removeFromList(flDisplayObject* displayObject) {

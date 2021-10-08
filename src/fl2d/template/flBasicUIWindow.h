@@ -40,8 +40,10 @@ namespace fl2d {
 			ofEventListeners _listeners;
 
 			bool _dragEnabled = true;
+			bool _preDragEnabled = false;
 			bool _moveFrontOnSelect = true;        
 
+			bool _resizable = false;
 			flBasicDraggableObject* _sizingHandle = NULL;
 
 		private:
@@ -58,6 +60,12 @@ namespace fl2d {
 			virtual void normalize();
 			virtual void maximize();
 			virtual void resize(float w, float h);
+
+			virtual inline bool resizable() { return _resizable; }
+			virtual inline void resizable(bool value) { 
+				_resizable = value;
+				_sizingHandle->visible(_resizable);
+			}
 
 			virtual inline string title() { return _title; }
 			virtual inline void title(string value) { _title = value; }
