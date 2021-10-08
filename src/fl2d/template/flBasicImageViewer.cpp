@@ -43,7 +43,8 @@ namespace fl2d {
 
 		flBasicUIWindow::_setup();
 
-		addChildAt(_bitmap, getChildIndex(_sizingHandle));
+		//addChildAt(_bitmap, getChildIndex(_sizingHandle));
+		addChild(_bitmap);
 
 		minimizeButton->visible(false);
 		maximizeButton->visible(false);

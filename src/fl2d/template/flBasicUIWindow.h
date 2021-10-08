@@ -32,8 +32,12 @@ namespace fl2d {
 			float _titleBarHeight = (_margin + 18) + _margin;
 			string _title = "";
 
+			flSprite* _menuBar = NULL;
+			int _menuBarHeight = (_margin + 18) + _margin;
+
 			bool _isMinimize = false;
 			bool _isMaximize = false;
+			bool _preModeIsMaximize = false;
 
 			bool _isLocked = false;
 
@@ -64,7 +68,7 @@ namespace fl2d {
 			virtual inline bool resizable() { return _resizable; }
 			virtual inline void resizable(bool value) { 
 				_resizable = value;
-				_sizingHandle->visible(_resizable);
+				if(_sizingHandle) _sizingHandle->visible(_resizable);
 			}
 
 			virtual inline string title() { return _title; }
@@ -86,6 +90,7 @@ namespace fl2d {
 
 			virtual void _relocateTitleBarButtons();
 
+			virtual void _eventHandler(flEvent& event);
 			virtual void _mouseEventHandler(flEvent& event);
 			virtual void _uiEventHandler(flEvent& event);
 

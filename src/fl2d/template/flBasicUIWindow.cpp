@@ -22,21 +22,42 @@ namespace fl2d {
         //ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]~flBasicUIWindow()";
 
 		removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicUIWindow::_mouseEventHandler);
-		
+		removeEventListener(flEvent::ADDED, this, &flBasicUIWindow::_eventHandler);
+		removeEventListener(flEvent::REMOVED, this, &flBasicUIWindow::_eventHandler);
+
 		//最小化ボタン
-		removeChild(minimizeButton);
+		((flDisplayObjectContainer*)minimizeButton->parent())->removeChild(minimizeButton);
 		minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 		delete minimizeButton;
 		minimizeButton = NULL;
 
 		//最大化ボタン
-		removeChild(maximizeButton);
+		((flDisplayObjectContainer*)maximizeButton->parent())->removeChild(maximizeButton);
 		maximizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 		delete maximizeButton;
 		maximizeButton = NULL;
 
+		//閉じるボタン
+		((flDisplayObjectContainer*)closeButton->parent())->removeChild(closeButton);
+		closeButton->removeEventListener(flButtonEvent::CLICK, this, &flBasicUIWindow::_uiEventHandler);
+		delete closeButton;
+		closeButton = NULL;
+
+		if (_titleBar != NULL) {
+			((flDisplayObjectContainer*)_titleBar->parent())->removeChild(_titleBar);
+			delete _titleBar;
+			_titleBar = NULL;
+		}
+
+		if (_menuBar != NULL) {
+			((flDisplayObjectContainer*)_menuBar->parent())->removeChild(_menuBar);
+			delete _menuBar;
+			_menuBar = NULL;
+		}
+
 		//
-		removeChild(_sizingHandle);
+		//if(_sizingHandle->parent()) ((flDisplayObjectContainer*)_sizingHandle->parent())->removeChild(_sizingHandle);
+		((flDisplayObjectContainer*)_sizingHandle->parent())->removeChild(_sizingHandle);
 		_sizingHandle->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
 		delete _sizingHandle;
 		_sizingHandle = NULL;
@@ -142,17 +163,17 @@ namespace fl2d {
 			_sizingHandle->setup();
 			_sizingHandle->x(0);
 			_sizingHandle->y(0);
-			_sizingHandle->visible(false);
+			_sizingHandle->visible(_resizable);
 			_sizingHandle->dragEnabled(true);
 			_sizingHandle->useHandCursor(true);
 			_sizingHandle->toolTipEnabled(true);
 			_sizingHandle->toolTipText(u8"ドラッグする事でウインドウサイズを変更します。");
 			_sizingHandle->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicUIWindow::_mouseEventHandler);
-			addChild(_sizingHandle);
+			//addChild(_sizingHandle);
 
 			flGraphics* g = _sizingHandle->graphics();
 			g->clear();
-			g->beginFill(0xff0000, 0.0);
+			g->beginFill(0xff0000, 0.7);
 			g->drawCircle(0, 0, 12);
 			g->endFill();
 		}
@@ -160,8 +181,13 @@ namespace fl2d {
 		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
 		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
 
+		//addEventListener(flEvent::ADDED, this, &flBasicUIWindow::_eventHandler);
+		//addEventListener(flEvent::REMOVED, this, &flBasicUIWindow::_eventHandler);
+
 		flBasicDraggableObject::setup();
-    }
+
+		addChild(_sizingHandle);
+	}
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_setup() {
@@ -191,14 +217,25 @@ namespace fl2d {
 		flBasicDraggableObject::update();
 
 		if (_sizingHandle->isGrabbed()) {
-			int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
-			int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
-			if (dx == 0 && dy == 0) return;
+			//int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
+			//int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
+			//if (dx == 0 && dy == 0) return;
 
-			int x = _sizingHandle->x();
-			int y = _sizingHandle->y();
+			//int w = _sizingHandle->x() - x();
+			//int h = _sizingHandle->y() - y();
+			//resize(w, h);
 
-			resize(x, y);
+			//int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
+			//int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
+			//if (dx == 0 && dy == 0) return;
+
+			int w = _sizingHandle->x();
+			int h = _sizingHandle->y();
+			resize(w, h);
+		}
+		else {
+			//_sizingHandle->x(x() + width());
+			//_sizingHandle->y(y() + height());
 		}
     }
     
@@ -240,6 +277,8 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
+			if (child == _titleBar) continue;
+			//if (child == _menuBar) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
@@ -293,6 +332,7 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
+			if (child == _titleBar) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
@@ -310,9 +350,7 @@ namespace fl2d {
 	void flBasicUIWindow::normalize() {
 		if (!_isMinimize && !_isMaximize) return;
 
-		dragEnabled(_preDragEnabled);
-
-		bool preModeIsMaximize = _isMaximize;
+		_preModeIsMaximize = _isMaximize;
 
 		_isMinimize = false;
 		minimizeButton->selected(false, false);
@@ -327,7 +365,9 @@ namespace fl2d {
 		_backHeight = _normalBackHeight;
 		_graphics = &_normalGraphics;
 
-		if (preModeIsMaximize) {
+		if (_preModeIsMaximize) {
+			dragEnabled(_preDragEnabled);
+
 			if (parent()) {
 				ofPoint localPoint = parent()->globalToLocal(
 					ofPoint(
@@ -347,9 +387,11 @@ namespace fl2d {
 		for (i = 0; i < l; i++) {
 			flDisplayObject* child = getChildAt(i);
 
+			if (child == _titleBar) continue;
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
+			if (child == _sizingHandle && !_resizable) continue;
 
 			child->visible(true);
 		}
@@ -389,8 +431,8 @@ namespace fl2d {
 
 		_updateRect();
 
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
+		_sizingHandle->x(x() + _backWidth);
+		_sizingHandle->y(y() + _backHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -430,6 +472,30 @@ namespace fl2d {
     // Event Handler
     //==============================================================
     
+    //--------------------------------------------------------------
+	void flBasicUIWindow::_eventHandler(flEvent& event) {
+		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]_eventHandler(" << event.type() << ")";
+		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]this          = " << this;
+		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]currentTarget = " << event.currentTarget();
+		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]target        = " << event.target();
+
+		//flBasicDraggableObject::_eventHandler(event);
+		//addChild(_sizingHandle);
+
+		if (event.type() == flEvent::ADDED) {
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//((flDisplayObjectContainer*)parent())->addChild(_sizingHandle);
+		}
+		if (event.type() == flEvent::REMOVED) {
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//((flDisplayObjectContainer*)parent())->removeChild(_sizingHandle);
+		}
+	}
+
     //--------------------------------------------------------------
     void flBasicUIWindow::_mouseEventHandler(flEvent& event) {
 		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]_mouseEventHandler(" << event.type() << ")";

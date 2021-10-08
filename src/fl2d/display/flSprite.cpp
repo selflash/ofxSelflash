@@ -201,7 +201,13 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
-        
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_endUsingStencil();
+		}
+		//------------------------------------------
+
         //--------------------------------------
         //ヒットエリアの表示
         if(_rectVisible) {
@@ -236,12 +242,6 @@ namespace fl2d {
             ofPopMatrix();
         }
         //--------------------------------------
-
-		//------------------------------------------
-		if (_mask != NULL) {			 
-			_endUsingStencil();
-		}
-		//------------------------------------------
     }
     
     //==============================================================
@@ -610,9 +610,16 @@ namespace fl2d {
 
             if(!child->visible()) continue; 
 
-            flRectangle childRect = child->__getRect(this);
-            _rect->__expandTo(childRect.left(), childRect.top());
-            _rect->__expandTo(childRect.right(), childRect.bottom());
+			if (child->mask()) {
+				flRectangle& childRect = child->mask()->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
+			else {
+				flRectangle& childRect = child->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
         }
        
         _realWidth = _rect->width();

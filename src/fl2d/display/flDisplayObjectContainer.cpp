@@ -577,9 +577,17 @@ namespace fl2d {
             child->__updateTransform(worldMatrix);
             
             if(!child->visible()) continue;
-            flRectangle childRect = child->__getRect(this);
-            _rect->__expandTo(childRect.left(), childRect.top());
-            _rect->__expandTo(childRect.right(), childRect.bottom());
+
+			if (child->mask()) {
+				flRectangle& childRect = child->mask()->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
+			else {
+				flRectangle& childRect = child->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
         }
  
         _realWidth = _rect->width();
