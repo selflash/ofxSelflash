@@ -111,8 +111,6 @@ namespace fl2d {
 			closeButton->visible(true);
 
 			resize(_normalBackWidth * _scaleOnActive, _titleBarHeight + _normalBackHeight * _scaleOnActive);
-
-			_sizingHandle->visible(true);
 		}
 		else {
 			dragEnabled(false);
@@ -121,8 +119,6 @@ namespace fl2d {
 			closeButton->visible(false);
 
 			resize(_defaultImageWidth, _defaultImageHeight);
-
-			_sizingHandle->visible(false);
 		}
 	}
 
@@ -210,18 +206,6 @@ namespace fl2d {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
-
-			//if (target == (hitArea() != NULL ? hitArea() : this)) {
-			//	if (_dragEnabled) {
-			//		((flDisplayObjectContainer*)parent())->addChild(this);
-			//		startDrag();
-			//		stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
-			//	}
-			//}
-
-			//if (target == _sizingHandle) {
-			//	stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
-			//}
 		}
 
 		//Mouse Up
@@ -229,15 +213,6 @@ namespace fl2d {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
-
-			//if(event.target() == this) ((DisplayObjectContainer*)parent())->addChild(this);
-			if (target == stage()) {
-				//stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicImageViewer::_mouseEventHandler);
-				//stopDrag();
-
-				//_sizingHandle->x(_backWidth);
-				//_sizingHandle->y(_backHeight);
-			}
 		}
 	}
 
@@ -275,35 +250,10 @@ namespace fl2d {
 		if (event.type() == flButtonEvent::CLICK) {
 			flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
 			flButton* button = (flButton*)(event.currentTarget());
-
-			//if (button == closeButton) {
-			//	//if (stage()) stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicController::_flBasicControllerMouseEventHandler);
-			//	//normalize();
-			//	//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
-			//	dispatchEvent(new flEvent(flEvent::CLOSE));
-			//}
 		}
 		if (event.type() == flButtonEvent::CHANGE) {
 			flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
 			flButton* button = (flButton*)(event.currentTarget());
-
-			//if (button == minimizeButton) {
-			//	if (minimizeButton->selected()) {
-			//		minimize();
-			//	}
-			//	else {
-			//		normalize();
-			//	}
-			//}
-
-			//if (button == maximizeButton) {
-			//	if (maximizeButton->selected()) {
-			//		maximize();
-			//	}
-			//	else {
-			//		normalize();
-			//	}
-			//}
 		}
 
 		//コンボボックス

@@ -287,7 +287,12 @@ namespace fl2d {
 		}
 		//----------------------------------
 
+		_updateRect();
+
 		_relocateTitleBarButtons();
+
+		_sizingHandle->x(_backWidth);
+		_sizingHandle->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -336,6 +341,7 @@ namespace fl2d {
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
+			if (child == _sizingHandle) continue;
 
 			child->visible(true);
 		}
@@ -343,7 +349,12 @@ namespace fl2d {
 		if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
 		//----------------------------------
 
+		_updateRect();
+
 		_relocateTitleBarButtons();
+
+		_sizingHandle->x(_backWidth);
+		_sizingHandle->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -399,7 +410,12 @@ namespace fl2d {
 		if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
 		//----------------------------------
 
+		_updateRect();
+
 		_relocateTitleBarButtons();
+
+		_sizingHandle->x(_backWidth);
+		_sizingHandle->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -427,12 +443,12 @@ namespace fl2d {
 		_backHeight = _normalBackHeight;
 		_graphics = &_normalGraphics;
 
-		_relocateTitleBarButtons();
-
 		_updateRect();
 
-		_sizingHandle->x(x() + _backWidth);
-		_sizingHandle->y(y() + _backHeight);
+		_relocateTitleBarButtons();
+
+		_sizingHandle->x(_backWidth);
+		_sizingHandle->y(_backHeight);
 	}
 
 	//--------------------------------------------------------------
