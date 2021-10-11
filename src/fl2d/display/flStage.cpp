@@ -369,7 +369,6 @@ namespace fl2d {
         // clear pixel bounds on every loop and recalculate.
         //parent->resetPixelBounds();
         
-		bool isInEffectiveArea = true;
         for(int i = 0; i < children.size(); i++) {
             flDisplayObject* child;
             child = children[i];
@@ -398,9 +397,10 @@ namespace fl2d {
             
             //------------------------------------ topMostHitDisplayObject
 
+			bool isInEffectiveArea = true;
+
 			if (isInEffectiveArea && child->mask() != NULL) {
 				isInEffectiveArea = child->mask()->hitTestPoint(_mouseX, _mouseY, true);
-				//ofLog() << "hitTestPoint" << isHit;
 			}
 
 			if (isInEffectiveArea) {
@@ -894,8 +894,6 @@ namespace fl2d {
 //        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
         flDisplayObject* mostHitDisplayObject;
         
-		bool isInEffectiveArea = true;
-
         int i; int l;
         l = children.size();
         for(i = 0; i < l; i++) {
@@ -907,9 +905,10 @@ namespace fl2d {
 
             //------------------------------------ topMostHitDisplayObject
 
+			bool isInEffectiveArea = true;
+
 			if (isInEffectiveArea && child->mask() != NULL) {
 				isInEffectiveArea = child->mask()->hitTestPoint(_mouseX, _mouseY, true);
-				//ofLog() << "hitTestPoint" << isHit;
 			}
 
 			if (isInEffectiveArea) {

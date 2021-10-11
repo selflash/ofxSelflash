@@ -42,6 +42,7 @@ namespace fl2d {
 			bool _isMinimize = false;
 			bool _isMaximize = false;
 			bool _preModeIsMaximize = false;
+			ofPoint _prePosition;
 
 			bool _isLocked = false;
 

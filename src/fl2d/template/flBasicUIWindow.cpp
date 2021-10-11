@@ -180,7 +180,7 @@ namespace fl2d {
 
 			flGraphics* g = _sizingHandle->graphics();
 			g->clear();
-			g->beginFill(0xff0000, 0.7);
+			g->beginFill(0xff0000, 0.0);
 			g->drawCircle(0, 0, 12);
 			g->endFill();
 		}
@@ -291,6 +291,9 @@ namespace fl2d {
 	void flBasicUIWindow::maximize() {
 		if (_isMaximize) return;
 
+		_prePosition.x = x();
+		_prePosition.y = y();
+
 		_preDragEnabled = dragEnabled();
 		dragEnabled(false);
 
@@ -367,16 +370,19 @@ namespace fl2d {
 		if (_preModeIsMaximize) {
 			dragEnabled(_preDragEnabled);
 
-			if (parent()) {
-				ofPoint localPoint = parent()->globalToLocal(
-					ofPoint(
-					(ofGetWidth() * 0.5) - (_windowWidth * 0.5),
-						(ofGetHeight() * 0.5) - (_windowHeight * 0.5)
-					)
-				);
-				x(roundf(localPoint.x));
-				y(roundf(localPoint.y));
-			}
+			//if (parent()) {
+			//	ofPoint localPoint = parent()->globalToLocal(
+			//		ofPoint(
+			//		(ofGetWidth() * 0.5) - (_windowWidth * 0.5),
+			//			(ofGetHeight() * 0.5) - (_windowHeight * 0.5)
+			//		)
+			//	);
+			//	x(roundf(localPoint.x));
+			//	y(roundf(localPoint.y));
+			//}
+
+			x(_prePosition.x);
+			y(_prePosition.y);
 		}
 		//----------------------------------
 
