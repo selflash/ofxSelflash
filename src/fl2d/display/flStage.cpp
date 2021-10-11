@@ -1237,6 +1237,9 @@ namespace fl2d {
 				_lineBottomUpForFocus.clear();
                 _focus = _topMostHitInteractiveObject;                
 				if (_focus) {
+					//_lineBottomUpForFocus.resize(_lineBottomUp.size());
+					//copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
+					//memcpy(&_lineBottomUpForFocus[0], &_lineBottomUp, sizeof(_lineBottomUp));
 					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
 
 					//ÅLÉŒÅòÅò
@@ -1311,6 +1314,9 @@ namespace fl2d {
 				_lineBottomUpForFocus.clear();
 				_focus = this;
 				{
+					//_lineBottomUpForFocus.resize(_lineBottomUp.size());
+					//copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
+					//memcpy(&_lineBottomUpForFocus[0], &_lineBottomUp, sizeof(_lineBottomUp));
 					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
 
 					//ÅLÉŒÅòÅò
