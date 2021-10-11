@@ -10,13 +10,17 @@ namespace fl2d {
 		public:
         
 		protected:
-			float _backWidth = 0.0;
-			float _backHeight = 0.0;
-			float _minBackHeight = 0.0;
-			float _maxBackWidth = 0.0;
-			float _maxBackHeight = 0.0;
-			float _normalBackWidth = 0.0;
-			float _normalBackHeight = 0.0;
+			float _windowWidth = 0.0;
+			float _windowHeight = 0.0;
+
+			float _defaultWindowWidth = 0.0;
+			float _defaultWindowHeight = 0.0;
+
+			float _minimumWindowWidth = 0.0;
+			float _minimumWindowHeight = 0.0;
+
+			float _maximumWindowWidth = 0.0;
+			float _maximumWindowHeight = 0.0;
 
 			flGraphics _minimalGraphics;
 			flGraphics _maximumGraphics;
@@ -56,9 +60,9 @@ namespace fl2d {
 			flBasicUIWindow();
 			virtual ~flBasicUIWindow();
 
-			virtual void setup();
-			virtual void update();
-			virtual void draw();
+			//virtual void setup();
+			//virtual void update();
+			//virtual void draw();
 
 			virtual void minimize();
 			virtual void normalize();
@@ -74,19 +78,26 @@ namespace fl2d {
 			virtual inline string title() { return _title; }
 			virtual inline void title(string value) { _title = value; }
 
-			virtual inline float backWidth() { return _backWidth; }
-			virtual inline float backHeight() { return _backHeight; }
-			virtual inline float minBackHeight() { return _minBackHeight; }
-			virtual inline float normalBackWidth() { return _normalBackWidth; }
-			virtual inline float normalBackHeight() { return _normalBackHeight; }
+			virtual inline float windowWidth() { return _windowWidth; }
+			virtual inline float windowHeight() { return _windowHeight; }
+
+			virtual inline float defaultWindowWidth() { return _defaultWindowWidth; }
+			virtual inline float defaultWindowHeight() { return _defaultWindowHeight; }
+
+			virtual inline float minimumWindowWidth() { return _minimumWindowWidth; }
+			virtual inline float minimumWindowHeight() { return _minimumWindowHeight; }
+
+			virtual inline float maximumWindowWidth() { return _maximumWindowWidth; }
+			virtual inline float maximumWindowHeight() { return _maximumWindowHeight; }
 
 			virtual bool lock();
 			virtual void lock(bool value);
 
 		protected:
-			virtual void _setup();			    
-			//virtual void _update();
-			//virtual void _draw();
+			virtual void _setup();
+			virtual void _afterSetup();
+			virtual void _update();
+			virtual void _draw();
 
 			virtual void _relocateTitleBarButtons();
 

@@ -192,8 +192,13 @@ namespace fl2d {
             
             //for override
             virtual void _setup();
+            virtual void _afterSetup();
+
             virtual void _tearDown();
+
             virtual void _update();
+            virtual void _afterUpdate();
+
             virtual void _draw();
             virtual void _afterDraw();
 

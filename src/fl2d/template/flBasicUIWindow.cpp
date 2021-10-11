@@ -62,6 +62,12 @@ namespace fl2d {
 		delete _sizingHandle;
 		_sizingHandle = NULL;
 
+		for (auto* radioButtonGroup : radioButtonGroups) {
+			delete radioButtonGroup;
+			radioButtonGroup = NULL;
+		}
+		radioButtonGroups.clear();
+
 		_listeners.unsubscribeAll();
     }
     
@@ -70,11 +76,12 @@ namespace fl2d {
 	//==============================================================
     
     //--------------------------------------------------------------
-    void flBasicUIWindow::setup() {
-		//ofLog() << "[flBasicUIWindow]setup()";
+    void flBasicUIWindow::_setup() {
+		//ofLog() << "[flBasicUIWindow]_setup()";
+
+		flBasicDraggableObject::_setup();
 
 		_marginTop = _titleBarHeight;
-		_minBackHeight = _titleBarHeight;
 
 		int x, y, w, h = 0;
 		flDisplayObject* displayObject = NULL;
@@ -178,43 +185,25 @@ namespace fl2d {
 			g->endFill();
 		}
 
-		_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
-		_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+		_defaultWindowWidth = displayObject->x() + displayObject->width() + _margin;
+		_defaultWindowHeight = displayObject->y() + displayObject->height() + _margin;
 
-		//addEventListener(flEvent::ADDED, this, &flBasicUIWindow::_eventHandler);
-		//addEventListener(flEvent::REMOVED, this, &flBasicUIWindow::_eventHandler);
-
-		flBasicDraggableObject::setup();
-
-		addChild(_sizingHandle);
+		_minimumWindowWidth = _defaultWindowWidth;
+		_minimumWindowHeight = _defaultWindowHeight;
 	}
 
 	//--------------------------------------------------------------
-	void flBasicUIWindow::_setup() {
-		resize(_normalBackWidth, _normalBackHeight);
+	void flBasicUIWindow::_afterSetup() {
+		addChild(_sizingHandle);
 
-		////----------------------------------
-		//_minimalGraphics.clear();
-		//_minimalGraphics.lineStyle(1, 0xffffff);
-		//_minimalGraphics.beginFill(0x000000, 0.7);
-		//_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
-		//_minimalGraphics.endFill();
-		////----------------------------------
-
-		//_backWidth = _normalBackWidth;
-		//_backHeight = _normalBackHeight;
-		//_graphics = &_normalGraphics;
-
-		//_relocateTitleBarButtons();
-
-		//_updateRect();
+		resize(_defaultWindowWidth, _defaultWindowHeight);
 	}
 
     //--------------------------------------------------------------
-    void flBasicUIWindow::update() {
+    void flBasicUIWindow::_update() {
 		//ofLog() << "[flBasicUIWindow]update()";
 
-		flBasicDraggableObject::update();
+		flBasicDraggableObject::_update();
 
 		if (_sizingHandle->isGrabbed()) {
 			//int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
@@ -229,6 +218,9 @@ namespace fl2d {
 			//int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
 			//if (dx == 0 && dy == 0) return;
 
+			if (_sizingHandle->x() <= _minimumWindowWidth) _sizingHandle->x(_minimumWindowWidth);
+			if (_sizingHandle->y() <= _minimumWindowHeight) _sizingHandle->y(_minimumWindowHeight);
+
 			int w = _sizingHandle->x();
 			int h = _sizingHandle->y();
 			resize(w, h);
@@ -240,8 +232,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flBasicUIWindow::draw() {
-		flBasicDraggableObject::draw();
+    void flBasicUIWindow::_draw() {
+		flBasicDraggableObject::_draw();
 
 		if (_title != "") {
 			ofPushStyle();
@@ -267,7 +259,7 @@ namespace fl2d {
 		maximizeButton->enabled(false);
 
 		//----------------------------------
-		_backHeight = _minBackHeight;
+		_windowHeight = _titleBarHeight;
 		_graphics = &_minimalGraphics;
 		//----------------------------------
 
@@ -291,8 +283,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
+		_sizingHandle->x(_windowWidth);
+		_sizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -310,18 +302,14 @@ namespace fl2d {
 		maximizeButton->selected(true, false);
 
 		//----------------------------------
-		_maxBackWidth = ofGetWidth();
-		_maxBackHeight = ofGetHeight();
+		_windowWidth = ofGetWidth();
+		_windowHeight = ofGetHeight();
+
 		_maximumGraphics.clear();
 		_maximumGraphics.lineStyle(1, 0xffffff);
 		_maximumGraphics.beginFill(0x000000, 0.7);
-		_maximumGraphics.drawRect(0, 0, _maxBackWidth, _maxBackHeight);
+		_maximumGraphics.drawRect(0, 0, _windowWidth, _windowHeight);
 		_maximumGraphics.endFill();
-		//----------------------------------
-
-		//----------------------------------
-		_backWidth = _maxBackWidth;
-		_backHeight = _maxBackHeight;
 		_graphics = &_maximumGraphics;
 
 		if (parent()) {
@@ -353,8 +341,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
+		_sizingHandle->x(_windowWidth);
+		_sizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -372,8 +360,8 @@ namespace fl2d {
 		maximizeButton->enabled(true);
 
 		//----------------------------------
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
+		_windowWidth = _defaultWindowWidth;
+		_windowHeight = _defaultWindowHeight;
 		_graphics = &_normalGraphics;
 
 		if (_preModeIsMaximize) {
@@ -382,8 +370,8 @@ namespace fl2d {
 			if (parent()) {
 				ofPoint localPoint = parent()->globalToLocal(
 					ofPoint(
-					(ofGetWidth() * 0.5) - (_backWidth * 0.5),
-						(ofGetHeight() * 0.5) - (_backHeight * 0.5)
+					(ofGetWidth() * 0.5) - (_windowWidth * 0.5),
+						(ofGetHeight() * 0.5) - (_windowHeight * 0.5)
 					)
 				);
 				x(roundf(localPoint.x));
@@ -414,20 +402,20 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
+		_sizingHandle->x(_windowWidth);
+		_sizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
-	void flBasicUIWindow::resize(float w, float h) {
-		_normalBackWidth = w;
-		_normalBackHeight = h;
+	void flBasicUIWindow::resize(float w, float h) {	
+		_defaultWindowWidth = w;
+		_defaultWindowHeight = h;
 
 		//----------------------------------
 		_minimalGraphics.clear();
 		_minimalGraphics.lineStyle(1, 0xffffff);
 		_minimalGraphics.beginFill(0x000000, 0.7);
-		_minimalGraphics.drawRect(0, 0, _normalBackWidth, _minBackHeight);
+		_minimalGraphics.drawRect(0, 0, _defaultWindowWidth, _titleBarHeight);
 		_minimalGraphics.endFill();
 		//----------------------------------
 
@@ -435,20 +423,21 @@ namespace fl2d {
 		_normalGraphics.clear();
 		_normalGraphics.lineStyle(1, 0xffffff);
 		_normalGraphics.beginFill(0x000000, 0.7);
-		_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+		_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
 		_normalGraphics.endFill();
 		//--------------------------------------
 
-		_backWidth = _normalBackWidth;
-		_backHeight = _normalBackHeight;
+		//--------------------------------------
 		_graphics = &_normalGraphics;
-
+		_windowWidth = _defaultWindowWidth;
+		_windowHeight = _defaultWindowHeight;
 		_updateRect();
+		//--------------------------------------
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_backWidth);
-		_sizingHandle->y(_backHeight);
+		_sizingHandle->x(_windowWidth);
+		_sizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -473,7 +462,7 @@ namespace fl2d {
  
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_relocateTitleBarButtons() {
-		float w = _backWidth;
+		float w = _windowWidth;
 
 		minimizeButton->x(w - (18 + 5) * 3);
 		maximizeButton->x(w - (18 + 5) * 2);
@@ -570,8 +559,8 @@ namespace fl2d {
             //if(currentTarget == stage()) {
 			if (target == stage()) {
 				if (_dragEnabled) {
-					_sizingHandle->x(_backWidth);
-					_sizingHandle->y(_backHeight);
+					_sizingHandle->x(_windowWidth);
+					_sizingHandle->y(_windowHeight);
 				}
 			}
         }

@@ -23,14 +23,6 @@ namespace fl2d {
 		//ofLog() << "[flBasicController]~flBasicController()";
         
         _target = NULL;
-
-		_graphics = NULL;
-        
-        for(auto* radioButtonGroup : radioButtonGroups) {
-            delete radioButtonGroup;
-            radioButtonGroup = NULL;
-        }
-        radioButtonGroups.clear();
     }
     
     //==============================================================

@@ -43,27 +43,83 @@ namespace fl2d {
 
 		flBasicUIWindow::_setup();
 
-		//addChildAt(_bitmap, getChildIndex(_sizingHandle));
-		addChild(_bitmap);
+		_defaultWindowWidth = _defaultImageWidth;
+		_defaultWindowHeight = _defaultImageHeight;
+
+		_minimumWindowWidth = _defaultWindowWidth * _scaleOnActive;
+		_minimumWindowHeight = _defaultWindowHeight * _scaleOnActive;
 
 		minimizeButton->visible(false);
 		maximizeButton->visible(false);
 		closeButton->visible(false);
 
-		resize(_defaultImageWidth, _defaultImageHeight);
+		//addChildAt(_bitmap, getChildIndex(_sizingHandle));
+		addChild(_bitmap);
+	}
+
+	//--------------------------------------------------------------
+	void flBasicImageViewer::_draw() {
+		//ofLog() << "[flBasicImageViewer]_draw()";
+
+		//flBasicUIWindow::_draw();
+
+		//if (_isActive && _colorPickerEnabled) {
+		//	ofPushStyle();
+		//	ofSetColor(255, 255, 255, 255);
+		//	string str = "";
+		//	str += "R : " + ofToString(ofMap(_pickedColor.get().r, 0.0, 1.0, 0, 255)) + " ";
+		//	str += "G : " + ofToString(ofMap(_pickedColor.get().g, 0.0, 1.0, 0, 255)) + " ";
+		//	str += "B : " + ofToString(ofMap(_pickedColor.get().b, 0.0, 1.0, 0, 255)) + " ";
+		//	flFont::drawString(str, 10, 20);
+		//	ofPopStyle();
+		//}
+
+		flBasicDraggableObject::_draw();
+
+		if (_title != "") {
+			if (_isActive && _colorPickerEnabled) {
+				string str = "";
+				str += "R : " + ofToString(ofMap(_pickedColor.get().r, 0.0, 1.0, 0, 255)) + " ";
+				str += "G : " + ofToString(ofMap(_pickedColor.get().g, 0.0, 1.0, 0, 255)) + " ";
+				str += "B : " + ofToString(ofMap(_pickedColor.get().b, 0.0, 1.0, 0, 255)) + " ";
+
+				ofPushStyle();
+				ofSetColor(255, 255, 255, 255);
+				flFont::drawString(_title + "  " + str, 6, 20);
+				ofPopStyle();
+			}
+			else {
+				ofPushStyle();
+				ofSetColor(255, 255, 255, 255);
+				flFont::drawString(_title, 6, 20);
+				ofPopStyle();
+			}
+		}
+		else {
+			if (_isActive && _colorPickerEnabled) {
+				ofPushStyle();
+				ofSetColor(255, 255, 255, 255);
+				string str = "";
+				str += "R : " + ofToString(ofMap(_pickedColor.get().r, 0.0, 1.0, 0, 255)) + " ";
+				str += "G : " + ofToString(ofMap(_pickedColor.get().g, 0.0, 1.0, 0, 255)) + " ";
+				str += "B : " + ofToString(ofMap(_pickedColor.get().b, 0.0, 1.0, 0, 255)) + " ";
+				flFont::drawString(str, 10, 20);
+				ofPopStyle();
+			}
+		}
 	}
 
 	//--------------------------------------------------------------
 	void flBasicImageViewer::_afterDraw() {
 		//ofLog() << "[flBasicUIWindow]_afterDraw()";
-		flBasicDraggableObject::_afterDraw();
+		flBasicUIWindow::_afterDraw();
 
 		ofPushStyle();
 		ofSetColor(255, 255, 255);
-		ofDrawLine(0, 0, _backWidth, 0);
-		ofDrawLine(_backWidth, 0, _backWidth, _backHeight);
-		ofDrawLine(_backWidth, _backHeight, 0, _backHeight);
-		ofDrawLine(0, _backHeight, 0, 0);
+		ofDrawLine(0, 0, _windowWidth, 0);
+		ofDrawLine(_windowWidth, 0, _windowWidth, _windowHeight);
+		ofDrawLine(_windowWidth, _windowHeight, 0, _windowHeight);
+		ofDrawLine(0, _windowHeight, 0, 0);
 		ofPopStyle();
 	}
 
@@ -77,7 +133,7 @@ namespace fl2d {
 
 		flBasicUIWindow::maximize();
 
-		_updateGraphics(_backWidth, _backHeight);
+		_updateGraphics(_windowWidth, _windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -86,7 +142,7 @@ namespace fl2d {
 
 		flBasicUIWindow::normalize();
 
-		_updateGraphics(_backWidth, _backHeight);
+		_updateGraphics(_windowWidth, _windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -105,19 +161,23 @@ namespace fl2d {
 		_isActive = value;
 
 		if (_isActive) {
-			dragEnabled(true);
 			minimizeButton->visible(true);
 			maximizeButton->visible(true);
 			closeButton->visible(true);
 
-			resize(_normalBackWidth * _scaleOnActive, _titleBarHeight + _normalBackHeight * _scaleOnActive);
+			dragEnabled(true);
+
+			resizable(true);
+			resize(_defaultWindowWidth * _scaleOnActive, _titleBarHeight + _defaultWindowHeight * _scaleOnActive);
 		}
 		else {
-			dragEnabled(false);
 			minimizeButton->visible(false);
 			maximizeButton->visible(false);
 			closeButton->visible(false);
 
+			dragEnabled(false);
+
+			resizable(false);
 			resize(_defaultImageWidth, _defaultImageHeight);
 		}
 	}
@@ -130,7 +190,6 @@ namespace fl2d {
 	void flBasicImageViewer::_updateGraphics(float w, float h) {
 		const float srcWidth = _defaultImageWidth;
 		const float srcHeight = _defaultImageHeight;
-
 		float dstWidth = 0.0;
 		float dstHeight = 0.0;
 
@@ -206,6 +265,49 @@ namespace fl2d {
 			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
+
+			if (currentTarget == this) {
+				if (_isActive && _colorPickerEnabled) {
+					int mx = mouseX();
+					int my = mouseY();
+
+					int borderWidth = 1;
+
+					if (
+						borderWidth <= mx && mx <= borderWidth + _bitmap->width() &&
+						(22 + 5) + borderWidth <= my && my <= (22 + 5) + borderWidth + _bitmap->height()
+						) {
+						ofTexture& texture = _bitmap->dataReference();
+
+
+						_point.x = mx - borderWidth;
+						_point.y = my - borderWidth - (22 + 5);
+
+						_point.x = (_point.x / _bitmap->width()) * texture.getWidth();
+						_point.y = (_point.y / _bitmap->height()) * texture.getHeight();
+						//_point.x = (_point.x / _bitmap->width()) * 1280.0;
+						//_point.y = (_point.y / _bitmap->height()) * 720.0;
+
+						ofPixels pixels;
+						texture.readToPixels(pixels);
+						ofPixelFormat pixelFormat = pixels.getPixelFormat();
+
+						//ofLog() << "pixelFormat = " << pixelFormat;
+
+						float pixelWidth = pixels.getWidth();
+						float pixelHeight = pixels.getHeight();
+
+						if (
+							0 <= _point.x && _point.x < pixelWidth &&
+							0 <= _point.y && _point.y < pixelHeight
+							) {
+							_pickedColor = pixels.getColor(_point.x, _point.y);
+						}
+
+						//ofLog(OF_LOG_NOTICE) << _pickedColor;
+					}
+				}
+			}
 		}
 
 		//Mouse Up

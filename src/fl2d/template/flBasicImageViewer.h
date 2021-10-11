@@ -17,11 +17,17 @@ namespace fl2d {
 			bool _isActive = false;
 			float _scaleOnActive = 2.0;
 
+			bool _colorPickerEnabled = false;
+			ofPoint _point;
+			ofParameter<ofFloatColor> _pickedColor = ofFloatColor(0.0, 0.0, 0.0, 0.0);
+
 		private:
 
 		public:
 			flBasicImageViewer(flBitmap* bitmap, int w, int h);
 			virtual ~flBasicImageViewer();
+
+			//virtual void draw();
 
 			virtual void normalize();
 			virtual void maximize();
@@ -33,8 +39,16 @@ namespace fl2d {
 			virtual inline float scaleOnActive() { return _scaleOnActive; }
 			virtual inline void scaleOnActive(float value) { _scaleOnActive = value; }
 
+			virtual inline bool colorPickerEnabled() { return _colorPickerEnabled; }
+			virtual inline void colorPickerEnabled(bool value) { _colorPickerEnabled = value; }
+			
+			virtual ofParameter<ofFloatColor>& pickedColor() { return _pickedColor; }
+
 		protected:
 			virtual void _setup();
+			//virtual void _afterSetup();
+			//virtual void _update();
+			virtual void _draw();
 			virtual void _afterDraw();
 
 			virtual void _updateGraphics(float w, float h);
