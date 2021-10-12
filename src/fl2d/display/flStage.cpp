@@ -1237,10 +1237,10 @@ namespace fl2d {
 				_lineBottomUpForFocus.clear();
                 _focus = _topMostHitInteractiveObject;                
 				if (_focus) {
-					//_lineBottomUpForFocus.resize(_lineBottomUp.size());
-					//copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
+					_lineBottomUpForFocus.resize(_lineBottomUp.size());
+					copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
 					//memcpy(&_lineBottomUpForFocus[0], &_lineBottomUp, sizeof(_lineBottomUp));
-					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
+					//memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
 
 					//LƒÎ˜˜
 					_focus->__isFocus = true;
@@ -1314,10 +1314,10 @@ namespace fl2d {
 				_lineBottomUpForFocus.clear();
 				_focus = this;
 				{
-					//_lineBottomUpForFocus.resize(_lineBottomUp.size());
-					//copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
+					_lineBottomUpForFocus.resize(_lineBottomUp.size());
+					copy(_lineBottomUp.begin(), _lineBottomUp.end(), _lineBottomUpForFocus.begin());
 					//memcpy(&_lineBottomUpForFocus[0], &_lineBottomUp, sizeof(_lineBottomUp));
-					memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
+					//memcpy(&_lineBottomUpForFocus, &_lineBottomUp, sizeof(_lineBottomUp));
 
 					//LƒÎ˜˜
 					_focus->__isFocus = true;
@@ -1632,29 +1632,32 @@ namespace fl2d {
 
 		int l = 0;
 		l = _lineBottomUpForFocus.size();
-		for (int i = 0; i < _lineBottomUpForFocus.size(); i++) {
+		for (int i = 0; i < l; i++) {
 			if (_lineBottomUpForFocus[i] == displayObject) {
 				_lineBottomUpForFocus.erase(_lineBottomUpForFocus.begin() + i);
-				--i;
-				--l;
+				break;
+				//--i;
+				//--l;
 			}
 		}		
 		
 		l = _lineBottomUp.size();
-		for (int i = 0; i < _lineBottomUp.size(); i++) {
+		for (int i = 0; i < l; i++) {
 			if (_lineBottomUp[i] == displayObject) {
 				_lineBottomUp.erase(_lineBottomUp.begin() + i);
-				--i;
-				--l;
+				break;
+				//--i;
+				//--l;
 			}
 		}
 
 		l = _lineBottomUpPrev.size();
-		for (int i = 0; i < _lineBottomUpPrev.size(); i++) {
+		for (int i = 0; i < l; i++) {
 			if (_lineBottomUpPrev[i] == displayObject) {
 				_lineBottomUpPrev.erase(_lineBottomUpPrev.begin() + i);
-				--i;
-				--l;
+				break;
+				//--i;
+				//--l;
 			}
 		}
 

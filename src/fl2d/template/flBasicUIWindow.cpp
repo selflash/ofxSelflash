@@ -21,6 +21,8 @@ namespace fl2d {
     flBasicUIWindow::~flBasicUIWindow() {
         //ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]~flBasicUIWindow()";
 
+		_graphics = NULL;
+
 		removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicUIWindow::_mouseEventHandler);
 		removeEventListener(flEvent::ADDED, this, &flBasicUIWindow::_eventHandler);
 		removeEventListener(flEvent::REMOVED, this, &flBasicUIWindow::_eventHandler);
@@ -195,6 +197,9 @@ namespace fl2d {
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_afterSetup() {
 		addChild(_sizingHandle);
+
+		if (_graphics != NULL) delete _graphics;
+		_graphics = NULL;
 
 		resize(_defaultWindowWidth, _defaultWindowHeight);
 	}
