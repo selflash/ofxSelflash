@@ -46,13 +46,13 @@ namespace fl2d {
 		closeButton = NULL;
 
 		if (_titleBar != NULL) {
-			((flDisplayObjectContainer*)_titleBar->parent())->removeChild(_titleBar);
+			if (_titleBar->parent() != NULL) ((flDisplayObjectContainer*)_titleBar->parent())->removeChild(_titleBar);
 			delete _titleBar;
 			_titleBar = NULL;
 		}
 
 		if (_menuBar != NULL) {
-			((flDisplayObjectContainer*)_menuBar->parent())->removeChild(_menuBar);
+			if (_menuBar->parent() != NULL) ((flDisplayObjectContainer*)_menuBar->parent())->removeChild(_menuBar);
 			delete _menuBar;
 			_menuBar = NULL;
 		}
@@ -187,21 +187,35 @@ namespace fl2d {
 			g->endFill();
 		}
 
-		_defaultWindowWidth = displayObject->x() + displayObject->width() + _margin;
-		_defaultWindowHeight = displayObject->y() + displayObject->height() + _margin;
+		//_defaultWindowWidth = displayObject->x() + displayObject->width() + _margin;
+		//_defaultWindowHeight = displayObject->y() + displayObject->height() + _margin;
 
-		_minimumWindowWidth = _defaultWindowWidth;
-		_minimumWindowHeight = _defaultWindowHeight;
+		//_minimumWindowWidth = _defaultWindowWidth;
+		//_minimumWindowHeight = _defaultWindowHeight;
 	}
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_afterSetup() {
 		addChild(_sizingHandle);
 
+		//--------------------------------------
+		for (int i = 0; i < numChildren(); i++) {
+			flDisplayObject* child = _children[i];
+			if (child == _sizingHandle) continue;
+
+			_defaultWindowWidth = std::max(_defaultWindowWidth, child->x() + child->width() + _margin);
+			_defaultWindowHeight = std::max(_defaultWindowHeight, child->y() + child->height() + _margin);
+		}
+		_minimumWindowWidth = _defaultWindowWidth;
+		_minimumWindowHeight = _defaultWindowHeight;
+		//--------------------------------------
+
+		//--------------------------------------
 		if (_graphics != NULL) delete _graphics;
 		_graphics = NULL;
 
 		resize(_defaultWindowWidth, _defaultWindowHeight);
+		//--------------------------------------
 	}
 
     //--------------------------------------------------------------

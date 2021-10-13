@@ -19,13 +19,13 @@ namespace fl2d {
     class flDisplayObjectContainer : public flInteractiveObject {
         
         public:
-            vector<flDisplayObject*> children;
         
         protected:
-        
+			vector<flDisplayObject*> _children;
+			bool _mouseChildren;
+			//bool _tabChildren;
+
         private:
-            bool _mouseChildren;
-            //bool _tabChildren;
         
         public:
             virtual void update();
@@ -33,6 +33,8 @@ namespace fl2d {
         
             bool mouseChildren();
             void mouseChildren(bool value);
+
+			vector<flDisplayObject*>& children() { return _children; }
             int numChildren();
             virtual bool contains(flDisplayObject* child);
         

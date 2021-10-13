@@ -239,9 +239,9 @@ namespace fl2d {
         _topMostHitDisplayObjectPrev = _topMostHitDisplayObject;
         _topMostHitDisplayObject = NULL;
         
-        _updateChildrenOne(this, children);
+        _updateChildrenOne(this, _children);
         _updateMouse();
-        _updateChildrenTwo(this, children);
+        _updateChildrenTwo(this, _children);
         
         __isMousePressed	= false;
         __isMouseReleased	= false;
@@ -278,7 +278,7 @@ namespace fl2d {
         glDisable(GL_DEPTH_TEST);
         
         flDisplayObjectContainer::draw();
-        //_drawChildren(this, children);
+        //_drawChildren(this, _children);
         
         if(preDepthTest == GL_TRUE) { glEnable(GL_DEPTH_TEST); } else { glDisable(GL_DEPTH_TEST); }
         if(preBlendmodeAlpha == GL_TRUE) { ofEnableAlphaBlending(); } else { ofDisableAlphaBlending(); }
@@ -288,7 +288,7 @@ namespace fl2d {
         //    glBlendFunc(GL_ONE, GL_ZERO);
         //    glDisable(GL_BLEND);
         
-//        if(true) _debugDraw(this, children);
+//        if(true) _debugDraw(this, _children);
     }
     
     //==============================================================
@@ -320,7 +320,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flStage::getMostHitDisplayObject(int x, int y) {
         ofLog() << "[flStage]getMostHitDisplayObject(" << x << ", " << y << ")";
-        return _getMostHitDisplayObject(this, children, x, y);
+        return _getMostHitDisplayObject(this, _children, x, y);
     }
     
 //    //--------------------------------------------------------------
@@ -363,15 +363,15 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    void flStage::_updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& children) {
+    void flStage::_updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& _children) {
         //ofLog() << "[flStage]_updateChildrenOne()";
         
         // clear pixel bounds on every loop and recalculate.
         //parent->resetPixelBounds();
         
-        for(int i = 0; i < children.size(); i++) {
+        for(int i = 0; i < _children.size(); i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
             
             //------------------------------------
             //Dispatch enterframe event.
@@ -461,14 +461,14 @@ namespace fl2d {
 
 					//------------------------------------ mouseChildren
 					if (container->mouseChildren()) {
-						if (container->children.size() > 0) {
-							_updateChildrenOne(child, container->children);
+						if (container->numChildren() > 0) {
+							_updateChildrenOne(child, container->children());
 						}
 					}
 					//------------------------------------ mouseChildren
 				}
 
-				// compound pixel bounds from children.
+				// compound pixel bounds from _children.
 				//parent->addToPixelBounds(child->pixelBounds());
 			}
         }
@@ -831,10 +831,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //ÅÇÅıÅLÅèÅáÅ˜
-    void flStage::_updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& children) {
-        for(int i = 0; i < children.size(); i++) {
+    void flStage::_updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& _children) {
+        for(int i = 0; i < _children.size(); i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
             
 //            if(!child->visible()) continue;
             
@@ -843,8 +843,8 @@ namespace fl2d {
             if(_hasChildren(child)) {
                 flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
                 
-                if(container->children.size() > 0) {
-                    _updateChildrenTwo(child, container->children);
+                if(container->numChildren() > 0) {
+                    _updateChildrenTwo(child, container->children());
                 }
             }
             
@@ -855,10 +855,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     // 
-    void flStage::_drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& children) {
-        for(int i = 0; i < children.size(); i++) {
+    void flStage::_drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& _children) {
+        for(int i = 0; i < _children.size(); i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
 
 			if (child->__maskOwner != NULL) continue;
 			if (!child->visible()) continue;
@@ -878,8 +878,8 @@ namespace fl2d {
             
             if(_hasChildren(child)) {
                 flDisplayObjectContainer* container = (flDisplayObjectContainer*)child;
-                if(container->children.size() > 0) {
-                    _drawChildren(child, container->children);
+                if(container->numChildren() > 0) {
+                    _drawChildren(child, container->children());
                 }
             }
             
@@ -890,15 +890,15 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    flDisplayObject* flStage::_getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y) {
+    flDisplayObject* flStage::_getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& _children, int x, int y) {
 //        ofLog() << "[flStage]_getMostHitDisplayObject(" << x << ", " << y << ")";
         flDisplayObject* mostHitDisplayObject;
         
         int i; int l;
-        l = children.size();
+        l = _children.size();
         for(i = 0; i < l; i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
             
 			if (child->__maskOwner != NULL) continue;
 			if (!child->visible()) continue;
@@ -971,10 +971,10 @@ namespace fl2d {
 
 					//------------------------------------ mouseChildren
 					if (container->mouseChildren()) {
-						if (container->children.size() > 0) {
-							flDisplayObject* hitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
+						if (container->numChildren() > 0) {
+							flDisplayObject* hitDisplayObject = _getMostHitDisplayObject(child, container->children(), x, y);
 							if (hitDisplayObject != NULL) mostHitDisplayObject = hitDisplayObject;
-							//                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children, x, y);
+							//                        mostHitDisplayObject = _getMostHitDisplayObject(child, container->children(), x, y);
 						}
 					}
 					//------------------------------------ mouseChildren
@@ -1018,10 +1018,10 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flStage::_debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& children) {
-        for(int i = 0; i < children.size(); i++) {
+    void flStage::_debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& _children) {
+        for(int i = 0; i < _children.size(); i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
 
 			if (child->__maskOwner != NULL) continue;
             if (!child->visible()) continue;
@@ -1053,8 +1053,8 @@ namespace fl2d {
             if(_hasChildren(child)) {
                 flDisplayObjectContainer* container;
                 container = (flDisplayObjectContainer*)child;
-                if(container->children.size() > 0) {
-                    _debugDraw(child, container->children);
+                if(container->numChildren() > 0) {
+                    _debugDraw(child, container->children());
                 }
             }
             
@@ -1664,8 +1664,8 @@ namespace fl2d {
 		if (_hasChildren(displayObject)) {
 			flDisplayObjectContainer* displayObjectContainer = (flDisplayObjectContainer*)displayObject;
 			if (displayObjectContainer->mouseChildren()) {
-				for (int i = 0; i < displayObjectContainer->children.size(); i++) {
-					_removeFromList(displayObjectContainer->children[i]);
+				for (int i = 0; i < displayObjectContainer->numChildren(); i++) {
+					_removeFromList(displayObjectContainer->children()[i]);
 				}
 			}
 		}

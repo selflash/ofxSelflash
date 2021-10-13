@@ -405,7 +405,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {
@@ -429,7 +429,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {
@@ -453,7 +453,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {
@@ -477,7 +477,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {
@@ -501,7 +501,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {
@@ -525,7 +525,7 @@ namespace fl2d {
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
 
-		for (auto& child : children) {
+		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
 				flGraphics* g = ((flSprite*)child)->graphics();
 				if (g) {

@@ -84,6 +84,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
+	flTextField* flCheckBox::label() { return _label; }
     void flCheckBox::label(flTextField* value) {
         _label = value;
         if (_label == NULL) return;

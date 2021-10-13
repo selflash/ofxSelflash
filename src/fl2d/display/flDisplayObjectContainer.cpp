@@ -20,31 +20,31 @@ namespace fl2d {
     flDisplayObjectContainer::~flDisplayObjectContainer() {
         _target = NULL;
         
-		//for (auto& child : children) {
+		//for (auto& child : _children) {
 		//	if(contains(child)) removeChild(child);
 		//	delete child;
 		//}
 		//removeAllChildren();
-		//for (auto& child : children) {
+		//for (auto& child : _children) {
 		//	delete child;
 		//}
 
 		int i = 0;
-		int l = children.size();
+		int l = _children.size();
 		flDisplayObject* child = NULL;
 		for (i; i < l; i++) {
-			child = children[i];
+			child = _children[i];
 			child->removeAllEventListeners();
 			child->__stage(NULL);
 			child->__parent(NULL);
 			child->__level(-1);
 			delete child;
 
-			children.erase(children.begin() + i);
+			_children.erase(_children.begin() + i);
 			--i;
 			--l;
 		}
-        children.clear();
+        _children.clear();
         
         _mouseChildren = false;
         //_tabChildren = false;
@@ -66,9 +66,9 @@ namespace fl2d {
         //        int i; int l;
         //        flDisplayObject* child;
         //        
-        //        l = children.size();
+        //        l = _children.size();
         //        for(i = 0; i < l; i++) {
-        //            child = children[i];
+        //            child = _children[i];
         //            float n1 = child->x();
         //            float n2 = child->y();
         //            _rect->__expandTo(n1, n2);
@@ -134,9 +134,9 @@ namespace fl2d {
         //ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
         
-        for(int i = 0; i < children.size(); i++) {
+        for(int i = 0; i < _children.size(); i++) {
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
 			if (child->__maskOwner != NULL) continue;
             //child->drawOnFrame();
             child->draw();
@@ -177,12 +177,12 @@ namespace fl2d {
     void flDisplayObjectContainer::mouseChildren(bool value) { _mouseChildren = value; }
     
     //--------------------------------------------------------------
-    int flDisplayObjectContainer::numChildren() { return children.size(); }
+    int flDisplayObjectContainer::numChildren() { return _children.size(); }
     
     //--------------------------------------------------------------
     bool flDisplayObjectContainer::contains(flDisplayObject* child) {
-        for(int i = 0; i < children.size(); i++) {
-            if(children[i] == child) return true;
+        for(int i = 0; i < _children.size(); i++) {
+            if(_children[i] == child) return true;
         }
         return false;
     }
@@ -197,8 +197,8 @@ namespace fl2d {
 		if(!_stage && value) {
             _stage = value;
             
-			for (int i = 0; i < children.size(); i++) {
-				flDisplayObject* child = children[i];
+			for (int i = 0; i < _children.size(); i++) {
+				flDisplayObject* child = _children[i];
 				child->__stage(_stage);
 
 				if (dispatch) {
@@ -218,8 +218,8 @@ namespace fl2d {
 		if(_stage && !value) {
             _stage = value;
             
-			for (int i = 0; i < children.size(); i++) {
-				flDisplayObject* child = children[i];
+			for (int i = 0; i < _children.size(); i++) {
+				flDisplayObject* child = _children[i];
 				child->__stage(_stage);
 
 				if (dispatch) {
@@ -246,7 +246,7 @@ namespace fl2d {
             ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
         
-        children.push_back(child);
+        _children.push_back(child);
         child->__stage(this->_stage);
         child->__parent(this);
         child->__level(this->__level()+1);
@@ -281,7 +281,7 @@ namespace fl2d {
             ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
         
-        children.push_back(child);
+        _children.push_back(child);
         child->x(x);
         child->y(y);
         child->__stage(this->_stage);
@@ -312,7 +312,7 @@ namespace fl2d {
     flDisplayObject* flDisplayObjectContainer::addChildAt(flDisplayObject* child, int index) {
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
-        if(index < 0 || index > children.size() - 1) return NULL;
+        if(index < 0 || index > _children.size() - 1) return NULL;
 
 		//bool isChild = contains(child);
 
@@ -320,7 +320,7 @@ namespace fl2d {
             ((flDisplayObjectContainer*)(child->parent()))->_removeChild(child);
         }
 
-        children.insert(children.begin() + index, child);
+        _children.insert(_children.begin() + index, child);
         child->__stage(this->_stage);
         child->__parent(this);
         child->__level(this->__level() + 1);
@@ -349,16 +349,16 @@ namespace fl2d {
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
         
-        //children.size()の箇所はリファクタリングとかで外に出したらダメ
-        for(int i = 0; i < children.size(); i++){
-            if(children[i] == child){
+        //_children.size()の箇所はリファクタリングとかで外に出したらダメ
+        for(int i = 0; i < _children.size(); i++){
+            if(_children[i] == child){
                 child->__stage(NULL);
                 child->__parent(NULL);
                 child->__level(-1);
 				//if (child->hasEventListener(flEvent::FINALIZE)) {
 				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 				//}
-                children.erase(children.begin() + i);
+                _children.erase(_children.begin() + i);
                 
                 _updateRect();
 
@@ -382,16 +382,16 @@ namespace fl2d {
 	flDisplayObject* flDisplayObjectContainer::_removeChild(flDisplayObject* child) {
 		//if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
 
-		//children.size()の箇所はリファクタリングとかで外に出したらダメ
-		for (int i = 0; i < children.size(); i++) {
-			if (children[i] == child) {
+		//_children.size()の箇所はリファクタリングとかで外に出したらダメ
+		for (int i = 0; i < _children.size(); i++) {
+			if (_children[i] == child) {
 				child->__stage(NULL, false);
 				child->__parent(NULL, false);
 				child->__level(-1);
 				//if (child->hasEventListener(flEvent::FINALIZE)) {
 				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 				//}
-				children.erase(children.begin() + i);
+				_children.erase(_children.begin() + i);
 
 				_updateRect();
 
@@ -404,17 +404,17 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
-        //children.size()の箇所はリファクタリングとかで外に出したらダメ
-        if(index < 0 || index > children.size() - 1) return NULL;
+        //_children.size()の箇所はリファクタリングとかで外に出したらダメ
+        if(index < 0 || index > _children.size() - 1) return NULL;
         flDisplayObject* child;
-        child = children[index];
+        child = _children[index];
         child->__stage(NULL);
         child->__parent(NULL);
         child->__level(-1);
 		//if (child->hasEventListener(flEvent::FINALIZE)) {
 		//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 		//}
-		children.erase(children.begin() + index);
+		_children.erase(_children.begin() + index);
         
         _updateRect();
 
@@ -433,19 +433,19 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObjectContainer::removeAllChildren() {
         int i = 0;
-        int l = children.size();
+        int l = _children.size();
         
         flDisplayObject* child;
         
         for(i; i < l; i++){
-            child = children[i];
+            child = _children[i];
             child->__stage(NULL);
             child->__parent(NULL);
             child->__level(-1);
 			//if (child->hasEventListener(flEvent::FINALIZE)) {
 			//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
 			//}
-			children.erase(children.begin() + i);
+			_children.erase(_children.begin() + i);
 
 			//flEvent* event = new flEvent(flEvent::REMOVED);
 			//child->dispatchEvent(event);
@@ -465,14 +465,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::getChildAt(int index) {
-        if(index < 0 || index > children.size() - 1) return NULL;
-        return children[index];
+        if(index < 0 || index > _children.size() - 1) return NULL;
+        return _children[index];
     }
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::getChildByName(string name) {
-        for(int i = 0; i < children.size(); i++){
-            if(children[i]->name() == name) return children[i];
+        for(int i = 0; i < _children.size(); i++){
+            if(_children[i]->name() == name) return _children[i];
         }
         
         return NULL;
@@ -480,8 +480,8 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     int flDisplayObjectContainer::getChildIndex(flDisplayObject* child) {
-        for(int i = 0; i < children.size(); i++){
-            if(children[i] == child) return i;
+        for(int i = 0; i < _children.size(); i++){
+            if(_children[i] == child) return i;
         }
         
         return -1;
@@ -490,17 +490,17 @@ namespace fl2d {
     //--------------------------------------------------------------
     vector<flDisplayObject*> flDisplayObjectContainer::getObjectsUnderPoint(ofPoint point) {
         // TODO ￡
-        return children;
+        return _children;
     }
     
     //--------------------------------------------------------------
     void flDisplayObjectContainer::setChildIndex(flDisplayObject* child, int index) {
-        if(index < 0 || index > children.size() - 1) return;
+        if(index < 0 || index > _children.size() - 1) return;
         
-        for(int i = 0; i < children.size(); i++){
-            if(children[i] == child){
-                children.erase(children.begin() + i);
-                children.insert(children.begin() + index, child);
+        for(int i = 0; i < _children.size(); i++){
+            if(_children[i] == child){
+                _children.erase(_children.begin() + i);
+                _children.insert(_children.begin() + index, child);
                 return;
             }
         }
@@ -513,18 +513,18 @@ namespace fl2d {
         
         if(index1 == -1 || index2 == -1) return;
         
-        for(int i = 0; i < children.size(); i++){
-            if(children[i] == child1 || children[i] == child2) {
-                children.erase(children.begin() + i--);
+        for(int i = 0; i < _children.size(); i++){
+            if(_children[i] == child1 || _children[i] == child2) {
+                _children.erase(_children.begin() + i--);
             }
         }
         
         if(index1 < index2){
-            children.insert(children.begin() + index1, child2);
-            children.insert(children.begin() + index2, child1);
+            _children.insert(_children.begin() + index1, child2);
+            _children.insert(_children.begin() + index2, child1);
         } else {
-            children.insert(children.begin() + index2, child1);
-            children.insert(children.begin() + index1, child2);
+            _children.insert(_children.begin() + index2, child1);
+            _children.insert(_children.begin() + index1, child2);
         }
     }
     
@@ -538,19 +538,19 @@ namespace fl2d {
         if(child1 == NULL || child2 == NULL) return;
         
         if(index2 > index1){
-            children.erase(children.begin() + index2);
-            children.erase(children.begin() + index1);
+            _children.erase(_children.begin() + index2);
+            _children.erase(_children.begin() + index1);
         } else {
-            children.erase(children.begin() + index1);
-            children.erase(children.begin() + index2);
+            _children.erase(_children.begin() + index1);
+            _children.erase(_children.begin() + index2);
         }
         
         if(index1 < index2){
-            children.insert(children.begin() + index1, child2);
-            children.insert(children.begin() + index2, child1);
+            _children.insert(_children.begin() + index1, child2);
+            _children.insert(_children.begin() + index2, child1);
         } else {
-            children.insert(children.begin() + index2, child1);
-            children.insert(children.begin() + index1, child2);
+            _children.insert(_children.begin() + index2, child1);
+            _children.insert(_children.begin() + index1, child2);
         }
     }
     
@@ -564,9 +564,9 @@ namespace fl2d {
         _rect->__setZero();
         
         int i; int l;
-        l = children.size();
+        l = _children.size();
         for(i = 0; i < l; i++) {
-            flDisplayObject* child = children[i];
+            flDisplayObject* child = _children[i];
             
             //=========================================== Matrix.
             //This the code is moved here from flStage._updateChildrenOne().

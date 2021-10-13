@@ -159,18 +159,18 @@ namespace fl2d {
             virtual ~flStage();
         
             //update
-            void _updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _updateChildrenOne(flDisplayObject* parent, vector<flDisplayObject*>& _children);
             void _updateMouse();
             //void _updateMouseInteraction();
-            void _updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _updateChildrenTwo(flDisplayObject* parent, vector<flDisplayObject*>& _children);
             //draw
-            void _drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _drawChildren(flDisplayObject* parent, vector<flDisplayObject*>& _children);
         
             void _mouseMove();
         
-            flDisplayObject* _getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& children, int x, int y);
+            flDisplayObject* _getMostHitDisplayObject(flDisplayObject* parent, vector<flDisplayObject*>& _children, int x, int y);
         
-            void _debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& children);
+            void _debugDraw(flDisplayObject* parent, vector<flDisplayObject*>& _children);
         
             void _updateEventHandler(ofEventArgs& event);
             void _drawEventHandler(ofEventArgs& event);

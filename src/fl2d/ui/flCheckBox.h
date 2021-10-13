@@ -24,7 +24,9 @@ namespace fl2d {
             flCheckBox(float width = 100);
             virtual ~flCheckBox();
         
+			virtual flTextField* label();
             virtual void label(flTextField* value);
+
 			virtual bool enabled();
 			virtual void enabled(bool value);
 

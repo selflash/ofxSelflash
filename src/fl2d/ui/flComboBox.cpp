@@ -171,7 +171,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flComboBox::removeItemByIndex(int index) {
         //--------------------------------------
-        //children()の箇所はリファクタリングとかで外に出したらダメ
+        //_children()の箇所はリファクタリングとかで外に出したらダメ
         if(index < 0 || index > _buttonList.size() - 1) return;
         
         flButton* button = _buttonList[index];

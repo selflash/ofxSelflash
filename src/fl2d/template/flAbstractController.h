@@ -1783,7 +1783,85 @@ namespace fl2d {
         
         protected:
             flAbstractController() { };
-            virtual ~flAbstractController() { };
+            virtual ~flAbstractController() {
+				ofLog() << "[flAbstractController]~flAbstractController()";
+
+				if (check001 != NULL) {
+					check001->removeAllEventListeners();
+					if (check001->parent() != NULL) ((flDisplayObjectContainer*)check001->parent())->removeChild(check001);
+					delete check001;
+					check001 = NULL;
+				}
+				if (check002 != NULL) {
+					check002->removeAllEventListeners();
+					if (check002->parent() != NULL) ((flDisplayObjectContainer*)check002->parent())->removeChild(check002);
+					delete check002;
+					check002 = NULL;
+				}
+				if (check003 != NULL) {
+					check003->removeAllEventListeners();
+					if (check003->parent() != NULL) ((flDisplayObjectContainer*)check003->parent())->removeChild(check003);
+					delete check003;
+					check003 = NULL;
+				}
+
+				if (slider001 != NULL) {
+					slider001->removeAllEventListeners();
+					if (slider001->parent() != NULL) ((flDisplayObjectContainer*)slider001->parent())->removeChild(slider001);
+					delete slider001;
+					slider001 = NULL;
+				}
+				if (slider002 != NULL) {
+					slider002->removeAllEventListeners();
+					if (slider002->parent() != NULL) ((flDisplayObjectContainer*)slider002->parent())->removeChild(slider002);
+					delete slider002;
+					slider002 = NULL;
+				}
+				if (slider003 != NULL) {
+					slider003->removeAllEventListeners();
+					if (slider003->parent() != NULL) ((flDisplayObjectContainer*)slider003->parent())->removeChild(slider003);
+					delete slider003;
+					slider003 = NULL;
+				}		
+				
+				if (comboBox001 != NULL) {
+					comboBox001->removeAllEventListeners();
+					if (comboBox001->parent() != NULL) ((flDisplayObjectContainer*)comboBox001->parent())->removeChild(comboBox001);
+					delete comboBox001;
+					comboBox001 = NULL;
+				}
+				if (comboBox002 != NULL) {
+					comboBox002->removeAllEventListeners();
+					if (comboBox002->parent() != NULL) ((flDisplayObjectContainer*)comboBox002->parent())->removeChild(comboBox002);
+					delete comboBox002;
+					comboBox002 = NULL;
+				}
+				if (comboBox003 != NULL) {
+					comboBox003->removeAllEventListeners();
+					if (comboBox003->parent() != NULL) ((flDisplayObjectContainer*)comboBox003->parent())->removeChild(comboBox003);
+					delete comboBox003;
+					comboBox003 = NULL;
+				}				
+				
+				if (dialer001 != NULL) {
+					dialer001->removeAllEventListeners();
+					if (dialer001->parent() != NULL) ((flDisplayObjectContainer*)dialer001->parent())->removeChild(dialer001);
+					delete dialer001;
+					dialer001 = NULL;
+				}
+				if (dialer002 != NULL) {
+					dialer002->removeAllEventListeners();
+					if (dialer002->parent() != NULL) ((flDisplayObjectContainer*)dialer002->parent())->removeChild(dialer002);
+					delete dialer002;
+					dialer002 = NULL;
+				}
+				if (dialer003 != NULL) {
+					dialer003->removeAllEventListeners();
+					if (dialer003->parent() != NULL) ((flDisplayObjectContainer*)dialer003->parent())->removeChild(dialer003);
+					delete dialer003;
+					dialer003 = NULL;
+				}
+			};
 
         private:
 

@@ -172,9 +172,9 @@ namespace fl2d {
 
         _draw();
 
-        for(int i = 0; i < children.size(); i++){
+        for(int i = 0; i < _children.size(); i++){
             flDisplayObject* child;
-            child = children[i];
+            child = _children[i];
 			if (child->__maskOwner != NULL) continue;
 			//child->drawOnFrame();
             child->draw();
@@ -230,9 +230,9 @@ namespace fl2d {
 
 //            {
 //                int i; int l;
-//                l = children.size();
+//                l = _children.size();
 //                for(i = 0; i < l; i++) {
-//                    flDisplayObject* child = children[i];
+//                    flDisplayObject* child = _children[i];
 //                    flRectangle rect = child->getRect(this);
 //                    ofSetColor(0, 255, 0, 150);
 //                    ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
@@ -269,9 +269,9 @@ namespace fl2d {
     ////        int i; int l;
     ////        DisplayObject* child;
     ////
-    ////        l = children.size();
+    ////        l = _children.size();
     ////        for(i = 0; i < l; i++) {
-    ////            child = children[i];
+    ////            child = _children[i];
     ////            float n1 = child->x();
     ////            _rect->__expandToX(n1);
     ////            _rect->__expandToX(n1 + child->width());
@@ -302,9 +302,9 @@ namespace fl2d {
     ////        int i; int l;
     ////        DisplayObject* child;
     ////        
-    ////        l = children.size();
+    ////        l = _children.size();
     ////        for(i = 0; i < l; i++) {
-    ////            child = children[i];
+    ////            child = _children[i];
     ////            float n2 = child->y();
     ////            _rect->__expandToY(n2);
     ////            _rect->__expandToY(n2 + child->height());
@@ -497,9 +497,9 @@ namespace fl2d {
         
         {
             int i; int l;
-            l = children.size();
+            l = _children.size();
             for(i = 0; i < l; i++) {
-                flDisplayObject* child = children[i];
+                flDisplayObject* child = _children[i];
                 if(!child->visible()) continue;
                 flRectangle childRect = child->getRect(targetCoordinateSpace);
                 
@@ -560,9 +560,9 @@ namespace fl2d {
         
         {
             int i; int l;
-            l = children.size();
+            l = _children.size();
             for(i = 0; i < l; i++) {
-                flDisplayObject* child = children[i];
+                flDisplayObject* child = _children[i];
                 if(!child->visible()) continue;
                 flRectangle childRect = child->getRect(targetCoordinateSpace);
 
@@ -596,9 +596,9 @@ namespace fl2d {
         if(_graphics != NULL) _rect->__setToRect(*_graphics->__rect);
         
         int i; int l;
-        l = children.size();
+        l = _children.size();
         for(i = 0; i < l; i++) {
-            flDisplayObject* child = children[i];
+            flDisplayObject* child = _children[i];
             
             //=========================================== Matrix.
             //This the code is moved here from flStage._updateChildrenOne().
