@@ -197,7 +197,7 @@ namespace fl2d {
 			const float windowWidth = w;
 			const float windowHeight = h - _titleBarHeight;
 
-			flmath::mapImageSizeToWindowSize(srcWidth, srcHeight, windowWidth, windowHeight, dstWidth, dstHeight);
+			flmath::mapImageSizeToFrameSize(srcWidth, srcHeight, windowWidth, windowHeight, dstWidth, dstHeight);
 
 			_bitmap->width(dstWidth);
 			_bitmap->height(dstHeight);
@@ -209,7 +209,7 @@ namespace fl2d {
 			const float windowWidth = w;
 			const float windowHeight = h;
 
-			flmath::mapImageSizeToWindowSize(srcWidth, srcHeight, windowWidth, windowHeight, dstWidth, dstHeight);
+			flmath::mapImageSizeToFrameSize(srcWidth, srcHeight, windowWidth, windowHeight, dstWidth, dstHeight);
 
 			_bitmap->width(dstWidth);
 			_bitmap->height(dstHeight);
