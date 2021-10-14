@@ -1804,6 +1804,12 @@ namespace fl2d {
 					delete check003;
 					check003 = NULL;
 				}
+				if (check004 != NULL) {
+					check004->removeAllEventListeners();
+					if (check004->parent() != NULL) ((flDisplayObjectContainer*)check004->parent())->removeChild(check004);
+					delete check004;
+					check004 = NULL;
+				}
 
 				if (slider001 != NULL) {
 					slider001->removeAllEventListeners();
