@@ -1285,7 +1285,15 @@ namespace fl2d {
             flCheckBox* check233 = NULL; flCheckBox* check234 = NULL; flCheckBox* check235 = NULL;
             flCheckBox* check236 = NULL; flCheckBox* check237 = NULL; flCheckBox* check238 = NULL;
             flCheckBox* check239 = NULL;
-            //チェックボックス(300)
+			flCheckBox* check240 = NULL; flCheckBox* check241 = NULL; flCheckBox* check242 = NULL;
+			flCheckBox* check243 = NULL; flCheckBox* check244 = NULL; flCheckBox* check245 = NULL;
+			flCheckBox* check246 = NULL; flCheckBox* check247 = NULL; flCheckBox* check248 = NULL;
+			flCheckBox* check249 = NULL;
+			flCheckBox* check250 = NULL; flCheckBox* check251 = NULL; flCheckBox* check252 = NULL;
+			flCheckBox* check253 = NULL; flCheckBox* check254 = NULL; flCheckBox* check255 = NULL;
+			flCheckBox* check256 = NULL; flCheckBox* check257 = NULL; flCheckBox* check258 = NULL;
+			flCheckBox* check259 = NULL;
+			//チェックボックス(300)
             flCheckBox* check300 = NULL; flCheckBox* check301 = NULL; flCheckBox* check302 = NULL;
             flCheckBox* check303 = NULL; flCheckBox* check304 = NULL; flCheckBox* check305 = NULL;
             flCheckBox* check306 = NULL; flCheckBox* check307 = NULL; flCheckBox* check308 = NULL;

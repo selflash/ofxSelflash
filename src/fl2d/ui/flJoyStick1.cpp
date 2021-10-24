@@ -227,6 +227,7 @@ namespace fl2d {
         }
         _value = 0.0f;
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

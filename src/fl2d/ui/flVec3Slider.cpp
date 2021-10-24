@@ -152,6 +152,7 @@ namespace fl2d {
         flUIBase::_update();
 
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

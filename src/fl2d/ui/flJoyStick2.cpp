@@ -175,6 +175,7 @@ namespace fl2d {
         _xValue = 0.0;
         _yValue = 0.0;
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

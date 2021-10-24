@@ -263,6 +263,8 @@ namespace fl2d {
         
         _bChangedByOfParm["minValue"] = false;
         _bChangedByOfParm["maxValue"] = false;
+		_bChangedByMyself["minValue"] = false;
+		_bChangedByMyself["maxValue"] = false;
     }
     
     //--------------------------------------------------------------

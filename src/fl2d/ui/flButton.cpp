@@ -82,7 +82,13 @@ namespace fl2d {
     void flButton::_update() {
         flUIBase::_update();
 
-        _bChangedByOfParm["value"] = false;
+		if (!_toggleEnabled) {
+			if (_boolParam) {
+				if (_bChangedByMyself["value"]) _boolParam->setWithoutEventNotifications(false);
+			}
+		}
+		_bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -359,6 +365,15 @@ namespace fl2d {
 			//------------------------------------------
         } else {
             _setActiveColor();
+
+			//------------------------------------------
+			if (!_bChangedByOfParm["value"]) {
+				if (_boolParam != NULL) {
+					_bChangedByMyself["value"] = true;
+					_boolParam->set(true);
+				}
+			}
+			//------------------------------------------
         }
         
         flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
