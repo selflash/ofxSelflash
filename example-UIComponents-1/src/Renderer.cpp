@@ -49,6 +49,9 @@ void Renderer::_setup() {
 //    flBitmap* bitmap = new flBitmap(_videoTexture);
 //    //    bitmap->alpha(0.5);
 //    addChild(bitmap);
+
+	flBasicDraggableObject::_setup();
+
 }
 
 //--------------------------------------------------------------

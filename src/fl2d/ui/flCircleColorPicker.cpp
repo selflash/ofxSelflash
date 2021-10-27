@@ -62,14 +62,20 @@ namespace fl2d {
         //removeEventListener(flMouseEvent::MOUSE_UP, &flCircleColorPicker::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flCircleColorPicker::_mouseEventHandler);
         
-        delete _colorWheelImage;
-        _colorWheelImage = NULL;
+		if (_colorWheelImage != NULL) {
+			delete _colorWheelImage;
+			_colorWheelImage = NULL;
+		}
         
-        delete _pixelCaptureImage;
-        _pixelCaptureImage = NULL;
-        
-        delete _selectedPixel;
-        _selectedPixel = NULL;
+		if (_pixelCaptureImage != NULL) {
+			delete _pixelCaptureImage;
+			_pixelCaptureImage = NULL;
+		}
+
+		if (_selectedPixel != NULL) {
+			delete _selectedPixel;
+			_selectedPixel = NULL;
+		}
     }
     
     //==============================================================

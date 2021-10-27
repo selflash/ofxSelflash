@@ -223,22 +223,28 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     flPad2D::~flPad2D() {
-        area->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
-        area->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
-        area->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
-        area->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
-        area->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
-        area->removeEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
-        delete area;
-        area = NULL;
+		//_label = NULL;
 
-        lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
-        delete lever;
-        lever = NULL;
-        
-        _label = NULL;
+		if (area != NULL) {
+			removeChild(area);
+			area->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
+			area->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
+			area->removeEventListener(flMouseEvent::MOUSE_OVER, this, &flPad2D::_mouseEventHandler);
+			area->removeEventListener(flMouseEvent::MOUSE_OUT, this, &flPad2D::_mouseEventHandler);
+			area->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
+			area->removeEventListener(flMouseEvent::MOUSE_UP, this, &flPad2D::_mouseEventHandler);
+			delete area;
+			area = NULL;
+		}
+
+		if (lever != NULL) {
+			removeChild(lever);
+			lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flPad2D::_mouseEventHandler);
+			lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flPad2D::_mouseEventHandler);
+			lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flPad2D::_mouseEventHandler);
+			delete lever;
+			lever = NULL;
+		}
         
         if(_dialer01 != NULL) {
             removeChild(_dialer01);
@@ -301,6 +307,7 @@ namespace fl2d {
         }
         
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
 
     //--------------------------------------------------------------

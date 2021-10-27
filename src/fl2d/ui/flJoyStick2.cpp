@@ -62,16 +62,22 @@ namespace fl2d {
     flJoyStick2::~flJoyStick2() {
         //ofLog() << "[flJoyStick2]~flJoyStick2()";
         
-        lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
-        lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick2::_mouseEventHandler);
-//        lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
-//        lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
-        delete lever;
-        lever = NULL;
+		if (lever != NULL) {
+			removeChild(lever);
+			lever->removeEventListener(flMouseEvent::ROLL_OVER, this, &flJoyStick2::_mouseEventHandler);
+			lever->removeEventListener(flMouseEvent::ROLL_OUT, this, &flJoyStick2::_mouseEventHandler);
+			lever->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flJoyStick2::_mouseEventHandler);
+			//lever->removeEventListener(flMouseEvent::MOUSE_MOVE, this, &flJoyStick2::_mouseEventHandler);
+			//lever->removeEventListener(flMouseEvent::DRAGGING, this, &flJoyStick2::_mouseEventHandler);
+			delete lever;
+			lever = NULL;
+		}
         
-        delete _valueText;
-        _valueText = NULL;
+		if (_valueText != NULL) {
+			removeChild(_valueText);
+			delete _valueText;
+			_valueText = NULL;
+		}
         
         //------------------------------------------
         _vec2Param = NULL;
@@ -169,6 +175,7 @@ namespace fl2d {
         _xValue = 0.0;
         _yValue = 0.0;
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

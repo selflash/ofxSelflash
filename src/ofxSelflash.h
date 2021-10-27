@@ -5,6 +5,7 @@
 //flash.utils
 #include "flmath.h"
 #include "flstringutil.h"
+#include "flUtil.h"
 
 #include "flDefinition.h"
 
@@ -88,10 +89,10 @@
 #include "flToolTip.h"
 
 //Templates
-//#include "flAbstractController.h"
+#include "flAbstractController.h"
 #include "flBasicController.h"
-//#include "flBasicDraggableObject.h"
-//#include "flBasicImageViewer.h"
+#include "flBasicDraggableObject.h"
+#include "flBasicImageViewer.h"
 
 
 

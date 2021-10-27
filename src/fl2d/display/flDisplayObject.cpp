@@ -1,4 +1,4 @@
-#include "flDisplayObject.h"
+Ôªø#include "flDisplayObject.h"
 
 namespace fl2d {
     
@@ -12,10 +12,6 @@ namespace fl2d {
         _typeID = FL_TYPE_DISPLAY_OBJECT;
         _target = this;
         name("flDisplayObject");
-        
-        _stage = NULL;
-        _parent = NULL;
-        _mask = NULL;
         
         _z = 0.0;
         
@@ -53,12 +49,17 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject::~flDisplayObject() {
+		//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
+
+		removeAllEventListeners();
+
         _target = NULL;
         _name = "";
         
-        _stage = NULL;
-        _parent = NULL;
+		_stage = NULL;
+		_parent = NULL;
         _mask = NULL;
+		__maskOwner = NULL;
         
         _z = 0.0;
         
@@ -98,14 +99,22 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flDisplayObject::setup() {
         _setup();
+		_afterSetup();
+    } 
+
+    //--------------------------------------------------------------
+    void flDisplayObject::tearDown() {
+        _tearDown();
+
+		dispatchEvent(new flEvent(flEvent::DEINIT));
     }
     
     //--------------------------------------------------------------
     void flDisplayObject::update() {
-        _update();
-        
+        _update();        
         _updateRect();
-    }
+		_afterUpdate();
+	}
     
     //--------------------------------------------------------------
     void flDisplayObject::draw(bool applyMatrix) {
@@ -161,6 +170,7 @@ namespace fl2d {
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
         _draw();
+		_afterDraw();
         ofPopStyle();
         
         if(applyMatrix){
@@ -189,6 +199,16 @@ namespace fl2d {
     void flDisplayObject::_setup() {
         
     }
+
+    //--------------------------------------------------------------
+    void flDisplayObject::_afterSetup() {
+        
+    }   
+
+    //--------------------------------------------------------------
+    void flDisplayObject::_tearDown() {
+        
+    }
     
     //--------------------------------------------------------------
     void flDisplayObject::_update() {
@@ -196,10 +216,20 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flDisplayObject::_draw() {
+    void flDisplayObject::_afterUpdate() {
         
     }
     
+    //--------------------------------------------------------------
+    void flDisplayObject::_draw() {
+        
+    }
+
+	//--------------------------------------------------------------
+	void flDisplayObject::_afterDraw() {
+
+	}
+
     //==============================================================
     // Public Method
     //==============================================================
@@ -210,55 +240,73 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::stage() { return _stage; }
-    void flDisplayObject::stage(flDisplayObject* value) {
-        //cout << "[flDisplayObject]stage(" << value << ")" << name() << endl;
+    void flDisplayObject::__stage(flDisplayObject* value, bool dispatch) {
+        //ofLog() << "[flDisplayObject]__stage(" << value << ")" << name();
         
-        //ç°Ç‹Ç≈ÉXÉeÅ[ÉWÇ÷ÇÃéQè∆Ç™Ç‡Ç¡ÇƒÇ¢Ç»Ç≠ÇƒvalueÇ…ÉXÉeÅ[ÉWÇ÷ÇÃéQè∆Ç™ì¸Ç¡ÇƒÇÈéû
+        //‰ªä„Åæ„Åß„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å™„Åè„Å¶value„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÇãÊôÇ
+		//„ÇÇ„Å®„ÇÇ„Å®„Çπ„ÉÜ„Éº„Ç∏„Å´Add„Åï„Çå„Å¶„ÅÑ„Å™„Åè„Å¶„ÄÅAdd„Åï„Çå„Åü„Çâ
         if(!_stage && value) {
             _stage = value;
             
-            flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
-//            event->target(_target);
-//            event->_target = _target;
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+				//event->target(_target);
+				//event->_target = _target;
+				dispatchEvent(event);
+			}
         }
-        //ä˘Ç…ÉXÉeÅ[ÉWÇ÷ÇÃéQè∆Ç™Ç‡Ç¡ÇƒÇ¢ÇƒvalueÇ…ÉXÉeÅ[ÉWÇ÷ÇÃéQè∆Ç™ì¸Ç¡ÇƒÇ¢Ç»Ç¢éû
+
+        //Êó¢„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å¶value„Å´„Çπ„ÉÜ„Éº„Ç∏„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÅÑ„Å™„ÅÑÊôÇ
+		//„ÇÇ„Å®„ÇÇ„Å®„Çπ„ÉÜ„Éº„Ç∏„Å´Add„Åï„Çå„Å¶„ÅÑ„Å¶„ÄÅRemove„Åï„Çå„Åü„Çâ
         if(_stage && !value) {
             _stage = value;
             
-            flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
     }
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObject::parent() { return _parent; }
-    void flDisplayObject::parent(flDisplayObject* value) {
-        //cout << "[flDisplayObject]parent(" << value << ")" << name() << endl;
+    void flDisplayObject::__parent(flDisplayObject* value, bool dispatch) {
+        //ofLog() << "[flDisplayObject]__parent(" << value << ")" << name();
         
-        //ç°Ç‹Ç≈êeÇ÷ÇÃéQè∆Ç™Ç‡Ç¡ÇƒÇ¢Ç»Ç≠ÇƒvalueÇ…êeÇ÷ÇÃéQè∆Ç™ì¸Ç¡ÇƒÇÈéû
+        //‰ªä„Åæ„ÅßË¶™„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å™„Åè„Å¶value„Å´Ë¶™„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÇãÊôÇ
         if(!_parent && value) {
             _parent = value;
             _compoundAlpha = _parent->__compoundAlpha() * _alpha;
             
-            flEvent* event = new flEvent(flEvent::ADDED);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::ADDED);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
-        //ä˘Ç…êeÇ÷ÇÃéQè∆Ç™Ç‡Ç¡ÇƒÇ¢ÇƒvalueÇ…êeÇ÷ÇÃéQè∆Ç™ì¸Ç¡ÇƒÇ¢Ç»Ç¢éû
+        //Êó¢„Å´Ë¶™„Å∏„ÅÆÂèÇÁÖß„Åå„ÇÇ„Å£„Å¶„ÅÑ„Å¶value„Å´Ë¶™„Å∏„ÅÆÂèÇÁÖß„ÅåÂÖ•„Å£„Å¶„ÅÑ„Å™„ÅÑÊôÇ
         if(_parent && !value) {
             _parent = value;
             
-            flEvent* event = new flEvent(flEvent::REMOVED);
-//            event->target(_target);
-            dispatchEvent(event);
+			if (dispatch) {
+				flEvent* event = new flEvent(flEvent::REMOVED);
+				//event->target(_target);
+				dispatchEvent(event);
+			}
         }
     }
     
     //--------------------------------------------------------------
     // TODO
-	void flDisplayObject::mask(flDisplayObject* value) { _mask = value; }
+	void flDisplayObject::mask(flDisplayObject* value) { 
+		if (value == NULL && _mask != NULL) {
+			_mask->__maskOwner = NULL;
+		}
+
+		_mask = value;
+		_mask->__maskOwner = this;
+	}
     flDisplayObject* flDisplayObject::mask() { return _mask; }
     
     //--------------------------------------------------------------
@@ -321,9 +369,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     float flDisplayObject::width() {
-        if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
-        return _realWidth * scaleX();
-    }
+		//if (_mask) return _mask->width();
+  //      if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+  //      return _realWidth * scaleX();
+		_updateRect();
+		if (_mask) return _mask->width();
+		if (_realWidth == 0.0) return 0.0;
+		return _realWidth * scaleX();
+	}
     void flDisplayObject::width(float value) {
         _targetWidth = value;
         if(_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
@@ -331,8 +384,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     float flDisplayObject::height() {
-        if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
-        return _realHeight * scaleY();
+		//if (_mask) return _mask->height();
+		//if(_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+  //      return _realHeight * scaleY();
+		_updateRect();
+		if (_mask) return _mask->height();
+		if (_realHeight == 0.0) return 0.0;
+		return _realHeight * scaleY();
     }
     void flDisplayObject::height(float value) {
         _targetHeight = value;
@@ -391,8 +449,8 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    int flDisplayObject::level() { return _level; }
-    void flDisplayObject::level(int value) { _level = value; }
+    int flDisplayObject::__level() { return _level; }
+    void flDisplayObject::__level(int value) { _level = value; }
     
     //--------------------------------------------------------------
     flTransform& flDisplayObject::transform() { return _transform; }
@@ -540,7 +598,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     ofPoint flDisplayObject::globalToLocal(const ofPoint& point) {
         ofPoint p = point;
-        //ÉOÉçÅ[ÉoÉãç¿ïWÇ©ÇÁÉçÅ[ÉJÉãç¿ïWÇ…ïœä∑
+        //„Ç∞„É≠„Éº„Éê„É´Â∫ßÊ®ô„Åã„Çâ„É≠„Éº„Ç´„É´Â∫ßÊ®ô„Å´Â§âÊèõ
         _transform.__concatenatedMatrixInv.transformPoint(p);
         return p;
     }

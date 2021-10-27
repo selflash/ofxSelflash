@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flToolTip::flToolTip() {
-        //    cout << "[flToolTip]ToolTip()" << endl;
+        //    ofLog() << "[flToolTip]ToolTip()";
         _target = this;
         name("flToolTip");
         
@@ -23,7 +23,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flToolTip::~flToolTip() {
-        //    cout << "[flToolTip]~ToolTip()" << endl;
+        //    ofLog() << "[flToolTip]~ToolTip()";
     }
     
     //==============================================================
@@ -32,13 +32,13 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     //void flBasicDraggableObject::_setup() {
-    //    cout << "[flBasicDraggableObject]_setup()" << endl;
+    //    ofLog() << "[flBasicDraggableObject]_setup()";
     //
     //}
     
     //--------------------------------------------------------------
     void flToolTip::_update() {
-    //    cout << width() << ", " << height() << endl;
+    //    ofLog() << width() << ", " << height();
     
         //If the flFont is not ready, monitor a font is loaded or not.
         if(!_bReady) {

@@ -1,39 +1,25 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "ofxSelflash.h"
-#include "flAbstractController.h"
-#include "flBasicDraggableObject.h"
+#include "flBasicUIWindow.h"
 
 namespace fl2d {
 
-	class flBasicImageViewer : public flBasicDraggableObject, public flAbstractController  {
+	class flBasicImageViewer : public flBasicUIWindow {
 		public:
 
 		protected:
-			float _backWidth;
-			float _backHeight;
-			float _minBackWidth;
-			float _minBackHeight;
-			float _normalBackWidth;
-			float _normalBackHeight;
-
-			string _titleText = "";
-
-			int _mode = 0;
-
-			bool _isLocked = false;
-
-			ofEventListeners _listeners;
+			flBitmap* _bitmap = NULL;
+			float _defaultImageWidth;
+			float _defaultImageHeight;
 
 			bool _isActive = false;
 			float _scaleOnActive = 2.0;
 
-			flBasicDraggableObject* rightBottomCorner;
-
-			flBitmap* _bitmap = NULL;
-			float _defaultImageWidth;
-			float _defaultImageHeight;
+			bool _colorPickerEnabled = false;
+			ofPoint _point;
+			ofParameter<ofFloatColor> _pickedColor = ofFloatColor(0.0, 0.0, 0.0, 0.0);
 
 		private:
 
@@ -41,47 +27,31 @@ namespace fl2d {
 			flBasicImageViewer(flBitmap* bitmap, int w, int h);
 			virtual ~flBasicImageViewer();
 
-			virtual void setup();
+			//virtual void draw();
 
-			bool active();
-			void active(bool value);
-
-			virtual void minimize();
 			virtual void normalize();
 			virtual void maximize();
 			virtual void resize(float w, float h);
 
-			virtual inline float backWidth() { return _backWidth; }
-			virtual inline float backHeight() { return _backHeight; }
-			virtual inline float minBackWidth() { return _minBackWidth; }
-			virtual inline float minBackHeight() { return _minBackHeight; }
-			virtual inline float normalBackWidth() { return _normalBackWidth; }
-			virtual inline float normalBackHeight() { return _normalBackHeight; }
-
-			virtual bool lock() { return _isLocked; }
-			virtual void lock(bool value) {
-				_isLocked = value;
-
-				for (int i = 0; i < numChildren(); i++) {
-					flDisplayObject* displayObject = (flDisplayObject*)getChildAt(i);
-					//ofLog(OF_LOG_VERBOSE) << "displayObject->name() = " << displayObject->name();
-
-					if (displayObject->typeID() == FL_TYPE_UIBASE) {
-						//ofLog(OF_LOG_VERBOSE) << "displayObject.name = " << displayObject->name();
-						((flUIBase*)displayObject)->enabled(_isLocked);
-					}
-				}
-			}
+			bool active();
+			void active(bool value);
 
 			virtual inline float scaleOnActive() { return _scaleOnActive; }
 			virtual inline void scaleOnActive(float value) { _scaleOnActive = value; }
 
+			virtual inline bool colorPickerEnabled() { return _colorPickerEnabled; }
+			virtual inline void colorPickerEnabled(bool value) { _colorPickerEnabled = value; }
+			
+			virtual ofParameter<ofFloatColor>& pickedColor() { return _pickedColor; }
+
 		protected:
 			virtual void _setup();
-			virtual void _update();
+			//virtual void _afterSetup();
+			//virtual void _update();
 			virtual void _draw();
+			virtual void _afterDraw();
 
-			virtual void _updateGraphics(int x, int y);
+			virtual void _updateGraphics(float w, float h);
 
 			virtual void _mouseEventHandler(flEvent& event);
 			virtual void _uiEventHandler(flEvent& event);

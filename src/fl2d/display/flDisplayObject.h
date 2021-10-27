@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashDisplayObject.h
@@ -35,11 +35,13 @@ namespace fl2d {
 
     class flDisplayObjectContainer;
     class flSprite;
+    class flMovieClip;
     class flStage;
     class flDisplayObject : public flEventDispatcher {
         friend flDisplayObjectContainer;
         friend flSprite;
-        friend flStage;
+		friend flMovieClip;
+		friend flStage;
             
         public:
             
@@ -49,6 +51,7 @@ namespace fl2d {
             flDisplayObject* _stage = NULL;
             flDisplayObject* _parent = NULL;
             flDisplayObject* _mask = NULL;
+            flDisplayObject* __maskOwner = NULL;
             
             float _z;
             
@@ -91,6 +94,7 @@ namespace fl2d {
             
         public:
             virtual void setup();
+            virtual void tearDown();
             virtual void update();
             virtual void draw(bool applyMatrix = true);
             
@@ -98,10 +102,8 @@ namespace fl2d {
             virtual void name(string value);
             
             virtual flDisplayObject* stage();
-            virtual void stage(flDisplayObject* value);
-            
+
             virtual flDisplayObject* parent();
-            virtual void parent(flDisplayObject* value);
             
             virtual flDisplayObject* mask();
             virtual void mask(flDisplayObject* value);
@@ -154,9 +156,6 @@ namespace fl2d {
             
             virtual int blendMode();
             virtual void blendMode(int value);
-            
-            virtual int level();
-            virtual void level(int value);
         
             virtual flTransform& transform();
             virtual void transform(const flTransform& value);
@@ -193,8 +192,23 @@ namespace fl2d {
             
             //for override
             virtual void _setup();
+            virtual void _afterSetup();
+
+            virtual void _tearDown();
+
             virtual void _update();
+            virtual void _afterUpdate();
+
             virtual void _draw();
+            virtual void _afterDraw();
+
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void __stage(flDisplayObject* value, bool dispatch = true);
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void __parent(flDisplayObject* value, bool dispatch = true);
+
+			virtual int __level();
+			virtual void __level(int value);
 
 			virtual void _beginDrawingStencil();
 			virtual void _beginUsingStencil();

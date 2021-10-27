@@ -73,7 +73,10 @@ namespace fl2d {
             void weight(float value);
         
             bool roundEnabled();
-            void roundEnabled(bool value);
+            void roundEnabled(bool value);     
+
+            int digit();
+            void digit(int value);
         
             bool invertEnabled();
             void invertEnabled(bool value);

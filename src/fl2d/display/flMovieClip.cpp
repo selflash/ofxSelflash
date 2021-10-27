@@ -219,14 +219,14 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flMovieClip::_addFrameChildren() {
-        for(int i = 0; i < _frame->children.size(); i++) {
+        for(int i = 0; i < _frame->numChildren(); i++) {
             flDisplayObject *child;
-            child = _frame->children[i];
+            child = _frame->children()[i];
             
-            children.push_back(child);
-            child->stage(stage());
-            child->parent(this);
-            child->level(this->level() + 1);
+            _children.push_back(child);
+            child->__stage(stage());
+            child->__parent(this);
+            child->__level(this->__level() + 1);
         }
     }
     

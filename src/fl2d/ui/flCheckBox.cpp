@@ -38,13 +38,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flCheckBox::~flCheckBox() {
+		//_label = NULL;
+
         removeEventListener(flMouseEvent::MOUSE_OVER, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_OUT, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flCheckBox::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_UP, this, &flCheckBox::_mouseEventHandler);
-        
-        delete _label;
-        _label = NULL;
         
         //------------------------------------------
         _boolParam = NULL;
@@ -66,6 +65,7 @@ namespace fl2d {
         flUIBase::_update();
 
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -85,6 +85,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
+	flTextField* flCheckBox::label() { return _label; }
     void flCheckBox::label(flTextField* value) {
         _label = value;
         if (_label == NULL) return;
@@ -320,7 +321,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 13, 15);
+				g->drawRect(1, 3, 12, 12);
                 break;
             case 1:
                 g->enabledSmoothing(true);
@@ -348,7 +349,7 @@ namespace fl2d {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
             case 0:
                 g->enabledSmoothing(false);
-                g->drawRect(1, 3, 13, 15);
+                g->drawRect(1, 3, 12, 12);
                 break;
             case 1:
                 g->enabledSmoothing(true);

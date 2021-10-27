@@ -8,7 +8,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flSprite::flSprite() {
-        //        cout << "[Sprite]Sprite()" << endl;
+        //        ofLog() << "[Sprite]Sprite()";
         
         _typeID = FL_TYPE_SPRITE;
         _target = this;
@@ -31,20 +31,22 @@ namespace fl2d {
         //--------------------------------------
         //Tooltip
         addEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        addEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		addEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		//addEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        //addEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         addEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
     
     //--------------------------------------------------------------
     flSprite::~flSprite() {
-        //        cout << "[flSprite]~flSprite()" << endl;
+        //ofLog() << "[flSprite]~flSprite()";
         
         _target = NULL;
         
         __hitAreaObject = NULL;
         
-        delete _graphics;
+        if(_graphics != NULL) delete _graphics;
         _graphics = NULL;
         
         _buttonMode = false;
@@ -52,20 +54,20 @@ namespace fl2d {
         _hitArea = NULL;
         _useHandCursor = false;
         
-        delete _draggableArea;
+		if (_draggableArea != NULL) delete _draggableArea;
         _draggableArea = NULL;
         
         ofRemoveListener(ofEvents().update, this, &flSprite::_updateEventHandler);
         
         //--------------------------------------
         //Tooltip
-        if(_toolTip != NULL) {
-            delete _toolTip;
-            _toolTip = NULL;
-        }
+        if(_toolTip != NULL) delete _toolTip;
+		_toolTip = NULL;
         
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flSprite::_mouseEventHandler_flSprite);
-        removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		removeEventListener(flMouseEvent::ROLL_OUT, this, &flSprite::_mouseEventHandler_flSprite);
+		//removeEventListener(flMouseEvent::MOUSE_OVER, this, &flSprite::_mouseEventHandler_flSprite);
+        //removeEventListener(flMouseEvent::MOUSE_OUT, this, &flSprite::_mouseEventHandler_flSprite);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSprite::_mouseEventHandler_flSprite);
         //--------------------------------------
     }
@@ -160,7 +162,7 @@ namespace fl2d {
 
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        _graphics->__draw();
+        if(_graphics->drawOrder() == 0) _graphics->__draw();
 
 		//if (parent()) {
 		//	ofSetColor(255, 0, 0, 255 * _compoundAlpha);
@@ -169,13 +171,19 @@ namespace fl2d {
 		//}
 
         _draw();
-        
-        for(int i = 0; i < children.size(); i++){
+
+        for(int i = 0; i < _children.size(); i++){
             flDisplayObject* child;
-            child = children[i];
-            //child->drawOnFrame();
+            child = _children[i];
+			if (child->__maskOwner != NULL) continue;
+			//child->drawOnFrame();
             child->draw();
         }
+
+		if (_graphics->drawOrder() == 1) _graphics->__draw();
+
+		_afterDraw();
+
         ofPopStyle();
         
         //if(!bIdentity) {
@@ -193,7 +201,13 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
-        
+
+		//------------------------------------------
+		if (_mask != NULL) {
+			_endUsingStencil();
+		}
+		//------------------------------------------
+
         //--------------------------------------
         //ヒットエリアの表示
         if(_rectVisible) {
@@ -210,11 +224,15 @@ namespace fl2d {
                 ofSetColor(255, 0, 0, 150);
                 ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
             }
+
+
+
+
 //            {
 //                int i; int l;
-//                l = children.size();
+//                l = _children.size();
 //                for(i = 0; i < l; i++) {
-//                    flDisplayObject* child = children[i];
+//                    flDisplayObject* child = _children[i];
 //                    flRectangle rect = child->getRect(this);
 //                    ofSetColor(0, 255, 0, 150);
 //                    ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
@@ -224,12 +242,6 @@ namespace fl2d {
             ofPopMatrix();
         }
         //--------------------------------------
-
-		//------------------------------------------
-		if (_mask != NULL) {			 
-			_endUsingStencil();
-		}
-		//------------------------------------------
     }
     
     //==============================================================
@@ -257,9 +269,9 @@ namespace fl2d {
     ////        int i; int l;
     ////        DisplayObject* child;
     ////
-    ////        l = children.size();
+    ////        l = _children.size();
     ////        for(i = 0; i < l; i++) {
-    ////            child = children[i];
+    ////            child = _children[i];
     ////            float n1 = child->x();
     ////            _rect->__expandToX(n1);
     ////            _rect->__expandToX(n1 + child->width());
@@ -290,9 +302,9 @@ namespace fl2d {
     ////        int i; int l;
     ////        DisplayObject* child;
     ////        
-    ////        l = children.size();
+    ////        l = _children.size();
     ////        for(i = 0; i < l; i++) {
-    ////            child = children[i];
+    ////            child = _children[i];
     ////            float n2 = child->y();
     ////            _rect->__expandToY(n2);
     ////            _rect->__expandToY(n2 + child->height());
@@ -307,7 +319,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flSprite::width() {
         _updateRect();
-        if(_realWidth == 0.0) return 0.0;
+		if (_mask) return _mask->width();
+        if (_realWidth == 0.0) return 0.0;
         return _realWidth * scaleX();
     }
     void flSprite::width(float value) {
@@ -318,7 +331,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     float flSprite::height() {
         _updateRect();
-        if(_realHeight == 0.0) return 0.0;
+		if (_mask) return _mask->height();
+		if (_realHeight == 0.0) return 0.0;
         return _realHeight * scaleY();
     }
     void flSprite::height(float value) {
@@ -397,6 +411,9 @@ namespace fl2d {
     //--------------------------------------------------------------
     //TODO
     void flSprite::startDrag(bool lockCenter, flRectangle* bounds) {
+		if (_isGrabbed) return;
+		_isGrabbed = true;
+
         _draggableArea = bounds;
 
 		_startDragPoint.x = x();
@@ -417,6 +434,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flSprite::stopDrag() {
+		if (!_isGrabbed) return;
+		_isGrabbed = false;
+
         ofRemoveListener(ofEvents().mouseDragged, this, &flSprite::_mouseDragging);
         
         _draggableArea = NULL;
@@ -477,9 +497,9 @@ namespace fl2d {
         
         {
             int i; int l;
-            l = children.size();
+            l = _children.size();
             for(i = 0; i < l; i++) {
-                flDisplayObject* child = children[i];
+                flDisplayObject* child = _children[i];
                 if(!child->visible()) continue;
                 flRectangle childRect = child->getRect(targetCoordinateSpace);
                 
@@ -540,9 +560,9 @@ namespace fl2d {
         
         {
             int i; int l;
-            l = children.size();
+            l = _children.size();
             for(i = 0; i < l; i++) {
-                flDisplayObject* child = children[i];
+                flDisplayObject* child = _children[i];
                 if(!child->visible()) continue;
                 flRectangle childRect = child->getRect(targetCoordinateSpace);
 
@@ -573,12 +593,12 @@ namespace fl2d {
     //--------------------------------------------------------------
     //Calculate width and height.
     void flSprite::_updateRect() {
-        _rect->__setToRect(*_graphics->__rect);
+        if(_graphics != NULL) _rect->__setToRect(*_graphics->__rect);
         
         int i; int l;
-        l = children.size();
+        l = _children.size();
         for(i = 0; i < l; i++) {
-            flDisplayObject* child = children[i];
+            flDisplayObject* child = _children[i];
             
             //=========================================== Matrix.
             //This the code is moved here from flStage._updateChildrenOne().
@@ -588,10 +608,18 @@ namespace fl2d {
             worldMatrix.concat(child->transform().matrix());
             child->__updateTransform(worldMatrix);
 
-            if(!child->visible()) continue;
-            flRectangle childRect = child->__getRect(this);
-            _rect->__expandTo(childRect.left(), childRect.top());
-            _rect->__expandTo(childRect.right(), childRect.bottom());
+            if(!child->visible()) continue; 
+
+			if (child->mask()) {
+				flRectangle& childRect = child->mask()->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
+			else {
+				flRectangle& childRect = child->__getRect(this);
+				_rect->__expandTo(childRect.left(), childRect.top());
+				_rect->__expandTo(childRect.right(), childRect.bottom());
+			}
         }
        
         _realWidth = _rect->width();
@@ -668,43 +696,86 @@ namespace fl2d {
         //        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*) this)->name();
         //        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
         //        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
-        
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-                    float stageMouseX = stage()->mouseX();
-                    float stageMouseY = stage()->mouseY();
-                    _toolTip->x(stageMouseX + 20);
-                    _toolTip->y(stageMouseY + 10);
-                    ((flDisplayObjectContainer*)stage())->addChild(_toolTip);
-                }
-            }
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			if (target == this) {
+				if (_toolTipEnabled && stage()) {
+					float stageMouseX = stage()->mouseX();
+					float stageMouseY = stage()->mouseY();
+					_toolTip->x(stageMouseX + 20);
+					_toolTip->y(stageMouseY + 10);
+					((flDisplayObjectContainer*)stage())->addChild(_toolTip);
+				}
+			}
         }
         
         //Roll Out
         if(event.type() == flMouseEvent::ROLL_OUT) {
-            if(event.target() == this) {
-                if(_toolTipEnabled) {
-                    if(_toolTip->parent() != NULL) {
-                        ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
-                    }
-                }
-            }
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			if (target == this) {
+				if (_toolTipEnabled && _toolTip->parent()) {
+					((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+				}
+			}
         }
-        
+
+		//Mouse Over
+		if (event.type() == flMouseEvent::MOUSE_OVER) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//if (target == this) {
+			//	if (_toolTipEnabled && stage()) {
+			//		float stageMouseX = stage()->mouseX();
+			//		float stageMouseY = stage()->mouseY();
+			//		_toolTip->x(stageMouseX + 20);
+			//		_toolTip->y(stageMouseY + 10);
+			//		((flDisplayObjectContainer*)stage())->addChild(_toolTip);
+			//	}
+			//}
+		}
+
+		//Mouse Out
+		if (event.type() == flMouseEvent::MOUSE_OUT) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
+			//if (target == this) {
+			//	if (_toolTipEnabled && _toolTip->parent()) {
+			//		((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
+			//	}
+			//}
+		}
+
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
-            if(_toolTipEnabled) {
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+			
+			if(_toolTipEnabled) {
                 if(_toolTip->parent() != NULL) {
-                    ((flDisplayObjectContainer*)stage())->removeChild(_toolTip);
+                    ((flDisplayObjectContainer*)_toolTip->parent())->removeChild(_toolTip);
                 }
             }
         }
         
         //Mouse Up
         if(event.type() == flMouseEvent::MOUSE_UP) {
-            
+			flMouseEvent& mouseEvent = *(flMouseEvent*) &event;
+			void* target = event.target();
+			void* currentTarget = event.currentTarget();
+
         }
     }
     

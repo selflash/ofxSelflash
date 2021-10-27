@@ -28,7 +28,7 @@ namespace fl2d {
         public:
         
         protected:
-            flGraphics* _graphics;
+            flGraphics* _graphics = NULL;
         
             flSprite* __hitAreaObject = NULL;
         
@@ -47,6 +47,7 @@ namespace fl2d {
 
 			ofPoint _draggablePoint;
             flRectangle* _draggableArea = NULL;
+			bool _isGrabbed = false;
         
             bool _buttonMode;
             flDisplayObject* _dropTarget = NULL;
@@ -95,6 +96,7 @@ namespace fl2d {
             //void startDrag(bool lockCenter = false, flRectangle bounds = NULL);
             virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
             virtual void stopDrag();
+			virtual inline bool isGrabbed() { return _isGrabbed; }
 
 			virtual ofPoint startDragPoint() { return _startDragPoint; }
         

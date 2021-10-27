@@ -56,6 +56,38 @@ namespace flinternal {
             inline static float getAngle(ofVec2f point) {
                 return getDeg(point.x, point.y);
             }
+
+			inline static void mapImageSizeToFrameSize(
+				const float srcWidth, const float srcHeight,
+				const float frameWidth, const float frameHeight,
+				float& dstWidth, float& dstHeight
+			) {
+				//ウインドウの横幅と縦幅どちらが大きいか？
+				if (frameWidth < frameHeight) {
+					//横幅に縦幅を合わせる
+					dstWidth = frameWidth;
+					dstHeight = (srcHeight / srcWidth) * dstWidth;
+
+					//縦幅がウインドウの縦幅より大きくなったら
+					if (frameWidth < dstWidth) {
+						//縦幅に横幅を合わせる
+						dstHeight = frameHeight;
+						dstWidth = (srcWidth / srcHeight) * dstHeight;
+					}
+				}
+				else {
+					//縦幅に横幅を合わせる
+					dstHeight = frameHeight;
+					dstWidth = (srcWidth / srcHeight) * dstHeight;
+
+					//横幅がウインドウの横幅より大きくなったら
+					if (frameWidth < dstWidth) {
+						//横幅に縦幅を合わせる
+						dstWidth = frameWidth;
+						dstHeight = (srcHeight / srcWidth) * dstWidth;
+					}
+				}
+			}
             
         private:
             flmath() { };

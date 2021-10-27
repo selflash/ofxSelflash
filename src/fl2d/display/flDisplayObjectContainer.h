@@ -19,13 +19,13 @@ namespace fl2d {
     class flDisplayObjectContainer : public flInteractiveObject {
         
         public:
-            vector<flDisplayObject*> children;
         
         protected:
-        
+			vector<flDisplayObject*> _children;
+			bool _mouseChildren;
+			//bool _tabChildren;
+
         private:
-            bool _mouseChildren;
-            //bool _tabChildren;
         
         public:
             virtual void update();
@@ -33,11 +33,12 @@ namespace fl2d {
         
             bool mouseChildren();
             void mouseChildren(bool value);
+
+			vector<flDisplayObject*>& children() { return _children; }
             int numChildren();
             virtual bool contains(flDisplayObject* child);
         
             virtual flDisplayObject* stage();
-            virtual void stage(flDisplayObject* value);
         
             virtual flDisplayObject* addChild(flDisplayObject* child);
             virtual flDisplayObject* addChild(flDisplayObject* child, int x, int y);
@@ -59,11 +60,18 @@ namespace fl2d {
             flDisplayObjectContainer();
             virtual ~flDisplayObjectContainer();
         
+			//本来は読み取り専用にしたい。なのでflDisplayObjectContainerからは呼び出すな！
+			virtual void __stage(flDisplayObject* value, bool dispatch = true);
+
             virtual void _updateRect();
         
             bool _hasChildren(flDisplayObject* displayObject);
         
+			virtual void _childEventHandler(flEvent& event);
+
         private:
+			virtual flDisplayObject* _removeChild(flDisplayObject* child);
+
     };
     
 }

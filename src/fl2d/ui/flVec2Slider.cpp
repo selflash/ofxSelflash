@@ -8,10 +8,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flVec2Slider::flVec2Slider(
-                           float width_,
-                           float xMin, float xMax, float defaultXValue,
-                           float yMin, float yMax, float defaultYValue
-                           ) {
+		float width_,
+        float xMin, float xMax, float defaultXValue,
+        float yMin, float yMax, float defaultYValue
+	) {
         //ofLog() << "[flVec2Slider]flVec2Slider()";
 
         _target = this;
@@ -76,20 +76,32 @@ namespace fl2d {
     flVec2Slider::~flVec2Slider() {
         //ofLog() << "[flVec2Slider]~flVec2Slider()";
         
-        xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
-        delete xSlider;
-        xSlider = NULL;
-        
-        ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
-        delete ySlider;
-        ySlider = NULL;
-        
-        delete _xLabel;
-        _xLabel = NULL;
-        
-        delete _yLabel;
-        _yLabel = NULL;
-        
+		if (xSlider != NULL) {
+			removeChild(xSlider);
+			xSlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
+			delete xSlider;
+			xSlider = NULL;
+		}
+
+		if (ySlider != NULL) {
+			removeChild(ySlider);
+			ySlider->removeEventListener(flSliderEvent::CHANGE, this, &flVec2Slider::_eventHandler);
+			delete ySlider;
+			ySlider = NULL;
+		}
+
+		if (_xLabel != NULL) {
+			removeChild(_xLabel);
+			delete _xLabel;
+			_xLabel = NULL;
+		}
+
+		if (_yLabel != NULL) {
+			removeChild(_yLabel);
+			delete _yLabel;
+			_yLabel = NULL;
+		}
+
         //------------------------------------------
         _vec2Param = NULL;
         _listeners.unsubscribeAll();
@@ -110,6 +122,7 @@ namespace fl2d {
         flUIBase::_update();
 
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

@@ -22,8 +22,8 @@ namespace fl2d {
         } else {
             _range = _min - _max;
         }
-        _value = defaultValue;
-        //------------------------------------------
+		_value = defaultValue;
+		//------------------------------------------
 
         //------------------------------------------
         _normalBarColor.setHex(flDefinition::UI_NORMAL_COLOR.getHex());
@@ -102,23 +102,35 @@ namespace fl2d {
         //ofLog() << "[flSlider]~flSlider()";
         
         //------------------------------------------
-        track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
-        track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
-        track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
-        delete track;
-        track = NULL;
+		if (thumb != NULL) {
+			track->removeChild(thumb);
+			thumb->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
+			thumb->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
+			thumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
+			delete thumb;
+			thumb = NULL;
+		}
+
+		if (bar != NULL) {
+			track->removeChild(bar);
+			delete bar;
+			bar = NULL;
+		}
+
+		if (track != NULL) {
+			removeChild(track);
+			track->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
+			track->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
+			track->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
+			delete track;
+			track = NULL;
+		}
         
-        delete bar;
-        bar = NULL;
-        
-        thumb->removeEventListener(flMouseEvent::ROLL_OVER, this, &flSlider::_mouseEventHandler);
-        thumb->removeEventListener(flMouseEvent::ROLL_OUT, this, &flSlider::_mouseEventHandler);
-        thumb->removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flSlider::_mouseEventHandler);
-        delete thumb;
-        thumb = NULL;
-        
-        delete _valueText;
-        _valueText = NULL;
+		if (_valueText != NULL) {
+			removeChild(_valueText);
+			delete _valueText;
+			_valueText = NULL;
+		}
         //------------------------------------------
 
         //------------------------------------------
@@ -146,6 +158,7 @@ namespace fl2d {
         }
         
         _bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -246,16 +259,16 @@ namespace fl2d {
     //--------------------------------------------------------------
 	ofParameter<float>& flSlider::max() { return _max; }
     void flSlider::max(float value, bool dispatch) {
-        _max = value;
+		_max = value;
         if(_max > _min) {
             _range = _max - _min;
         } else {
             _range = _min - _max;
         }
-        
+
         _percent = _barWidth / _trackWidth;
         
-        float preValue = _value;
+		float preValue = _value;
         _value = _range * _percent + _min;
         if(_roundEnabled) _value = flmath::roundd(_range * _percent + _min);
 
@@ -478,7 +491,7 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flSlider::_onPress() {
-        float preValue = _value;
+		float preValue = _value;
 
         //------------------------------------------
         float temp = mouseX() - _draggablePoint.x;
@@ -492,13 +505,13 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(_max > _min) {
+		if(_max > _min) {
             _value = (_range * _percent) + _min;
         } else {
             _value = _min - (_range * _percent);
         }
         if(_roundEnabled) _value = flmath::roundd(_value);
-        
+
         _barWidth = thumb->x() + _thumbWidth * 0.5;
         //------------------------------------------
         
@@ -640,6 +653,8 @@ namespace fl2d {
 //        ofLog() << "[flSlider]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
 //        ofLog() << "[flSlider]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
+
+
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
             if(event.target() == track) _onTrackOver();

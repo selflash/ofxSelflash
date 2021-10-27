@@ -31,7 +31,7 @@ namespace fl2d {
         //スクロールバーを持たないドロップダウンリストに表示できる最大行数を取得または設定します。
         int _rowCount = 0;
         //単一選択リストで選択されたアイテムのインデックスを取得または設定します。
-		ofParameter<int> _selectedIndex = 0;
+		ofParameter<int> _selectedIndex = -1;
         //------------------------------------------
         
         //------------------------------------------
@@ -133,7 +133,7 @@ namespace fl2d {
         void removeItemByIndex(int index);
 //        inline void removeItemByIndex(int index) {
 //            //--------------------------------------
-//            //children()の箇所はリファクタリングとかで外に出したらダメ
+//            //_children()の箇所はリファクタリングとかで外に出したらダメ
 //            if(index < 0 || index > _buttonList.size() - 1) return;
 //
 //            flButton* button = _buttonList[index];
@@ -235,7 +235,7 @@ namespace fl2d {
 //            void removeItemAt(const int& index);
 //            void replaceItemAt();
 //            void sortItems();
-        void removeAllItems();
+        void removeAllItems(bool dispatch = true);
         
         //0から始まるインデックス番号
 		ofParameter<int>& selectedIndex();
@@ -245,7 +245,10 @@ namespace fl2d {
         string selectedLabel();
         
         template <class T>
-        T selectedValue() { return _selectedItem->getProperty<T>("value"); }
+        T selectedValue() { 
+			//if (!_selectedItem) return 0;
+			return _selectedItem->getProperty<T>("value");
+		}
         
         int numItems();        
         

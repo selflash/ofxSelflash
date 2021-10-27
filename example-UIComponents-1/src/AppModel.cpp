@@ -37,7 +37,7 @@ AppModel::AppModel() {
 //--------------------------------------------------------------
 void AppModel::_setup() {
 //    ofLog() << "[AppModel]setup()";
-
+	flBasicDraggableObject::_setup();
 }
 
 //--------------------------------------------------------------

@@ -44,13 +44,22 @@ namespace fl2d {
     flButton::~flButton() {
 //        ofLog() << "[flButton]~flButton()";
         
+		if (stage() && stage()->hasEventListener(flMouseEvent::MOUSE_UP)) {
+			stage()->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+		}
+
         removeEventListener(flMouseEvent::ROLL_OVER, this, &flButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::ROLL_OUT, this, &flButton::_mouseEventHandler);
         removeEventListener(flMouseEvent::MOUSE_DOWN, this, &flButton::_mouseEventHandler);
         //removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
         
-        delete _buttonLabel;
-        _buttonLabel = NULL;
+		//_label = NULL;
+
+		if (_buttonLabel != NULL) {
+			if (contains(_buttonLabel)) removeChild(_buttonLabel);
+			delete _buttonLabel;
+			_buttonLabel = NULL;
+		}
         
         _pointerValue = NULL;
         
@@ -73,7 +82,13 @@ namespace fl2d {
     void flButton::_update() {
         flUIBase::_update();
 
-        _bChangedByOfParm["value"] = false;
+		if (!_toggleEnabled) {
+			if (_boolParam) {
+				if (_bChangedByMyself["value"]) _boolParam->setWithoutEventNotifications(false);
+			}
+		}
+		_bChangedByOfParm["value"] = false;
+		_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------
@@ -92,6 +107,34 @@ namespace fl2d {
     // Public Method
     //==============================================================
     
+	//--------------------------------------------------------------
+	flDisplayObject* flButton::stage() { return _stage; }
+	void flButton::stage(flDisplayObject* value) {
+		//cout << "[flButton]stage(" << value << ")" << name() << endl;
+
+		//今までステージへの参照がもっていなくてvalueにステージへの参照が入る時
+		if (!_stage && value) {
+			_stage = value;
+
+			flEvent* event = new flEvent(flEvent::ADDED_TO_STAGE);
+			//            event->target(_target);
+			//            event->_target = _target;
+			dispatchEvent(event);
+		}
+		//既にステージへの参照がもっていてvalueにステージへの参照がなくなる時
+		if (_stage && !value) {
+			if (_stage->hasEventListener(flMouseEvent::MOUSE_UP)) {
+				_stage->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
+			}
+
+			_stage = value;
+
+			flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+			//            event->target(_target);
+			dispatchEvent(event);
+		}
+	}
+
     //--------------------------------------------------------------
     void flButton::label(flTextField* value) {
         _label = value;
@@ -322,6 +365,15 @@ namespace fl2d {
 			//------------------------------------------
         } else {
             _setActiveColor();
+
+			//------------------------------------------
+			if (!_bChangedByOfParm["value"]) {
+				if (_boolParam != NULL) {
+					_bChangedByMyself["value"] = true;
+					_boolParam->set(true);
+				}
+			}
+			//------------------------------------------
         }
         
         flButtonEvent* event = new flButtonEvent(flButtonEvent::MOUSE_DOWN);
@@ -367,7 +419,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
-    }
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
+				}
+			}	
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_NORMAL_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setOverColor() {
@@ -376,7 +443,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
-    }
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setSelectedOverColor() {
@@ -385,7 +467,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
-    }
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_OVER_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setActiveColor() {
@@ -394,7 +491,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
-    }
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_ACTIVE_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_ACTIVE_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setDisableNormalColor() {
@@ -403,7 +515,22 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
-    }
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR.getHex());
+				}
+			}
+		}
+	}
     
     //--------------------------------------------------------------
     void flButton::_setDisableActiveColor() {
@@ -412,6 +539,21 @@ namespace fl2d {
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
         _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
+
+		for (auto& child : _children) {
+			if (flUtil::isSprite(child)) {
+				flGraphics* g = ((flSprite*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR.getHex());
+				}
+			}
+			if (flUtil::isShape(child)) {
+				flGraphics* g = ((flShape*)child)->graphics();
+				if (g) {
+					g->color(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR.getHex());
+				}
+			}
+		}
     }
     
     //--------------------------------------------------------------
@@ -427,14 +569,24 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Event Handler
     //==============================================================
-    
+
+	//--------------------------------------------------------------
+	void flButton::_eventHandler(flEvent& event) {
+		//ofLog() << "[flButton]_eventHandler(" << event.type() << ")";
+		//ofLog() << "[flButton]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flButton]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+
+
+	}
+
     //--------------------------------------------------------------
     void flButton::_mouseEventHandler(flEvent& event) {
         if(!_enabled) return;
-//        ofLog() << "[flButton]_mouseEventHandler(" << event.type() << ")";
-//        ofLog() << "[flButton]this          = " << this << "," << ((DisplayObject*) this)->name();
-//        ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((DisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flButton]target        = " << event.target() << "," << ((DisplayObject*) event.target())->name();
+		//ofLog() << "[flButton]_mouseEventHandler(" << event.type() << ")";
+		//ofLog() << "[flButton]this          = " << this << "," << ((flDisplayObject*)this)->name();
+		//ofLog() << "[flButton]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
+		//ofLog() << "[flButton]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
@@ -449,11 +601,11 @@ namespace fl2d {
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
 			if (event.target() == this) {
-				_onPress();
 				//addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
 				if (stage()) {
 					stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
 				}
+				_onPress();
 			}
         }
         

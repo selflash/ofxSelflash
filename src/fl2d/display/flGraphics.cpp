@@ -100,7 +100,7 @@ namespace fl2d {
     //==============================================================
     // Public Method
     //==============================================================
-    
+
     //--------------------------------------------------------------
     void flGraphics::lineStyle(float thickness, int color, float alpha) {
         DrawCommand* command = new DrawCommand();
@@ -218,7 +218,37 @@ namespace fl2d {
         
         _commandList.push_back(command);
     }
-    
+
+	//--------------------------------------------------------------
+	void flGraphics::style(float thickness, int color, float alpha) {
+		for (auto& command : _commandList) {
+			command->thickness = thickness;
+			command->color = color;
+			command->alpha = alpha;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::color(int value) {
+		for (auto& command : _commandList) {
+			command->color = value;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::thickness(float value) {
+		for (auto& command : _commandList) {
+			command->thickness = value;
+		}
+	}
+
+	//--------------------------------------------------------------
+	void flGraphics::alpha(float value) {
+		for (auto& command : _commandList) {
+			command->alpha = value;
+		}
+	}
+
     //--------------------------------------------------------------
     void flGraphics::clear() {
         //        DrawCommand* command = new DrawCommand();
@@ -319,7 +349,7 @@ namespace fl2d {
         if(_fillEnabled) {
             ofFill();
             ofSetColor(_fillColor);
-            //ofSetCircleResolution(128);
+            ofSetCircleResolution(256);
             ofDrawCircle(x, y, radius);
         }
         
@@ -327,7 +357,7 @@ namespace fl2d {
             ofNoFill();
             ofSetLineWidth(_thickness);
             ofSetColor(_lineColor);
-            //ofSetCircleResolution(128);
+            ofSetCircleResolution(256);
             ofDrawCircle(x, y, radius);
             ofFill();
         }
@@ -363,10 +393,10 @@ namespace fl2d {
 
 			ofSetLineWidth(_thickness);
 			ofSetColor(_lineColor);
-			ofDrawLine(x, y, width, y);
-			ofDrawLine(x, height, width, height);
-			ofDrawLine(x, y, x, height);
-			ofDrawLine(width, y, width, height);
+			ofDrawLine(x, y, x + width, y);
+			ofDrawLine(x + width, y, x + width, y + height);
+			ofDrawLine(x + width, y + height, x - 1, y + height);
+			ofDrawLine(x, y + height, x, y);
         }
         
         ofPopStyle();
