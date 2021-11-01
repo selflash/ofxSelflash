@@ -21,7 +21,7 @@ namespace fl2d {
 		_defaultImageHeight = h;
 		_bitmap = bitmap;
 
-		_dragEnabled = false;
+		dragEnabled(false);
 	}
 
 	//--------------------------------------------------------------
