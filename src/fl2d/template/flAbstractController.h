@@ -656,7 +656,16 @@ namespace fl2d {
 			flRangeSlider* rangeSlider340 = NULL; flRangeSlider* rangeSlider341 = NULL; flRangeSlider* rangeSlider342 = NULL; flRangeSlider* rangeSlider343 = NULL;
 			flRangeSlider* rangeSlider344 = NULL; flRangeSlider* rangeSlider345 = NULL; flRangeSlider* rangeSlider346 = NULL; flRangeSlider* rangeSlider347 = NULL;
 			flRangeSlider* rangeSlider348 = NULL; flRangeSlider* rangeSlider349 = NULL;
-			//レンジスライダー(400)
+            flRangeSlider* rangeSlider350 = NULL; flRangeSlider* rangeSlider351 = NULL; flRangeSlider* rangeSlider352 = NULL; flRangeSlider* rangeSlider353 = NULL;
+            flRangeSlider* rangeSlider354 = NULL; flRangeSlider* rangeSlider355 = NULL; flRangeSlider* rangeSlider356 = NULL; flRangeSlider* rangeSlider357 = NULL;
+            flRangeSlider* rangeSlider358 = NULL; flRangeSlider* rangeSlider359 = NULL;
+            flRangeSlider* rangeSlider360 = NULL; flRangeSlider* rangeSlider361 = NULL; flRangeSlider* rangeSlider362 = NULL; flRangeSlider* rangeSlider363 = NULL;
+            flRangeSlider* rangeSlider364 = NULL; flRangeSlider* rangeSlider365 = NULL; flRangeSlider* rangeSlider366 = NULL; flRangeSlider* rangeSlider367 = NULL;
+            flRangeSlider* rangeSlider368 = NULL; flRangeSlider* rangeSlider369 = NULL;
+            flRangeSlider* rangeSlider370 = NULL; flRangeSlider* rangeSlider371 = NULL; flRangeSlider* rangeSlider372 = NULL; flRangeSlider* rangeSlider373 = NULL;
+            flRangeSlider* rangeSlider374 = NULL; flRangeSlider* rangeSlider375 = NULL; flRangeSlider* rangeSlider376 = NULL; flRangeSlider* rangeSlider377 = NULL;
+            flRangeSlider* rangeSlider378 = NULL; flRangeSlider* rangeSlider379 = NULL;
+            //レンジスライダー(400)
             flRangeSlider* rangeSlider400 = NULL; flRangeSlider* rangeSlider401 = NULL; flRangeSlider* rangeSlider402 = NULL; flRangeSlider* rangeSlider403 = NULL;
             flRangeSlider* rangeSlider404 = NULL; flRangeSlider* rangeSlider405 = NULL; flRangeSlider* rangeSlider406 = NULL; flRangeSlider* rangeSlider407 = NULL;
             flRangeSlider* rangeSlider408 = NULL; flRangeSlider* rangeSlider409 = NULL;
