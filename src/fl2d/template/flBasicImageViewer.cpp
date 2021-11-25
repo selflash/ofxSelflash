@@ -88,7 +88,7 @@ namespace fl2d {
 				flFont::drawString(_title + "  " + str, 6, 20);
 				ofPopStyle();
 			}
-			else {
+			else if (_isActive) {
 				ofPushStyle();
 				ofSetColor(255, 255, 255, 255);
 				flFont::drawString(_title, 6, 20);
