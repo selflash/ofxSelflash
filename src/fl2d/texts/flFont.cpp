@@ -29,7 +29,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    void flFont::loadFont(int fontSize) {
+    void flFont::loadFontSize(int fontSize) {
         if (_fonts.find(fontSize) == _fonts.end()) {
             ofTrueTypeFont font;
             _loadFont(font, flDefinition::_FONT_PATH, fontSize);
