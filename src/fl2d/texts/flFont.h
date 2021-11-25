@@ -22,7 +22,7 @@ namespace fl2d {
 
         static void setup();
         static void clear();
-        static void loadFont(int fontSize);
+        static void loadFontSize(int fontSize);
 //        static void registFont(ofTrueTypeFont font);
 
         static void drawString(const string& text);
