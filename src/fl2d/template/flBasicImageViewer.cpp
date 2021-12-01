@@ -84,13 +84,13 @@ namespace fl2d {
 				str += "B : " + ofToString(ofMap(_pickedColor.get().b, 0.0, 1.0, 0, 255)) + " ";
 
 				ofPushStyle();
-				ofSetColor(255, 255, 255, 255);
+				ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 				flFont::drawString(_title + "  " + str, 6, 20);
 				ofPopStyle();
 			}
 			else if (_isActive) {
 				ofPushStyle();
-				ofSetColor(255, 255, 255, 255);
+				ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 				flFont::drawString(_title, 6, 20);
 				ofPopStyle();
 			}
@@ -98,7 +98,7 @@ namespace fl2d {
 		else {
 			if (_isActive && _colorPickerEnabled) {
 				ofPushStyle();
-				ofSetColor(255, 255, 255, 255);
+				ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 				string str = "";
 				str += "R : " + ofToString(ofMap(_pickedColor.get().r, 0.0, 1.0, 0, 255)) + " ";
 				str += "G : " + ofToString(ofMap(_pickedColor.get().g, 0.0, 1.0, 0, 255)) + " ";
@@ -115,7 +115,7 @@ namespace fl2d {
 		flBasicUIWindow::_afterDraw();
 
 		ofPushStyle();
-		ofSetColor(255, 255, 255);
+		ofSetColor(flDefinition::UI_BORDER_NORMAL_COLOR);
 		ofDrawLine(0, 0, _windowWidth, 0);
 		ofDrawLine(_windowWidth, 0, _windowWidth, _windowHeight);
 		ofDrawLine(_windowWidth, _windowHeight, 0, _windowHeight);

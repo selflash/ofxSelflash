@@ -25,7 +25,7 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
@@ -38,7 +38,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
@@ -338,10 +338,10 @@ namespace fl2d {
         g = graphics();
         g->clear();
         if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         }
         g->drawCircle(_center->x, _center->y, _areaRadius);
@@ -355,10 +355,10 @@ namespace fl2d {
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
         if(_enabled) {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
             g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         }
         g->drawCircle(0, 0, _leverRadius);
@@ -377,7 +377,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_OVER_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
@@ -390,7 +390,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
@@ -417,7 +417,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_OVER_COLOR.getHex());
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
@@ -436,7 +436,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex());
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
@@ -453,7 +453,7 @@ namespace fl2d {
         //------------------------------------------
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_ACTIVE_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_ACTIVE_COLOR.getHex());
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(_center->x, _center->y, _areaRadius);
         g->endFill();
@@ -464,7 +464,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->beginFill(flDefinition::UI_ACTIVE_COLOR.getHex());
         g->drawCircle(0, 0, _leverRadius);
         g->endFill();
@@ -482,9 +482,9 @@ namespace fl2d {
         g = graphics();
         g->clear();
         if(isMouseOver()) {
-            g->lineStyle(1, flDefinition::UI_LINE_OVER_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_OVER_COLOR.getHex());
         } else {
-            g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+            g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         }
         g->beginFill(flDefinition::UI_NORMAL_COLOR.getHex(), 1);
         g->drawCircle(_center->x, _center->y, _areaRadius);
@@ -496,7 +496,7 @@ namespace fl2d {
         g->clear();
         g->beginFill(0xff0000, 0);
         g->drawCircle(0, 0, _leverRadius * 1.8);
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         if(lever->isMouseOver()) {
             g->beginFill(flDefinition::UI_OVER_COLOR.getHex());
         } else {

@@ -54,7 +54,7 @@ namespace fl2d {
     void flToolTip::_draw() {
         //--------------------------------------
         ofPushStyle();
-        ofSetColor(255, 255, 255);
+        ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         flFont::drawString(_text, 10, 3, _fontHeight - 2);
         ofPopStyle();
         //--------------------------------------
@@ -86,9 +86,9 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->beginFill(0x000000, 0.75);
+        g->beginFill(flDefinition::UI_WINDOW_BACKGROUND_COLOR);
         g->drawRect(0, 0, w, h);
-        g->lineStyle(1, 0xffffff);
+        g->lineStyle(1, flDefinition::UI_WINDOW_BORDER_COLOR);
         g->moveTo(-1, -1);
         g->lineTo(w + 1, -1);
         g->lineTo(w + 1, h + 1);

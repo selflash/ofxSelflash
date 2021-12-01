@@ -24,7 +24,7 @@ namespace fl2d {
         g = graphics();
         g->enabledSmoothing(true);
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
         
@@ -183,7 +183,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }
@@ -218,7 +218,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawCircle(_radius + 2, _radius + 1.5, _radius);
         g->endFill();
     }

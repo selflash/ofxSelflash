@@ -21,7 +21,7 @@ namespace fl2d {
 //        flGraphics* g;
 //        g = graphics();
 //        g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
 //        g->drawRect(0, 0, _uiWidth, _uiHeight);
 //        g->endFill();
         //------------------------------------------
@@ -246,27 +246,27 @@ namespace fl2d {
     void flRadioButton::_setNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex());
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR.getHex());
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setSelectedOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
         
     }
     
     //--------------------------------------------------------------
     void flRadioButton::_setActiveColor() {
         _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR_2);
-        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
         
     }
     
@@ -274,7 +274,7 @@ namespace fl2d {
     void flRadioButton::_setDisableNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -282,7 +282,7 @@ namespace fl2d {
 //        _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         _label->textColor(flDefinition::UI_DISABLE_ACTIVE_COLOR);
 
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------

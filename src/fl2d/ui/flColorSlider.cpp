@@ -21,7 +21,7 @@ namespace fl2d {
         g = graphics();
 //        g->enabledSmoothing(true);
         g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         if(alphaEnabled) {
             g->drawRect(0, 0, width_, 18 * 4 + 2 * 3);
         } else {
@@ -148,7 +148,7 @@ namespace fl2d {
         g = graphics();
         //        g->enabledSmoothing(true);
         g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawRect(0, 0, width, 18 * 3 + 2 * 2);
         g->endFill();
         //------------------------------------------
@@ -249,7 +249,7 @@ namespace fl2d {
         g = graphics();
         //        g->enabledSmoothing(true);
         g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawRect(0, 0, width, 18 * 4 + 2 * 3);
         g->endFill();
         //------------------------------------------
@@ -363,7 +363,7 @@ namespace fl2d {
         g = graphics();
         //        g->enabledSmoothing(true);
         g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawRect(0, 0, width, 18 * 4 + 2 * 3);
         g->endFill();
         //------------------------------------------

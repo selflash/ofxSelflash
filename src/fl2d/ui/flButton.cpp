@@ -418,7 +418,7 @@ namespace fl2d {
         
         _buttonLabel->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
@@ -442,7 +442,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_OVER_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
@@ -466,7 +466,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_OVER_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
@@ -490,7 +490,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
@@ -514,7 +514,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {
@@ -538,7 +538,7 @@ namespace fl2d {
 
         _buttonLabel->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
 
 		for (auto& child : _children) {
 			if (flUtil::isSprite(child)) {

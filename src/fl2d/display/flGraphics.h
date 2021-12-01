@@ -92,8 +92,10 @@ namespace fl2d {
             flGraphics();
             virtual ~flGraphics();
         
+            void lineStyle(float thickness, ofColor color);
             void lineStyle(float thickness, int color = 0, float alpha = 1.0);
         
+            void beginFill(ofColor color);
             void beginFill(int color, float alpha = 1.0);
             void endFill();
         

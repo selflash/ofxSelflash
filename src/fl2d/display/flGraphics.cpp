@@ -102,6 +102,17 @@ namespace fl2d {
     //==============================================================
 
     //--------------------------------------------------------------
+    void flGraphics::lineStyle(float thickness, ofColor color) {
+        DrawCommand* command = new DrawCommand();
+        command->type = FL_COMMAND_LINESTYLE;
+        command->thickness = thickness;
+        command->color = color.getHex();
+        command->alpha = (float)color.a / 255.0;
+        
+        _commandList.push_back(command);    
+    }
+
+    //--------------------------------------------------------------
     void flGraphics::lineStyle(float thickness, int color, float alpha) {
         DrawCommand* command = new DrawCommand();
         command->type = FL_COMMAND_LINESTYLE;
@@ -111,6 +122,16 @@ namespace fl2d {
         
         _commandList.push_back(command);    
     }
+    
+    //--------------------------------------------------------------
+    void flGraphics::beginFill(ofColor color) {
+        DrawCommand* command = new DrawCommand();
+        command->type = FL_COMMAND_BEGIN_FILL;
+        command->color = color.getHex();
+        command->alpha = (float)color.a / 255.0;
+        
+        _commandList.push_back(command);
+    }    
     
     //--------------------------------------------------------------
     void flGraphics::beginFill(int color, float alpha) {

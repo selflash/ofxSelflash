@@ -569,8 +569,8 @@ namespace fl2d {
         _ratioText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         
-        _drawAreaGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawLeverGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        _drawAreaGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -580,8 +580,8 @@ namespace fl2d {
         _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        _drawAreaGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR);
-        _drawLeverGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR);
+        _drawAreaGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_NORMAL_COLOR);
+        _drawLeverGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_OVER_COLOR);
     }
     
     //--------------------------------------------------------------
@@ -591,8 +591,8 @@ namespace fl2d {
         _ratioText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         
-        _drawAreaGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawLeverGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR, 1);
+        _drawAreaGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_OVER_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -602,8 +602,8 @@ namespace fl2d {
         _ratioText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _valueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         
-        _drawAreaGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawLeverGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
+        _drawAreaGraphics(flDefinition::UI_BORDER_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawLeverGraphics(flDefinition::UI_BORDER_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------

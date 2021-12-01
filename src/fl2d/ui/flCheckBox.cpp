@@ -272,37 +272,37 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flCheckBox::_setNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
     void flCheckBox::_setOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex());
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR.getHex());
     }
     
     //--------------------------------------------------------------
     void flCheckBox::_setSelectedOverColor() {
         _label->textColor(flDefinition::UI_LABEL_OVER_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_OVER_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
     void flCheckBox::_setActiveColor() {
         _label->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR_2);
-        _drawGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR);
     }
     
     //--------------------------------------------------------------
     void flCheckBox::_setDisableNormalColor() {
         _label->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_NORMAL_COLOR);
     }
     
     //--------------------------------------------------------------
     void flCheckBox::_setDisableActiveColor() {
         _label->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
-        _drawGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR);
+        _drawGraphics(flDefinition::UI_BORDER_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR);
     }
 
     //--------------------------------------------------------------

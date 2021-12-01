@@ -25,7 +25,7 @@ namespace fl2d {
         flGraphics* g;
         g = graphics();
         g->clear();
-//        g->lineStyle(1, f lDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, f lDefinition::UI_BORDER_NORMAL_COLOR.getHex());
         g->drawRect(0, 0, width_, 18 * 3 + 2 * 2);
         g->endFill();
         //------------------------------------------
