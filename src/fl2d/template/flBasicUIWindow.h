@@ -55,6 +55,9 @@ namespace fl2d {
 			bool _resizable = false;
 			flBasicDraggableObject* _sizingHandle = NULL;
 
+			vector<int> _verticalLinePosList;
+			vector<int> _horizontalLinePosList;
+
 		private:
         
 		public:
@@ -99,6 +102,9 @@ namespace fl2d {
 			virtual void _afterSetup();
 			virtual void _update();
 			virtual void _draw();
+
+			virtual void _drawVerticalLine(int x);
+			virtual void _drawHorizontalLine(int y);
 
 			virtual void _relocateTitleBarButtons();
 

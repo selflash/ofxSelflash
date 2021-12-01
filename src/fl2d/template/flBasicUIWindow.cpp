@@ -449,6 +449,14 @@ namespace fl2d {
 		_normalGraphics.lineStyle(1, 0xffffff);
 		_normalGraphics.beginFill(0x000000, 0.7);
 		_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
+		for (auto x : _verticalLinePosList) {
+			_normalGraphics.moveTo(x, 0);
+			_normalGraphics.lineTo(x, _defaultWindowHeight);
+		}
+		for (auto y : _horizontalLinePosList) {
+			_normalGraphics.moveTo(0, y);
+			_normalGraphics.lineTo(_defaultWindowWidth, y);
+		}
 		_normalGraphics.endFill();
 		//--------------------------------------
 
@@ -484,7 +492,17 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Method
     //==============================================================
- 
+
+	//--------------------------------------------------------------
+	void flBasicUIWindow::_drawVerticalLine(int x) {
+		_verticalLinePosList.push_back(x);
+	}
+
+	//--------------------------------------------------------------
+	void flBasicUIWindow::_drawHorizontalLine(int y) {
+		_horizontalLinePosList.push_back(y);
+	}
+
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_relocateTitleBarButtons() {
 		float w = _windowWidth;
