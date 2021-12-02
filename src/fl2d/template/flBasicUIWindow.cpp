@@ -256,7 +256,7 @@ namespace fl2d {
 
 		if (_title != "") {
 			ofPushStyle();
-			ofSetColor(255, 255, 255, 255);
+			ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 			flFont::drawString(_title, 6, 20);
 			ofPopStyle();
 		}
@@ -328,8 +328,8 @@ namespace fl2d {
 		_windowHeight = ofGetHeight();
 
 		_maximumGraphics.clear();
-		_maximumGraphics.lineStyle(1, 0xffffff);
-		_maximumGraphics.beginFill(0x000000, 0.7);
+		_maximumGraphics.lineStyle(1, flDefinition::UI_WINDOW_BORDER_COLOR);
+		_maximumGraphics.beginFill(flDefinition::UI_WINDOW_BACKGROUND_COLOR);
 		_maximumGraphics.drawRect(0, 0, _windowWidth, _windowHeight);
 		_maximumGraphics.endFill();
 		_graphics = &_maximumGraphics;
@@ -438,17 +438,25 @@ namespace fl2d {
 
 		//----------------------------------
 		_minimalGraphics.clear();
-		_minimalGraphics.lineStyle(1, 0xffffff);
-		_minimalGraphics.beginFill(0x000000, 0.7);
+		_minimalGraphics.lineStyle(1, flDefinition::UI_WINDOW_BORDER_COLOR);
+		_minimalGraphics.beginFill(flDefinition::UI_WINDOW_BACKGROUND_COLOR);
 		_minimalGraphics.drawRect(0, 0, _defaultWindowWidth, _titleBarHeight);
 		_minimalGraphics.endFill();
 		//----------------------------------
 
 		//--------------------------------------
 		_normalGraphics.clear();
-		_normalGraphics.lineStyle(1, 0xffffff);
-		_normalGraphics.beginFill(0x000000, 0.7);
+		_normalGraphics.lineStyle(1, flDefinition::UI_WINDOW_BORDER_COLOR);
+		_normalGraphics.beginFill(flDefinition::UI_WINDOW_BACKGROUND_COLOR);
 		_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
+		for (auto x : _verticalLinePosList) {
+			_normalGraphics.moveTo(x, 0);
+			_normalGraphics.lineTo(x, _defaultWindowHeight);
+		}
+		for (auto y : _horizontalLinePosList) {
+			_normalGraphics.moveTo(0, y);
+			_normalGraphics.lineTo(_defaultWindowWidth, y);
+		}
 		_normalGraphics.endFill();
 		//--------------------------------------
 
@@ -484,7 +492,17 @@ namespace fl2d {
     //==============================================================
     // Protected / Private Method
     //==============================================================
- 
+
+	//--------------------------------------------------------------
+	void flBasicUIWindow::_drawVerticalLine(int x) {
+		_verticalLinePosList.push_back(x);
+	}
+
+	//--------------------------------------------------------------
+	void flBasicUIWindow::_drawHorizontalLine(int y) {
+		_horizontalLinePosList.push_back(y);
+	}
+
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_relocateTitleBarButtons() {
 		float w = _windowWidth;

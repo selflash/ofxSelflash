@@ -403,7 +403,7 @@ namespace fl2d {
         return _transform.__matrix.scaleX();
     }
     void flDisplayObject::scaleX(float value) {
-		_targetWidth = numeric_limits<float>::quiet_NaN();
+        if (value != 1.0) _targetWidth = numeric_limits<float>::quiet_NaN();
         _transform.__matrix.scaleX(value);
     }
     //--------------------------------------------------------------
@@ -412,7 +412,7 @@ namespace fl2d {
         return _transform.__matrix.scaleY();
     }
     void flDisplayObject::scaleY(float value) {
-        _targetHeight = numeric_limits<float>::quiet_NaN();
+        if (value != 1.0) _targetHeight = numeric_limits<float>::quiet_NaN();
         _transform.__matrix.scaleY(value);
     }
     

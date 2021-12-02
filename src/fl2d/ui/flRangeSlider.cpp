@@ -135,7 +135,7 @@ namespace fl2d {
 //        flGraphics* g;
 //        g = graphics();
 //        g->clear();
-//        g->lineStyle(1, flDefinition::UI_LINE_NORMAL_COLOR.getHex());
+//        g->lineStyle(1, flDefinition::UI_BORDER_NORMAL_COLOR.getHex());
 //        g->drawRect(0, 0, _barWidth, 18);
 //        g->endFill();
         //------------------------------------------
@@ -756,8 +756,8 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_NORMAL_COLOR);
 
-        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
+        _drawTrackGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_BORDER_NORMAL_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -766,8 +766,8 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_OVER_COLOR);
 
-        _drawTrackGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_OVER_COLOR, flDefinition::UI_OVER_COLOR, 1);
+        _drawTrackGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_BORDER_OVER_COLOR, flDefinition::UI_OVER_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -788,8 +788,8 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_ACTIVE_COLOR);
 
-        _drawTrackGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
+        _drawTrackGraphics(flDefinition::UI_BORDER_ACTIVE_COLOR, flDefinition::UI_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_BORDER_ACTIVE_COLOR, flDefinition::UI_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -798,8 +798,8 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_DISABLE_NORMAL_COLOR);
 
-        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawTrackGraphics(flDefinition::UI_BORDER_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_NORMAL_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_BORDER_DISABLE_NORMAL_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -808,8 +808,8 @@ namespace fl2d {
         _minValueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
         _maxValueText->textColor(flDefinition::UI_LABEL_DISABLE_ACTIVE_COLOR);
 
-        _drawTrackGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
-        _drawBarGraphics(flDefinition::UI_LINE_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawTrackGraphics(flDefinition::UI_BORDER_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
+        _drawBarGraphics(flDefinition::UI_BORDER_DISABLE_ACTIVE_COLOR, flDefinition::UI_DISABLE_ACTIVE_COLOR, 1);
     }
     
     //--------------------------------------------------------------
@@ -860,8 +860,8 @@ namespace fl2d {
 //        if(maxThumb->isMouseDown()) return;
 //
 //        //------------------------------------------
-//        _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-//        _drawBarGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
+//        _drawTrackGraphics(flDefinition::UI_BORDER_NORMAL_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
+//        _drawBarGraphics(flDefinition::UI_BORDER_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
 //        //------------------------------------------
 //
 //        //------------------------------------------
@@ -890,8 +890,8 @@ namespace fl2d {
 //            //------------------------------------------
 //        } else {
 //            //------------------------------------------
-//            _drawTrackGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
-//            _drawBarGraphics(flDefinition::UI_LINE_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
+//            _drawTrackGraphics(flDefinition::UI_BORDER_NORMAL_COLOR.getHex(), flDefinition::UI_NORMAL_COLOR.getHex(), 1);
+//            _drawBarGraphics(flDefinition::UI_BORDER_NORMAL_COLOR.getHex(), flDefinition::UI_ACTIVE_COLOR.getHex(), 1);
 //            //------------------------------------------
 //
 //            //------------------------------------------

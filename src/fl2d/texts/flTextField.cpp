@@ -96,10 +96,10 @@ namespace fl2d {
         } else {
             _rect->height(_targetHeight);
         }
-        
+
         _realWidth = _rect->width();
         _realHeight = _rect->height();
-        
+
         //        if(!isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
         //        if(!isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
         //        if(_width != -9999.0) scaleX(_width / _realWidth);
@@ -107,11 +107,28 @@ namespace fl2d {
         //--------------------------------------
         
         _update();
+        //_updateRect();
+        _afterUpdate();
     }
     
     //--------------------------------------------------------------
     void flTextField::draw(bool applyMatrix) {
         if(!visible() && applyMatrix) return;
+
+        //------------------------------------------
+        if (_mask != NULL) {
+            _beginDrawingStencil();
+
+            //draw mask shapes
+            ofPushMatrix();
+            ofMultMatrix(_mask->parent()->transform().matrix().getPtr());
+            _mask->draw();
+            ofPopMatrix();
+
+            _beginUsingStencil();
+        }
+        //draw scene to be masked
+        //------------------------------------------
         
         // save off current state of blend enabled
         GLboolean blendEnabled;
@@ -133,25 +150,31 @@ namespace fl2d {
         
         //------------------------------------------
         //-- matrix transform.
-        //        bool bIdentity = true;
-        //        bIdentity = matrix().isIdentity();
-        //        bIdentity = false;
-        
-        if(applyMatrix){
-            //            glPushMatrix();
+        //bool bIdentity = true;
+        //bIdentity = matrix().isIdentity();
+        //bIdentity = false;
+        //if(!bIdentity){
+        if (applyMatrix) {
+            //glPushMatrix();
             ofPushMatrix();
-            //            glMultMatrixf(matrix().getPtr());
+            //glMultMatrixf(matrix().getPtr());
             ofMultMatrix(_transform.matrix().getPtr());
         }
         
         ofPushStyle();
         ofSetColor(255, 255, 255, 255 * _compoundAlpha);
-        _graphics->__draw();
+        if (_graphics->drawOrder() == 0) _graphics->__draw();
+
         _draw();
+
+        if (_graphics->drawOrder() == 1) _graphics->__draw();
+
+        _afterDraw();
+
         ofPopStyle();
         
         if(applyMatrix){
-            //            glPopMatrix();
+            //glPopMatrix();
             ofPopMatrix();
         }
         //------------------------------------------
@@ -164,6 +187,47 @@ namespace fl2d {
         // restore saved state of blend enabled and blend functions
         if (blendEnabled) { glEnable(GL_BLEND); } else { glDisable(GL_BLEND); }
         glBlendFunc(blendSrc, blendDst);
+
+        //------------------------------------------
+        if (_mask != NULL) {
+            _endUsingStencil();
+        }
+        //------------------------------------------
+
+        ////--------------------------------------
+        ////ヒットエリアの表示
+        //if (_rectVisible) {
+        //    //        if(true) {
+        //    ofPushMatrix();
+        //    ofMultMatrix(_transform.__matrix.getPtr());
+
+        //    ofNoFill();
+        //    ofSetLineWidth(1);
+
+        //    {
+        //        flRectangle rect = getRect(this);
+        //        //                flRectangle rect = *_rect;
+        //        ofSetColor(255, 0, 0, 150);
+        //        ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
+        //    }
+
+
+
+
+        //    //            {
+        //    //                int i; int l;
+        //    //                l = _children.size();
+        //    //                for(i = 0; i < l; i++) {
+        //    //                    flDisplayObject* child = _children[i];
+        //    //                    flRectangle rect = child->getRect(this);
+        //    //                    ofSetColor(0, 255, 0, 150);
+        //    //                    ofDrawRectangle(rect.left(), rect.top(), rect.width(), rect.height());
+        //    //                }
+        //    //            }
+
+        //    ofPopMatrix();
+        //}
+        ////--------------------------------------
     }
     
     //--------------------------------------------------------------
@@ -267,10 +331,16 @@ namespace fl2d {
     //    void flTextField::height(const float& value) { _rect->__expandTo(0, _rect->y() + value); }
     
     //--------------------------------------------------------------
-    float flTextField::width() { return _realWidth * scaleX(); }
+    float flTextField::width() {
+        //_updateRect();
+        //if (_mask) return _mask->width();
+        //if (_realWidth == 0.0) return 0.0;
+        return _realWidth * scaleX();
+    }
     void flTextField::width(float value) {
         _targetWidth = value;
-        
+        //if (_realWidth != 0.0 && !isnan(_targetWidth)) scaleX(_targetWidth / _realWidth);
+
         //--------------------------------------
         if(isnan(_targetWidth)) {
             _rect->width(_textWidth);
@@ -283,7 +353,7 @@ namespace fl2d {
         } else {
             _rect->height(_targetHeight);
         }
-        
+
         _realWidth = _rect->width();
         _realHeight = _rect->height();
         //--------------------------------------
@@ -304,10 +374,16 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    float flTextField::height() { return _realHeight * scaleY(); }
+    float flTextField::height() {
+        //_updateRect();
+        //if (_mask) return _mask->height();
+        //if (_realHeight == 0.0) return 0.0;
+        return _realHeight * scaleY();
+    }
     void flTextField::height(float value) {
         _targetHeight = value;
-        
+        //if (_realHeight != 0.0 && !isnan(_targetHeight)) scaleY(_targetHeight / _realHeight);
+
         //--------------------------------------
         if(isnan(_targetWidth)) {
             _rect->width(_textWidth);

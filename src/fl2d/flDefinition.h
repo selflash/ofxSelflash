@@ -13,6 +13,9 @@ namespace fl2d {
         friend flCircleColorPicker;
         
     public:
+        static ofColor UI_WINDOW_BACKGROUND_COLOR;
+        static ofColor UI_WINDOW_BORDER_COLOR;
+
         static ofColor UI_LABEL_NORMAL_COLOR;
         static ofColor UI_LABEL_OVER_COLOR;
         static ofColor UI_LABEL_ACTIVE_COLOR;
@@ -20,11 +23,11 @@ namespace fl2d {
         static ofColor UI_LABEL_DISABLE_NORMAL_COLOR;
         static ofColor UI_LABEL_DISABLE_ACTIVE_COLOR;
 
-        static ofColor UI_LINE_NORMAL_COLOR;
-        static ofColor UI_LINE_OVER_COLOR;
-        static ofColor UI_LINE_ACTIVE_COLOR;
-        static ofColor UI_LINE_DISABLE_NORMAL_COLOR;
-        static ofColor UI_LINE_DISABLE_ACTIVE_COLOR;
+        static ofColor UI_BORDER_NORMAL_COLOR;
+        static ofColor UI_BORDER_OVER_COLOR;
+        static ofColor UI_BORDER_ACTIVE_COLOR;
+        static ofColor UI_BORDER_DISABLE_NORMAL_COLOR;
+        static ofColor UI_BORDER_DISABLE_ACTIVE_COLOR;
         
         static ofColor UI_NORMAL_COLOR;
         static ofColor UI_OVER_COLOR;
