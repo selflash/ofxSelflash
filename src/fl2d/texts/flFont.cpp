@@ -34,11 +34,14 @@ namespace fl2d {
             ofTrueTypeFont font;
             _loadFont(font, flDefinition::_FONT_PATH, fontSize);
             _fonts[fontSize] = font;
+
+            font.drawString("Test", 0.0, 0.0);
         }
     }
     
     //--------------------------------------------------------------
     ofTrueTypeFont flFont::_loadFont(ofTrueTypeFont& font, string path, int fontSize) {
+        //ofLog() << "[flFont]_loadFont(" << path << ", " << fontSize << ")";
         // Fonts
         //        ofTrueTypeFont::setGlobalDpi(72);
         
@@ -131,7 +134,8 @@ namespace fl2d {
                                      const ofColor& background,
                                      const ofColor& foreground
                                      ) {
-        if(text != "") {
+        if(text != "")
+        {
             const ofTrueTypeFont& font = _fonts[_normalFontSize];
             
             ofPushStyle();
@@ -157,7 +161,8 @@ namespace fl2d {
         drawStringHighlight(text, fontSize, 0, 0, background, foreground);
     }
     void flFont::drawStringHighlight(const string& text, int fontSize, float x, float y, const ofColor& background, const ofColor& foreground) {
-        if(text != "") {
+        if(text != "")
+        {
             if (_fonts.find(fontSize) == _fonts.end()) {
                 ofTrueTypeFont font;
                 _loadFont(font, flDefinition::_FONT_PATH, fontSize);

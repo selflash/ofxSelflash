@@ -232,6 +232,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flTextField::_draw() {
+        if (_text == "") return;
         
         //---------------------------------
         ofPushMatrix();
@@ -462,12 +463,11 @@ namespace fl2d {
         //_numLine = MAX(flstringutil::getLength(_text, "\n") + 1, flstringutil::getLength(_text, "\r\n") + 1);
         
 		string logestSentence = flstringutil::getLongestSentence(_text);
-        ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, 0, 0);
         //_textWidth = bounds.width + 6;
 		//if(_defaultTextFormat != NULL) _textWidth = _textWidth * (_defaultTextFormat->size() / 10);
 		int size = (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10;
-		_textWidth = flFont::getStringWidth(logestSentence, size);
-
+        ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, size, 0, 0);
+        _textWidth = flFont::getStringWidth(logestSentence, size);
 
         //_textHeight = _numLine * flFont::getMaxStringHeight() + 2;
         _textHeight = (flFont::getMaxStringHeight(size) + 0) * _numLine;
