@@ -399,10 +399,10 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flComboBox::_mouseEventHandler(flEvent& event) {
-        ofLog() << "[flComboBox]_mouseEventHandler(" << event.type() << ")";
-        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
-        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+        //ofLog() << "[flComboBox]_mouseEventHandler(" << event.type() << ")";
+        //ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        //ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        //ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
         //Roll Over
         if(event.type() == flMouseEvent::ROLL_OVER) {
