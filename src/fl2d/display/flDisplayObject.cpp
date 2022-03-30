@@ -51,6 +51,8 @@ namespace fl2d {
     flDisplayObject::~flDisplayObject() {
 		//if (parent()) ((flDisplayObjectContainer*)parent())->removeChild(this);
 
+        //dispatchEvent(new flEvent(flEvent::DEINIT));
+
 		removeAllEventListeners();
 
         _target = NULL;

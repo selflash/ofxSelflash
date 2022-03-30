@@ -631,10 +631,10 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flDisplayObjectContainer::_childEventHandler(flEvent& event) {
-		//ofLog() << "[flDisplayObjectContainer]_childEventHandler(" << event.type() << ")";
-		//ofLog() << "[flDisplayObjectContainer]this          = " << this << "," << ((flDisplayObject*)this)->name();
-		//ofLog() << "[flDisplayObjectContainer]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*)event.currentTarget())->name();
-		//ofLog() << "[flDisplayObjectContainer]target        = " << event.target() << "," << ((flDisplayObject*)event.target())->name();
+        ofLog() << "[flDisplayObjectContainer]_childEventHandler(" << event.type() << ")";
+        ofLog() << "[flDisplayObjectContainer]this          = " << this << "," << ((flDisplayObject*)this)->name();
+        ofLog() << "[flDisplayObjectContainer]currentTarget = " << event.currentTarget() << "," << ((event.currentTarget() == NULL) ? "NULL" : ((flDisplayObject*)event.currentTarget())->name());
+        ofLog() << "[flDisplayObjectContainer]target        = " << event.target() << "," << ((event.target() == NULL) ? "NULL" : ((flDisplayObject*)event.target())->name());
 
 		if (event.type() == flEvent::ADDED) {
 			if (event.target() == this) {
@@ -662,21 +662,27 @@ namespace fl2d {
 				dispatchEvent(event_);
 			}
 		}
-		else if (event.type() == flEvent::DEINIT) {
-			if (event.target() == this) {
+        else if (event.type() == flEvent::REMOVED_FROM_STAGE) {
 
-			}
-			else {
-				flDisplayObject* child = ((flDisplayObject*)event.target());
-				//if (child->hasEventListener(flEvent::FINALIZE)) {
-					child->removeEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
-				//}
+        }
+		//else if (event.type() == flEvent::DEINIT) {
+		//	if (event.target() == NULL) {
 
-				flEvent* event_ = new flEvent(flEvent::DEINIT);
-				event_->__target = child;
-				dispatchEvent(event_);
-			}
-		}
+		//	}
+  //          else if (event.target() == this) {
+
+  //          }
+		//	else {
+		//		flDisplayObject* child = ((flDisplayObject*)event.target());
+		//		//if (child->hasEventListener(flEvent::FINALIZE)) {
+		//			child->removeEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
+		//		//}
+
+		//		flEvent* event_ = new flEvent(flEvent::DEINIT);
+		//		event_->__target = child;
+		//		dispatchEvent(event_);
+		//	}
+		//}
 	}
 
 }

@@ -46,6 +46,8 @@ namespace fl2d {
 			flUIBase();
 			virtual ~flUIBase();
  
+			virtual void _childEventHandler(flEvent& event);
+
 		private:
 
     };
