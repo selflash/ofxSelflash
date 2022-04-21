@@ -423,16 +423,20 @@ namespace fl2d {
         
         //Mouse Down
         if(event.type() == flMouseEvent::MOUSE_DOWN) {
+            // ofLog() << "Test0";
             flButton* target = (flButton*) event.target();
             if(target == _topButton) {
+                //ofLog() << "Test01";
                 if(_topButton->selected()){
+                    //ofLog() << "Test02";
                     addChild(_buttonContainer);
                     if(parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
                 } else {
+                    //ofLog() << "Test03";
                     removeChild(_buttonContainer);
                 }
             } else {
-				ofLog() << "Test1";
+                //ofLog() << "Test1";
                 //------------------------------------------
                 if(_selectedButton) {
                     _selectedButton->selected(false);
@@ -463,17 +467,17 @@ namespace fl2d {
                 //                _selectedValue = _valueList[temp];
                 //                
                 //------------------------------------------
-				ofLog() << "Test2";
+                //ofLog() << "Test2";
 
                 //------------------------------------------
                 _dispatchEvent();
-				ofLog() << "Test3";
+                //ofLog() << "Test3";
 
                 if(_intParam != NULL) {
                     _bChangedByMyself["value"] = true;
                     _intParam->set(_selectedIndex);
                 }
-				ofLog() << "Test4";
+                //ofLog() << "Test4";
 				//------------------------------------------
             }
         }
@@ -487,10 +491,10 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flComboBox::_eventHandler(flEvent& event) {
 		if (!_enabled) return;
-//        ofLog() << "[flComboBox]_eventHandler(" << event.type() << ")";
-//        ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
-//        ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
-//        ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
+        //ofLog() << "[flComboBox]_eventHandler(" << event.type() << ")";
+        //ofLog() << "[flComboBox]this          = " << this << "," << ((flDisplayObject*) this)->name();
+        //ofLog() << "[flComboBox]currentTarget = " << event.currentTarget() << "," << ((flDisplayObject*) event.currentTarget())->name();
+        //ofLog() << "[flComboBox]target        = " << event.target() << "," << ((flDisplayObject*) event.target())->name();
         
         //Focus Out
         if(event.type() == flFocusEvent::FOCUS_OUT) {
