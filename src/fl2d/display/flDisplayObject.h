@@ -94,7 +94,7 @@ namespace fl2d {
             
         public:
             virtual void setup();
-            virtual void tearDown();
+            //virtual void tearDown();
             virtual void update();
             virtual void draw(bool applyMatrix = true);
             
@@ -194,7 +194,7 @@ namespace fl2d {
             virtual void _setup();
             virtual void _afterSetup();
 
-            virtual void _tearDown();
+            //virtual void _tearDown();
 
             virtual void _update();
             virtual void _afterUpdate();

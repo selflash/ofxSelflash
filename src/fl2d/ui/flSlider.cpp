@@ -84,7 +84,7 @@ namespace fl2d {
 
         //------------------------------------------
         _valueText = new flTextField();
-        _valueText->name("flSlider.velueText");
+        _valueText->name("flSlider.valueText");
         _valueText->x(0);
         _valueText->width(_trackWidth);
         _valueText->autoSize(flTextFieldAutoSize::LEFT);

@@ -79,10 +79,10 @@ namespace fl2d {
 
     //--------------------------------------------------------------
     void flUIBase::_childEventHandler(flEvent& event) {
-        ofLog() << "[flUIBase]_childEventHandler(" << event.type() << ")";
-        ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*)this)->name();
-        ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((event.currentTarget() == NULL) ? "NULL" : ((flDisplayObject*)event.currentTarget())->name());
-        ofLog() << "[flUIBase]target        = " << event.target() << "," << ((event.target() == NULL) ? "NULL" : ((flDisplayObject*)event.target())->name());
+        //ofLog() << "[flUIBase]_childEventHandler(" << event.type() << ")";
+        //ofLog() << "[flUIBase]this          = " << this << "," << ((flDisplayObject*)this)->name();
+        //ofLog() << "[flUIBase]currentTarget = " << event.currentTarget() << "," << ((event.currentTarget() == NULL) ? "NULL" : ((flDisplayObject*)event.currentTarget())->name());
+        //ofLog() << "[flUIBase]target        = " << event.target() << "," << ((event.target() == NULL) ? "NULL" : ((flDisplayObject*)event.target())->name());
 
         flSprite::_childEventHandler(event);
 

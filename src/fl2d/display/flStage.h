@@ -64,7 +64,7 @@ namespace fl2d {
             flSettings _settings;
         
             static flStage* _instance;
-            flMovieClip* _root = NULL;
+            flMovieClip* _root = nullptr;
         
             int _stageWidth;
             int _stageHeight;
@@ -87,18 +87,18 @@ namespace fl2d {
             //bool _isKeyReleased;
         
             //Interactive objcet that is focused.
-            flInteractiveObject* _focus = NULL;
+            flInteractiveObject* _focus = nullptr;
         
             //最前面でマウスにヒットしているDisplayObject
-            flDisplayObject* _topMostHitDisplayObject = NULL;
-            flDisplayObject* _topMostHitDisplayObjectPrev = NULL;
+            flDisplayObject* _topMostHitDisplayObject = nullptr;
+            flDisplayObject* _topMostHitDisplayObjectPrev = nullptr;
         
             //最前面でマウスにヒットしているInteractiveObject
-            flInteractiveObject* _topMostHitInteractiveObject = NULL;
-            flInteractiveObject* _topMostHitInteractiveObjectPrev = NULL;
+            flInteractiveObject* _topMostHitInteractiveObject = nullptr;
+            flInteractiveObject* _topMostHitInteractiveObjectPrev = nullptr;
         
             //マウスダウン中のInteractiveObject
-            flInteractiveObject* _currentMouseDownInteractiveObject = NULL;
+            flInteractiveObject* _currentMouseDownInteractiveObject = nullptr;
         
             //マウスヒットオブジェクトからStageまでの順 [マウスヒットオブジェクト → Stageに最も近いオブジェクト]
             //vector<flInteractiveObject*> _lineTopDown;

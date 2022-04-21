@@ -253,9 +253,9 @@ namespace fl2d {
         
         _updateRect();
 
-		if (!child->hasEventListener(flEvent::DEINIT)) {
-			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
-		}
+		//if (!child->hasEventListener(flEvent::REMOVED)) {
+		//	child->addEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+		//}
 
 		//if (!isChild) {
 		//	flEvent* event = new flEvent(flEvent::ADDED);
@@ -290,9 +290,9 @@ namespace fl2d {
         
         _updateRect();
 
-		if (!child->hasEventListener(flEvent::DEINIT)) {
-			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
-		}
+		//if (!child->hasEventListener(flEvent::REMOVED)) {
+		//	child->addEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+		//}
 
 		//if (!isChild) {
 		//	flEvent* event = new flEvent(flEvent::ADDED);
@@ -327,9 +327,9 @@ namespace fl2d {
         
         _updateRect();
 
-		if (!child->hasEventListener(flEvent::DEINIT)) {
-			child->addEventListener(flEvent::DEINIT, this, &flDisplayObjectContainer::_childEventHandler);
-		}
+		//if (!child->hasEventListener(flEvent::REMOVED)) {
+		//	child->addEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+		//}
 
 		//if (!isChild) {
 		//	flEvent* event = new flEvent(flEvent::ADDED);
@@ -348,29 +348,32 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
         //if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
-        
+
+        bool isOnStage = bool(_stage != NULL);
+
         //_children.size()の箇所はリファクタリングとかで外に出したらダメ
         for(int i = 0; i < _children.size(); i++){
             if(_children[i] == child){
                 child->__stage(NULL);
                 child->__parent(NULL);
                 child->__level(-1);
-				//if (child->hasEventListener(flEvent::FINALIZE)) {
-				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
-				//}
+
                 _children.erase(_children.begin() + i);
                 
                 _updateRect();
 
-				//flEvent* event = new flEvent(flEvent::REMOVED);
-				//child->dispatchEvent(event);
+				flEvent* event = new flEvent(flEvent::REMOVED);
+				child->dispatchEvent(event);
 
-				//bool onStage = bool(_stage != NULL);
-				//if (onStage) {
-				//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-				//	child->dispatchEvent(event);
-				//}
-                
+				if (isOnStage) {
+					flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+					child->dispatchEvent(event);
+				}
+
+                //if (child->hasEventListener(flEvent::REMOVED)) {
+                //    child->removeEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+                //}
+
                 return child;
             }
         }
@@ -382,18 +385,30 @@ namespace fl2d {
 	flDisplayObject* flDisplayObjectContainer::_removeChild(flDisplayObject* child) {
 		//if(child == NULL) throw "TypeError: Error #2007: ° child  null ‰§∞";
 
+        bool isOnStage = bool(_stage != NULL);
+
 		//_children.size()の箇所はリファクタリングとかで外に出したらダメ
 		for (int i = 0; i < _children.size(); i++) {
 			if (_children[i] == child) {
 				child->__stage(NULL, false);
 				child->__parent(NULL, false);
 				child->__level(-1);
-				//if (child->hasEventListener(flEvent::FINALIZE)) {
-				//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
-				//}
+
 				_children.erase(_children.begin() + i);
 
 				_updateRect();
+
+                flEvent* event = new flEvent(flEvent::REMOVED);
+                child->dispatchEvent(event);
+
+                if (isOnStage) {
+                    flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+                    child->dispatchEvent(event);
+                }
+
+                //if (child->hasEventListener(flEvent::REMOVED)) {
+                //    child->removeEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+                //}
 
 				return child;
 			}
@@ -404,6 +419,8 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChildAt(int index) {
         
+        bool isOnStage = bool(_stage != NULL);
+
         //_children.size()の箇所はリファクタリングとかで外に出したらダメ
         if(index < 0 || index > _children.size() - 1) return NULL;
         flDisplayObject* child;
@@ -411,22 +428,23 @@ namespace fl2d {
         child->__stage(NULL);
         child->__parent(NULL);
         child->__level(-1);
-		//if (child->hasEventListener(flEvent::FINALIZE)) {
-		//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
-		//}
+
 		_children.erase(_children.begin() + index);
         
         _updateRect();
 
-		//flEvent* event = new flEvent(flEvent::REMOVED);
-		//child->dispatchEvent(event);
+        flEvent* event = new flEvent(flEvent::REMOVED);
+        child->dispatchEvent(event);
 
-		//bool onStage = bool(_stage != NULL);
-		//if (onStage) {
-		//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-		//	child->dispatchEvent(event);
-		//}
-        
+        if (isOnStage) {
+            flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+            child->dispatchEvent(event);
+        }
+
+        //if (child->hasEventListener(flEvent::REMOVED)) {
+        //    child->removeEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+        //}
+
         return child;
     }
     
@@ -437,24 +455,27 @@ namespace fl2d {
         
         flDisplayObject* child;
         
+        bool isOnStage = bool(_stage != NULL);
+
         for(i; i < l; i++){
             child = _children[i];
             child->__stage(NULL);
             child->__parent(NULL);
             child->__level(-1);
-			//if (child->hasEventListener(flEvent::FINALIZE)) {
-			//	child->removeEventListener(flEvent::FINALIZE, this, &flDisplayObjectContainer::_childEventHandler);
-			//}
+
 			_children.erase(_children.begin() + i);
 
-			//flEvent* event = new flEvent(flEvent::REMOVED);
-			//child->dispatchEvent(event);
+            flEvent* event = new flEvent(flEvent::REMOVED);
+            child->dispatchEvent(event);
 
-			//bool onStage = bool(_stage != NULL);
-			//if (onStage) {
-			//	flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
-			//	child->dispatchEvent(event);
-			//}
+            if (isOnStage) {
+                flEvent* event = new flEvent(flEvent::REMOVED_FROM_STAGE);
+                child->dispatchEvent(event);
+            }
+
+            //if (child->hasEventListener(flEvent::REMOVED)) {
+            //    child->removeEventListener(flEvent::REMOVED, this, &flDisplayObjectContainer::_childEventHandler);
+            //}
 
             --i;
             --l;
@@ -631,10 +652,10 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flDisplayObjectContainer::_childEventHandler(flEvent& event) {
-        ofLog() << "[flDisplayObjectContainer]_childEventHandler(" << event.type() << ")";
-        ofLog() << "[flDisplayObjectContainer]this          = " << this << "," << ((flDisplayObject*)this)->name();
-        ofLog() << "[flDisplayObjectContainer]currentTarget = " << event.currentTarget() << "," << ((event.currentTarget() == NULL) ? "NULL" : ((flDisplayObject*)event.currentTarget())->name());
-        ofLog() << "[flDisplayObjectContainer]target        = " << event.target() << "," << ((event.target() == NULL) ? "NULL" : ((flDisplayObject*)event.target())->name());
+        //ofLog() << "[flDisplayObjectContainer]_childEventHandler(" << event.type() << ")";
+        //ofLog() << "[flDisplayObjectContainer]this          = " << this << "," << ((flDisplayObject*)this)->name();
+        //ofLog() << "[flDisplayObjectContainer]currentTarget = " << event.currentTarget() << "," << ((event.currentTarget() == NULL) ? "NULL" : ((flDisplayObject*)event.currentTarget())->name());
+        //ofLog() << "[flDisplayObjectContainer]target        = " << event.target() << "," << ((event.target() == NULL) ? "NULL" : ((flDisplayObject*)event.target())->name());
 
 		if (event.type() == flEvent::ADDED) {
 			if (event.target() == this) {
@@ -657,9 +678,9 @@ namespace fl2d {
 
 			}
 			else {
-				flEvent* event_ = new flEvent(flEvent::REMOVED);
-				event_->__target = event.target();
-				dispatchEvent(event_);
+				//flEvent* event_ = new flEvent(flEvent::REMOVED);
+				//event_->__target = event.target();
+				//dispatchEvent(event_);
 			}
 		}
         else if (event.type() == flEvent::REMOVED_FROM_STAGE) {

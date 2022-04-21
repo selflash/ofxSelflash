@@ -58,8 +58,8 @@ namespace fl2d {
             static string EXIT_FRAME;
             //static string FULLSCREEN;
             //static string ID3;
-            static string INIT;
-			static string DEINIT;
+   //         static string INIT;
+			//static string DEINIT;
 			//static string MOUSE_LEAVE;
             //static string OPEN;
             //static string RENDER;

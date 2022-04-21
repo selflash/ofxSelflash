@@ -21,8 +21,8 @@ namespace fl2d {
     string flEvent::EXIT_FRAME = "exitFrame";
     //string flflEvent::FULLSCREEN = "fullScreen";
     //string flflEvent::ID3 = "id3";
-    string flEvent::INIT = "init";
-	string flEvent::DEINIT = "deinit";
+ //   string flEvent::INIT = "init";
+	//string flEvent::DEINIT = "deinit";
 	//string flEvent::MOUSE_LEAVE = "mouseLeave";
     //string flEvent::RENDER = "render";
     //string flEvent::RESIZE = "resize";
