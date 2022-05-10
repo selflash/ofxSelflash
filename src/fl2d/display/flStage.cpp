@@ -1106,7 +1106,7 @@ namespace fl2d {
             //ofLog() << "[flStage]topMostHitDisplayObjectPrev        = " << ((_topMostHitDisplayObject) ? _topMostHitDisplayObjectPrev->name() : "");
 
             ((flDisplayObject*)event.target())->removeEventListener(flEvent::REMOVED, this, &flStage::_childEventHandler);
-            _removeFromList((flDisplayObject*)event.target());
+            //_removeFromList((flDisplayObject*)event.target());
 
 			//if (event.target() == this) {
    //             flDisplayObject* displayObject = (flDisplayObject*)event.target();
@@ -1221,40 +1221,7 @@ namespace fl2d {
         if(_topMostHitInteractiveObject) {
             //            _topMostHitInteractiveObject->__isMousePressed = true; // TODO ÅíÅ˜ÅÒ
             
-			//ofLog() << "MouseDownCheck";
-            for(int i = 0; i < _lineBottomUp.size(); i++ ) {
-				if (_topMostHitInteractiveObject == nullptr) continue;
 
-				flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_DOWN);
-				mouseEvent->__target = _topMostHitInteractiveObject;
-				mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
-				mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
-				mouseEvent->__stageX = mouseX();
-				mouseEvent->__stageY = mouseY();
-
-                //------------------------------------
-				flInteractiveObject* intObj = _lineBottomUp[i];
-				//ofLog() << "_lineBottomUp[" << i << "].name = " << _lineBottomUp[i]->name();
-				intObj->__isMouseDown = true;
-				intObj->__isMousePressed = true;
-
-				bool bMouseDownCheckEnd = false;
-				if(flUtil::isDisplayObjectContainer(intObj)) {
-					flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
-					if (!dispObjContainer->mouseChildren()) bMouseDownCheckEnd = true;
-				}
-
-				intObj->dispatchEvent(mouseEvent);
-                //------------------------------------
-                
-                //mouseChildrenfalseÅıÅí
-                //if(flUtil::isDisplayObjectContainer(intObj)) {
-                //    flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
-                //    if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
-                //}
-
-				if (bMouseDownCheckEnd) goto mouseDownCheckEnd;
-            }
 
             //------------------------------------
              //2016.6.8
@@ -1303,13 +1270,52 @@ namespace fl2d {
             }
             //------------------------------------
 
-        mouseDownCheckEnd:
             //------------------------------------
 
-			if (_topMostHitInteractiveObject) {
-				_topMostHitInteractiveObject->__isMouseDown = true;
-				_currentMouseDownInteractiveObject = _topMostHitInteractiveObject;
-			}
+            if (_topMostHitInteractiveObject) {
+                _topMostHitInteractiveObject->__isMouseDown = true;
+                _currentMouseDownInteractiveObject = _topMostHitInteractiveObject;
+            }
+
+
+
+			//ofLog() << "MouseDownCheck";
+            for(int i = 0; i < _lineBottomUp.size(); i++ ) {
+				if (_topMostHitInteractiveObject == nullptr) continue;
+
+				flMouseEvent* mouseEvent = new flMouseEvent(flMouseEvent::MOUSE_DOWN);
+				mouseEvent->__target = _topMostHitInteractiveObject;
+				mouseEvent->__localX = _topMostHitInteractiveObject->mouseX();
+				mouseEvent->__localY = _topMostHitInteractiveObject->mouseY();
+				mouseEvent->__stageX = mouseX();
+				mouseEvent->__stageY = mouseY();
+
+                //------------------------------------
+				flInteractiveObject* intObj = _lineBottomUp[i];
+				//ofLog() << "_lineBottomUp[" << i << "].name = " << _lineBottomUp[i]->name();
+				intObj->__isMouseDown = true;
+				intObj->__isMousePressed = true;
+
+				bool bMouseDownCheckEnd = false;
+				if(flUtil::isDisplayObjectContainer(intObj)) {
+					flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
+					if (!dispObjContainer->mouseChildren()) bMouseDownCheckEnd = true;
+				}
+
+				intObj->dispatchEvent(mouseEvent);
+                //------------------------------------
+                
+                //mouseChildrenfalseÅıÅí
+                //if(flUtil::isDisplayObjectContainer(intObj)) {
+                //    flDisplayObjectContainer* dispObjContainer = (flDisplayObjectContainer*) intObj;
+                //    if(!dispObjContainer->mouseChildren()) goto mouseDownCheckEnd;
+                //}
+
+				if (bMouseDownCheckEnd) goto mouseDownCheckEnd;
+            }
+
+        mouseDownCheckEnd:;
+
         } else {
             //------------------------------------
             //ÅLÉŒ
@@ -1642,7 +1648,8 @@ namespace fl2d {
             focusEvent->__target = _focus;
             _focus->dispatchEvent(focusEvent);
 
-            _focus = this;
+            _lineBottomUpForFocus.clear();
+            _focus = nullptr;
         }
 		if (_topMostHitDisplayObject == displayObject) _topMostHitDisplayObject = nullptr;
 		if (_topMostHitDisplayObjectPrev == displayObject) _topMostHitDisplayObjectPrev = nullptr;
