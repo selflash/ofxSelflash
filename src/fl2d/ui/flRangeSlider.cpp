@@ -414,17 +414,18 @@ namespace fl2d {
 
         //------------------------------------------
         //Update value.
-        _minValue = value;
-        if(_minValue < _min) _min = _minValue;
-        if(_roundEnabled) _minValue = flmath::roundd(_minValue);
-        if(_minValue > _max) _max = _minValue;
-        if(_minValue > _maxValue) _maxValue = _minValue;
-        _range = _maxValue - _minValue;
+        float minValue = value;
+        float maxValue = _maxValue;
+        if(minValue < _min) _min = minValue;
+        if(_roundEnabled) minValue = flmath::roundd(minValue);
+        if(minValue > _max) _max = minValue;
+        if(minValue > maxValue) maxValue = minValue;
+        _range = maxValue - minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
         
         //------------------------------------------
-        minThumb->x((_minValue - _min) / _percent);
+        minThumb->x((minValue - _min) / _percent);
 //        maxThumb->x((_maxValue - _min) / _percent);
         bar->x(minThumb->x());
 
@@ -447,19 +448,37 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(preValue != _minValue) {
-            _minValueText->text(ofToString(_minValue, _digit));
-            _maxValueText->text(ofToString(_maxValue, _digit));
+        if(preValue != minValue) {
+            _minValueText->text(ofToString(minValue, _digit));
+            _maxValueText->text(ofToString(maxValue, _digit));
             if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["minValue"]) {
                 if(_floatMinParam != NULL) {
                     _bChangedByMyself["minValue"] = true;
-                    _floatMinParam->set(_minValue);
+                    _floatMinParam->set(minValue);
+
+                    if (dispatch) {
+                        _minValue.set(minValue);
+                        if (minValue > _maxValue) _maxValue.set(minValue);
+                    }
+                    else {
+                        _minValue.setWithoutEventNotifications(minValue);
+                        if (minValue > _maxValue) _maxValue.setWithoutEventNotifications(minValue);
+                    }
                 }
                 else if(_intMinParam != NULL) {
                     _bChangedByMyself["minValue"] = true;
-                    _intMinParam->set(_minValue);
+                    _intMinParam->set(minValue);
+
+                    if (dispatch) {
+                        _minValue.set(minValue);
+                        if (minValue > _maxValue) _maxValue.set(minValue);
+                    }
+                    else {
+                        _minValue.setWithoutEventNotifications(minValue);
+                        if (minValue > _maxValue) _maxValue.setWithoutEventNotifications(minValue);
+                    }
                 }
             }
         }
@@ -473,18 +492,19 @@ namespace fl2d {
 
         //------------------------------------------
         //Update value.
-        _maxValue = value;
-        if(_maxValue > _max) _max = _maxValue;
-        if(_roundEnabled) _maxValue = flmath::roundd(_maxValue);
-        if(_maxValue < _min) _min = _maxValue;
-        if(_maxValue < _minValue) _minValue = _maxValue;
-        _range = _maxValue - _minValue;
+        float minValue = _minValue;
+        float maxValue = value;
+        if(maxValue > _max) _max = maxValue;
+        if(_roundEnabled) maxValue = flmath::roundd(maxValue);
+        if(maxValue < _min) _min = maxValue;
+        if(maxValue < minValue) minValue = maxValue;
+        _range = maxValue - minValue;
         _percent = (_max - _min) / _trackWidth;
         //------------------------------------------
         
         //------------------------------------------
-//        minThumb->x((_minValue - _min) / _percent);
-        maxThumb->x((_maxValue - _min) / _percent);
+//        minThumb->x((minValue - _min) / _percent);
+        maxThumb->x((maxValue - _min) / _percent);
 //        bar->x(minThumb->x());
 
         _barWidth = maxThumb->x() - minThumb->x();
@@ -506,19 +526,37 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        if(preValue != _maxValue) {
-            _minValueText->text(ofToString(_minValue, _digit));
-            _maxValueText->text(ofToString(_maxValue, _digit));
+        if(preValue != maxValue) {
+            _minValueText->text(ofToString(minValue, _digit));
+            _maxValueText->text(ofToString(maxValue, _digit));
             if(dispatch) _dispatchEvent();
         
             if(!_bChangedByOfParm["maxValue"]) {
                 if(_floatMaxParam != NULL) {
                     _bChangedByMyself["maxValue"] = true;
-                    _floatMaxParam->set(_maxValue);
+                    _floatMaxParam->set(maxValue);
+
+                    if (dispatch) {
+                        _maxValue.set(maxValue);
+                        if (maxValue < _minValue) _minValue.set(maxValue);
+                    }
+                    else {
+                        _maxValue.setWithoutEventNotifications(maxValue);
+                        if (maxValue < _minValue) _minValue.setWithoutEventNotifications(maxValue);
+                    }
                 }
                 else if(_intMaxParam != NULL) {
                     _bChangedByMyself["maxValue"] = true;
-                    _intMaxParam->set(_maxValue);
+                    _intMaxParam->set(maxValue);
+
+                    if (dispatch) {
+                        _maxValue.set(maxValue);
+                        if (maxValue < _minValue) _minValue.set(maxValue);
+                    }
+                    else {
+                        _maxValue.setWithoutEventNotifications(maxValue);
+                        if (maxValue < _minValue) _minValue.setWithoutEventNotifications(maxValue);
+                    }
                 }
             }
         }

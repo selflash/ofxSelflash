@@ -305,6 +305,8 @@ namespace fl2d {
 						}
 
 						//ofLog(OF_LOG_NOTICE) << _pickedColor;
+
+						dispatchEvent(new flEvent("pickedColor"));
 					}
 				}
 			}
