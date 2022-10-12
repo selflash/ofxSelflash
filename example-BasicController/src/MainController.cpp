@@ -12,7 +12,7 @@ MainController::MainController() {
     name("MainController");
     useHandCursor(true);
 
-	_titleText = "[MainController]";
+    _title = "[MainController]";
 }
 
 //--------------------------------------------------------------
@@ -116,10 +116,10 @@ void MainController::_setup() {
     //--------------------------------------
 
 	//--------------------------------------
-	_normalBackWidth = displayObject->x() + displayObject->width() + _margin;
-	_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+    _defaultWindowWidth = displayObject->x() + displayObject->width() + _margin;
+    _defaultWindowHeight = displayObject->y() + displayObject->height() + _margin;
 
-	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
 	_normalGraphics.endFill();
 	//--------------------------------------
 

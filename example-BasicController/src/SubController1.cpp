@@ -20,7 +20,7 @@ SubController1::SubController1(string title) {
     name(title);
     useHandCursor(true);
     
-	_titleText = "[" + title + "]";
+	_title = "[" + title + "]";
 }
 
 //--------------------------------------------------------------
@@ -214,10 +214,10 @@ void SubController1::_setup() {
 	ofLog() << "joystick1103->height() " << joystick1103->y() + joystick1103->height();
 
 	//--------------------------------------
-	_normalBackWidth = 500;
-	_normalBackHeight = 500;
+	_defaultWindowWidth = 500;
+	_defaultWindowHeight = 500;
 
-	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
 	_normalGraphics.endFill();
 	//--------------------------------------
 

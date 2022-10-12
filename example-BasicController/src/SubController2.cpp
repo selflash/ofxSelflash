@@ -12,7 +12,7 @@ SubController2::SubController2(string title) {
     name(title);
     useHandCursor(true);
     
-	_titleText = "[" + title + "]";
+	_title = "[" + title + "]";
 }
 
 //--------------------------------------------------------------
@@ -91,10 +91,10 @@ void SubController2::_setup() {
 	displayObject = colorSlider001;
 
 	//--------------------------------------
-	_normalBackWidth = 400;
-	_normalBackHeight = displayObject->y() + displayObject->height() + _margin;
+	_defaultWindowWidth = 400;
+	_defaultWindowHeight = displayObject->y() + displayObject->height() + _margin;
 
-	_normalGraphics.drawRect(0, 0, _normalBackWidth, _normalBackHeight);
+	_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
 	_normalGraphics.endFill();
 	//--------------------------------------
 
