@@ -12,7 +12,7 @@ CustomDispatcher::~CustomDispatcher() {
 
 //--------------------------------------------------------------
 void CustomDispatcher::dispatchTest1() {
-    dispatchEvent(new flEvent(flEvent::INIT));
+    dispatchEvent(new flEvent(flEvent::CHANGE));
 }
 
 //--------------------------------------------------------------

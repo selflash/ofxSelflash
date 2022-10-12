@@ -13,7 +13,7 @@ MainController::MainController() {
 	name("MainController");
 	useHandCursor(true);
 
-	titleTf->text("");
+	_title = "";
 
 	_status = "[Status]";
 
@@ -51,27 +51,27 @@ void MainController::_setup() {
 
 	flBasicController::_setup();
 
-	_normalBackWidth = 420;
-	_normalBackHeight = 695;
-	_minBackWidth = _normalBackWidth;
-	_backWidth = _normalBackWidth;
-	_backHeight = _normalBackHeight;
+	_defaultWindowWidth = 420;
+	_defaultWindowHeight = 695;
+	//_minBackWidth = _defaultWindowWidth;
+	//_backWidth = _defaultWindowWidth;
+	//_backHeight = _defaultWindowHeight;
 
-	flGraphics* g;
-	g = graphics();
-	g->clear();
-	g->lineStyle(1, 0xffffff);
-	g->beginFill(0x000000, 0.7);
-	g->drawRect(0, 0, _backWidth, _backHeight);
-	g->moveTo(0, 220);
-	g->lineTo(_backWidth, 220);
-	g->moveTo(_backWidth * 0.5, 220);
-	g->lineTo(_backWidth * 0.5, _backHeight);
-	g->moveTo(0, 315 + 22);
-	g->lineTo(_backWidth * 0.5, 315 + 22);
-	g->moveTo(0, 455 + 22);
-	g->lineTo(_backWidth * 0.5, 455 + 22);
-	g->endFill();
+	//flGraphics* g;
+	//g = graphics();
+	//g->clear();
+	//g->lineStyle(1, 0xffffff);
+	//g->beginFill(0x000000, 0.7);
+	//g->drawRect(0, 0, _backWidth, _backHeight);
+	//g->moveTo(0, 220);
+	//g->lineTo(_backWidth, 220);
+	//g->moveTo(_backWidth * 0.5, 220);
+	//g->lineTo(_backWidth * 0.5, _backHeight);
+	//g->moveTo(0, 315 + 22);
+	//g->lineTo(_backWidth * 0.5, 315 + 22);
+	//g->moveTo(0, 455 + 22);
+	//g->lineTo(_backWidth * 0.5, 455 + 22);
+	//g->endFill();
 
 	float marginLeft; float marginTop;
 	float spacing; float lineSpacing;
@@ -671,45 +671,45 @@ void MainController::_draw() {
 // PUBLIC MEHTOD
 //==============================================================
 
-//--------------------------------------------------------------
+////--------------------------------------------------------------
+////
+//void MainController::normalize() {
+//	if (!_isMinimize) return;
+//	_isMinimize = false;
 //
-void MainController::normalize() {
-	if (!_isMinimize) return;
-	_isMinimize = false;
-
-	minimizeButton->selected(false);
-
-	//----------------------------------
-	_backWidth = _normalBackWidth;
-	_backHeight = _normalBackHeight;
-
-	flGraphics* g;
-	g = graphics();
-	g->clear();
-	g->lineStyle(1, 0xffffff);
-	g->beginFill(0x000000, 0.7);
-	g->drawRect(0, 0, _backWidth, _backHeight);
-	g->moveTo(0, 220);
-	g->lineTo(_backWidth, 220);
-	g->moveTo(_backWidth * 0.5, 220);
-	g->lineTo(_backWidth * 0.5, _backHeight);
-	g->moveTo(0, 315 + 22);
-	g->lineTo(_backWidth * 0.5, 315 + 22);
-	g->moveTo(0, 455 + 22);
-	g->lineTo(_backWidth * 0.5, 455 + 22);
-	g->endFill();
-	//----------------------------------
-
-	//----------------------------------
-	int i; int l;
-	l = numChildren();
-	for (i = 0; i < l; i++) {
-		getChildAt(i)->visible(true);
-	}
-
-	if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
-	//----------------------------------
-}
+//	minimizeButton->selected(false);
+//
+//	//----------------------------------
+//	_backWidth = _defaultWindowWidth;
+//	_backHeight = _defaultWindowHeight;
+//
+//	flGraphics* g;
+//	g = graphics();
+//	g->clear();
+//	g->lineStyle(1, 0xffffff);
+//	g->beginFill(0x000000, 0.7);
+//	g->drawRect(0, 0, _backWidth, _backHeight);
+//	g->moveTo(0, 220);
+//	g->lineTo(_backWidth, 220);
+//	g->moveTo(_backWidth * 0.5, 220);
+//	g->lineTo(_backWidth * 0.5, _backHeight);
+//	g->moveTo(0, 315 + 22);
+//	g->lineTo(_backWidth * 0.5, 315 + 22);
+//	g->moveTo(0, 455 + 22);
+//	g->lineTo(_backWidth * 0.5, 455 + 22);
+//	g->endFill();
+//	//----------------------------------
+//
+//	//----------------------------------
+//	int i; int l;
+//	l = numChildren();
+//	for (i = 0; i < l; i++) {
+//		getChildAt(i)->visible(true);
+//	}
+//
+//	if (parent()) ((flDisplayObjectContainer*)parent())->addChild(this);
+//	//----------------------------------
+//}
 
 //--------------------------------------------------------------
 //

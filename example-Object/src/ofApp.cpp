@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofLogToConsole();
+
     flObject* object = new flObject();
     float x = 100.5;
 

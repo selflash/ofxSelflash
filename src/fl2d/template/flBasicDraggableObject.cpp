@@ -12,7 +12,9 @@ namespace fl2d {
         _target = this;
         name("flBasicDraggableObject");
         
-        useHandCursor(true);        
+        useHandCursor(true);
+
+		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
     }
     
     //--------------------------------------------------------------
@@ -38,7 +40,7 @@ namespace fl2d {
 
 		flSprite::_setup();
 
-		addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
+		//addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicDraggableObject::_mouseEventHandler);
     }
  
 	//==============================================================

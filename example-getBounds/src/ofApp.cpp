@@ -20,8 +20,8 @@ void ofApp::setup() {
     boxA->setup();
     boxA->title("Hit Area");
     boxA->name("BoxA");
-//    boxA->x(sw * 0.5);
-//    boxA->y(sh * 0.5);
+    boxA->x(sw * 0.5);
+    boxA->y(sh * 0.5);
     boxA->mouseEnabled(false);
     stage->addChild(boxA);
     //--------------------------------------
@@ -91,7 +91,7 @@ void ofApp::setup() {
     matrix.rotate(45.0 / 180.0 * PI);
 
     //もとの位置にオブジェクトを移動する。(3)
-//    matrix.translate(rect.left() + rect.width() / 2.0, rect.top() + rect.height() / 2.0);
+    matrix.translate(rect.left() + rect.width() / 2.0, rect.top() + rect.height() / 2.0);
 }
 
 //--------------------------------------------------------------
@@ -133,7 +133,7 @@ void ofApp::draw() {
     //            ofDrawRectangle(rect.x(), rect.y(), width(), height());
     ofPushStyle();
     ofNoFill();
-    ofSetLineWidth(3);
+    ofSetLineWidth(1);
     ofSetColor(255, 0, 0, 150);
     ofDrawRectangle(rect.x(), rect.y(), rect.width(), rect.height());
     ofPopStyle();

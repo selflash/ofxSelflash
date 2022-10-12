@@ -412,6 +412,8 @@ NetworkController::NetworkController() {
     cout << "[NetworkController]NetworkController()" << endl;
     _target = this;
     
+    _title = "";
+
     name("NetworkController");
     useHandCursor(true);
 }
@@ -443,21 +445,19 @@ void NetworkController::_setup() {
     //    closeButton->visible(false);
     //    isDraggable(false);
     
-    _normalBackWidth = 420;
-    _normalBackHeight = 420;
-    _minBackWidth = _normalBackWidth;
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
-    
-    titleTf->text("");
+    _defaultWindowWidth = 420;
+    _defaultWindowHeight = 420;
+    //_minBackWidth = _defaultWindowWidth;
+    //_backWidth = _defaultWindowWidth;
+    //_backHeight = _defaultWindowHeight;
+    //
+    //flGraphics* g;
+    //g = graphics();
+    //g->clear();
+    //g->lineStyle(1, 0xffffff);
+    //g->beginFill(0x000000, 0.7);
+    //g->drawRect(0, 0, _backWidth, _backHeight);
+    //g->endFill();
     
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;

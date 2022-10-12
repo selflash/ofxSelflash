@@ -26,7 +26,7 @@ void ofApp::draw(){
         }
         
         ofPushStyle();
-        ofSetColor(0, 0, 0, 255);
+        ofSetColor(200, 200, 200, 255);
         flFont::drawString(text, fontSize, x, y);
         ofPopStyle();
         

@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+    ofLogToConsole();
+
     ofSetWindowTitle("example-BasicDraggableObject");
     ofSetVerticalSync(true);
     //ofDisableAntiAliasing();
@@ -12,7 +14,7 @@ void ofApp::setup() {
     //--------------------------------------
     
     flStage* stage = ofxSelflash::stage();
-    
+
     //load image
     ofImage image;
     image.load("selflash.jpeg");
@@ -25,6 +27,7 @@ void ofApp::setup() {
     //    noFrameBorder->alpha(0.5);
     noFrameBorder->toolTipEnabled(true);
     noFrameBorder->toolTipText("No Frame Border");
+    //noFrameBorder->setup();
     stage->addChild(noFrameBorder);
     
     flBitmap* bitmap1 = new flBitmap(image);
@@ -100,7 +103,7 @@ void ofApp::draw() {
     ofxSelflash::draw();
     
     ofPushStyle();
-    ofSetColor(0, 0, 0, 255);
+    ofSetColor(255, 255, 255, 255);
     flFont::drawString("Drag to move any object.\nPress [ 1 ]  to change dragEnabled.", 5, 20);
     ofPopStyle();
 }

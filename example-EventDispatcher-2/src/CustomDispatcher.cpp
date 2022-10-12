@@ -12,19 +12,19 @@ CustomDispatcher::~CustomDispatcher() {
 
 //--------------------------------------------------------------
 void CustomDispatcher::addListeners() {
-    addEventListener(flEvent::INIT, this, &CustomDispatcher::eventHandler);
+    addEventListener(flEvent::CHANGE, this, &CustomDispatcher::eventHandler);
     addEventListener(CustomEvent::TEST1, this, &CustomDispatcher::eventHandler);
 }
 
 //--------------------------------------------------------------
 void CustomDispatcher::removeListeners() {
-    removeEventListener(flEvent::INIT, this, &CustomDispatcher::eventHandler);
+    removeEventListener(flEvent::CHANGE, this, &CustomDispatcher::eventHandler);
     removeEventListener(CustomEvent::TEST1, this, &CustomDispatcher::eventHandler);
 }
 
 //--------------------------------------------------------------
 void CustomDispatcher::dispatchTest1() {
-    dispatchEvent(new flEvent(flEvent::INIT));
+    dispatchEvent(new flEvent(flEvent::CHANGE));
 }
 
 //--------------------------------------------------------------
@@ -46,10 +46,10 @@ void CustomDispatcher::eventHandler(flEvent& event) {
     
     //    CustomEvent& customEvent = *(CustomEvent*) &event;
     
-    if(event.type() == flEvent::INIT) {
-        ofLog() << "A -> INIT";
-        //        removeEventListener(Event::INIT, &CustomDispatcher::eventHandler);
-        removeEventListeners(flEvent::INIT);
+    if(event.type() == flEvent::CHANGE) {
+        ofLog() << "A -> CHANGE";
+        //        removeEventListener(Event::CHANGE, &CustomDispatcher::eventHandler);
+        removeEventListeners(flEvent::CHANGE);
         //        removeAllEventListener();
     }
     

@@ -21,7 +21,7 @@ SubController1::SubController1(string title) {
     name("SubController1");
     useHandCursor(true);
     
-    titleTf->text("[" + title + "]");
+    _title = "[" + title + "]";
     
     _status = "[Status]";
 }
@@ -46,19 +46,19 @@ void SubController1::_setup() {
     
     flBasicController::_setup();
     
-    _normalBackWidth = 380;
-    _normalBackHeight = 130 + 18;
-    _minBackWidth = _normalBackWidth;
-    _backWidth = _normalBackWidth;
-    _backHeight = _normalBackHeight;
-    
-    flGraphics* g;
-    g = graphics();
-    g->clear();
-    g->lineStyle(1, 0xffffff);
-    g->beginFill(0x000000, 0.7);
-    g->drawRect(0, 0, _backWidth, _backHeight);
-    g->endFill();
+    _defaultWindowWidth = 380;
+    _defaultWindowHeight = 130 + 18;
+    //_minBackWidth = _defaultWindowWidth;
+    //_backWidth = _defaultWindowWidth;
+    //_backHeight = _defaultWindowHeight;
+    //
+    //flGraphics* g;
+    //g = graphics();
+    //g->clear();
+    //g->lineStyle(1, 0xffffff);
+    //g->beginFill(0x000000, 0.7);
+    //g->drawRect(0, 0, _backWidth, _backHeight);
+    //g->endFill();
     
     float marginLeft; float marginTop;
     float spacing; float lineSpacing;

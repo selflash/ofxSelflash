@@ -2,12 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+    ofLogToConsole();
     ofSetWindowTitle("example-Eventdispatcher-2");
     
     //---------------------------------------
     dispatcherA = new flEventDispatcher();
     dispatcherA->debug(true);
-    dispatcherA->addEventListener(flEvent::INIT, this, &ofApp::eventHandler);
+    dispatcherA->addEventListener(flEvent::CHANGE, this, &ofApp::eventHandler);
     dispatcherA->addEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
     
     dispatcherB = new CustomDispatcher();
@@ -34,7 +35,7 @@ void ofApp::draw() {
     
     ofSetColor(255, 255, 255);
     std::string text = "";
-    text += "Press [ 1 ] : A.dispatchEvent(Event::INIT)\n";
+    text += "Press [ 1 ] : A.dispatchEvent(Event::CHANGE)\n";
     text += "Press [ 2 ] : A.dispatchEvent(CustomEvent::TEST1)\n";
     text += "Press [ 3 ] : B.dispatchTest1()\n";
     text += "Press [ 4 ] : B.dispatchTest2()\n";
@@ -51,11 +52,11 @@ void ofApp::test1() {
     //removeEventListenerテスト
     ofLog() << "TEST 5 ---------------------";
     ofLog() << &ofApp::eventHandler;
-    ofLog() << (dispatcherA->hasEventListener(flEvent::INIT) ? "true" : "false");
+    ofLog() << (dispatcherA->hasEventListener(flEvent::CHANGE) ? "true" : "false");
     
-    dispatcherA->removeEventListeners(flEvent::INIT);
+    dispatcherA->removeEventListeners(flEvent::CHANGE);
     
-    ofLog() << dispatcherA->hasEventListener(flEvent::INIT);
+    ofLog() << dispatcherA->hasEventListener(flEvent::CHANGE);
     ofLog() << "----------------------------";
     //---------------------------------------
 }
@@ -81,14 +82,14 @@ void ofApp::eventHandler(flEvent& event) {
     //    CustomEvent& customEvent = *(CustomEvent*)& event;
     
     if(event.target() == dispatcherA) {
-        if(event.type() == flEvent::INIT) ofLog() << "A -> INIT";
+        if(event.type() == flEvent::CHANGE) ofLog() << "A -> CHANGE";
         if(event.type() == CustomEvent::TEST1) ofLog() << "A -> TEST1";
         
         //removeEventListenerテスト
-        //        target->removeEventListeners(flEvent::INIT);
+        //        target->removeEventListeners(flEvent::CHANGE);
         //        target->removeEventListeners(CustomEvent::TEST1);
         
-        //        target->removeEventListener(flEvent::INIT, this, &ofApp::eventHandler);
+        //        target->removeEventListener(flEvent::CHANGE, this, &ofApp::eventHandler);
         //        target->removeEventListener(CustomEvent::TEST1, this, &ofApp::eventHandler);
         
         target->removeAllEventListeners();
@@ -102,7 +103,7 @@ void ofApp::keyPressed(int key) {
     }
     
     if(key == '2') {
-        dispatcherA->dispatchEvent(new flEvent(flEvent::INIT));
+        dispatcherA->dispatchEvent(new flEvent(flEvent::CHANGE));
     }
     
     if(key == '3') {
