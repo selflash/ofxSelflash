@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  ActionScript3.0 Reference
  flash.display.BitmapData
@@ -24,7 +24,7 @@ namespace fl2d {
             unsigned char* _pixels;
             ofImage* _image;
             
-            //ƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚ªƒsƒNƒZƒ‹’PˆÊ‚Ì“§–¾“x‚ðƒTƒ|[ƒg‚·‚é‚©‚Ç‚¤‚©‚ð’è‹`‚µ‚Ü‚·B
+            //ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®é€æ˜Žåº¦ã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹ã‹ã©ã†ã‹ã‚’å®šç¾©ã—ã¾ã™ã€‚
             bool _transparent;
             
             int _width;
@@ -80,7 +80,7 @@ namespace fl2d {
             void unlock() {
                 _image->update();
                 //                if(_transparent) {
-                //                    //ƒAƒ‹ƒtƒ@—p‚ÉŠi”[
+                //                    //ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ã«æ ¼ç´
                 //                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
                 //                } else {
                 //                    _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR);

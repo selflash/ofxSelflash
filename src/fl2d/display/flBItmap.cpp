@@ -1,4 +1,4 @@
-
+﻿
 #include "flBitmap.h"
 
 namespace fl2d {

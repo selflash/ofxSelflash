@@ -1,4 +1,4 @@
-#include "flBlendMode.h"
+ï»¿#include "flBlendMode.h"
 
 namespace fl2d {
     
@@ -88,7 +88,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //ƒuƒŒƒ“ƒhƒ‚[ƒh–³Œø
+    //ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ç„¡åŠ¹
     void flBlendMode::disable() {
         glDisable(GL_ALPHA_TEST);
         

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flUIBase.h"
@@ -53,7 +53,7 @@ namespace fl2d {
 
                 //------------------------------------------
                 if(dispatch) {
-                    //ƒCƒxƒ“ƒg
+                    //ã‚¤ãƒ™ãƒ³ãƒˆ
                     flHistgramViewerEvent* event = new flHistgramViewerEvent(flHistgramViewerEvent::CHANGE);
                     //            event->_target = this;
                     event->__value = _value;

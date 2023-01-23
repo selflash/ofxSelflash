@@ -1,4 +1,4 @@
-/**
+﻿/**
  ActionScript3.0 Reference
  flash.text.TextFieldAutoSize
  http://help.adobe.com/ja_JP/FlashPlatform/reference/actionscript/3/flash/display/Shape.html

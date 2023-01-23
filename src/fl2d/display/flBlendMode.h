@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  Original code is Akira-Hayasaka :: ofxPSBlend
  https://github.com/Akira-Hayasaka/ofxPSBlend
@@ -17,37 +17,37 @@ namespace fl2d {
     
     class flBlendMode {
     public:
-        //�\���I�u�W�F�N�g�̗v�f�J���[�̒l��w�i�F�ɉ��Z���A���̍ۂɏ�� 0xFF ��K�p���܂��B
+        //表示オブジェクトの要素カラーの値を背景色に加算し、その際に上限 0xFF を適用します。
         static string ADD;
-        //�\���I�u�W�F�N�g�̊e�s�N�Z���̃A���t�@�l��w�i�ɓK�p���܂��B
+        //表示オブジェクトの各ピクセルのアルファ値を背景に適用します。
         static string ALPHA;
         //
         static string ALPHA_TEST;
-        //�\���I�u�W�F�N�g�̗v�f�J���[�Ɣw�i�F�̂����Â����i�l�����������j�̐F��I�����܂��B
+        //表示オブジェクトの要素カラーと背景色のうち暗い方（値が小さい方）の色を選択します。
         static string DARKEN;
-        //�\���I�u�W�F�N�g�̗v�f�J���[�Ɣw�i�F���r���A2 �̗v�f�J���[�̂������邢���̒l����Â����̒l�����������܂��B
+        //表示オブジェクトの要素カラーと背景色を比較し、2 つの要素カラーのうち明るい方の値から暗い方の値を差し引きます。
         static string DIFFERENCE_;
-        //�\���I�u�W�F�N�g�̃A���t�@�l�Ɋ�Â��Ĕw�i���������܂��B
+        //表示オブジェクトのアルファ値に基づいて背景を消去します。
         static string ERASE;
-        //�\���I�u�W�F�N�g�̈Â��Ɋ�Â��āA�e�s�N�Z���̐F�𒲐����܂��B
+        //表示オブジェクトの暗さに基づいて、各ピクセルの色を調整します。
         static string HARDLIGHT;
-        //�w�i�𔽓]���܂��B
+        //背景を反転します。
         static string INVERT;
-        //�\���I�u�W�F�N�g�Ɋւ��铧���x�O���[�v�������I�ɍ쐬���܂��B
+        //表示オブジェクトに関する透明度グループを強制的に作成します。
         static string LAYER;
-        //�\���I�u�W�F�N�g�̗v�f�J���[�Ɣw�i�F�̂������邢���i�l���傫�����j�̐F��I�����܂��B
+        //表示オブジェクトの要素カラーと背景色のうち明るい方（値が大きい方）の色を選択します。
         static string LIGHTEN;
-        //�\���I�u�W�F�N�g�̗v�f�J���[�̒l�Ɣw�i�F�̗v�f�J���[�̒l����Z������A0xFF �Ŋ����Đ��K�����A�F���Â����܂��B
+        //表示オブジェクトの要素カラーの値と背景色の要素カラーの値を乗算した後、0xFF で割って正規化し、色を暗くします。
         static string MULTIPLY;
-        //�\���I�u�W�F�N�g�́A�w�i�̑O�ɕ\������܂��B
+        //表示オブジェクトは、背景の前に表示されます。
         static string NORMAL;
-        //�w�i�̈Â��Ɋ�Â��āA�e�s�N�Z���̐F�𒲐����܂��B
+        //背景の暗さに基づいて、各ピクセルの色を調整します。
         static string OVERLAY;
-        //�\���I�u�W�F�N�g�̐F�̕␔�i�t�j�Ɣw�i�F�̕␔����Z���āA�u���[�`���ʂ𓾂܂��B
+        //表示オブジェクトの色の補数（逆）と背景色の補数を乗算して、ブリーチ効果を得ます。
         static string SCREEN;
-        //�V�F�[�_�[���g�p���āA�I�u�W�F�N�g�Ԃ̃u�����h���`���܂��B
+        //シェーダーを使用して、オブジェクト間のブレンドを定義します。
         static string SHADER;
-        //���ʂ̉����� 0 �Ƃ��āA�\���I�u�W�F�N�g�̗v�f�J���[�̒l�����̔w�i�F�̒l���猸�Z���܂��B
+        //結果の下限を 0 として、表示オブジェクトの要素カラーの値をその背景色の値から減算します。
         static string SUBTRACT;
         
     protected:

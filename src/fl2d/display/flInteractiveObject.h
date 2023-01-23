@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  Ported from ofxMSAInteractiveObject.
  https://github.com/of/ofx-msa/tree/master/ofxMSAInteractiveObject/
@@ -36,16 +36,16 @@ namespace fl2d {
             bool _tabEnabled;
             int	_tabIndex;
         
-            //Stage‚©‚ç‘€ì‚³‚ê‚é
+            //Stageã‹ã‚‰æ“ä½œã•ã‚Œã‚‹
             bool __isMouseOver;
             bool __isRollOver;
-            //ƒ}ƒEƒX‚ğ‰Ÿ‚µ‚½‚©
+            //ãƒã‚¦ã‚¹ã‚’æŠ¼ã—ãŸã‹
             bool __isMousePressed;
-            //ƒ}ƒEƒX‚ğ—£‚µ‚½‚©
+            //ãƒã‚¦ã‚¹ã‚’é›¢ã—ãŸã‹
             bool __isMouseReleased;
-            //ƒ}ƒEƒX‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
+            //ãƒã‚¦ã‚¹ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹
             bool __isMouseDown;
-            //ƒtƒH[ƒJƒX
+            //ãƒ•ã‚©ãƒ¼ã‚«ã‚¹
             bool __isFocus;
         
         private:

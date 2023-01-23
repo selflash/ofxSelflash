@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  ActionScript3.0 Reference
  flash.events.Event
@@ -7,9 +7,9 @@
  */
 
 /**
-e.target =�}�E�X�̉��ɂ�����́i�x���������悤��...�C�x���g���g���K�[������́j�B e.currentTarget =�h�b�g�̑O�̂���...�i�ȉ����Q�Ɓj
+e.target =マウスの下にあるもの（ベンが言うように...イベントをトリガーするもの）。 e.currentTarget =ドットの前のもの...（以下を参照）
 
-���������āA�C���X�^���X�����ubtns�v�̃N���b�v����10�̃{�^��������A���̂悤�ɂ���Ƃ��܂��B
+したがって、インスタンス名が「btns」のクリップ内に10個のボタンがあり、次のようにするとします。
 
 ---------------------------------------------------
 btns.addEventListener(MouseEvent.MOUSE_OVER, onOver);
@@ -20,9 +20,9 @@ function onOver(e:MouseEvent):void{
 }
 ---------------------------------------------------
 
-e.target��10�̃{�^����1�ł���Ae.currentTarget�͏�Ɂubtns�v�N���b�v�ł��B
+e.targetは10個のボタンの1つであり、e.currentTargetは常に「btns」クリップです。
 
-MouseEvent��ROLL_OVER�ɕύX�����ꍇ�A�܂��̓v���p�e�Bbtns.mouseChildren��false�ɐݒ肵���ꍇ�Ae.target��e.currentTarget�͗����Ƃ���Ɂubtns�v�ɂȂ邱�Ƃɒ��ӂ��Ă��������B
+MouseEventをROLL_OVERに変更した場合、またはプロパティbtns.mouseChildrenをfalseに設定した場合、e.targetとe.currentTargetは両方とも常に「btns」になることに注意してください。
 
 */
 
@@ -75,22 +75,22 @@ namespace fl2d {
         protected:
             string _type;
 
-			//[�ǂݎ���p] �C�x���g���o�u�����O�C�x���g���ǂ����������܂��B
+			//[読み取り専用] イベントがバブリングイベントかどうかを示します。
 			bool _bubbles = false;
-			//[�ǂݎ���p] �C�x���g�Ɋ֘A�t����ꂽ���������ł��邩�ǂ����������܂��B
+			//[読み取り専用] イベントに関連付けられた動作を回避できるかどうかを示します。
 			bool _cancelable = false;
-			//[�ǂݎ���p] �C�x���g�t���[�̌��݂̒i�K�ł��B
+			//[読み取り専用] イベントフローの現在の段階です。
 			int _eventPhase = 0;
 
-            //�C�x���g���X�i�[��o�^���� EventDispatcher �ƕK����v����̂� currentTarget
-			//�C�x���g���X�i�[�� Event �I�u�W�F�N�g���A�N�e�B�u�ɏ������Ă���I�u�W�F�N�g�ł��B
-			//�Ⴆ�΁A���[�U�[���uOK�v���N���b�N�����ꍇ�AcurrentTarget �́A���̃{�^���܂��́A���̃C�x���g�ɑ΂��ăC�x���g���X�i�[��o�^���Ă���c��� 1 ���܂ރm�[�h�ɂȂ�܂��B
+            //イベントリスナーを登録した EventDispatcher と必ず一致するのは currentTarget
+			//イベントリスナーで Event オブジェクトをアクティブに処理しているオブジェクトです。
+			//例えば、ユーザーが「OK」をクリックした場合、currentTarget は、そのボタンまたは、そのイベントに対してイベントリスナーを登録している祖先の 1 つを含むノードになります。
             void* __currentTarget;
 
-			//���ڂ܂��� DisplayObject �C���X�^���X���܂܂�Ă���T�u�c���[��ǉ����邱�ƂŁA�I���X�e�[�W�\�����X�g�ɒǉ������ DisplayObject �C���X�^���X�ł��B
-			//DisplayObject �C���X�^���X�����ڒǉ������ꍇ�A���̃C�x���g�̑O�� added �C�x���g���������܂��B
-			//�C�x���g�^�[�Q�b�g�ł��B���̃v���p�e�B�ɂ̓^�[�Q�b�g�m�[�h���܂܂�܂��B
-			//�Ⴆ�΁A���[�U�[���uOK�v���N���b�N�����ꍇ�A�^�[�Q�b�g�m�[�h�͂��̃{�^�����܂ޕ\�����X�g�m�[�h�ł��B
+			//直接または DisplayObject インスタンスが含まれているサブツリーを追加することで、オンステージ表示リストに追加される DisplayObject インスタンスです。
+			//DisplayObject インスタンスが直接追加される場合、このイベントの前に added イベントが発生します。
+			//イベントターゲットです。このプロパティにはターゲットノードが含まれます。
+			//例えば、ユーザーが「OK」をクリックした場合、ターゲットノードはそのボタンを含む表示リストノードです。
             void* __target;
         
         private:
@@ -99,18 +99,18 @@ namespace fl2d {
             flEvent(string type, bool bubbles = false, bool cancelable = false);
             virtual ~flEvent();
         
-			//Event �T�u�N���X�̃C���X�^���X�𕡐����܂��B
+			//Event サブクラスのインスタンスを複製します。
             virtual inline flEvent* clone() { return new flEvent(_type); }
 
-			//�J�X�^�� ActionScript 3.0 Event �N���X�� toString() ���\�b�h���������邽�߂̃��[�e�B���e�B�֐��ł��B
+			//カスタム ActionScript 3.0 Event クラスに toString() メソッドを実装するためのユーティリティ関数です。
 			//virtual inline string formatToString(string className, ... arguments);
-			//�C�x���g�� preventDefault() ���\�b�h���Ăяo���ꂽ���ǂ������m�F���܂��B
+			//イベントで preventDefault() メソッドが呼び出されたかどうかを確認します。
 			//virtual bool isDefaultPrevented();
-			//�C�x���g�̃f�t�H���g������L�����Z���ł���ꍇ�ɁA���̓�����L�����Z�����܂��B
+			//イベントのデフォルト動作をキャンセルできる場合に、その動作をキャンセルします。
 			//virtual void preventDefault();
-			//�C�x���g�t���[�̌��݂̃m�[�h����ь㑱����m�[�h�ŁA�C�x���g���X�i�[����������Ȃ��悤�ɂ��܂��B
+			//イベントフローの現在のノードおよび後続するノードで、イベントリスナーが処理されないようにします。
 			//virtual void stopImmediatePropagation();
-			//�C�x���g�t���[�̌��݂̃m�[�h�Ɍ㑱����m�[�h�ŁA�C�x���g���X�i�[����������Ȃ��悤�ɂ��܂��B
+			//イベントフローの現在のノードに後続するノードで、イベントリスナーが処理されないようにします。
 			//virtual void stopPropagation();
 
         
@@ -119,8 +119,8 @@ namespace fl2d {
             //            virtual const string& data();
         
             //https://n2works.net/columns/16
-            //���ڃN���b�N���ꂽ�I�u�W�F�N�g��target�v���p�e�B�Ɋi�[����AcurrentTarget�ɂ̓C�x���g���X�i���֘A�t����ꂽ�I�u�W�F�N�g���i�[�����B
-            //�C�x���g���X�i���֘A�t���Ă���I�u�W�F�N�g��Event�p���N���X����擾����ɂ�currentTarget���Q�Ƃ���ׂ��B
+            //直接クリックされたオブジェクトがtargetプロパティに格納され、currentTargetにはイベントリスナが関連付けられたオブジェクトが格納される。
+            //イベントリスナを関連付けているオブジェクトをEvent継承クラスから取得するにはcurrentTargetを参照するべき。
             virtual inline void* currentTarget() { return __currentTarget; }
     //        virtual inline void currentTarget(void* value) { _currentTarget = value; }
         

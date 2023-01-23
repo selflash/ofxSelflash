@@ -1,4 +1,4 @@
-#include "flHistgramViewer.h"
+﻿#include "flHistgramViewer.h"
 
 namespace fl2d {
     

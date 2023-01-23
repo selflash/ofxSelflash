@@ -1,4 +1,4 @@
-#include "flSprite.h"
+ï»¿#include "flSprite.h"
 
 namespace fl2d {
     
@@ -24,7 +24,8 @@ namespace fl2d {
         _hitArea = NULL;
         _useHandCursor = false;
         
-        _draggableArea = NULL;
+        _draggableArea = nullptr;
+        _tempDraggableArea = nullptr;
         
         ofAddListener(ofEvents().update, this, &flSprite::_updateEventHandler);
         
@@ -53,9 +54,19 @@ namespace fl2d {
         _dropTarget	= NULL;
         _hitArea = NULL;
         _useHandCursor = false;
-        
-		if (_draggableArea != NULL) delete _draggableArea;
-        _draggableArea = NULL;
+
+        if (_tempDraggableArea && _draggableArea) {
+            _tempDraggableArea = nullptr;
+
+            if (_draggableArea) delete _draggableArea;
+            _draggableArea = nullptr;
+        } {
+            if (_tempDraggableArea) delete _tempDraggableArea;
+            _tempDraggableArea = nullptr;
+
+            if (_draggableArea) delete _draggableArea;
+            _draggableArea = nullptr;
+        }
         
         ofRemoveListener(ofEvents().update, this, &flSprite::_updateEventHandler);
         
@@ -209,7 +220,7 @@ namespace fl2d {
 		//------------------------------------------
 
         //--------------------------------------
-        //ƒqƒbƒgƒGƒŠƒA‚Ì•\Ž¦
+        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢ã®è¡¨ç¤º
         if(_rectVisible) {
 //        if(true) {
             ofPushMatrix();
@@ -369,13 +380,13 @@ namespace fl2d {
     flSprite* flSprite::hitArea() { return _hitArea; }
     void flSprite::hitArea(flSprite* value) {
         /*
-         Ememo [AS3‚É‚¨‚¯‚éhitArea‚Ì‹““®]
-         EaddChild‚³‚ê‚Ä‚¢‚È‚¢‚Æ”½‰ž‚µ‚È‚¢
-         EhitArea‚ÉÝ’è‚·‚éflSprite‚ÌmouseEnabled‚Ífalse‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢
-         EhitArea‚ÉÝ’è‚·‚éflSprite‚ð‘¼‚ÌhitArea‚É‚·‚éŽ–‚Í‚Å‚«‚È‚¢
-         E‚à‚Á‚Æ‚àã‚ÉaddChild‚³‚ê‚½flSprite‚ª—Dæ‚³‚ê‚é
+         ãƒ»memo [AS3ã«ãŠã‘ã‚‹hitAreaã®æŒ™å‹•]
+         ãƒ»addChildã•ã‚Œã¦ã„ãªã„ã¨åå¿œã—ãªã„
+         ãƒ»hitAreaã«è¨­å®šã™ã‚‹flSpriteã®mouseEnabledã¯falseã—ãªã„ã¨ã„ã‘ãªã„
+         ãƒ»hitAreaã«è¨­å®šã™ã‚‹flSpriteã‚’ä»–ã®hitAreaã«ã™ã‚‹äº‹ã¯ã§ããªã„
+         ãƒ»ã‚‚ã£ã¨ã‚‚ä¸Šã«addChildã•ã‚ŒãŸflSpriteãŒå„ªå…ˆã•ã‚Œã‚‹
          
-         Emust be addedChild.
+         ãƒ»must be addedChild.
          */
         
         if(value == NULL) {
@@ -397,7 +408,7 @@ namespace fl2d {
 
         ofPoint p(x, y);
 
-        //ƒOƒ[ƒoƒ‹À•W‚©‚çƒ[ƒJƒ‹À•W‚É•ÏŠ·
+        //ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›
         //Transform to local from global.
         _transform.__concatenatedMatrixInv.transformPoint(p);
         
@@ -414,12 +425,12 @@ namespace fl2d {
 		if (_isGrabbed) return;
 		_isGrabbed = true;
 
-        _draggableArea = bounds;
+        if(bounds) _tempDraggableArea = bounds;
 
 		_startDragPoint.x = x();
 		_startDragPoint.y = y();
         
-        //TODO ŽÀ‘•‚ªƒXƒ}[ƒg‚¶‚á‚È‚¢‚È[EE
+        //TODO å®Ÿè£…ãŒã‚¹ãƒžãƒ¼ãƒˆã˜ã‚ƒãªã„ãªãƒ¼ãƒ»ãƒ»
         //it's not cool...
         //ofPoint* p = new ofPoint(stage()->mouseX(), stage()->mouseY());
         //ofPoint* p = new ofPoint(ofGetMouseX(), ofGetMouseY());
@@ -439,7 +450,7 @@ namespace fl2d {
 
         ofRemoveListener(ofEvents().mouseDragged, this, &flSprite::_mouseDragging);
         
-        _draggableArea = NULL;
+        _tempDraggableArea = _draggableArea;
     }
     
     //--------------------------------------------------------------
@@ -667,11 +678,11 @@ namespace fl2d {
         n1 = flmath::roundd(n1);
         n2 = flmath::roundd(n2);
 
-        if(_draggableArea){
-            if(n1 < _draggableArea->left()) n1 = _draggableArea->left();
-            if(n1 > _draggableArea->right()) n1 = _draggableArea->right();
-            if(n2 < _draggableArea->top()) n2 = _draggableArea->top();
-            if(n2 > _draggableArea->bottom()) n2 = _draggableArea->bottom();
+        if(_tempDraggableArea){
+            if(n1 < _tempDraggableArea->left()) n1 = _tempDraggableArea->left();
+            if(n1 > _tempDraggableArea->right()) n1 = _tempDraggableArea->right();
+            if(n2 < _tempDraggableArea->top()) n2 = _tempDraggableArea->top();
+            if(n2 > _tempDraggableArea->bottom()) n2 = _tempDraggableArea->bottom();
         }
         
         this->x(n1);

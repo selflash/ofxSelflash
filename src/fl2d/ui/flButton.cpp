@@ -1,4 +1,4 @@
-#include "flButton.h"
+ï»¿#include "flButton.h"
 
 namespace fl2d {
     
@@ -112,7 +112,7 @@ namespace fl2d {
 	void flButton::stage(flDisplayObject* value) {
 		//cout << "[flButton]stage(" << value << ")" << name() << endl;
 
-		//¡‚Ü‚ÅƒXƒe[ƒW‚Ö‚ÌŽQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌŽQÆ‚ª“ü‚éŽž
+		//ä»Šã¾ã§ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã‚‹æ™‚
 		if (!_stage && value) {
 			_stage = value;
 
@@ -121,7 +121,7 @@ namespace fl2d {
 			//            event->_target = _target;
 			dispatchEvent(event);
 		}
-		//Šù‚ÉƒXƒe[ƒW‚Ö‚ÌŽQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌŽQÆ‚ª‚È‚­‚È‚éŽž
+		//æ—¢ã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒãªããªã‚‹æ™‚
 		if (_stage && !value) {
 			if (_stage->hasEventListener(flMouseEvent::MOUSE_UP)) {
 				_stage->removeEventListener(flMouseEvent::MOUSE_UP, this, &flButton::_mouseEventHandler);
@@ -310,7 +310,7 @@ namespace fl2d {
 //        //------------------------------------------
 //
 //        //------------------------------------------
-//        //ƒCƒxƒ“ƒg
+//        //ã‚¤ãƒ™ãƒ³ãƒˆ
 //        if(dispatch) {
 //            flButtonEvent* event = new flButtonEvent(flButtonEvent::CHANGE);
 //            dispatchEvent(event);

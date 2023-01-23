@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  Original code is Gnash :: SWFRect
  http://www.gnu.org/software/gnash/

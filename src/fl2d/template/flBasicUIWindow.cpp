@@ -1,4 +1,4 @@
-#include "flBasicUIWindow.h"
+ï»¿#include "flBasicUIWindow.h"
 
 namespace fl2d {
     
@@ -27,19 +27,19 @@ namespace fl2d {
 		removeEventListener(flEvent::ADDED, this, &flBasicUIWindow::_eventHandler);
 		removeEventListener(flEvent::REMOVED, this, &flBasicUIWindow::_eventHandler);
 
-		//Å¬‰»ƒ{ƒ^ƒ“
+		//æœ€å°åŒ–ãƒœã‚¿ãƒ³
 		((flDisplayObjectContainer*)minimizeButton->parent())->removeChild(minimizeButton);
 		minimizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 		delete minimizeButton;
 		minimizeButton = NULL;
 
-		//Å‘å‰»ƒ{ƒ^ƒ“
+		//æœ€å¤§åŒ–ãƒœã‚¿ãƒ³
 		((flDisplayObjectContainer*)maximizeButton->parent())->removeChild(maximizeButton);
 		maximizeButton->removeEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 		delete maximizeButton;
 		maximizeButton = NULL;
 
-		//•Â‚¶‚éƒ{ƒ^ƒ“
+		//é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
 		((flDisplayObjectContainer*)closeButton->parent())->removeChild(closeButton);
 		closeButton->removeEventListener(flButtonEvent::CLICK, this, &flBasicUIWindow::_uiEventHandler);
 		delete closeButton;
@@ -58,11 +58,11 @@ namespace fl2d {
 		}
 
 		//
-		//if(_sizingHandle->parent()) ((flDisplayObjectContainer*)_sizingHandle->parent())->removeChild(_sizingHandle);
-		((flDisplayObjectContainer*)_sizingHandle->parent())->removeChild(_sizingHandle);
-		_sizingHandle->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
-		delete _sizingHandle;
-		_sizingHandle = NULL;
+		//if(_leftTopSizingHandle->parent()) ((flDisplayObjectContainer*)_leftTopSizingHandle->parent())->removeChild(_leftTopSizingHandle);
+		((flDisplayObjectContainer*)_leftTopSizingHandle->parent())->removeChild(_leftTopSizingHandle);
+		_leftTopSizingHandle->removeEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
+		delete _leftTopSizingHandle;
+		_leftTopSizingHandle = NULL;
 
 		for (auto* radioButtonGroup : radioButtonGroups) {
 			delete radioButtonGroup;
@@ -91,7 +91,7 @@ namespace fl2d {
 		flRadioButtonGroup* radioButtonGroup = NULL;
 		//--------------------------------------
 
-		//Å¬‰»ƒ{ƒ^ƒ“
+		//æœ€å°åŒ–ãƒœã‚¿ãƒ³
 		{
 			minimizeButton = new flButton(18, 18);
 			minimizeButton->name("MinimizeButton");
@@ -99,7 +99,7 @@ namespace fl2d {
 			minimizeButton->labelText("");
 			minimizeButton->toggleEnabled(true);
 			minimizeButton->toolTipEnabled(true);
-			minimizeButton->toolTipText(u8"Å¬‰»B");
+			minimizeButton->toolTipText(u8"æœ€å°åŒ–ã€‚");
 			minimizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 			displayObject = addChild(minimizeButton);
 
@@ -115,7 +115,7 @@ namespace fl2d {
 			//minimizeButton->visible(false);
 		}
 
-		//Å‘å‰»ƒ{ƒ^ƒ“
+		//æœ€å¤§åŒ–ãƒœã‚¿ãƒ³
 		{
 			maximizeButton = new flButton(18, 18);
 			maximizeButton->name("MaximizeButton");
@@ -123,7 +123,7 @@ namespace fl2d {
 			maximizeButton->labelText("");
 			maximizeButton->toggleEnabled(true);
 			maximizeButton->toolTipEnabled(true);
-			maximizeButton->toolTipText(u8"Å‘å‰»B");
+			maximizeButton->toolTipText(u8"æœ€å¤§åŒ–ã€‚");
 			maximizeButton->addEventListener(flButtonEvent::CHANGE, this, &flBasicUIWindow::_uiEventHandler);
 			displayObject = addChild(maximizeButton);
 
@@ -142,14 +142,14 @@ namespace fl2d {
 			//maximizeButton->visible(false);
 		}
 
-		//•Â‚¶‚éƒ{ƒ^ƒ“
+		//é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
 		{
 			closeButton = new flButton(18, 18);
 			closeButton->name("CloseButton");
 			closeButton->y(_margin);
 			closeButton->labelText("");
 			closeButton->toolTipEnabled(true);
-			closeButton->toolTipText(u8"•Â‚¶‚éB");
+			closeButton->toolTipText(u8"é–‰ã˜ã‚‹ã€‚");
 			closeButton->addEventListener(flButtonEvent::CLICK, this, &flBasicUIWindow::_uiEventHandler);
 			displayObject = addChild(closeButton);
 
@@ -168,19 +168,19 @@ namespace fl2d {
 		}
 
 		{
-			_sizingHandle = new flBasicDraggableObject();
-			_sizingHandle->setup();
-			_sizingHandle->x(0);
-			_sizingHandle->y(0);
-			_sizingHandle->visible(_resizable);
-			_sizingHandle->dragEnabled(true);
-			_sizingHandle->useHandCursor(true);
-			_sizingHandle->toolTipEnabled(true);
-			_sizingHandle->toolTipText(u8"ƒhƒ‰ƒbƒO‚·‚é–‚ÅƒEƒCƒ“ƒhƒEƒTƒCƒY‚ğ•ÏX‚µ‚Ü‚·B");
-			_sizingHandle->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicUIWindow::_mouseEventHandler);
-			//addChild(_sizingHandle);
+			_leftTopSizingHandle = new flBasicDraggableObject();
+			_leftTopSizingHandle->setup();
+			_leftTopSizingHandle->x(0);
+			_leftTopSizingHandle->y(0);
+			_leftTopSizingHandle->visible(_resizable);
+			_leftTopSizingHandle->dragEnabled(true);
+			_leftTopSizingHandle->useHandCursor(true);
+			_leftTopSizingHandle->toolTipEnabled(true);
+			_leftTopSizingHandle->toolTipText(u8"ãƒ‰ãƒ©ãƒƒã‚°ã™ã‚‹äº‹ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã—ã¾ã™ã€‚");
+			_leftTopSizingHandle->addEventListener(flMouseEvent::MOUSE_DOWN, this, &flBasicUIWindow::_mouseEventHandler);
+			//addChild(_leftTopSizingHandle);
 
-			flGraphics* g = _sizingHandle->graphics();
+			flGraphics* g = _leftTopSizingHandle->graphics();
 			g->clear();
 			g->beginFill(0xff0000, 0.0);
 			g->drawCircle(0, 0, 12);
@@ -196,12 +196,12 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_afterSetup() {
-		addChild(_sizingHandle);
+		addChild(_leftTopSizingHandle);
 
 		//--------------------------------------
 		for (int i = 0; i < numChildren(); i++) {
 			flDisplayObject* child = _children[i];
-			if (child == _sizingHandle) continue;
+			if (child == _leftTopSizingHandle) continue;
 
 			_defaultWindowWidth = std::max(_defaultWindowWidth, child->x() + child->width() + _margin);
 			_defaultWindowHeight = std::max(_defaultWindowHeight, child->y() + child->height() + _margin);
@@ -224,29 +224,29 @@ namespace fl2d {
 
 		flBasicDraggableObject::_update();
 
-		if (_sizingHandle->isGrabbed()) {
-			//int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
-			//int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
+		if (_leftTopSizingHandle->isGrabbed()) {
+			//int dx = abs(_leftTopSizingHandle->x() - _leftTopSizingHandle->startDragPoint().x);
+			//int dy = abs(_leftTopSizingHandle->y() - _leftTopSizingHandle->startDragPoint().y);
 			//if (dx == 0 && dy == 0) return;
 
-			//int w = _sizingHandle->x() - x();
-			//int h = _sizingHandle->y() - y();
+			//int w = _leftTopSizingHandle->x() - x();
+			//int h = _leftTopSizingHandle->y() - y();
 			//resize(w, h);
 
-			//int dx = abs(_sizingHandle->x() - _sizingHandle->startDragPoint().x);
-			//int dy = abs(_sizingHandle->y() - _sizingHandle->startDragPoint().y);
+			//int dx = abs(_leftTopSizingHandle->x() - _leftTopSizingHandle->startDragPoint().x);
+			//int dy = abs(_leftTopSizingHandle->y() - _leftTopSizingHandle->startDragPoint().y);
 			//if (dx == 0 && dy == 0) return;
 
-			if (_sizingHandle->x() <= _minimumWindowWidth) _sizingHandle->x(_minimumWindowWidth);
-			if (_sizingHandle->y() <= _minimumWindowHeight) _sizingHandle->y(_minimumWindowHeight);
+			if (_leftTopSizingHandle->x() <= _minimumWindowWidth) _leftTopSizingHandle->x(_minimumWindowWidth);
+			if (_leftTopSizingHandle->y() <= _minimumWindowHeight) _leftTopSizingHandle->y(_minimumWindowHeight);
 
-			int w = _sizingHandle->x();
-			int h = _sizingHandle->y();
+			int w = _leftTopSizingHandle->x();
+			int h = _leftTopSizingHandle->y();
 			resize(w, h);
 		}
 		else {
-			//_sizingHandle->x(x() + width());
-			//_sizingHandle->y(y() + height());
+			//_leftTopSizingHandle->x(x() + width());
+			//_leftTopSizingHandle->y(y() + height());
 		}
     }
     
@@ -302,8 +302,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_windowWidth);
-		_sizingHandle->y(_windowHeight);
+		_leftTopSizingHandle->x(_windowWidth);
+		_leftTopSizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -351,7 +351,7 @@ namespace fl2d {
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
-			if (child == _sizingHandle) continue;
+			if (child == _leftTopSizingHandle) continue;
 
 			child->visible(true);
 		}
@@ -363,8 +363,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_windowWidth);
-		_sizingHandle->y(_windowHeight);
+		_leftTopSizingHandle->x(_windowWidth);
+		_leftTopSizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -415,7 +415,7 @@ namespace fl2d {
 			if (child == closeButton) continue;
 			if (child == minimizeButton) continue;
 			if (child == maximizeButton) continue;
-			if (child == _sizingHandle && !_resizable) continue;
+			if (child == _leftTopSizingHandle && !_resizable) continue;
 
 			child->visible(true);
 		}
@@ -427,8 +427,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_windowWidth);
-		_sizingHandle->y(_windowHeight);
+		_leftTopSizingHandle->x(_windowWidth);
+		_leftTopSizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -469,8 +469,8 @@ namespace fl2d {
 
 		_relocateTitleBarButtons();
 
-		_sizingHandle->x(_windowWidth);
-		_sizingHandle->y(_windowHeight);
+		_leftTopSizingHandle->x(_windowWidth);
+		_leftTopSizingHandle->y(_windowHeight);
 	}
 
 	//--------------------------------------------------------------
@@ -528,19 +528,19 @@ namespace fl2d {
 		//ofLog(OF_LOG_NOTICE) << "[flBasicUIWindow]target        = " << event.target();
 
 		//flBasicDraggableObject::_eventHandler(event);
-		//addChild(_sizingHandle);
+		//addChild(_leftTopSizingHandle);
 
 		if (event.type() == flEvent::ADDED) {
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
-			//((flDisplayObjectContainer*)parent())->addChild(_sizingHandle);
+			//((flDisplayObjectContainer*)parent())->addChild(_leftTopSizingHandle);
 		}
 		if (event.type() == flEvent::REMOVED) {
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
-			//((flDisplayObjectContainer*)parent())->removeChild(_sizingHandle);
+			//((flDisplayObjectContainer*)parent())->removeChild(_leftTopSizingHandle);
 		}
 	}
 
@@ -587,7 +587,7 @@ namespace fl2d {
 			void* target = event.target();
 			void* currentTarget = event.currentTarget();
 
-			if (target == _sizingHandle) {
+			if (target == _leftTopSizingHandle) {
 				stage()->addEventListener(flMouseEvent::MOUSE_UP, this, &flBasicUIWindow::_mouseEventHandler);
 			}
 
@@ -602,8 +602,8 @@ namespace fl2d {
             //if(currentTarget == stage()) {
 			if (target == stage()) {
 				if (_dragEnabled) {
-					_sizingHandle->x(_windowWidth);
-					_sizingHandle->y(_windowHeight);
+					_leftTopSizingHandle->x(_windowWidth);
+					_leftTopSizingHandle->y(_windowHeight);
 				}
 			}
         }
@@ -615,7 +615,7 @@ namespace fl2d {
 
 		//flBasicDraggableObject::_uiEventHandler(event);
 
-		//ƒ{ƒ^ƒ“
+		//ãƒœã‚¿ãƒ³
 		if (event.type() == flButtonEvent::ROLL_OVER) {
 			flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
 			flButton* button = (flButton*)(event.currentTarget());
@@ -674,7 +674,7 @@ namespace fl2d {
 			}
 		}
 
-		//ƒRƒ“ƒ{ƒ{ƒbƒNƒX
+		//ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹
 		else if (event.type() == flComboBoxEvent::CHANGE) {
 			flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
 			flComboBox* comboBox = (flComboBox*)(event.currentTarget());
@@ -687,61 +687,61 @@ namespace fl2d {
 			//            ofLog() << "selectedValue : " << comboBox->selectedValue<flComboBox*>()->name();
 		}
 
-		//ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
+		//ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
 		else if (event.type() == flCheckBoxEvent::CHANGE) {
 			flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
 			flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
 		}
 
-		//ƒ‰ƒWƒIƒ{ƒ^ƒ“
+		//ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
 		else if (event.type() == flRadioButtonEvent::CHANGE) {
 			flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
 			flRadioButton* radio = (flRadioButton*)(event.currentTarget());
 		}
 
-		//ƒiƒ“ƒo[ƒ_ƒCƒAƒ‰[
+		//ãƒŠãƒ³ãƒãƒ¼ãƒ€ã‚¤ã‚¢ãƒ©ãƒ¼
 		else if (event.type() == flNumericDialerEvent::CHANGE) {
 			flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
 			flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
 		}
 
-		//2Dƒpƒbƒh
+		//2Dãƒ‘ãƒƒãƒ‰
 		else if (event.type() == flPadEvent::CHANGE) {
 			flPadEvent& padEvent = *(flPadEvent*) &event;
 			flPad2D* pad = (flPad2D*)(event.currentTarget());
 		}
 
-		//ƒXƒ‰ƒCƒ_[
+		//ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 		else if (event.type() == flSliderEvent::CHANGE) {
 			flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
 			flSlider* slider = (flSlider*)(event.currentTarget());
 		}
 
-		//Vec2ƒXƒ‰ƒCƒ_[
+		//Vec2ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 		else if (event.type() == flVec2SliderEvent::CHANGE) {
 			flVec2SliderEvent& sliderEvent = *(flVec2SliderEvent*) &event;
 			flVec2Slider* slider = (flVec2Slider*)(event.currentTarget());
 		}
 
-		//Vec3ƒXƒ‰ƒCƒ_[
+		//Vec3ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 		else if (event.type() == flVec3SliderEvent::CHANGE) {
 			flVec3SliderEvent& sliderEvent = *(flVec3SliderEvent*) &event;
 			flVec3Slider* slider = (flVec3Slider*)(event.currentTarget());
 		}
 
-		//ƒŒƒ“ƒWƒXƒ‰ƒCƒ_[
+		//ãƒ¬ãƒ³ã‚¸ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 		else if (event.type() == flRangeSliderEvent::CHANGE) {
 			flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
 			flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
 		}
 
-		//ƒJƒ‰[ƒXƒ‰ƒCƒ_[
+		//ã‚«ãƒ©ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 		else if (event.type() == flColorSliderEvent::CHANGE) {
 			flColorSliderEvent& colorSliderEvent = *(flColorSliderEvent*) &event;
 			flColorSlider* slider = (flColorSlider*)(event.currentTarget());
 		}
 
-		//ƒWƒ‡ƒCƒXƒeƒBƒbƒN1D
+		//ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯1D
 		else if (event.type() == flJoyStick1Event::CHANGE) {
 			flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
 			flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
@@ -763,7 +763,7 @@ namespace fl2d {
 			flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
 		}
 
-		//ƒWƒ‡ƒCƒXƒeƒBƒbƒN2D
+		//ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯2D
 		else if (event.type() == flJoyStick2Event::CHANGE) {
 			flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
 			flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());

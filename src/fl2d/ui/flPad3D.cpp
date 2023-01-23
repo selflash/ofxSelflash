@@ -1,4 +1,4 @@
-#include "flPad3D.h"
+ï»¿#include "flPad3D.h"
 
 namespace fl2d {
     
@@ -129,7 +129,7 @@ namespace fl2d {
         //------------------------------------------
         
         //------------------------------------------
-        //¶
+        //å·¦
         _dialer01 = new flNumericDialer(_areaWidth);
         _dialer01->name("flPad3D.leftDialer");
         _dialer01->x(0);
@@ -140,7 +140,7 @@ namespace fl2d {
         _dialer01->dragDirection(flNumericDialer::HORIZONTALLY);
         _dialer01->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad3D::_uiEventHandler);
         addChild(_dialer01);
-        //ã
+        //ä¸Š
         _dialer02 = new flNumericDialer(_areaWidth - 0);
         _dialer02->name("flPad3D.topDialer");
         _dialer02->x(_n);
@@ -150,7 +150,7 @@ namespace fl2d {
         _dialer02->value(_topValue);
         _dialer02->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad3D::_uiEventHandler);
         addChild(_dialer02);
-        //‰E
+        //å³
         _dialer03 = new flNumericDialer(_areaWidth);
         _dialer03->name("flPad3D.rightDialer");
         _dialer03->x(_n + _areaWidth);
@@ -161,7 +161,7 @@ namespace fl2d {
         _dialer03->value(_rightValue);
         _dialer03->addEventListener(flNumericDialerEvent::CHANGE, this, &flPad3D::_uiEventHandler);
         addChild(_dialer03);
-        //‰º
+        //ä¸‹
         _dialer04 = new flNumericDialer(_areaWidth - 0);
         _dialer04->name("flPad3D.bottomDialer");
         _dialer04->x(_n);
@@ -318,7 +318,7 @@ namespace fl2d {
         _areaPress();
         
         //------------------------------------------
-        //’l‚ÌXV
+        //å€¤ã®æ›´æ–°
         _updateValue();
         //------------------------------------------
         
@@ -342,7 +342,7 @@ namespace fl2d {
         _areaPress();
         
         //------------------------------------------
-        //’l‚ÌXV
+        //å€¤ã®æ›´æ–°
         _updateValue();
         //------------------------------------------
         
@@ -366,7 +366,7 @@ namespace fl2d {
         _areaPress();
         
         //------------------------------------------
-        //’l‚ÌXV
+        //å€¤ã®æ›´æ–°
         _updateValue();
         //------------------------------------------
         
@@ -387,7 +387,7 @@ namespace fl2d {
         _areaPress();
         
         //------------------------------------------
-        //’l‚ÌXV
+        //å€¤ã®æ›´æ–°
         _updateValue();
         //------------------------------------------
         
@@ -406,7 +406,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //’l‚ÌXV
+    //å€¤ã®æ›´æ–°
     void flPad3D::_updateValue() {
         _xRatio = (lever->x() - _n) / _areaWidth;
         _yRatio = (lever->y() - _n) / _areaHeight;
@@ -625,7 +625,7 @@ namespace fl2d {
         g->lineStyle(1, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
         g->drawRect(_n, _n, _areaWidth, _areaHeight);
-        //‰¡üEcü
+        //æ¨ªç·šãƒ»ç¸¦ç·š
         g->lineStyle(1, lineColor.getHex());
         g->moveTo(_n, lever->y());
         g->lineTo(_n + _areaWidth, lever->y());
@@ -716,33 +716,33 @@ namespace fl2d {
         //        ofLog() << "[flPad3D]currentTarget = " << event.currentTarget() << ", " << ((flDisplayObject*) event.currentTarget())->name();
         //        ofLog() << "[flPad3D]target        = " << event.target() << ", " << ((flDisplayObject*) event.target())->name();
         
-        //ƒiƒ“ƒo[ƒ_ƒCƒAƒ‰[
+        //ãƒŠãƒ³ãƒãƒ¼ãƒ€ã‚¤ã‚¢ãƒ©ãƒ¼
         if(event.type() == flNumericDialerEvent::CHANGE) {
             flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
             flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
             
-            //¶
+            //å·¦
             if(dialer == _dialer01) {
                 _leftValue = dialer->value();
                 
                 _dialer03->min(_leftValue, false);
                 _rangeWidth = _rightValue - _leftValue;
             }
-            //ã
+            //ä¸Š
             else if(dialer == _dialer02) {
                 _topValue = dialer->value();
                 
                 _dialer04->min(_topValue, false);
                 _rangeHeight = _bottomValue - _topValue;
             }
-            //‰E
+            //å³
             else if(dialer == _dialer03) {
                 _rightValue = dialer->value();
                 
                 _dialer01->max(_rightValue, false);
                 _rangeWidth = _rightValue - _leftValue;
             }
-            //‰º
+            //ä¸‹
             else if(dialer == _dialer04) {
                 _bottomValue = dialer->value();
                 

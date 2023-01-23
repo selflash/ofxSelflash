@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashSprite.h
@@ -46,7 +46,8 @@ namespace fl2d {
 			ofPoint _tempPoint;
 
 			ofPoint _draggablePoint;
-            flRectangle* _draggableArea = NULL;
+            flRectangle* _draggableArea = nullptr;
+            flRectangle* _tempDraggableArea = nullptr;
 			bool _isGrabbed = false;
         
             bool _buttonMode;
@@ -97,6 +98,26 @@ namespace fl2d {
             virtual void startDrag(bool lockCenter = false, flRectangle* bounds = NULL);
             virtual void stopDrag();
 			virtual inline bool isGrabbed() { return _isGrabbed; }
+			virtual void draggableAreaSize(float x, float y = FLT_MIN, float width = FLT_MAX, float height = FLT_MAX) {
+                if (!_draggableArea) {
+                    _draggableArea = new flRectangle(x, y, width, height);
+                }
+                else {
+                    _draggableArea->x(x);
+                    _draggableArea->y(y);
+                    _draggableArea->width(width);
+                    _draggableArea->height(height);
+                }
+
+                _tempDraggableArea = _draggableArea;
+            }
+            virtual void clearDraggableAreaSize() {
+                if (_draggableArea) {
+                    delete _draggableArea;
+                }
+                _draggableArea = nullptr;
+                _tempDraggableArea = nullptr;
+            }
 
 			virtual ofPoint startDragPoint() { return _startDragPoint; }
         

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flEvent.h"
@@ -16,7 +16,7 @@ namespace fl2d {
         static string THUMB_RELEASE;
         
     protected:
-        //ƒXƒ‰ƒCƒ_ƒTƒ€‚Ü‚½‚ÍƒXƒ‰ƒCƒ_ƒgƒ‰ƒbƒN‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ¦‚·ƒXƒgƒŠƒ“ƒO‚ğæ“¾‚µ‚Ü‚·B
+        //ã‚¹ãƒ©ã‚¤ãƒ€ã‚µãƒ ã¾ãŸã¯ã‚¹ãƒ©ã‚¤ãƒ€ãƒˆãƒ©ãƒƒã‚¯ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’ç¤ºã™ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’å–å¾—ã—ã¾ã™ã€‚
         void* _clickTarget;
         
         ofColor __color;
@@ -30,7 +30,7 @@ namespace fl2d {
         virtual int hexValue() { return __color.getHex(); }
         
         //----------------------------------
-        //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+        //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
         virtual inline int redValue() { return __color.r; }
         template <class T>
         const T redValue() {
@@ -43,7 +43,7 @@ namespace fl2d {
         //----------------------------------
         
         //----------------------------------
-        //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+        //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
         virtual inline int greenValue() { return __color.g; }
         template <class T>
         const T greenValue() {
@@ -56,7 +56,7 @@ namespace fl2d {
         //----------------------------------
         
         //----------------------------------
-        //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+        //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
         virtual inline int blueValue() { return __color.b; }
         template <class T>
         const T blueValue() {
@@ -69,7 +69,7 @@ namespace fl2d {
         //----------------------------------
         
         //----------------------------------
-        //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+        //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
         virtual inline int alphaValue() { return __color.a; }
         template <class T>
         const T alphaValue() {

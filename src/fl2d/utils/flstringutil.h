@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include "ofMain.h"
@@ -11,9 +11,9 @@ namespace flinternal {
             
         public:
             /*!
-             * ƒpƒX‚©‚çŠg’£q‚ğ¬•¶š‚É‚µ‚Äæ‚èo‚·
-             * @param[in] path ƒtƒ@ƒCƒ‹ƒpƒX
-             * @return (¬•¶š‰»‚µ‚½)Šg’£q
+             * ãƒ‘ã‚¹ã‹ã‚‰æ‹¡å¼µå­ã‚’å°æ–‡å­—ã«ã—ã¦å–ã‚Šå‡ºã™
+             * @param[in] path ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+             * @return (å°æ–‡å­—åŒ–ã—ãŸ)æ‹¡å¼µå­
              */
             static inline string getExtension(const string& path) {
                 string ext;
@@ -28,7 +28,7 @@ namespace flinternal {
                     }
                     itr = ext.end()-1;
                     
-                    //ƒpƒX‚ÌÅŒã‚É\0‚âƒXƒy[ƒX‚ª‚ ‚Á‚½‚Æ‚«‚Ì‘Îô
+                    //ãƒ‘ã‚¹ã®æœ€å¾Œã«\0ã‚„ã‚¹ãƒšãƒ¼ã‚¹ãŒã‚ã£ãŸã¨ãã®å¯¾ç­–
                     while(itr != ext.begin()) {
                         if(*itr == 0 || *itr == 32){
                             ext.erase(itr--);
@@ -41,10 +41,10 @@ namespace flinternal {
             }
             
             /**
-             * •¶š—ñ’†‚©‚ç•¶š—ñ‚ğŒŸõ‚µ‚Ä•Ê‚Ì•¶š—ñ‚É’uŠ·‚·‚é
-             * @param str  : ’uŠ·‘ÎÛ‚Ì•¶š—ñBã‘‚©‚ê‚Ü‚·B
-             * @param from : ŒŸõ•¶š—ñ
-             * @param to   : ’uŠ·Œã‚Ì•¶š—ñ
+             * æ–‡å­—åˆ—ä¸­ã‹ã‚‰æ–‡å­—åˆ—ã‚’æ¤œç´¢ã—ã¦åˆ¥ã®æ–‡å­—åˆ—ã«ç½®æ›ã™ã‚‹
+             * @param str  : ç½®æ›å¯¾è±¡ã®æ–‡å­—åˆ—ã€‚ä¸Šæ›¸ã‹ã‚Œã¾ã™ã€‚
+             * @param from : æ¤œç´¢æ–‡å­—åˆ—
+             * @param to   : ç½®æ›å¾Œã®æ–‡å­—åˆ—
              */
             static inline void replaceAll(string& str, const string& from, const string& to) {
                 string::size_type pos = 0;

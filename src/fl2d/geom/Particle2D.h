@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flEventDispatcher.h"
@@ -15,12 +15,12 @@ namespace fl2d {
         int _delay;
         int _life;
         
-        //ˆÊ’u
+        //ä½ç½®
         ofVec3f* _position;
         ofVec3f* _startPosition;
         ofVec3f* _velPosition;
         
-        //‰ñ“]
+        //å›è»¢
         float _rotation;
         float _startRotation;
         float _velRotation;
@@ -29,18 +29,18 @@ namespace fl2d {
         ofVec3f* _startRotationXYZ;
         ofVec3f* _velRotationXYZ;
         
-        //‰¡•Ac•A‰œs‚«
+        //æ¨ªå¹…ã€ç¸¦å¹…ã€å¥¥è¡Œã
         //width, height, depth
         ofVec3f* _size;
         ofVec3f* _startSize;
         ofVec3f* _sizeVel;
         
-        //Šg‘åEk¬
+        //æ‹¡å¤§ãƒ»ç¸®å°
         ofVec3f* _scale;
         ofVec3f* _startScale;
         ofVec3f* _velScale;
         
-        //F
+        //è‰²
         ofFloatColor* _color;
         ofFloatColor* _startColor;
         ofFloatColor* _velColor;
@@ -57,7 +57,7 @@ namespace fl2d {
         virtual void life(const int value);
         
         //--------------------------------------
-        //ˆÊ’u
+        //ä½ç½®
         virtual const float& x();
         virtual void  x(const float value);
         virtual const float& y();
@@ -87,7 +87,7 @@ namespace fl2d {
         //--------------------------------------
         
         //--------------------------------------
-        //‰ñ“]
+        //å›è»¢
         virtual const float& rotationX();
         virtual void rotationX(const float value);
         virtual const float& rotationY();
@@ -116,7 +116,7 @@ namespace fl2d {
         //--------------------------------------
         
         //--------------------------------------
-        //‰¡•Ac•A‰œs‚«
+        //æ¨ªå¹…ã€ç¸¦å¹…ã€å¥¥è¡Œã
         virtual const float& width();
         virtual void width(const float value);
         virtual const float& height();
@@ -146,7 +146,7 @@ namespace fl2d {
         //--------------------------------------
         
         //--------------------------------------
-        //Šg‘åEk¬
+        //æ‹¡å¤§ãƒ»ç¸®å°
         virtual const float& scaleX();
         virtual void scaleX(const float value);
         virtual const float& scaleY();
@@ -175,7 +175,7 @@ namespace fl2d {
         //--------------------------------------
         
         //--------------------------------------
-        //F
+        //è‰²
         virtual const float& red();
         virtual void red(const float value);
         virtual const float& green();

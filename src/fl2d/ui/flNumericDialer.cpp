@@ -1,9 +1,9 @@
-#include "flNumericDialer.h"
+ï»¿#include "flNumericDialer.h"
 
 namespace fl2d {
-    //…•½
+    //æ°´å¹³
     string flNumericDialer::HORIZONTALLY = "horizontally";
-    //‚’¼
+    //åž‚ç›´
     string flNumericDialer::VERTICALLY = "vertically";
     
     //==============================================================
@@ -133,7 +133,7 @@ namespace fl2d {
     void flNumericDialer::direction(string value) {
         _direction = value;
         
-        //…•½
+        //æ°´å¹³
         if(_direction == HORIZONTALLY) {
 //            _track->x(0);
 //            _track->y(0);
@@ -143,7 +143,7 @@ namespace fl2d {
             _valueText->y(0);
             _valueText->rotation(0);
         }
-        //‚’¼
+        //åž‚ç›´
         else if(_direction == VERTICALLY) {
 //            _track->x(_uiHeight);
 //            _track->y(0);
@@ -294,11 +294,11 @@ namespace fl2d {
     void flNumericDialer::_onPress() {
         float preValue = _value;
 
-		//•Ï‰»—Ê
+		//å¤‰åŒ–é‡
 		int n = 0;
         
         //------------------------------------------
-        //…•½
+        //æ°´å¹³
         if(_dragDirection == VERTICALLY) {
 			n = round((mouseY() - _startPos.y) * _weight);
 			if(!_invertEnabled) {
@@ -307,7 +307,7 @@ namespace fl2d {
                 _value = _tempValue - (n * -_stepSize);
             }
         }
-        //‚’¼
+        //åž‚ç›´
         else if(_dragDirection == HORIZONTALLY) {
 			n = round((mouseX() - _startPos.x) * _weight);
             if(!_invertEnabled) {
@@ -407,9 +407,9 @@ namespace fl2d {
         g->clear();
         g->lineStyle(thickness, lineColor.getHex());
         g->beginFill(fillColor.getHex(), fillColor.a / 255.0);
-        //…•½
+        //æ°´å¹³
         if(_direction == HORIZONTALLY) g->drawRect(0, 0, _uiWidth, _uiHeight);
-        //‚’¼
+        //åž‚ç›´
         else if(_direction == VERTICALLY) g->drawRect(0, 0, _uiHeight, _uiWidth);
         g->endFill();
     }

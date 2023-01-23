@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  Original code ported from julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashDisplayObjectContainer.h
@@ -60,7 +60,7 @@ namespace fl2d {
             flDisplayObjectContainer();
             virtual ~flDisplayObjectContainer();
         
-			//–{—ˆ‚Í“Ç‚İæ‚èê—p‚É‚µ‚½‚¢B‚È‚Ì‚ÅflDisplayObjectContainer‚©‚ç‚ÍŒÄ‚Ño‚·‚ÈI
+			//æœ¬æ¥ã¯èª­ã¿å–ã‚Šå°‚ç”¨ã«ã—ãŸã„ã€‚ãªã®ã§flDisplayObjectContainerã‹ã‚‰ã¯å‘¼ã³å‡ºã™ãªï¼
 			virtual void __stage(flDisplayObject* value, bool dispatch = true);
 
             virtual void _updateRect();

@@ -1,4 +1,4 @@
-#include "flUIBase.h"
+﻿#include "flUIBase.h"
 
 namespace fl2d {
     
@@ -21,9 +21,9 @@ namespace fl2d {
         
 		if (_label != NULL) {
 			//if (contains(_label)) removeChild(_label);
-            _label->removeEventListener(flEvent::REMOVED, this, &flUIBase::_childEventHandler);
-            if (_label->parent()) ((flDisplayObjectContainer*)_label->parent())->removeChild(_label);
-            delete _label;
+            //_label->removeEventListener(flEvent::REMOVED, this, &flUIBase::_childEventHandler);
+            //if (_label->parent()) ((flDisplayObjectContainer*)_label->parent())->removeChild(_label);
+            //delete _label;
 			_label = NULL;
 		}
             

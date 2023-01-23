@@ -1,4 +1,4 @@
-#include "flCheckBox.h"
+ï»¿#include "flCheckBox.h"
 
 namespace fl2d {
     
@@ -310,12 +310,12 @@ namespace fl2d {
         flGraphics* g = graphics();
         g->clear();
         
-        //ƒqƒbƒgƒGƒŠƒA
+        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢
         g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
-        //ŠO‘¤
+        //å¤–å´
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
@@ -338,12 +338,12 @@ namespace fl2d {
         flGraphics* g = graphics();
         g->clear();
         
-        //ƒqƒbƒgƒGƒŠƒA
+        //ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢
         g->beginFill(0xff0000, _hitAreaAlpha);
         g->drawRect(0, 0, max(_uiWidth, 6 + _label->x() + _label->width()), 15);
         g->endFill();
         
-        //ŠO‘¤
+        //å¤–å´
         g->lineStyle(1, outerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(0, 0, 18, 18); break;
@@ -358,7 +358,7 @@ namespace fl2d {
         }
         g->endFill();
         
-        //“à‘¤
+        //å†…å´
         g->beginFill(innerColor.getHex());
         switch(_shapeType) {
 //            case 0: g->drawRect(4, 3, 11, 11); break;

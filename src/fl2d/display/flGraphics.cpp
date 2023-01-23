@@ -1,4 +1,4 @@
-#include "flGraphics.h"
+ï»¿#include "flGraphics.h"
 
 namespace fl2d {
     
@@ -161,7 +161,7 @@ namespace fl2d {
         command->width = radius * 2;
         command->height = radius * 2;
         
-        //‚±‚ÌƒRƒ}ƒ“ƒh‚ª‰e‹¿‚·‚é•`‰æ”ÍˆÍ
+        //ã“ã®ã‚³ãƒãƒ³ãƒ‰ãŒå½±éŸ¿ã™ã‚‹æç”»ç¯„å›²
         command->left = x - radius;
         command->right = x + radius;
         command->top = y - radius;
@@ -182,7 +182,7 @@ namespace fl2d {
         command->width = width;
         command->height = height;
         
-        //‚±‚ÌƒRƒ}ƒ“ƒh‚ª‰e‹¿‚·‚é•`‰æ”ÍˆÍ
+        //ã“ã®ã‚³ãƒãƒ³ãƒ‰ãŒå½±éŸ¿ã™ã‚‹æç”»ç¯„å›²
         command->left = x;
         command->right = x + width;
         command->top = y;
@@ -204,7 +204,7 @@ namespace fl2d {
         command->height = height;
         command->radius = radius;
         
-        //‚±‚ÌƒRƒ}ƒ“ƒh‚ª‰e‹¿‚·‚é•`‰æ”ÍˆÍ
+        //ã“ã®ã‚³ãƒãƒ³ãƒ‰ãŒå½±éŸ¿ã™ã‚‹æç”»ç¯„å›²
         command->left = x;
         command->right = x + width;
         command->top = y;
@@ -403,9 +403,9 @@ namespace fl2d {
 //            ofDrawRectangle(x + 0.5, y, width - 1.0, height);
 //
 ////#ifdef __APPLE__
-////			ofDrawLine(x + width, y, x + width + 1, y); //1ƒsƒNƒZƒ‹‚©‚¯‚Ä‚¢‚é‚Ì‚ğ–„‚ß‚é
+////			ofDrawLine(x + width, y, x + width + 1, y); //1ãƒ”ã‚¯ã‚»ãƒ«ã‹ã‘ã¦ã„ã‚‹ã®ã‚’åŸ‹ã‚ã‚‹
 ////#elif defined _WIN32
-////			ofDrawLine(x, y, x, y + height + 1); //1ƒsƒNƒZƒ‹‚©‚¯‚Ä‚¢‚é‚Ì‚ğ–„‚ß‚é
+////			ofDrawLine(x, y, x, y + height + 1); //1ãƒ”ã‚¯ã‚»ãƒ«ã‹ã‘ã¦ã„ã‚‹ã®ã‚’åŸ‹ã‚ã‚‹
 ////#endif								 
 //			//ofDrawLine(x - 1, y - 1, x, y);
 //
@@ -493,7 +493,7 @@ namespace fl2d {
         
         _fillEnabled = false;
         
-        //TODO ƒƒ‚ƒŠ[ƒŠ[ƒN‚µ‚Ä‚È‚¢H
+        //TODO ãƒ¡ãƒ¢ãƒªãƒ¼ãƒªãƒ¼ã‚¯ã—ã¦ãªã„ï¼Ÿ
         //    for(int i = 0; i < _commandList.size(); i++) {
         //        _commandList.erase(_commandList.begin() + i);
         //        if(i == index) break;

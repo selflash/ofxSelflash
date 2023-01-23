@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  ActionScript3.0 Reference
  flash.display.Graphics
@@ -63,11 +63,11 @@ namespace fl2d {
         
             vector<DrawCommand*> _commandList;
         
-            //ü‚ÌF
+            //ç·šã®è‰²
             ofColor _lineColor;
-            //“h‚è‚ÌF
+            //å¡—ã‚Šã®è‰²
             ofColor _fillColor;
-            //ü‚Ì‘¾‚³
+            //ç·šã®å¤ªã•
             float _thickness;
         
             bool _lineEnabled;

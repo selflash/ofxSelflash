@@ -1,4 +1,4 @@
-#include "flTextFormat.h"
+﻿#include "flTextFormat.h"
 
 namespace fl2d {
 

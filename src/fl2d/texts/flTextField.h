@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  ActionScript3.0 Reference
  flash.text.TextField
@@ -42,12 +42,12 @@ namespace fl2d {
         
         string _type;
         
-        //�e�L�X�g�̕�
+        //テキストの幅
         float _textWidth;
-        //�e�L�X�g�̍���
+        //テキストの高さ
         float _textHeight;
         
-        //�e�L�X�g�t�B�[���h�̎����I�Ȋg�� / �k������ѐ���𐧌䂵�܂��B
+        //テキストフィールドの自動的な拡大 / 縮小および整列を制御します。
         string _autoSize;
         float _tx;
         int _numLine;
@@ -58,33 +58,33 @@ namespace fl2d {
         
         //            bool _enabledAntiAliasing;
         
-        //�e�L�X�g�t�B�[���h�ɔw�i�̓h��Ԃ������邩�ǂ������w�肵�܂��B
+        //テキストフィールドに背景の塗りつぶしがあるかどうかを指定します。
         bool _background = false;
-        //�e�L�X�g�t�B�[���h�̔w�i�̐F�ł��B
+        //テキストフィールドの背景の色です。
 		ofColor _backgroundColor = ofColor::gray;
         
-        //            //�w�肳�ꂽ�e�L�X�g�t�B�[���h�Ɍ��ݕ\������Ă����ԉ��̍s�����������ł��i1 ����n�܂�C���f�b�N�X�j�B
+        //            //指定されたテキストフィールドに現在表示されている一番下の行を示す整数です（1 から始まるインデックス）。
         //            int _bottomScrollV;
         
-        //            //�J�[�\���i�L�����b�g�j�ʒu�̃C���f�b�N�X�ł��B
+        //            //カーソル（キャレット）位置のインデックスです。
         //            int _caretIndex;
         
-        //            //�e�L�X�g�t�B�[���h���̕������ł��B
+        //            //テキストフィールド内の文字数です。
         //            int _length;
         
-        //            //���[�U�[�����͂���Ƃ��ɁA�e�L�X�g�t�B�[���h�ɓ��͂ł���ő�̕������ł��B
+        //            //ユーザーが入力するときに、テキストフィールドに入力できる最大の文字数です。
         //            int _maxChars;
         
-        //            //���݂̐����X�N���[���ʒu�ł��B
+        //            //現在の水平スクロール位置です。
         //            int _scrollH;
-        //            //�e�L�X�g�t�B�[���h�̃e�L�X�g�̐����ʒu�ł��B
+        //            //テキストフィールドのテキストの垂直位置です。
         //            int _scrollV;
-        //            //scrollH �̍ő�l�ł��B
+        //            //scrollH の最大値です。
         //            int _maxScrollH;
-        //            //scrollV �̍ő�l�ł��B
+        //            //scrollV の最大値です。
         //            int _maxScrollV;
         
-        //            //�e�L�X�g�t�B�[���h���I���\�ł��邩�ǂ����������u�[���l�ł��B
+        //            //テキストフィールドが選択可能であるかどうかを示すブール値です。
         //            bool _selectable;
         
         bool _addedListeners;

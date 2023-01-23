@@ -1,20 +1,20 @@
-#include "Particle2D.h"
+ï»¿#include "Particle2D.h"
 
 namespace fl2d {
     
     //--------------------------------------------------------------
     Particle2D::Particle2D() {
-        //Žõ–½
+        //å¯¿å‘½
         _count = 0;
         _delay = 0;
         _life = 0;
         
-        //ˆÊ’u
+        //ä½ç½®
         _position = new ofVec3f(0.0, 0.0, 0.0);
         _startPosition = new ofVec3f(0.0, 0.0, 0.0);
         _velPosition = new ofVec3f(0.0, 0.0, 0.0);
         
-        //‰ñ“]
+        //å›žè»¢
         _rotation = 0;
         _startRotation = 0;
         _velRotation = 0;
@@ -23,17 +23,17 @@ namespace fl2d {
         _startRotationXYZ = new ofVec3f(0, 0, 0);
         _velRotationXYZ = new ofVec3f(0, 0, 0);
         
-        //ƒTƒCƒY
+        //ã‚µã‚¤ã‚º
         _size = new ofVec3f(0.0, 0.0, 0.0);
         _sizeVel = new ofVec3f(0.0, 0.0, 0.0);
         _startSize = new ofVec3f(0.0, 0.0, 0.0);
         
-        //‘å‚«‚³
+        //å¤§ãã•
         _scale = new ofVec3f(0.0, 0.0, 0.0);
         _startScale = new ofVec3f(0.0, 0.0, 0.0);
         _velScale = new ofVec3f(0.0, 0.0, 0.0);
         
-        //F
+        //è‰²
         _color = new ofFloatColor(1.0, 1.0, 1.0);
         _startColor = new ofFloatColor(1.0, 1.0, 1.0);
         _velColor = new ofFloatColor(0.0, 0.0, 0.0);
@@ -41,12 +41,12 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     Particle2D::~Particle2D() {
-        //Žõ–½
+        //å¯¿å‘½
         _count = 0;
         _delay = 0;
         _life = 0;
         
-        //ˆÊ’u
+        //ä½ç½®
         delete _position;
         _position = NULL;
         delete _startPosition;
@@ -54,12 +54,12 @@ namespace fl2d {
         delete _velPosition;
         _velPosition = NULL;
         
-        //‰ñ“]
+        //å›žè»¢
         _rotation = 0;
         _startRotation = 0;
         _velRotation = 0;
         
-        //ƒTƒCƒY
+        //ã‚µã‚¤ã‚º
         delete _size;
         _size = NULL;
         delete _startSize;
@@ -67,7 +67,7 @@ namespace fl2d {
         delete _sizeVel;
         _sizeVel = NULL;
         
-        //‘å‚«‚³
+        //å¤§ãã•
         delete _scale;
         _scale = NULL;
         delete _startScale;
@@ -75,7 +75,7 @@ namespace fl2d {
         delete _velScale;
         _velScale = NULL;
         
-        //F
+        //è‰²
         delete _color;
         _color = NULL;
         delete _startColor;
@@ -333,25 +333,25 @@ namespace fl2d {
             return;
         }
         
-        //Žõ–½
+        //å¯¿å‘½
         life(life() - 1);
         
-        //ˆÊ’u
+        //ä½ç½®
         x(x() + velX());
         y(y() + velY());
         z(z() + velZ());
         
-        //‰ñ“]
+        //å›žè»¢
         rotationX(rotationX() + velRotationX());
         rotationY(rotationY() + velRotationY());
         rotationZ(rotationZ() + velRotationZ());
         
-        //ƒTƒCƒY
+        //ã‚µã‚¤ã‚º
         scaleX(scaleX() + velScaleX());
         scaleY(scaleY() + velScaleY());
         scaleZ(scaleZ() + velScaleZ());
         
-        //F
+        //è‰²
         red(red() + velRed());
         green(green() + velGreen());
         blue(blue() + velBlue());
@@ -375,19 +375,19 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void Particle2D::reset(){
-        //ˆÊ’u
+        //ä½ç½®
         x(startX());
         y(startY());
         z(startZ());
-        //‰ñ“]
+        //å›žè»¢
         rotationX(startRotationX());
         rotationY(startRotationY());
         rotationZ(startRotationZ());
-        //ƒTƒCƒY
+        //ã‚µã‚¤ã‚º
         scaleX(startScaleX());
         scaleY(startScaleY());
         scaleZ(startScaleZ());
-        //F
+        //è‰²
         color(ofFloatColor(_startColor->r, _startColor->g, _startColor->b));
     }
     

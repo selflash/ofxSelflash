@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  ActionScript3.0 Reference
  fl.controls.ComboBox
@@ -26,11 +26,11 @@ namespace fl2d {
         
     private:
         //------------------------------------------
-        //ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚ÌÅ‘å•iƒsƒNƒZƒ‹’PˆÊj‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+        //ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆã®æœ€å¤§å¹…ï¼ˆãƒ”ã‚¯ã‚»ãƒ«å˜ä½ï¼‰ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
         float _dropdownWidth = 150;
-        //ƒXƒNƒ[ƒ‹ƒo[‚ğ‚½‚È‚¢ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚É•\¦‚Å‚«‚éÅ‘ås”‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+        //ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’æŒãŸãªã„ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆã«è¡¨ç¤ºã§ãã‚‹æœ€å¤§è¡Œæ•°ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
         int _rowCount = 0;
-        //’Pˆê‘I‘ğƒŠƒXƒg‚Å‘I‘ğ‚³‚ê‚½ƒAƒCƒeƒ€‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+        //å˜ä¸€é¸æŠãƒªã‚¹ãƒˆã§é¸æŠã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
 		ofParameter<int> _selectedIndex = -1;
         //------------------------------------------
         
@@ -44,7 +44,7 @@ namespace fl2d {
         
         //------------------------------------------
         vector<flObject*> _itemList;
-        //ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚Å‘I‘ğ‚³‚ê‚Ä‚¢‚éƒAƒCƒeƒ€‚Ì’l‚ğæ“¾‚Ü‚½‚Íİ’è‚µ‚Ü‚·B
+        //ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆã§é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å€¤ã‚’å–å¾—ã¾ãŸã¯è¨­å®šã—ã¾ã™ã€‚
         flObject* _selectedItem = NULL;
         //------------------------------------------
         
@@ -133,7 +133,7 @@ namespace fl2d {
         void removeItemByIndex(int index);
 //        inline void removeItemByIndex(int index) {
 //            //--------------------------------------
-//            //_children()‚Ì‰ÓŠ‚ÍƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚Æ‚©‚ÅŠO‚Éo‚µ‚½‚çƒ_ƒ
+//            //_children()ã®ç®‡æ‰€ã¯ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã¨ã‹ã§å¤–ã«å‡ºã—ãŸã‚‰ãƒ€ãƒ¡
 //            if(index < 0 || index > _buttonList.size() - 1) return;
 //
 //            flButton* button = _buttonList[index];
@@ -237,11 +237,11 @@ namespace fl2d {
 //            void sortItems();
         void removeAllItems(bool dispatch = true);
         
-        //0‚©‚çn‚Ü‚éƒCƒ“ƒfƒbƒNƒX”Ô†
+        //0ã‹ã‚‰å§‹ã¾ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 		ofParameter<int>& selectedIndex();
         void selectedIndex(int value, bool dispatch = true);
         
-        //ComboBox ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì TextInput •”•ª‚É•\¦‚³‚ê‚éƒXƒgƒŠƒ“ƒO‚ğæ“¾‚µ‚Ü‚·B
+        //ComboBox ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã® TextInput éƒ¨åˆ†ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’å–å¾—ã—ã¾ã™ã€‚
         string selectedLabel();
         
         template <class T>

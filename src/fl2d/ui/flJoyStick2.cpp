@@ -1,4 +1,4 @@
-#include "flJoyStick2.h"
+ï»¿#include "flJoyStick2.h"
 
 namespace fl2d {
     
@@ -120,7 +120,7 @@ namespace fl2d {
             float ty = _targetY;
             
             //------------------------------------------
-            //”ÍˆÍ“à‚Éû‚ß‚é
+            //ç¯„å›²å†…ã«åã‚ã‚‹
             float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance){
                 float dx = tx - _center.x;
@@ -320,7 +320,7 @@ namespace fl2d {
         float ty = _targetY;
         
         //------------------------------------------
-        //”ÍˆÍ“à‚Éû‚ß‚é
+        //ç¯„å›²å†…ã«åã‚ã‚‹
         float distance = _center.distance(ofPoint(tx, ty));
         if(_maxDistance < distance) {
             float shiftX = tx - _center.x;

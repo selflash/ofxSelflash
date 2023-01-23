@@ -1,4 +1,4 @@
-#include "flBitmapData.h"
+Ôªø#include "flBitmapData.h"
 
 namespace fl2d {
     
@@ -22,7 +22,7 @@ namespace fl2d {
         
         _pixels = (unsigned char*)malloc(_width * _height * 4);
         
-        // ÉsÉNÉZÉãÉfÅ[É^ÇèÄîı
+        // „Éî„ÇØ„Çª„É´„Éá„Éº„Çø„ÇíÊ∫ñÂÇô
         int i;
         int colorSize;
         int totalCount;
@@ -36,7 +36,7 @@ namespace fl2d {
                 _pixels[i+2] = 255;
                 _pixels[i+3] = 255;
             }
-            //ÉAÉãÉtÉ@ópÇ…äiî[
+            //„Ç¢„É´„Éï„Ç°Áî®„Å´Ê†ºÁ¥ç
             _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
         } else {
             colorSize = 3;
@@ -76,7 +76,7 @@ namespace fl2d {
     //    }
     
     //--------------------------------------------------------------
-    // TODO _image->getPixels()ÇÇµÇ»Ç¢Ç≈ÇøÇ·ÇÒÇ∆pixelsÇópà”ÇµÇƒÇ®Ç≠
+    // TODO _image->getPixels()„Çí„Åó„Å™„ÅÑ„Åß„Å°„ÇÉ„Çì„Å®pixels„ÇíÁî®ÊÑè„Åó„Å¶„Åä„Åè
     void flBitmapData::draw(ofImage& source) {
         //        cout << "[flBitmapData]draw()" << endl;
 		if (!source.isAllocated()) return;
@@ -88,7 +88,7 @@ namespace fl2d {
         //_width = source.getWidth();
         //_height = source.getHeight();
         
-        // ÉsÉNÉZÉãÉfÅ[É^ÇèÄîı
+        // „Éî„ÇØ„Çª„É´„Éá„Éº„Çø„ÇíÊ∫ñÂÇô
         int i;
         int colorSize;
         int totalCount;
@@ -106,20 +106,20 @@ namespace fl2d {
                 a = pixels2[i+3];
                 
                 if(a == 0) {
-                    //âΩÇ‡ÇµÇ»Ç¢
+                    //‰Ωï„ÇÇ„Åó„Å™„ÅÑ
                 } else if(a == 255) {
-                    // ëOåiÇÃRGBÇÃílÇçÃóp
+                    // ÂâçÊôØ„ÅÆRGB„ÅÆÂÄ§„ÇíÊé°Áî®
                     _pixels[i] = pixels2[i];
                     _pixels[i+1] = pixels2[i+1];
                     _pixels[i+2] = pixels2[i+2];
                     //pixels1[i+3] = 255;
                 } else {
-                    // îwåiRGBÇÃílÇéÊìæ
+                    // ËÉåÊôØRGB„ÅÆÂÄ§„ÇíÂèñÂæó
                     r1 = _pixels[i];
                     g1 = _pixels[i+1];
                     b1 = _pixels[i+2];
                     
-                    // ëOåiÇÃRGBÇÃílÇéÊìæ
+                    // ÂâçÊôØ„ÅÆRGB„ÅÆÂÄ§„ÇíÂèñÂæó
                     r2 = pixels2[i];
                     g2 = pixels2[i+1];
                     b2 = pixels2[i+2];
@@ -129,7 +129,7 @@ namespace fl2d {
                      int b = (b2 * a + b1 * (256 - a)) / 256;
                      */
                     
-                    //ÉAÉãÉtÉ@ÉuÉåÉìÉfÉBÉìÉOÇÃçÇë¨âª
+                    //„Ç¢„É´„Éï„Ç°„Éñ„É¨„É≥„Éá„Ç£„É≥„Ç∞„ÅÆÈ´òÈÄüÂåñ
                     //http://elksimple.web.fc2.com/memo/alpha.html
                     r = (r2 - r1) * a / 256 + r1;
                     g = (g2 - g1) * a / 256 + g1;
@@ -141,14 +141,14 @@ namespace fl2d {
                     //_pixels[i+3] = 255;
                 }
             }
-            //ÉAÉãÉtÉ@ópÇ…äiî[
+            //„Ç¢„É´„Éï„Ç°Áî®„Å´Ê†ºÁ¥ç
             _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
         } else {
             colorSize = 3;
             totalCount = _width * _height * colorSize;
             
             for(i = 0; i < totalCount; i += colorSize) {
-                // ëOåiÇÃRGBÇÃílÇçÃóp
+                // ÂâçÊôØ„ÅÆRGB„ÅÆÂÄ§„ÇíÊé°Áî®
                 //_pixels[i] = pixels2[i];
                 //_pixels[i+1] = pixels2[i+1];
                 //_pixels[i+2] = pixels2[i+2];
@@ -223,7 +223,7 @@ namespace fl2d {
         //        ofPixels& pixels = _image->getPixels();
         //        pixels.clear();
         
-        // ÉsÉNÉZÉãÉfÅ[É^ÇèÄîı
+        // „Éî„ÇØ„Çª„É´„Éá„Éº„Çø„ÇíÊ∫ñÂÇô
         int i;
         int colorSize;
         int totalCount;
@@ -237,7 +237,7 @@ namespace fl2d {
                 _pixels[i+2] = 0;
                 _pixels[i+3] = 0;
             }
-            //ÉAÉãÉtÉ@ópÇ…äiî[
+            //„Ç¢„É´„Éï„Ç°Áî®„Å´Ê†ºÁ¥ç
             _image->setFromPixels(_pixels, _width, _height, OF_IMAGE_COLOR_ALPHA);
         } else {
             colorSize = 3;
@@ -254,7 +254,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flBitmapData::setPixel(int x, int y, ofColor color) {
         //        cout << "[flBitmapData]setPixel(" << x << ", " << y << ")" << endl;
-        // ÉsÉNÉZÉãÉfÅ[É^ÇèÄîı
+        // „Éî„ÇØ„Çª„É´„Éá„Éº„Çø„ÇíÊ∫ñÂÇô
         //        int i;
         //        int colorSize;
         //        int totalCount;

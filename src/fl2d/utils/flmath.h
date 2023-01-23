@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <math.h>
 #include "ofMain.h"
@@ -12,11 +12,11 @@ namespace flinternal {
             //
             inline static double round(double value, int n = 3) {
                 double dst;
-                //ˆ—‚ğs‚¤Œ…‚ğ10-1 ‚ÌˆÊ‚É‚·‚é
+                //å‡¦ç†ã‚’è¡Œã†æ¡ã‚’10-1 ã®ä½ã«ã™ã‚‹
                 dst = value * pow((double)10, (double)(-n - 1));
                 dst = (double)(int)(dst + 0.5);
                 
-                //ˆ—‚ğs‚Á‚½Œ…‚ğŒ³‚É–ß‚·
+                //å‡¦ç†ã‚’è¡Œã£ãŸæ¡ã‚’å…ƒã«æˆ»ã™
                 return dst * pow((double)10, (double)(n + 1));
             }
             
@@ -62,27 +62,27 @@ namespace flinternal {
 				const float frameWidth, const float frameHeight,
 				float& dstWidth, float& dstHeight
 			) {
-				//ƒEƒCƒ“ƒhƒE‚Ì‰¡•‚Æc•‚Ç‚¿‚ç‚ª‘å‚«‚¢‚©H
+				//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…ã¨ç¸¦å¹…ã©ã¡ã‚‰ãŒå¤§ãã„ã‹ï¼Ÿ
 				if (frameWidth < frameHeight) {
-					//‰¡•‚Éc•‚ğ‡‚í‚¹‚é
+					//æ¨ªå¹…ã«ç¸¦å¹…ã‚’åˆã‚ã›ã‚‹
 					dstWidth = frameWidth;
 					dstHeight = (srcHeight / srcWidth) * dstWidth;
 
-					//c•‚ªƒEƒCƒ“ƒhƒE‚Ìc•‚æ‚è‘å‚«‚­‚È‚Á‚½‚ç
+					//ç¸¦å¹…ãŒã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…ã‚ˆã‚Šå¤§ãããªã£ãŸã‚‰
 					if (frameWidth < dstWidth) {
-						//c•‚É‰¡•‚ğ‡‚í‚¹‚é
+						//ç¸¦å¹…ã«æ¨ªå¹…ã‚’åˆã‚ã›ã‚‹
 						dstHeight = frameHeight;
 						dstWidth = (srcWidth / srcHeight) * dstHeight;
 					}
 				}
 				else {
-					//c•‚É‰¡•‚ğ‡‚í‚¹‚é
+					//ç¸¦å¹…ã«æ¨ªå¹…ã‚’åˆã‚ã›ã‚‹
 					dstHeight = frameHeight;
 					dstWidth = (srcWidth / srcHeight) * dstHeight;
 
-					//‰¡•‚ªƒEƒCƒ“ƒhƒE‚Ì‰¡•‚æ‚è‘å‚«‚­‚È‚Á‚½‚ç
+					//æ¨ªå¹…ãŒã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…ã‚ˆã‚Šå¤§ãããªã£ãŸã‚‰
 					if (frameWidth < dstWidth) {
-						//‰¡•‚Éc•‚ğ‡‚í‚¹‚é
+						//æ¨ªå¹…ã«ç¸¦å¹…ã‚’åˆã‚ã›ã‚‹
 						dstWidth = frameWidth;
 						dstHeight = (srcHeight / srcWidth) * dstWidth;
 					}

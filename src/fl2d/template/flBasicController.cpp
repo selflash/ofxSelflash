@@ -1,4 +1,4 @@
-#include "flBasicController.h"
+ï»¿#include "flBasicController.h"
 
 namespace fl2d {
     
@@ -102,7 +102,7 @@ namespace fl2d {
 
 		flBasicUIWindow::_uiEventHandler(event);
 
-        //ƒ{ƒ^ƒ“
+        //ãƒœã‚¿ãƒ³
         if(event.type() == flButtonEvent::ROLL_OVER) {
             flButtonEvent& buttonEvent = *(flButtonEvent*) &event;
             flButton* button = (flButton*)(event.currentTarget());
@@ -136,7 +136,7 @@ namespace fl2d {
             flButton* button = (flButton*)(event.currentTarget());
         }
 
-        //ƒRƒ“ƒ{ƒ{ƒbƒNƒX
+        //ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹
         if(event.type() == flComboBoxEvent::CHANGE) {
             flComboBoxEvent& comboBoxEvent = *(flComboBoxEvent*) &event;
             flComboBox* comboBox = (flComboBox*)(event.currentTarget());
@@ -149,49 +149,49 @@ namespace fl2d {
 //            ofLog() << "selectedValue : " << comboBox->selectedValue<flComboBox*>()->name();
         }
         
-        //ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
+        //ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
         if(event.type() == flCheckBoxEvent::CHANGE) {
             flCheckBoxEvent& checkBoxEvent = *(flCheckBoxEvent*) &event;
             flCheckBox* checkBox = (flCheckBox*)(event.currentTarget());
         }
         
-        //ƒ‰ƒWƒIƒ{ƒ^ƒ“
+        //ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
         if(event.type() == flRadioButtonEvent::CHANGE) {
             flRadioButtonEvent& radioButtonEvent = *(flRadioButtonEvent*) &event;
             flRadioButton* radio = (flRadioButton*)(event.currentTarget());
         }
         
-        //ƒiƒ“ƒo[ƒ_ƒCƒAƒ‰[
+        //ãƒŠãƒ³ãƒãƒ¼ãƒ€ã‚¤ã‚¢ãƒ©ãƒ¼
         if(event.type() == flNumericDialerEvent::CHANGE) {
             flNumericDialerEvent& numberDialerEvent = *(flNumericDialerEvent*) &event;
             flNumericDialer* dialer = (flNumericDialer*)(event.currentTarget());
         }
         
-        //2Dƒpƒbƒh
+        //2Dãƒ‘ãƒƒãƒ‰
         if(event.type() == flPadEvent::CHANGE) {
             flPadEvent& padEvent = *(flPadEvent*) &event;
             flPad2D* pad = (flPad2D*)(event.currentTarget());
         }
         
-        //ƒXƒ‰ƒCƒ_[
+        //ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
         if(event.type() == flSliderEvent::CHANGE) {
             flSliderEvent& sliderEvent = *(flSliderEvent*) &event;
             flSlider* slider = (flSlider*)(event.currentTarget());
         }
         
-        //ƒŒƒ“ƒWƒXƒ‰ƒCƒ_[
+        //ãƒ¬ãƒ³ã‚¸ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
         if(event.type() == flRangeSliderEvent::CHANGE) {
             flRangeSliderEvent& rangeSliderEvent = *(flRangeSliderEvent*) &event;
             flRangeSlider* slider = (flRangeSlider*)(event.currentTarget());
         }
         
-        //ƒJƒ‰[ƒXƒ‰ƒCƒ_[
+        //ã‚«ãƒ©ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
         if(event.type() == flColorSliderEvent::CHANGE) {
             flColorSliderEvent& colorSliderEvent = *(flColorSliderEvent*) &event;
             flColorSlider* slider = (flColorSlider*)(event.currentTarget());
         }
         
-        //ƒWƒ‡ƒCƒXƒeƒBƒbƒN1²
+        //ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯1è»¸
         if(event.type() == flJoyStick1Event::CHANGE) {
             flJoyStick1Event& joystickEvent = *(flJoyStick1Event*) &event;
             flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
@@ -213,7 +213,7 @@ namespace fl2d {
             flJoyStick1* joystick = (flJoyStick1*)(event.currentTarget());
         }
         
-        //ƒWƒ‡ƒCƒXƒeƒBƒbƒN2²
+        //ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯2è»¸
         if(event.type() == flJoyStick2Event::CHANGE) {
             flJoyStick2Event& joystickEvent = *(flJoyStick2Event*) &event;
             flJoyStick2* joystick = (flJoyStick2*)(event.currentTarget());

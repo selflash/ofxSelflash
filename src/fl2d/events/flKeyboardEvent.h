@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  ActionScript3.0 Reference
  flash.events.KeyboardEvent
@@ -33,9 +33,9 @@ namespace fl2d {
         flKeyboardEvent(string type);
         virtual ~flKeyboardEvent();
         
-        //‰Ÿ‚µ‚½ƒL[‚Ü‚½‚Í—£‚µ‚½ƒL[‚Ì•¶šƒR[ƒh’l‚ğŠÜ‚İ‚Ü‚·B
+        //æŠ¼ã—ãŸã‚­ãƒ¼ã¾ãŸã¯é›¢ã—ãŸã‚­ãƒ¼ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å€¤ã‚’å«ã¿ã¾ã™ã€‚
         //int charCode();
-        //‰Ÿ‚µ‚½ƒL[‚Ü‚½‚Í—£‚µ‚½ƒL[‚ÌƒL[ƒR[ƒh’l‚Å‚·B
+        //æŠ¼ã—ãŸã‚­ãƒ¼ã¾ãŸã¯é›¢ã—ãŸã‚­ãƒ¼ã®ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰å€¤ã§ã™ã€‚
         virtual inline int keyCode() { return __keyCode; }
         
     private:

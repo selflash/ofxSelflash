@@ -1,9 +1,9 @@
-#include "flJoyStick1.h"
+ï»¿#include "flJoyStick1.h"
 
 namespace fl2d {
-    //…•½
+    //æ°´å¹³
     string flJoyStick1::HORIZONTALLY = "horizontally";
-    //‚’¼
+    //å‚ç›´
     string flJoyStick1::VERTICALLY = "vertically";
     
     //==============================================================
@@ -22,7 +22,7 @@ namespace fl2d {
         _uiLength = length;
         _maxDistance = (_uiLength * 0.5 - _leverRadius) - 2;
 
-        //…•½
+        //æ°´å¹³
         if(_type == HORIZONTALLY) {
             _uiWidth = _uiLength;
             _uiHeight = 18;
@@ -31,7 +31,7 @@ namespace fl2d {
             _targetValue = _center.x;
             
         }
-        //‚’¼
+        //å‚ç›´
         else if(_type == VERTICALLY) {
             _uiWidth = 18;
             _uiHeight = _uiLength;
@@ -143,7 +143,7 @@ namespace fl2d {
                 float ty = _center.y;
 
                 //------------------------------------------
-                //”ÍˆÍ“à‚Éû‚ß‚é
+                //ç¯„å›²å†…ã«åã‚ã‚‹
                 float distance = _center.distance(ofPoint(tx, ty));
                 if(_maxDistance < distance){
                     float d = tx - _center.x;
@@ -174,7 +174,7 @@ namespace fl2d {
                 float ty = _targetValue;
                 
                 //------------------------------------------
-                //”ÍˆÍ“à‚Éû‚ß‚é
+                //ç¯„å›²å†…ã«åã‚ã‚‹
                 float distance = _center.distance(ofPoint(tx, ty));
                 if(_maxDistance < distance){
                     float d = ty - _center.y;
@@ -273,12 +273,12 @@ namespace fl2d {
         string currentType = _type;
         _type = value;
         
-//        //…•½
+//        //æ°´å¹³
 //        if(_type == HORIZONTALLY) {
 //            _center = ofPoint(_uiLength * 0.5, _leverRadius + 1);
 //
 //        }
-//        //‚’¼
+//        //å‚ç›´
 //        else if(_type == VERTICALLY) {
 //            _center = ofPoint(_leverRadius + 1, _uiLength * 0.5);
 //
@@ -295,7 +295,7 @@ namespace fl2d {
         _center.x = currentCenter.y;
         _center.y = currentCenter.x;
 
-        //…•½
+        //æ°´å¹³
         if(_type == HORIZONTALLY) {
             _targetValue = _center.x;
             
@@ -303,7 +303,7 @@ namespace fl2d {
             _valueText->y(0);
             _valueText->rotation(0);
         }
-        //‚’¼
+        //å‚ç›´
         else if(_type == VERTICALLY) {
             _targetValue = _center.y;
             
@@ -332,13 +332,13 @@ namespace fl2d {
     void flJoyStick1::moveLever(float value) {
 //        ofLog() << "[flJoyStick1]moveLever(" << value << ")";
         
-        //…•½
+        //æ°´å¹³
         if(_type == HORIZONTALLY) {
 //            _targetValue = lever->x() - _maxDistance * value;
 //            _targetValue = _center.x - _maxDistance * value;
             _targetValue = _center.x - (_maxDistance * value);
         }
-        //‚’¼
+        //å‚ç›´
         else if(_type == VERTICALLY) {
 //            _targetValue = lever->y() - _maxDistance * value;
 //            _targetValue = _center.y - _maxDistance * value;
@@ -359,7 +359,7 @@ namespace fl2d {
         event->__value = _value;
         dispatchEvent(event);
         
-        //…•½
+        //æ°´å¹³
         if(_type == HORIZONTALLY) {
             if(_value > 0) {
                 event = new flJoyStick1Event(flJoyStick1Event::RIGHT);
@@ -372,7 +372,7 @@ namespace fl2d {
                 dispatchEvent(event);
             }
         }
-        //‚’¼
+        //å‚ç›´
         else if(_type == VERTICALLY) {
             if(_value > 0) {
                 event = new flJoyStick1Event(flJoyStick1Event::UP);
@@ -408,14 +408,14 @@ namespace fl2d {
         float ty = _targetValue;
 
         //------------------------------------------
-        //…•½
+        //æ°´å¹³
         if(_type == HORIZONTALLY) {
             //------------------------------------------
             tx = mouseX() - _draggablePoint.x;
             ty = _center.y;
             
             //------------------------------------------
-            //”ÍˆÍ“à‚Éû‚ß‚é
+            //ç¯„å›²å†…ã«åã‚ã‚‹
             float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance) {
                 float shiftX = tx - _center.x;
@@ -432,14 +432,14 @@ namespace fl2d {
             _value = (lever->x() - _center.x) / _maxDistance;
             //------------------------------------------
         }
-        //‚’¼
+        //å‚ç›´
         else if(_type == VERTICALLY) {
             //------------------------------------------
             tx = _center.x;
             ty = mouseY() - _draggablePoint.y;
             
             //------------------------------------------
-            //”ÍˆÍ“à‚Éû‚ß‚é
+            //ç¯„å›²å†…ã«åã‚ã‚‹
             float distance = _center.distance(ofPoint(tx, ty));
             if(_maxDistance < distance){
                 float shiftY = ty - _center.y;

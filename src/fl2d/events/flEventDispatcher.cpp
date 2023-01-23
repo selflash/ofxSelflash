@@ -1,4 +1,4 @@
-#include "flEventDispatcher.h"
+ï»¿#include "flEventDispatcher.h"
 
 namespace fl2d {
     
@@ -27,9 +27,9 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     void flEventDispatcher::dispatchEvent(flEvent* event, bool destry) {
-        //ƒCƒxƒ“ƒgƒŠƒXƒi‚ªŠÖ˜A•t‚¯‚ç‚ê‚½ƒIƒuƒWƒFƒNƒg
+        //ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒŠãŒé–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
         event->__currentTarget = _target;
-        //’¼ÚXXXX‚³‚ê‚½ƒIƒuƒWƒFƒNƒg
+        //ç›´æ¥XXXXã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
         if(event->__target == NULL) event->__target = _target;
         
          ofNotifyEvent(_listeners[event->type()], *event);

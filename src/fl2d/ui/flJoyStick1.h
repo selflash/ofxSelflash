@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include "ofMain.h"
 #include "flUIBase.h"
@@ -8,9 +8,9 @@ namespace fl2d {
     
     class flJoyStick1 : public flUIBase {
         public:
-            //êÖïΩ
+            //Ê∞¥Âπ≥
             static string HORIZONTALLY;
-            //êÇíº
+            //ÂûÇÁõ¥
             static string VERTICALLY;
         
             flSprite* lever = NULL;

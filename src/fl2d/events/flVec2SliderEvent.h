@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flEvent.h"
@@ -18,7 +18,7 @@ namespace fl2d {
         static string THUMB_RELEASE;
         
     protected:
-        //ƒXƒ‰ƒCƒ_ƒTƒ€‚Ü‚½‚ÍƒXƒ‰ƒCƒ_ƒgƒ‰ƒbƒN‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ¦‚·ƒXƒgƒŠƒ“ƒO‚ğæ“¾‚µ‚Ü‚·B
+        //ã‚¹ãƒ©ã‚¤ãƒ€ã‚µãƒ ã¾ãŸã¯ã‚¹ãƒ©ã‚¤ãƒ€ãƒˆãƒ©ãƒƒã‚¯ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’ç¤ºã™ã‚¹ãƒˆãƒªãƒ³ã‚°ã‚’å–å¾—ã—ã¾ã™ã€‚
         void* _clickTarget;
         
         vec2 __value;

@@ -1,4 +1,4 @@
-#include "flRectangle.h"
+ï»¿#include "flRectangle.h"
 
 namespace fl2d {
     
@@ -12,7 +12,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //¶ã‹÷‚ª x ƒpƒ‰ƒ[ƒ^[‚Æ y ƒpƒ‰ƒ[ƒ^[‚Åw’è‚³‚êA•‚Æ‚‚³‚ª width ƒpƒ‰ƒ[ƒ^[ height ƒpƒ‰ƒ[ƒ^[‚Åw’è‚³‚ê‚½V‚µ‚¢ Rectangle ƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·B
+    //å·¦ä¸Šéš…ãŒ x ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¨ y ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã§æŒ‡å®šã•ã‚Œã€å¹…ã¨é«˜ã•ãŒ width ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ height ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã§æŒ‡å®šã•ã‚ŒãŸæ–°ã—ã„ Rectangle ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
     flRectangle::flRectangle(float x, float y, float width, float height) {
         _xMin = x;
         _yMin = y;
@@ -37,7 +37,7 @@ namespace fl2d {
     //==============================================================
     
     //--------------------------------------------------------------
-    //‹éŒ`‚Ì¶ã‹÷‚Ì x À•W‚Å‚·B
+    //çŸ©å½¢ã®å·¦ä¸Šéš…ã® x åº§æ¨™ã§ã™ã€‚
     float flRectangle::x() const { return _xMin; }
     void flRectangle::x(float value) {
         if(_xMin != value) _isChanged = true;
@@ -45,7 +45,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //‹éŒ`‚Ì¶ã‹÷‚Ì y À•W‚Å‚·B
+    //çŸ©å½¢ã®å·¦ä¸Šéš…ã® y åº§æ¨™ã§ã™ã€‚
     float flRectangle::y() const{ return _yMin; }
     void flRectangle::y(float value) {
         if(_yMin != value) _isChanged = true;
@@ -53,7 +53,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //‹éŒ`‚Ì¶ã‹÷‚Ì x À•W‚Å‚·B
+    //çŸ©å½¢ã®å·¦ä¸Šéš…ã® x åº§æ¨™ã§ã™ã€‚
     float flRectangle::left() const{ return _xMin; }
     void flRectangle::left(float value) {
         if(_xMin != value) _isChanged = true;
@@ -61,7 +61,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //x ƒvƒƒpƒeƒB‚Æ width ƒvƒƒpƒeƒB‚Ì‡Œv‚Å‚·B
+    //x ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨ width ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®åˆè¨ˆã§ã™ã€‚
     float flRectangle::right() const{ return _xMax; }
     void flRectangle::right(float value) {
         if(_xMax != value) _isChanged = true;
@@ -69,7 +69,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //‹éŒ`‚Ì¶ã‹÷‚Ì y À•W‚Å‚·B
+    //çŸ©å½¢ã®å·¦ä¸Šéš…ã® y åº§æ¨™ã§ã™ã€‚
     float flRectangle::top() const{ return _yMin; }
     void flRectangle::top(float value) {
         if(_yMin != value) _isChanged = true;
@@ -77,7 +77,7 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //y ƒvƒƒpƒeƒB‚Æ height ƒvƒƒpƒeƒB‚Ì‡Œv‚Å‚·B
+    //y ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨ height ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®åˆè¨ˆã§ã™ã€‚
     float flRectangle::bottom() const{ return _yMax; }
     void flRectangle::bottom(float value) {
         if(_yMax != value) _isChanged = true;
@@ -85,17 +85,17 @@ namespace fl2d {
     }
     
     //--------------------------------------------------------------
-    //Rectangle ƒIƒuƒWƒFƒNƒg‚Ì¶ã‹÷‚ÌˆÊ’u‚ÅA‚»‚Ìƒ|ƒCƒ“ƒg‚Ì x À•W‚Æ y À•W‚ÅŒˆ‚Ü‚è‚Ü‚·B
+    //Rectangle ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å·¦ä¸Šéš…ã®ä½ç½®ã§ã€ãã®ãƒã‚¤ãƒ³ãƒˆã® x åº§æ¨™ã¨ y åº§æ¨™ã§æ±ºã¾ã‚Šã¾ã™ã€‚
     //    ofPoint& flRectangle::topLeft() const{ return _yMin; }
     //    void flRectangle::topLeft(ofPoint& value) { _yMin = value; }
     
     //--------------------------------------------------------------
-    //Rectangle ƒIƒuƒWƒFƒNƒg‚Ì‰E‰º‹÷‚ÌˆÊ’u‚ÅAright ƒvƒƒpƒeƒB‚Æ bottom ƒvƒƒpƒeƒB‚Ì’l‚ÅŒˆ‚Ü‚è‚Ü‚·B
+    //Rectangle ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å³ä¸‹éš…ã®ä½ç½®ã§ã€right ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨ bottom ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤ã§æ±ºã¾ã‚Šã¾ã™ã€‚
     //    ofPoint& flRectangle::bottomRight() const{ return _yMin; }
     //    void flRectangle::bottomRight(ofPoint& value) { _yMin = value; }
     
     //--------------------------------------------------------------
-    //‹éŒ`‚Ì•iƒsƒNƒZƒ‹’PˆÊj‚Å‚·B
+    //çŸ©å½¢ã®å¹…ï¼ˆãƒ”ã‚¯ã‚»ãƒ«å˜ä½ï¼‰ã§ã™ã€‚
     float flRectangle::width() { return _xMax - _xMin; }
     void flRectangle::width(float value) {
         if(_xMax != _xMin + value) _isChanged = true;

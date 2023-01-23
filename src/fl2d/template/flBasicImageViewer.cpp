@@ -53,7 +53,7 @@ namespace fl2d {
 		maximizeButton->visible(false);
 		closeButton->visible(false);
 
-		//addChildAt(_bitmap, getChildIndex(_sizingHandle));
+		//addChildAt(_bitmap, getChildIndex(_leftTopSizingHandle));
 		addChild(_bitmap);
 	}
 

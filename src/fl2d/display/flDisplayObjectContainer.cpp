@@ -1,4 +1,4 @@
-#include "flDisplayObjectContainer.h"
+ï»¿#include "flDisplayObjectContainer.h"
 
 namespace fl2d {
     
@@ -192,8 +192,8 @@ namespace fl2d {
     void flDisplayObjectContainer::__stage(flDisplayObject* value, bool dispatch) {
         //ofLog() << "[flDisplayObjectContainer]__stage(" << value << ")" << name();
         
-		//¡‚Ü‚ÅƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚È‚­‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚é
-		//‚à‚Æ‚à‚ÆƒXƒe[ƒW‚ÉAdd‚³‚ê‚Ä‚¢‚È‚­‚ÄAAdd‚³‚ê‚½‚ç
+		//ä»Šã¾ã§ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ãªãã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã‚‹æ™‚
+		//ã‚‚ã¨ã‚‚ã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã«Addã•ã‚Œã¦ã„ãªãã¦ã€Addã•ã‚ŒãŸã‚‰
 		if(!_stage && value) {
             _stage = value;
             
@@ -213,8 +213,8 @@ namespace fl2d {
 			}
         }
 
-		//Šù‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª‚à‚Á‚Ä‚¢‚Ävalue‚ÉƒXƒe[ƒW‚Ö‚ÌQÆ‚ª“ü‚Á‚Ä‚¢‚È‚¢
-		//‚à‚Æ‚à‚ÆƒXƒe[ƒW‚ÉAdd‚³‚ê‚Ä‚¢‚ÄARemove‚³‚ê‚½‚ç
+		//æ—¢ã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒã‚‚ã£ã¦ã„ã¦valueã«ã‚¹ãƒ†ãƒ¼ã‚¸ã¸ã®å‚ç…§ãŒå…¥ã£ã¦ã„ãªã„æ™‚
+		//ã‚‚ã¨ã‚‚ã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã«Addã•ã‚Œã¦ã„ã¦ã€Removeã•ã‚ŒãŸã‚‰
 		if(_stage && !value) {
             _stage = value;
             
@@ -238,7 +238,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child) {
         //    ofLog() << "[flDisplayObjectContainer]addChild((" << child->name() << ")";
-        //if(child == NULL) throw "TypeError: Error #2007: ‹ child  null ñ˜‡";
+        //if(child == NULL) throw "TypeError: Error #2007: Â° child  null â€°Â§âˆ";
         
 		//bool isChild = contains(child);
 
@@ -273,7 +273,7 @@ namespace fl2d {
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChild(flDisplayObject* child, int x, int y) {
         //    ofLog() << "[flDisplayObjectContainer]addChild(" << child->name() << ", " << x << ", " << y << ")";
-        //if(child == NULL) throw "TypeError: Error #2007: ‹ child  null ñ˜‡";
+        //if(child == NULL) throw "TypeError: Error #2007: Â° child  null â€°Â§âˆ";
         
 		//bool isChild = contains(child);
 
@@ -310,7 +310,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::addChildAt(flDisplayObject* child, int index) {
-        //if(child == NULL) throw "TypeError: Error #2007: ‹ child  null ñ˜‡";
+        //if(child == NULL) throw "TypeError: Error #2007: Â° child  null â€°Â§âˆ";
         
         if(index < 0 || index > _children.size() - 1) return NULL;
 
@@ -347,11 +347,11 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flDisplayObject* flDisplayObjectContainer::removeChild(flDisplayObject* child) {
-        //if(child == NULL) throw "TypeError: Error #2007: ‹ child  null ñ˜‡";
+        //if(child == NULL) throw "TypeError: Error #2007: Â° child  null â€°Â§âˆ";
 
         bool isOnStage = bool(_stage != NULL);
 
-        //_children.size()‚Ì‰ÓŠ‚ÍƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚Æ‚©‚ÅŠO‚Éo‚µ‚½‚çƒ_ƒ
+        //_children.size()ã®ç®‡æ‰€ã¯ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã¨ã‹ã§å¤–ã«å‡ºã—ãŸã‚‰ãƒ€ãƒ¡
         for(int i = 0; i < _children.size(); i++){
             if(_children[i] == child){
                 child->__stage(NULL);
@@ -383,11 +383,11 @@ namespace fl2d {
 
 	//--------------------------------------------------------------
 	flDisplayObject* flDisplayObjectContainer::_removeChild(flDisplayObject* child) {
-		//if(child == NULL) throw "TypeError: Error #2007: ‹ child  null ñ˜‡";
+		//if(child == NULL) throw "TypeError: Error #2007: Â° child  null â€°Â§âˆ";
 
         bool isOnStage = bool(_stage != NULL);
 
-		//_children.size()‚Ì‰ÓŠ‚ÍƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚Æ‚©‚ÅŠO‚Éo‚µ‚½‚çƒ_ƒ
+		//_children.size()ã®ç®‡æ‰€ã¯ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã¨ã‹ã§å¤–ã«å‡ºã—ãŸã‚‰ãƒ€ãƒ¡
 		for (int i = 0; i < _children.size(); i++) {
 			if (_children[i] == child) {
 				child->__stage(NULL, false);
@@ -421,7 +421,7 @@ namespace fl2d {
         
         bool isOnStage = bool(_stage != NULL);
 
-        //_children.size()‚Ì‰ÓŠ‚ÍƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚Æ‚©‚ÅŠO‚Éo‚µ‚½‚çƒ_ƒ
+        //_children.size()ã®ç®‡æ‰€ã¯ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã¨ã‹ã§å¤–ã«å‡ºã—ãŸã‚‰ãƒ€ãƒ¡
         if(index < 0 || index > _children.size() - 1) return NULL;
         flDisplayObject* child;
         child = _children[index];
@@ -510,7 +510,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     vector<flDisplayObject*> flDisplayObjectContainer::getObjectsUnderPoint(ofPoint point) {
-        // TODO ’
+        // TODO ï¿¡
         return _children;
     }
     

@@ -79,7 +79,7 @@ namespace fl2d {
         // ê›íËÇÉçÅ[Éh
         //ofTrueTypeFont font;
         if(font.load(settings)){
-            ofLog() << path << " has been loaded.";
+            ofLog() << "[flFont]_loadFont() " << path << " has been loaded.";
             
             font.setLetterSpacing(1.2);//ï∂éöä‘ ÉfÉtÉHÉãÉgÇÕ1.0 ï∂éöä‘ÇÇÊÇËäJÇØÇÈèÍçáÇÕ1.0Çí¥Ç¶ÇÈílÇéwíËÇ∑ÇÈ
             float maxStringWidth = font.stringWidth(text);

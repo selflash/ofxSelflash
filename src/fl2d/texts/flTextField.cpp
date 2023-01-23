@@ -1,4 +1,4 @@
-#include "flTextField.h"
+ï»¿#include "flTextField.h"
 
 namespace fl2d {
     
@@ -195,7 +195,7 @@ namespace fl2d {
         //------------------------------------------
 
         ////--------------------------------------
-        ////ƒqƒbƒgƒGƒŠƒA‚Ì•\¦
+        ////ãƒ’ãƒƒãƒˆã‚¨ãƒªã‚¢ã®è¡¨ç¤º
         //if (_rectVisible) {
         //    //        if(true) {
         //    ofPushMatrix();
@@ -676,7 +676,7 @@ namespace fl2d {
     void flTextField::_keyPressedEventHandler(ofKeyEventArgs& event) {
         //        char str = (char)event.key;
         
-        //ƒGƒ“ƒ^[ƒL[‚È‚ç‹æØ‚è•¶š‚ğ
+        //ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ãªã‚‰åŒºåˆ‡ã‚Šæ–‡å­—ã‚’
         if(event.key == OF_KEY_RETURN) {
             event.key = '\r\n';
             _text.end();
@@ -699,7 +699,7 @@ namespace fl2d {
             return;
         }
         
-        //ƒfƒŠ[ƒgƒL[‚È‚çˆê•¶šíœ
+        //ãƒ‡ãƒªãƒ¼ãƒˆã‚­ãƒ¼ãªã‚‰ä¸€æ–‡å­—å‰Šé™¤
         if(event.key == OF_KEY_DEL || event.key == OF_KEY_BACKSPACE) {
             if(text().size() != 0) {
                 text(_text.substr(0, _text.size() - 1));

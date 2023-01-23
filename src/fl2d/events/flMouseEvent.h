@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  ActionScript3.0 Reference
  flash.events.MouseEvent
@@ -50,32 +50,32 @@ namespace fl2d {
         flMouseEvent(string type);
         virtual ~flMouseEvent();
         /*
-         //Alt �L�[���A�N�e�B�u�ɂȂ��Ă��邩
+         //Alt キーがアクティブになっているか
          void altKey(bool value);
          bool altKey();
-         //�}�E�X�̎�{�^����������Ă��邩
+         //マウスの主ボタンが押されているか
          void buttonDown(bool value);
          bool buttonDown();
-         //Ctrl �L�[���A�N�e�B�u�ɂȂ��Ă��邩
+         //Ctrl キーがアクティブになっているか
          void ctrlKey(bool value);
          bool ctrlKey();
-         //Shift �L�[���A�N�e�B�u�ɂȂ��Ă��邩
+         //Shift キーがアクティブになっているか
          void shiftKey(bool value);
          bool shiftKey();
          
-         //�X�v���C�g����Ƃ���C�x���g�����ʒu�̐������W
+         //スプライトを基準とするイベント発生位置の水平座標
          void localX(float value);
          float localX();
-         //�X�v���C�g����Ƃ���C�x���g�����ʒu�̐������W
+         //スプライトを基準とするイベント発生位置の垂直座標
          void localY(float value);
          float localY();
          
-         //�O���[�o���X�e�[�W���W����Ƃ���C�x���g�����ʒu�̐������W
+         //グローバルステージ座標を基準とするイベント発生位置の水平座標
          float stageX();
-         //�O���[�o���X�e�[�W���W����Ƃ���C�x���g�����ʒu�̐������W
+         //グローバルステージ座標を基準とするイベント発生位置の垂直座標
          float stageY();
          
-         //�C�x���g�Ɋ֘A����\�����X�g�I�u�W�F�N�g�ւ̎Q��
+         //イベントに関連する表示リストオブジェクトへの参照
          void relatedObject(InteractiveObject* value);
          InteractiveObject* relatedObject();
          */

@@ -1,4 +1,4 @@
-/**
+ï»¿/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlash/blob/master/src/display/ofxFlashStage.h
@@ -74,44 +74,44 @@ namespace fl2d {
             int	_mouseX;
             int	_mouseY;
         
-            //0 is left click.@2 is right click.
+            //0 is left click.ã€€2 is right click.
             int _mouseID;
             //Did click except left click.
             bool _isMouseChanged;
         
-            //ƒL[ƒ{[ƒhƒL[‚ğ‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
+            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’æŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹
             //bool _isKeyDown;
-            //ƒL[ƒ{[ƒhƒL[‚ğ‰Ÿ‚µ‚½‚©
+            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹
             //bool _isKeyPressed;
-            //ƒL[ƒ{[ƒhƒL[‚ğ—£‚µ‚½‚©
+            //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’é›¢ã—ãŸã‹
             //bool _isKeyReleased;
         
             //Interactive objcet that is focused.
             flInteractiveObject* _focus = nullptr;
         
-            //Å‘O–Ê‚Åƒ}ƒEƒX‚Éƒqƒbƒg‚µ‚Ä‚¢‚éDisplayObject
+            //æœ€å‰é¢ã§ãƒã‚¦ã‚¹ã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹DisplayObject
             flDisplayObject* _topMostHitDisplayObject = nullptr;
             flDisplayObject* _topMostHitDisplayObjectPrev = nullptr;
         
-            //Å‘O–Ê‚Åƒ}ƒEƒX‚Éƒqƒbƒg‚µ‚Ä‚¢‚éInteractiveObject
+            //æœ€å‰é¢ã§ãƒã‚¦ã‚¹ã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹InteractiveObject
             flInteractiveObject* _topMostHitInteractiveObject = nullptr;
             flInteractiveObject* _topMostHitInteractiveObjectPrev = nullptr;
         
-            //ƒ}ƒEƒXƒ_ƒEƒ“’†‚ÌInteractiveObject
+            //ãƒã‚¦ã‚¹ãƒ€ã‚¦ãƒ³ä¸­ã®InteractiveObject
             flInteractiveObject* _currentMouseDownInteractiveObject = nullptr;
         
-            //ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚©‚çStage‚Ü‚Å‚Ì‡ [ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg ¨ Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg]
+            //ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰Stageã¾ã§ã®é † [ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
             //vector<flInteractiveObject*> _lineTopDown;
             //vector<flInteractiveObject*> _lineTopDownPrev;
-            //Stage‚©‚çƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚Ü‚Å‚Ì‡ [Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg ¨ ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg]
+            //Stageã‹ã‚‰ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¾ã§ã®é † [Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
             vector<flInteractiveObject*> _lineBottomUp;
             vector<flInteractiveObject*> _lineBottomUpPrev;  
 			vector<flInteractiveObject*> _lineBottomUpForFocus;
 
-			//Stage‚©‚çƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚Ü‚Å‚Ì‡ [ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg ¨ Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg]
+			//Stageã‹ã‚‰ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¾ã§ã®é † [ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
 			//vector<ofPtr<flInteractiveObject>> _lineTopDown;
 			//vector<ofPtr<flInteractiveObject>> _lineTopDownPrev;
-   //         //ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg‚©‚çStage‚Ü‚Å‚Ì‡ [Stage‚ÉÅ‚à‹ß‚¢ƒIƒuƒWƒFƒNƒg ¨ ƒ}ƒEƒXƒqƒbƒgƒIƒuƒWƒFƒNƒg]
+   //         //ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰Stageã¾ã§ã®é † [Stageã«æœ€ã‚‚è¿‘ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ â†’ ãƒã‚¦ã‚¹ãƒ’ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ]
 			//vector<ofPtr<flInteractiveObject>> _lineBottomUp;
 			//vector<ofPtr<flInteractiveObject>> _lineBottomUpPrev;
 

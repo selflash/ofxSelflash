@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flUtil.h"
@@ -36,7 +36,7 @@ namespace fl2d {
             virtual ~flButton();
         
 			virtual flDisplayObject* stage();
-			//–{—ˆ‚Í“Ç‚İæ‚èê—p‚É‚µ‚½‚¢B‚È‚Ì‚ÅflDisplayObjectContainer‚©‚ç‚ÍŒÄ‚Ño‚·‚ÈI
+			//æœ¬æ¥ã¯èª­ã¿å–ã‚Šå°‚ç”¨ã«ã—ãŸã„ã€‚ãªã®ã§flDisplayObjectContainerã‹ã‚‰ã¯å‘¼ã³å‡ºã™ãªï¼
 			virtual void stage(flDisplayObject* value);
 
             virtual void label(flTextField* value);

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "flBasicDraggableObject.h"
@@ -53,7 +53,7 @@ namespace fl2d {
 			bool _moveFrontOnSelect = true;        
 
 			bool _resizable = false;
-			flBasicDraggableObject* _sizingHandle = NULL;
+			flBasicDraggableObject* _leftTopSizingHandle = NULL;
 
 			vector<int> _verticalLinePosList;
 			vector<int> _horizontalLinePosList;
@@ -76,7 +76,7 @@ namespace fl2d {
 			virtual inline bool resizable() { return _resizable; }
 			virtual inline void resizable(bool value) { 
 				_resizable = value;
-				if(_sizingHandle) _sizingHandle->visible(_resizable);
+				if(_leftTopSizingHandle) _leftTopSizingHandle->visible(_resizable);
 			}
 
 			virtual inline string title() { return _title; }

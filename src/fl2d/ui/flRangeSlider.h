@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "ofMain.h"
 #include "flUIBase.h"
@@ -21,7 +21,7 @@ namespace fl2d {
             bool _roundEnabled = false;
             int _digit = 2;
 
-            //DEBUGG�p
+            //DEBUGG用
             float _trackAlpha = 1.0;
 
             float _trackWidth = 150;

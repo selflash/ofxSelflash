@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "ofMain.h"
 #include "flUIBase.h"
@@ -47,7 +47,7 @@ namespace fl2d {
             virtual void hexValue(int value, bool dispatch = true);
         
             //----------------------------------
-            //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+            //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
             virtual int redValue();
             virtual void redValue(int value, bool dispatch = true);
             template <class T>
@@ -69,7 +69,7 @@ namespace fl2d {
             //----------------------------------
         
             //----------------------------------
-            //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+            //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
             virtual int greenValue();
             virtual void greenValue(int value, bool dispatch = true);
             template <class T>
@@ -91,7 +91,7 @@ namespace fl2d {
             //----------------------------------
         
             //----------------------------------
-            //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+            //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
             virtual int blueValue();
             virtual void blueValue(int value, bool dispatch = true);
             template <class T>
@@ -113,7 +113,7 @@ namespace fl2d {
             //----------------------------------
         
             //----------------------------------
-            //Œ^‚ğ“n‚³‚È‚©‚Á‚½‚çint‚Åˆ—‚³‚ê‚é
+            //å‹ã‚’æ¸¡ã•ãªã‹ã£ãŸã‚‰intã§å‡¦ç†ã•ã‚Œã‚‹
             virtual int alphaValue();
             virtual void alphaValue(int value, bool dispatch = true);
             template <class T>

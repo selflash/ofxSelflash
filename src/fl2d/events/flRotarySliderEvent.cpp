@@ -1,4 +1,4 @@
-#include "flRotarySliderEvent.h"
+﻿#include "flRotarySliderEvent.h"
 
 namespace fl2d {
     

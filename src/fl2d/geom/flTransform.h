@@ -1,4 +1,4 @@
-/**
+﻿/**
  
  Original code is julapy :: ofxFlash
  https://github.com/julapy/ofxFlashLite/blob/master/src/geom/ofxFlashTransform.h
