@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ofMain.h"
 #include "flDefinition.h"
@@ -31,29 +31,58 @@ namespace fl2d {
         static void drawString(const string& text, int fontSize, float x, float y);
 
         static void drawStringHighlight(
-                                        const string& text,
-                                        const ofColor& background = ofColor::black,
-                                        const ofColor& foreground = ofColor::white
-                                        );
+            const string& text,
+            const ofColor& background = ofColor::black,
+            const ofColor& foreground = ofColor::white
+        );
         static void drawStringHighlight(
-                                        const string& text,
-                                        float x, float y,
-                                        const ofColor& background = ofColor::black,
-                                        const ofColor& foreground = ofColor::white
-                                        );
+            const string& text,
+            float x, float y,
+            const ofColor& background = ofColor::black,
+            const ofColor& foreground = ofColor::white
+        );
         static void drawStringHighlight(
-                                        const string& text,
-                                        int fontSize,
-                                        const ofColor& background = ofColor::black,
-                                        const ofColor& foreground = ofColor::white
-                                        );
+            const string& text,
+            int fontSize,
+            const ofColor& background = ofColor::black,
+            const ofColor& foreground = ofColor::white
+        );
         static void drawStringHighlight(
-                                        const string& text,
-                                        int fontSize,
-                                        float x, float y,
-                                        const ofColor& background = ofColor::black,
-                                        const ofColor& foreground = ofColor::white
-                                        );
+            const string& text,
+            int fontSize,
+            float x, float y,
+            const ofColor& background = ofColor::black,
+            const ofColor& foreground = ofColor::white
+        );
+
+        //static void drawStringHighlight(
+        //    const string& text,
+        //    const ofColor& background = ofColor::black,
+        //    const ofColor& foreground = ofColor::white,
+        //    const ofColor& backgroundBorder = ofColor::white
+        //);
+        //static void drawStringHighlight(                                        
+        //    const string& text,
+        //    float x, float y,
+        //    const ofColor& background = ofColor::black,                                        
+        //    const ofColor& foreground = ofColor::white,
+        //    const ofColor & backgroundBorder = ofColor::white
+        //);
+        //static void drawStringHighlight(
+        //    const string& text,
+        //    int fontSize,
+        //    const ofColor& background = ofColor::black,
+        //    const ofColor& foreground = ofColor::white,
+        //    const ofColor & backgroundBorder = ofColor::white
+        //);
+        //static void drawStringHighlight(
+        //    const string& text,
+        //    int fontSize,
+        //    float x, float y,
+        //    const ofColor& background = ofColor::black,
+        //    const ofColor& foreground = ofColor::white,
+        //    const ofColor & backgroundBorder = ofColor::white
+        //);
 
         static ofRectangle getStringBoundingBox(const string& text);
         static ofRectangle getStringBoundingBox(const string& text, float x, float y);

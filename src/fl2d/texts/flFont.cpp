@@ -79,7 +79,7 @@ namespace fl2d {
         // ê›íËÇÉçÅ[Éh
         //ofTrueTypeFont font;
         if(font.load(settings)){
-            ofLog() << "[flFont]_loadFont() " << path << " has been loaded.";
+            ofLog() << path << " has been loaded.";
             
             font.setLetterSpacing(1.2);//ï∂éöä‘ ÉfÉtÉHÉãÉgÇÕ1.0 ï∂éöä‘ÇÇÊÇËäJÇØÇÈèÍçáÇÕ1.0Çí¥Ç¶ÇÈílÇéwíËÇ∑ÇÈ
             float maxStringWidth = font.stringWidth(text);
@@ -129,24 +129,23 @@ namespace fl2d {
         drawStringHighlight(text, 0, 0, background, foreground);
     }
     void flFont::drawStringHighlight(
-                                     const string& text,
-                                     float x, float y,
-                                     const ofColor& background,
-                                     const ofColor& foreground
-                                     ) {
+        const string& text,
+        float x, float y,
+        const ofColor& background,
+        const ofColor& foreground
+    ) {
         if(text != "")
         {
             const ofTrueTypeFont& font = _fonts[_normalFontSize];
-            
+            const ofRectangle& boundingBox = font.getStringBoundingBox(text, x, y);
+            const float bx = boundingBox.x - 2;
+            const float by = boundingBox.y - 2;
+            const float bw = boundingBox.width + 4;
+            const float bh = boundingBox.height + 4;
+
             ofPushStyle();
             ofSetColor(background);
-            const ofRectangle& boundingBox = font.getStringBoundingBox(text, x, y);
-            ofDrawRectangle(
-                            boundingBox.x - 2,
-                            boundingBox.y - 2,
-                            boundingBox.width + 4,
-                            boundingBox.height + 4
-                            );
+            ofDrawRectangle(bx, by, bw, bh);
             ofPopStyle();
             
             ofPushStyle();
@@ -170,16 +169,33 @@ namespace fl2d {
             }
             
             const ofTrueTypeFont& font = _fonts[fontSize];
+            const ofRectangle& boundingBox = font.getStringBoundingBox(text, x, y);
+            const float bx = boundingBox.x - 2;
+            const float by = boundingBox.y - 2;
+            const float bw = boundingBox.width + 4;
+            const float bh = boundingBox.height + 4;
             
             ofPushStyle();
             ofSetColor(background);
-            const ofRectangle& boundingBox = font.getStringBoundingBox(text, x, y);
-            ofDrawRectangle(
-                            boundingBox.x - 2,
-                            boundingBox.y - 2,
-                            boundingBox.width + 4,
-                            boundingBox.height + 4
-                            );
+            ofDrawRectangle(bx, by, bw, bh);
+
+            //ofNoFill();
+            //ofSetColor(ofColor::white);
+            //ofDrawRectangle(
+            //    boundingBox.x - 2,
+            //    boundingBox.y - 2,
+            //    boundingBox.width + 4,
+            //    boundingBox.height + 4
+            //);
+
+            //ofSetLineWidth(1);
+            //ofSetColor(ofColor::white);
+            //ofDrawLine(bx, by, bx + bw, by);
+            //ofDrawLine(bx + bw, by, bx + bw, by + bh);
+            //ofDrawLine(bx + bw, by + bh, bx - 1, by + bh);
+            //ofDrawLine(bx, by + bh, bx, by);
+
+
             ofPopStyle();
             
             ofPushStyle();
