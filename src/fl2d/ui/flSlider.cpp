@@ -157,8 +157,8 @@ namespace fl2d {
             _onPress();
         }
         
-        _bChangedByOfParm["value"] = false;
-		_bChangedByMyself["value"] = false;
+        //_bChangedByOfParm["value"] = false;
+        //_bChangedByMyself["value"] = false;
     }
     
     //--------------------------------------------------------------

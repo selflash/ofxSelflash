@@ -34,7 +34,7 @@ namespace fl2d {
 			ofParameter<float> _min = 0.0;
 			ofParameter<float> _max = 100.0;
             float _range = 100.0;
-			ofParameter<float> _value = 50.0;
+			ofParameter<float> _value = 0.0;
             float _percent = 0.5;
 
             flTextField* _valueText = NULL;
@@ -90,6 +90,10 @@ namespace fl2d {
                         _bChangedByOfParm["value"] = true;
                         value(val);
                     }
+
+                    //2023.04.07 動作確認不十分
+                    _bChangedByOfParm["value"] = false;
+                    _bChangedByMyself["value"] = false;
                 }));
 
                 _bChangedByOfParm["value"] = true;
@@ -115,6 +119,10 @@ namespace fl2d {
                         _bChangedByOfParm["value"] = true;
                         value(val);
                     }
+                    
+                    //2023.04.07 動作確認不十分
+                    _bChangedByOfParm["value"] = false;
+                    _bChangedByMyself["value"] = false;
                 }));
                 
                 _bChangedByOfParm["value"] = true;

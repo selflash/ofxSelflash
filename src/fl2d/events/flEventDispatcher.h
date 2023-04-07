@@ -25,7 +25,7 @@ namespace fl2d {
         public:
         
         protected:
-            void* _target = NULL;
+            void* _target = nullptr;
             map<string, ofEvent<flEvent>> _listeners;
         
         private:

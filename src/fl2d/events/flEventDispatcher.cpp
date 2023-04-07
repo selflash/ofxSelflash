@@ -16,7 +16,7 @@ namespace fl2d {
     
     //--------------------------------------------------------------
     flEventDispatcher::~flEventDispatcher() {
-        _target = NULL;
+        _target = nullptr;
         
         _debugEnabled = false;
     }
@@ -28,13 +28,19 @@ namespace fl2d {
     //--------------------------------------------------------------
     void flEventDispatcher::dispatchEvent(flEvent* event, bool destry) {
         //イベントリスナが関連付けられたオブジェクト
-        event->__currentTarget = _target;
+        if (event->__currentTarget == nullptr) event->__currentTarget = _target;
         //直接XXXXされたオブジェクト
-        if(event->__target == NULL) event->__target = _target;
+        if(event->__target == nullptr) event->__target = _target;
         
          ofNotifyEvent(_listeners[event->type()], *event);
         
-        if(destry) delete event;
+         try {
+             if (destry) delete event;
+         }
+         catch (...)
+         {
+
+         }
     }
     
     //==============================================================
