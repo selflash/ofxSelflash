@@ -411,13 +411,25 @@ namespace fl2d {
 //
 //            ofFill();
 
-
-			ofSetLineWidth(_thickness);
-			ofSetColor(_lineColor);
-			ofDrawLine(x, y, x + width, y);
-			ofDrawLine(x + width, y, x + width, y + height);
-			ofDrawLine(x + width, y + height, x - 1, y + height);
-			ofDrawLine(x, y + height, x, y);
+            if (_thickness == 1) {
+                ofSetLineWidth(_thickness);
+                ofSetColor(_lineColor);
+                ofDrawLine(x, y, x + width, y);
+                ofDrawLine(x + width, y, x + width, y + height);
+                ofDrawLine(x + width, y + height, x - 1, y + height);
+                ofDrawLine(x, y + height, x, y);
+            }
+            else {
+                const int w = width;
+                const int h = height;
+                const int lw = _thickness;
+                const int hlw = lw * 0.5;
+                ofSetColor(_lineColor);
+                ofDrawRectangle(-hlw, -hlw, w + hlw, lw);
+                ofDrawRectangle(-hlw, -hlw, lw, h + hlw);
+                ofDrawRectangle(-hlw + w, -hlw, lw, h + hlw);
+                ofDrawRectangle(-hlw, hlw + (h - hlw), w + lw, lw);
+            }
         }
         
         ofPopStyle();

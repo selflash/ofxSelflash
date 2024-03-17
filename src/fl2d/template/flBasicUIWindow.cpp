@@ -257,7 +257,8 @@ namespace fl2d {
 		if (_title != "") {
 			ofPushStyle();
 			ofSetColor(flDefinition::UI_LABEL_NORMAL_COLOR);
-			flFont::drawString(_title, 6, 20);
+			//flFont::drawString(_title, 6, 20);
+			flFont::drawString(_title, 10, 20);
 			ofPopStyle();
 		}
     }
@@ -449,13 +450,18 @@ namespace fl2d {
 		_normalGraphics.lineStyle(1, flDefinition::UI_WINDOW_BORDER_COLOR);
 		_normalGraphics.beginFill(flDefinition::UI_WINDOW_BACKGROUND_COLOR);
 		_normalGraphics.drawRect(0, 0, _defaultWindowWidth, _defaultWindowHeight);
-		for (auto x : _verticalLinePosList) {
-			_normalGraphics.moveTo(x, 0);
-			_normalGraphics.lineTo(x, _defaultWindowHeight);
-		}
-		for (auto y : _horizontalLinePosList) {
-			_normalGraphics.moveTo(0, y);
-			_normalGraphics.lineTo(_defaultWindowWidth, y);
+		for (auto points : _linePosList) {
+			//_normalGraphics.moveTo(x, 0);
+			//_normalGraphics.lineTo(x, _defaultWindowHeight);
+			//_normalGraphics.moveTo(0, y);
+			//_normalGraphics.lineTo(_defaultWindowWidth, y);
+
+			int x1 = points.x < 0 ? 0 : points.x;
+			int y1 = points.y < 0 ? 0 : points.y;
+			int x2 = points.z < 0 ? _defaultWindowWidth : points.z;
+			int y2 = points.w < 0 ? _defaultWindowHeight : points.w;
+			_normalGraphics.moveTo(x1, y1);
+			_normalGraphics.lineTo(x2, y2);
 		}
 		_normalGraphics.endFill();
 		//--------------------------------------
@@ -494,13 +500,18 @@ namespace fl2d {
     //==============================================================
 
 	//--------------------------------------------------------------
+	void flBasicUIWindow::_drawLine(int x1, int y1, int x2, int y2) {
+		_linePosList.push_back(vec4(x1, y1, x2, y2));
+	}
+
+	//--------------------------------------------------------------
 	void flBasicUIWindow::_drawVerticalLine(int x) {
-		_verticalLinePosList.push_back(x);
+		_linePosList.push_back(vec4(x, 0, x, -1));
 	}
 
 	//--------------------------------------------------------------
 	void flBasicUIWindow::_drawHorizontalLine(int y) {
-		_horizontalLinePosList.push_back(y);
+		_linePosList.push_back(vec4(0, y, -1, y));
 	}
 
 	//--------------------------------------------------------------
