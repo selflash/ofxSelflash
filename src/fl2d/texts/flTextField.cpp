@@ -459,51 +459,56 @@ namespace fl2d {
     void flTextField::text(const string& value, int color) {
         _text = value;
         
+        if (color != -1) textColor(color);
+
         _numLine = flstringutil::getLength(_text, "\n") + 1;
         //_numLine = MAX(flstringutil::getLength(_text, "\n") + 1, flstringutil::getLength(_text, "\r\n") + 1);
         
-		string logestSentence = flstringutil::getLongestSentence(_text);
-        //_textWidth = bounds.width + 6;
-		//if(_defaultTextFormat != NULL) _textWidth = _textWidth * (_defaultTextFormat->size() / 10);
-		int size = (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10;
-        ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, size, 0, 0);
-        _textWidth = flFont::getStringWidth(logestSentence, size);
+        //update rectangle
+        {
+            string logestSentence = flstringutil::getLongestSentence(_text);
+            //_textWidth = bounds.width + 6;
+            //if(_defaultTextFormat != NULL) _textWidth = _textWidth * (_defaultTextFormat->size() / 10);
+            int size = (_defaultTextFormat != nullptr) ? _defaultTextFormat->size() : 10;
+            ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, size, 0, 0);
+            _textWidth = flFont::getStringWidth(logestSentence, size);
 
-        //_textHeight = _numLine * flFont::getMaxStringHeight() + 2;
-        _textHeight = (flFont::getMaxStringHeight(size) + 0) * _numLine;
-		//_textHeight = flFont::getStringHeight(_text, (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10);
+            //_textHeight = _numLine * flFont::getMaxStringHeight() + 2;
+            _textHeight = (flFont::getMaxStringHeight(size) + 0) * _numLine;
+            //_textHeight = flFont::getStringHeight(_text, (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10);
 
-        if(color != -1) textColor(color);
-        
-        
-        //--------------------------------------
-        if(isnan(_targetWidth)) {
-            _rect->width(_textWidth);
-        } else {
-            _rect->width(_targetWidth);
-        }
-        
-        if(isnan(_targetHeight)) {
-            _rect->height(_textHeight);
-        } else {
-            _rect->height(_targetHeight);
-        }
-        
-        _realWidth = _rect->width();
-        _realHeight = _rect->height();
-        //--------------------------------------
-        
-        //---------------------------------
-        if(_type == TEXT_FIELD_TYPE_INPUT) {
-            if(_enabled) {
-                if(_isActive) {
-                    _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
-                } else {
-                    _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
+            //--------------------------------------
+            if (isnan(_targetWidth)) {
+                _rect->width(_textWidth);
+            }
+            else {
+                _rect->width(_targetWidth);
+            }
+
+            if (isnan(_targetHeight)) {
+                _rect->height(_textHeight);
+            }
+            else {
+                _rect->height(_targetHeight);
+            }
+
+            _realWidth = _rect->width();
+            _realHeight = _rect->height();
+            //--------------------------------------
+
+            //---------------------------------
+            if (_type == TEXT_FIELD_TYPE_INPUT) {
+                if (_enabled) {
+                    if (_isActive) {
+                        _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
+                    }
+                    else {
+                        _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
+                    }
                 }
             }
+            //---------------------------------
         }
-        //---------------------------------
     }
     
     //--------------------------------------------------------------
@@ -538,6 +543,52 @@ namespace fl2d {
 	const flTextFormat* flTextField::defaultTextFormat() { return _defaultTextFormat; }
 	void flTextField::defaultTextFormat(flTextFormat* value) {
 		_defaultTextFormat = value;
+        
+        //update rectangle
+        {
+            string logestSentence = flstringutil::getLongestSentence(_text);
+            //_textWidth = bounds.width + 6;
+            //if(_defaultTextFormat != NULL) _textWidth = _textWidth * (_defaultTextFormat->size() / 10);
+            int size = (_defaultTextFormat != nullptr) ? _defaultTextFormat->size() : 10;
+            ofRectangle bounds = flFont::getStringBoundingBox(logestSentence, size, 0, 0);
+            _textWidth = flFont::getStringWidth(logestSentence, size);
+
+            //_textHeight = _numLine * flFont::getMaxStringHeight() + 2;
+            _textHeight = (flFont::getMaxStringHeight(size) + 0) * _numLine;
+            //_textHeight = flFont::getStringHeight(_text, (_defaultTextFormat != NULL) ? _defaultTextFormat->size() : 10);
+
+            //--------------------------------------
+            if (isnan(_targetWidth)) {
+                _rect->width(_textWidth);
+            }
+            else {
+                _rect->width(_targetWidth);
+            }
+
+            if (isnan(_targetHeight)) {
+                _rect->height(_textHeight);
+            }
+            else {
+                _rect->height(_targetHeight);
+            }
+
+            _realWidth = _rect->width();
+            _realHeight = _rect->height();
+            //--------------------------------------
+
+            //---------------------------------
+            if (_type == TEXT_FIELD_TYPE_INPUT) {
+                if (_enabled) {
+                    if (_isActive) {
+                        _drawGraphics(flDefinition::UI_ACTIVE_COLOR.getHex(), 0xffffff, _activeLineWidth);
+                    }
+                    else {
+                        _drawGraphics(flDefinition::UI_NORMAL_COLOR.getHex(), 0xffffff, 1);
+                    }
+                }
+            }
+            //---------------------------------
+        }
 	}
     
     //--------------------------------------------------------------

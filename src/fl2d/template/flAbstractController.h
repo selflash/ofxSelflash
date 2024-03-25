@@ -205,6 +205,10 @@ namespace fl2d {
             flTextField* text633 = NULL; flTextField* text634 = NULL; flTextField* text635 = NULL;
             flTextField* text636 = NULL; flTextField* text637 = NULL; flTextField* text638 = NULL;
             flTextField* text639 = NULL;
+            flTextField* text690 = NULL; flTextField* text691 = NULL; flTextField* text692 = NULL;
+            flTextField* text693 = NULL; flTextField* text694 = NULL; flTextField* text695 = NULL;
+            flTextField* text696 = NULL; flTextField* text697 = NULL; flTextField* text698 = NULL;
+            flTextField* text699 = NULL;
             //テキストフィールド(700)
             flTextField* text700 = NULL; flTextField* text701 = NULL; flTextField* text702 = NULL;
             flTextField* text703 = NULL; flTextField* text704 = NULL; flTextField* text705 = NULL;
